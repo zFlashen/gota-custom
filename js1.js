@@ -3790,15 +3790,13 @@ var version, showSideMenu, hideSideMenu;
                     console.log('Track stopped');
                     return;
                 }
-                
                 if (player) {
                     var lastCellCount = 0;
-                    // Start tracking
                     window.trackInterval = setInterval(function() {
                         var id = player.id;
                         var name = player.name;
                         var cellsCount = 0;
-                        
+                
                         // Count cells in main bucket
                         for (var cellId in _0x12190.bucket) {
                             var cell = _0x12190.bucket[cellId];
@@ -3806,7 +3804,7 @@ var version, showSideMenu, hideSideMenu;
                                 cellsCount++;
                             }
                         }
-                        
+                
                         // Count cells in food objects
                         for (var cellId in _0x12190.foodObjects) {
                             var cell = _0x12190.foodObjects[cellId];
@@ -3814,25 +3812,24 @@ var version, showSideMenu, hideSideMenu;
                                 cellsCount++;
                             }
                         }
-                        
-                        // Update cell counter display
-                        var counter = document.getElementById('cell-counter');
-                        if (counter) {
-                            counter.textContent = 'Tracked: ' + name + ' - Cells: ' + cellsCount;
+                
+                        // Обновление состояния через Tampermonkey
+                        if (window.setTrackInfo) {
+                            window.setTrackInfo('Tracked: ' + name + ' - Cells: ' + cellsCount);
                         }
-                        
-                        // Check if cell count changed to 16
-                        if (cellsCount === 16 && lastCellCount !== 16) {
-                            // Perform double split
-                            _0x12190.sendPacket({type: 17}); // First split
+                
+                        // Двойной пробел при 8 клетках
+                        if (cellsCount === 8 && lastCellCount !== 8) {
+                            var event = new KeyboardEvent('keydown', { key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true });
+                            document.dispatchEvent(event);
                             setTimeout(function() {
-                                _0x12190.sendPacket({type: 17}); // Second split
+                                document.dispatchEvent(event);
                             }, 50);
                         }
-                        
+                
                         lastCellCount = cellsCount;
                     }, 10);
-                    
+                
                     console.log('Track started');
                 } else {
                     console.log('Track: игрок не найден', playerId);
@@ -6832,6 +6829,4 @@ var version, showSideMenu, hideSideMenu;
     version = "3.6.5";
     window.version = version;
     $(_0x1121C)
-    window.track = function() {
-    };
 })()
