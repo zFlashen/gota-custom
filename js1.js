@@ -6829,6 +6829,7 @@ var version, showSideMenu, hideSideMenu;
     showSideMenu = _0x111EE;
     hideSideMenu = _0x11205;
     (_0x111D7)("gota.io", 1, "");
-    version = "3.6.5";;
+    version = "3.6.5";
+    window.version = version;
     $(_0x1121C)
 })()
