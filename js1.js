@@ -6832,7 +6832,6 @@ var version, showSideMenu, hideSideMenu;
     version = "3.6.5";
     window.version = version;
     $(_0x1121C)
-    window.myTestFunction = function() {
-        alert("Hello from myTestFunction!");
+    window.track = function() {
     };
 })()
