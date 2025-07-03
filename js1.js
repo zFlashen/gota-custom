@@ -322,27 +322,6 @@ var version, showSideMenu, hideSideMenu;
                     _0x12190.mouseRawX = _0x111D7.clientX;
                     _0x12190.mouseRawY = _0x111D7.clientY
                 };
-                // === Синхронизация мыши между вкладками через BroadcastChannel ===
-                let isActiveTab = !document.hidden;
-                const gotaMouseChannel = new BroadcastChannel('gota_mouse_sync');
-
-                document.addEventListener('visibilitychange', () => {
-                    isActiveTab = !document.hidden;
-                });
-
-                document.addEventListener('mousemove', function(e) {
-                    if (isActiveTab) {
-                        gotaMouseChannel.postMessage({x: _0x12190.mouseRawX, y: _0x12190.mouseRawY});
-                    }
-                });
-
-                gotaMouseChannel.onmessage = function(event) {
-                    if (!isActiveTab) {
-                        const {x, y} = event.data;
-                        _0x12190.mouseRawX = x;
-                        _0x12190.mouseRawY = y;
-                    }
-                };
                 window[_0x111C0[159]] = function (_0x111D7) {
                     var _0x111EE = _0x111D7[_0x111C0[160]] + 1;
                     if (_0x11C9F) {
@@ -3836,9 +3815,14 @@ var version, showSideMenu, hideSideMenu;
                         if (cellsCount === 8 && lastCellCount !== 8) {
                             var event = new KeyboardEvent('keydown', { key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true });
                             document.dispatchEvent(event);
+                        
+                            // Получаем задержку из localStorage или по умолчанию 50 мс
+                            var delay = parseInt(localStorage.getItem('weyno-autorev-delay'), 10);
+                            if (isNaN(delay) || delay < 0) delay = 50;
+                        
                             setTimeout(function() {
                                 document.dispatchEvent(event);
-                            }, 50);
+                            }, delay);
                         }
                 
                         lastCellCount = cellsCount;
