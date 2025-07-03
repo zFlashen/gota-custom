@@ -1,1 +1,1362 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="A free to play web browser based game where users play as a cell and eat others">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="gota, gotaio, blob, cell, fun, entertainment, entertaining, virus">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Gota.io" />
+    <meta content="Gota.io" property="og:site_name" />
+    <meta content="article" property="og:type" />
+    <meta content="Play Gota.io" property="og:title" />
+    <meta content="A game where you eat other players to earn XP and level up. Do you have what it takes to be #1?" property="og:description" />
+    <meta content="https://gota.io/assets/images/favicon.png" property="og:image" />
+    <meta content="120" property="og:image:width" />
+    <meta content="120" property="og:image:height" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Play Gota.io" />
+    <meta name="twitter:description" content="A game where you eat other players to earn XP and level up. Do you have what it takes to be #1?" />
+    <meta name="twitter:image" content="https://gota.io/assets/images/favicon.png" />
+
+    <link rel="icon" type="image/png" href="favicon.ico">
+
+
+    <!-- <link rel="stylesheet" href="style.css?v=DEV-234432324"/> -->
+    <link rel="stylesheet" href="spectrum.css?v=2"/>
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
+    <script>
+       (function () {
+    var _0x111C0 = ["gota.io", "", ":", "split", "/", "://", "href", "location", ",", "length", ".", "error", "onerror", "%cAN ERROR HAS OCCURED\x0A%c", " (line ", ")", "background-color:red;color:white;font-size:24px", "font-size:14px;color:black", "log", "%cTROUBLESHOOTING STEPS\x0A%c- Make sure all extenstions are disabled\x0A- Try the client in Incognito or Private mode\x0A- Try a different browser\x0A- Clear browser cache/browsing data\x0A- Ask for help on our Discord on the #support channel (https://gota.io/discord) with a screenshot of the console", "font-size:24px;color:red;", "color: black;font-size:14px;", "style", "display:block;", "setAttribute", "error-banner", "getElementsByClassName"];
+
+    function _0x111D7(_0x11205, _0x11261, _0x1124A) {
+        if (!_0x11205) {
+            return
+        };
+        var _0x1121C = this[_0x111C0[7]][_0x111C0[6]][_0x111C0[3]](_0x111C0[5])[1][_0x111C0[3]](_0x111C0[4])[0][_0x111C0[3]](_0x111C0[2])[0];
+        var _0x111D7 = _0x11205[_0x111C0[3]](_0x111C0[8]);
+        for (var _0x11233 = 0; _0x11233 < _0x111D7[_0x111C0[9]]; _0x11233++) {
+            var _0x111EE = _0x111D7[_0x11233];
+            if (_0x111EE == _0x1121C) {
+                return
+            };
+            if (!_0x11261) {
+                continue
+            };
+            _0x111EE = _0x1121C[_0x111C0[3]](_0x111C0[10] + _0x111EE);
+            if (_0x111EE[_0x111C0[9]] == 2 && !_0x111EE[1]) {
+                return
+            }
+        };
+        throw (_0x1124A || _0x111C0[11])
+    }
+
+    function _0x111EE(_0x11205, _0x1121C, _0x111EE, _0x111D7) {
+        console[_0x111C0[18]](_0x111C0[13] + _0x11205 + _0x111C0[14] + _0x111EE + _0x111C0[15], _0x111C0[16], _0x111C0[17]);
+        console[_0x111C0[18]](_0x111C0[19], _0x111C0[20], _0x111C0[21]);
+        document[_0x111C0[26]](_0x111C0[25])[0][_0x111C0[24]](_0x111C0[22], _0x111C0[23])
+    }(_0x111D7)(_0x111C0[0], 1, _0x111C0[1]);
+    window[_0x111C0[12]] = _0x111EE
+})() </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src='//google.com/recaptcha/api.js?render=6LcycFwUAAAAANrun52k-J1_eNnF9zeLvgfJZSY3' async></script>
+    <script src="//www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="//www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script src="//www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script>
+    <script src="//www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
+    <script src="lib/pixi-legacy.min.js?v=7.2.4"></script>
+    <script src="lib/spectrum.js?v=2"></script>
+    <script src="lib/adblockdetection.js?v=1"></script>
+    <script src="lib/first-input-delay.js"></script>
+    <script src="lib/gif-frames.js"></script>
+    <script src="lib/fontfaceobserver.js"></script>
+    <script src="lib/nipplejs.min.js"></script>
+    <script src="lib/fastclick.js"></script>
+
+    <!-- GOTA -->
+    <script src="js1.js"></script>
+    <link rel="stylesheet" href="style.css?v=3.6.5"/>
+    <link rel="stylesheet" href="gota.css?v=0.0.1"/>
+    <!-- <script src="gota.js?v=DEV-42423234"></script> -->
+
+    <script>
+       var aiptag;
+(function () {
+    var _0x111C0 = ["gota.io", "", ":", "split", "/", "://", "href", "location", ",", "length", ".", "error", "cmd", "display", "player", "gdprShowConsentTool", "gdprConsentToolPosition", "bottom", "gdprShowConsentToolButton", "consented", "module"];
+
+    function _0x111D7(_0x11205, _0x11261, _0x1124A) {
+        if (!_0x11205) {
+            return
+        };
+        var _0x1121C = this[_0x111C0[7]][_0x111C0[6]][_0x111C0[3]](_0x111C0[5])[1][_0x111C0[3]](_0x111C0[4])[0][_0x111C0[3]](_0x111C0[2])[0];
+        var _0x111D7 = _0x11205[_0x111C0[3]](_0x111C0[8]);
+        for (var _0x11233 = 0; _0x11233 < _0x111D7[_0x111C0[9]]; _0x11233++) {
+            var _0x111EE = _0x111D7[_0x11233];
+            if (_0x111EE == _0x1121C) {
+                return
+            };
+            if (!_0x11261) {
+                continue
+            };
+            _0x111EE = _0x1121C[_0x111C0[3]](_0x111C0[10] + _0x111EE);
+            if (_0x111EE[_0x111C0[9]] == 2 && !_0x111EE[1]) {
+                return
+            }
+        };
+        throw (_0x1124A || _0x111C0[11])
+    }(_0x111D7)(_0x111C0[0], 1, _0x111C0[1]);
+    aiptag = aiptag || {};
+    aiptag[_0x111C0[12]] = aiptag[_0x111C0[12]] || [];
+    aiptag[_0x111C0[12]][_0x111C0[13]] = aiptag[_0x111C0[12]][_0x111C0[13]] || [];
+    aiptag[_0x111C0[12]][_0x111C0[14]] = aiptag[_0x111C0[12]][_0x111C0[14]] || [];
+    aiptag[_0x111C0[15]] = true;
+    aiptag[_0x111C0[16]] = _0x111C0[17];
+    aiptag[_0x111C0[18]] = false;
+    aiptag[_0x111C0[19]] = false;
+    if (window[_0x111C0[20]]) {
+        module = window[_0x111C0[20]]
+    }
+})() </script>
+    <script async src="//api.adinplay.com/libs/aiptag/pub/GOT/gota.io/tag.min.js"></script>
+    
+    <title>Gota.io - Improved by Weyno!</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CJD34K9EWX"></script>
+    <script>
+   var _$_eb6d = ["gota.io", "", ":", "split", "/", "://", "href", "location", ",", "length", ".", "error", "dataLayer", "push", "js", "config", "G-CJD34K9EWX"];
+(function (_0x111EE, _0x1124A, _0x11233) {
+    if (!_0x111EE) {
+        return
+    };
+    var _0x11205 = this[_$_eb6d[7]][_$_eb6d[6]][_$_eb6d[3]](_$_eb6d[5])[1][_$_eb6d[3]](_$_eb6d[4])[0][_$_eb6d[3]](_$_eb6d[2])[0];
+    var _0x111C0 = _0x111EE[_$_eb6d[3]](_$_eb6d[8]);
+    for (var _0x1121C = 0; _0x1121C < _0x111C0[_$_eb6d[9]]; _0x1121C++) {
+        var _0x111D7 = _0x111C0[_0x1121C];
+        if (_0x111D7 == _0x11205) {
+            return
+        };
+        if (!_0x1124A) {
+            continue
+        };
+        _0x111D7 = _0x11205[_$_eb6d[3]](_$_eb6d[10] + _0x111D7);
+        if (_0x111D7[_$_eb6d[9]] == 2 && !_0x111D7[1]) {
+            return
+        }
+    };
+    throw (_0x11233 || _$_eb6d[11])
+})(_$_eb6d[0], 1, _$_eb6d[1]);
+window[_$_eb6d[12]] = window[_$_eb6d[12]] || [];
+
+function gtag() {
+    dataLayer[_$_eb6d[13]](arguments)
+}
+gtag(_$_eb6d[14], new Date());
+gtag(_$_eb6d[15], _$_eb6d[16]) </script>
+</head>
+
+<body ondragstart="return false" ondrop="return false">
+<div class="error-banner" style="display: none;">An error has occured, please check the browser's console for more information/troubleshooting steps. You can also contact us on <a href="https://gota.io/discord">our Discord</a> (click to close this message)</div>
+<div id="canvas-container">
+    <div id="canvas-background"></div>
+    <canvas id="canvas"></canvas>
+</div>
+
+<div class="hud-panel">
+    <div class="top-left ui-scale">
+        <div id="score-panel" class="ui-pane interface-color">
+            <p id="pId">ID: <span>0</span></p>
+            <p id="pServer">Server: <span>None</span></p>
+            <p id="pFps">FPS: <span>0</span></p>
+            <p id="pPing">Ping: <span>0ms</span></p>
+            <p id="pMass">Mass: <span>0</span></p>
+            <p id="pScore">Score: <span>0</span></p>
+            <p id="pCells">Cells: <span>0/16</span></p>
+            <p id="cell-counter">Tracked: None</p>
+            <p id="pMouse" class="text-red d-none">MOUSE FROZEN</p>
+        </div>
+
+        <div id="party-panel" class="ui-pane interface-color hud-panel" style="display: none;">
+            <p id="party-header">Party</p>
+            <canvas id="party-canvas"></canvas>
+        </div>
+    </div>
+
+    <div class="top-right ui-scale">
+        <div id="leaderboard-panel" class="ui-pane interface-color">
+            <p class="lh" id="leaderboard-header">Leaderboard</p>
+            <canvas id="leaderboard-canvas" width="10" height="10"></canvas>
+            <div id="scrimmage-btn-leave" style="display: none;">
+                <button id="btn-leave-match" class="gota-btn" >Leave</button>
+            </div>
+        </div>
+
+        <div id="extra-panel" class="ui-pane interface-color">
+            <p id="extra-reset-timer">Reset: <span id="resetTime">00:00</span></p>
+            <p id="extra-spectators">Spectators: <span id="spectatorCount">0</span></p>
+            <p id="extra-respawn-cooldown">Respawn: <span id="respawnCooldown">00:00</span></p>
+        </div>
+    </div>
+
+    <div id="chat-panel" class="ui-pane ui-scale">
+        <div id="chat-tab-container" class="interface-color">
+
+        </div>
+        <div id="chat-container" class="interface-color">
+
+        </div>
+        <div id="chat-components">
+            <div id="chat-resize"></div>
+            <input id="chat-input" autocomplete="off">
+            <button id="chat-emote-btn"></button>
+            <div id="emote-panel" class="ui-pane interface-color">
+                <h3>Emotes</h3>
+                <ul class="emote-list"></ul>
+                <h3>Gifs</h3>
+                <ul class="gif-list"></ul>
+            </div>
+            <div id="autocomplete-panel" class="ui-pane interface-color">
+            </div>
+        </div>
+    </div>
+
+    <div id="minimap-panel" class="ui-pane interface-color ui-scale">
+        <div id="minimap-coordinates">&nbsp;</div>
+        <canvas id="minimap-canvas" width="250" height="250"></canvas>
+    </div>
+</div>
+
+<div id="preroll"></div>
+
+<div id="main" class="main">
+    <div class="main-panel-wrapper">
+        <div class="main-left main-divider">
+            <div id="main-rb" class="main-panel">
+                <div class="main-rb-title">Advertisement</div>
+                <div id="inner-rb">
+					<a href="https://store.gota.io/kbvSUXAAslGgEiNQeG1" target="_blank">
+						<script>
+						var _$_7510 = ["gota.io", "", ":", "split", "/", "://", "href", "location", ",", "length", ".", "error", "<img src=\'images/adblock.png\' draggable=\'false\'></img>", "write", "undefined"];
+(function (_0x111EE, _0x1124A, _0x11233) {
+    if (!_0x111EE) {
+        return
+    };
+    var _0x11205 = this[_$_7510[7]][_$_7510[6]][_$_7510[3]](_$_7510[5])[1][_$_7510[3]](_$_7510[4])[0][_$_7510[3]](_$_7510[2])[0];
+    var _0x111C0 = _0x111EE[_$_7510[3]](_$_7510[8]);
+    for (var _0x1121C = 0; _0x1121C < _0x111C0[_$_7510[9]]; _0x1121C++) {
+        var _0x111D7 = _0x111C0[_0x1121C];
+        if (_0x111D7 == _0x11205) {
+            return
+        };
+        if (!_0x1124A) {
+            continue
+        };
+        _0x111D7 = _0x11205[_$_7510[3]](_$_7510[10] + _0x111D7);
+        if (_0x111D7[_$_7510[9]] == 2 && !_0x111D7[1]) {
+            return
+        }
+    };
+    throw (_0x11233 || _$_7510[11])
+})(_$_7510[0], 1, _$_7510[1]);
+
+function adBlockDetected() {
+    document[_$_7510[13]](_$_7510[12])
+}
+if (typeof fuckAdBlock === _$_7510[14]) {
+    adBlockDetected()
+}
+</script>
+					</a>
+                    <div id='GOT_gota-io_336x280'>
+                        <script>
+                           var _$_d64f = ["gota.io", "", ":", "split", "/", "://", "href", "location", ",", "length", ".", "error", "cmd", "GOT_gota-io_336x280", "display", "push"];
+(function (_0x111EE, _0x1124A, _0x11233) {
+    if (!_0x111EE) {
+        return
+    };
+    var _0x11205 = this[_$_d64f[7]][_$_d64f[6]][_$_d64f[3]](_$_d64f[5])[1][_$_d64f[3]](_$_d64f[4])[0][_$_d64f[3]](_$_d64f[2])[0];
+    var _0x111C0 = _0x111EE[_$_d64f[3]](_$_d64f[8]);
+    for (var _0x1121C = 0; _0x1121C < _0x111C0[_$_d64f[9]]; _0x1121C++) {
+        var _0x111D7 = _0x111C0[_0x1121C];
+        if (_0x111D7 == _0x11205) {
+            return
+        };
+        if (!_0x1124A) {
+            continue
+        };
+        _0x111D7 = _0x11205[_$_d64f[3]](_$_d64f[10] + _0x111D7);
+        if (_0x111D7[_$_d64f[9]] == 2 && !_0x111D7[1]) {
+            return
+        }
+    };
+    throw (_0x11233 || _$_d64f[11])
+})(_$_d64f[0], 1, _$_d64f[1]);
+if (aiptag[_$_d64f[12]]) {
+    aiptag[_$_d64f[12]][_$_d64f[14]][_$_d64f[15]](function () {
+        aipDisplayTag[_$_d64f[14]](_$_d64f[13])
+    })
+}
+</script>
+                    </div>
+                </div>
+            </div>
+            <div id="main-account" class="main-panel">
+                <div class="loader" id="account-loader">Loading...</div>
+                <div id="no_cookie_consent" class="main-mini-container" style='display: none;'>
+                    <h1>Gota.io Account</h1>
+                    <p>You have not accepted the use of cookies.<br />
+                        Without cookies we cannot provide account features.<br /><br />
+                        You can change your cookie preference in our cookie consent tool at the bottom!
+                    </p>
+                </div>
+                <div id="guest" class="main-mini-container" style="display: none;">
+                    <h1>Gota.io Account</h1>
+                    <p>Log in to gain access to exclusive features like profiles, clans, stats tracking and the shop!</p>
+                    <button id="account-login" class="gota-btn">Login</button>
+                </div>
+                <div id="authed" style="display: none">
+                    <div id="userinfo">
+                        <img id="account-avatar" class="avatar">
+                        <div id="username-container">
+                            <span id="account-username"></span>
+                            <span id="account-level"></span>
+                            <div class="xp-meter">
+                                <span style="width: 0%"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="account-actions">
+                        <button id="account-profile" class="gota-btn">Profile</button>
+                        <button id="account-social" class="gota-btn">Social</button>
+                        <button id="account-shop" class="gota-btn">Shop</button>
+                        <button id="account-logout" class="gota-btn">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-content main-divider main-panel">
+            <div class="main-top">
+                <div id="logo"></div>
+                <span class="main-version">Client version: <script>var _$_51d6 = ["gota.io", "", ":", "split", "/", "://", "href", "location", ",", "length", ".", "error", "write"];
+                    (function (_0x111EE, _0x1124A, _0x11233) {
+                        if (!_0x111EE) {
+                            return
+                        };
+                        var _0x11205 = this[_$_51d6[7]][_$_51d6[6]][_$_51d6[3]](_$_51d6[5])[1][_$_51d6[3]](_$_51d6[4])[0][_$_51d6[3]](_$_51d6[2])[0];
+                        var _0x111C0 = _0x111EE[_$_51d6[3]](_$_51d6[8]);
+                        for (var _0x1121C = 0; _0x1121C < _0x111C0[_$_51d6[9]]; _0x1121C++) {
+                            var _0x111D7 = _0x111C0[_0x1121C];
+                            if (_0x111D7 == _0x11205) {
+                                return
+                            };
+                            if (!_0x1124A) {
+                                continue
+                            };
+                            _0x111D7 = _0x11205[_$_51d6[3]](_$_51d6[10] + _0x111D7);
+                            if (_0x111D7[_$_51d6[9]] == 2 && !_0x111D7[1]) {
+                                return
+                            }
+                        };
+                        throw (_0x11233 || _$_51d6[11])
+                    })(_$_51d6[0], 1, _$_51d6[1]);
+                    document[_$_51d6[12]](version)
+                    </script></span>
+            </div>
+            <div class="main-mid menu-sub-bg">
+                <input type="text" id="name-box" maxlength="20" class="gota-input" placeholder="Name">
+                <div class="main-input-btns">
+                    <button id="btn-play" class="gota-menu-btn">Play</button>
+                    <button id="btn-spec" class="gota-menu-btn">Spectate</button>
+                </div>
+                <div class="main-bottom interface-color">
+                    <div class="main-bottom-left">
+                        <button id="btn-servers" class="gota-btn bottom-btn">
+                            Servers
+                        </button>
+                        <button id="btn-options" class="gota-btn bottom-btn">
+                            Options
+                        </button>
+                        <button id="btn-hotkeys" class="gota-btn bottom-btn">
+                            Hotkeys
+                        </button>
+                        <button id="btn-themes" class="gota-btn bottom-btn">
+                            Theme
+                        </button>
+                        <button id="btn-cellpanel" class="gota-btn bottom-btn" disabled>
+                            Cell Panel
+                        </button>
+                    </div>
+                    <div class="main-bottom-right">
+                        <div class="main-bottom-stats menu-sub-bg2">
+                            <span>Stats</span>
+                            <br>
+                            <div id="main-stats">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-bottom-links">
+                <a href="https://www.youtube.com/channel/UCkjizHFZCcolEPoprLSqKUA?sub_confirmation=1" target="_blank" class="fg-interface-color">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/share?url=https://s5frq.app.goo.gl/kK5p&via=GotaIO&text=Have%20you%20played%20this%20addictive%20game%20yet%3F%20Try%20today%21" target="_blank" class="fg-interface-color">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                        <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.facebook.com/PlayGotaIO/" target="_blank" class="fg-interface-color">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                    </svg>
+                </a>
+                <a href="https://gota.io/discord" target="_blank" class="fg-interface-color">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16">
+                        <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="policyLinks interface-color">
+                <a href="https://gota.io/policies/privacy.html">Privacy Policy</a>|
+                <a href="javascript:;" onclick="aipAPItag.showConsentToolSettings()">Ad Privacy Settings</a>| 
+                <a href="https://gota.io/policies/cookies.html">Cookie Policy</a>
+            </div>
+        </div>
+        <div id="main-right" class="main-divider main-panel">
+            <div id="main-servers" class="main-right-panel" style="display: block;">
+                <div class="title-text menu-title">Servers</div>
+                <div class="server-container">
+                    <ul id="server-tab-container">
+                        <li region="eu" id="server-tab-eu" class="server-tab server-active" title="Europe">
+                            <span>Europe</span>
+                        </li>
+                        <li region="na" id="server-tab-na" class="server-tab" title="North America">
+                            <span>North America</span>
+                        </li>
+                        <li region="ap" id="server-tab-ap" class="server-tab" title="Asia Pacific">
+                            <span>Asia Pacific</span>
+                        </li>
+                    </ul>
+                    <div id="server-content">
+                        <div id="servers-eu" style="display: block;">
+                            <table class="server-table">
+                                <thead>
+                                <tr>
+                                    <th class="server-table-name"><span>Name</span>
+                                    </th>
+                                    <th class="server-table-players"><span>Players</span>
+                                    </th>
+                                    <th class="server-table-mode"><span>Gamemode</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody id="servers-body-eu"></tbody>
+                            </table>
+                        </div>
+                        <div id="servers-na" style="display: none;">
+                            <table class="server-table">
+                                <thead>
+                                <tr>
+                                    <th class="server-table-name"><span>Name</span>
+                                    </th>
+                                    <th class="server-table-players"><span>Players</span>
+                                    </th>
+                                    <th class="server-table-mode"><span>Gamemode</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody id="servers-body-na"></tbody>
+                            </table>
+                        </div>
+                        <div id="servers-ap" style="display: none;">
+                            <table class="server-table">
+                                <thead>
+                                <tr>
+                                    <th class="server-table-name"><span>Name</span>
+                                    </th>
+                                    <th class="server-table-players"><span>Players</span>
+                                    </th>
+                                    <th class="server-table-mode"><span>Gamemode</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody id="servers-body-ap"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="main-options" class="main-right-panel" style="display: none;">
+                <div class="title-text menu-title">Options</div>
+                <div class="options-container">
+                    <table class="options-table">
+                        <thead><tr><th colspan="4">Privacy Options</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Allow Cookies</td>
+                                <td><input type="checkbox" id="cc_acceptCookies" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><a href="javascript:;" onclick="aipAPItag.showConsentToolSettings()">Ad Privacy Settings</a></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Show profile on global leaderboards</td>
+                                <td><input type="checkbox" id="cGlobalLeaderboard" disabled="true"/></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">Performance Options</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Quality</td>
+                                <td>
+                                    <select id="sQuality" class="select-input">
+                                        <option value="ULTRA">Ultra</option>
+                                        <option value="HIGH">High</option>
+                                        <option value="MEDIUM">Medium</option>
+                                        <option value="LOW">Low</option>
+                                        <option value="VERYLOW">Very Low</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Renderer</td>
+                                <td>
+                                    <select id="sRenderType" class="select-input">
+                                        <option value="AUTO">Auto</option>
+                                        <option value="WEBGL">WebGl</option>
+                                        <option value="CANVAS">Canvas</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Disable Anti Aliasing</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cDisableAA" /></td>
+                            </tr>
+                            <tr id="performance-refresh" style="display:none;">
+                                <td colspan="4" class="red">Refresh Required!</td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">Render Options</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Show Border</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cShowBorder" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Hide Food</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cHideFood"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Show Mass</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cShowMass" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Transparent Cells</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cTransCells" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Disable Auto Name Hiding</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cDisableAutoNameHiding" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Disable Auto Food Hiding</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cDisableAutoFoodHiding" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Name Outlines</td>
+                                <td>
+                                    <select id="sTextOutlines" class="select-input">
+                                        <option value="THICK">Thick</option>
+                                        <option value="THIN">Thin</option>
+                                        <option value="NONE">Off</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Show Names</td>
+                                <td>
+                                    <select id="sShowNames" class="select-input">
+                                        <option value="ALL">All</option>
+                                        <option value="PARTY">Party</option>
+                                        <option value="SELF">Self</option>
+                                        <option value="NONE">None</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Show Skins</td>
+                                <td>
+                                    <select id="sShowSkins" class="select-input">
+                                        <option value="ALL">All</option>
+                                        <option value="PARTY">Party</option>
+                                        <option value="SELF">Self</option>
+                                        <option value="NONE">None</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Mass Type</td>
+                                <td>
+                                    <select id="sMassType" class="select-input">
+                                        <option value="DEFAULT">Default</option>
+                                        <option value="SHORT">Short</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">General Options</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2" style="overflow-x: visible" data-balloon="Default: 5 seconds" data-balloon-pos="up">Reconnect (secs): <input class="options-input" id="reconnectPeriod" style="float: none;"></td>
+                                <td colspan="2"><input type="range" id="rReconnectPeriod" min="0" max="10" value="5" step="1"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Auto Respawn</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cAutoRespawn" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Silent Login</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cSilentLogin" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Disable Auto Zoom</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cDisableAutoZoom" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Auto Decline Party Invites</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cAutoDecline" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" data-balloon="Stop ejecting mass when the window loses focus." data-balloon-pos="up" data-balloon-length="fit">Disable Persistent Mass Ejecting</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cDisablePersistEjectMass" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="overflow-x: visible" data-balloon="Default: 90" data-balloon-pos="up">Animation Delay: <input class="options-input" id="animationDelay" style="float: none;"></td>
+                                <td colspan="2"><input type="range" id="rAnimationDelay" min="25" max="250" value="90" step="1"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="overflow-x: visible" data-balloon="Default: 100" data-balloon-pos="up">View Distance: <input class="options-input" id="viewDistance" style="float: none;"></td>
+                                <td colspan="2"><input type="range" id="rViewDistance" min="50" max="150" value="100" step="1"/></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">UI Options</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Hide Chat</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cHideChat" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Hide Minimap</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cHideMinimap" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Hide Party Panel</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cHidePartyPanel" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Hide Leaderboard</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cHideLeaderboard" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Hide Sub-Leaderboard</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cHideExtraPanel" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Show Coordinates</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cShowCoordinates" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Hide Colored Ping</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cColoredPing" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Hide Colored Cell Count</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cColoredCellCount" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Resizable Chat</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cResizableChat" /></td>
+                            </tr>
+                            <tr>
+                                <td><a id="aEditChatTabs" href="#">Edit Chat Tabs</a></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">UI Scale: <input id="uiScale" class="options-input" style="float: none;"> %</td>
+                                <td colspan="2"><input type="range" id="rUiScale" min="0.50" max="1.25" value="1.00" step="0.01"/></td>
+                            </tr>
+                        </tbody>
+                    </tbody>
+                    <thead><tr><th colspan="4" class="text-left">Score Panel</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">Style</td>
+                            <td>
+                                <select id="sScorePanel" class="select-input">
+                                    <option value="0">Hidden</option>
+                                    <option value="1">Horizontal</option>
+                                    <option value="2">Vertical</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                        <thead><tr><th colspan="4">Streamer Options</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Hide ID</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cHideId" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Hide Server</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cHideServer" /></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">Rainbow Food</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Rainbow on</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cRainbowFood" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Rainbow off</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cRainbowFood" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="main-hotkeys" class="main-right-panel" style="display: none;">
+                <div class="title-text menu-title">Hotkeys</div>
+                <div class="options-container">
+                    <table class="options-table">
+                        <thead><tr><th colspan="4">Keybinds</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Context Menu</td>
+                                <td><button id="kContextMenu" class="keybinds-btn"></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Toggle Spectate Mode</td>
+                                <td><button id="kToggleSpec" class="keybinds-btn"></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Eject Mass</td>
+                                <td><button id="kEjectMass" class="keybinds-btn"></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Split</td>
+                                <td><button id="kSplit" class="keybinds-btn"></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Double Split (4x)</td>
+                                <td><button id="kDoubleSplit" class="keybinds-btn"></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Triple Split (8x)</td>
+                                <td><button id="kTripleSplit" class="keybinds-btn"></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Quad Split (16x)</td>
+                                <td><button id="kQuadSplit" class="keybinds-btn"></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Hexa Split (64x)</td>
+                                <td><button id="kHexaSplit" class="keybinds-btn"></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Freeze Mouse</td>
+                                <td><button id="kFreezeMouse" class="keybinds-btn"></button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><button id="btn-reset-keybinds" class="gota-btn">Reset Keybinds</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="main-themes" class="main-right-panel" style="display: none;">
+                <div class="title-text menu-title">Theme</div>
+                <div class="options-container">
+                    <table class="options-table">
+                        <thead><tr><th colspan="4">Theme Toggle</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Enable Custom Theme</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cThemeEnabled" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Disable Event Theme</td>
+                                <td><input type="checkbox" class="checkbox-options" id="cDisableEventSkins" /></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">Interface Colors</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Interface Foreground</td>
+                                <td><input type="text" id="uiForegroundColor" value="#ffffff"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Interface Background</td>
+                                <td><input type="text" id="uiBackgroundColor" value="#ffffff"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Interface Border</td>
+                                <td><input type="text" id="uiBorderColor"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Menu Background</td>
+                                <td><input type="text" id="uiMenuBackgroundColor"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Menu Title Background</td>
+                                <td><input type="text" id="uiMenuTitleBackgroundColor"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Menu Sub Background</td>
+                                <td><input type="text" id="uiMenuSubBackgroundColor"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Menu Sub Background 2</td>
+                                <td><input type="text" id="uiMenuSubBackground2Color"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Button Color</td>
+                                <td><input type="text" id="uiButtonColor"/></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">Interface Highlights</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Leaderboard Highlight</td>
+                                <td><input type="text" id="uiLeaderboardHighlightSelf"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Leaderboard Highlight (Party)</td>
+                                <td><input type="text" id="uiLeaderboardHighlightParty"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Party Leader Color</td>
+                                <td><input type="text" id="uiPartyLeaderColor"/></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">Game Options</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Game Background</td>
+                                <td><input type="text" id="uiGameBackgroundColor"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Game Border</td>
+                                <td><input type="text" id="uiGameBorderColor"/></td>
+                            </tr>
+                            <tr>
+                                <td><a id="btn-food-colors" href="#">Edit Food Colors</a></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">UI Colors</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Success</td>
+                                <td><input type="text" id="uiGameColorSuccess"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Warning</td>
+                                <td><input type="text" id="uiGameColorWarning"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Error</td>
+                                <td><input type="text" id="uiGameColorError"/></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">Custom Assets</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><a id="aCustomBackground" class="custom-asset-skinner" href="#">Set Background Image</a></td>
+                            </tr>
+                            <tr>
+                                <td><a id="aCustomSpike" class="custom-asset-skinner" href="#">Set Virus Skin</a></td>
+                            </tr>
+                            <tr>
+                                <td><a id="aCustomMother" class="custom-asset-skinner" href="#">Set Mother Cell Skin</a></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">Extra</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2" data-balloon="Game border size. Default: 64" data-balloon-pos="up">Border Size: <span id="borderSize">64</span></td>
+                                <td colspan="2"><input type="range" id="rBorderSize" min="1" max="256" value="64" step="1"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" data-balloon="Custom background opacity" data-balloon-pos="up">BG Opacity: <span id="backgroundOpacity">100</span>%</td>
+                                <td colspan="2"><input type="range" id="rBackgroundOpacity" min="0" max="1" value="1" step=".01"/></td>
+                            </tr>
+                        </tbody>
+                        <thead><tr><th colspan="4">&nbsp;</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2"><button class="gota-btn" id="btn-theme-import">Import</button></td>
+                                <td colspan="2"><button class="gota-btn" id="btn-theme-export">Export</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input id="theme-import" type="file" style="display:none;"/>
+                </div>
+            </div>
+            <div id="main-subpanel" class="main-right-panel" style="display: none;">
+                <div class="title-text menu-title">Cell Panel</div>
+                <div class="options-container">
+                    <div id="subpanel-rules" style="display:block;">
+                        <span class="title-text center">Locked Name Rules</span>
+                        <ul class="locked-name-rules">
+                            <li>You must wait at least 7 days between changing the locked name.</li>
+                            <li>Do not share your locked name with others.</li>
+                            <li>Do not imitate or impersonate staff, moderators or YouTubers.</li>
+                            <li>Do not defame, abuse, harass, stalk, threaten or otherwise violate the legal rights (such as rights of privacy and publicity) of others in the locked name or in chat.</li>
+                            <li>Do not use locked names to advertise websites. (Names like "Saku YT", "Sylveon YouTube" etc. are fine)</li>
+                            <li>No flaming, hate speech, bullying, harassing, stalking, or being overly creepy in the locked name or in chat.</li>
+                            <li>Locked names must be between 2 and 20 characters.</li>
+                            <li>Locked names can only contain letters (a-z), numbers (0-9) and spaces.</li>
+                        </ul>
+                        <button id="btn-subpanel-rules" class="gota-btn">Accept</button>
+                    </div>
+                    <div id="subpanel-content" style="display:none;">
+                        <table class="options-table">
+                            <thead class="subpanel-name-dashboard"><tr><th colspan="2">Locked Name</th></tr></thead>
+                            <tbody class="subpanel-name-dashboard">
+                                <tr>
+                                    <td>Locked Name</td>
+                                    <td><span id="spLockedName"></span> (<a id="btn-chg-ln">edit</a>)</td>
+                                </tr>
+                                <tr>
+                                    <td>Expiry</td>
+                                    <td id="spExpiry">Never</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://gota.io/policies/locked-names/rules.html" target="_blank" style="color:white;">Locked Name Rules</a></td>
+                                </tr>
+                            </tbody>
+                            <thead><tr><th colspan="2">Cell Options</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>Skin Name</td>
+                                    <td><input type="text" id="spSkinName" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Ejected Mass Skin</td>
+                                    <td>
+                                        <select id="spEffect" class="select-input">
+                                            <option value="0">None</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Name Font</td>
+                                    <td>
+                                        <select id="spNameFont" class="select-input">
+                                            <option value="0">Default</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Name Color</td>
+                                    <td><input type="text" id="spNameColor" value="#ffffff" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Chat Color</td>
+                                    <td><input type="text" id="spChatColor" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Lower Name</td>
+                                    <td><input type="checkbox" id="spLowerName" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><button id="btn-updateSP" class="gota-btn">Update</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main-social" class="main" style="display: none;"> 
+    <div id="main-friends" class="main-left main-divider main-panel">
+        <div id="social-back-button" class="back-button" data-balloon="Go back to main menu" data-balloon-pos="up"> 
+            <i class="material-icons">chevron_left</i> 
+        </div>
+        <div class="title-text menu-title">Friends</div>
+        <div id="social-friends-info">
+            <span>You have <span id="social-friends-count">0</span>/25 friends</span>
+            <span>You currently have <span id="social-online-friends-count">0 online</span> friends</span>
+        </div>
+        <div id="social-friends" class="menu-sub-bg">
+            <menu class="user-list"> 
+            </menu>
+            <menu class="user-list">
+            </menu>
+        </div> 
+        <div id="social-actions"> 
+            <span id="social-uid-container">
+                Your User ID: <span id="social-uid"></span>
+            </span>
+            <button class="gota-btn" id="btn-add-friend">Add a Friend</button>
+        </div>
+    </div> 
+    <div class="main-content main-divider">
+        <div id="main-discord" class="main-panel center">
+            <div class="title-text menu-title">Discord Linking</div>
+            <div class="main-mini-container">
+                <p>Link your Discord account to recieve exclusive rewards on our <a href="https://gota.io/discord" class="stealth-link">official server</a>! Linking your account will also join you to our server!</p>
+                <p id="discordLinkStatus" style="display: none;">Your account is currently not linked.</p>
+                <div class="discord-login-container">
+                    <a class="discord-login-button" id="discordLink" href="#">Link with Discord</a>
+                    <a class="discord-login-button" id="discordUnlink" style="display:none;" href="#">Unlink Discord</a>
+                </div>
+            </div>
+        </div>
+        <div id="main-tokens" class="main-panel center">
+            <div class="title-text menu-title">Redeem Tokens</div>
+            <div class="main-mini-container">
+                <p>Visit our store for more information on receiving a locked name!</p>
+                <small id="token-amount"></small>
+            </div>
+            <form id="redeem-tokens" class="gota-input-group" action="#" style="display: none">
+                <input type="text" class="gota-input" id="redeem-name" placeholder="Name" minlength="3" maxlength="20" required>
+                <input type="number" class="gota-input" id="redeem-spend" placeholder="Tokens" min="0" required style="width:35%">
+                <input type="submit" class="gota-btn" value="Redeem" style="margin: 15px;"></input>
+                <br/><a href="https://gota.io/policies/locked-names/rules.html" target="_blank" style="color:white;">Locked Name Rules</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="main-scrimmage" class="main-panel interface-color" style="display: none;">
+    <div id="scrimmage-menu" class="scrimmage-full" style="display: block;">
+        <div class="title-text menu-title">Scrimmage</div>
+        <div class="scrimmage-content">
+            <div class="scrimmage-left scrimmage-main-left">
+                <div class="scrimmage-mode-box menu-sub-bg">
+                    <span>Gamemode</span>
+                    <br>
+                    <select id="scrimmage-mode-select" class="scrimmage-select"></select>
+                </div>
+                <div id="scrimmage-custom-btn-container" class="scrimmage-mode-box scrimmage-main-left menu-sub-bg">
+                    <span>Custom Game</span>
+                    <button id="btn-custom-create" class="gota-btn">Create</button>
+                    <button id="btn-custom-lobbies" class="gota-btn">Join</button>
+                </div>
+            </div>
+            <div id="scrimmage-mode-info" class="scrimmage-mode-box scrimmage-right menu-sub-bg"></div>
+        </div>
+        <div style="text-align: center; height: 30px;">
+            <button id="btn-queue" class="gota-btn">Queue</button>
+        </div>
+    </div>
+    <div id="scrimmage-custom" class="scrimmage-full" style="display: none;">
+        <div class="title-text menu-title">Custom Game</div>
+        <div class="scrimmage-content">
+            <div class="scrimmage-left">
+                <div id="scrimmage-options-leader" class="scrimmage-mode-box menu-sub-bg">
+                    <span>Map</span><br>
+                    <select id="scrimmage-map" class="scrimmage-select custom-game"></select><br>
+                    <span>Modifier</span><br>
+                    <select id="scrimmage-mapmode" class="scrimmage-select custom-game"></select><br>
+                    <span>Map Size</span><br>
+                    <select id="scrimmage-mapsize" class="scrimmage-select custom-game"></select><br>
+                    <span>Starting Mass</span><br>
+                    <input id="scrimmage-startmass" class="custom-game"><br>
+                    <span>Virus Density (%)</span><br>
+                    <input id="scrimmage-virusDensity" class="custom-game"><br>
+                    <span>Respawn Delay (Sec)</span><br>
+                    <input id="scrimmage-respawnDelay" class="custom-game"><br>
+                    <input type="checkbox" id="scrimmage-autoSplit" class="custom-game"><span>Auto Splits</span>
+                    <br><br>
+                    <input type="checkbox" id="scrimmage-lockteams" class="custom-game"><span>Lock Teams</span>
+                    <br><br>
+                    <input type="checkbox" id="scrimmage-public" class="custom-game"><span>Public</span><br>
+                    <input type="checkbox" id="scrimmage-password" class="custom-game"><span>Password</span>
+                </div>
+            </div>
+            <div id="scrimmage-custom-playerlist" class= "scrimmage-mode-box scrimmage-right menu-sub-bg">
+                <table class="scrimmage-list-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 70%;"><span>Players</span></th>
+                            <th style="width: 30%;"><span>Team</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="scrimmage-custom-players">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="text-align: center; height: 30px;">
+            <button id="btn-custom-start" class="gota-btn">Start</button>
+            <button id="btn-custom-return" class="gota-btn">Back</button>
+        </div>
+    </div>
+    <div id="scrimmage-lobbies" class="scrimmage-full" style="display: none;">
+        <div class="title-text menu-title">Custom Game Browser</div>
+        <div class="scrimmage-content menu-sub-bg">
+            <div id="scrimmage-lobbies-list" class= "scrimmage-mode-box scrimmage-right">
+                <table class="scrimmage-list-table">
+                    <thead>
+                    <tr>
+                        <th style="width: 34%;"><span>Name</span></th>
+                        <th style="width: 24%;"><span>Leader</span></th>
+                        <th style="width: 16%;"><span>Map</span></th>
+                        <th style="width: 16%;"><span>Mode</span></th>
+                        <th style="width: 10%"><span>Players</span></th>
+                    </tr>
+                    </thead>
+                    <tbody id="scrimmage-lobbies-tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="text-align: center; height: 30px;">
+            <button id="btn-lobbies-join" class="gota-btn">Join</button>
+            <button id="btn-lobbies-refresh" class="gota-btn">Refresh</button>
+            <button id="btn-lobbies-return" class="gota-btn">Back</button>
+        </div>
+    </div>
+</div>
+
+<div class="popup-container">
+    <div id="popup-party" class="popup-panel" style="display:none;">
+        <div class="title-text menu-title">Party Invite</div>
+        <div id="popup-party-text"></div>
+        <div class="popup-buttons">
+            <button id="btn-accept" class="gota-btn">Accept</button>
+            <button id="btn-decline" class="gota-btn">Decline</button>
+        </div>
+    </div>
+    <div id="popup-party-code" class="popup-panel" style="display: none;">
+        <div class="title-text menu-title">Party Code</div>
+        <div class="gota-input-group" id="popup-party-code-content">
+            <input type="text" id="party-code-input" readonly />
+            <button>Copy</button>
+        </div>
+    </div>
+    <div id="popup-account-username" class="popup-panel" style="display: none;">
+        <div class="back-button" data-balloon="Go back to main menu" data-balloon-pos="up">
+            <i class="material-icons">chevron_left</i> 
+        </div>
+        <div class="title-text menu-title">Edit Username</div>
+        <div class="gota-input-group">
+            <select id="account-titles" style="display: none;">
+                <option value="0">Default Title</option>
+            </select>
+        </div>
+        <div class="gota-input-group">
+            <input type="text" id="account-username-input" placeholder="New Username" autocomplete="off" maxlength="29" minlength="3" data-lpignore="true" />
+            <button id="account-set-username-btn" class="gota-btn">Set</button>
+        </div>
+        <div class="center">
+            <i>Woah! You can only change your username every 14 days.</i>
+            <a href="https://gota.io/policies/usernames/rules.html" class="stealth-link" target="_blank">Username Rules</a>
+        </div>
+    </div>
+    <div id="popup-changelog" class="popup-panel" style="display: none">
+        <div class="title-text menu-title">Version <script>var _$_6cf4 = ["gota.io", "", ":", "split", "/", "://", "href", "location", ",", "length", ".", "error", "write"];
+            (function (_0x111EE, _0x1124A, _0x11233) {
+                if (!_0x111EE) {
+                    return
+                };
+                var _0x11205 = this[_$_6cf4[7]][_$_6cf4[6]][_$_6cf4[3]](_$_6cf4[5])[1][_$_6cf4[3]](_$_6cf4[4])[0][_$_6cf4[3]](_$_6cf4[2])[0];
+                var _0x111C0 = _0x111EE[_$_6cf4[3]](_$_6cf4[8]);
+                for (var _0x1121C = 0; _0x1121C < _0x111C0[_$_6cf4[9]]; _0x1121C++) {
+                    var _0x111D7 = _0x111C0[_0x1121C];
+                    if (_0x111D7 == _0x11205) {
+                        return
+                    };
+                    if (!_0x1124A) {
+                        continue
+                    };
+                    _0x111D7 = _0x11205[_$_6cf4[3]](_$_6cf4[10] + _0x111D7);
+                    if (_0x111D7[_$_6cf4[9]] == 2 && !_0x111D7[1]) {
+                        return
+                    }
+                };
+                throw (_0x11233 || _$_6cf4[11])
+            })(_$_6cf4[0], 1, _$_6cf4[1]);
+            document[_$_6cf4[12]](version)
+            </script></div>
+        <div style="text-align:center;margin: 20px;">
+            A new update for Gota.io has been released!
+            Read the changelog below!
+        </div>
+        <div style="text-align: center; height: 30px;padding: 20px;">
+            <button id="btn-changelog" class="gota-btn">View Changelog</button>
+            <button id="btn-close-changelog" class="gota-btn">Play</button>
+        </div>
+    </div>
+    <div id="popup-profile" class="popup-panel" style="display: none">
+        <div class="profile-title-container">
+            <img id="profile-avatar" class="avatar" />
+            <div class="title-text" id="profile-name"><span id="profile-title"></span>&nbsp<span id="profile-username"></span></div>
+            <span id="profile-clan-membership"></span>
+            <span id="profile-level"></span>
+        </div>
+        <div class="divider title-divider"></div>
+        <div class="popup-profile-filler"></div>
+        <div class="profile-actions">
+            <button id="profile-close-btn" class="gota-btn">Close</button>
+        </div>
+    </div>
+    <div id="popup-food-colors" class="popup-panel" style="display: none">
+        <div class="back-button" data-balloon="Go back to main menu" data-balloon-pos="up"><i class="material-icons">chevron_left</i></div>
+        <div class="title-text menu-title">Food Colors</div>
+        <table class="food-colors-table">
+            <tbody>
+                <tr>
+                    <td><div id="food-color-list"></div></td>
+                    <td><input type="text" id="pFoodColors"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="popup-asset-skinner" class="popup-panel" style="display: none;">
+        <div class="back-button" data-balloon="Go back to main menu" data-balloon-pos="up"><i class="material-icons">chevron_left</i></div>
+        <div class="title-text menu-title">Set</div>
+        <div class="center asset-skinner-center">
+            <input type="text" class="gota-input" id="input-asset-skinner" autocomplete="off" data-lpignore="true"/>
+            <div>
+                <button id="btn-custom-asset-clear" class="gota-btn">Clear</button>
+                <button id="btn-custom-asset-set" class="gota-btn">Set</button>
+            </div>
+        </div>
+        <div class="center asset-skinner-last">
+            <i>Please enter the image url or drag an image to this window.</i>
+        </div>
+    </div>
+    <div id="popup-chat-tab-editor" class="popup-panel" style="display: none;">
+        <div class="back-button" data-balloon="Go back to main menu" data-balloon-pos="up"><i class="material-icons">chevron_left</i></div>
+        <div class="title-text menu-title">Chat Tabs Editor</div>
+        <table class="popup-chat-tab-editor-table">
+            <thead><tr><th colspan="5"></th></tr></thead>
+            <tbody>
+                <tr>
+                    <td colspan="3">Chat Tab</td>
+                    <td colspan="2">
+                        <select id="cte-tab-selector">
+                            <option value="All">All</option>
+                            <option value="Party">Party</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">Name</td>
+                    <td colspan="2"><input type="text" class="gota-input" autocomplete="off" id="cte-tab-name" /></td>
+                </tr>
+            </tbody>
+            <thead><tr><th colspan="5">Allowed Chat Types</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td colspan="4">All Chat</td>
+                    <td><input type="checkbox" id="cte-type-all" />
+                </tr>
+                <tr>
+                    <td colspan="4">Party Chat</td>
+                    <td><input type="checkbox" id="cte-type-party" /></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Whispers</td>
+                    <td><input type="checkbox" id="cte-type-whisper" /></td>
+                </tr>
+                <tr>
+                    <td colspan="4">System Messages</td>
+                    <td><input type="checkbox" id="cte-type-system" /></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Admin Announcements</td>
+                    <td><input type="checkbox" id="cte-type-admin" /></td>
+                </tr>
+            </tbody>
+            <thead><tr><th colspan="5">Extra</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td colspan="4">Max Messages</td>
+                    <td><input type="text" class="gota-input" autocomplete="off" id="cte-max-messages" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="center popup-chat-tab-editor-last">
+            <button id="btn-chat-tab-editor-add" class="gota-btn">Add</button>
+            <button id="btn-chat-tab-editor-remove" class="gota-btn">Remove</button>
+            <button id="btn-chat-tab-editor-update" class="gota-btn">Update</button>
+        </div>
+    </div>
+    <div id="popup-message" class="popup-panel" style="display: none;">
+        <div class="back-button" data-balloon="Go back to main menu" data-balloon-pos="up"><i class="material-icons">chevron_left</i></div>
+        <div class="title-text menu-title">Gota Alert</div>
+        <div id="popup-message-content">
+        </div>
+        <div class="profile-actions">
+            <button id="popup-message-read-btn" class="gota-btn">Mark as read</button>
+        </div>
+    </div>
+</div>
+
+<div id="cookie-banner" style="display: none">
+    <span class="description">
+        <b>We've updated our Cookie Policy!</b><br />
+        We use cookies to ensure that we give you the best experience on our website. 
+        We also use cookies to provide personalised content (e.g personalised ads or saved settings). 
+        If you refuse (or do not provide a preference) to the use of cookies, 
+        we may be unable to provide some of our services. (You can change your preference in the options menu at any time).
+    </span>
+    <div class="buttons">
+        <button id="declineCookies">Decline</button>
+        <button id="acceptCookies">Allow Cookies</button>
+    </div>
+</div>
+
+<div id="context-menu" style="display:none;" selected="0" party="-1">
+    <ul class="context-list">
+        <li id="context-name"></li>
+        <li id="menu-invite" class="context-action">
+            <span>Invite</span>
+        </li>
+        <li id="menu-pu_pr" class="context-action">
+            <span>Public</span>
+        </li>
+        <li id="menu-promote" class="context-action">
+            <span>Promote</span>
+        </li>
+        <li id="menu-whisper" class="context-action">
+            <span>Whisper</span>
+        </li>
+        <li id="menu-kick" class="context-action">
+            <span>Kick</span>
+        </li>
+        <li id="menu-spectate" class="context-action">
+            <span>Spectate</span>
+        </li>
+        <li id="menu-block" class="context-action">
+            <span>Block</span>
+        </li>
+    </ul>
+</div>
+
+<div id="touch_controls">
+    <div id="joystick" style="position: relative;"></div>
+    <div id="touch_buttons">
+        <button id="button_double" class="touch_button">D</button>
+        <button id="button_triple" class="touch_button">T</button>
+        <button id="button_split" class="touch_button">S</button>
+        <button id="button_eject" class="touch_button">E</button>
+    </div>
+</div>
+
+</body>
+
+</html>
 
