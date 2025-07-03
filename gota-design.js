@@ -153,6 +153,7 @@ function insertWeynoButton() {
                     <span class="text-gray-400 text-sm">Status: <span class="text-green-500">Connected</span></span>
                     <button class="text-blue-500 hover:text-blue-400 text-sm font-medium"><i class="fas fa-cog mr-1"></i> Settings</button>
                 </div>
+                <div id="weyno-resize-handle" style="position:absolute;right:2px;bottom:2px;width:18px;height:18px;cursor:nwse-resize;z-index:1000;"><svg width="18" height="18"><line x1="4" y1="14" x2="14" y2="14" stroke="#4b5563" stroke-width="2"/><line x1="8" y1="10" x2="14" y2="10" stroke="#4b5563" stroke-width="2"/><line x1="12" y1="6" x2="14" y2="6" stroke="#4b5563" stroke-width="2"/></svg></div>
             </div>
         </div>
         `;
@@ -292,6 +293,38 @@ function insertWeynoButton() {
             if (rainbowToggle.checked) {
                 window.initRainbowFood && window.initRainbowFood();
             }
+            var resizeHandle = wrapper.querySelector('#weyno-resize-handle');
+            // Восстановить размер из localStorage
+            var savedWidth = localStorage.getItem('weyno-menu-width');
+            var savedHeight = localStorage.getItem('weyno-menu-height');
+            if(savedWidth) dropdownMenu.style.width = savedWidth + 'px';
+            if(savedHeight) dropdownMenu.style.height = savedHeight + 'px';
+            // Resize logic
+            var resizing = false, startX, startY, startW, startH;
+            resizeHandle.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                resizing = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                startW = parseInt(window.getComputedStyle(dropdownMenu).width, 10);
+                startH = parseInt(window.getComputedStyle(dropdownMenu).height, 10);
+                document.body.style.userSelect = 'none';
+            });
+            document.addEventListener('mousemove', function(e) {
+                if(!resizing) return;
+                var newW = Math.max(260, startW + (e.clientX - startX));
+                var newH = Math.max(320, startH + (e.clientY - startY));
+                dropdownMenu.style.width = newW + 'px';
+                dropdownMenu.style.height = newH + 'px';
+            });
+            document.addEventListener('mouseup', function(e) {
+                if(resizing) {
+                    resizing = false;
+                    localStorage.setItem('weyno-menu-width', parseInt(dropdownMenu.style.width,10));
+                    localStorage.setItem('weyno-menu-height', parseInt(dropdownMenu.style.height,10));
+                    document.body.style.userSelect = '';
+                }
+            });
         })();
     }
 }
