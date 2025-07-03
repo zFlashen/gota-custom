@@ -93,6 +93,13 @@ function insertWeynoButton() {
                                         <option>2GB</option><option>4GB</option><option>8GB</option>
                                     </select>
                                 </div>
+                                <div class="flex items-center justify-between mt-2">
+                                    <span class="text-gray-300">Mouse Sync</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" id="mouse-sync-toggle">
+                                        <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -327,6 +334,39 @@ function insertWeynoButton() {
                 localStorage.setItem('weyno-rainbow-intensity', intensityInput.value);
                 window.dispatchEvent(new CustomEvent('rainbowIntensityChanged', { detail: { value: intensityInput.value } }));
             });
+            // Mouse Sync logic
+            const mouseSyncToggle = wrapper.querySelector('#mouse-sync-toggle');
+            const mouseSyncEnabled = localStorage.getItem('weyno-mouse-sync-enabled') === 'true';
+            mouseSyncToggle.checked = mouseSyncEnabled;
+            let mouseSyncActive = mouseSyncEnabled;
+            let lastMoveTime = 0;
+            const delay = 50;
+            const BC = new BroadcastChannel("mouse-weyno");
+            mouseSyncToggle.addEventListener('change', function() {
+                mouseSyncActive = mouseSyncToggle.checked;
+                localStorage.setItem('weyno-mouse-sync-enabled', mouseSyncActive);
+            });
+            document.addEventListener("mousemove", (e) => {
+                if (!mouseSyncActive) return;
+                if (Date.now() - lastMoveTime > delay) {
+                    lastMoveTime = Date.now();
+                    BC.postMessage({ x: e.clientX, y: e.clientY });
+                }
+            });
+            BC.onmessage = (msg) => {
+                if (mouseSyncActive) return;
+                const { x, y } = msg.data;
+                if (window._0x12190) {
+                    window._0x12190.mouseX = x;
+                    window._0x12190.mouseY = y;
+                }
+                document.dispatchEvent(new MouseEvent("mousemove", {
+                    clientX: x,
+                    clientY: y,
+                    bubbles: true,
+                    cancelable: true
+                }));
+            };
         })();
     }
 }
