@@ -3816,12 +3816,21 @@ var version, showSideMenu, hideSideMenu;
                             var event = new KeyboardEvent('keydown', { key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true });
                             document.dispatchEvent(event);
                         
-                            // Получаем задержку из localStorage или по умолчанию 50 мс
                             var delay = parseInt(localStorage.getItem('weyno-autorev-delay'), 10);
                             if (isNaN(delay) || delay < 0) delay = 50;
                         
                             setTimeout(function() {
                                 document.dispatchEvent(event);
+                                // Останавливаем трекинг после двойного пробела
+                                if (window.trackInterval) {
+                                    clearInterval(window.trackInterval);
+                                    window.trackInterval = null;
+                                    var counter = document.getElementById('cell-counter');
+                                    if (counter) {
+                                        counter.textContent = 'Tracked: None';
+                                    }
+                                    console.log('Track auto-stopped after double space');
+                                }
                             }, delay);
                         }
                 
