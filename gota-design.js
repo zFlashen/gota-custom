@@ -136,7 +136,7 @@ function insertWeynoButton() {
                                 <div class="flex items-center justify-between">
                                     <span class="text-gray-300">Enable Rainbow</span>
                                     <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer">
+                                        <input type="checkbox" class="sr-only peer" id="rainbowfood-toggle">
                                         <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                                     </label>
                                 </div>
@@ -276,6 +276,22 @@ function insertWeynoButton() {
             weynoBtn.addEventListener('mouseleave', function() {
                 this.classList.remove('glow-effect');
             });
+            // Rainbow food logic
+            var rainbowToggle = wrapper.querySelector('#rainbowfood-toggle');
+            var savedRainbow = localStorage.getItem('weyno-rainbowfood-enabled') === 'true';
+            rainbowToggle.checked = savedRainbow;
+            rainbowToggle.addEventListener('change', function() {
+                localStorage.setItem('weyno-rainbowfood-enabled', rainbowToggle.checked);
+                if (rainbowToggle.checked) {
+                    window.initRainbowFood && window.initRainbowFood();
+                } else {
+                    window.disableRainbowFood && window.disableRainbowFood();
+                }
+            });
+            // Initialize rainbow food if enabled
+            if (rainbowToggle.checked) {
+                window.initRainbowFood && window.initRainbowFood();
+            }
         })();
     }
 }
@@ -299,4 +315,23 @@ function stopTrackIfNeeded() {
         console.log('Track auto-stopped by Autorev toggle');
     }
 }
+
+window.initRainbowFood = function() {
+    if (window._rainbowFoodActive) return;
+    window._rainbowFoodActive = true;
+    // Пример: делаем все food объекты радужными
+    if (window._0x12190 && window._0x12190.foodObjects) {
+        for (var cellId in window._0x12190.foodObjects) {
+            var cell = window._0x12190.foodObjects[cellId];
+            // Пример: меняем цвет на случайный радужный
+            cell.color = 'hsl(' + Math.floor(Math.random()*360) + ',100%,50%)';
+        }
+    }
+    // Можно добавить анимацию или интервал для смены цвета
+};
+
+window.disableRainbowFood = function() {
+    window._rainbowFoodActive = false;
+    // Можно сбросить цвета еды к стандартным
+};
 })();
