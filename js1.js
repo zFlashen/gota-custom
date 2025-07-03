@@ -3790,13 +3790,15 @@ var version, showSideMenu, hideSideMenu;
                     console.log('Track stopped');
                     return;
                 }
+                
                 if (player) {
                     var lastCellCount = 0;
+                    // Start tracking
                     window.trackInterval = setInterval(function() {
                         var id = player.id;
                         var name = player.name;
                         var cellsCount = 0;
-                
+                        
                         // Count cells in main bucket
                         for (var cellId in _0x12190.bucket) {
                             var cell = _0x12190.bucket[cellId];
@@ -3804,7 +3806,7 @@ var version, showSideMenu, hideSideMenu;
                                 cellsCount++;
                             }
                         }
-                
+                        
                         // Count cells in food objects
                         for (var cellId in _0x12190.foodObjects) {
                             var cell = _0x12190.foodObjects[cellId];
@@ -3812,13 +3814,14 @@ var version, showSideMenu, hideSideMenu;
                                 cellsCount++;
                             }
                         }
-                
-                        // Обновление состояния через Tampermonkey
-                        if (window.setTrackInfo) {
-                            window.setTrackInfo('Tracked: ' + name + ' - Cells: ' + cellsCount);
+                        
+                        // Update cell counter display
+                        var counter = document.getElementById('cell-counter');
+                        if (counter) {
+                            counter.textContent = 'Tracked: ' + name + ' - Cells: ' + cellsCount;
                         }
-                
-                        // Двойной пробел при 8 клетках
+                        
+                        // Check if cell count changed to 8
                         if (cellsCount === 8 && lastCellCount !== 8) {
                             var event = new KeyboardEvent('keydown', { key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true });
                             document.dispatchEvent(event);
