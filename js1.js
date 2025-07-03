@@ -3797,9 +3797,17 @@ var version, showSideMenu, hideSideMenu;
                         var name = player.name;
                         var cellsCount = 0;
                 
-                        // Новый трекинг: по всей карте через playerRegistry.bucket
-                        for (var cellId in _0x12190.playerRegistry.bucket) {
-                            var cell = _0x12190.playerRegistry.bucket[cellId];
+                        // Count cells in main bucket
+                        for (var cellId in _0x12190.bucket) {
+                            var cell = _0x12190.bucket[cellId];
+                            if (cell.playerId === playerId && cell.type !== 6) {
+                                cellsCount++;
+                            }
+                        }
+                
+                        // Count cells in food objects
+                        for (var cellId in _0x12190.foodObjects) {
+                            var cell = _0x12190.foodObjects[cellId];
                             if (cell.playerId === playerId && cell.type !== 6) {
                                 cellsCount++;
                             }
