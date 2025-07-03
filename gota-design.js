@@ -38,7 +38,7 @@ function insertWeynoButton() {
                 <i class="fas fa-gamepad text-xl"></i>
                 <span>Weyno Client</span>
             </button>
-            <div id="dropdownMenu" class="absolute left-0 mt-2 w-64 bg-gray-800 rounded-lg shadow-xl overflow-hidden menu-transition origin-top hidden transform scale-y-0 opacity-0 z-50 border border-gray-700">
+            <div id="dropdownMenu" class="absolute left-0 mt-2 w-[340px] bg-gray-800 rounded-lg shadow-xl overflow-hidden menu-transition origin-top hidden transform scale-y-0 opacity-0 z-50 border border-gray-700">
                 <div class="bg-gray-900 px-4 py-3 flex justify-between items-center border-b border-gray-700">
                     <h3 class="text-white font-semibold">Weyno Client v1.0</h3>
                     <button id="closeMenu" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
