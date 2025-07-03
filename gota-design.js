@@ -45,7 +45,6 @@ function insertWeynoButton() {
                 </div>
                 <div class="relative bg-gray-800 px-4 pt-2">
                     <div class="flex border-b border-gray-700">
-                        <button class="tab-btn py-3 px-4 text-white font-medium text-sm relative" data-tab="main"><span>Main</span></button>
                         <button class="tab-btn py-3 px-4 text-gray-400 hover:text-white font-medium text-sm relative" data-tab="multibox"><span>Multibox</span></button>
                         <button class="tab-btn py-3 px-4 text-gray-400 hover:text-white font-medium text-sm relative" data-tab="autorev"><span>Autorev</span></button>
                         <button class="tab-btn py-3 px-4 text-gray-400 hover:text-white font-medium text-sm relative" data-tab="rainbow"><span>Rainbow</span></button>
