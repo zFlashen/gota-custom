@@ -323,36 +323,14 @@ var version, showSideMenu, hideSideMenu;
                     _0x12190.mouseRawY = _0x111D7.clientY
                 };
                 // --- Синхронизация мыши между вкладками через BroadcastChannel ---
-                // === TAB ROLE LOGIC ===
-                let tabRole = localStorage.getItem('gota_tab_role');
-                if (!tabRole) {
-                    if (!localStorage.getItem('gota_tab_main_exists')) {
-                        tabRole = 'main';
-                        localStorage.setItem('gota_tab_main_exists', '1');
-                    } else {
-                        tabRole = 'follower';
-                    }
-                    localStorage.setItem('gota_tab_role', tabRole);
-                }
-                window.addEventListener('beforeunload', function() {
-                    if (tabRole === 'main') {
-                        localStorage.removeItem('gota_tab_main_exists');
-                    }
-                    localStorage.removeItem('gota_tab_role');
-                });
-                // --- Синхронизация мыши между вкладками через BroadcastChannel ---
                 const gotaMouseChannel = new BroadcastChannel('gota_mouse_sync');
-                if (tabRole === 'main') {
-                    document.addEventListener('mousemove', function(e) {
-                        gotaMouseChannel.postMessage({x: e.clientX, y: e.clientY});
-                    });
-                }
+                document.addEventListener('mousemove', function(e) {
+                    gotaMouseChannel.postMessage({x: e.clientX, y: e.clientY});
+                });
                 gotaMouseChannel.onmessage = function(event) {
-                    if (tabRole === 'follower') {
-                        const {x, y} = event.data;
-                        _0x12190.mouseRawX = x;
-                        _0x12190.mouseRawY = y;
-                    }
+                    const {x, y} = event.data;
+                    _0x12190.mouseRawX = x;
+                    _0x12190.mouseRawY = y;
                 };
                 window[_0x111C0[159]] = function (_0x111D7) {
                     var _0x111EE = _0x111D7[_0x111C0[160]] + 1;
