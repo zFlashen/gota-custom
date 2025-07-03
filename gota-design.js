@@ -142,7 +142,7 @@ function insertWeynoButton() {
                                 <div class="flex items-center space-x-2">
                                     <i class="fas fa-palette text-blue-500"></i>
                                     <span class="text-gray-300">Effect Intensity</span>
-                                    <input type="range" min="1" max="10" value="5" class="ml-auto w-24">
+                                    <input type="range" min="1" max="10" value="5" class="ml-auto w-24" id="rainbow-intensity">
                                 </div>
                             </div>
                         </div>
@@ -282,15 +282,10 @@ function insertWeynoButton() {
             rainbowToggle.checked = savedRainbow;
             rainbowToggle.addEventListener('change', function() {
                 localStorage.setItem('weyno-rainbowfood-enabled', rainbowToggle.checked);
-                if (rainbowToggle.checked) {
-                    window.initRainbowFood && window.initRainbowFood();
-                } else {
-                    window.disableRainbowFood && window.disableRainbowFood();
-                }
+                window.dispatchEvent(new CustomEvent('rainbowToggleChanged', { detail: { value: rainbowToggle.checked } }));
             });
-            // Initialize rainbow food if enabled
             if (rainbowToggle.checked) {
-                window.initRainbowFood && window.initRainbowFood();
+                // ничего не делаем, всё инициализирует js1.js
             }
             var resizeHandle = wrapper.querySelector('#weyno-resize-handle');
             // Восстановить размер из localStorage
@@ -324,6 +319,14 @@ function insertWeynoButton() {
                     document.body.style.userSelect = '';
                 }
             });
+            // Rainbow intensity logic
+            var intensityInput = wrapper.querySelector('#rainbow-intensity');
+            var savedIntensity = localStorage.getItem('weyno-rainbow-intensity') || '5';
+            intensityInput.value = savedIntensity;
+            intensityInput.addEventListener('input', function() {
+                localStorage.setItem('weyno-rainbow-intensity', intensityInput.value);
+                window.dispatchEvent(new CustomEvent('rainbowIntensityChanged', { detail: { value: intensityInput.value } }));
+            });
         })();
     }
 }
@@ -347,23 +350,4 @@ function stopTrackIfNeeded() {
         console.log('Track auto-stopped by Autorev toggle');
     }
 }
-
-window.initRainbowFood = function() {
-    if (window._rainbowFoodActive) return;
-    window._rainbowFoodActive = true;
-    // Пример: делаем все food объекты радужными
-    if (window._0x12190 && window._0x12190.foodObjects) {
-        for (var cellId in window._0x12190.foodObjects) {
-            var cell = window._0x12190.foodObjects[cellId];
-            // Пример: меняем цвет на случайный радужный
-            cell.color = 'hsl(' + Math.floor(Math.random()*360) + ',100%,50%)';
-        }
-    }
-    // Можно добавить анимацию или интервал для смены цвета
-};
-
-window.disableRainbowFood = function() {
-    window._rainbowFoodActive = false;
-    // Можно сбросить цвета еды к стандартным
-};
 })();
