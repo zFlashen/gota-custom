@@ -3716,6 +3716,9 @@ var version, showSideMenu, hideSideMenu;
                             if (cell) cell.rainbow = _0x12020.cRainbowFood;
                         });
                     }
+                    if (window.setRainbowStatus) {
+                        window.setRainbowStatus(this.checked ? 'on' : 'off');
+                    }
                 }
             });
             setInterval(function() {
