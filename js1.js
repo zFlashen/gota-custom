@@ -3821,13 +3821,31 @@ var version, showSideMenu, hideSideMenu;
                             counter.textContent = 'Tracked: ' + name + ' - Cells: ' + cellsCount;
                         }
                         
-                        // Check if cell count changed to 8
-                        if (cellsCount === 8 && lastCellCount !== 8) {
+                        // Получаем значение TriggerCells из localStorage (по умолчанию 8)
+                        var triggerCells = parseInt(localStorage.getItem('weyno-autorev-triggercells'), 10);
+                        if (isNaN(triggerCells) || triggerCells < 1) triggerCells = 8;
+
+                        // Check if cell count changed к TriggerCells
+                        if (cellsCount === triggerCells && lastCellCount !== triggerCells) {
                             var event = new KeyboardEvent('keydown', { key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true });
                             document.dispatchEvent(event);
+
+                            var delay = parseInt(localStorage.getItem('weyno-autorev-delay'), 10);
+                            if (isNaN(delay) || delay < 0) delay = 50;
+
                             setTimeout(function() {
                                 document.dispatchEvent(event);
-                            }, 50);
+                                // Останавливаем трекинг после двойного пробела
+                                if (window.trackInterval) {
+                                    clearInterval(window.trackInterval);
+                                    window.trackInterval = null;
+                                    var counter = document.getElementById('cell-counter');
+                                    if (counter) {
+                                        counter.textContent = 'Tracked: None';
+                                    }
+                                    console.log('Track auto-stopped after double space');
+                                }
+                            }, delay);
                         }
                 
                         lastCellCount = cellsCount;
