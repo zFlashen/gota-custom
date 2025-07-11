@@ -43,37 +43,8 @@ function insertWeynoButton() {
                     <h3 class="text-white font-semibold">Weyno Client v1.0</h3>
                     <button id="closeMenu" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
                 </div>
-                <div class="relative bg-gray-800 px-4 pt-2">
-                    <div class="flex border-b border-gray-700">
-                        <button class="tab-btn py-3 px-4 text-gray-400 hover:text-white font-medium text-sm relative" data-tab="main"><span>Main</span></button>
-                        <button class="tab-btn py-3 px-4 text-gray-400 hover:text-white font-medium text-sm relative" data-tab="autorev"><span>Autorev</span></button>
-                    </div>
-                    <div id="tabIndicator" class="tab-indicator absolute bottom-0 left-0 h-0.5 bg-blue-500 transition-all duration-300" style="width: 56px; transform: translateX(0px);"></div>
-                </div>
                 <div class="p-4">
-                    <div id="mainContent" class="tab-content">
-                        <div class="text-white">
-                            <h4 class="font-semibold mb-2">Main Settings</h4>
-                            <p class="text-gray-400 text-sm">Configure your main client settings here.</p>
-                            <div class="mt-4 space-y-3">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-300">FPS Boost</span>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" checked>
-                                        <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                                    </label>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-300">Memory Optimizer</span>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer">
-                                        <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="autorevContent" class="tab-content hidden">
+                    <div id="autorevContent" class="tab-content">
                         <div class="text-white">
                             <h4 class="font-semibold mb-2">Autorev Settings</h4>
                             <p class="text-gray-400 text-sm">Automate your revival process.</p>
@@ -119,9 +90,6 @@ function insertWeynoButton() {
             var dropdownMenu = wrapper.querySelector('#dropdownMenu');
             var weynoBtn = wrapper.querySelector('#weynoBtn');
             var closeMenu = wrapper.querySelector('#closeMenu');
-            var tabButtons = wrapper.querySelectorAll('.tab-btn');
-            var tabContents = wrapper.querySelectorAll('.tab-content');
-            var tabIndicator = wrapper.querySelector('#tabIndicator');
             // Autorev hotkey logic
             var hotkeyInput = wrapper.querySelector('#autorev-hotkey');
             var toggleInput = wrapper.querySelector('#autorev-toggle');
@@ -196,30 +164,8 @@ function insertWeynoButton() {
                     }, 300);
                 }
             }
-            function switchTab(event) {
-                var tabId = event.currentTarget.getAttribute('data-tab');
-                tabButtons.forEach(function(btn){
-                    btn.classList.remove('text-white');
-                    btn.classList.add('text-gray-400');
-                });
-                event.currentTarget.classList.remove('text-gray-400');
-                event.currentTarget.classList.add('text-white');
-                var btnRect = event.currentTarget.getBoundingClientRect();
-                var containerRect = event.currentTarget.parentElement.getBoundingClientRect();
-                var leftPosition = btnRect.left - containerRect.left;
-                var width = btnRect.width;
-                tabIndicator.style.width = width + 'px';
-                tabIndicator.style.transform = 'translateX(' + leftPosition + 'px)';
-                tabContents.forEach(function(content){
-                    content.classList.add('hidden');
-                });
-                wrapper.querySelector('#' + tabId + 'Content').classList.remove('hidden');
-            }
             weynoBtn.addEventListener('click', toggleMenu);
             closeMenu.addEventListener('click', toggleMenu);
-            tabButtons.forEach(function(btn){
-                btn.addEventListener('click', switchTab);
-            });
             document.addEventListener('click', function(event) {
                 if (!weynoBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
                     if (!dropdownMenu.classList.contains('hidden')) {
