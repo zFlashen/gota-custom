@@ -45,9 +45,8 @@ function insertWeynoButton() {
                 </div>
                 <div class="relative bg-gray-800 px-4 pt-2">
                     <div class="flex border-b border-gray-700">
-                        <button class="tab-btn py-3 px-4 text-gray-400 hover:text-white font-medium text-sm relative" data-tab="multibox"><span>Multibox</span></button>
+                        <button class="tab-btn py-3 px-4 text-gray-400 hover:text-white font-medium text-sm relative" data-tab="main"><span>Main</span></button>
                         <button class="tab-btn py-3 px-4 text-gray-400 hover:text-white font-medium text-sm relative" data-tab="autorev"><span>Autorev</span></button>
-                        <button class="tab-btn py-3 px-4 text-gray-400 hover:text-white font-medium text-sm relative" data-tab="rainbow"><span>Rainbow</span></button>
                     </div>
                     <div id="tabIndicator" class="tab-indicator absolute bottom-0 left-0 h-0.5 bg-blue-500 transition-all duration-300" style="width: 56px; transform: translateX(0px);"></div>
                 </div>
@@ -70,28 +69,6 @@ function insertWeynoButton() {
                                         <input type="checkbox" class="sr-only peer">
                                         <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                                     </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="multiboxContent" class="tab-content hidden">
-                        <div class="text-white">
-                            <h4 class="font-semibold mb-2">Multibox Settings</h4>
-                            <p class="text-gray-400 text-sm">Manage multiple game instances simultaneously.</p>
-                            <div class="mt-4 space-y-3">
-                                <div class="flex items-center space-x-2">
-                                    <i class="fas fa-desktop text-blue-500"></i>
-                                    <span class="text-gray-300">Instance Count</span>
-                                    <select class="ml-auto bg-gray-700 text-white text-sm rounded px-2 py-1">
-                                        <option>1</option><option>2</option><option>3</option><option>4</option>
-                                    </select>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <i class="fas fa-memory text-blue-500"></i>
-                                    <span class="text-gray-300">RAM Allocation</span>
-                                    <select class="ml-auto bg-gray-700 text-white text-sm rounded px-2 py-1">
-                                        <option>2GB</option><option>4GB</option><option>8GB</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -123,26 +100,6 @@ function insertWeynoButton() {
                                     <i class="fas fa-bullseye text-blue-500"></i>
                                     <span class="text-gray-300">TriggerCells</span>
                                     <input type="number" id="autorev-triggercells" min="1" max="256" class="ml-auto bg-gray-700 text-white text-sm rounded px-2 py-1 w-16 text-center" style="text-align:center;" title="Cells count to trigger double space">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="rainbowContent" class="tab-content hidden">
-                        <div class="text-white">
-                            <h4 class="font-semibold mb-2">Rainbow Settings</h4>
-                            <p class="text-gray-400 text-sm">Colorful effects for your game.</p>
-                            <div class="mt-4 space-y-3">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-300">Enable Rainbow</span>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" id="rainbowfood-toggle">
-                                        <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                                    </label>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <i class="fas fa-palette text-blue-500"></i>
-                                    <span class="text-gray-300">Effect Intensity</span>
-                                    <input type="range" min="1" max="10" value="5" class="ml-auto w-24" id="rainbow-intensity">
                                 </div>
                             </div>
                         </div>
@@ -276,17 +233,6 @@ function insertWeynoButton() {
             weynoBtn.addEventListener('mouseleave', function() {
                 this.classList.remove('glow-effect');
             });
-            // Rainbow food logic
-            var rainbowToggle = wrapper.querySelector('#rainbowfood-toggle');
-            var savedRainbow = localStorage.getItem('weyno-rainbowfood-enabled') === 'true';
-            rainbowToggle.checked = savedRainbow;
-            rainbowToggle.addEventListener('change', function() {
-                localStorage.setItem('weyno-rainbowfood-enabled', rainbowToggle.checked);
-                window.dispatchEvent(new CustomEvent('rainbowToggleChanged', { detail: { value: rainbowToggle.checked } }));
-            });
-            if (rainbowToggle.checked) {
-                // ничего не делаем, всё инициализирует js1.js
-            }
             var resizeHandle = wrapper.querySelector('#weyno-resize-handle');
             // Восстановить размер из localStorage
             var savedWidth = localStorage.getItem('weyno-menu-width');
@@ -319,18 +265,9 @@ function insertWeynoButton() {
                     document.body.style.userSelect = '';
                 }
             });
-            // Rainbow intensity logic
-            var intensityInput = wrapper.querySelector('#rainbow-intensity');
-            var savedIntensity = localStorage.getItem('weyno-rainbow-intensity') || '5';
-            intensityInput.value = savedIntensity;
-            intensityInput.addEventListener('input', function() {
-                localStorage.setItem('weyno-rainbow-intensity', intensityInput.value);
-                window.dispatchEvent(new CustomEvent('rainbowIntensityChanged', { detail: { value: intensityInput.value } }));
-            });
         })();
     }
 }
-
 // Попытка вставить сразу
 insertWeynoButton();
 // Если main-account появляется позже — отслеживаем через MutationObserver
