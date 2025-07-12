@@ -1,22 +1,27 @@
-(function addClientButtonWhenReady() {
-    const tryAdd = () => {
-        const container = document.querySelector('.main-bottom-left');
-        // Проверяем, что контейнер есть и кнопка еще не добавлена
-        if (container && !document.getElementById('btn-client')) {
-            var btn = document.createElement('button');
-            btn.id = 'btn-client';
-            btn.className = 'gota-btn bottom-btn';
-            btn.style.color = 'rgb(255, 255, 255)';
-            btn.style.borderColor = 'rgb(255, 255, 255)';
-            btn.style.backgroundColor = 'rgb(68, 68, 68)';
-            btn.innerText = 'Client';
-            container.appendChild(btn);
-            return true;
-        }
-        return false;
-    };
-    // Проверяем раз в 300мс до тех пор, пока кнопка не появится
-    const interval = setInterval(() => {
-        if (tryAdd()) clearInterval(interval);
-    }, 300);
-})();
+// Ждем загрузки страницы
+window.addEventListener('load', function() {
+    // Создаем новую кнопку
+    const clientBtn = document.createElement('button');
+    clientBtn.id = 'btn-client';
+    clientBtn.className = 'gota-btn bottom-btn';
+    clientBtn.textContent = 'Client';
+
+    // Устанавливаем стили как у других кнопок
+    clientBtn.style.color = 'rgb(255, 255, 255)';
+    clientBtn.style.borderColor = 'rgb(255, 255, 255)';
+    clientBtn.style.backgroundColor = 'rgb(68, 68, 68)';
+
+    // Находим контейнер с кнопками
+    const buttonsContainer = document.querySelector('.main-bottom-left');
+
+    // Добавляем новую кнопку в контейнер
+    if (buttonsContainer) {
+        buttonsContainer.appendChild(clientBtn);
+    }
+
+    // Добавляем обработчик события (по желанию)
+    clientBtn.addEventListener('click', function() {
+        console.log('Client button clicked');
+        // Здесь можно добавить свою логику
+    });
+});
