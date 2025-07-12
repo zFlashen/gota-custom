@@ -3795,6 +3795,9 @@ var version, showSideMenu, hideSideMenu;
                     var lastCellCount = 0;
                     // Start tracking
                     window.trackInterval = setInterval(function() {
+                        // Проверяем, включён ли Autorev
+                        var autorevEnabled = localStorage.getItem('weyno-autorev-enabled') === 'true';
+                        if (!autorevEnabled) return;
                         var id = player.id;
                         var name = player.name;
                         var cellsCount = 0;
