@@ -247,10 +247,10 @@ var version, showSideMenu, hideSideMenu;
             _0x11D29 = $(_0x111C0[87]);
             _0x11724 = $(_0x111C0[88]);
             _0x117C5[_0x111C0[89]] = document.getElementById(_0x111C0[90]);
-            _0x117C5.playerScore = document.getElementById(_0x111C0[94])("#playerPing")("span");
-            _0x117C5[_0x111C0[95]] = document.getElementById(_0x111C0[96])("#playerPing")("span");
-            _0x117C5.playerCells = document.getElementById(_0x111C0[98])("#playerPing")("span");
-            _0x117C5[_0x111C0[99]] = document.getElementById(_0x111C0[100])("#playerPing")("span");
+            _0x117C5.playerScore = document.getElementById(_0x111C0[94])[_0x111C0[93]]("span");
+            _0x117C5[_0x111C0[95]] = document.getElementById(_0x111C0[96])[_0x111C0[93]]("span");
+            _0x117C5.playerCells = document.getElementById(_0x111C0[98])[_0x111C0[93]]("span");
+            _0x117C5[_0x111C0[99]] = document.getElementById(_0x111C0[100])[_0x111C0[93]]("span");
             _0x117C5.resetInfo = $("#extra-reset-timer");
             _0x117C5.resetTime = $("#resetTime");
             _0x117C5.respawnInfo = $("#extra-respawn-cooldown");
@@ -794,7 +794,7 @@ var version, showSideMenu, hideSideMenu;
             this.name = $("#name-box").val();
             this.spectate = false;
             this.currentServerName = _0x12470.name;
-            _0x123B8("#playerPing")(_0x111C0[341]).innerHTML = this.currentServerName;
+            _0x123B8[_0x111C0[93]](_0x111C0[341]).innerHTML = this.currentServerName;
             _0x11DF8();
             if (this.isConnected() && this.currentServer == _0x12470.ip) {
                 this.sendPacket(new _0x12065.setName(this.name))
@@ -894,7 +894,7 @@ var version, showSideMenu, hideSideMenu;
             if (this.socket != null) {
                 this.socket = null
             };
-            _0x123B8("#playerPing")(_0x111C0[380]).innerHTML = this.playerId;
+            _0x123B8[_0x111C0[93]](_0x111C0[380]).innerHTML = this.playerId;
             if (this.subPanelOverride) {
                 this.subPanelOverride = false;
                 _0x127F1()
@@ -1368,7 +1368,7 @@ var version, showSideMenu, hideSideMenu;
             _0x111D7.offset += 2;
             _0x12300(_0x111D7);
             this.serverData.autosplits = _0x111D7.getUint8(_0x111D7.offset++);
-            _0x123B8("#playerPing")(_0x111C0[380]).innerHTML = this.playerId;
+            _0x123B8[_0x111C0[93]](_0x111C0[380]).innerHTML = this.playerId;
             this.updateCellCounter(0, true);
             if (_0x11278 != null) {
                 _0x12190.sendPacket(new _0x12065.sendPartyJoin(_0x11278))
@@ -1455,18 +1455,18 @@ var version, showSideMenu, hideSideMenu;
             var _0x111D7 = +new Date - _0x12134;
             if (!_0x12020.cColoredPing) {
                 if (_0x111D7 < 100) {
-                    _0x123B8("#playerPing").css.style.color = _0x126F4.uiGameColorSuccess
+                    _0x123B8[_0x111C0[93]](_0x111C0[507]).style.color = _0x126F4.uiGameColorSuccess
                 } else {
                     if (_0x111D7 < 200) {
-                        _0x123B8("#playerPing").css.style.color = _0x126F4.uiGameColorWarning
+                        _0x123B8[_0x111C0[93]](_0x111C0[507]).style.color = _0x126F4.uiGameColorWarning
                     } else {
-                        _0x123B8("#playerPing").css.style.color = _0x126F4.uiGameColorError
+                        _0x123B8[_0x111C0[93]](_0x111C0[507]).style.color = _0x126F4.uiGameColorError
                     }
                 }
             } else {
-                _0x123B8("#playerPing").css.style.color = _0x126F4.uiForegroundColor
+                _0x123B8[_0x111C0[93]](_0x111C0[507]).style.color = _0x126F4.uiForegroundColor
             };
-            _0x123B8("#playerPing").css.innerHTML = _0x111D7 + "ms"
+            _0x123B8[_0x111C0[93]](_0x111C0[507]).innerHTML = _0x111D7 + _0x111C0[511]
         };
         _0x115CB.prototype.handleChat = function (_0x1135E) {
             var _0x111D7 = _0x1135E.getUint8(_0x1135E.offset++);
@@ -1830,7 +1830,7 @@ var version, showSideMenu, hideSideMenu;
                     _0x112A6 += _0x11233.score
                 } else {
                     if (_0x11233.state === _0x120EF.DEAD) {
-                        _0x11233.scoreText = "RIP💀"
+                        _0x11233.scoreText = "RIP"
                     } else {
                         if (_0x11233.state === _0x120EF.SPECTATE) {
                             _0x11233.scoreText = "Spec"
@@ -4566,7 +4566,7 @@ var version, showSideMenu, hideSideMenu;
                 ;_0x11205 = Math[_0x111C0[269]](0, Math[_0x111C0[251]](parseInt(_0x11205), 1000));
                 if (_0x11205 != _0x111D7) {
                     $(this)[_0x111C0[190]](_0x111D7);
-                    _0x12190.sendPacket(new _0x12065[_0x111C0[703]](_0x1170D[_0x111C0[637]],_0x11205))
+                    _0x12190[_0x111C0[138]](new _0x12065[_0x111C0[703]](_0x1170D[_0x111C0[637]],_0x11205))
                 }
             });
             $("#scrimmage-respawnDelay").on("change", function (_0x111EE) {
