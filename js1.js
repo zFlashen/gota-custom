@@ -175,7 +175,7 @@ var version, showSideMenu, hideSideMenu;
             kTripleSplit: -1,
             kQuadSplit: -1,
             kHexaSplit: -1,
-            kFreezeMouse: 67
+            kFreezeMouse: -1
         };
         var _0x11C9F = false;
         const _0x11769 = Object.assign({}, _0x11CB6);
@@ -228,6 +228,46 @@ var version, showSideMenu, hideSideMenu;
             effect: 0,
             nameFont: 0
         };
+        (function() {
+            // --- Синхронизация мыши между вкладками через BroadcastChannel ---
+            const gotaMouseChannel = new BroadcastChannel('gota_mouse_sync');
+        
+            // Определяем номер вкладки
+            let tabNumber;
+            if (!localStorage.getItem('gota_tab1_exists')) {
+                tabNumber = 1;
+                localStorage.setItem('gota_tab1_exists', '1');
+                console.log('tab1 initialized');
+            } else {
+                tabNumber = 2;
+                localStorage.setItem('gota_tab2_exists', '1');
+                console.log('tab2 initialized');
+            }
+        
+            // Передаем координаты мыши только с первой вкладки
+            if (tabNumber === 1) {
+                document.addEventListener('mousemove', function(e) {
+                    gotaMouseChannel.postMessage({x: e.clientX, y: e.clientY});
+                });
+            }
+        
+            // Получаем координаты на второй вкладке
+            if (tabNumber === 2) {
+                gotaMouseChannel.onmessage = function(event) {
+                    const {x, y} = event.data;
+                    if (window._0x12190) {
+                        window._0x12190.mouseRawX = x;
+                        window._0x12190.mouseRawY = y;
+                    }
+                };
+            }
+        
+            // Сброс номера вкладки при закрытии
+            window.addEventListener('beforeunload', function() {
+                if (tabNumber === 1) localStorage.removeItem('gota_tab1_exists');
+                if (tabNumber === 2) localStorage.removeItem('gota_tab2_exists');
+            });
+        })();
         var _0x11C15 = null;
         var _0x124E3 = null;
         var _0x11D40 = 0;
