@@ -3718,8 +3718,31 @@ var version, showSideMenu, hideSideMenu;
                     });
                 }
             }, 200);
-            // === RAINBOW FOOD INTENSITY ===
+            // === RAINBOW FOOD INTENSITY & CHECKBOX INTEGRATION ===
             (function() {
+                // Слушаем изменения localStorage для мгновенного отклика между вкладками
+                window.addEventListener('storage', function(e) {
+                    if (e.key === 'weyno-rainbow-food') {
+                        applyRainbowFoodSetting();
+                    }
+                    if (e.key === 'weyno-rainbow-intensity') {
+                        startRainbowInterval();
+                    }
+                });
+
+                // Применяем настройку Rainbow Food из localStorage
+                function applyRainbowFoodSetting() {
+                    var enabled = localStorage.getItem('weyno-rainbow-food') === 'true';
+                    _0x12020.cRainbowFood = enabled;
+                    // Обновляем все клетки игрока (если нужно)
+                    if (window._0x12190 && window._0x12190.myCells) {
+                        Object.values(window._0x12190.myCells).forEach(cell => {
+                            if (cell) cell.rainbow = enabled;
+                        });
+                    }
+                }
+
+                // Интервал для радужной еды
                 var rainbowInterval = null;
                 function startRainbowInterval() {
                     if (rainbowInterval) clearInterval(rainbowInterval);
@@ -3739,13 +3762,8 @@ var version, showSideMenu, hideSideMenu;
                         }
                     }, speed);
                 }
-                // Запуск при старте
-                startRainbowInterval();
-                // Перезапуск при изменении интенсивности
-                window.addEventListener('rainbowIntensityChanged', function(e) {
-                    startRainbowInterval();
-                });
-                // Перезапуск при включении rainbow food
+
+                // Связываем cRainbowFood с localStorage и автоприменением
                 if (window._0x12020) {
                     Object.defineProperty(window._0x12020, 'cRainbowFood', {
                         set: function(val) {
@@ -3755,6 +3773,20 @@ var version, showSideMenu, hideSideMenu;
                         get: function() {
                             return this._cRainbowFood;
                         }
+                    });
+                }
+
+                // Инициализация при загрузке
+                applyRainbowFoodSetting();
+                startRainbowInterval();
+
+                // Если чекбокс всё же есть в DOM (например, в старом UI), синхронизируем его с localStorage
+                var rainbowCheckbox = document.getElementById('cRainbowFood');
+                if (rainbowCheckbox) {
+                    rainbowCheckbox.checked = localStorage.getItem('weyno-rainbow-food') === 'true';
+                    rainbowCheckbox.addEventListener('change', function() {
+                        localStorage.setItem('weyno-rainbow-food', rainbowCheckbox.checked ? 'true' : 'false');
+                        applyRainbowFoodSetting();
                     });
                 }
             })();
