@@ -938,9 +938,9 @@ var version, showSideMenu, hideSideMenu;
                                                 this[_0x111C0[171]] *= 0.95;
                                                 this[_0x111C0[171]] = _0x12190[_0x111C0[171]] > 5 ? 5 : (this[_0x111C0[171]] < 0.1 ? 0.1 : this[_0x111C0[171]])
                                             } else {
-                                                if (_0x111EE == _0x11CB6[_0x111C0[385]]) {
-                                                    this[_0x111C0[275]] = !this[_0x111C0[275]];
-                                                    if (this[_0x111C0[275]]) {
+                                                if (_0x111EE == _0x11CB6.kFreezeMouse) {
+                                                    this.mouseFrozen = !this.mouseFrozen;
+                                                    if (this.mouseFrozen) {
                                                         _0x117C5.mouseFrozenDiv.css[_0x111C0[14]] = _0x111C0[18]
                                                     } else {
                                                         _0x117C5.mouseFrozenDiv.css[_0x111C0[14]] = _0x111C0[16]
