@@ -628,8 +628,8 @@ var version, showSideMenu, hideSideMenu;
             _0x11EC7.pivot.x = _0x12190.centerX;
             _0x11EC7.pivot.y = _0x12190.centerY;
             if (_0x12190.isConnected() && _0x11EDE.css("display") == "none") {
-                var _0x11233 = _0x11EC7.pivot.x - (_0x12162.stage.position.x / _0x12190.scale) + ((getMouseX() * _0x12037.resolution) / _0x12190.scale);
-                var _0x1124A = _0x11EC7.pivot.y - (_0x12162.stage.position.y / _0x12190.scale) + ((getMouseY() * _0x12037.resolution) / _0x12190.scale);
+                var _0x11233 = _0x11EC7.pivot.x - (_0x12162.stage.position.x / _0x12190.scale) + ((_0x12190.mouseRawX * _0x12037.resolution) / _0x12190.scale);
+                var _0x1124A = _0x11EC7.pivot.y - (_0x12162.stage.position.y / _0x12190.scale) + ((_0x12190.mouseRawY * _0x12037.resolution) / _0x12190.scale);
                     _0x12190.sendPacket(new _0x12065.sendMouse(_0x11233, _0x1124A))
             };
             if (!_0x12020.cHideMinimap) {
@@ -5614,8 +5614,8 @@ var version, showSideMenu, hideSideMenu;
             }
         }
         function _0x1156F(_0x111EE) {
-            var _0x112A6 = _0x11EC7.pivot.x - (_0x12162.stage.position.x / _0x12190.scale) + ((getMouseX() * _0x12037.resolution) / _0x12190.scale);
-            var _0x112BD = _0x11EC7.pivot.y - (_0x12162.stage.position.y / _0x12190.scale) + ((getMouseY() * _0x12037.resolution) / _0x12190.scale);
+            var _0x112A6 = _0x11EC7.pivot.x - (_0x12162.stage.position.x / _0x12190.scale) + ((_0x12190.mouseRawX * _0x12037.resolution) / _0x12190.scale);
+            var _0x112BD = _0x11EC7.pivot.y - (_0x12162.stage.position.y / _0x12190.scale) + ((_0x12190.mouseRawY * _0x12037.resolution) / _0x12190.scale);
             var _0x11278 = null;
             var _0x11233;
             for (var _0x11205 in _0x12190.bucket) {
