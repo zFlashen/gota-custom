@@ -32,8 +32,17 @@ window.addEventListener('load', function() {
         if (cAutorev) {
             // Восстанавливаем состояние из localStorage
             cAutorev.checked = localStorage.getItem('weyno-autorev-enabled') === 'true';
+            // Устанавливаем правильный текст при загрузке
+            const cellCounter = document.getElementById('cell-counter');
+            if (cellCounter) {
+                cellCounter.textContent = cAutorev.checked ? 'Tracked: None' : 'Tracked: OFF';
+            }
             cAutorev.addEventListener('change', function() {
                 localStorage.setItem('weyno-autorev-enabled', cAutorev.checked ? 'true' : 'false');
+                const cellCounter = document.getElementById('cell-counter');
+                if (cellCounter) {
+                    cellCounter.textContent = cAutorev.checked ? 'Tracked: None' : 'Tracked: OFF';
+                }
             });
         }
     }
