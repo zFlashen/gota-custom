@@ -11,12 +11,11 @@ window.addEventListener('load', function() {
             </tr>
         `;
         
-        // Создаем тело секции с настройками
+        // Создаем тело секции с настройками (без чекбокса)
         const newBody = document.createElement('tbody');
         newBody.innerHTML = `
             <tr>
-                <td colspan="3">Autorev</td>
-                <td><input type="checkbox" class="checkbox-options" id="cAutorev"></td>
+                <td colspan="4" id="autorev-status-cell"><b>Autorev:</b> <span id="autorev-status"></span> <span style="font-size:12px;">(Q to toggle)</span></td>
             </tr>
         `;
         
@@ -27,23 +26,26 @@ window.addEventListener('load', function() {
             optionsTable.insertBefore(newHeader, newBody);
         }
 
-        // === Синхронизация чекбокса Autorev с localStorage ===
-        const cAutorev = document.getElementById('cAutorev');
-        if (cAutorev) {
-            // Восстанавливаем состояние из localStorage
-            cAutorev.checked = localStorage.getItem('weyno-autorev-enabled') === 'true';
-            // Устанавливаем правильный текст при загрузке
+        // === Логика переключения Autorev по горячей клавише Q ===
+        function setAutorevStatus(enabled) {
+            localStorage.setItem('weyno-autorev-enabled', enabled ? 'true' : 'false');
+            const statusSpan = document.getElementById('autorev-status');
+            if (statusSpan) statusSpan.textContent = enabled ? 'ON' : 'OFF';
             const cellCounter = document.getElementById('cell-counter');
-            if (cellCounter) {
-                cellCounter.textContent = cAutorev.checked ? 'Tracked: None' : 'Tracked: OFF';
-            }
-            cAutorev.addEventListener('change', function() {
-                localStorage.setItem('weyno-autorev-enabled', cAutorev.checked ? 'true' : 'false');
-                const cellCounter = document.getElementById('cell-counter');
-                if (cellCounter) {
-                    cellCounter.textContent = cAutorev.checked ? 'Tracked: None' : 'Tracked: OFF';
-                }
-            });
+            if (cellCounter) cellCounter.textContent = enabled ? 'Tracked: None' : 'Tracked: OFF';
         }
+
+        // Устанавливаем начальный статус
+        setAutorevStatus(localStorage.getItem('weyno-autorev-enabled') === 'true');
+
+        // Слушаем нажатие клавиши Q
+        document.addEventListener('keydown', function(e) {
+            // Игнорируем, если фокус в input/textarea
+            if (e.repeat) return;
+            if (e.key.toLowerCase() === 'q' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+                const current = localStorage.getItem('weyno-autorev-enabled') === 'true';
+                setAutorevStatus(!current);
+            }
+        });
     }
 });
