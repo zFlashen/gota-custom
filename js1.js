@@ -903,40 +903,40 @@ var version, showSideMenu, hideSideMenu;
         _0x115CB.prototype.handleKey = function(_0x111EE) {
             if (_0x111EE == _0x11CB6.kEjectMass) {
                 _0x12836 = true;
-                this[_0x111C0[138]](new _0x12065[_0x111C0[137]](true))
+                this.sendPacket(new _0x12065[_0x111C0[137]](true))
             } else {
                 if (_0x111EE == _0x11CB6[_0x111C0[132]]) {
-                    this[_0x111C0[138]](new _0x12065[_0x111C0[381]](17))
+                    this.sendPacket(new _0x12065[_0x111C0[381]](17))
                 } else {
                     if (_0x111EE == _0x11CB6[_0x111C0[382]]) {
-                        this[_0x111C0[138]](new _0x12065[_0x111C0[381]](18))
+                        this.sendPacket(new _0x12065[_0x111C0[381]](18))
                     } else {
                         if (_0x111EE == _0x11CB6[_0x111C0[140]]) {
-                            this[_0x111C0[138]](new _0x12065[_0x111C0[381]](17));
-                            this[_0x111C0[138]](new _0x12065[_0x111C0[381]](17))
+                            this.sendPacket(new _0x12065[_0x111C0[381]](17));
+                            this.sendPacket(new _0x12065[_0x111C0[381]](17))
                         } else {
                             if (_0x111EE == _0x11CB6[_0x111C0[142]]) {
                                 for (var _0x111D7 = 0; _0x111D7 < 3; _0x111D7++) {
-                                    this[_0x111C0[138]](new _0x12065[_0x111C0[381]](17))
+                                    this.sendPacket(new _0x12065[_0x111C0[381]](17))
                                 }
                             } else {
                                 if (_0x111EE == _0x11CB6[_0x111C0[383]]) {
                                     for (var _0x111D7 = 0; _0x111D7 < 4; _0x111D7++) {
-                                        this[_0x111C0[138]](new _0x12065[_0x111C0[381]](17))
+                                        this.sendPacket(new _0x12065[_0x111C0[381]](17))
                                     }
                                 } else {
                                     if (_0x111EE == _0x11CB6[_0x111C0[384]]) {
                                         for (var _0x111D7 = 0; _0x111D7 < 6; _0x111D7++) {
-                                            this[_0x111C0[138]](new _0x12065[_0x111C0[381]](17))
+                                            this.sendPacket(new _0x12065[_0x111C0[381]](17))
                                         }
                                     } else {
                                         if (_0x111EE == 38) {
-                                            this[_0x111C0[171]] *= 1.05;
-                                            this[_0x111C0[171]] = _0x12190[_0x111C0[171]] > 5 ? 5 : (this[_0x111C0[171]] < 0.1 ? 0.1 : this[_0x111C0[171]])
+                                            this.mouseZoom *= 1.05;
+                                            this.mouseZoom = _0x12190.mouseZoom > 5 ? 5 : (this.mouseZoom < 0.1 ? 0.1 : this.mouseZoom)
                                         } else {
                                             if (_0x111EE == 40) {
-                                                this[_0x111C0[171]] *= 0.95;
-                                                this[_0x111C0[171]] = _0x12190[_0x111C0[171]] > 5 ? 5 : (this[_0x111C0[171]] < 0.1 ? 0.1 : this[_0x111C0[171]])
+                                                this.mouseZoom *= 0.95;
+                                                this.mouseZoom = _0x12190.mouseZoom > 5 ? 5 : (this.mouseZoom < 0.1 ? 0.1 : this.mouseZoom)
                                             } else {
                                                 if (_0x111EE == _0x11CB6.kFreezeMouse) {
                                                     this.mouseFrozen = !this.mouseFrozen;
@@ -4566,7 +4566,7 @@ var version, showSideMenu, hideSideMenu;
                 ;_0x11205 = Math[_0x111C0[269]](0, Math[_0x111C0[251]](parseInt(_0x11205), 1000));
                 if (_0x11205 != _0x111D7) {
                     $(this)[_0x111C0[190]](_0x111D7);
-                    _0x12190[_0x111C0[138]](new _0x12065[_0x111C0[703]](_0x1170D[_0x111C0[637]],_0x11205))
+                    _0x12190.sendPacket(new _0x12065[_0x111C0[703]](_0x1170D[_0x111C0[637]],_0x11205))
                 }
             });
             $("#scrimmage-respawnDelay").on("change", function (_0x111EE) {
