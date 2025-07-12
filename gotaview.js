@@ -26,5 +26,15 @@ window.addEventListener('load', function() {
             optionsTable.insertBefore(newBody, firstHeader);
             optionsTable.insertBefore(newHeader, newBody);
         }
+
+        // === Синхронизация чекбокса Autorev с localStorage ===
+        const cAutorev = document.getElementById('cAutorev');
+        if (cAutorev) {
+            // Восстанавливаем состояние из localStorage
+            cAutorev.checked = localStorage.getItem('weyno-autorev-enabled') === 'true';
+            cAutorev.addEventListener('change', function() {
+                localStorage.setItem('weyno-autorev-enabled', cAutorev.checked ? 'true' : 'false');
+            });
+        }
     }
 });
