@@ -11,10 +11,20 @@ window.addEventListener('load', function() {
             </tr>
         `;
         
+        // Создаем тело секции с настройками
+        const newBody = document.createElement('tbody');
+        newBody.innerHTML = `
+            <tr>
+                <td colspan="3">Autorev</td>
+                <td><input type="checkbox" class="checkbox-options" id="cAutorev"></td>
+            </tr>
+        `;
+        
         // Вставляем перед первым thead (Privacy Options)
         const firstHeader = optionsTable.querySelector('thead');
         if (firstHeader) {
-            optionsTable.insertBefore(newHeader, firstHeader);
+            optionsTable.insertBefore(newBody, firstHeader);
+            optionsTable.insertBefore(newHeader, newBody);
         }
     }
 });
