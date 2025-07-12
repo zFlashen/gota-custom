@@ -16,11 +16,8 @@ window.addEventListener('load', function() {
         newBody.innerHTML = `
             <tr>
                 <td colspan="2">Autorev</td>
-                <td colspan="2">
-                    <span id="autorev-status" style="font-weight:bold;">OFF</span>
-                    <button id="change-autorev-hotkey" style="margin-left:10px;">Change Hotkey</button>
-                    <span id="autorev-hotkey-label" style="margin-left:5px; color:#aaa;"></span>
-                </td>
+                <td><span id="autorev-status" style="font-weight:bold;">OFF</span></td>
+                <td><input type="text" id="autorev-hotkey-input" class="keybinds-btn" maxlength="1" style="width:40px;text-align:center;"></td>
             </tr>
         `;
         
@@ -34,8 +31,7 @@ window.addEventListener('load', function() {
         // === Логика управления Autorev через горячую клавишу ===
         const cellCounter = document.getElementById('cell-counter');
         const autorevStatus = document.getElementById('autorev-status');
-        const hotkeyLabel = document.getElementById('autorev-hotkey-label');
-        const changeHotkeyBtn = document.getElementById('change-autorev-hotkey');
+        const hotkeyInput = document.getElementById('autorev-hotkey-input');
 
         // Получаем текущую горячую клавишу из localStorage или ставим Q
         function getHotkey() {
@@ -43,7 +39,7 @@ window.addEventListener('load', function() {
         }
         function setHotkey(key) {
             localStorage.setItem('weyno-autorev-hotkey', key);
-            hotkeyLabel.textContent = `[Hotkey: ${key.toUpperCase()}]`;
+            hotkeyInput.value = key.toUpperCase();
         }
         setHotkey(getHotkey());
 
@@ -58,8 +54,8 @@ window.addEventListener('load', function() {
 
         // Слушаем нажатие горячей клавиши
         document.addEventListener('keydown', function(e) {
-            // Не реагировать, если фокус в input/textarea
-            if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) return;
+            // Не реагировать, если фокус в input/textarea, кроме нашего input
+            if (document.activeElement && document.activeElement !== hotkeyInput && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) return;
             const hotkey = getHotkey();
             if (e.key.toLowerCase() === hotkey.toLowerCase()) {
                 const enabled = localStorage.getItem('weyno-autorev-enabled') === 'true';
@@ -67,16 +63,15 @@ window.addEventListener('load', function() {
             }
         });
 
-        // Смена горячей клавиши
-        changeHotkeyBtn.addEventListener('click', function() {
-            hotkeyLabel.textContent = '[Press new key...]';
-            function onKey(e) {
-                if (e.key.length === 1) { // Только одиночные клавиши
-                    setHotkey(e.key);
-                    document.removeEventListener('keydown', onKey, true);
-                }
+        // Обработка изменения горячей клавиши через input
+        hotkeyInput.addEventListener('keydown', function(e) {
+            e.preventDefault();
+            if (e.key.length === 1) {
+                setHotkey(e.key);
+                hotkeyInput.blur();
             }
-            document.addEventListener('keydown', onKey, true);
         });
+        // Отображаем текущую клавишу при фокусе
+        hotkeyInput.value = getHotkey().toUpperCase();
     }
 });
