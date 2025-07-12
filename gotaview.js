@@ -16,7 +16,7 @@ window.addEventListener('load', function() {
         newBody.innerHTML = `
             <tr>
                 <td colspan="2">Autorev</td>
-                <td><span id="autorev-status" style="font-weight:bold;">OFF</span></td>
+                <td><span id="autorev-status" style="font-weight:bold; color:#e57373;">OFF</span></td>
                 <td><input type="text" id="autorev-hotkey-input" class="keybinds-btn" maxlength="1" style="width:40px;text-align:center;"></td>
             </tr>
         `;
@@ -33,6 +33,10 @@ window.addEventListener('load', function() {
         const autorevStatus = document.getElementById('autorev-status');
         const hotkeyInput = document.getElementById('autorev-hotkey-input');
 
+        // Цвета для статусов
+        const COLOR_OFF = '#e57373'; // мягкий красный
+        const COLOR_NONE = '#81c784'; // мягкий зелёный
+
         // Получаем текущую горячую клавишу из localStorage или ставим Q
         function getHotkey() {
             return localStorage.getItem('weyno-autorev-hotkey') || 'q';
@@ -46,8 +50,14 @@ window.addEventListener('load', function() {
         // Получаем и меняем состояние Autorev
         function setAutorevState(enabled) {
             localStorage.setItem('weyno-autorev-enabled', enabled ? 'true' : 'false');
-            if (autorevStatus) autorevStatus.textContent = enabled ? 'ON' : 'OFF';
-            if (cellCounter) cellCounter.textContent = enabled ? 'Tracked: None' : 'Tracked: OFF';
+            if (autorevStatus) {
+                autorevStatus.textContent = enabled ? 'ON' : 'OFF';
+                autorevStatus.style.color = enabled ? COLOR_NONE : COLOR_OFF;
+            }
+            if (cellCounter) {
+                cellCounter.textContent = enabled ? 'Tracked: None' : 'Tracked: OFF';
+                cellCounter.style.color = enabled ? COLOR_NONE : COLOR_OFF;
+            }
         }
         // Устанавливаем состояние при загрузке
         setAutorevState(localStorage.getItem('weyno-autorev-enabled') === 'true');
