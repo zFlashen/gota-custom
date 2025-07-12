@@ -3702,22 +3702,7 @@ var version, showSideMenu, hideSideMenu;
             })();
             $(".checkbox-options").on("change", function (_0x111C0) {
                 _0x11586($(this));
-                if (this.id === "cRainbowFood") {
-                    _0x12020.cRainbowFood = this.checked;
-                    if (window._0x12190 && window._0x12190.myCells) {
-                        Object.values(window._0x12190.myCells).forEach(cell => {
-                            if (cell) cell.rainbow = _0x12020.cRainbowFood;
-                        });
-                    }
-                }
             });
-            setInterval(function() {
-                if (window._0x12020 && window._0x12190 && window._0x12190.myCells) {
-                    Object.values(window._0x12190.myCells).forEach(cell => {
-                        if (cell) cell.rainbow = window._0x12020.cRainbowFood;
-                    });
-                }
-            }, 200);
             // === RAINBOW FOOD INTENSITY & CHECKBOX INTEGRATION ===
             (function() {
                 // Слушаем изменения localStorage для мгновенного отклика между вкладками
