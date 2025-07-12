@@ -5572,7 +5572,7 @@ var version, showSideMenu, hideSideMenu;
             _0x1121C.innerText = _0x11205 || "An unnamed cell";
             _0x11627.data("selected", _0x111EE);
             _0x11627.data("party", _0x11233);
-            $(_0x111C0[1390]).css("display", "none");
+            $(".context-action").css("display", "none");
             if (_0x11233 == -1) {
                 $("#menu-invite").css("display", "block");
                 $("#menu-whisper").css("display", "block");
