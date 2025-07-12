@@ -163,7 +163,7 @@ var version, showSideMenu, hideSideMenu;
             rUiScale: 1.0,
             rReconnectPeriod: 5,
             rAnimationDelay: 90,
-            rViewDistance: 100,
+            rViewDistance: 150,
             _ChatTabs: JSON.parse(JSON.stringify(_0x11752))
         };
         var _0x11CB6 = {
@@ -3657,7 +3657,7 @@ var version, showSideMenu, hideSideMenu;
             $("#viewDistance").on("change", function () {
                 var _0x111D7 = parseInt($(this).val());
                 if (isNaN(_0x111D7)) {
-                    _0x111D7 = 100
+                    _0x111D7 = 150
                 };
                 _0x12020rViewDistance = Math.min(Math.max(_0x111D7, 50), 150);
                 $("#viewDistance").val(_0x12020rViewDistance);
