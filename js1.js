@@ -941,9 +941,9 @@ var version, showSideMenu, hideSideMenu;
                                                 if (_0x111EE == _0x11CB6.kFreezeMouse) {
                                                     this.mouseFrozen = !this.mouseFrozen;
                                                     if (this.mouseFrozen) {
-                                                        _0x117C5.mouseFrozenDiv.css("display", "block");
+                                                        _0x117C5[_0x111C0[89]][_0x111C0[130]][_0x111C0[14]] = _0x111C0[18]
                                                     } else {
-                                                        _0x117C5.mouseFrozenDiv.css("display", "none");
+                                                        _0x117C5[_0x111C0[89]][_0x111C0[130]][_0x111C0[14]] = _0x111C0[16]
                                                     }
                                                 } else {
                                                     if (_0x111EE == _0x11CB6.kContextMenu) {
