@@ -2523,20 +2523,20 @@ var version, showSideMenu, hideSideMenu;
                         }
                     }
                 };
-               if (_0x12020.cShowMass && (_0x1121C <= _0x121D5.PARTY || _0x12190.serverData.autosplits) && _0x1124A) {
-                    var _0x111EE = this.getSizeCache();
-                    this.massSprite.texture = _0x111EE;
-                    this.massSprite.scale.set(_0x11278);
-                    this.massSprite.x = -(this.massSprite.width / 2);
-                    if (this.nameSprite != null && this.nameSprite.visible) {
-                        this.massSprite.y = this.nameSprite.y + this.nameSprite.height
+                if (_0x12020[_0x111C0[769]] && (_0x1121C <= _0x121D5[_0x111C0[517]] || _0x12190[_0x111C0[283]][_0x111C0[379]]) && _0x1124A) {
+                    var _0x111EE = this[_0x111C0[711]]();
+                    this[_0x111C0[753]][_0x111C0[718]] = _0x111EE;
+                    this[_0x111C0[753]].scale[_0x111C0[744]](_0x11278);
+                    this[_0x111C0[753]][_0x111C0[231]] = -(this[_0x111C0[753]][_0x111C0[227]] / 2);
+                    if (this[_0x111C0[754]] != null && this[_0x111C0[754]][_0x111C0[255]]) {
+                        this[_0x111C0[753]][_0x111C0[234]] = this[_0x111C0[754]][_0x111C0[234]] + this[_0x111C0[754]][_0x111C0[229]]
                     } else {
-                        this.massSprite.y = -(this.massSprite.height / 2)
-                    };
-                    this.massSprite.visible = true
+                        this[_0x111C0[753]][_0x111C0[234]] = -(this[_0x111C0[753]][_0x111C0[229]] / 2)
+                    }
+                    ;this[_0x111C0[753]][_0x111C0[255]] = true
                 } else {
-                    this.massSprite.visible = false
-                };
+                    this[_0x111C0[753]][_0x111C0[255]] = false
+                }
                 if ((_0x11205.flags & 4) == 4) {
                     if (!this.debuffSprite) {
                         this.debuffSprite = new _0x1214B.Sprite(_0x12203);
