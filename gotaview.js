@@ -7,7 +7,7 @@ window.addEventListener('load', function() {
         const newHeader = document.createElement('thead');
         newHeader.innerHTML = `
             <tr>
-                <th colspan="4">Client Features</th>
+                <th colspan="4">Client Features</th
             </tr>
         `;
         
