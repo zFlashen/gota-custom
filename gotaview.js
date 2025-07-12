@@ -24,4 +24,25 @@ window.addEventListener('load', function() {
         console.log('Client button clicked');
         // Здесь можно добавить свою логику
     });
+
+    // === Удаляем лишние элементы ===
+    function removeElements() {
+        // Удаляем элемент с классом main-bottom-links
+        const mainBottomLinks = document.querySelector('.main-bottom-links');
+        if (mainBottomLinks) {
+            mainBottomLinks.remove();
+            console.log('Element with class main-bottom-links removed');
+        }
+
+        // Удаляем элемент с классами policyLinks и interface-color
+        const policyLinks = document.querySelector('.policyLinks.interface-color');
+        if (policyLinks) {
+            policyLinks.remove();
+            console.log('Element with classes policyLinks interface-color removed');
+        }
+    }
+
+    // Запускаем сразу и через небольшой таймаут на случай динамической загрузки
+    removeElements();
+    setTimeout(removeElements, 1000);
 });
