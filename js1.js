@@ -938,15 +938,15 @@ var version, showSideMenu, hideSideMenu;
                                                 this[_0x111C0[171]] *= 0.95;
                                                 this[_0x111C0[171]] = _0x12190[_0x111C0[171]] > 5 ? 5 : (this[_0x111C0[171]] < 0.1 ? 0.1 : this[_0x111C0[171]])
                                             } else {
-                                                if (_0x111EE == _0x11CB6[_0x111C0[385]]) {
-                                                    this[_0x111C0[275]] = !this[_0x111C0[275]];
-                                                    if (this[_0x111C0[275]]) {
-                                                        _0x117C5[_0x111C0[89]][_0x111C0[130]][_0x111C0[14]] = _0x111C0[18]
+                                                if (_0x111EE == _0x11CB6.kFreezeMouse) {
+                                                    this.mouseFrozen = !this.mouseFrozen;
+                                                    if (this.mouseFrozen) {
+                                                        _0x117C5.mouseFrozenDiv.css("display" = "block")
                                                     } else {
-                                                        _0x117C5[_0x111C0[89]][_0x111C0[130]][_0x111C0[14]] = _0x111C0[16]
+                                                        _0x117C5.mouseFrozenDiv.css("display" = "none")
                                                     }
                                                 } else {
-                                                    if (_0x111EE == _0x11CB6[_0x111C0[386]]) {
+                                                    if (_0x111EE == _0x11CB6.kContextMenu) {
                                                         _0x1156F()
                                                     }
                                                 }
@@ -3777,7 +3777,7 @@ var version, showSideMenu, hideSideMenu;
             $(document).on('click', '#menu-track', function () {
                 var playerId = _0x11627.data('selected');
                 var player = _0x12190.playerRegistry.getPlayer(playerId);
-            
+                
                 // If tracking is already active, stop it
                 if (window.trackInterval) {
                     clearInterval(window.trackInterval);
@@ -3790,60 +3790,15 @@ var version, showSideMenu, hideSideMenu;
                     console.log('Track stopped');
                     return;
                 }
-            
+                
                 if (player) {
                     var lastCellCount = 0;
-            
-                    // --- Функция для двойного пробела и остановки трекинга ---
-                    function fireDoubleSpace() {
-                        var event = new KeyboardEvent('keydown', { key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true });
-                        document.dispatchEvent(event);
-            
-                        var delay = parseInt(localStorage.getItem('weyno-autorev-delay'), 10);
-                        if (isNaN(delay) || delay < 0) delay = 50;
-            
-                        setTimeout(function() {
-                            document.dispatchEvent(event);
-                            // Останавливаем трекинг после двойного пробела
-                            if (window.trackInterval) {
-                                clearInterval(window.trackInterval);
-                                window.trackInterval = null;
-                                var counter = document.getElementById('cell-counter');
-                                if (counter) {
-                                    counter.textContent = 'Tracked: None';
-                                }
-                                console.log('Track auto-stopped after double space');
-                            }
-                        }, delay);
-                    }
-            
-                    // --- Проверка: если уже нужное количество клеток, сразу сработать ---
-                    var cellsCount = 0;
-                    for (var cellId in _0x12190.bucket) {
-                        var cell = _0x12190.bucket[cellId];
-                        if (cell.playerId === playerId && cell.type !== 6) {
-                            cellsCount++;
-                        }
-                    }
-                    for (var cellId in _0x12190.foodObjects) {
-                        var cell = _0x12190.foodObjects[cellId];
-                        if (cell.playerId === playerId && cell.type !== 6) {
-                            cellsCount++;
-                        }
-                    }
-                    var triggerCells = parseInt(localStorage.getItem('weyno-autorev-triggercells'), 10);
-                    if (isNaN(triggerCells) || triggerCells < 1) triggerCells = 8;
-                    if (cellsCount === triggerCells) {
-                        fireDoubleSpace();
-                        return; // Не запускаем setInterval, если уже сработало
-                    }
-            
                     // Start tracking
                     window.trackInterval = setInterval(function() {
                         var id = player.id;
                         var name = player.name;
                         var cellsCount = 0;
-            
+                        
                         // Count cells in main bucket
                         for (var cellId in _0x12190.bucket) {
                             var cell = _0x12190.bucket[cellId];
@@ -3851,7 +3806,7 @@ var version, showSideMenu, hideSideMenu;
                                 cellsCount++;
                             }
                         }
-            
+                        
                         // Count cells in food objects
                         for (var cellId in _0x12190.foodObjects) {
                             var cell = _0x12190.foodObjects[cellId];
@@ -3859,25 +3814,43 @@ var version, showSideMenu, hideSideMenu;
                                 cellsCount++;
                             }
                         }
-            
+                        
                         // Update cell counter display
                         var counter = document.getElementById('cell-counter');
                         if (counter) {
                             counter.textContent = 'Tracked: ' + name + ' - Cells: ' + cellsCount;
                         }
-            
+                        
                         // Получаем значение TriggerCells из localStorage (по умолчанию 8)
                         var triggerCells = parseInt(localStorage.getItem('weyno-autorev-triggercells'), 10);
                         if (isNaN(triggerCells) || triggerCells < 1) triggerCells = 8;
-            
+
                         // Check if cell count changed к TriggerCells
                         if (cellsCount === triggerCells && lastCellCount !== triggerCells) {
-                            fireDoubleSpace();
+                            var event = new KeyboardEvent('keydown', { key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true });
+                            document.dispatchEvent(event);
+
+                            var delay = parseInt(localStorage.getItem('weyno-autorev-delay'), 10);
+                            if (isNaN(delay) || delay < 0) delay = 50;
+
+                            setTimeout(function() {
+                                document.dispatchEvent(event);
+                                // Останавливаем трекинг после двойного пробела
+                                if (window.trackInterval) {
+                                    clearInterval(window.trackInterval);
+                                    window.trackInterval = null;
+                                    var counter = document.getElementById('cell-counter');
+                                    if (counter) {
+                                        counter.textContent = 'Tracked: None';
+                                    }
+                                    console.log('Track auto-stopped after double space');
+                                }
+                            }, delay);
                         }
-            
+                
                         lastCellCount = cellsCount;
                     }, 10);
-            
+                
                     console.log('Track started');
                 } else {
                     console.log('Track: игрок не найден', playerId);
