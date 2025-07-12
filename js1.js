@@ -1830,10 +1830,10 @@ var version, showSideMenu, hideSideMenu;
                     _0x112A6 += _0x11233.score
                 } else {
                     if (_0x11233.state === _0x120EF.DEAD) {
-                        _0x11233.scoreText = "RIP"
+                        _0x11233.scoreText = "RIP💀"
                     } else {
                         if (_0x11233.state === _0x120EF.SPECTATE) {
-                            _0x11233.scoreText = "Spec"
+                            _0x11233.scoreText = "Spec👁️"
                         }
                     }
                 };
