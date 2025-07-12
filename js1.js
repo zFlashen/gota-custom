@@ -903,31 +903,31 @@ var version, showSideMenu, hideSideMenu;
         _0x115CB.prototype.handleKey = function(_0x111EE) {
             if (_0x111EE == _0x11CB6.kEjectMass) {
                 _0x12836 = true;
-                this.sendPacket(new _0x12065[_0x111C0[137]](true))
+                this.sendPacket(new _0x12065.sendEjectMass(true))
             } else {
-                if (_0x111EE == _0x11CB6[_0x111C0[132]]) {
-                    this.sendPacket(new _0x12065[_0x111C0[381]](17))
+                if (_0x111EE == _0x11CB6.kSplit) {
+                    this.sendPacket(new _0x12065.sendKey(17))
                 } else {
-                    if (_0x111EE == _0x11CB6[_0x111C0[382]]) {
-                        this.sendPacket(new _0x12065[_0x111C0[381]](18))
+                    if (_0x111EE == _0x11CB6.kToggleSpec) {
+                        this.sendPacket(new _0x12065.sendKey(18))
                     } else {
-                        if (_0x111EE == _0x11CB6[_0x111C0[140]]) {
-                            this.sendPacket(new _0x12065[_0x111C0[381]](17));
-                            this.sendPacket(new _0x12065[_0x111C0[381]](17))
+                        if (_0x111EE == _0x11CB6.kDoubleSplit) {
+                            this.sendPacket(new _0x12065.sendKey(17));
+                            this.sendPacket(new _0x12065.sendKey(17))
                         } else {
-                            if (_0x111EE == _0x11CB6[_0x111C0[142]]) {
+                            if (_0x111EE == _0x11CB6.kTripleSplit) {
                                 for (var _0x111D7 = 0; _0x111D7 < 3; _0x111D7++) {
-                                    this.sendPacket(new _0x12065[_0x111C0[381]](17))
+                                    this.sendPacket(new _0x12065.sendKey(17))
                                 }
                             } else {
-                                if (_0x111EE == _0x11CB6[_0x111C0[383]]) {
+                                if (_0x111EE == _0x11CB6.kQuadSplit) {
                                     for (var _0x111D7 = 0; _0x111D7 < 4; _0x111D7++) {
-                                        this.sendPacket(new _0x12065[_0x111C0[381]](17))
+                                        this.sendPacket(new _0x12065.sendKey(17))
                                     }
                                 } else {
-                                    if (_0x111EE == _0x11CB6[_0x111C0[384]]) {
+                                    if (_0x111EE == _0x11CB6.kHexaSplit) {
                                         for (var _0x111D7 = 0; _0x111D7 < 6; _0x111D7++) {
-                                            this.sendPacket(new _0x12065[_0x111C0[381]](17))
+                                            this.sendPacket(new _0x12065.sendKey(17))
                                         }
                                     } else {
                                         if (_0x111EE == 38) {
