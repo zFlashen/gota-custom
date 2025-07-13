@@ -548,7 +548,7 @@ var version, showSideMenu, hideSideMenu;
             _0x12190 = new _0x115CB();
             _0x12065 = new _0x1207C();
             window.addEventListener('storage', function(e) {
-                if (e.key === 'shared-mouse' && !activetab) {
+                if (e.key === 'shared-mouse' && !isActiveTab) {
                     try {
                         var data = JSON.parse(e.newValue);
                         if (data && typeof data.x === 'number' && typeof data.y === 'number') {
