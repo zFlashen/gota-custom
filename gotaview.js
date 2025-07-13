@@ -23,6 +23,10 @@ window.addEventListener('load', function() {
                 <td colspan="3">Rainbow Food</td>
                 <td><input type="checkbox" id="cRainbowFood"></td>
             </tr>
+            <tr>
+                <td colspan="3">Rainbow Smoothness <span id="rainbow-intensity-value"></span></td>
+                <td><input type="range" id="rainbow-intensity-slider" min="0" max="15" step="1"></td>
+            </tr>
         `;
         
         // Вставляем перед первым thead (Privacy Options)
@@ -95,6 +99,22 @@ window.addEventListener('load', function() {
         rainbowCheckbox.addEventListener('change', function() {
             localStorage.setItem('weyno-rainbow-food', rainbowCheckbox.checked ? 'true' : 'false');
             window.dispatchEvent(new Event('rainbow-food-changed'));
+        });
+
+        const rainbowSlider = document.getElementById('rainbow-intensity-slider');
+        const rainbowValue = document.getElementById('rainbow-intensity-value');
+        function updateRainbowValue(val) {
+            rainbowValue.textContent = val;
+        }
+        // Восстанавливаем значение из localStorage или ставим 5 по умолчанию
+        let rainbowIntensity = parseInt(localStorage.getItem('weyno-rainbow-intensity'), 10);
+        if (isNaN(rainbowIntensity)) rainbowIntensity = 5;
+        rainbowSlider.value = rainbowIntensity;
+        updateRainbowValue(rainbowIntensity);
+        rainbowSlider.addEventListener('input', function() {
+            localStorage.setItem('weyno-rainbow-intensity', rainbowSlider.value);
+            updateRainbowValue(rainbowSlider.value);
+            window.dispatchEvent(new Event('storage', { bubbles: false, cancelable: false })); // для мгновенного отклика
         });
     }
 });
