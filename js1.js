@@ -355,7 +355,7 @@ var version, showSideMenu, hideSideMenu;
                 window[_0x111C0[156]] = function (_0x111D7) {
                     _0x12190.mouseRawX = _0x111D7.clientX;
                     _0x12190.mouseRawY = _0x111D7.clientY
-                    if (activetab && !_0x12190.mouseFrozen) {
+                    if (isActiveTab && !_0x12190.mouseFrozen) {
                         const now = Date.now();
                         if (now - lastSendTime > sendInterval) {
                             localStorage.setItem('shared-mouse', JSON.stringify({x: _0x12190.mouseRawX, y: _0x12190.mouseRawY, t: now}));
