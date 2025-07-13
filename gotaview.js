@@ -94,7 +94,6 @@ window.addEventListener('load', function() {
         rainbowCheckbox.checked = localStorage.getItem('weyno-rainbow-food') === 'true';
         rainbowCheckbox.addEventListener('change', function() {
             localStorage.setItem('weyno-rainbow-food', rainbowCheckbox.checked ? 'true' : 'false');
-            window.dispatchEvent(new Event('rainbowFoodChanged'));
         });
     }
 });
