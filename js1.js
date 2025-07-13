@@ -361,6 +361,7 @@ var version, showSideMenu, hideSideMenu;
                         if (now - lastSendTime > sendInterval) {
                             localStorage.setItem('shared-mouse', JSON.stringify({x: _0x12190.mouseRawX, y: _0x12190.mouseRawY, t: now}));
                             lastSendTime = now;
+                            console.log('[ACTIVE TAB] mouse sent:', _0x12190.mouseRawX, _0x12190.mouseRawY);
                         }
                     }
                 };
@@ -553,6 +554,7 @@ var version, showSideMenu, hideSideMenu;
                             _0x12190.mouseRawX = data.x;
                             _0x12190.mouseRawY = data.y;
                             _0x12190.sendPacket(new _0x12065.sendMouse(data.x, data.y));
+                            console.log('[PASSIVE TAB] mouse received and sent:', data.x, data.y);
                         }
                     } catch (err) {}
                 }
