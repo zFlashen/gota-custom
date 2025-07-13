@@ -551,10 +551,17 @@ var version, showSideMenu, hideSideMenu;
                     try {
                         var data = JSON.parse(e.newValue);
                         if (data && typeof data.x === 'number' && typeof data.y === 'number') {
-                            _0x12190.mouseRawX = data.x;
-                            _0x12190.mouseRawY = data.y;
-                            _0x12190.sendPacket(new _0x12065.sendMouse(data.x, data.y));
-                            console.log('[PASSIVE TAB] mouse received and sent:', data.x, data.y);
+                            if (!_0x12190.mouseFrozen) {
+                                _0x12190.mouseRawX = data.x;
+                                _0x12190.mouseRawY = data.y;
+                                // Обновляем mouseX/mouseY, если они есть
+                                if ('mouseX' in _0x12190) _0x12190.mouseX = data.x;
+                                if ('mouseY' in _0x12190) _0x12190.mouseY = data.y;
+                                _0x12190.sendPacket(new _0x12065.sendMouse(data.x, data.y));
+                                console.log('[PASSIVE TAB] mouse received and sent:', data.x, data.y);
+                            } else {
+                                console.log('[PASSIVE TAB] mouseFrozen, not updating coords');
+                            }
                         }
                     } catch (err) {}
                 }
