@@ -114,7 +114,7 @@ window.addEventListener('load', function() {
         rainbowSlider.addEventListener('input', function() {
             localStorage.setItem('weyno-rainbow-intensity', rainbowSlider.value);
             updateRainbowValue(rainbowSlider.value);
-            window.dispatchEvent(new Event('storage', { bubbles: false, cancelable: false })); // для мгновенного отклика
+            window.dispatchEvent(new Event('rainbow-intensity-changed'));
         });
     }
 });
