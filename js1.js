@@ -101,6 +101,8 @@ var version, showSideMenu, hideSideMenu;
         _0x11894.enabled = new Date() < _0x11894.endDate;
         // === СИНХРОНИЗАЦИЯ МЫШИ МЕЖДУ ВКЛАДКАМИ ===
         let isActiveTab = document.hasFocus();
+        let lastSendTime = 0;
+        const sendInterval = 50;
 
         window.addEventListener('focus', () => { isActiveTab = true; });
         window.addEventListener('blur',  () => { isActiveTab = false; });
