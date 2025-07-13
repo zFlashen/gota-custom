@@ -23,10 +23,6 @@ window.addEventListener('load', function() {
                 <td colspan="3">Rainbow Food</td>
                 <td><input type="checkbox" id="cRainbowFood"></td>
             </tr>
-            <tr>
-                <td colspan="3">Rainbow Cell</td>
-                <td><input type="checkbox" id="cRainbowCell"></td>
-            </tr>
         `;
         
         // Вставляем перед первым thead (Privacy Options)
@@ -99,14 +95,6 @@ window.addEventListener('load', function() {
         rainbowCheckbox.addEventListener('change', function() {
             localStorage.setItem('weyno-rainbow-food', rainbowCheckbox.checked ? 'true' : 'false');
             window.dispatchEvent(new Event('rainbow-food-changed'));
-        });
-
-        const rainbowCellCheckbox = document.getElementById('cRainbowCell');
-        // Восстанавливаем состояние из localStorage
-        rainbowCellCheckbox.checked = localStorage.getItem('weyno-rainbow-cell') === 'true';
-        rainbowCellCheckbox.addEventListener('change', function() {
-            localStorage.setItem('weyno-rainbow-cell', rainbowCellCheckbox.checked ? 'true' : 'false');
-            window.dispatchEvent(new Event('rainbow-cell-changed'));
         });
     }
 });
