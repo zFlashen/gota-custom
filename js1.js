@@ -3725,32 +3725,38 @@ var version, showSideMenu, hideSideMenu;
                     _0x12020.cRainbowFood = enabled;
                     // Обновляем все клетки игрока (если нужно)
                     if (window._0x12190 && window._0x12190.myCells) {
-                    Object.values(window._0x12190.myCells).forEach(cell => {
+                        Object.values(window._0x12190.myCells).forEach(cell => {
                             if (cell) cell.rainbow = enabled;
                         });
                     }
                 }
 
-                // Интервал для радужной еды
-                var rainbowInterval = null;
-                function startRainbowInterval() {
-                    if (rainbowInterval) clearInterval(rainbowInterval);
+                // --- Новый код для плавной радуги ---
+                var rainbowAnimFrame = null;
+                var lastUpdate = 0;
+                function rainbowLoop(now) {
                     var intensity = parseInt(localStorage.getItem('weyno-rainbow-intensity'), 10);
-                    if (isNaN(intensity) || intensity < 1) intensity = 5;
-                    var speed = Math.max(20, 400 / intensity); // Чем выше intensity, тем быстрее
-                    rainbowInterval = setInterval(function() {
+                    if (isNaN(intensity)) intensity = 5;
+                    var speed = intensity < 1 ? 400 : Math.max(20, 400 / intensity);
+                    if (!lastUpdate || now - lastUpdate >= speed) {
                         if (window._0x12020 && window._0x12190 && window._0x12190.foodObjects) {
                             Object.values(window._0x12190.foodObjects).forEach(cell => {
                                 if (cell && window._0x12020.cRainbowFood) {
-                                    // Меняем цвет на радужный
-                                    var now = Date.now();
                                     var hue = (now / speed) % 360;
                                     cell.color = 'hsl(' + hue + ',100%,50%)';
                                 }
                             });
                         }
-                    }, speed);
+                        lastUpdate = now;
+                    }
+                    rainbowAnimFrame = requestAnimationFrame(rainbowLoop);
                 }
+                function startRainbowInterval() {
+                    if (rainbowAnimFrame) cancelAnimationFrame(rainbowAnimFrame);
+                    lastUpdate = 0;
+                    rainbowAnimFrame = requestAnimationFrame(rainbowLoop);
+                }
+                // --- Конец нового кода ---
 
                 // Связываем cRainbowFood с localStorage и автоприменением
                 if (window._0x12020) {
