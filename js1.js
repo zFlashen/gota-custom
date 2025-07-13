@@ -2424,8 +2424,7 @@ var version, showSideMenu, hideSideMenu;
                     }
                     // === RAINBOW CELL ===
                     if (this.rainbowCell) {
-                        // tinycolor должен быть подключён (обычно есть в gota.io)
-                        this.sprite.tint = PIXI.utils.string2hex(tinycolor(this.color).toHexString());
+                        this.sprite.tint = PIXI.utils.string2hex(this.color);
                     } else if (this.rainbow) {
                         this.sprite.tint = _0x12276[Math.floor((_0x11CFB % _0x1228D) / 100)];
                     } else {
@@ -3772,14 +3771,16 @@ var version, showSideMenu, hideSideMenu;
                                     cell.color = 'hsl(' + hue + ',100%,50%)';
                                 }
                                         // === Rainbow Cell ===
-                    var rainbowCellEnabled = localStorage.getItem('weyno-rainbow-cell') === 'true';
-                    if (rainbowCellEnabled && window._0x12190 && window._0x12190.myCells) {
-                        var now = Date.now();
-                        var hue = (now / speed) % 360;
-                        Object.values(window._0x12190.myCells).forEach(cell => {
-                            if (cell && cell.rainbowCell) cell.color = 'hsl(' + hue + ',100%,50%)';
-                        });
-                    }
+                                        var rainbowCellEnabled = localStorage.getItem('weyno-rainbow-cell') === 'true';
+                                        if (rainbowCellEnabled && window._0x12190 && window._0x12190.myCells) {
+                                            var now = Date.now();
+                                            var hue = (now / speed) % 360;
+                                            Object.values(window._0x12190.myCells).forEach(cell => {
+                                                if (cell && cell.rainbowCell) {
+                                                    cell.color = tinycolor('hsl(' + hue + ',100%,50%)').toHexString();
+                                                }
+                                            });
+                                        }
                             });
                         }
                     }, speed);
