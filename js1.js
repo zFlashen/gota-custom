@@ -2411,27 +2411,23 @@ var version, showSideMenu, hideSideMenu;
             switch (this.type) {
             case 0:
                 break;
-                case 1:
-                    if (this.needsPixiUpdate) {
-                        if (this.skin >= 0 && this.skin < _0x11866.length) {
-                            this.sprite.texture = _0x11866[this.skin]
-                        } else {
-                            this.sprite.texture = _0x11821
-                        }
-                        this.sprite.width = this.size * 2;
-                        this.sprite.height = this.size * 2;
-                        this.needsPixiUpdate = false
-                    }
-                    // === RAINBOW CELL ===
-                    if (this.rainbowCell) {
-                        this.sprite.tint = PIXI.utils.string2hex(this.color);
-                    } else if (this.rainbow) {
-                        this.sprite.tint = _0x12276[Math.floor((_0x11CFB % _0x1228D) / 100)];
+            case 1:
+                if (this.needsPixiUpdate) {
+                    if (this.skin >= 0 && this.skin < _0x11866.length) {
+                        this.sprite.texture = _0x11866[this.skin]
                     } else {
-                        this.sprite.tint = this.color;
-                    }
-                    this[_0x111C0[743]][_0x111C0[232]][_0x111C0[744]](this[_0x111C0[231]], this[_0x111C0[234]]);
-                    break;
+                        this.sprite.texture = _0x11821
+                    };
+                    this.sprite.tint = this.color;
+                    this.sprite.width = this.size * 2;
+                    this.sprite.height = this.size * 2;
+                    this.needsPixiUpdate = false
+                };
+                if (this.rainbow) {
+                    this.sprite.tint = _0x12276[Math.floor((_0x11CFB % _0x1228D) / 100)]
+                };
+                this[_0x111C0[743]][_0x111C0[232]][_0x111C0[744]](this[_0x111C0[231]], this[_0x111C0[234]]);
+                break;
             case 2:
                 var _0x11205 = _0x12190.playerRegistry[_0x111C0[748]](this.playerId);
                 var _0x1121C = _0x121D5["ALL"];
@@ -3723,25 +3719,6 @@ var version, showSideMenu, hideSideMenu;
                     applyRainbowFoodSetting();
                 });
 
-                    // === RAINBOW CELL ===
-                window.addEventListener('storage', function(e) {
-                    if (e.key === 'weyno-rainbow-cell') {
-                        applyRainbowCellSetting();
-                    }
-                });
-                window.addEventListener('rainbow-cell-changed', function() {
-                    applyRainbowCellSetting();
-                });
-
-                function applyRainbowCellSetting() {
-                    var enabled = localStorage.getItem('weyno-rainbow-cell') === 'true';
-                    if (window._0x12190 && window._0x12190.myCells) {
-                        Object.values(window._0x12190.myCells).forEach(cell => {
-                            if (cell) cell.rainbowCell = enabled;
-                        });
-                    }
-                }
-
                 // Применяем настройку Rainbow Food из localStorage
                 function applyRainbowFoodSetting() {
                     var enabled = localStorage.getItem('weyno-rainbow-food') === 'true';
@@ -3770,17 +3747,6 @@ var version, showSideMenu, hideSideMenu;
                                     var hue = (now / speed) % 360;
                                     cell.color = 'hsl(' + hue + ',100%,50%)';
                                 }
-                                        // === Rainbow Cell ===
-                                        var rainbowCellEnabled = localStorage.getItem('weyno-rainbow-cell') === 'true';
-                                        if (rainbowCellEnabled && window._0x12190 && window._0x12190.myCells) {
-                                            var now = Date.now();
-                                            var hue = (now / speed) % 360;
-                                            Object.values(window._0x12190.myCells).forEach(cell => {
-                                                if (cell && cell.rainbowCell) {
-                                                    cell.color = tinycolor('hsl(' + hue + ',100%,50%)').toHexString();
-                                                }
-                                            });
-                                        }
                             });
                         }
                     }, speed);
@@ -3802,7 +3768,6 @@ var version, showSideMenu, hideSideMenu;
                 // Инициализация при загрузке
                 applyRainbowFoodSetting();
                 startRainbowInterval();
-                applyRainbowCellSetting();
 
                 // Если чекбокс всё же есть в DOM (например, в старом UI), синхронизируем его с localStorage
                 var rainbowCheckbox = document.getElementById('cRainbowFood');
