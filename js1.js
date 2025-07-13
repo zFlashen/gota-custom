@@ -3719,6 +3719,10 @@ var version, showSideMenu, hideSideMenu;
                     applyRainbowFoodSetting();
                 });
 
+                window.addEventListener('rainbow-intensity-changed', function() {
+                    startRainbowInterval();
+                });
+
                 // Применяем настройку Rainbow Food из localStorage
                 function applyRainbowFoodSetting() {
                     var enabled = localStorage.getItem('weyno-rainbow-food') === 'true';
