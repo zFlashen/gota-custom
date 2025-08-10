@@ -416,7 +416,7 @@
                                 } catch (ap) {}
                                 var am = 0x0;
                                 try {
-                                    window['process'] && window['process']['versions'] && window['process']['versions']['electron'] && (am |= 0x1);
+                                    window.process && window.process.versions && window.process.versions.electron && (am |= 0x1);
                                 } catch (aq) {}
                                 try {
                                     /Electron/i ['test'](ad) && (am |= 0x2);
@@ -4999,7 +4999,7 @@
             var ah = 0x0,
                 ai = 0x0;
             try {
-                window['process'] && process['versions'] && process['versions']['electron'] && (ah |= 0x1);
+                window.process && process.versions && process.versions.electron && (ah |= 0x1);
             } catch (ap) {}
             try {
                 /Electron/i ['test'](ae) && (ah |= 0x2);
@@ -5008,7 +5008,7 @@
                 'function' == typeof window['require'] && (ah |= 0x4);
             } catch (ar) {}
             try {
-                window['process'] && 'renderer' === window['process']['type'] && (ah |= 0x8);
+                window.process && 'renderer' === window.process['type'] && (ah |= 0x8);
             } catch (as) {}
             try {
                 ad['webdriver'] && (ai |= 0x1);
