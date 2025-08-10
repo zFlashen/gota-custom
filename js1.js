@@ -1,6846 +1,5061 @@
-const build = 2508100;
-var version, showSideMenu, hideSideMenu;
-(function() {
-    var _0x111C0 = ["gota.io", "", ":", "split", "/", "://", "href", "location", ",", "length", ".", "error", "3.6.5", "#", "display", "css", "none", "slideDown", "block", "slideUp", "each", "children", "#main-right", "PIXI", "Container", "EMPTY", "Texture", "Sprite", "addChild", "PI", "https://discord.com/channels/166703751053312000/630428963889741854", "GoogleAuthProvider", "auth", "https://accounts.gota.io", "halloween2023", "enabled", "endDate", "AIzaSyCmYFIIazBPyg5goqvPb-7uA6W9-4TVqEM", "accounts.gota.io", "https://gota-io.firebaseio.com", "gota-io", "gota-io.appspot.com", "570450309042", "1:570450309042:web:380ab6c94d44de2f", "initializeApp", "All", "Party", "ALL", "AUTO", "NONE", "ULTRA", "DEFAULT", "2", "360px", "250px", "stringify", "parse", "assign", "is_touch_device", "ontouchstart", "documentElement", "rgb(255, 255, 255)", "rgba(22, 22, 22, 0.8)", "rgba(255, 255, 255, .2)", "#2A2A2A", "#404040", "#363636", "#444444", "#121212", "#ff0000", "#ffaaaa", "#ffff00", "#00ffff", "#00ff00", "canvas", "getElementById", "minimap-canvas", "2d", "getContext", "#main", "#party-panel", ".hud-panel", "score-panel", "#main-scrimmage", "#context-menu", "chat-container", "chat-input", "#leaderboard-header", "#scrimmage-custom", "mouseFrozenDiv", "pMouse", "playerScore", "span", "querySelector", "pScore", "playerMass", "pMass", "playerCells", "pCells", "playerFps", "pFps", "resetInfo", "#extra-reset-timer", "resetTime", "#resetTime", "respawnInfo", "#extra-respawn-cooldown", "respawnCooldown", "#respawnCooldown", "spectatorCount", "#spectatorCount", "playerCellCount", "minimapCoords", "#minimap-coordinates", "partyPanel", "friendOnlineCount", "#social-online-friends-count", "body", "attach", "joystick_manager", "joystick", "static", "10%", "20%", "red", "create", "cHideChat", "cHideLeaderboard", "touchstart", "opacity", "style", "target", "kSplit", "handleKey", "addEventListener", "button_split", "touchend", "sendEjectMass", "sendPacket", "button_eject", "kDoubleSplit", "button_double", "kTripleSplit", "button_triple", "move", "mouseRawX", "distance", "force", "radian", "angle", "cos", "innerWidth", "mouseRawY", "sin", "innerHeight", "on", "onmousemove", "clientX", "clientY", "onmousedown", "button", "preventDefault", ":focus", "is", "input", "onmouseup", "kEjectMass", "onwheel", "id", "wheelDelta", "deltaY", "mouseZoom", "onkeydown", "which", "keyCode", "charCode", "#popup-profile", "#popup-account-username", "onkeyup", "onblur", "cDisablePersistEjectMass", "contextmenu", "&", "join", "slice", "toLowerCase", "toUpperCase", "name", "region", "value", "val", "version", "Woah! Version ", " is now available. Press Ctrl+R to update!", "selfMsg", "motd", "listRefresh", "titles", "/game", "ref", "database", "GET", "json", "/api/v1/utilities/servers", "servers", "players", "bots", "playersMax", "*", "address", "gamemode", "ssl", "order", "push", "sort", "ajax", "eu", "Vendetta", "unload", "init", "sRenderType", "CANVAS", "cDisableAA", "autoDetectRenderer", "resize", "now", "Welcome to Gota.io!", "width", "resolution", "height", "renderer", "x", "position", "stage", "y", "Graphics", "beginFill", "drawCircle", "endFill", "HIGH", "MSAA_QUALITY", "devicePixelRatio", "RenderTexture", "Matrix", "render", "framebuffer", "blit", "destroy", "charAt", "u", "rAnimationDelay", "min", "scale", "cDisableAutoFoodHiding", "cHideFood", "visible", "foodObjects", "steps", "animate", "handleFood", "bucket", "handle", "myCells", "size", "centerX", "centerY", "centerSteps", "cDisableAutoZoom", "scale_base", "max", "pow", "centerX_", "centerY_", "pivot", "isConnected", "mouseFrozen", "sendMouse", "cHideMinimap", "cShowCoordinates", "update", "buffHolder", "innerHTML", "resetType", "serverData", "floor", "html", "ceil", "NEVER", "handleUpdatedPlayers", "playerRegistry", "cShowBorder", "border", "removeChild", "parent", "rBorderSize", "toHexString", "uiGameBorderColor", "string2hex", "utils", "lineStyle", "left", "top", "drawRect", "uiForegroundColor", "X: ", "toFixed", " Y: ", "clearRect", "font", "12px Calibri", "party", "state", "ALIVE", "playerId", "mmColor", "x_", "y_", "#fefefe", "socket", "currentServer", "currentServerName", "spectate", "scale_", "offsetX", "offsetY", "mouseX", "mouseY", "partyIds", "subPanelOverride", "score", "customGameMap", "accountListeners", "clearStats", "bind", "sendPing", "prototype", "stats", "An unnamed cell", "play", "No server selected!", "#name-box", "#pServer span", "ip", "setName", "connect", "spec", "sendSpectate", "nextUrl", "disconnect", "Connecting to ", "cHideServer", "***Hidden***", "wss://", "ws://", "binaryType", "arraybuffer", "onopen", "onConnect", "onmessage", "onMessage", "onclose", "reset", "You have been disconnected from the server. Reason: ", "reason", "Unknown", "onerror", "rReconnectPeriod", "Error connecting to server... Retrying every ", " second(s).", "hide-captcha-badge", "add", "classList", "close", "clearBuckets", "onDelete", "clear", "clearParty", "clearBuffs", "hasSentSubPanel", "autosplits", "#pId span", "sendKey", "kToggleSpec", "kQuadSplit", "kHexaSplit", "kFreezeMouse", "kContextMenu", "readyState", "send", "connectionStart", "sendOptions", "currentUser", "catch", "sendAuthToken", "then", "getIdToken", "td", "createElement", "color", "#DDDD00", "[System] ", "appendChild", "SYSTEM", "selfMsgWithJoinCode", "pointerEvents", "all", "userSelect", "partyLeader", "partyIndex", "handleCustomGameLeave", "partyCode", "page", " ", "pushState", "history", "isPartyLeader", "getServerMaxCells", "maxCells", "bonusMaxCells", "data", "getUint8", "offset", "handleUpdate", "handlePosition", "handleStats", "showSubPanel", "updateSubPanel", "handleInvite", "handlePartyInfo", "handlePartyData", "handlePartyJoinCode", "handleLeaderboard", "handleLeaderboardCustom", "handleRespawnCooldown", "handleMapData", "handleClearNodes", "handleUpdateBorder", "handleResetTime", "handleSpectators", "handleSystemMsg", "handlePing", "handleChat", "handleWhisper", "handleEditMessage", "handleShowScrimmageMenu", "handleQueueData", "handleQueueLeave", "handleMatchState", "handleScrimmageData", "handleCustomGameShow", "handleCustomGameUpdate", "handleShowCustomGameLobbies", "handleAddBuff", "handleRemoveBuff", "handleClearBuffs", "handleAuthenticated", "handleProfile", "getUint16", "remove", "type", "keys", "cAutoRespawn", "GOT_gota-io_336x280", "refresh", "cmd", "getPlayer", "cellColor", "setSkin", "setFlags", "flags", "nameColor", "parseEffect", "nameFont", "updatePlayer", "setType", "getInt16", "setX", "setY", "setSize", "skin", "rainbow", "buff", "onCreate", "updateX", "updateY", "size_", "sortCells", "getFloat32", "getFloat64", "updateCellCounter", "sendPartyJoin", "#scrimmage-btn-leave", "right", "bottom", "spectators", "updateSpectators", "leaderboard-canvas", "Leaderboard", "text", "getUint32", "16px Calibri", "fillStyle", "uiLeaderboardHighlightSelf", "uiLeaderboardHighlightParty", ". ", "fillText", "cColoredPing", "#pPing span", "uiGameColorSuccess", "uiGameColorWarning", "uiGameColorError", "ms", "rgb(", ")", "includes", "byteLength", "getBigInt64", "PARTY", "Admin", "ADMIN", " - ", "msgid", "dataset", "[", "] ", "innerText", "className", "chat-name", "oncontextmenu", ": ", "chat-content", " > ", "WHISPER", ".chat-table td[data-msgid=\'", "\'] .chat-content", "tr", "closest", "\']", "SUCCESS", "Invalid authentication token! Please logout and try again!", "FAILURE", "cAutoDecline", "sendInviteResponse", "popup-party-text", " has invited you to a party.", "#popup-party", "isLeader", "cache", "team", "UNKNOWN", "checkLeader", "drawParty", "getInt32", "#popup-party-code-content input", "show", "#popup-party-code", "alive", "eatenFood", "eatenEject", "eatenVirus", "eatenPlayer", "gainFood", "gainEject", "gainVirus", "gainPlayer", "#main-stats", "empty", "<span>Name: ", " (", ")</span><br>", "append", "<span>Alive: ", "</span><br>", "<span>Food eaten: ", "<span>Ejected mass eaten: ", "<span>Viruses eaten: ", "<span>Player cells eaten: ", "uid", "onAddBuff", "onRemoveBuff", "parentCell", "updateScorePanel", "getRealMass", "toLocaleString", "cColoredCellCount", "cHidePartyPanel", "party-canvas", "measureText", "scoreText", "DEAD", "SPECTATE", "SPEC", "uiPartyLeaderColor", "Total:", "stop", "Queue", "Mode: ", "Time: ", "Queued players: ", "You have left the queue for [", "]", "A match has been found. Good luck and have fun!", "#scrimmage-mode-select", "#scrimmage-mode-info", "option", "div", "scrimmage-info-", "modes", "sizes", "startmass", "respawnDelay", "teams", "maps", "#scrimmage-custom-btn-container", "#scrimmage-map", "<option value=\'", "\'>", "</option>", "change", "trigger", "selectedIndex", "prop", "updateMap", "MAP", "updateMode", "MODE", "updateSize", "SIZE", "updateStartMass", "STARTMASS", "updateLock", "LOCK", "updatePlayerById", "PLAYER_UPDATE", "updatePlayers", "PLAYER_LIST", "updateVirusDensity", "VIRUS_DENSITY", "updateRespawnDelay", "RESPAWN_DELAY", "updateAutoSplit", "AUTOSPLIT", "updatePublic", "PUBLIC", "updatePassword", "PASSWORD", "updateName", "NAME", ".scrimmage-full", "#scrimmage-menu", "#scrimmage-lobbies", "#scrimmage-lobbies-tbody", "leaderId", "leaderName", "map", "mode", "maxSize", "hasPasscode", "<div class=\'scrimmage-lock\'></div>", "<tr partyId=\'", "\'><td><span>", "</span></td><td><span>", "</span></td></tr>", "click", "custom-game-selected", "removeClass", ".custom-game-selected", "partyId", "attr", "addClass", "#scrimmage-lobbies-tbody tr", "#scrimmage-name", "selected", "#scrimmage-map option[value=\'", "#scrimmage-mapmode", "#scrimmage-mapsize", "placeholder", "#scrimmage-startmass", "#scrimmage-mapmode option[value=\'", "#scrimmage-mapsize option[value=\'", "#scrimmage-virusDensity", "#scrimmage-respawnDelay", "checked", "#scrimmage-autoSplit", "#scrimmage-public", "#scrimmage-password", "#scrimmage-lockteams", "checkLock", "disabled", "#cgp-", "removeAttr", ".custom-game", " option[value=\'", "#cgp-name-", "#scrimmage-custom-players", "<tr><td><span id=\'cgp-name-", "</span></td>", "getTeamOptions", "</tr>", "\\d+", "match", "option:selected", "find", "sendCustomGameUpdate", "<td><select class=\'custom-game\' id=\'cgp-", "\'><option value=\'0\'>Spectator</option>", "\' class=\'t", "</select></td>", "nameCache", "massLastAmount", "getMass", "getSizeCache", "massType", "toShortString", "toString", "getNumber", "cacheContainer", "getSizeCacheSprite", "texture", "clearCacheContainer", "K", "M", "B", "sprites", "spritesIndex", "buildSizeCache", "0", "1", "3", "4", "5", "6", "7", "8", "9", "T", "Verdana", "bold", "#fff", "black", "textOutlineSize", "Text", "needsPixiUpdate", "sprite", "set", "anchor", "cThemeEnabled", "tint", "getPlayerById", "SELF", "cellSprite", "container", "skinSprite", "massSprite", "nameSprite", "cacheUpdate", "getNameCache", "spiked", "aCustomSpike", "aCustomMother", "levelSkins", "getSkin", "isGif", "getTexture", "cDisableAutoNameHiding", "levelNames", "lowerName", "effect", "nameEffectSprite", "cShowMass", "debuffSprite", "shieldSprite", "motherCustomEnabled", "cDisableEventSkins", "motherCustom", "setDefaultSpriteAnchor", "defaultData", "updatedPlayers", "shift", "skinCache", "normal", "outlineColor", "fontFamily", "stroke", "fontWeight", "fontSize", "fill", "updateText", "LOADING", ".gif", "endsWith", "loadFromFrameData", "LOADED", "crossOrigin", "load", "beginPath", "arc", "closePath", "clip", "drawImage", "from", "ERROR", "src", "Gota Web ", "setUint8", "cSilentLogin", "setInt32", "setUint16", "sendChat", "sendPartyAction", "setUint32", "sendShowProfile", "sendWhisper", "sendSubPanel", "skinName", "r", "g", "b", "chatColor", "sendLockedNameChange", "rViewDistance", "sendQueue", "sendCustomGame", "sendLeaveMatch", "sendShowLobbies", "sendJoinLobby", "sendCaptcha", "setInt16", "sendCustomGameUpdateString", "charCodeAt", "fromCharCode", "message", "code", "This account has been permanently suspended by an administrator.", "auth/user-disabled", "auth/popup-closed-by-user", "white", "STAFF", "Gota.io Staff", "build", "royalblue", "VERIFIED", "Verified Player", "check_circle", "i", "material-icons", "user-badge", "data-balloon", "data-balloon-pos", "setAttribute", "up", "li", "user-embed menu-sub-bg2", "backgroundColor", "uiMenuHeaderBackgroundColor", "img", "avatar", "alt", "username", "info", "server", "presence", "timestamp", "getTime", "status offline", "Not playing on any server", "status ", "status", "ONLINE", "online", "Playing ", "Spectating ", " on ", " (ID ", "status pending", "Pending Friend Request", "actions", "#main-social", "Join Server", "\'s ID is ", "done", "Add as Friend", "isHandlingRequest", "/api/v1/social/friends", "POST", "application/json", "Remove Friend", "Are you sure you want to remove \"", "\" as your friend?", "off", "callbacks", "elements", "#profile-username", "#profile-avatar", "Level ", "level", "levelData", "&nbsp;&nbsp;&nbsp;[", "xp_current", "xp_needed", "#profile-level", "title", "#profile-title", "#profile-name", "hide", "cursor", "pointer", "default", "spin", "#profile-close-btn", "#social-friends .user-list", "#social-uid", "title-text center", "You have no friends 😥", "pendingFriends", "replaceChild", "forEach", "profiles", "/api/v1/social/friends/pending", "/users/", "timestamps", "indexOf", " online", "#social-friends-count", "/friendships/", "hasOwnProperty", "balloon", "event-", "key", "toggleClass", ".server-tab", "incrementPlay", "undefined", "startPreRoll", "player", "#btn-play", "main-servers", "#btn-servers", "main-options", "#btn-options", "main-hotkeys", "#btn-hotkeys", "main-themes", "#btn-themes", "main-subpanel", "#btn-cellpanel", "https://www.reddit.com/r/PlayGotaIO/", "_blank", "open", "#btn-reddit", "https://gota.io/discord", "#btn-discord", "keypress", "#btn-spec", "keyup", "#autocomplete-panel", "startsWith", "<table><thead><tr><th>Command</th><th>Aliases</th><th>Description</th></tr></thead><tbody></tbody></table>", "substring", "findIndex", "triggers", "<tr><td>", "</td><td>", "description", "</td></tr>", "#autocomplete-panel tbody", "values", "filter", "<h3>Emotes</h3>", "<img name=\'", "\' title=\'", "\' src=\'https://gota.io/emotes/", ".png\' />", "<h3>Gifs</h3>", "\' src=\'https://gota.io/emotes/gifs/", ".gif\' />", "nodeName", "TD", "parentElement", "focus", "#chat-input", "IMG", "nodeValue", "attributes", "#animationDelay", "#rAnimationDelay", "#reconnectPeriod", "#rReconnectPeriod", "#viewDistance", "#rViewDistance", "rUiScale", "parseFloat", "#uiScale", "#rUiScale", "transform", "scale(", ".ui-scale", "background-image", "url(https://gota.io/emotes/", "random", ".png)", "#chat-emote-btn", "toggle", "#emote-panel", "#emote-panel ul li img", "chat-panel", "mousedown", "chat-resize", "getComputedStyle", "defaultView", "mousemove", "mouseup", "px", "removeEventListener", ".checkbox-options", ".options-container select", ".options-container input[type=range]", "#popup-changelog", "#btn-changelog", "#btn-close-changelog", "#btn-accept", "#btn-decline", "select", "Copy", "execCommand", "#popup-party-code-content button", "#menu-invite", "/t ", "#menu-whisper", "#menu-profile", "Private", "#menu-pu_pr span", "Public", "#menu-pu_pr", "#menu-promote", "#menu-kick", "#menu-spectate", "#menu-block", "chat-emote-btn", "popup-party-code", "#popup-chat-tab-editor", "#aEditChatTabs", "#cte-tab-selector", "#btn-chat-tab-editor-add", "#btn-chat-tab-editor-remove", "#btn-chat-tab-editor-update", "#popup-asset-skinner .title-text", "asset", "#input-asset-skinner", "#popup-asset-skinner", ".custom-asset-skinner", "a", "#popup-asset-skinner .back-button", "#btn-custom-asset-set", "#btn-custom-asset-clear", "drop", "originalEvent", "test", "result", "readAsDataURL", "dragover", "#popup-food-colors", "#btn-food-colors", "theme.json", "text/plain", "#btn-theme-export", "#theme-import", "#btn-theme-import", "files", "#main-themes .options-container", "/api/v1/options/setFlags", "#cGlobalLeaderboard", "consented", "signOut", "users/", "#account-loader", "#authed", "display: flex;", "#account-avatar", "#account-username", "&nbsp;&nbsp;&nbsp;&nbsp;", " XP", "#account-level", "%", ".xp-meter > span", "loadServers", "port", "?", "servers/account/", "DISCORD_LINKED", "loadDiscord", "exists", "Your account is linked with ", "discrim", "#discordLinkStatus", "#discordLink", "#discordUnlink", "padding", "15px", ".discord-login-container", "30px", "onSnapshot", "doc", "discord", "collection", "firestore", "tokens", "getMonth", "setMonth", "#redeem-tokens", "You have 0 tokens.", "#token-amount", "You have ", " tokens, maximum expiry date: ", "#redeem-spend", "#account-titles", "loadPrivateData", "<option value=\'0\'>Default Title</option>", "inline-block", "content", "read", "#popup-message-title", "#popup-message-content", "#popup-message", "private/", "#guest", "#no_cookie_consent", "onAuthStateChanged", "signInWithPopup", "#account-login", "#account-logout", "https://store.gota.io/", "#account-shop", "#account-social", "#social-back-button", "#account-profile", "#food-colors-close-btn", "Set", "...", "/api/v1/options/setTitle", "/api/v1/options/markAsRead", "#popup-message-read-btn", "#account-username-input", "trim", "Please provide a username!", "/api/v1/social/username", "#account-set-username-btn", ".popup-panel .back-button", "https://accounts.gota.io/api/v1/options/discord/redirect?token=", "popup", "width=600,height=700", "/api/v1/options/discord/unlink", "By redeeming, you are agreeing the locked name rules linked below the form.\x0A\x0AABUSE WILL RESULT IN THE DELETION OF YOUR LOCKED NAME WITH NO REFUND AND THE POSSIBILITY OF ACCOUNT SUSPENSION.\x0A\x0APress OK to redeem.", "#redeem-name", "/api/v1/options/redeem", "submit", ".error-banner", "Enter friend\'s UID (found above add friend button)", "replace", "string", "Please enter a valid UID", "#btn-add-friend", "tagName", "activeElement", "INPUT", "setSelectionRange", "blur", "beforeunload", "Are you sure you want to leave Gota.io?", "keybinds-btn-selected", ".keybinds-btn", "#btn-reset-keybinds", "#scrimmage-info-", "#btn-queue", "#btn-leave-match", "#btn-custom-create", "#btn-custom-return", "#btn-custom-start", "#btn-custom-lobbies", "#btn-lobbies-refresh", "Enter the password to join this game", "#btn-lobbies-join", "#btn-lobbies-return", "Enter a password to join your game (32 max characters)", "Enter a new name for your game (32 max characters)", "grecaptcha", "ready", "6LcycFwUAAAAANrun52k-J1_eNnF9zeLvgfJZSY3", "login", "execute", "hex", "toRgbString", "spectrum", "showAlpha", "#uiGameBackgroundColor", "#uiGameBorderColor", "Add", "_FoodColors", "#pFoodColors", "#food-color-list", "<div c=\'", "\' style=\'background:", ";color:", ";\'><span>", "</span><div><button class=\'btn-food-color\'>X</button></div></div>", "c", "eq", "parents", "splice", ".btn-food-color", ".keybinds-btn-selected", "first", "&nbsp;", "logo", "backgroundImage", "url(\'images/logo.png\')", "url(\'images/events/", "/logo.png\')", "<li><img name=\'", ".png\' /></li>", ".emote-list", ".gif\' /></li>", ".gif-list", "<option value=\"", "\">", "#spEffect", "images/ejected_mass_skins/", ".png", "index", "customEjectedMass", "images/events/", "/ejected_mass.png", "images/effects/", "/spike_mother_happy.png", "images", "/spike_mother.png", "/spike.png", "table-row", "#performance-refresh", "cHideId", "pId", "pServer", "alpha", "cTransCells", "#chat-panel", "#minimap-panel", "flex", "sScorePanel", "#leaderboard-panel", "cHideExtraPanel", "#extra-panel", "disable", "enable", "cResizableChat", "#chat-resize", "sShowNames", "sShowSkins", "sMassType", "sTextOutlines", "strokeThickness", "sQuality", ".fg-interface-color", ".interface-color", "border-color", ".gota-btn", ".popup-panel", ".main", ".main-bottom-stats", "background-color", ".hud-panel .interface-color", ".ui-pane", "#chat-tab-container", ".chat-tab", ".main-panel", ".options-container", ".menu-title", ".menu-sub-bg", ".server-active", "#server-content", ".menu-sub-bg2", ".server-table tbody", "#social-friends-online-count", "background", "#borderSize", "rBackgroundOpacity", "#backgroundOpacity", "canvas-background", "url(\'", "\')", "backgroundSize", "100% 100%", "Unable to load custom theme virus.", "Unable to load custom theme mother cell.", "#minimap-canvas", "2px solid rgba(255, 255, 255, .2)", "270px", "Enter new locked name!", "Please enter a valid name!", "Locked names must be 2 or more characters long.", "Locked names must be 20 or less characters long.", "You are about to change your locked name to: \'", "\'.\x0ALocked names can only be changed once per week.\x0A\x0AAre you sure you wish to continue?", "#btn-chg-ln", "#btn-updateSP", "rules", "#btn-subpanel-rules", "rgb", "#spNameColor", "#spChatColor", "#spSkinName", "#spLowerName", "#spEffect select", "#spNameFont select", "toRgb", "get", "#spNameFont", ".subpanel-name-dashboard", "#subpanel-rules", "#subpanel-content", "loadSubPanel", "locked", "#main-subpanel", "#spLockedName", "lastChange", "Last Changed: ", "expiry", "seconds", "#spExpiry", "Never", "accounts", "playerText", "#servers-body-eu", "#servers-body-na", "#servers-body-ap", " title=\"Players: ", "&#10;Bots: ", "\"", "<tr id=\"s_", "\" class=\"server-row\" server=\"", "\"><td class=\"server-table-name\">", "</td><td class=\"server-table-players\"", ">", "</td><td class=\"server-table-mode\">", "#servers-body-", "\" class=\"account-server server-row\" server=\"", "</td><td class=\"server-table-players\">", "prepend", ".server-row", "server-selected", "#s_", "#server-tab-", "inherit", "server-active", "#server-tab-container", "uiMenuSubBackgroundColor", "#servers-", "_ChatTabs", "#chat-body-", " tr", "maxMessages", " tr:first-child", "cloneNode", "chat-body-", "#chat-container-", "scrollHeight", "scrollTop", "outerHeight", "action", "Invalid command!", "#chat-container", "Unnamed", "<li class=\'chat-tab\' id=\'chat-tab-", "\' name=\'", "\'><span>", "</span></li>", "<div class=\'chat-inner-container\' id=\'chat-container-", "\'><table class=\'chat-table\'><tbody id=\'chat-body-", "\'></tbody></table></div>", "uiBorderColor", "#chat-tab-", "<span>", "</span>", "chat-active-tab", "chat-active-container", ".chat-inner-container", "#cte-tab-name", "#cte-type-", "#cte-max-messages", "New", "context-name", ".context-action", "&gt;", "&lt;", "main", "iChatWidth", "iChatHeight", "options", "setItem", "localStorage", "keybinds", "theme", "subpanel", "getItem", "isInteger", "s", "lockedName", "readAsText", "#cThemeEnabled", "<img src=\"https://gota.io/emotes/", ".png\" height=\"17\" width=\"17\" alt=\"", "<img src=\"https://gota.io/emotes/gifs/", ".gif\" height=\"17\" width=\"17\" alt=\"", "Random", "Maximum Cells Upgrade", "extracells", "MODIFIER", "Extra Consumable Slot", "extraconsumable", "Merge", "merge", "PASSIVE", "Grow", "grow", "Speed", "speed", "Shield", "shield", "Virus", "spike", "CONSUMABLE", "Disrupt", "disrupt", "Teleport", "teleport", "_disrupt", "DEBUFF", "Silver", "phoenix", "Consumable Shield", "_shield", "Magnet", "magnet", "Decay", "decay", "_decay", "image", "images/powerups/", "images/shield.png", "images/debuff.png", "passiveBuffs", "passiveSortedBuffs", "consumableBuffs", "nextCacheUpdate", "sortPassiveBuffs", "onPassiveBuffsUpdate", "markCacheForUpdate", "Recieved buff: ", "powerup", "Lost buff: ", "stack", "updateCache", "#222", "bold 16pt Calibri", "draw", "startTime", "expireTime", "getCooldown", "#000", "moveTo", "globalAlpha", "hearts", "delay", "frames", "getFrame", "getLength", "getImage", "frameInfo", "foodColors", "#FFFFFF", "#FF9BDC", "#FF00FF", "#FF0000", "#C80000", "#FF6900", "#FFFF00", "#00FF00", "#008000", "#008080", "#00FFFF", "#0096FF", "#0000FF", "#CA48FA", "#8A2BE2", "#D2C878", "#8C4614", "You cannot block that player.", "Unblocked player with ID: ", "Blocked player with ID: ", "Whisper a player by ID", "whisper", "t", "w", "Invalid player id.", "Reply to previous whisper", "reply", "/r ", "Send a message to other party members", "p", "/p ", "Invite a player to the party", "invite", "Invalid ID.", "Leave your current party", "leave", "l", "Promote a party member to leader", "promote", "Kick a player from the party", "kick", "Clear the chat", "getAttribute", "getElementsByClassName", "firstChild", "Get your current ID", "Your id is ", "You need to be connected to a server to use this command.", "Show the scrimmage menu", "scrimmenu", "Join a party with a code", "j", "Set the party to private", "private", "Allow players to join the party without an invite", "public", "Reset chat size", "resetchat", "Reset chat tab settings", "resetchattabs", "Spectate a player", "Disconnect from the server", "Get Account UID", "account", "You are not logged in.", "UID: ", "Block or unblock a player by ID", "4Head", "BibleThump", "DansGame", "DatSheffy", "FailFish", "FeelsBadMan", "FeelsGoodMan", "FeelsMadMan", "GabeN", "HassanChop", "HeyGuys", "Kappa", "KappaPride", "Keepo", "Kreygasm", "NotLikeThis", "OMGScoots", "PJSalt", "PogChamp", "rekt", "rip", "SaltyCorn", "sodaC", "sodaHeyGuys", "sodaNOPE", "sodaW", "SwiftRage", "WutFace", "ResidentSleeper", "LUL", "MikuFail", "PepoHype", "KKona", "MeguFace", "AngryBork", "AngeryBOYE", "TohruFlex", "Sadness", "nou", "MarioFP", "Ditto", "MichaelPls", "RareParrot", "PepePls", "RooNoticeMe", "PepeEyes", "EverythingsFine", "WeSmart", "PandaAww", "SleepyCat", "Clap", "A", "C", "D", "E", "F", "MOUSE1", "MOUSE2", "MOUSE3", "MOUSE4", "MOUSE5", "HELP", "BACK_SPACE", "TAB", "CLEAR", "ENTER", "ENTER_SPECIAL", "SHIFT", "CONTROL", "ALT", "PAUSE", "CAPS_LOCK", "KANA", "EISU", "JUNJA", "FINAL", "HANJA", "ESCAPE", "CONVERT", "NONCONVERT", "ACCEPT", "MODECHANGE", "SPACE", "PAGE_UP", "PAGE_DOWN", "END", "HOME", "LEFT", "UP", "RIGHT", "DOWN", "SELECT", "PRINT", "EXECUTE", "PRINTSCREEN", "INSERT", "DELETE", ";", "<", "=", "AT", "G", "H", "I", "J", "L", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z", "OS_KEY", "CONTEXT_MENU", "SLEEP", "NUMPAD0", "NUMPAD1", "NUMPAD2", "NUMPAD3", "NUMPAD4", "NUMPAD5", "NUMPAD6", "NUMPAD7", "NUMPAD8", "NUMPAD9", "MULTIPLY", "ADD", "SEPARATOR", "SUBTRACT", "DECIMAL", "DIVIDE", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23", "F24", "NUM_LOCK", "SCROLL_LOCK", "WIN_OEM_FJ_JISHO", "WIN_OEM_FJ_MASSHOU", "WIN_OEM_FJ_TOUROKU", "WIN_OEM_FJ_LOYA", "WIN_OEM_FJ_ROYA", "CIRCUMFLEX", "EXCLAMATION", "DOUBLE_QUOTE", "HASH", "DOLLAR", "PERCENT", "AMPERSAND", "UNDERSCORE", "OPEN_PAREN", "CLOSE_PAREN", "ASTERISK", "PLUS", "PIPE", "HYPHEN_MINUS", "OPEN_CURLY_BRACKET", "CLOSE_CURLY_BRACKET", "TILDE", "VOLUME_MUTE", "VOLUME_DOWN", "VOLUME_UP", "SEMICOLON", "EQUALS", "COMMA", "MINUS", "PERIOD", "SLASH", "BACK_QUOTE", "OPEN_BRACKET", "BACK_SLASH", "CLOSE_BRACKET", "QUOTE", "META", "ALTGR", "WIN_ICO_HELP", "WIN_ICO_00", "WIN_ICO_CLEAR", "WIN_OEM_RESET", "WIN_OEM_JUMP", "WIN_OEM_PA1", "WIN_OEM_PA2", "WIN_OEM_PA3", "WIN_OEM_WSCTRL", "WIN_OEM_CUSEL", "WIN_OEM_ATTN", "WIN_OEM_FINISH", "WIN_OEM_COPY", "WIN_OEM_AUTO", "WIN_OEM_ENLW", "WIN_OEM_BACKTAB", "ATTN", "CRSEL", "EXSEL", "EREOF", "PLAY", "ZOOM", "PA1", "WIN_OEM_CLEAR", "heart", "star", "home", "apple", "spiral", "dice", "chicken", "ghost", "burger", "bow", "cloud", "skull", "mug", "flower", "music", "checkmark", "clover", "crown", "fancy", "fish", "fire", "lightning", "paw", "duck", "snowflake", "bomb", "butterfly", "cherry", "watermelon", "cat", "cupid", "sword", "tornado", "radioactive", "rocket", "wave", "letter_a", "letter_b", "letter_c", "letter_d", "letter_e", "letter_f", "letter_g", "letter_h", "letter_i", "letter_j", "letter_k", "letter_l", "letter_m", "letter_n", "letter_o", "letter_p", "letter_q", "letter_r", "letter_s", "letter_t", "letter_u", "letter_v", "letter_w", "letter_x", "letter_y", "letter_z", "number_0", "number_1", "number_2", "number_3", "number_4", "number_5", "number_6", "number_7", "number_8", "number_9", "0:00", "_", "Invalid HEX color.", "#000000", "items", "dataTransfer", "kind", "file", "getAsFile", "msSaveOrOpenBlob", "navigator", "createObjectURL", "download", "revokeObjectURL", "URL", "regex", "Spectator", "Blue", "Red", "Green", "Yellow", "Purple", "Orange", "Pink", "Brown", "#25f", "#f31", "green", "yellow", "purple", "orange", "ampad", "burnstown", "chlorinar", "Facon", "archistico", "breakaway", "conformity", "electroharmonix", "PWJoyeuxNoel", "leckerli-one", "IceCaps", "#00c9ff", "BrazierFlame", "#e25822", "\" style=\"font-family:", "Notification", "permission", "granted", "Your match has started.", "https://gota.io/assets/images/favicon.png", "policyID", "CP_0918_01", "policyLink", "https://gota.io/policies/privacy.html?v=", "#cookies", "consentOption", "#cc_acceptCookies", "consentCookie", "cookieConsent", "yes+", "/web", "cookieBanner", "#cookie-banner", "#declineCookies", "#acceptCookies", "backwardsCompatable", "consentHandler", "getConsentCookie", "showCookieBanner", "deleteConsentCookie", "createConsentCookie", "handlersBound", "bindBannerHandlers", "banner", "decline", "accept", " <a href=\"", "\" target=\"_blank\">Our Cookie Policy!</a>", "#cookie-banner .description", "exdays", "setTime", "expires=", "toUTCString", "cookie", ";path=", "path", "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=", "cookieconsent_status", "allow", "cookieconsent_status=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/web;", "playCounter", "Advertisement Loading...", "preroll"];
-    function _0x111D7(_0x11205, _0x11261, _0x1124A) {
-        if (!_0x11205) {
-            return
-        };
-        var _0x1121C = window.location.href.split("://")[1].split("/")[0].split(":")[0];
-        var _0x111D7 = _0x11205.split(",");
-        for (var _0x11233 = 0; _0x11233 < _0x111D7.length; _0x11233++) {
-            var _0x111EE = _0x111D7[_0x11233];
-            if (_0x111EE == _0x1121C) {
-                return
-            };
-            if (!_0x11261) {
-                continue
-            };
-            _0x111EE = _0x1121C.split("." + _0x111EE);
-            if (_0x111EE.length == 2 && !_0x111EE[1]) {
-                return
-            }
-        };
-        throw (_0x1124A || "error")
-    }
-
-    function _0x111EE(_0x111EE) {
-        var _0x111D7 = $("#" + _0x111EE);
-        if (_0x111D7.css("display") == "none") {
-            _0x11205();
-            _0x111D7.slideDown(500)
+!(function () {
+    function j(a5) {
+        var a6 = $('#' + a5)[0x0];
+        if (a6) {
+            a6['classList']['contains']('side-menu-transition') || a6['classList']['add']('side-menu-transition');
+            var a7 = document['getElementById']('main-right');
+            if (a7)
+                for (var a8 = a7['children'], a9 = 0x0; a9 < a8['length']; a9++) {
+                    var aa = a8[a9];
+                    aa !== a6 && (aa['classList'] && aa['classList']['contains']('side-menu-transition') && aa['classList']['remove']('menu-open'), 'none' !== getComputedStyle(aa)['display'] && (aa['style']['display'] = 'none'));
+                }
+            a6['classList']['contains']('menu-open') && 'none' !== getComputedStyle(a6)['display'] || (a6['style']['display'] = 'block', a6['offsetWidth'], a6['classList']['add']('menu-open'));
         }
     }
-
-    function _0x11205() {
-        $("#main-right").children().each(function () {
-            if ($(this).css("display") == "block") {
-                $(this).slideUp(500)
+    var q = {
+            'grad': 0.9,
+            'turn': 0x168,
+            'rad': 0x168 / (0x2 * Math['PI'])
+        },
+        z = function (a5) {
+            return 'string' == typeof a5 ? a5['length'] > 0x0 : 'number' == typeof a5;
+        },
+        A = function (a5, a6, a7) {
+            return void 0x0 === a6 && (a6 = 0x0), void 0x0 === a7 && (a7 = Math['pow'](0xa, a6)), Math['round'](a7 * a5) / a7 + 0x0;
+        },
+        B = function (a5, a6, a7) {
+            return void 0x0 === a6 && (a6 = 0x0), void 0x0 === a7 && (a7 = 0x1), a5 > a7 ? a7 : a5 > a6 ? a5 : a6;
+        },
+        D = function (a5) {
+            return (a5 = isFinite(a5) ? a5 % 0x168 : 0x0) > 0x0 ? a5 : a5 + 0x168;
+        },
+        F = function (a5) {
+            return {
+                'r': B(a5['r'], 0x0, 0xff),
+                'g': B(a5['g'], 0x0, 0xff),
+                'b': B(a5['b'], 0x0, 0xff),
+                'a': B(a5['a'])
+            };
+        },
+        G = function (a5) {
+            return {
+                'r': A(a5['r']),
+                'g': A(a5['g']),
+                'b': A(a5['b']),
+                'a': A(a5['a'], 0x3)
+            };
+        },
+        H = /^#([0-9a-f]{3,8})$/i,
+        J = function (a5) {
+            var a6 = a5['toString'](0x10);
+            return a6['length'] < 0x2 ? '0' + a6 : a6;
+        },
+        K = function (a5) {
+            var a6 = a5['r'],
+                a7 = a5['g'],
+                a8 = a5['b'],
+                a9 = a5['a'],
+                aa = Math['max'](a6, a7, a8),
+                ab = aa - Math['min'](a6, a7, a8),
+                ac = ab ? aa === a6 ? (a7 - a8) / ab : aa === a7 ? 0x2 + (a8 - a6) / ab : 0x4 + (a6 - a7) / ab : 0x0;
+            return {
+                'h': 0x3c * (ac < 0x0 ? ac + 0x6 : ac),
+                's': aa ? ab / aa * 0x64 : 0x0,
+                'v': aa / 0xff * 0x64,
+                'a': a9
+            };
+        },
+        L = function (a5) {
+            var a6 = a5['h'],
+                a7 = a5['s'],
+                a8 = a5['v'],
+                a9 = a5['a'];
+            a6 = a6 / 0x168 * 0x6, a7 /= 0x64, a8 /= 0x64;
+            var aa = Math['floor'](a6),
+                ab = a8 * (0x1 - a7),
+                ac = a8 * (0x1 - (a6 - aa) * a7),
+                ad = a8 * (0x1 - (0x1 - a6 + aa) * a7),
+                ae = aa % 0x6;
+            return {
+                'r': 0xff * [a8, ac, ab, ab, ad, a8][ae],
+                'g': 0xff * [ad, a8, a8, ac, ab, ab][ae],
+                'b': 0xff * [ab, ab, ad, a8, a8, ac][ae],
+                'a': a9
+            };
+        },
+        M = function (a5) {
+            return {
+                'h': D(a5['h']),
+                's': B(a5['s'], 0x0, 0x64),
+                'l': B(a5['l'], 0x0, 0x64),
+                'a': B(a5['a'])
+            };
+        },
+        N = function (a5) {
+            return {
+                'h': A(a5['h']),
+                's': A(a5['s']),
+                'l': A(a5['l']),
+                'a': A(a5['a'], 0x3)
+            };
+        },
+        O = function (a5) {
+            return L((a7 = (a6 = a5)['s'], {
+                'h': a6['h'],
+                's': (a7 *= ((a8 = a6['l']) < 0x32 ? a8 : 0x64 - a8) / 0x64) > 0x0 ? 0x2 * a7 / (a8 + a7) * 0x64 : 0x0,
+                'v': a8 + a7,
+                'a': a6['a']
+            }));
+            var a6, a7, a8;
+        },
+        Q = function (a5) {
+            return {
+                'h': (a6 = K(a5))['h'],
+                's': (a9 = (0xc8 - (a7 = a6['s'])) * (a8 = a6['v']) / 0x64) > 0x0 && a9 < 0xc8 ? a7 * a8 / 0x64 / (a9 <= 0x64 ? a9 : 0xc8 - a9) * 0x64 : 0x0,
+                'l': a9 / 0x2,
+                'a': a6['a']
+            };
+            var a6, a7, a8, a9;
+        },
+        R = /^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s*,\s*([+-]?\d*\.?\d+)%\s*,\s*([+-]?\d*\.?\d+)%\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,
+        T = /^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s+([+-]?\d*\.?\d+)%\s+([+-]?\d*\.?\d+)%\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,
+        U = /^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,
+        V = /^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,
+        W = {
+            'string': [[function (a5) {
+                var a6 = H['exec'](a5);
+                return a6 ? (a5 = a6[0x1])['length'] <= 0x4 ? {
+                    'r': parseInt(a5[0x0] + a5[0x0], 0x10),
+                    'g': parseInt(a5[0x1] + a5[0x1], 0x10),
+                    'b': parseInt(a5[0x2] + a5[0x2], 0x10),
+                    'a': 0x4 === a5['length'] ? A(parseInt(a5[0x3] + a5[0x3], 0x10) / 0xff, 0x2) : 0x1
+                } : 0x6 === a5['length'] || 0x8 === a5['length'] ? {
+                    'r': parseInt(a5['substr'](0x0, 0x2), 0x10),
+                    'g': parseInt(a5['substr'](0x2, 0x2), 0x10),
+                    'b': parseInt(a5['substr'](0x4, 0x2), 0x10),
+                    'a': 0x8 === a5['length'] ? A(parseInt(a5['substr'](0x6, 0x2), 0x10) / 0xff, 0x2) : 0x1
+                } : null : null;
+            }, 'hex'], [function (a5) {
+                var a6 = U['exec'](a5) || V['exec'](a5);
+                return a6 ? a6[0x2] !== a6[0x4] || a6[0x4] !== a6[0x6] ? null : F({
+                    'r': Number(a6[0x1]) / (a6[0x2] ? 0x64 / 0xff : 0x1),
+                    'g': Number(a6[0x3]) / (a6[0x4] ? 0x64 / 0xff : 0x1),
+                    'b': Number(a6[0x5]) / (a6[0x6] ? 0x64 / 0xff : 0x1),
+                    'a': void 0x0 === a6[0x7] ? 0x1 : Number(a6[0x7]) / (a6[0x8] ? 0x64 : 0x1)
+                }) : null;
+            }, 'rgb'], [function (a5) {
+                var a6 = R['exec'](a5) || T['exec'](a5);
+                if (!a6) return null;
+                var a7, a8, a9 = M({
+                    'h': (a7 = a6[0x1], a8 = a6[0x2], void 0x0 === a8 && (a8 = 'deg'), Number(a7) * (q[a8] || 0x1)),
+                    's': Number(a6[0x3]),
+                    'l': Number(a6[0x4]),
+                    'a': void 0x0 === a6[0x5] ? 0x1 : Number(a6[0x5]) / (a6[0x6] ? 0x64 : 0x1)
+                });
+                return O(a9);
+            }, 'hsl']],
+            'object': [[function (a5) {
+                var a6 = a5['r'],
+                    a7 = a5['g'],
+                    a8 = a5['b'],
+                    a9 = a5['a'],
+                    aa = void 0x0 === a9 ? 0x1 : a9;
+                return z(a6) && z(a7) && z(a8) ? F({
+                    'r': Number(a6),
+                    'g': Number(a7),
+                    'b': Number(a8),
+                    'a': Number(aa)
+                }) : null;
+            }, 'rgb'], [function (a5) {
+                var a6 = a5['h'],
+                    a7 = a5['s'],
+                    a8 = a5['l'],
+                    a9 = a5['a'],
+                    aa = void 0x0 === a9 ? 0x1 : a9;
+                if (!z(a6) || !z(a7) || !z(a8)) return null;
+                var ab = M({
+                    'h': Number(a6),
+                    's': Number(a7),
+                    'l': Number(a8),
+                    'a': Number(aa)
+                });
+                return O(ab);
+            }, 'hsl'], [function (a5) {
+                var a6 = a5['h'],
+                    a7 = a5['s'],
+                    a8 = a5['v'],
+                    a9 = a5['a'],
+                    aa = void 0x0 === a9 ? 0x1 : a9;
+                if (!z(a6) || !z(a7) || !z(a8)) return null;
+                var ab, ac = (ab = {
+                    'h': Number(a6),
+                    's': Number(a7),
+                    'v': Number(a8),
+                    'a': Number(aa)
+                }, {
+                    'h': D(ab['h']),
+                    's': B(ab['s'], 0x0, 0x64),
+                    'v': B(ab['v'], 0x0, 0x64),
+                    'a': B(ab['a'])
+                });
+                return L(ac);
+            }, 'hsv']]
+        },
+        X = function (a5, a6) {
+            for (var a7 = 0x0; a7 < a6['length']; a7++) {
+                var a8 = a6[a7][0x0](a5);
+                if (a8) return [a8, a6[a7][0x1]];
             }
-        })
-    }
+            return [null, void 0x0];
+        },
+        Y = function (a5, a6) {
+            var a7 = Q(a5);
+            return {
+                'h': a7['h'],
+                's': B(a7['s'] + 0x64 * a6, 0x0, 0x64),
+                'l': a7['l'],
+                'a': a7['a']
+            };
+        },
+        Z = function (a5) {
+            return (0x12b * a5['r'] + 0x24b * a5['g'] + 0x72 * a5['b']) / 0x3e8 / 0xff;
+        },
+        a0 = function (a5, a6) {
+            var a7 = Q(a5);
+            return {
+                'h': a7['h'],
+                's': a7['s'],
+                'l': B(a7['l'] + 0x64 * a6, 0x0, 0x64),
+                'a': a7['a']
+            };
+        },
+        a1 = (function () {
+            function a5(a6) {
+                this['parsed'] = function (a7) {
+                    return 'string' == typeof a7 ? X(a7['trim'](), W['string']) : 'object' == typeof a7 && null !== a7 ? X(a7, W['object']) : [null, void 0x0];
+                }(a6)[0x0], this['rgba'] = this['parsed'] || {
+                    'r': 0x0,
+                    'g': 0x0,
+                    'b': 0x0,
+                    'a': 0x1
+                };
+            }
+            return a5['prototype']['isValid'] = function () {
+                return null !== this['parsed'];
+            }, a5['prototype']['brightness'] = function () {
+                return A(Z(this['rgba']), 0x2);
+            }, a5['prototype']['isDark'] = function () {
+                return Z(this['rgba']) < 0.5;
+            }, a5['prototype']['isLight'] = function () {
+                return Z(this['rgba']) >= 0.5;
+            }, a5['prototype']['toHex'] = function () {
+                return a7 = (a6 = G(this['rgba']))['r'], a8 = a6['g'], a9 = a6['b'], ab = (aa = a6['a']) < 0x1 ? J(A(0xff * aa)) : '', '#' + J(a7) + J(a8) + J(a9) + ab;
+                var a6, a7, a8, a9, aa, ab;
+            }, a5['prototype']['toRgb'] = function () {
+                return G(this['rgba']);
+            }, a5['prototype']['toRgbString'] = function () {
+                return a7 = (a6 = G(this['rgba']))['r'], a8 = a6['g'], a9 = a6['b'], (aa = a6['a']) < 0x1 ? 'rgba(' + a7 + ',\x20' + a8 + ',\x20' + a9 + ',\x20' + aa + ')' : 'rgb(' + a7 + ',\x20' + a8 + ',\x20' + a9 + ')';
+                var a6, a7, a8, a9, aa;
+            }, a5['prototype']['toHsl'] = function () {
+                return N(Q(this['rgba']));
+            }, a5['prototype']['toHslString'] = function () {
+                return a7 = (a6 = N(Q(this['rgba'])))['h'], a8 = a6['s'], a9 = a6['l'], (aa = a6['a']) < 0x1 ? 'hsla(' + a7 + ',\x20' + a8 + '%,\x20' + a9 + '%,\x20' + aa + ')' : 'hsl(' + a7 + ',\x20' + a8 + '%,\x20' + a9 + '%)';
+                var a6, a7, a8, a9, aa;
+            }, a5['prototype']['toHsv'] = function () {
+                return a6 = K(this['rgba']), {
+                    'h': A(a6['h']),
+                    's': A(a6['s']),
+                    'v': A(a6['v']),
+                    'a': A(a6['a'], 0x3)
+                };
+                var a6;
+            }, a5['prototype']['invert'] = function () {
+                return a2({
+                    'r': 0xff - (a6 = this['rgba'])['r'],
+                    'g': 0xff - a6['g'],
+                    'b': 0xff - a6['b'],
+                    'a': a6['a']
+                });
+                var a6;
+            }, a5['prototype']['saturate'] = function (a6) {
+                return void 0x0 === a6 && (a6 = 0.1), a2(Y(this['rgba'], a6));
+            }, a5['prototype']['desaturate'] = function (a6) {
+                return void 0x0 === a6 && (a6 = 0.1), a2(Y(this['rgba'], -a6));
+            }, a5['prototype']['grayscale'] = function () {
+                return a2(Y(this['rgba'], -0x1));
+            }, a5['prototype']['lighten'] = function (a6) {
+                return void 0x0 === a6 && (a6 = 0.1), a2(a0(this['rgba'], a6));
+            }, a5['prototype']['darken'] = function (a6) {
+                return void 0x0 === a6 && (a6 = 0.1), a2(a0(this['rgba'], -a6));
+            }, a5['prototype']['rotate'] = function (a6) {
+                return void 0x0 === a6 && (a6 = 0xf), this['hue'](this['hue']() + a6);
+            }, a5['prototype']['alpha'] = function (a6) {
+                return 'number' == typeof a6 ? a2({
+                    'r': (a7 = this['rgba'])['r'],
+                    'g': a7['g'],
+                    'b': a7['b'],
+                    'a': a6
+                }) : A(this['rgba']['a'], 0x3);
+                var a7;
+            }, a5['prototype']['hue'] = function (a6) {
+                var a7 = Q(this['rgba']);
+                return 'number' == typeof a6 ? a2({
+                    'h': a6,
+                    's': a7['s'],
+                    'l': a7['l'],
+                    'a': a7['a']
+                }) : A(a7['h']);
+            }, a5['prototype']['isEqual'] = function (a6) {
+                return this['toHex']() === a2(a6)['toHex']();
+            }, a5;
+        }()),
+        a2 = function (a5) {
+            return a5 instanceof a1 ? a5 : new a1(a5);
+        };
+    !(function () {
+        function a5(aa, ab, ac, ad, ae, af, ag, ah) {
+            var ai = 0x0,
+                aj = 0x0,
+                ak = Array['isArray'](af) && af['length'] ? af : a9;
+            null == ag && (ag = 0x9e3779b1), null == ah && (ah = 0xa5a5a5a5);
+            for (var al = 0x0; al < ak['length']; al++) switch (ak[al]) {
+            case 0x0:
+                ai = Math['imul'](ab >>> 0x0, ag >>> 0x0) >>> 0x0;
+                break;
+            case 0x1:
+                aj = (ac >>> 0x0 ^ ai) >>> 0x0;
+                break;
+            case 0x2:
+                aj = aj + ((0xff & aa) << 0x10) >>> 0x0;
+                break;
+            case 0x3:
+                aj = aj + (0xffff & ad) >>> 0x0;
+                break;
+            case 0x4:
+                aj = ae(aj >>> 0x0, ac >>> 0x0) >>> 0x0;
+                break;
+            case 0x5:
+                aj = (aj ^ ah >>> 0x0) >>> 0x0;
+                break;
+            case 0x6:
+                aj = (aj ^ aj >>> 0x7) >>> 0x0;
+            }
+            var am = new Array(0x7)['fill'](!0x1);
+            for (al = 0x0; al < ak['length']; al++)(an = ak[al]) >= 0x0 && an <= 0x6 && (am[an] = !0x0);
+            for (var an = 0x0; an <= 0x6; an++)
+                if (!am[an]) switch (an) {
+                case 0x0:
+                    ai = Math['imul'](ab >>> 0x0, ag >>> 0x0) >>> 0x0;
+                    break;
+                case 0x1:
+                    aj = (ac >>> 0x0 ^ ai) >>> 0x0;
+                    break;
+                case 0x2:
+                    aj = aj + ((0xff & aa) << 0x10) >>> 0x0;
+                    break;
+                case 0x3:
+                    aj = aj + (0xffff & ad) >>> 0x0;
+                    break;
+                case 0x4:
+                    aj = ae(aj >>> 0x0, ac >>> 0x0) >>> 0x0;
+                    break;
+                case 0x5:
+                    aj = (aj ^ ah >>> 0x0) >>> 0x0;
+                    break;
+                case 0x6:
+                    aj = (aj ^ aj >>> 0x7) >>> 0x0;
+                }
+            return (aj >>> 0x0)['toString'](0x24)['toUpperCase']();
+        }
 
-    function _0x1121C() {
-        var _0x1204E = window.PIXI;
-        const _0x1214B = _0x1204E;
-        window.PIXI = null;
-        var _0x12162;
-        const _0x12179 = new _0x1214B.Container();
-        const _0x1128F = new _0x1214B.Container();
-        const _0x11302 = new _0x1214B.Container();
-        const _0x11EC7 = new _0x1214B.Container();
-        const _0x11907 = new _0x1214B.Container();
-        const _0x1145B = new _0x1214B.Container();
-        const _0x12231 = new _0x1214B.Sprite(_0x1214B.Texture.EMPTY);
-        var _0x112EB;
-        _0x11EC7.addChild(_0x11302);
-        _0x11EC7.addChild(_0x11907);
-        _0x11EC7.addChild(_0x1145B);
-        _0x12179.addChild(_0x1128F);
-        _0x12179.addChild(_0x11EC7);
-        _0x12179.addChild(_0x12231);
-        var _0x1138C, _0x11EF5, _0x11F23, _0x12190, _0x12065, _0x11CFB, _0x125E0, _0x125F7, _0x12134, _0x1263C, _0x12653, _0x1266A, _0x12470, _0x12459, _0x11EDE, _0x12106, _0x11BB9, _0x11D29, _0x123E6, _0x11627, _0x11489, _0x12836, _0x11838, _0x11278, _0x123CF, _0x1173B, _0x11724, _0x123B8, _0x11D12, _0x11EB0 = false,
-            _0x11991 = 0,
-            _0x1197A = 0,
-            _0x1281F = null,
-            _0x12808 = null,
-            _0x11B01 = false,
-            _0x12767 = {
-                elements: [],
-                callbacks: [],
-                pendingFriends: [],
-                timestamps: []
-            },
-            _0x112BD = [],
-            _0x119A8 = false,
-            _0x113BA = null,
-            _0x11C43 = true,
-            _0x117AE;
-        const _0x1211D = Math.PI * 2;
-        const _0x11416 = 128,
-            _0x113E8 = _0x11416 * 2,
-            _0x113FF = (_0x11416 + 6) * 2,
-            _0x1142D = _0x11416 / 2;
-        var _0x11444, _0x11821, _0x118F0;
-        const _0x117C5 = {};
-        const _0x1277E = "https://discord.com/channels/166703751053312000/630428963889741854";
-        const _0x1124A = new firebase.auth.GoogleAuthProvider();
-        const _0x111D7 = "https://accounts.gota.io";
-        var _0x11894 = {
-            key: "xmas",
-            foodColors: [0xee8d1c, 0xab4422, 0x903e6f, 0x602749],
-            customEjectedMass: false,
-            motd: "",
-            endDate: 1730505600000,
-            enabled: false,
-            motherCustomEnabled: false,
-            motherCustom: function (_0x111C0) {},
-            happyMotherCells: []
-        };
-        _0x11894.enabled = new Date() < _0x11894.endDate;
-        firebase.initializeApp({
-            apiKey: "AIzaSyCmYFIIazBPyg5goqvPb-7uA6W9-4TVqEM",
-            authDomain: "accounts.gota.io",
-            databaseURL: "https://gota-io.firebaseio.com",
-            projectId: "gota-io",
-            storageBucket: "gota-io.appspot.com",
-            messagingSenderId: "570450309042",
-            appId: "1:570450309042:web:380ab6c94d44de2f"
-        });
-        var _0x124FA = {};
-        var _0x11205 = {};
-        var _0x12037 = {
-            levelNames: 3,
-            levelSkins: 3,
-            textOutlineSize: 0,
-            resolution: 1
-        };
-        var _0x11752 = [{
-            name: "All",
-            flags: 255,
-            maxMessages: 100
-        }, {
-            name: "Party",
-            flags: 2,
-            maxMessages: 100
-        }];
-        var _0x12442 = 0;
-        var _0x11472 = [];
-        var _0x1242B = -1;
-        var _0x12020 = {
-            cDisableAA: false,
-            cAutoRespawn: false,
-            cHideId: false,
-            cHideServer: false,
-            cRainbowFood: false,
-            sShowNames: "ALL",
-            sShowSkins: "ALL",
-            sRenderType: "AUTO",
-            sTextOutlines: "NONE",
-            sQuality: "ULTRA",
-            sMassType: "DEFAULT",
-            cTransCells: false,
-            cShowMass: false,
-            cShowBorder: false,
-            cSilentLogin: false,
-            cHideChat: false,
-            cHideMinimap: false,
-            sScorePanel: _0x111C0[52],
-            cShowCoordinates: false,
-            cHideFood: false,
-            cColoredPing: false,
-            cColoredCellCount: false,
-            cThemeEnabled: false,
-            cDisableAutoZoom: false,
-            cAutoDecline: false,
-            cDisableEventSkins: false,
-            cResizableChat: false,
-            cDisableAutoNameHiding: false,
-            cDisableAutoFoodHiding: false,
-            cDisablePersistEjectMass: false,
-            iChatWidth: "360px",
-            iChatHeight: "250px",
-            rUiScale: 1.0,
-            rReconnectPeriod: 5,
-            rAnimationDelay: 90,
-            rViewDistance: 150,
-            _ChatTabs: JSON.parse(JSON.stringify(_0x11752))
-        };
-        var _0x11CB6 = {
-            kContextMenu: 3,
-            kEjectMass: 87,
-            kSplit: 32,
-            kToggleSpec: 81,
-            kDoubleSplit: -1,
-            kTripleSplit: -1,
-            kQuadSplit: -1,
-            kHexaSplit: -1,
-            kFreezeMouse: -1
-        };
-        var _0x11C9F = false;
-        const _0x11769 = Object.assign({}, _0x11CB6);
-        const _0x1270B = 2;
-        window[_0x111C0[58]] = _0x111C0[59] in document[_0x111C0[60]];
-        const _0x126F4 = {
-            version: _0x1270B,
-            uiForegroundColor: "rgb(255, 255, 255)",
-            uiBackgroundColor: "rgba(22, 22, 22, 0.8)",
-            uiBorderColor: "rgba(255, 255, 255, .2)",
-            uiMenuBackgroundColor: "#2A2A2A",
-            uiMenuTitleBackgroundColor: "#404040",
-            uiMenuSubBackgroundColor: "#363636",
-            uiMenuSubBackground2Color: "#404040",
-            uiButtonColor: "#444444",
-            uiGameBackgroundColor: "#121212",
-            uiGameBorderColor: "#ff0000",
-            uiLeaderboardHighlightSelf: "#ffaaaa",
-            uiLeaderboardHighlightParty: "#ffff00",
-            uiPartyLeaderColor: "#00ffff",
-            uiGameColorSuccess: "#00ff00",
-            uiGameColorWarning: "#ffff00",
-            uiGameColorError: "#ff0000",
-            _FoodColors: [],
-            aCustomBackground: "",
-            aCustomSpike: "",
-            aCustomMother: "",
-            rBorderSize: 32,
-            rBackgroundOpacity: 1
-        };
-        const _0x11797 = {};
-        for (var _0x11C88 in _0x126F4) {
-            _0x11797[_0x11C88] = _0x126F4[_0x11C88]
-        };
-        const _0x116C8 = {
-            aCustomSpike: null,
-            aCustomMother: null
-        };
-        var _0x116DF = [];
-        var _0x126C6 = {
-            rules: false,
-            nameColor: {
-                r: 0,
-                g: 255,
-                b: 255
-            },
-            chatColor: 0,
-            lowerName: false,
-            skinName: "",
-            effect: 0,
-            nameFont: 0
-        };
-        var _0x11C15 = null;
-        var _0x124E3 = null;
-        var _0x11D40 = 0;
-
-        function _0x12681() {
-            _0x1138C = document.getElementById("canvas");
-            _0x11EF5 = document.getElementById("minimap-canvas");
-            _0x11F23 = _0x11EF5.getContext("2d");
-            _0x11EDE = $("#main");
-            _0x12106 = $("#party-panel");
-            _0x11BB9 = $(".hud-panel");
-            _0x123B8 = document.getElementById(_0x111C0[82]);
-            _0x123E6 = $(_0x111C0[83]);
-            _0x11627 = $(_0x111C0[84]);
-            chatContainer = document.getElementById(_0x111C0[85]);
-            _0x11489 = document.getElementById(_0x111C0[86]);
-            _0x11D29 = $(_0x111C0[87]);
-            _0x11724 = $(_0x111C0[88]);
-            _0x117C5[_0x111C0[89]] = document.getElementById(_0x111C0[90]);
-            _0x117C5.playerScore = document.getElementById(_0x111C0[94])[_0x111C0[93]]("span");
-            _0x117C5[_0x111C0[95]] = document.getElementById(_0x111C0[96])[_0x111C0[93]]("span");
-            _0x117C5.playerCells = document.getElementById(_0x111C0[98])[_0x111C0[93]]("span");
-            _0x117C5[_0x111C0[99]] = document.getElementById(_0x111C0[100])[_0x111C0[93]]("span");
-            _0x117C5.resetInfo = $("#extra-reset-timer");
-            _0x117C5.resetTime = $("#resetTime");
-            _0x117C5.respawnInfo = $("#extra-respawn-cooldown");
-            _0x117C5.respawnCooldown = $("#respawnCooldown");
-            _0x117C5.spectatorCount = $("#spectatorCount");
-            _0x117C5.playerCellCount = 0;
-            _0x117C5.minimapCoords = $("#minimap-coordinates");
-            _0x117C5.partyPanel = _0x12106;
-            _0x117C5.friendOnlineCount = $("#social-online-friends-count");
-            _0x11B46();
-            _0x12836 = false;
-            FastClick[_0x111C0[118]](document["body"]);
-            if (window[_0x111C0[58]]) {
-                window[_0x111C0[119]] = nipplejs[_0x111C0[125]]({
-                    zone: document.getElementById(_0x111C0[120]),
-                    mode: _0x111C0[121],
-                    position: {
-                        left: _0x111C0[122],
-                        bottom: _0x111C0[123]
-                    },
-                    color: _0x111C0[124],
-                    size: 100,
-                    restOpacity: 0.5,
-                    dynamicPage: true
-                });
-                _0x12020.cHideChat = true;
-                _0x12020.cHideLeaderboard = true;
-                document.getElementById(_0x111C0[135]).addEventListener(_0x111C0[128], function (_0x111D7) {
-                    _0x111D7[_0x111C0[131]].style.opacity = 1.0;
-                    _0x12190.handleKey(_0x11CB6.kSplit)
-                });
-                document.getElementById(_0x111C0[135]).addEventListener(_0x111C0[136], function (_0x111D7) {
-                    _0x111D7[_0x111C0[131]].style.opacity = 0.3
-                });
-                document.getElementById(_0x111C0[139]).addEventListener(_0x111C0[128], function (_0x111D7) {
-                    _0x111D7[_0x111C0[131]].style.opacity = 1.0;
-                    _0x12836 = true;
-                    if (_0x12190) {
-                        _0x12190.sendPacket(new _0x12065.sendEjectMass(true))
-                    }
-                });
-                document.getElementById(_0x111C0[139]).addEventListener(_0x111C0[136], function (_0x111D7) {
-                    _0x111D7[_0x111C0[131]].style.opacity = 0.3;
-                    _0x12836 = false;
-                    if (_0x12190) {
-                        _0x12190.sendPacket(new _0x12065.sendEjectMass(false))
-                    }
-                });
-                document.getElementById(_0x111C0[141]).addEventListener(_0x111C0[128], function (_0x111D7) {
-                    _0x111D7[_0x111C0[131]].style.opacity = 1.0;
-                    _0x12190.handleKey(_0x11CB6.kDoubleSplit)
-                });
-                document.getElementById(_0x111C0[141]).addEventListener(_0x111C0[136], function (_0x111D7) {
-                    _0x111D7[_0x111C0[131]].style.opacity = 0.3
-                });
-                document.getElementById(_0x111C0[143]).addEventListener(_0x111C0[128], function (_0x111D7) {
-                    _0x111D7[_0x111C0[131]].style.opacity = 1;
-                    _0x12190.handleKey(_0x11CB6.kTripleSplit)
-                });
-                document.getElementById(_0x111C0[143]).addEventListener(_0x111C0[136], function (_0x111D7) {
-                    _0x111D7[_0x111C0[131]].style.opacity = 0.3
-                });
-                window[_0x111C0[119]].on(_0x111C0[144], function (_0x111EE, _0x111D7) {
-                    _0x12190.mouseRawX = (_0x111D7[_0x111C0[146]] * _0x111D7[_0x111C0[147]]) * Math[_0x111C0[150]](_0x111D7[_0x111C0[149]][_0x111C0[148]]) + window.innerWidth / 2;
-                    _0x12190.mouseRawY = (_0x111D7[_0x111C0[146]] * _0x111D7[_0x111C0[147]]) * Math[_0x111C0[153]](-_0x111D7[_0x111C0[149]][_0x111C0[148]]) + window.innerHeight / 2
-                })
-            } else {
-                window[_0x111C0[156]] = function (_0x111D7) {
-                    _0x12190.mouseRawX = _0x111D7.clientX;
-                    _0x12190.mouseRawY = _0x111D7.clientY
-                };
-                window[_0x111C0[159]] = function (_0x111D7) {
-                    var _0x111EE = _0x111D7[_0x111C0[160]] + 1;
-                    if (_0x11C9F) {
-                        _0x112A6(_0x111EE);
-                        _0x111D7.preventDefault();
-                        return
-                    };
-                    if ($("input").is(":focus") || _0x11EDE.css("display") != "none") {
-                        return
-                    };
-                    _0x12190.handleKey(_0x111EE)
-                };
-                window[_0x111C0[165]] = function (_0x111D7) {
-                    var _0x111EE = _0x111D7[_0x111C0[160]] + 1;
-                    if (_0x111EE == _0x11CB6.kEjectMass) {
-                        _0x12836 = false;
-                        if (_0x12190) {
-                            _0x12190.sendPacket(new _0x12065.sendEjectMass(false))
-                        }
-                    }
-                };
-                window[_0x111C0[167]] = function (_0x111EE) {
-                    if (_0x11EDE.css("display") == "none" && _0x111EE.target.id == "canvas") {
-                        var _0x111D7 = _0x111EE[_0x111C0[169]] || (_0x111EE[_0x111C0[170]] * -1);
-                        if (_0x111D7 > 0) {
-                            _0x12190.mouseZoom *= 1.1
-                        } else {
-                            _0x12190.mouseZoom *= 0.9
-                        };
-                        _0x12190.mouseZoom = _0x12190.mouseZoom > 5 ? 5 : (_0x12190.mouseZoom < 0.1 ? 0.1 : _0x12190.mouseZoom)
-                    }
-                }
-            };
-            window[_0x111C0[172]] = function (_0x111D7) {
-                var _0x111EE = _0x111D7[_0x111C0[173]] || _0x111D7.keyCode || _0x111D7[_0x111C0[175]];
-                if (_0x111EE <= 5) {
-                    return
-                };
-                if (_0x11C9F) {
-                    _0x112A6(_0x111EE);
-                    _0x111D7.preventDefault();
-                    return
-                };
-                if ($("input").is(":focus")) {
-                    return
-                };
-                if (_0x111EE == 27) {
-                    _0x12750(_0x11EDE);
-                    if (_0x11C71($("#popup-profile") || _0x11C71($("#popup-account-username")))) {
-                        _0x11B5D($("#popup-profile"));
-                        _0x11B5D($("#popup-account-username"))
-                    }
-                };
-                if (_0x11EDE.css("display") != "none") {
-                    return
-                };
-                _0x12190.handleKey(_0x111EE)
-            };
-            window[_0x111C0[178]] = function (_0x111D7) {
-                var _0x111EE = _0x111D7[_0x111C0[173]] || _0x111D7.keyCode || _0x111D7[_0x111C0[175]];
-                if (_0x111EE == _0x11CB6.kEjectMass) {
-                    _0x12836 = false;
-                    if (_0x12190) {
-                        _0x12190.sendPacket(new _0x12065.sendEjectMass(false))
-                    }
-                }
-            };
-            window[_0x111C0[179]] = function (_0x111D7) {
-                if (_0x12836 && _0x12020[_0x111C0[180]]) {
-                    _0x12836 = false;
-                    if (_0x12190) {
-                        _0x12190.sendPacket(new _0x12065.sendEjectMass(false))
-                    }
-                }
-            };
-            document.addEventListener(_0x111C0[181], function (_0x111D7) {
-                _0x111D7.preventDefault()
-            });
-            _0x11D9C();
-            _0x11D85();
-            var _0x1121C = window.location.href.split("#").slice(1).join("#").split("&");
-            var _0x1124A = "";
-            if (_0x1121C[0]) {
-                _0x1124A = _0x1121C[0].toLowerCase()
-            };
-            if (_0x1121C[1]) {
-                _0x11278 = _0x1121C[1]
-            };
-            if (_0x1124A != null && _0x1124A != "") {
-                _0x1124A = _0x1124A[0].toUpperCase() + _0x1124A.slice(1);
-                _0x124E3 = function () {
-                    var _0x111D7 = null;
-                    if ((_0x111D7 = _0x11A77(_0x1124A)) != null) {
-                        _0x1249E(_0x111D7.name);
-                        _0x12487(_0x111D7.region)
-                    } else {
-                        _0x111EE()
-                    }
-                }
-            } else {
-                _0x124E3 = _0x111EE
-            };
-            firebase.database().ref("/game").on("value", function (_0x1121C) {
-                var _0x111D7 = _0x1121C.val();
-                if (_0x111D7.version !== version) {
-                    _0x12190.selfMsg("Woah! Version " + _0x111D7.version + " is now available. Press Ctrl+R to update!")
-                };
-                if (_0x11D12 != _0x111D7.motd && _0x111D7.motd !== "") {
-                    _0x11D12 = _0x111D7.motd;
-                    _0x12190.selfMsg(_0x111D7.motd)
-                };
-                if (_0x111D7.listRefresh != _0x11D40) {
-                    _0x11D40 = _0x111D7.listRefresh;
-                    _0x124FA = {};
-                    _0x11205(_0x124E3);
-                    clearInterval(_0x11C15);
-                    _0x11C15 = setInterval(() => {
-                        _0x11205()
-                    }, _0x111D7.listRefresh)
-                };
-                for (var _0x111EE in _0x111D7.titles) {
-                    _0x12739[_0x111EE] = _0x111D7.titles[_0x111EE]
-                }
-            });
-
-            function _0x11205(_0x111EE) {
-                jQuery.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: _0x111D7 + "/api/v1/utilities/servers",
-                    success: function (_0x111D7) {
-                        for (var _0x1124A of _0x111D7) {
-                            var _0x11278 = [];
-                            for (var _0x1121C of _0x1124A.servers) {
-                                _0x1121C.players = parseInt(_0x1121C.players);
-                                _0x1121C.bots = _0x1121C.bots || 0;
-                                var _0x11233 = (_0x1121C.players + _0x1121C.bots) + "/" + _0x1121C.playersMax;
-                                if (_0x1121C.bots > 0) {
-                                    _0x11233 += "*"
+        function a6(aa) {
+            for (var ab = 0x811c9dc5, ac = 0x0; ac < aa['length']; ac++) ab = 0x1000193 * ((ab ^= aa['charCodeAt'](ac)) >>> 0x0);
+            return (ab >>> 0x0)['toString'](0x24)['toUpperCase']();
+        }
+        var a7 = '__ak8saulr';
+        if (!window[a7]) {
+            var a8 = new Uint8Array([0x0, 0x61, 0x73, 0x6d, 0x1, 0x0, 0x0, 0x0, 0x1, 0x7, 0x1, 0x60, 0x4, 0x7f, 0x7f, 0x7f, 0x7f, 0x1, 0x7f, 0x3, 0x2, 0x1, 0x0, 0x7, 0x7, 0x1, 0x3, 0x72, 0x6f, 0x74, 0x0, 0x0, 0xa, 0x17, 0x1, 0x15, 0x0, 0x20, 0x3, 0x20, 0x2, 0x41, 0x7, 0x71, 0x74, 0x20, 0x3, 0x41, 0x20, 0x20, 0x2, 0x41, 0x7, 0x71, 0x6b, 0x76, 0x72, 0xb]),
+                a9 = [0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6];
+            if (function (aa) {
+                    Object['defineProperty'](window, a7, {
+                        'value': function (ab, ac, ad, ae, af, ag, ah, ai) {
+                            var aj = a5(ab, ac, ad, ae, aa, af, ag, ah);
+                            if (ab >= 0x4) try {
+                                var ak = parseInt(aj, 0x24);
+                                if (!isNaN(ak)) {
+                                    var al = 0x7 & ai;
+                                    ak = ((ak = ak >>> 0x0 ^ ai >>> 0x0) << al | ak >>> 0x20 - al) >>> 0x0, aj = ((ak ^= ai >>> 0x3) >>> 0x0)['toString'](0x24)['toUpperCase']();
+                                }
+                            } catch (am) {}
+                            return aj;
+                        },
+                        'writable': !0x1
+                    });
+                    try {
+                        !(function () {
+                            var ab = window[a7];
+                            if (ab && !ab['_envSig']) {
+                                var ac = window['navigator'] || {},
+                                    ad = ac['userAgent'] || '',
+                                    ae = ac['userAgentData'] && ac['userAgentData']['platform'] || ac['platform'] || '',
+                                    af = 0x0;
+                                try {
+                                    af = ac['plugins'] && ac['plugins']['length'] || 0x0;
+                                } catch (ao) {}
+                                var ag = '',
+                                    ah = '',
+                                    ai = 0x0;
+                                try {
+                                    var aj = document['createElement']('canvas'),
+                                        ak = aj['getContext']('webgl') || aj['getContext']('experimental-webgl');
+                                    if (ak) {
+                                        ai = 0x1;
+                                        var al = ak['getExtension']('WEBGL_debug_renderer_info');
+                                        al && (ag = ak['getParameter'](al['UNMASKED_VENDOR_WEBGL']) || '', ah = ak['getParameter'](al['UNMASKED_RENDERER_WEBGL']) || '');
+                                    }
+                                } catch (ap) {}
+                                var am = 0x0;
+                                try {
+                                    window['process'] && window['process']['versions'] && window['process']['versions']['electron'] && (am |= 0x1);
+                                } catch (aq) {}
+                                try {
+                                    /Electron/i ['test'](ad) && (am |= 0x2);
+                                } catch (ar) {}
+                                var an = [a6(ad), a6(ae), af, ai, a6(ag), a6(ah), am]['join']('.');
+                                ab['_envSig'] = an, ab['_env'] = {
+                                    'uaH': a6(ad),
+                                    'pf': ae,
+                                    'pc': af,
+                                    'gl': ai,
+                                    'gvH': a6(ag),
+                                    'grH': a6(ah),
+                                    'eb': am
                                 };
-                                var _0x11261 = new _0x124CC(_0x1121C.name, _0x1121C.address, _0x1121C.players, _0x1121C.bots, _0x11233, _0x1121C.gamemode, _0x1124A.region, _0x1121C.ssl, _0x1121C.order);
-                                _0x11278.push(_0x11261)
-                            };
-                            _0x11278.sort((_0x111D7, _0x111EE) => {
-                                return _0x111D7.order - _0x111EE.order
+                            }
+                        }());
+                    } catch (ab) {}
+                }(function (aa, ab) {
+                    var ac = 0x7 & ab;
+                    return (aa << ac | aa >>> 0x20 - ac) >>> 0x0;
+                }), 'object' == typeof WebAssembly) try {
+                WebAssembly['instantiate'](a8)['then'](function (aa) {
+                    try {
+                        var ab = aa['instance']['exports']['rot'],
+                            ac = window[a7];
+                        Object['defineProperty'](window, a7, {
+                            'value': function (ad, ae, af, ag, ah, ai, aj, ak) {
+                                var al = a5(ad, ae, af, ag, function (ao, ap) {
+                                    return ab(0x0, 0x0, 0x0 | ap, 0x0 | ao) >>> 0x0;
+                                }, ah, ai, aj);
+                                if (ad >= 0x4) try {
+                                    var am = parseInt(al, 0x24);
+                                    if (!isNaN(am)) {
+                                        var an = 0x7 & ak;
+                                        am = ((am = am >>> 0x0 ^ ak >>> 0x0) << an | am >>> 0x20 - an) >>> 0x0, al = ((am ^= ak >>> 0x3) >>> 0x0)['toString'](0x24)['toUpperCase']();
+                                    }
+                                } catch (ao) {}
+                                return al;
+                            },
+                            'writable': !0x1
+                        });
+                        try {
+                            ac && ac['_envSig'] && !window[a7]['_envSig'] && (window[a7]['_envSig'] = ac['_envSig'], window[a7]['_env'] = ac['_env']), window[a7]['_wasm'] = 0x1;
+                        } catch (ad) {}
+                    } catch (ae) {}
+                })['catch'](function () {});
+            } catch (aa) {}
+        }
+    }());
+    const a3 = {
+            'mainMenuVisible': !0x0,
+            'minimapAccum': 0x0,
+            'minimapIntervalMs': 0x21
+        },
+        a4 = new Map();
+    $(function () {
+        function a5() {
+            cC && (cE = requestAnimationFrame(a5), a9());
+        }
+
+        function a6() {
+            var e7 = window['innerWidth'],
+                e8 = window['innerHeight'],
+                e9 = cW['resolution'] || 0x1;
+            bR['style']['width'] = e7 + 'px', bR['style']['height'] = e8 + 'px', bR['width'] = Math['round'](e7 * e9), bR['height'] = Math['round'](e8 * e9), bG && bG['renderer'] && (bG['renderer']['resolution'] !== e9 && (bG['renderer']['resolution'] = e9), bG['renderer']['resize'](bR['width'], bR['height'])), bG && bG['stage'] && (bG['stage']['position']['x'] = e7 * e9 / 0x2, bG['stage']['position']['y'] = e8 * e9 / 0x2);
+        }
+
+        function a7(e7) {
+            const e8 = new bF['Graphics']();
+            e8['beginFill'](0xffffff), e8['drawCircle'](e7, e7, e7), e8['endFill']();
+            const e9 = bG['renderer']['generateTexture'](e8, bF['SCALE_MODES']['LINEAR'], window['devicePixelRatio']);
+            return e8['destroy'](), e9;
+        }
+
+        function a8(e7) {
+            for (var e8 in d5) 'u' == e8['charAt'](0x0) && e7(e8);
+        }
+
+        function a9() {
+            const e7 = 'undefined' != typeof performance && performance['now'] ? performance['now']() : Date['now'](),
+                e8 = e7 - bW;
+            bW = e7;
+            const e9 = Math['min'](e8 / d1['rAnimationDelay'], 0x1);
+            cr += e8;
+            let eb = !0x1;
+            const ec = (bU['scale'] > 0.12 || d1['cDisableAutoFoodHiding']) && !d1['cHideFood'];
+            if (bL['visible'] = ec, ec) {
+                bU['_foodValues'] && bU['_foodValuesVersion'] === bU['_foodVersionCounter'] || (bU['_foodValues'] = Object['values'](bU['foodObjects']), bU['_foodValuesVersion'] = bU['_foodVersionCounter']);
+                const em = bU['_foodValues'];
+                for (let eo = 0x0, ep = em['length']; eo < ep; eo++) {
+                    const eq = em[eo];
+                    eq['steps'] > 0x0 && (eq['animate'](e9), eb = !0x0), eq['handleFood']();
+                }
+            }
+            bU['_bucketValues'] && bU['_bucketValuesVersion'] === bU['_bucketVersionCounter'] || (bU['_bucketValues'] = Object['values'](bU['bucket']), bU['_bucketValuesVersion'] = bU['_bucketVersionCounter']);
+            const ed = bU['_bucketValues'];
+            for (let er = 0x0, es = ed['length']; er < es; er++) {
+                const eu = ed[er];
+                eu['steps'] > 0x0 && (eu['animate'](e9), eb = !0x0), eu['handle']();
+            }
+            let ef = 0x0,
+                eg = 0x0,
+                eh = 0x0,
+                ei = 0x0;
+            bU['_myCellValues'] && bU['_myCellValuesVersion'] === bU['_myCellVersionCounter'] || (bU['_myCellValues'] = Object['values'](bU['myCells']), bU['_myCellValuesVersion'] = bU['_myCellVersionCounter']);
+            const ej = bU['_myCellValues'];
+            for (let ev = 0x0, ew = ej['length']; ev < ew; ev++) {
+                const ex = ej[ev];
+                ef += ex['x'], eg += ex['y'], ei += ex['size'], eh++;
+            }
+            if (eh > 0x0) {
+                bU['centerX'] = ef / eh, bU['centerY'] = eg / eh, bU['centerSteps'] = 0x0;
+                const ey = Math['max'](bR['height'] / 0x438, bR['width'] / 0x780);
+                if (d1['cDisableAutoZoom']) bU['scale_base'] = 0.2 * ey;
+                else {
+                    const ez = Math['min'](0x20 / ei, 0x1);
+                    bU['scale_base'] = Math['pow'](ez, 0.4) * ey;
+                }
+            }
+            bU['centerSteps'] > 0x0 && (bU['centerX'] += (bU['centerX_'] - bU['centerX']) * e9, bU['centerY'] += (bU['centerY_'] - bU['centerY']) * e9);
+            const ek = bU['scale_base'] * bU['mouseZoom'],
+                el = bU['scale'];
+            if (bU['scale'] = 0.9 * bU['scale'] + 0.1 * ek, bU['scale'] !== el && (bK['scale']['set'](bU['scale']), eb = !0x0), bK['pivot']['x'] === bU['centerX'] && bK['pivot']['y'] === bU['centerY'] || (bK['pivot']['set'](bU['centerX'], bU['centerY']), eb = !0x0), bU['isConnected']() && !a3['mainMenuVisible'] && !bU['mouseFrozen']) {
+                let eA = bU['_cachedWorldMouseX'],
+                    eB = bU['_cachedWorldMouseY'];
+                if (void 0x0 !== eA && bU['_cachedWorldMouseScale'] === bU['scale'] && bU['_cachedMouseRawX'] === bU['mouseRawX'] && bU['_cachedMouseRawY'] === bU['mouseRawY'] && bU['_cachedPivotX'] === bK['pivot']['x'] && bU['_cachedPivotY'] === bK['pivot']['y'] || (eA = bK['pivot']['x'] - bG['stage']['position']['x'] / bU['scale'] + bU['mouseRawX'] * cW['resolution'] / bU['scale'], eB = bK['pivot']['y'] - bG['stage']['position']['y'] / bU['scale'] + bU['mouseRawY'] * cW['resolution'] / bU['scale'], bU['_cachedWorldMouseX'] = eA, bU['_cachedWorldMouseY'] = eB, bU['_cachedWorldMouseScale'] = bU['scale'], bU['_cachedMouseRawX'] = bU['mouseRawX'], bU['_cachedMouseRawY'] = bU['mouseRawY'], bU['_cachedPivotX'] = bK['pivot']['x'], bU['_cachedPivotY'] = bK['pivot']['y']), bU['lineSplitEnabled'] && bU['lineSplitLocked']) {
+                    const eC = bU['calculateOptimalLineSplitMouse']();
+                    eA = eC['x'], eB = eC['y'];
+                }
+                bU['sendMousePacket'](eA, eB);
+            }
+            if (a3['minimapAccum'] += e8, !d1['cHideMinimap'] && a3['minimapAccum'] >= a3['minimapIntervalMs'] && (function (eD) {
+                    if (bU['serverData']['border']['enabled']) {
+                        bT['clearRect'](0x0, 0x0, bS['width'], bS['height']), bT['font'] = '12px\x20Calibri';
+                        for (var eE = 0x0; eE < bU['party']['length']; eE++) {
+                            var eF = bU['party'][eE];
+                            eF['state'] === dZ['ALIVE'] && eF['id'] != bU['playerId'] && (b1(bT, eF['name'], eF['x'], eF['y'], 0x4, eF['mmColor'], !0x0), eF['x'] += (eF['x_'] - eF['x']) * eD, eF['y'] += (eF['y_'] - eF['y']) * eD);
+                        }
+                        b1(bT, bU['name'], bU['centerX'], bU['centerY'], 0x6, '#fefefe', !0x1);
+                    }
+                }(e9), a3['minimapAccum'] = 0x0, eb = !0x0), d1['cShowCoordinates'] && ((function () {
+                    var eD = cO['minimapCoordsEl'] || cO['minimapCoords'] || document['getElementById']('minimap-coordinates');
+                    if (eD) {
+                        var eE = 'X:\x20' + bU['centerX']['toFixed'](0x0) + '\x20Y:\x20' + bU['centerY']['toFixed'](0x0);
+                        eD['_lastCoordText'] !== eE && (eD['style']['color'] !== d5['uiForegroundColor'] && (eD['style']['color'] = d5['uiForegroundColor']), eD['textContent'] = eE, eD['_lastCoordText'] = eE);
+                    }
+                }()), eb = !0x0), (function () {
+                    if (!d1['cShowTracer'] || a3['mainMenuVisible'] || !bU['isConnected']()) return bN['visible'] && (bN['visible'] = !0x1), !0x1;
+                    if (!bU['_myCellValues'] || 0x0 === bU['_myCellValues']['length']) return bN['visible'] && (bN['visible'] = !0x1), !0x1;
+                    const eD = bW;
+                    if (bN['visible'] && bU['_lastTracerDraw'] && eD - bU['_lastTracerDraw'] < 0x21 && bU['_cachedWorldMouseX'] === bU['_lastTracerMouseX'] && bU['_cachedWorldMouseY'] === bU['_lastTracerMouseY']) return !0x1;
+                    bQ ? bQ['clear']() : (bQ = new bF['Graphics'](), bN['addChild'](bQ));
+                    const eE = void 0x0 !== bU['_cachedWorldMouseX'] ? bU['_cachedWorldMouseX'] : 0x0,
+                        eF = void 0x0 !== bU['_cachedWorldMouseY'] ? bU['_cachedWorldMouseY'] : 0x0,
+                        eG = d1['_tracerColorCached'] || bF['utils']['string2hex']('#ffffff');
+                    bQ['lineStyle'](0x2, eG, d1['rTracerOpacity'] / 0x64);
+                    const eH = bU['_myCellValues'];
+                    for (let eI = 0x0, eJ = eH['length']; eI < eJ; eI++) {
+                        const eK = eH[eI];
+                        bQ['moveTo'](eK['x'], eK['y']), bQ['lineTo'](eE, eF);
+                    }
+                    return bN['visible'] = !0x0, bU['_lastTracerDraw'] = eD, bU['_lastTracerMouseX'] = eE, bU['_lastTracerMouseY'] = eF, !0x0;
+                }()) && (eb = !0x0), bU['buffHolder']['update'](), (eb || bU['_forceNextRender'] || e7 - (bU['_lastForcedRenderTs'] || 0x0) > 0x1f4) && (bG['renderer']['render'](bG['stage']), bU['_lastForcedRenderTs'] = e7, bU['_forceNextRender'] = !0x1), cs++, cr >= 0x3e8) {
+                cO['playerFps']['textContent'] = cs;
+                const eD = Date['now']();
+                bU['serverData']['resetType'] > 0x0 && bU['serverData']['resetTime'] > 0x0 ? (cO['resetInfo']['show'](), cO['resetTime']['html'](by(Math['max'](0x0, Math['floor']((bU['serverData']['resetTime'] - eD) / 0x3e8))))) : cO['resetInfo']['hide'](), bU['respawnCooldown'] > 0x0 && bU['respawnCooldown'] >= eD ? (cO['respawnInfo']['show'](), cO['respawnCooldown']['html'](by(Math['max'](0x0, Math['ceil']((bU['respawnCooldown'] - eD) / 0x3e8))))) : bU['respawnCooldown'] < 0x0 ? (cO['respawnInfo']['show'](), cO['respawnCooldown']['html']('NEVER')) : cO['respawnInfo']['hide'](), cr = 0x0, cs = 0x0;
+            }
+            bU['playerRegistry']['handleUpdatedPlayers']();
+        }
+
+        function ab() {
+            d1['cShowBorder'] && bU['serverData']['border']['enabled'] ? (bP || (bP = new bF['Graphics'](), bJ['addChild'](bP)), bP['clear'](), bP['lineStyle'](d5['rBorderSize'], bF['utils']['string2hex'](a2(d5['uiGameBorderColor'])['toHex']())), bP['drawRect'](bU['serverData']['border']['left'], bU['serverData']['border']['top'], bU['serverData']['border']['width'], bU['serverData']['border']['height']), bP['visible'] = !0x0) : bP && (bP['visible'] = !0x1);
+        }
+
+        function ac() {
+            if (bG && bG['renderer']) try {
+                bG['renderer']['destroy'](!0x0);
+            } catch (e8) {}
+            if (bH && bH['destroy']) try {
+                bH['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                });
+            } catch (e9) {}
+            if (bK && bK['destroy']) try {
+                bK['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                });
+            } catch (eb) {}
+            if (bL && bL['destroy']) try {
+                bL['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                });
+            } catch (ec) {}
+            if (bM && bM['destroy']) try {
+                bM['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                });
+            } catch (ed) {}
+            if (bN && bN['destroy']) try {
+                bN['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                });
+            } catch (ef) {}
+            if (bI && bI['destroy']) try {
+                bI['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                });
+            } catch (eg) {}
+            if (bO && bO['destroy']) try {
+                bO['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                });
+            } catch (eh) {}
+            if (bP && bP['destroy']) try {
+                bP['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                });
+            } catch (ei) {}
+            if (bQ && bQ['destroy']) try {
+                bQ['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                });
+            } catch (ej) {}
+            for (var e7 in cF) cF[e7] && (clearInterval(cF[e7]), cF[e7] = null);
+            void 0x0 !== cD && cD && (clearInterval(cD), cD = null), void 0x0 !== cE && cE && (cancelAnimationFrame(cE), cE = null), (function () {
+                for (var ek in cG) {
+                    for (var el = cG[ek], em = 0x0; em < el['length']; em++) {
+                        var eo = el[em];
+                        try {
+                            eo['isProperty'] ? eo['element']['on' + eo['event']] = null : eo['isFirebase'] ? eo['element']['off'](eo['event'], eo['handler']) : eo['element'] && eo['element']['removeEventListener'] && eo['element']['removeEventListener'](eo['event'], eo['handler']);
+                        } catch (ep) {}
+                    }
+                    cG[ek] = [];
+                }
+                'undefined' != typeof $ && ($(window)['off'](), $(document)['off']());
+            }()), bU && bU['mousePacketInterval'] && (clearTimeout(bU['mousePacketInterval']), bU['mousePacketInterval'] = null), bg();
+        }
+
+        function ad() {
+            this['socket'] = null, this['currentServer'] = null, this['currentServerName'] = null, this['spectate'] = !0x1, this['name'] = '', this['playerId'] = 0x0, this['bucket'] = {}, this['foodObjects'] = {}, this['myCells'] = {}, this['playerRegistry'] = new ag(), this['buffHolder'] = new bo(), this['centerX'] = 0x0, this['centerY'] = 0x0, this['centerX_'] = 0x0, this['centerY_'] = 0x0, this['centerSteps'] = 0x0, this['scale'] = 0.5, this['scale_'] = 0.5, this['scale_base'] = 0.5, this['mouseZoom'] = 0x1, this['offsetX'] = 0x0, this['offsetY'] = 0x0, this['mouseRawX'] = 0x0, this['mouseRawY'] = 0x0, this['mouseX'] = 0x0, this['mouseY'] = 0x0, this['mouseFrozen'] = !0x1, this['lineSplitEnabled'] = !0x1, this['lineSplitDirection'] = {
+                'x': 0x0,
+                'y': 0x0
+            }, this['lineSplitLocked'] = !0x1, this['lineSplitMouseX'] = 0x0, this['lineSplitMouseY'] = 0x0, this['lineSplitPhaseStart'] = 0x0, this['lineSplitPhaseDelayMs'] = 0x64, this['party'] = [], this['partyIds'] = {}, this['subPanelOverride'] = !0x1, this['serverData'] = {
+                'hasSentSubPanel': !0x1,
+                'border': {},
+                'maxCells': 0x10
+            }, this['score'] = 0x0, this['respawnCooldown'] = 0x0, this['customGameMap'] = null, this['accountListeners'] = {}, this['pingInterval'] = null, this['lastMousePacket'] = {
+                'x': 0x0,
+                'y': 0x0,
+                'time': 0x0
+            }, this['mousePacketInterval'] = null, this['pendingMousePacket'] = null, this['MOUSE_PACKET_RATE'] = 0x19, this['clearStats'](), this['visibilityPingTimer'] = null, this['lastVisibilityChange'] = 0x0;
+        }
+
+        function af(e7) {
+            this['id'] = e7, this['type'] = 0x0, this['nameCache'] = null, this['skin'] = null, this['playerId'] = 0x0, this['color'] = null, this['x'] = 0x0, this['y'] = 0x0, this['x_'] = 0x0, this['y_'] = 0x0, this['size'] = 0x0, this['size_'] = 0x0, this['steps'] = 0x0, this['massLastAmount'] = -0x1, this['cache'] = null, this['_massCacheLastRedraw'] = 0x0, this['_massChangeThreshold'] = 0x5, this['_massRegenIntervalMs'] = 0xfa;
+        }
+
+        function ag() {
+            this['bucket'] = {}, this['defaultData'], this['updatedPlayers'] = [], this['init'] = function () {
+                this['defaultData'] = new ah(0x0), this['defaultData']['name'] = '', this['defaultData']['cellColor'] = 0xaaaaaa;
+            }, this['add'] = function (e7) {
+                this['bucket'][e7['id']] = e7;
+            }, this['remove'] = function (e7) {
+                this['bucket'][e7]['onDelete'](), delete this['bucket'][e7];
+            }, this['clear'] = function () {
+                for (var e7 in this['bucket']) this['remove'](e7);
+            }, this['getPlayer'] = function (e7) {
+                return this['bucket'][e7];
+            }, this['getPlayerById'] = function (e7) {
+                var e8 = this['bucket'][e7];
+                return null != e8 ? e8 : this['defaultData'];
+            }, this['updatePlayer'] = function (e7) {
+                e7['cacheUpdate'] = !0x0, this['updatedPlayers']['push'](e7);
+            }, this['handleUpdatedPlayers'] = function () {
+                for (; this['updatedPlayers']['length'] > 0x0;) this['updatedPlayers']['shift']()['cacheUpdate'] = !0x1;
+            }, this['init']();
+        }
+
+        function ah(e7) {
+            this['id'] = e7, this['name'], this['skin'], this['skinCache'], this['cellColor'], this['nameColor'] = '#fff', this['flags'] = 0x0, this['effect'] = 0x0, this['nameFont'] = 0x0, this['lowerName'] = !0x1, this['isServerBot'] = !0x1, this['nameCache'] = null, this['cacheUpdate'] = !0x1, this['spiked'] = 0x0, this['setFlags'] = function (e8) {
+                this['flags'] = e8, 0x8 & ~this['flags'] ? 0x10 & ~this['flags'] ? this['spiked'] = 0x0 : this['spiked'] = 0x2 : this['spiked'] = 0x1;
+            }, this['parseEffect'] = function (e8) {
+                e8 >= 0x40 ? (e8 -= 0x40, this['lowerName'] = !0x0) : this['lowerName'] = !0x1, this['effect'] = e8;
+            }, this['getNameCache'] = function (e8) {
+                if (e8 || null == this['nameCache']) {
+                    var e9, eb, ec = function (ed) {
+                        return ed > 0x0 && e1[ed] ? e1[ed] : e2;
+                    }(this['nameFont']);
+                    ec == e2 ? (e9 = 'bold', eb = cW['textOutlineSize']) : (e9 = 'normal', eb = 0x9), this['nameCache'] ? (this['nameCache']['text'] = this['name'], this['nameCache']['style']['fontFamily'] = ec['font'], this['nameCache']['style']['stroke'] = ec['outlineColor'], this['nameCache']['style']['fontWeight'] = e9, this['nameCache']['style']['fontSize'] = ec['size'], this['nameCache']['style']['fill'] = this['nameColor'], this['nameCache']['updateText']()) : this['nameCache'] = new bF['Text'](this['name'], {
+                        'fontFamily': ec['font'],
+                        'fontWeight': e9,
+                        'fontSize': ec['size'],
+                        'fill': this['nameColor'],
+                        'stroke': ec['outlineColor'],
+                        'strokeThickness': eb
+                    }), this['nameCache']['width'];
+                }
+                return this['nameCache'];
+            }, this['setSkin'] = function (e8) {
+                0x0 == e8['length'] ? (this['skin'] = null, this['skinCache'] = null) : e8 !== this['skin'] && (this['skin'] = e8, this['skinCache'] = null);
+            }, this['getSkin'] = function () {
+                if (null != this['skinCache']) return this['skinCache'];
+                if (null != this['skin']) {
+                    if (bY[this['skin']]) {
+                        if (bY[this['skin']] == dX['LOADED']) return this['skinCache'] = bX[this['skin']], this['skinCache'];
+                        bY[this['skin']] == dX['ERROR'] && (this['skin'] = null);
+                    } else {
+                        if (bY[this['skin']] = dX['LOADING'], this['skin']['endsWith']('.gif')) {
+                            var e8 = this['skin'],
+                                e9 = this;
+                            gifFrames({
+                                'url': e8,
+                                'frames': 'all',
+                                'cumulative': !0x1,
+                                'outputType': 'canvas'
+                            })['then'](function (ec) {
+                                var ed = new bq();
+                                ed['loadFromFrameData'](ec), bY[e8] = dX['LOADED'], bX[e8] = ed;
+                            })['catch'](function (ec) {
+                                e9['skin'] = null;
                             });
-                            _0x124FA[_0x1124A.region] = {};
-                            for (var _0x11205 = 0; _0x11205 < _0x11278.length; _0x11205++) {
-                                var _0x11261 = _0x11278[_0x11205];
-                                _0x124FA[_0x1124A.region][_0x11261.name] = _0x11261
-                            }
-                        };
-                        _0x11E0F();
-                        if (_0x111EE != null) {
-                            _0x111EE()
                         } else {
-                            if (_0x12470 != null) {
-                                _0x1249E(_0x12470.name)
-                            }
-                        }
-                    },
-                    error: function (_0x111C0) {
-                        _0x11E0F()
-                    }
-                })
-            }
-
-            function _0x111EE() {
-                if (_0x12470 != null) {
-                    _0x1249E(_0x12470.name);
-                    return
-                };
-                _0x12487("eu");
-                _0x1249E("Vendetta")
-            }
-            _0x125E0 = {};
-            _0x125F7 = {};
-            _0x11E99();
-            $(window).unload(_0x11FDB);
-            _0x12190 = new _0x115CB();
-            _0x12065 = new _0x1207C();
-            _0x11D57();
-            _0x1163E.init();
-            _0x12317();
-            var _0x11233 = {
-                view: _0x1138C,
-                backgroundAlpha: 0,
-                forceCanvas: _0x12020.sRenderType === "CANVAS",
-                antialias: !_0x12020.cDisableAA
-            };
-            _0x12162 = {
-                renderer: _0x1214B.autoDetectRenderer(_0x11233),
-                stage: _0x12179
-            };
-            _0x11444 = _0x11683(_0x11416);
-            _0x11821 = _0x11683(32);
-            _0x118F0 = _0x11683(8);
-            $(window).resize(_0x11FF2);
-            _0x11FF2();
-            _0x11CFB = Date.now();
-            fps = 0;
-            _0x12190.selfMsg("Welcome to Weyno Gota.io mode!");
-            if (_0x11894.enabled && _0x11894.motd !== "") {
-                _0x12190.selfMsg(_0x11894.motd)
-            };
-            _0x127C3();
-            requestAnimationFrame(_0x12722)
-        }
-
-        function _0x11FF2() {
-            _0x1138C.width = window.innerWidth * _0x12037.resolution;
-            _0x1138C.height = window.innerHeight * _0x12037.resolution;
-            _0x12162.renderer.resize(_0x1138C.width, _0x1138C.height);
-            _0x12162.stage.position.x = (window.innerWidth * _0x12037.resolution) / 2;
-            _0x12162.stage.position.y = (window.innerHeight * _0x12037.resolution) / 2
-        }
-
-        function _0x11683(_0x111EE) {
-            var _0x111D7 = new _0x1214B.Graphics();
-            _0x111D7.beginFill(16777215);
-            _0x111D7.drawCircle(0, 0, _0x11416);
-            _0x111D7.endFill();
-            var _0x11205 = _0x1214B.RenderTexture.create({
-                width: _0x111D7.width,
-                height: _0x111D7.height,
-                multisample: _0x1214B[_0x111C0[240]][_0x111C0[239]],
-                resolution: window[_0x111C0[241]]
-            });
-            _0x12162.renderer.render(_0x111D7, {
-                renderTexture: _0x11205,
-                transform: new _0x1214B[_0x111C0[243]](1, 0, 0, 1, _0x111D7.width / 2, _0x111D7.height / 2)
-            });
-            if (_0x12162.renderer.framebuffer) {
-                _0x12162.renderer.framebuffer.blit()
-            };
-            _0x111D7.destroy(true);
-            return _0x11205
-        }
-
-        function _0x11935(_0x111D7) {
-            for (var _0x111EE in _0x126F4) {
-                if (_0x111EE.charAt(0) == "u") {
-                    _0x111D7(_0x111EE)
-                }
-            }
-        }
-
-        function _0x12722() {
-            var _0x11205 = (Date.now() - _0x11CFB);
-            _0x11CFB = Date.now();
-            var _0x111EE = Math.min(_0x11205 / _0x12020.rAnimationDelay, 1.0);
-            _0x11991 += _0x11205;
-            if ((_0x12190.scale > 0.12 || _0x12020.cDisableAutoFoodHiding) && !_0x12020.cHideFood) {
-                _0x11907.visible = true;
-                for (var _0x1121C in _0x12190.foodObjects) {
-                    _0x112A6 = _0x12190.foodObjects[_0x1121C];
-                    if (_0x112A6.steps > 0) {
-                        _0x112A6.animate(_0x111EE)
-                    };
-                    _0x112A6.handleFood()
-                }
-            } else {
-                _0x11907.visible = false
-            };
-            for (var _0x1121C in _0x12190.bucket) {
-                _0x112A6 = _0x12190.bucket[_0x1121C];
-                if (_0x112A6.steps > 0) {
-                    _0x112A6.animate(_0x111EE)
-                };
-                _0x112A6.handle()
-            };
-            var _0x11278 = 0,
-                _0x1128F = 0,
-                _0x111D7 = 0,
-                _0x112D4 = 0,
-                _0x112A6 = null;
-            for (var _0x1121C in _0x12190.myCells) {
-                _0x112A6 = _0x12190.myCells[_0x1121C];
-                if (_0x112A6 != null) {
-                    _0x11278 += _0x112A6.x;
-                    _0x1128F += _0x112A6.y;
-                    _0x112D4 += _0x112A6.size;
-                    _0x111D7++
-                }
-            };
-            if (_0x111D7 != 0) {
-                _0x12190.centerX = _0x11278 / _0x111D7;
-                _0x12190.centerY = _0x1128F / _0x111D7;
-                _0x12190.centerSteps = 0;
-                if (_0x12020.cDisableAutoZoom) {
-                    _0x12190.scale_base = 0.2 * Math.max(_0x1138C.height / 1080, _0x1138C.width / 1920)
-                } else {
-                    _0x12190.scale_base = Math.pow(Math.min(32.0 / _0x112D4, 1), 0.4) * Math.max(_0x1138C.height / 1080, _0x1138C.width / 1920)
-                }
-            };
-            if (_0x12190.centerSteps > 0) {
-                _0x12190.centerX += (_0x12190.centerX_ - _0x12190.centerX) * _0x111EE;
-                _0x12190.centerY += (_0x12190.centerY_ - _0x12190.centerY) * _0x111EE
-            };
-            var _0x11261 = _0x12190.scale_base * _0x12190.mouseZoom;
-            _0x12190.scale = (9 * _0x12190.scale + _0x11261) / 10;
-            _0x11EC7.scale.x = _0x12190.scale;
-            _0x11EC7.scale.y = _0x12190.scale;
-            _0x11EC7.pivot.x = _0x12190.centerX;
-            _0x11EC7.pivot.y = _0x12190.centerY;
-            if (_0x12190.isConnected() && _0x11EDE.css("display") == "none") {
-                    var _0x11233 = _0x11EC7.pivot.x - (_0x12162.stage.position.x / _0x12190.scale) + ((_0x12190.mouseRawX * _0x12037.resolution) / _0x12190.scale);
-                    var _0x1124A = _0x11EC7.pivot.y - (_0x12162.stage.position.y / _0x12190.scale) + ((_0x12190.mouseRawY * _0x12037.resolution) / _0x12190.scale);
-                    _0x12190.sendPacket(new _0x12065.sendMouse(_0x11233, _0x1124A))
-            };
-            if (!_0x12020.cHideMinimap) {
-                _0x1180A(_0x111EE)
-            };
-            if (_0x12020.cShowCoordinates) {
-                _0x117F3()
-            };
-            _0x12190.buffHolder.update();
-            _0x12162.renderer.render(_0x12162.stage);
-            _0x1197A++;
-            if (_0x11991 >= 1000) {
-                _0x117C5.playerFps.html = _0x1197A;
-                var _0x112EB = Date.now();
-                if (_0x12190.serverData.resetType > 0 && _0x12190.serverData.resetTime > 0) {
-                    _0x117C5.resetInfo.css("display", "block");
-                    var _0x112BD = Math.max(0, Math.floor((_0x12190.serverData.resetTime - _0x112EB) / 1000));
-                    _0x117C5.resetTime.html(_0x11963(_0x112BD))
-                } else {
-                    _0x117C5.resetInfo.css("display", "none")
-                };
-                if (_0x12190.respawnCooldown > 0 && _0x12190.respawnCooldown >= _0x112EB) {
-                    _0x117C5.respawnInfo.css("display", "block");
-                    var _0x112BD = Math.max(0, Math.ceil((_0x12190.respawnCooldown - _0x112EB) / 1000));
-                    _0x117C5.respawnCooldown.html(_0x11963(_0x112BD))
-                } else {
-                    if (_0x12190.respawnCooldown < 0) {
-                        _0x117C5.respawnInfo.css("display", "block");
-                        _0x117C5.respawnCooldown.html("NEVER")
-                    } else {
-                        _0x117C5.respawnInfo.css("display", "none")
-                    }
-                };
-                _0x11991 = 0;
-                _0x1197A = 0
-            };
-            _0x12190.playerRegistry.handleUpdatedPlayers();
-            requestAnimationFrame(_0x12722)
-        }
-
-        function _0x11AD3() {
-            if (_0x12020.cShowBorder && _0x12190.serverData.border.enabled) {
-                if (_0x112EB != null) {
-                    _0x112EB.parent.removeChild(_0x112EB);
-                    _0x112EB.destroy();
-                    _0x112EB = null
-                };
-                _0x112EB = new _0x1214B.Graphics();
-                _0x112EB.lineStyle(_0x126F4.rBorderSize, _0x1214B.utils.string2hex(tinycolor(_0x126F4.uiGameBorderColor).toHexString()));
-                _0x112EB.drawRect(_0x12190.serverData.border.left, _0x12190.serverData.border.top, _0x12190.serverData.border.width, _0x12190.serverData.border.height);
-                _0x11302.addChild(_0x112EB);
-                _0x112EB.visible = true
-            } else {
-                if (_0x112EB != null) {
-                    _0x112EB.parent.removeChild(_0x112EB);
-                    _0x112EB.destroy();
-                    _0x112EB = null
-                }
-            }
-        }
-
-        function _0x117F3() {
-            _0x117C5.minimapCoords.css({
-                "color": _0x126F4.uiForegroundColor
-            });
-            _0x117C5.minimapCoords.html("X: " + _0x12190.centerX.toFixed(0) + " Y: " + _0x12190.centerY.toFixed(0))
-        }
-
-        function _0x1180A(_0x111D7) {
-            if (!_0x12190.serverData.border.enabled) {
-                return
-            };
-            _0x11F23.clearRect(0, 0, _0x11EF5.width, _0x11EF5.height);
-            _0x11F23.font = "12px Calibri";
-            for (var _0x111EE = 0; _0x111EE < _0x12190.party.length; _0x111EE++) {
-                var _0x11205 = _0x12190.party[_0x111EE];
-                if (_0x11205.state === _0x120EF.ALIVE && _0x11205.id != _0x12190.playerId) {
-                    _0x11F3A(_0x11F23, _0x11205.name, _0x11205.x, _0x11205.y, 4, _0x11205.mmColor, true);
-                    _0x11205.x += (_0x11205.x_ - _0x11205.x) * _0x111D7;
-                    _0x11205.y += (_0x11205.y_ - _0x11205.y) * _0x111D7
-                }
-            };
-            _0x11F3A(_0x11F23, _0x12190.name, _0x12190.centerX, _0x12190.centerY, 6, "#fefefe", false)
-        }
-
-        function _0x11FDB() {
-            _0x123A1()
-        }
-
-        function _0x115CB() {
-            this.socket = null;
-            this.currentServer = null;
-            this.currentServerName = null;
-            this.spectate = false;
-            this.name = "";
-            this.playerId = 0;
-            this.bucket = {};
-            this.foodObjects = {};
-            this.myCells = {};
-            this.playerRegistry = new _0x121BE();
-            this.buffHolder = new _0x11347();
-            this.centerX = 0;
-            this.centerY = 0;
-            this.centerX_ = 0;
-            this.centerY_ = 0;
-            this.centerSteps = 0;
-            this.scale = 0.5;
-            this.scale_ = 0.5;
-            this.scale_base = 0.5;
-            this.mouseZoom = 1.0;
-            this.offsetX = 0;
-            this.offsetY = 0;
-            this.mouseRawX = 0;
-            this.mouseRawY = 0;
-            this.mouseX = 0;
-            this.mouseY = 0;
-            this.mouseFrozen = false;
-            this.party = [];
-            this.partyIds = {};
-            this.subPanelOverride = false;
-            this.serverData = {
-                hasSentSubPanel: false,
-                border: {},
-                maxCells: 16
-            };
-            this.score = 0;
-            this.respawnCooldown = 0;
-            this.customGameMap = null;
-            this.accountListeners = {};
-            this.clearStats();
-            setInterval(this.sendPing.bind(this), 30000)
-        }
-        _0x115CB.prototype.clearStats = function () {
-            this.stats = {
-                name: "An unnamed cell",
-                alive: 0,
-                eatenFood: 0,
-                eatenEject: 0,
-                eatenVirus: 0,
-                eatenPlayer: 0,
-                gainFood: 0,
-                gainEject: 0,
-                gainVirus: 0,
-                gainPlayer: 0
-            }
-        };
-        _0x115CB.prototype.play = function () {
-            if (_0x12470 == null) {
-                this.selfMsg("No server selected!");
-                return
-            };
-            this.name = $("#name-box").val();
-            this.spectate = false;
-            this.currentServerName = _0x12470.name;
-            _0x123B8[_0x111C0[93]](_0x111C0[341]).innerHTML = this.currentServerName;
-            _0x11DF8();
-            if (this.isConnected() && this.currentServer == _0x12470.ip) {
-                this.sendPacket(new _0x12065.setName(this.name))
-            } else {
-                this.connect(_0x12470.ip)
-            };
-            _0x1256D();
-            _0x11B5D(_0x11EDE);
-            if (window[_0x111C0[58]]) {
-                touch_controls.style["display"] = "block"
-            }
-        };
-        _0x115CB.prototype.spec = function () {
-            if (_0x12470 == null) {
-                this.selfMsg("No server selected!");
-                return
-            };
-            this.spectate = true;
-            _0x11DF8();
-            if (this.isConnected() && this.currentServer == _0x12470.ip) {
-                this.sendPacket(new _0x12065.sendSpectate())
-            } else {
-                this.connect(_0x12470.ip)
-            };
-            _0x1256D();
-            _0x11B5D(_0x11EDE)
-        };
-        _0x115CB.prototype.connect = function (_0x111EE) {
-            if (this.socket != null) {
-                this.socket.nextUrl = _0x111EE;
-                this.disconnect(_0x111EE);
-                return
-            };
-            this.currentServer = _0x111EE;
-            this.currentServerName = _0x12470.name;
-            this.selfMsg("Connecting to " + (_0x12020.cHideServerDisplay ? _0x111C0[351] : this.currentServerName));
-            if (_0x12470.ssl == 1) {
-                this.socket = new WebSocket("wss://" + _0x111EE)
-            } else {
-                this.socket = new WebSocket("ws://" + _0x111EE)
-            };
-            this.socket.binaryType = "arraybuffer";
-            var _0x111D7 = this;
-            this.socket.onopen = this.onConnect.bind(this);
-            this.socket.onmessage = this.onMessage.bind(this);
-            this.socket.onclose = function (_0x111EE) {
-                _0x111D7.reset();
-                _0x111D7.selfMsg("You have been disconnected from the server. Reason: " + (_0x111EE.reason === "" ? _0x111C0[364] : _0x111EE.reason));
-                if (this.nextUrl != null) {
-                    _0x111D7.connect(this.nextUrl)
-                }
-            };
-            this.socket.onerror = function (_0x11205) {
-                _0x111D7.reset();
-                this.nextUrl = null;
-                if (_0x12020[_0x111C0[366]] > 0) {
-                    _0x111D7.selfMsg(_0x111C0[367] + _0x12020[_0x111C0[366]] + _0x111C0[368]);
-                    setTimeout(function () {
-                        if (_0x111D7.isConnected() == false && _0x111D7.socket == null) {
-                            _0x111D7.connect(_0x111EE)
-                        }
-                    }, _0x12020[_0x111C0[366]] * 1000)
-                }
-            };
-            document.body.classList.add("hide-captcha-badge")
-        };
-        _0x115CB.prototype.disconnect = function (_0x111D7) {
-            if (this.socket != null) {
-                this.socket.close()
-            }
-        };
-        _0x115CB.prototype.clearBuckets = function () {
-            for (var _0x111D7 in this.bucket) {
-                this.bucket[_0x111D7].onDelete();
-                delete this.bucket[_0x111D7]
-            };
-            for (var _0x111D7 in this.foodObjects) {
-                this.foodObjects[_0x111D7].onDelete();
-                delete this.foodObjects[_0x111D7]
-            }
-        };
-        _0x115CB.prototype.reset = function () {
-            this.clearBuckets();
-            this.myCells = {};
-            this.playerRegistry["clear"]();
-            this.playerId = 0;
-            this.score = 0;
-            this.respawnCooldown = 0;
-            this.customGameMap = null;
-            this.currentServer = null;
-            this.clearStats();
-            this.clearParty();
-            this.buffHolder.clearBuffs();
-            this.serverData.hasSentSubPanel = false;
-            this.serverData.resetType = 0;
-            this.serverData.autosplits = false;
-            if (this.socket != null) {
-                this.socket = null
-            };
-            _0x123B8[_0x111C0[93]](_0x111C0[380]).innerHTML = this.playerId;
-            if (this.subPanelOverride) {
-                this.subPanelOverride = false;
-                _0x127F1()
-            }
-        };
-        _0x115CB.prototype.handleKey = function(_0x111EE) {
-            if (_0x111EE == _0x11CB6.kEjectMass) {
-                _0x12836 = true;
-                this.sendPacket(new _0x12065.sendEjectMass(true))
-            } else {
-                if (_0x111EE == _0x11CB6.kSplit) {
-                    this.sendPacket(new _0x12065.sendKey(17))
-                } else {
-                    if (_0x111EE == _0x11CB6.kToggleSpec) {
-                        this.sendPacket(new _0x12065.sendKey(18))
-                    } else {
-                        if (_0x111EE == _0x11CB6.kDoubleSplit) {
-                            this.sendPacket(new _0x12065.sendKey(17));
-                            this.sendPacket(new _0x12065.sendKey(17))
-                        } else {
-                            if (_0x111EE == _0x11CB6.kTripleSplit) {
-                                for (var _0x111D7 = 0; _0x111D7 < 3; _0x111D7++) {
-                                    this.sendPacket(new _0x12065.sendKey(17))
-                                }
-                            } else {
-                                if (_0x111EE == _0x11CB6.kQuadSplit) {
-                                    for (var _0x111D7 = 0; _0x111D7 < 4; _0x111D7++) {
-                                        this.sendPacket(new _0x12065.sendKey(17))
-                                    }
-                                } else {
-                                    if (_0x111EE == _0x11CB6.kHexaSplit) {
-                                        for (var _0x111D7 = 0; _0x111D7 < 6; _0x111D7++) {
-                                            this.sendPacket(new _0x12065.sendKey(17))
-                                        }
-                                    } else {
-                                        if (_0x111EE == 38) {
-                                            this.mouseZoom *= 1.05;
-                                            this.mouseZoom = _0x12190.mouseZoom > 5 ? 5 : (this.mouseZoom < 0.1 ? 0.1 : this.mouseZoom)
-                                        } else {
-                                            if (_0x111EE == 40) {
-                                                this.mouseZoom *= 0.95;
-                                                this.mouseZoom = _0x12190.mouseZoom > 5 ? 5 : (this.mouseZoom < 0.1 ? 0.1 : this.mouseZoom)
-                                            } else {
-                                                if (_0x111EE == _0x11CB6.kFreezeMouse) {
-                                                    this.mouseFrozen = !this.mouseFrozen;
-                                                    if (this.mouseFrozen) {
-                                                        _0x117C5[_0x111C0[89]][_0x111C0[130]][_0x111C0[14]] = _0x111C0[18]
-                                                    } else {
-                                                        _0x117C5[_0x111C0[89]][_0x111C0[130]][_0x111C0[14]] = _0x111C0[16]
-                                                    }
-                                                } else {
-                                                    if (_0x111EE == _0x11CB6.kContextMenu) {
-                                                        _0x1156F()
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                            var eb = new Image();
+                            eb['crossOrigin'] = '', e8 = this['skin'], eb['addEventListener']('load', function () {
+                                var ec = document['createElement']('canvas');
+                                ec['width'] = 0x200, ec['height'] = 0x200;
+                                var ed = ec['getContext']('2d');
+                                ed['beginPath'](), ed['arc'](0x100, 0x100, 0x100, 0x0, cH, !0x1), ed['closePath'](), ed['clip'](), ed['drawImage'](eb, 0x0, 0x0, 0x200, 0x200);
+                                var ef = bF['Texture']['from'](ec);
+                                bY[e8] = dX['LOADED'], bX[e8] = ef;
+                            }), eb['addEventListener']('error', function () {
+                                bY[e8] = dX['ERROR'];
+                            }), eb['src'] = e8;
                         }
                     }
                 }
-            }
+                return null;
+            }, this['onDelete'] = function () {
+                this['nameCache'] && this['nameCache']['destroy']();
+            };
         }
-        ;
-        _0x115CB.prototype.isConnected = function () {
-            if (this.socket == null) {
-                return false
-            } else {
-                return this.socket.readyState == 1
+
+        function ai() {}
+
+        function aj(e7, e8, e9) {
+            for (var eb = 0x0; eb < e9['length']; eb++) e8['setUint8'](e7, e9['charCodeAt'](eb)), e7++;
+            e8['setUint8'](e7, 0x0);
+        }
+
+        function ak(e7, e8, e9) {
+            for (var eb = 0x0; eb < e9['length']; eb++) e8['setUint16'](e7, e9['charCodeAt'](eb), !0x0), e7 += 0x2;
+            e8['setUint16'](e7, 0x0, !0x0);
+        }
+
+        function al(e7) {
+            for (var e8 = '';;) {
+                var e9 = e7['getUint8'](e7['offset']);
+                if (e7['offset']++, 0x0 == e9) break;
+                e8 += String['fromCharCode'](e9);
             }
-        };
-        _0x115CB.prototype.sendPacket = function (_0x111D7) {
-            if (this.isConnected()) {
-                this.socket.send(_0x111D7)
+            return e8;
+        }
+
+        function am(e7) {
+            for (var e8 = '';;) {
+                var e9 = e7['getUint16'](e7['offset'], !0x0);
+                if (e7['offset'] += 0x2, 0x0 == e9) break;
+                e8 += String['fromCharCode'](e9);
             }
-        };
-        _0x115CB.prototype.onConnect = function () {
-            _0x112BD = [];
-            _0x118C2();
-            this.sendPacket(new _0x12065.connectionStart());
-            this.sendPing();
-            this.sendOptions();
-            if (firebase.auth().currentUser !== null) {
-                firebase.auth().currentUser.getIdToken(true).then((_0x111D7) => {
-                    _0x12190.sendPacket(new _0x12065.sendAuthToken(_0x111D7))
-                }).catch((_0x111C0) => {
-                    return _0x11AEA(_0x111C0, true)
-                });
-                return
-            } else {
-                if (!this.spectate) {
-                    this.sendPacket(new _0x12065.setName(this.name))
-                } else {
-                    this.sendPacket(new _0x12065.sendSpectate())
-                }
-            }
-        };
-        _0x115CB.prototype.sendPing = function () {
-            if (this.isConnected()) {
-                _0x12134 = +new Date;
-                this.sendPacket(new _0x12065.sendPing())
-            }
-        };
-        _0x115CB.prototype.sendOptions = function () {
-            if (this.isConnected()) {
-                this.sendPacket(new _0x12065.sendOptions())
-            }
-        };
-        _0x115CB.prototype.selfMsg = function (_0x111EE) {
-            var _0x111D7 = document.createElement("td");
-            var _0x11205 = document.createElement("span");
-            _0x11205.style.color = "#DDDD00";
-            _0x11205.innerHTML = "[System] " + _0x120C1(_0x111EE);
-            _0x111D7.appendChild(_0x11205);
-            _0x1121C(_0x11541.SYSTEM, _0x111D7)
-        };
-        _0x115CB.prototype.selfMsgWithJoinCode = function (_0x11233, _0x111D7) {
-            var _0x11205 = document.createElement("td");
-            var _0x1124A = document.createElement("span");
-            _0x1124A.style.color = "#DDDD00";
-            _0x1124A.innerHTML = "[System] " + _0x120C1(_0x11233);
-            _0x11205.appendChild(_0x1124A);
-            var _0x111EE = document.createElement("span");
-            _0x111EE.style.color = "#DDDD00";
-            _0x111EE.innerHTML = _0x111D7;
-            _0x111EE.style.pointerEvents = "all";
-            _0x111EE.style.userSelect = "all";
-            _0x11205.appendChild(_0x111EE);
-            _0x1121C(_0x11541.SYSTEM, _0x11205)
-        };
-        _0x115CB.prototype.clearParty = function (_0x111D7) {
-            this.party = [];
-            this.partyIds = {};
-            this.partyLeader = -1;
-            this.partyIndex = -1;
-            $("#party-panel").css("display", "none");
-            if (_0x11724.css("display") == "block") {
-                this.handleCustomGameLeave()
-            };
-            if (this.partyCode != null || _0x11278 != null) {
-                this.partyCode = _0x11278 = null;
-                window.history.pushState("page", "", " ")
-            }
-        };
-        _0x115CB.prototype.isPartyLeader = function () {
-            return this.partyLeader == this.playerId
-        };
-        _0x115CB.prototype.getServerMaxCells = function () {
-            return this.serverData.maxCells + this.buffHolder.bonusMaxCells
-        };
-        _0x115CB.prototype.onMessage = function (_0x111EE) {
-            var _0x111D7 = new DataView(_0x111EE.data);
-            var _0x11205 = _0x111D7.getUint8(0);
-            _0x111D7.offset = 1;
-            switch (_0x11205) {
-            case 2:
-                this.handleUpdate(_0x111D7);
+            return e8;
+        }
+
+        function ao(e7, e8) {
+            if (e8) switch (e7['code']) {
+            case 'auth/user-disabled':
+                alert('This\x20account\x20has\x20been\x20permanently\x20suspended\x20by\x20an\x20administrator.');
                 break;
-            case 10:
-                this.handlePosition(_0x111D7);
-                break;
-            case 21:
-                this.handleStats(_0x111D7);
-                break;
-            case 22:
-                this.showSubPanel(_0x111D7);
-                break;
-            case 23:
-                this.updateSubPanel(_0x111D7);
-                break;
-            case 40:
-                this.handleInvite(_0x111D7);
-                break;
-            case 41:
-                this.handlePartyInfo(_0x111D7);
-                break;
-            case 45:
-                this.handlePartyData(_0x111D7);
-                break;
-            case 43:
-                this.handlePartyJoinCode(_0x111D7);
-                break;
-            case 49:
-                this.handleLeaderboard(_0x111D7);
-                break;
-            case 50:
-                this.handleLeaderboardCustom(_0x111D7);
-                break;
-            case 63:
-                this.handleRespawnCooldown(_0x111D7);
-                break;
-            case 64:
-                this.handleMapData(_0x111D7);
-                break;
-            case 65:
-                this.handleClearNodes();
-                break;
-            case 66:
-                this.handleUpdateBorder(_0x111D7);
-                break;
-            case 68:
-                this.handleResetTime(_0x111D7);
-                break;
-            case 69:
-                this.handleSpectators(_0x111D7);
-                break;
-            case 70:
-                this.handleSystemMsg(_0x111D7);
-                break;
-            case 71:
-                this.handlePing();
-                break;
-            case 72:
-                this.handleChat(_0x111D7);
-                break;
-            case 73:
-                this.handleWhisper(_0x111D7);
-                break;
-            case 74:
-                this.handleEditMessage(_0x111D7);
-                break;
-            case 80:
-                this.handleShowScrimmageMenu();
-                break;
-            case 81:
-                this.handleQueueData(_0x111D7);
-                break;
-            case 82:
-                this.handleQueueLeave(_0x111D7);
-                break;
-            case 83:
-                this.handleMatchState(_0x111D7);
-                break;
-            case 90:
-                this.handleScrimmageData(_0x111D7);
-                break;
-            case 91:
-                this.handleCustomGameShow(_0x111D7);
-                break;
-            case 92:
-                this.handleCustomGameUpdate(_0x111D7);
-                break;
-            case 93:
-                this.handleCustomGameLeave();
-                break;
-            case 94:
-                this.handleShowCustomGameLobbies(_0x111D7);
-                break;
-            case 100:
-                this.handleAddBuff(_0x111D7);
-                break;
-            case 101:
-                this.handleRemoveBuff(_0x111D7);
-                break;
-            case 102:
-                this.handleClearBuffs(_0x111D7);
-                break;
-            case 103:
-                this.handleAuthenticated(_0x111D7);
-                break;
-            case 104:
-                this.handleProfile(_0x111D7);
-                break
-            }
-        };
-        _0x115CB.prototype.handleUpdate = function (_0x1128F) {
-            var _0x111D7 = _0x1128F.getUint16(_0x1128F.offset, true);
-            _0x1128F.offset += 2;
-            while (_0x111D7 > 0) {
-                var _0x1121C = _0x1128F.getUint16(_0x1128F.offset, true);
-                _0x1128F.offset += 2;
-                _0x12190.playerRegistry.remove(_0x1121C);
-                _0x111D7--
-            };
-            _0x111D7 = _0x1128F.getUint16(_0x1128F.offset, true);
-            _0x1128F.offset += 2;
-            while (_0x111D7 > 0) {
-                var _0x1121C = _0x1128F.getUint16(_0x1128F.offset, true);
-                _0x1128F.offset += 2;
-                var _0x11233 = this.bucket[_0x1121C] || this.foodObjects[_0x1121C];
-                if (_0x11233 != null) {
-                    if (_0x11233.type == 6) {
-                        delete this.foodObjects[_0x1121C]
-                    } else {
-                        delete this.bucket[_0x1121C]
-                    };
-                    if (_0x11233.playerId == this.playerId) {
-                        delete this.myCells[_0x1121C];
-                        if (Object.keys(this.myCells).length == 0) {
-                            if (_0x12020.cAutoRespawn) {
-                                if ($("#main").css("display") == "none") {
-                                    _0x12190.play()
-                                }
-                            } else {
-                                if (_0x123E6.css("display") != "block") {
-                                    _0x12584(_0x11EDE)
-                                };
-                                aiptag.cmd["display"].push(function () {
-                                    aipDisplayTag.refresh("GOT_gota-io_336x280")
-                                })
-                            }
-                        }
-                    };
-                    _0x11233.onDelete()
-                };
-                _0x111D7--
-            };
-            while (true) {
-                var _0x1121C = _0x1128F.getUint16(_0x1128F.offset, true);
-                _0x1128F.offset += 2;
-                if (_0x1121C == 0) {
-                    break
-                };
-                var _0x1124A = this.playerRegistry.getPlayer(_0x1121C);
-                var _0x11205 = false;
-                if (_0x1124A == null) {
-                    _0x1124A = new _0x121A7(_0x1121C)
-                } else {
-                    _0x11205 = true
-                };
-                _0x1124A.cellColor = (_0x1128F.getUint8(_0x1128F.offset++) << 16) + (_0x1128F.getUint8(_0x1128F.offset++) << 8) + _0x1128F.getUint8(_0x1128F.offset++);
-                if (_0x1124A.playerId === this.playerId) { _0x1124A.rainbow = _0x12020.cRainbowFood; }
-                _0x1124A.name = _0x122E9(_0x1128F);
-                _0x1124A.setSkin(_0x12300(_0x1128F));
-                _0x1124A.setFlags(_0x1128F.getUint8(_0x1128F.offset++));
-                if ((_0x1124A.flags & 2) == 2) {
-                    _0x1124A.nameColor = "#" + _0x11375(_0x1128F.getUint8(_0x1128F.offset++)) + _0x11375(_0x1128F.getUint8(_0x1128F.offset++)) + _0x11375(_0x1128F.getUint8(_0x1128F.offset++));
-                    _0x1124A.parseEffect(_0x1128F.getUint8(_0x1128F.offset++));
-                    _0x1124A.nameFont = _0x1128F.getUint8(_0x1128F.offset++)
-                };
-                if (!_0x11205) {
-                    _0x12190.playerRegistry.add(_0x1124A)
-                } else {
-                    _0x12190.playerRegistry.updatePlayer(_0x1124A)
-                }
-            };
-            while (true) {
-                var _0x11278 = _0x1128F.getUint8(_0x1128F.offset++);
-                var _0x11261 = 0;
-                if (_0x11278 == 0) {
-                    break
-                };
-                while (true) {
-                    if (_0x11278 == 2 && _0x11261 == 0) {
-                        _0x11261 = _0x1128F.getUint16(_0x1128F.offset, true);
-                        _0x1128F.offset += 2;
-                        if (_0x11261 == 0) {
-                            break
-                        }
-                    };
-                    var _0x1121C = _0x1128F.getUint16(_0x1128F.offset, true);
-                    _0x1128F.offset += 2;
-                    if (_0x1121C == 0) {
-                        if (_0x11278 == 2) {
-                            _0x11261 = 0;
-                            continue
-                        } else {
-                            break
-                        }
-                    };
-                    var _0x11233 = new _0x113D1(_0x1121C);
-                    _0x11233.setType(_0x11278);
-                    _0x11233.setX(_0x1128F.getInt16(_0x1128F.offset, true));
-                    _0x11233.setY(_0x1128F.getInt16(_0x1128F.offset + 2, true));
-                    _0x1128F.offset += 4;
-                    switch (_0x11278) {
-                    case 6:
-                        _0x11233.color = _0x11A49(_0x11233.id);
-                        break;
-                    case 1:
-                        _0x11233.setSize(_0x1128F.getUint16(_0x1128F.offset, true));
-                        _0x1128F.offset += 2;
-                        _0x11233.color = (_0x1128F.getUint8(_0x1128F.offset++) << 16) + (_0x1128F.getUint8(_0x1128F.offset++) << 8) + _0x1128F.getUint8(_0x1128F.offset++);
-                        var _0x111EE = _0x1128F.getUint8(_0x1128F.offset++);
-                        _0x11233.skin = (_0x111EE & 0x7f) - 1;
-                        _0x11233.rainbow = _0x12020.cRainbowFood;
-                        break;
-                    case 2:
-                        _0x11233.setSize(_0x1128F.getUint16(_0x1128F.offset, true));
-                        _0x1128F.offset += 2;
-                        _0x11233.playerId = _0x11261;
-                        break;
-                    case 3:
-                        _0x11233.setSize(_0x1128F.getUint16(_0x1128F.offset, true));
-                        _0x1128F.offset += 2;
-                        break;
-                    case 4:
-                        _0x11233.setSize(_0x1128F.getUint16(_0x1128F.offset, true));
-                        _0x1128F.offset += 2;
-                        break;
-                    case 5:
-                        _0x11233.setSize(_0x1128F.getUint16(_0x1128F.offset, true));
-                        _0x1128F.offset += 2;
-                        _0x11233[_0x111C0[481]] = _0x1128F.getUint8(_0x1128F.offset++);
-                        break
-                    };
-                    _0x11233.onCreate(this)
-                }
-            };
-            while (true) {
-                var _0x11278 = _0x1128F.getUint8(_0x1128F.offset++);
-                if (_0x11278 == 0) {
-                    break
-                };
-                while (true) {
-                    var _0x1121C = _0x1128F.getUint16(_0x1128F.offset, true);
-                    _0x1128F.offset += 2;
-                    if (_0x1121C == 0) {
-                        break
-                    };
-                    var _0x112A6 = _0x1128F.getInt16(_0x1128F.offset, true);
-                    var _0x112BD = _0x1128F.getInt16(_0x1128F.offset + 2, true);
-                    _0x1128F.offset += 4;
-                    var _0x11233;
-                    if (_0x11278 == 6) {
-                        _0x11233 = this.foodObjects[_0x1121C]
-                    } else {
-                        _0x11233 = this.bucket[_0x1121C]
-                    };
-                    if (_0x11233 == null) {
-                        _0x11233 = new _0x113D1(_0x1121C);
-                        _0x11233.setType(_0x11278);
-                        _0x11233.setSize(10);
-                        _0x11233.setX(_0x112A6);
-                        _0x11233.setY(_0x112BD);
-                        _0x11233.onCreate(this)
-                    } else {
-                        _0x11233.updateX(_0x112A6);
-                        _0x11233.updateY(_0x112BD)
-                    };
-                    switch (_0x11278) {
-                    case 2:
-                        _0x11233.size_ = _0x1128F.getUint16(_0x1128F.offset, true);
-                        _0x1128F.offset += 2;
-                        break;
-                    case 3:
-                        _0x11233.size_ = _0x1128F.getUint16(_0x1128F.offset, true);
-                        _0x1128F.offset += 2;
-                        break;
-                    case 4:
-                        _0x11233.size_ = _0x1128F.getUint16(_0x1128F.offset, true);
-                        _0x1128F.offset += 2;
-                        break
-                    };
-                    _0x11233.steps = 30
-                }
-            };
-            this.sortCells()
-        };
-        _0x115CB.prototype.handlePosition = function (_0x111D7) {
-            this.centerX_ = _0x111D7.getFloat32(_0x111D7.offset, true);
-            _0x111D7.offset += 4;
-            this.centerY_ = _0x111D7.getFloat32(_0x111D7.offset, true);
-            _0x111D7.offset += 4;
-            this.centerSteps = 30;
-            if (!_0x12020.cDisableAutoZoom) {
-                this.scale_base = _0x111D7.getFloat32(_0x111D7.offset, true)
-            }
-        };
-        _0x115CB.prototype.handleRespawnCooldown = function (_0x111EE) {
-            var _0x111D7 = _0x111EE.getFloat64(_0x111EE.offset, true);
-            this.respawnCooldown = _0x111D7
-        };
-        _0x115CB.prototype.handleMapData = function (_0x111D7) {
-            this.playerId = _0x111D7.getUint16(_0x111D7.offset, true);
-            _0x111D7.offset += 2 + 1;
-            this.handleUpdateBorder(_0x111D7);
-            this.serverData.maxCells = _0x111D7.getUint16(_0x111D7.offset, true);
-            _0x111D7.offset += 2;
-            _0x12300(_0x111D7);
-            this.serverData.autosplits = _0x111D7.getUint8(_0x111D7.offset++);
-            _0x123B8[_0x111C0[93]](_0x111C0[380]).innerHTML = this.playerId;
-            this.updateCellCounter(0, true);
-            if (_0x11278 != null) {
-                _0x12190.sendPacket(new _0x12065.sendPartyJoin(_0x11278))
-            };
-            _0x123E6.css("display", "none");
-            $("#scrimmage-btn-leave").css("display", "none")
-        };
-        _0x115CB.prototype.handleUpdateBorder = function (_0x111D7) {
-            this.serverData.border = {};
-            this.serverData.border.left = _0x111D7.getInt16(_0x111D7.offset, true);
-            this.serverData.border.top = _0x111D7.getInt16(_0x111D7.offset + 2, true);
-            this.serverData.border.right = _0x111D7.getInt16(_0x111D7.offset + 4, true);
-            this.serverData.border.bottom = _0x111D7.getInt16(_0x111D7.offset + 6, true);
-            _0x111D7.offset += 8;
-            this.serverData.border.width = this.serverData.border.right - this.serverData.border.left;
-            this.serverData.border.height = this.serverData.border.bottom - this.serverData.border.top;
-            this.serverData.border.enabled = this.serverData.border.width != 0 && this.serverData.border.height != 0;
-            _0x11AD3()
-        };
-        _0x115CB.prototype.handleResetTime = function (_0x11205) {
-            var _0x111EE = _0x11205.getUint8(_0x11205.offset++);
-            var _0x111D7 = _0x11205.getFloat64(_0x11205.offset, true);
-            this.serverData.resetType = _0x111EE;
-            this.serverData.resetTime = _0x111D7
-        };
-        _0x115CB.prototype.handleSpectators = function (_0x111D7) {
-            this.spectators = _0x111D7.getUint16(_0x111D7.offset, true);
-            this.updateSpectators()
-        };
-        _0x115CB.prototype.handleClearNodes = function (_0x111D7) {
-            this.clearBuckets()
-        };
-        _0x115CB.prototype.handleLeaderboard = function (_0x11278) {
-            var _0x11233 = document.getElementById("leaderboard-canvas");
-            var _0x111EE = _0x11233.getContext("2d");
-            _0x11D29.text("Leaderboard");
-            var _0x111D7 = _0x11278.getUint32(_0x11278.offset, true);
-            _0x11278.offset += 4;
-            _0x11233.width = 200;
-            _0x11233.height = (20 * _0x111D7) + 5;
-            _0x111EE.font = "16px Calibri";
-            var _0x11261 = 20;
-            for (var _0x11205 = 0; _0x11205 < _0x111D7; _0x11205++) {
-                var _0x1121C = _0x11278.getUint16(_0x11278.offset, true);
-                _0x11278.offset += 2;
-                var _0x1124A = _0x122E9(_0x11278) || "An unnamed cell";
-                if (_0x1121C == this.playerId) {
-                    _0x111EE.fillStyle = _0x126F4.uiLeaderboardHighlightSelf
-                } else {
-                    if (this.partyIds[_0x1121C] != null) {
-                        _0x111EE.fillStyle = _0x126F4.uiLeaderboardHighlightParty
-                    } else {
-                        _0x111EE.fillStyle = _0x126F4.uiForegroundColor
-                    }
-                };
-                _0x111EE.fillText((_0x11205 + 1) + ". " + _0x1124A, 10, _0x11261);
-                _0x11261 += 20
-            }
-        };
-        _0x115CB.prototype.handleLeaderboardCustom = function (_0x1128F) {
-            var _0x11233 = document.getElementById("leaderboard-canvas");
-            var _0x11205 = _0x11233.getContext("2d");
-            _0x11D29.html("Leaderboard");
-            var _0x111D7 = _0x1128F.getUint16(_0x1128F.offset, true);
-            var _0x111EE = _0x1128F.getUint8(_0x1128F.offset + 2, true);
-            var _0x11278 = _0x1128F.getUint8(_0x1128F.offset + 3, true);
-            _0x1128F.offset += 4;
-            _0x11233.width = 200;
-            _0x11233.height = (20 * _0x111D7) + 5;
-            _0x11205.font = "16px Calibri";
-            var _0x11261 = 20;
-            for (var _0x1121C = 0; _0x1121C < _0x111D7; _0x1121C++) {
-                var _0x1124A = _0x12300(_0x1128F);
-                if (_0x1121C == _0x111EE) {
-                    _0x11205.fillStyle = _0x126F4.uiLeaderboardHighlightSelf
-                } else {
-                    _0x11205.fillStyle = _0x126F4.uiForegroundColor
-                };
-                _0x11205.fillText(_0x1124A, 5, _0x11261);
-                _0x11261 += 20
-            }
-        };
-        _0x115CB.prototype.handlePing = function () {
-            var _0x111D7 = +new Date - _0x12134;
-            if (!_0x12020.cColoredPing) {
-                if (_0x111D7 < 100) {
-                    _0x123B8[_0x111C0[93]](_0x111C0[507]).style.color = _0x126F4.uiGameColorSuccess
-                } else {
-                    if (_0x111D7 < 200) {
-                        _0x123B8[_0x111C0[93]](_0x111C0[507]).style.color = _0x126F4.uiGameColorWarning
-                    } else {
-                        _0x123B8[_0x111C0[93]](_0x111C0[507]).style.color = _0x126F4.uiGameColorError
-                    }
-                }
-            } else {
-                _0x123B8[_0x111C0[93]](_0x111C0[507]).style.color = _0x126F4.uiForegroundColor
-            };
-            _0x123B8[_0x111C0[93]](_0x111C0[507]).innerHTML = _0x111D7 + _0x111C0[511]
-        };
-        _0x115CB.prototype.handleChat = function (_0x1135E) {
-            var _0x111D7 = _0x1135E.getUint8(_0x1135E.offset++);
-            var _0x112D4 = "rgb(" + _0x1135E.getUint8(_0x1135E.offset++) + "," + _0x1135E.getUint8(_0x1135E.offset++) + "," + _0x1135E.getUint8(_0x1135E.offset++) + ")";
-            var _0x11205 = _0x1135E.getUint8(_0x1135E.offset++);
-            var _0x11302 = _0x1135E.getUint16(_0x1135E.offset, true);
-            _0x1135E.offset += 2;
-            if (_0x112BD.includes(_0x11302)) {
-                return
-            };
-            var _0x11330 = _0x122E9(_0x1135E);
-            _0x1135E.getUint8(_0x1135E.offset++);
-            var _0x112A6 = _0x120C1(_0x122E9(_0x1135E)) || "An unnamed cell";
-            var _0x11278 = _0x120C1(_0x122E9(_0x1135E));
-            var _0x11233 = _0x11541["ALL"];
-            var _0x1128F = _0x1135E.offset < _0x1135E.byteLength ? _0x1135E.getBigInt64(_0x1135E.offset, true) : 0;
-            var _0x111EE;
-            switch (_0x111D7) {
-            case 1:
-                _0x111EE = "Party";
-                _0x11233 = _0x11541.PARTY;
-                break;
-            case 2:
-                _0x111EE = "Admin";
-                _0x11233 = _0x11541.ADMIN;
+            case 'auth/popup-closed-by-user':
                 break;
             default:
-                _0x111EE = "All";
-                break
-            };
-            if (_0x11330.length > 0) {
-                _0x120C1(_0x111EE += " - " + _0x11330)
-            };
-            var _0x11261 = document.createElement("td");
-            if (_0x1128F != 0) {
-                _0x11261.dataset.msgid = _0x1128F
-            };
-            var _0x11319 = document.createElement("span");
-            _0x11319.innerHTML = "[" + _0x111EE + "] ";
-            _0x11261.appendChild(_0x11319);
-            var _0x112EB = document.createElement("span");
-            _0x112EB.innerText = _0x112A6;
-            _0x112EB.dataset.playerId = _0x11302;
-            _0x112EB.style.color = _0x112D4;
-            _0x112EB.className = "chat-name";
-            _0x112EB.oncontextmenu = _0x114B7;
-            _0x11261.appendChild(_0x112EB);
-            var _0x1124A = document.createElement("span");
-            _0x1124A.innerHTML = ": ";
-            _0x11261.appendChild(_0x1124A);
-            var _0x11347 = document.createElement("span");
-            _0x11347.className = "chat-content";
-            _0x11347.style.color = _0x114A0[_0x11205];
-            _0x11347.innerHTML = _0x120AA(_0x11278);
-            _0x11261.appendChild(_0x11347);
-            _0x1121C(_0x11233, _0x11261)
-        };
-        _0x115CB.prototype.handleWhisper = function (_0x11319) {
-            var _0x1128F = _0x120C1(_0x122E9(_0x11319)) || "An unnamed cell";
-            var _0x112D4 = _0x11319.getUint16(_0x11319.offset, true);
-            _0x11319.offset += 2;
-            if (_0x112BD.includes(_0x112D4)) {
-                return
-            };
-            var _0x112A6 = "rgb(" + _0x11319.getUint8(_0x11319.offset++) + "," + _0x11319.getUint8(_0x11319.offset++) + "," + _0x11319.getUint8(_0x11319.offset++) + ")";
-            var _0x11233 = _0x120C1(_0x122E9(_0x11319)) || "An unnamed cell";
-            var _0x11261 = _0x11319.getUint16(_0x11319.offset, true);
-            _0x11319.offset += 2;
-            var _0x1124A = "rgb(" + _0x11319.getUint8(_0x11319.offset++) + "," + _0x11319.getUint8(_0x11319.offset++) + "," + _0x11319.getUint8(_0x11319.offset++) + ")";
-            var _0x11205 = _0x120C1(_0x122E9(_0x11319));
-            var _0x111EE = document.createElement("td");
-            var _0x112EB = document.createElement("span");
-            _0x112EB.innerText = _0x1128F;
-            _0x112EB.dataset.playerId = _0x112D4;
-            _0x112EB.style.color = _0x112A6;
-            _0x112EB.className = "chat-name";
-            _0x112EB.oncontextmenu = _0x114B7;
-            _0x111EE.appendChild(_0x112EB);
-            var _0x111D7 = document.createElement("span");
-            _0x111D7.innerHTML = _0x111C0[531];
-            _0x111EE.appendChild(_0x111D7);
-            var _0x11278 = document.createElement("span");
-            _0x11278.innerText = _0x11233;
-            _0x11278.dataset.playerId = _0x11261;
-            _0x11278.style.color = _0x1124A;
-            _0x11278.className = "chat-name";
-            _0x11278.oncontextmenu = _0x114B7;
-            _0x111EE.appendChild(_0x11278);
-            var _0x11302 = document.createElement("span");
-            _0x11302.innerHTML = ": " + _0x120AA(_0x11205);
-            _0x111EE.appendChild(_0x11302);
-            _0x1121C(_0x11541[_0x111C0[532]], _0x111EE)
-        };
-        _0x115CB.prototype.handleEditMessage = function (_0x11205) {
-            var _0x111EE = _0x11205.getBigInt64(_0x11205.offset, true);
-            _0x11205.offset += 8;
-            var _0x111D7 = _0x120C1(_0x122E9(_0x11205));
-            if (_0x111D7.length > 0) {
-                $(".chat-table td[data-msgid='" + _0x111EE + "'] .chat-content").html(_0x120AA(_0x111D7))
-            } else {
-                $(".chat-table td[data-msgid='" + _0x111EE + "']").closest("tr").remove()
-            }
-        };
-        _0x115CB.prototype.handleSystemMsg = function (_0x111EE) {
-            var _0x111D7 = _0x122E9(_0x111EE);
-            this.selfMsg(_0x111D7)
-        };
-        _0x115CB.prototype.handleAuthenticated = function (_0x111EE) {
-            var _0x111D7 = _0x111EE.getUint8(1);
-            switch (_0x111D7) {
-            case _0x11261.SUCCESS:
-                break;
-            case _0x11261.FAILURE:
-                this.selfMsg("Invalid authentication token! Please logout and try again!");
-                break
-            };
-            if (!this.spectate) {
-                this.sendPacket(new _0x12065.setName(this.name))
-            } else {
-                this.sendPacket(new _0x12065.sendSpectate())
-            }
-        };
-        _0x115CB.prototype.handleProfile = function (_0x11205) {
-            var _0x111D7 = _0x12300(_0x11205);
-            var _0x111EE = JSON.parse(_0x111D7);
-            _0x11DE1(_0x111EE)
-        };
-        _0x115CB.prototype.handleInvite = function (_0x11205) {
-            if (_0x12020.cAutoDecline) {
-                _0x12190.sendPacket(new _0x12065.sendInviteResponse(false))
-            } else {
-                var _0x111EE = _0x120C1(_0x122E9(_0x11205));
-                var _0x111D7 = document.getElementById("popup-party-text");
-                _0x111D7.innerText = _0x111EE + " has invited you to a party.";
-                _0x12584($("#popup-party"))
-            }
-        };
-        _0x115CB.prototype.handlePartyInfo = function (_0x1128F) {
-            var _0x11233 = {};
-            var _0x11261 = [];
-            var _0x1124A = -1;
-            var _0x111D7 = _0x1128F.getUint16(_0x1128F.offset, true);
-            _0x1128F.offset += 2;
-            for (var _0x11205 = 0; _0x11205 < _0x111D7; _0x11205++) {
-                var _0x1121C = {};
-                var _0x111EE = _0x1128F.getUint8(_0x1128F.offset++);
-                _0x1121C.id = _0x1128F.getUint16(_0x1128F.offset, true);
-                _0x11233[_0x1121C.id] = _0x11205;
-                _0x1128F.offset += 2;
-                if (_0x111EE == 1) {
-                    _0x1124A = _0x1121C.id;
-                    _0x1121C.isLeader = true
-                } else {
-                    _0x1121C.isLeader = false
-                };
-                _0x1121C.name = _0x122E9(_0x1128F) || "An unnamed cell";
-                _0x1121C.x = 0;
-                _0x1121C.y = 0;
-                _0x1121C.x_ = 0;
-                _0x1121C.y_ = 0;
-                _0x1121C.score = 0;
-                _0x1121C.team = -1;
-                _0x1121C.state = 0;
-                _0x1121C.state = _0x120EF.UNKNOWN;
-                if (this.partyIds[_0x1121C.id] != null) {
-                    var _0x11278 = this.party[this.partyIds[_0x1121C.id]];
-                    _0x1121C.x = _0x11278.x;
-                    _0x1121C.y = _0x11278.y;
-                    _0x1121C.x_ = _0x11278.x_;
-                    _0x1121C.y_ = _0x11278.y_;
-                    _0x1121C.state = _0x11278.state;
-                    _0x1121C.score = _0x11278.score;
-                    _0x1121C.team = _0x11278.team;
-                    _0x1121C.mmColor = _0x11278.mmColor
-                } else {
-                    _0x1121C.mmColor = _0x11A32(_0x1121C.id)
-                };
-                _0x11261.push(_0x1121C)
-            };
-            this.party = _0x11261;
-            this.partyIds = _0x11233;
-            if (this.partyLeader != _0x1124A) {
-                this.partyLeader = _0x1124A;
-                if (_0x11724.css("display") == "block") {
-                    ScrimmageHelper.checkLeader()
-                }
-            };
-            if (_0x111D7 > 0) {
-                this.drawParty()
-            } else {
-                this.clearParty()
-            }
-        };
-        _0x115CB.prototype.handlePartyData = function (_0x1121C) {
-            var _0x111D7 = _0x1121C.getUint16(_0x1121C.offset, true);
-            _0x1121C.offset += 2;
-            if (_0x111D7 != this.party.length) {
-                return
-            };
-            for (var _0x111EE = 0; _0x111EE < _0x111D7; _0x111EE++) {
-                var _0x11205 = this.party[_0x111EE];
-                _0x11205.state = _0x1121C.getUint8(_0x1121C.offset++);
-                if (_0x11205.state === _0x120EF.ALIVE) {
-                    _0x11205.x_ = _0x1121C.getInt16(_0x1121C.offset, true);
-                    _0x11205.y_ = _0x1121C.getInt16(_0x1121C.offset + 2, true);
-                    _0x11205.score = _0x1121C.getInt32(_0x1121C.offset + 4, true);
-                    _0x1121C.offset += 8
-                }
-            };
-            this.drawParty()
-        };
-        _0x115CB.prototype.handlePartyJoinCode = function (_0x11205) {
-            var _0x111D7 = _0x12300(_0x11205);
-            this.partyCode = _0x12300(_0x11205);
-            if (this.partyCode.length != 0) {
-                this.selfMsgWithJoinCode(_0x111D7, this.partyCode);
-                $("#popup-party-code-content input").val(this.partyCode);
-                $("#popup-party-code").show();
-                var _0x111EE = "#" + this.currentServerName + "&" + this.partyCode;
-                window.history.pushState("page", "", _0x111EE)
-            } else {
-                this.selfMsg(_0x111D7);
-                this.partyCode = null;
-                window.history.pushState("page", "", " ")
-            }
-        };
-        _0x115CB.prototype.handleStats = function (_0x11205) {
-            var _0x111D7 = _0x11205.getUint16(_0x11205.offset, true);
-            _0x11205.offset += 2;
-            this.stats.name = _0x122E9(_0x11205) || "An unnamed cell";
-            this.stats.alive += _0x11205.getUint32(_0x11205.offset, true);
-            _0x11205.offset += 4;
-            this.stats.eatenFood += _0x11205.getUint32(_0x11205.offset, true);
-            _0x11205.offset += 4;
-            this.stats.eatenEject += _0x11205.getUint32(_0x11205.offset, true);
-            _0x11205.offset += 4;
-            this.stats.eatenVirus += _0x11205.getUint32(_0x11205.offset, true);
-            _0x11205.offset += 4;
-            this.stats.eatenPlayer += _0x11205.getUint32(_0x11205.offset, true);
-            _0x11205.offset += 4;
-            this.stats.gainFood += _0x11205.getUint32(_0x11205.offset, true);
-            _0x11205.offset += 4;
-            this.stats.gainEject += _0x11205.getUint32(_0x11205.offset, true);
-            _0x11205.offset += 4;
-            this.stats.gainVirus += _0x11205.getUint32(_0x11205.offset, true);
-            _0x11205.offset += 4;
-            this.stats.gainPlayer += _0x11205.getUint32(_0x11205.offset, true);
-            _0x11205.offset += 4;
-            var _0x111EE = $("#main-stats");
-            _0x111EE.empty();
-            _0x111EE.append("<span>Name: " + this.stats.name + " (" + _0x111D7 + ")</span><br>");
-            _0x111EE.append("<span>Alive: " + _0x11963(this.stats.alive) + _0x111C0[572]);
-            _0x111EE.append("<span>Food eaten: " + this.stats.eatenFood + " (" + this.stats.gainFood + ")</span><br>");
-            _0x111EE.append("<span>Ejected mass eaten: " + this.stats.eatenEject + " (" + this.stats.gainEject + ")</span><br>");
-            _0x111EE.append("<span>Viruses eaten: " + this.stats.eatenVirus + " (" + this.stats.gainVirus + ")</span><br>");
-            _0x111EE.append("<span>Player cells eaten: " + this.stats.eatenPlayer + " (" + this.stats.gainPlayer + ")</span><br>")
-        };
-        _0x115CB.prototype.showSubPanel = function (_0x111EE) {
-            var _0x111D7 = _0x111EE.getUint8(_0x111EE.offset++) == 1;
-            this.subPanelOverride = _0x111D7;
-            _0x127F1();
-            if (_0x111D7) {
-                if (!this.serverData.hasSentSubPanel) {
-                    _0x127DA();
-                    this.serverData.hasSentSubPanel = true
-                };
-                document.body.classList.add("hide-captcha-badge")
-            }
-        };
-        _0x115CB.prototype.updateSubPanel = function (_0x111D7) {
-            if (_0x1281F) {
-                _0x11D6E(_0x1281F.uid)
-            }
-        };
-        _0x115CB.prototype.updateSpectators = function () {
-            _0x117C5.spectatorCount.html(this.spectators)
-        };
-        _0x115CB.prototype.handleAddBuff = function (_0x1121C) {
-            var _0x111D7 = _0x1121C.getUint8(_0x1121C.offset++);
-            var _0x11205 = _0x1121C.getUint8(_0x1121C.offset++);
-            var _0x111EE = _0x1121C.getFloat64(_0x1121C.offset, true);
-            _0x1121C.offset += 8;
-            this.buffHolder.onAddBuff(_0x111D7, _0x11205, _0x111EE)
-        };
-        _0x115CB.prototype.handleRemoveBuff = function (_0x111EE) {
-            var _0x111D7 = _0x111EE.getUint8(_0x111EE.offset++);
-            this.buffHolder.onRemoveBuff(_0x111D7)
-        };
-        _0x115CB.prototype.handleClearBuffs = function (_0x111EE) {
-            var _0x111D7 = _0x111EE.getUint8(_0x111EE.offset++) == 1 ? true : false;
-            this.buffHolder.clearBuffs(_0x111D7)
-        };
-        _0x115CB.prototype.sortCells = function () {
-            _0x1145B.children.sort(function (_0x111D7, _0x111EE) {
-                return _0x111D7.parentCell.size - _0x111EE.parentCell.size
-            });
-            this.updateScorePanel()
-        };
-        _0x115CB.prototype.updateScorePanel = function () {
-            var _0x111EE = 0;
-            var _0x111D7 = 0;
-            for (var _0x11205 in this.myCells) {
-                var _0x1121C = this.myCells[_0x11205];
-                _0x111EE += _0x1121C.getRealMass();
-                _0x111D7++
-            };
-            _0x117C5[_0x111C0[95]].innerHTML = _0x111EE.toLocaleString();
-            if (_0x111EE > this.score) {
-                this.score = _0x111EE;
-                _0x117C5.playerScore.innerHTML = this.score.toLocaleString()
-            };
-            this.updateCellCounter(_0x111D7)
-        };
-        _0x115CB.prototype.updateCellCounter = function (_0x111D7, _0x111EE) {
-            if (_0x117C5.playerCellCount != _0x111D7 || _0x111EE) {
-                _0x117C5.playerCellCount = _0x111D7;
-                _0x117C5.playerCells.innerHTML = _0x111D7 + "/" + this.getServerMaxCells();
-                if (!_0x12020.cColoredCellCount) {
-                    var _0x11205 = _0x111D7 / this.getServerMaxCells();
-                    if (_0x11205 >= 1.0) {
-                        _0x117C5.playerCells.style.color = _0x126F4.uiGameColorError
-                    } else {
-                        if (_0x11205 >= 0.5) {
-                            _0x117C5.playerCells.style.color = _0x126F4.uiGameColorWarning
-                        } else {
-                            _0x117C5.playerCells.style.color = _0x126F4.uiGameColorSuccess
-                        }
-                    }
-                } else {
-                    _0x117C5.playerCells.style.color = _0x126F4.uiForegroundColor
-                }
-            }
-        };
-        _0x115CB.prototype.drawParty = function () {
-            if (this.party.length == 0) {
-                return
-            };
-            if (_0x12020.cHidePartyPanel) {
-                _0x117C5.partyPanel.css("display", "none")
-            } else {
-                if (_0x117C5.partyPanel.css("display") == "none" && _0x11BB9.css("display") != "none") {
-                    _0x117C5.partyPanel.css("display", "block")
-                }
-            };
-            var _0x11278 = document.getElementById("party-canvas");
-            var _0x111D7 = _0x11278.getContext("2d");
-            _0x111D7.font = "16px Calibri";
-            var _0x11205 = 0;
-            var _0x1121C = 0;
-            var _0x112A6 = 0;
-            for (var _0x111EE = 0; _0x111EE < this.party.length; _0x111EE++) {
-                var _0x11233 = this.party[_0x111EE];
-                if (_0x11233.team == -1) {
-                    _0x11233.team = _0x111D7.measureText((_0x111EE + 1) + ". " + _0x11233.name).width
-                };
-                if (_0x11233.team > _0x11205) {
-                    _0x11205 = _0x11233.team
-                };
-                if (_0x11233.state === _0x120EF.ALIVE || _0x11233.state === _0x120EF.UNKNOWN) {
-                    _0x11233.scoreText = _0x11233.score.toLocaleString();
-                    _0x112A6 += _0x11233.score
-                } else {
-                    if (_0x11233.state === _0x120EF.DEAD) {
-                        _0x11233.scoreText = "💀"
-                    } else {
-                        if (_0x11233.state === _0x120EF.SPECTATE) {
-                            _0x11233.scoreText = "👁️"
-                        }
-                    }
-                };
-                var _0x1128F = _0x111D7.measureText(_0x11233.scoreText).width;
-                if (_0x1128F > _0x1121C) {
-                    _0x1121C = _0x1128F
-                }
-            };
-            var _0x112BD = _0x112A6.toLocaleString();
-            _0x1121C = Math.max(_0x1121C, _0x111D7.measureText(_0x112BD).width);
-            _0x11278.width = 15 + _0x11205 + 50 + _0x1121C;
-            _0x11278.height = (20 * this.party.length) + 5 + (this.party.length > 1 ? 20 : 0);
-            _0x111D7.font = "16px Calibri";
-            var _0x11261 = 20;
-            var _0x1124A = 5 + _0x11205 + 50;
-            for (var _0x111EE = 0; _0x111EE < this.party.length; _0x111EE++) {
-                var _0x11233 = this.party[_0x111EE];
-                _0x111D7.fillStyle = _0x11233.isLeader ? _0x126F4.uiPartyLeaderColor : _0x126F4.uiForegroundColor;
-                _0x111D7.fillText((_0x111EE + 1) + ". " + _0x11233.name, 5, _0x11261);
-                _0x111D7.fillText(_0x11233.scoreText, _0x1124A, _0x11261);
-                _0x11261 += 20
-            };
-            if (this.party.length > 1) {
-                _0x111D7.fillStyle = _0x126F4.uiForegroundColor;
-                _0x111D7.fillText("Total:", 5, _0x11261);
-                _0x111D7.fillText(_0x112BD, _0x1124A, _0x11261)
-            }
-        };
-        _0x115CB.prototype.handleShowScrimmageMenu = function () {
-            _0x11EDE.stop(true, false);
-            _0x11EDE.css("display", "none");
-            _0x123E6.css("display", "block");
-            $("#scrimmage-btn-leave").css("display", "none");
-            _0x12190.serverData.border.enabled = false
-        };
-        _0x115CB.prototype.handleQueueData = function (_0x11261) {
-            var _0x11205 = _0x12300(_0x11261);
-            var _0x1124A = _0x11261.getUint32(_0x11261.offset, true);
-            _0x11261.offset += 4;
-            var _0x11233 = _0x11261.offset < _0x11261.byteLength ? _0x11261.getUint8(_0x11261.offset) : -1;
-            var _0x111EE = document.getElementById("leaderboard-canvas");
-            var _0x111D7 = _0x111EE.getContext("2d");
-            _0x11D29.html("Queue");
-            _0x111EE.width = 200;
-            _0x111EE.height = (20 * (2 + (_0x11233 != -1 ? 1 : 0))) + 5;
-            _0x111D7.font = "16px Calibri";
-            var _0x1121C = 20;
-            _0x111D7.fillStyle = _0x126F4.uiForegroundColor;
-            _0x111D7.fillText("Mode: " + _0x11205, 5, _0x1121C);
-            _0x1121C += 20;
-            _0x111D7.fillText("Time: " + _0x11963(_0x1124A), 5, _0x1121C);
-            if (_0x11233 != -1) {
-                _0x1121C += 20;
-                _0x111D7.fillText("Queued players: " + _0x11233, 5, _0x1121C)
-            }
-        };
-        _0x115CB.prototype.handleQueueLeave = function (_0x11205) {
-            var _0x111EE = _0x12300(_0x11205);
-            var _0x111D7 = document.getElementById("leaderboard-canvas");
-            _0x111D7.width = 0;
-            _0x111D7.height = 0;
-            this.selfMsg("You have left the queue for [" + _0x111EE + "]")
-        };
-        _0x115CB.prototype.handleMatchState = function (_0x111EE) {
-            var _0x111D7 = _0x111EE.byteLength == 1 ? 0 : _0x111EE.getUint8(_0x111EE.offset++);
-            if (_0x111D7 == 0) {
-                this.selfMsg("A match has been found. Good luck and have fun!");
-                _0x124B5()
-            } else {
-                if (_0x111D7 == 1) {
-                    $("#scrimmage-btn-leave").css("display", "block")
-                }
-            }
-        };
-        _0x115CB.prototype.handleScrimmageData = function (_0x112D4) {
-            var _0x111D7 = _0x112D4.getUint8(_0x112D4.offset++);
-            var _0x1128F = $("#scrimmage-mode-select");
-            var _0x11278 = $("#scrimmage-mode-info");
-            var _0x112BD = parseInt(_0x1128F.val());
-            _0x1128F.empty();
-            _0x11278.empty();
-            var _0x111EE = {};
-            while (_0x111D7 > 0) {
-                var _0x11233 = _0x112D4.getUint8(_0x112D4.offset++);
-                var _0x112A6 = _0x12300(_0x112D4);
-                var _0x1124A = _0x12300(_0x112D4);
-                var _0x11205 = document.createElement("option");
-                _0x11205.innerHTML = _0x112A6;
-                _0x11205["value"] = _0x11233;
-                _0x1128F.append(_0x11205);
-                _0x11205 = document.createElement("div");
-                _0x11205.innerHTML = _0x1124A;
-                _0x11205.id = "scrimmage-info-" + _0x11233;
-                _0x11205.style["display"] = "none";
-                _0x11278.append(_0x11205);
-                _0x111EE[_0x11233] = true;
-                _0x111D7--
-            };
-            _0x123CF = {
-                "modes": {},
-                "sizes": {},
-                "maps": []
-            };
-            if (_0x112D4.byteLength - 1 > _0x112D4.offset) {
-                _0x111D7 = _0x112D4.getUint8(_0x112D4.offset++);
-                while (_0x111D7 > 0) {
-                    var _0x11233 = _0x112D4.getUint8(_0x112D4.offset++);
-                    var _0x112A6 = _0x12300(_0x112D4);
-                    _0x123CF.modes[_0x11233] = {
-                        "id": _0x11233,
-                        "name": _0x112A6
-                    };
-                    _0x111D7--
-                };
-                _0x111D7 = _0x112D4.getUint8(_0x112D4.offset++);
-                while (_0x111D7 > 0) {
-                    var _0x11233 = _0x112D4.getUint8(_0x112D4.offset++);
-                    var _0x112A6 = _0x12300(_0x112D4);
-                    _0x123CF.sizes[_0x11233] = {
-                        "id": _0x11233,
-                        "name": _0x112A6
-                    };
-                    _0x111D7--
-                };
-                _0x111D7 = _0x112D4.getUint8(_0x112D4.offset++);
-                while (_0x111D7 > 0) {
-                    var _0x112A6 = _0x12300(_0x112D4);
-                    var _0x11261 = {
-                        "name": _0x112A6,
-                        "startmass": 0,
-                        "teams": 0,
-                        "modes": [],
-                        "sizes": []
-                    };
-                    var _0x1121C = _0x112D4.getUint8(_0x112D4.offset++);
-                    while (_0x1121C > 0) {
-                        _0x11261.modes.push(_0x112D4.getUint8(_0x112D4.offset++));
-                        _0x1121C--
-                    };
-                    var _0x1121C = _0x112D4.getUint8(_0x112D4.offset++);
-                    while (_0x1121C > 0) {
-                        _0x11261.sizes.push(_0x112D4.getUint8(_0x112D4.offset++));
-                        _0x1121C--
-                    };
-                    _0x11261.startmass = _0x112D4.getUint16(_0x112D4.offset, true);
-                    _0x112D4.offset += 2;
-                    _0x11261.respawnDelay = _0x112D4.getInt16(_0x112D4.offset, true);
-                    _0x112D4.offset += 2;
-                    _0x11261.teams = _0x112D4.getUint8(_0x112D4.offset++);
-                    _0x123CF.maps.push(_0x11261);
-                    _0x111D7--
-                }
-            };
-            $("#scrimmage-custom-btn-container").css("display", _0x123CF.maps.length == 0 ? "none" : "block");
-            $("#scrimmage-map").empty();
-            for (var _0x1121C = 0; _0x1121C < _0x123CF.maps.length; _0x1121C++) {
-                $("#scrimmage-map").append("<option value='" + _0x1121C + "'>" + _0x123CF.maps[_0x1121C].name + "</option>")
-            };
-            if (_0x111EE[_0x112BD] != null) {
-                _0x1128F.val(_0x112BD);
-                _0x1128F.trigger("change")
-            } else {
-                _0x1128F.prop("selectedIndex", 0);
-                _0x1128F.trigger("change")
-            }
-        };
-        _0x115CB.prototype.handleCustomGameUpdate = function (_0x11233) {
-            var _0x11205 = _0x11233.getUint8(_0x11233.offset++);
-            switch (_0x11205) {
-            case _0x1170D.MAP:
-                ScrimmageHelper.updateMap(_0x11233.getUint8(_0x11233.offset++));
-                break;
-            case _0x1170D.MODE:
-                ScrimmageHelper.updateMode(_0x11233.getUint8(_0x11233.offset++));
-                break;
-            case _0x1170D.SIZE:
-                ScrimmageHelper.updateSize(_0x11233.getUint8(_0x11233.offset++));
-                break;
-            case _0x1170D.STARTMASS:
-                ScrimmageHelper.updateStartMass(_0x11233.getUint16(_0x11233.offset, true));
-                _0x11233.offset += 2;
-                break;
-            case _0x1170D.LOCK:
-                ScrimmageHelper.updateLock(_0x11233.getUint8(_0x11233.offset++) === 1 ? true : false);
-                break;
-            case _0x1170D.PLAYER_UPDATE:
-                var _0x111EE = _0x11233.getUint8(_0x11233.offset++);
-                var _0x1121C = _0x11233.getUint8(_0x11233.offset++);
-                _0x12190.party[_0x111EE].state = _0x1121C;
-                ScrimmageHelper.updatePlayerById(_0x111EE);
-                break;
-            case _0x1170D.PLAYER_LIST:
-                var _0x111D7 = _0x11233.getUint8(_0x11233.offset++);
-                var _0x111EE = 0;
-                while (_0x111D7 > 0) {
-                    _0x12190.party[_0x111EE].state = _0x11233.getUint8(_0x11233.offset++);
-                    _0x111D7--;
-                    _0x111EE++
-                };
-                ScrimmageHelper.updatePlayers();
-                break;
-            case _0x1170D.VIRUS_DENSITY:
-                ScrimmageHelper.updateVirusDensity(_0x11233.getUint16(_0x11233.offset, true));
-                _0x11233.offset += 2;
-                break;
-            case _0x1170D.RESPAWN_DELAY:
-                ScrimmageHelper.updateRespawnDelay(_0x11233.getInt16(_0x11233.offset, true));
-                _0x11233.offset += 2;
-                break;
-            case _0x1170D.AUTOSPLIT:
-                ScrimmageHelper.updateAutoSplit(_0x11233.getUint8(_0x11233.offset++) === 1 ? true : false);
-                break;
-            case _0x1170D.PUBLIC:
-                ScrimmageHelper.updatePublic(_0x11233.getUint8(_0x11233.offset++) === 1 ? true : false);
-                break;
-            case _0x1170D.PASSWORD:
-                ScrimmageHelper.updatePassword(_0x11233.getUint8(_0x11233.offset++) === 1 ? true : false);
-                break;
-            case _0x1170D.NAME:
-                ScrimmageHelper.updateName(_0x122E9(_0x11233));
-                break
-            }
-        };
-        _0x115CB.prototype.handleCustomGameShow = function (_0x112EB) {
-            $(".scrimmage-full").css("display", "none");
-            $(_0x111C0[88]).css("display", "block");
-            var _0x11261 = _0x122E9(_0x112EB);
-            var _0x11233 = _0x112EB.getUint8(_0x112EB.offset++);
-            var _0x1124A = _0x112EB.getUint8(_0x112EB.offset++);
-            var _0x112BD = _0x112EB.getUint8(_0x112EB.offset++);
-            var _0x112D4 = _0x112EB.getUint16(_0x112EB.offset, true);
-            _0x112EB.offset += 2;
-            var _0x11302 = _0x112EB.getUint16(_0x112EB.offset, true);
-            _0x112EB.offset += 2;
-            var _0x112A6 = _0x112EB.getInt16(_0x112EB.offset, true);
-            _0x112EB.offset += 2;
-            var _0x111EE = _0x112EB.getUint8(_0x112EB.offset++) === 1 ? true : false;
-            var _0x1121C = _0x112EB.getUint8(_0x112EB.offset++) === 1 ? true : false;
-            var _0x1128F = _0x112EB.getUint8(_0x112EB.offset++) === 1 ? true : false;
-            var _0x11278 = _0x112EB.getUint8(_0x112EB.offset++) === 1 ? true : false;
-            var _0x111D7 = _0x112EB.getUint8(_0x112EB.offset++);
-            var _0x11205 = 0;
-            while (_0x111D7 > 0) {
-                _0x12190.party[_0x11205].state = _0x112EB.getUint8(_0x112EB.offset++);
-                _0x111D7--;
-                _0x11205++
-            };
-            ScrimmageHelper.updateName(_0x11261);
-            ScrimmageHelper.updateMap(_0x11233);
-            ScrimmageHelper.updateMode(_0x1124A);
-            ScrimmageHelper.updateSize(_0x112BD);
-            ScrimmageHelper.updateStartMass(_0x112D4);
-            ScrimmageHelper.updateVirusDensity(_0x11302);
-            ScrimmageHelper.updateLock(_0x1121C);
-            ScrimmageHelper.updateRespawnDelay(_0x112A6);
-            ScrimmageHelper.updateAutoSplit(_0x111EE);
-            ScrimmageHelper.updatePublic(_0x1128F);
-            ScrimmageHelper.updatePassword(_0x11278);
-            ScrimmageHelper.updatePlayers();
-            ScrimmageHelper.checkLeader()
-        };
-        _0x115CB.prototype.handleCustomGameLeave = function () {
-            $(".scrimmage-full").css("display", "none");
-            $(_0x111C0[649]).css("display", "block")
-        };
-        _0x115CB.prototype.handleShowCustomGameLobbies = function (_0x11233) {
-            $(".scrimmage-full").css("display", "none");
-            $("#scrimmage-menu").css("display", "block");
-            _0x1173B = {};
-            var _0x1121C = $("#scrimmage-lobbies-tbody");
-            _0x1121C.empty();
-            while (true) {
-                var _0x11205 = _0x11233.getUint32(_0x11233.offset, true);
-                _0x11233.offset += 4;
-                if (_0x11205 == 0) {
-                    break
-                };
-                var _0x111D7 = {};
-                _0x111D7.id = _0x11205;
-                _0x111D7.name = _0x122E9(_0x11233);
-                _0x111D7.leaderId = _0x11233.getUint32(_0x11233.offset);
-                _0x11233.offset += 4;
-                _0x111D7.leaderName = _0x122E9(_0x11233) || "An unnamed cell";
-                _0x111D7.map = _0x11233.getUint8(_0x11233.offset++);
-                _0x111D7.mode = _0x11233.getUint8(_0x11233.offset++);
-                _0x111D7.size = _0x11233.getUint16(_0x11233.offset, true);
-                _0x11233.offset += 2;
-                _0x111D7.maxSize = _0x11233.getUint16(_0x11233.offset, true);
-                _0x11233.offset += 2;
-                _0x111D7.hasPasscode = _0x11233.getUint8(_0x11233.offset++) == 1 ? true : false;
-                _0x1173B[_0x111D7.id] = _0x111D7;
-                var _0x111EE = _0x111D7.hasPasscode ? _0x111C0[658] : "";
-                _0x1121C.append("<tr partyId='" + _0x111D7.id + "'><td><span>" + _0x111EE + _0x120C1(_0x111D7.name) + _0x111C0[661] + _0x120C1(_0x111D7.leaderName) + _0x111C0[661] + _0x123CF.maps[_0x111D7.map].name + _0x111C0[661] + _0x123CF.modes[_0x111D7.mode].name + _0x111C0[661] + _0x111D7.size + "/" + _0x111D7.maxSize + _0x111C0[662])
-            };
-            $("#scrimmage-lobbies-tbody tr").on("click", function () {
-                $(".custom-game-selected").removeClass("custom-game-selected");
-                _0x12459 = $(this).attr("partyId");
-                $(this).addClass("custom-game-selected")
-            })
-        };
-        ScrimmageHelper = {
-            updateName: function (_0x111D7) {
-                $("#scrimmage-name").text(_0x111D7)
-            },
-            updateMap: function (_0x111EE) {
-                $("#scrimmage-map option[value='" + _0x111EE + "']").prop("selected", true);
-                var _0x11205 = _0x123CF.maps[_0x111EE];
-                $("#scrimmage-mapmode").empty();
-                for (var _0x111D7 = 0; _0x111D7 < _0x11205.modes.length; _0x111D7++) {
-                    var _0x1121C = _0x123CF.modes[_0x11205.modes[_0x111D7]];
-                    $("#scrimmage-mapmode").append("<option value='" + _0x111D7 + "'>" + _0x1121C.name + "</option>")
-                };
-                $("#scrimmage-mapsize").empty();
-                for (var _0x111D7 = 0; _0x111D7 < _0x11205.sizes.length; _0x111D7++) {
-                    var _0x11233 = _0x123CF.sizes[_0x11205.sizes[_0x111D7]];
-                    $("#scrimmage-mapsize").append("<option value='" + _0x111D7 + "'>" + _0x11233.name + "</option>")
-                };
-                ScrimmageHelper.updateMode(0);
-                ScrimmageHelper.updateSize(0);
-                ScrimmageHelper.updateStartMass(_0x11205.startmass);
-                $("#scrimmage-startmass").attr("placeholder", _0x11205.startmass);
-                ScrimmageHelper.updateRespawnDelay(_0x11205.respawnDelay);
-                $("#scrimmage-map").attr("data", _0x111EE);
-                _0x12190.customGameMap = _0x11205
-            },
-            updateMode: function (_0x111D7) {
-                $("#scrimmage-mapmode option[value='" + _0x111D7 + "']").prop("selected", true);
-                $("#scrimmage-mapmode").attr("data", _0x111D7)
-            },
-            updateSize: function (_0x111D7) {
-                $("#scrimmage-mapsize option[value='" + _0x111D7 + "']").prop("selected", true);
-                $("#scrimmage-mapsize").attr("data", _0x111D7)
-            },
-            updateStartMass: function (_0x111D7) {
-                $("#scrimmage-startmass").val(_0x111D7);
-                $("#scrimmage-startmass").attr("data", _0x111D7)
-            },
-            updateVirusDensity: function (_0x111D7) {
-                $("#scrimmage-virusDensity").val(_0x111D7);
-                $("#scrimmage-virusDensity").attr("data", _0x111D7)
-            },
-            updateRespawnDelay: function (_0x111D7) {
-                $("#scrimmage-respawnDelay").val(_0x111D7);
-                $("#scrimmage-respawnDelay").attr("data", _0x111D7)
-            },
-            updateAutoSplit: function (_0x111D7) {
-                $("#scrimmage-autoSplit").prop("checked", _0x111D7)
-            },
-            updatePublic: function (_0x111D7) {
-                $("#scrimmage-public").prop("checked", _0x111D7)
-            },
-            updatePassword: function (_0x111D7) {
-                $("#scrimmage-password").prop("checked", _0x111D7)
-            },
-            updateLock: function (_0x111D7) {
-                $("#scrimmage-lockteams").prop("checked", _0x111D7);
-                ScrimmageHelper.checkLock()
-            },
-            checkLock: function () {
-                if ($("#scrimmage-lockteams").prop("checked") && !_0x12190.isPartyLeader()) {
-                    $("#cgp-" + _0x12190.partyIndex).attr("disabled", "disabled")
-                } else {
-                    $("#cgp-" + _0x12190.partyIndex).removeAttr("disabled")
-                }
-            },
-            checkLeader: function () {
-                if (_0x12190.isPartyLeader()) {
-                    $(".custom-game").removeAttr("disabled")
-                } else {
-                    $(".custom-game").attr("disabled", "disabled");
-                    ScrimmageHelper.checkLock()
-                }
-            },
-            updatePlayerById: function (_0x111D7) {
-                var _0x111EE = _0x12190.party[_0x111D7];
-                $("#cgp-" + _0x111D7 + " option[value='" + _0x111EE.state + "']").prop("selected", true);
-                $("#cgp-name-" + _0x111D7).text(_0x111EE.name);
-                $("#cgp-name-" + _0x111D7).css("color", _0x116F6[_0x111EE.state])
-            },
-            updatePlayers: function () {
-                $(_0x111C0[694]).empty();
-                for (var _0x111D7 = 0; _0x111D7 < _0x12190.party.length; _0x111D7++) {
-                    var _0x111EE = _0x12190.party[_0x111D7];
-                    if (_0x111EE.id == _0x12190.playerId) {
-                        _0x12190.partyIndex = _0x111D7
-                    };
-                    $(_0x111C0[694]).append(_0x111C0[695] + _0x111D7 + "'>" + _0x111EE.name + _0x111C0[696] + ScrimmageHelper[_0x111C0[697]](_0x111D7, _0x12190.customGameMap.teams) + _0x111C0[698]);
-                    $("#cgp-" + _0x111D7 + " option[value='" + _0x111EE.state + "']").prop("selected", true);
-                    $("#cgp-name-" + _0x111D7).css("color", _0x116F6[_0x111EE.state]);
-                    $("#cgp-" + _0x111D7).on("change", function (_0x111EE) {
-                        var _0x11205 = parseInt($(this).attr("id").match("\\d+")[0]);
-                        var _0x1121C = $(this).find("option:selected").val();
-                        $("#cgp-" + _0x111D7 + " option[value='" + $(this).attr("data") + "']").prop("selected", true);
-                        _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.PLAYER_UPDATE, _0x11205, _0x1121C))
-                    })
-                };
-                ScrimmageHelper.checkLeader()
-            },
-            getTeamOptions: function (_0x111EE, _0x1121C) {
-                var _0x11205 = "";
-                if (_0x1121C != null && _0x1121C > 1) {
-                    _0x11205 = "<td><select class='custom-game' id='cgp-" + _0x111EE + "'><option value='0'>Spectator</option>";
-                    for (var _0x111D7 = 1; _0x111D7 <= _0x1121C; _0x111D7++) {
-                        _0x11205 += "<option value='" + _0x111D7 + "' class='t" + _0x111D7 + "'>" + _0x123FD[_0x111D7] + "</option>"
-                    };
-                    _0x11205 += "</select></td>"
-                };
-                return _0x11205
-            }
-        };
-        function _0x113D1(_0x111D7) {
-            this.id = _0x111D7;
-            this.type = 0;
-            this.nameCache = null;
-            this.skin = null;
-            this.playerId = 0;
-            this.color = null;
-            this.x = 0;
-            this.y = 0;
-            this.x_ = 0;
-            this.y_ = 0;
-            this.size = 0;
-            this.size_ = 0;
-            this.steps = 0;
-            this.massLastAmount = -1;
-            this.team = null
-        }
-        _0x113D1.prototype.setType = function (_0x111D7) {
-            this.type = _0x111D7
-        };
-        _0x113D1.prototype.setX = function (_0x111D7) {
-            this.x_ = _0x111D7;
-            this.x = _0x111D7
-        };
-        _0x113D1.prototype.setY = function (_0x111D7) {
-            this.y_ = _0x111D7;
-            this.y = _0x111D7
-        };
-        _0x113D1.prototype.updateX = function (_0x111D7) {
-            this.x_ = _0x111D7
-        };
-        _0x113D1.prototype.updateY = function (_0x111D7) {
-            this.y_ = _0x111D7
-        };
-        _0x113D1.prototype.setSize = function (_0x111D7) {
-            this.size_ = _0x111D7;
-            this.size = _0x111D7
-        };
-        _0x113D1.prototype.getMass = function () {
-            return (this.size * this.size) / 25 >> 0
-        };
-        _0x113D1.prototype.getRealMass = function () {
-            return (this.size_ * this.size_) / 25 >> 0
-        };
-        _0x113D1.prototype.animate = function (_0x111D7) {
-            this.x += ((this.x_ - this.x) * _0x111D7);
-            this.y += ((this.y_ - this.y) * _0x111D7);
-            this.size += ((this.size_ - this.size) * _0x111D7);
-            this.steps--
-        };
-        _0x113D1.prototype.getSizeCache = function () {
-            var _0x1124A = this.getMass();
-            if (_0x1124A != this.massLastAmount || this.massLastAmount < 0) {
-                var _0x11261;
-                if (_0x12037.massType == 1) {
-                    _0x11261 = this.toShortString(_0x1124A)
-                } else {
-                    _0x11261 = _0x1124A.toString()
-                };
-                var _0x1128F = 0;
-                var _0x11205 = 0;
-                for (var _0x1121C = 0; _0x1121C < _0x11261.length; _0x1121C++) {
-                    var _0x111D7 = _0x11261.charAt(_0x1121C);
-                    var _0x11233 = _0x125C9.getNumber(_0x111D7);
-                    _0x1128F += _0x11233.width - 2;
-                    _0x11205 = Math.max(_0x11233.height, _0x11205)
-                };
-                if (this.team == null) {
-                    this.team = _0x1214B.RenderTexture.create(_0x1128F, _0x11205)
-                } else {
-                    if (_0x1128F != this.team.width || _0x11205 != this.team.height) {
-                        this.team.destroy({
-                            children: true,
-                            texture: true,
-                            baseTexture: true
-                        });
-                        this.team = _0x1214B.RenderTexture.create(_0x1128F, _0x11205)
-                    }
-                };
-                var _0x111EE = _0x125C9.cacheContainer;
-                var _0x11278 = 0;
-                for (var _0x1121C = 0; _0x1121C < _0x11261.length; _0x1121C++) {
-                    var _0x111D7 = _0x11261.charAt(_0x1121C);
-                    var _0x11233 = _0x125C9.getSizeCacheSprite();
-                    _0x11233.texture = _0x125C9.getNumber(_0x111D7).texture;
-                    _0x11233.position.x.x = _0x11278;
-                    _0x111EE.addChild(_0x11233);
-                    _0x11278 += _0x11233.width - 2
-                };
-                _0x12162.renderer.render(_0x111EE, {
-                    renderTexture: this.team,
-                    clear: true
-                });
-                _0x125C9.clearCacheContainer();
-                this.massLastAmount = _0x1124A
-            };
-            return this.team
-        };
-        _0x113D1.prototype.toShortString = function (_0x111EE) {
-            if (_0x111EE < 1000) {
-                return _0x111EE.toString()
-            } else {
-                if (_0x111EE < 1000000) {
-                    var _0x111D7 = Math.floor(_0x111EE / 100) / 10;
-                    return _0x111D7.toFixed(1) + "K"
-                } else {
-                    if (_0x111EE < 1000000000) {
-                        var _0x111D7 = Math.floor(_0x111EE / 100000) / 10;
-                        return _0x111D7.toFixed(1) + "M"
-                    } else {
-                        if (_0x111EE >= 1000000000) {
-                            var _0x111D7 = Math.floor(_0x111EE / 100000000) / 10;
-                            return _0x111D7.toFixed(1) + "B"
-                        }
-                    }
-                }
-            };
-            return _0x111EE.toString()
-        };
-        function _0x125B2() {
-            this.team = {};
-            this.cacheContainer = new _0x1214B.Container();
-            this.sprites = [];
-            this.spritesIndex = 0;
-            this.getNumber = function (_0x111D7) {
-                return this.team[_0x111D7]
-            };
-            this.clearCacheContainer = function () {
-                while (this.cacheContainer.children[0]) {
-                    this.cacheContainer.removeChild(this.cacheContainer.children[0])
-                };
-                this.spritesIndex = 0
-            };
-            this.getSizeCacheSprite = function () {
-                while (this.spritesIndex >= this.sprites.length) {
-                    this.sprites.push(new _0x1214B.Sprite())
-                };
-                return this.sprites[this.spritesIndex++]
-            };
-            this.buildSizeCache = function () {
-                var _0x111D7 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "K", "M", "B", "T"];
-                for (var _0x111EE of _0x111D7) {
-                    var _0x11205 = new _0x1214B.Text(_0x111EE, {
-                        fontFamily: "Verdana",
-                        fontWeight: "bold",
-                        fontSize: 54,
-                        fill: "#fff",
-                        stroke: "black",
-                        strokeThickness: _0x12037.textOutlineSize
-                    });
-                    this.team[_0x111EE] = _0x11205
-                }
+                alert(e7['message'] + '\x20(' + e7['code'] + ')');
             }
         }
-        const _0x125C9 = new _0x125B2();
-        _0x113D1.prototype.handleFood = function () {
-            if (this.needsPixiUpdate && this.sprite.visible) {
-                this.sprite.texture = _0x118F0;
-                this.sprite.anchor.set(0.5);
-                this.sprite.width = 12;
-                this.sprite.height = 12;
-                if (_0x12020.cThemeEnabled && _0x116DF.length > 0) {
-                    this.sprite.tint = _0x11A60(this.id)
-                } else {
-                    this.sprite.tint = this.color
-                };
-                this.needsPixiUpdate = false
-            };
-            this[_0x111C0[743]][_0x111C0[232]][_0x111C0[744]](this[_0x111C0[231]], this[_0x111C0[234]])
-        };
-        _0x113D1.prototype.handle = function () {
-            switch (this.type) {
-            case 0:
-                break;
-            case 1:
-                if (this.needsPixiUpdate) {
-                    if (this.skin >= 0 && this.skin < _0x11866.length) {
-                        this.sprite.texture = _0x11866[this.skin]
-                    } else {
-                        this.sprite.texture = _0x11821
-                    };
-                    this.sprite.tint = this.color;
-                    this.sprite.width = this.size * 2;
-                    this.sprite.height = this.size * 2;
-                    this.needsPixiUpdate = false
-                };
-                if (this.rainbow) {
-                    this.sprite.tint = _0x12276[Math.floor((_0x11CFB % _0x1228D) / 100)]
-                };
-                this[_0x111C0[743]][_0x111C0[232]][_0x111C0[744]](this[_0x111C0[231]], this[_0x111C0[234]]);
-                break;
-            case 2:
-                var _0x11205 = _0x12190.playerRegistry[_0x111C0[748]](this.playerId);
-                var _0x1121C = _0x121D5["ALL"];
-                if (_0x12190.playerId == this.playerId) {
-                    _0x1121C = _0x121D5[_0x111C0[749]]
-                } else {
-                    if (_0x12190.partyIds[this.playerId] != null) {
-                        _0x1121C = _0x121D5.PARTY
-                    }
-                };
-                let _0x111D7 = this.needsPixiUpdate;
-                if (this.needsPixiUpdate) {
-                    this.cellSprite = new _0x1214B.Sprite(_0x1214B.Texture.EMPTY);
-                    this.cellSprite.anchor.set(0.5);
-                    this.cellSprite.width = _0x113E8;
-                    this.cellSprite.height = _0x113E8;
-                    this.container.addChild(this.cellSprite);
-                    this.skinSprite = new _0x1214B.Sprite(_0x1214B.Texture.EMPTY);
-                    this.skinSprite.anchor.set(0.5);
-                    this.skinSprite.width = _0x113E8;
-                    this.skinSprite.height = _0x113E8;
-                    this.container.addChild(this.skinSprite);
-                    this.massSprite = new _0x1214B.Sprite(_0x1214B.Texture.EMPTY);
-                    this.container.addChild(this.massSprite);
-                    if (_0x11205.name.length > 0) {
-                        this.nameSprite = new _0x1214B.Sprite(_0x1214B.Texture.EMPTY);
-                        this.container.addChild(this.nameSprite)
-                    };
-                    this.needsPixiUpdate = false
-                };
-                if (_0x11205.cacheUpdate || _0x111D7) {
-                    if (this.nameSprite) {
-                        this.nameSprite.texture = _0x11205[_0x111C0[756]](_0x11205.cacheUpdate).texture;
-                        this.nameSprite.texture.update()
-                    };
-                    if (_0x11205.spiked == 1) {
-                        if (_0x116C8.aCustomSpike) {
-                            this.cellSprite.texture = _0x116C8.aCustomSpike
-                        } else {
-                            this.cellSprite.texture = _0x1263C
-                        };
-                        this.cellSprite.tint = 16777215
-                    } else {
-                        if (_0x11205.spiked == 2) {
-                            if (_0x116C8.aCustomMother) {
-                                this.cellSprite.texture = _0x116C8.aCustomMother
-                            } else {
-                                this.cellSprite.texture = _0x12653
-                            };
-                            this.cellSprite.tint = 16777215
-                        } else {
-                            this.cellSprite.texture = _0x11444;
-                            this.cellSprite.tint = _0x11205.cellColor
-                        }
-                    }
-                };
-                this.skinSprite.visible = _0x12037.levelSkins >= _0x1121C && _0x11205.spiked == 0;
-                if (this.skinSprite.visible) {
-                    var _0x11261 = _0x11205.getSkin();
-                    if (_0x11261 != null) {
-                        if (!_0x11261.isGif) {
-                            if (_0x11261 !== this.skinSprite.texture) {
-                                this.skinSprite.texture = _0x11261
-                            }
-                        } else {
-                            this.skinSprite.texture = _0x11261.getTexture()
-                        }
-                    } else {
-                        this.skinSprite.visible = false
-                    }
-                };
-                var _0x11233 = 4 / this.size;
-                var _0x11278 = Math.max(_0x11233, 0.16) * 4;
-                var _0x1124A = _0x12190.scale >= _0x11233 * 4 || _0x12020.cDisableAutoNameHiding;
-                if (this.nameSprite) {
-                    this.nameSprite.visible = _0x12037.levelNames >= _0x1121C && _0x1124A;
-                    if (this.nameSprite.visible) {
-                        this.nameSprite.scale.set(_0x11278);
-                        this.nameSprite.x = -(this.nameSprite.width / 2);
-                        if (!_0x11205.lowerName) {
-                            this.nameSprite.y = -(this.nameSprite.height / 2)
-                        } else {
-                            this.nameSprite.y = _0x1142D - (this.nameSprite.height / 2)
-                        };
-                        if (_0x11205.effect == 1 && _0x11F51[0] != null) {
-                            if (!this.nameEffectSprite) {
-                                this.nameEffectSprite = new _0x1214B.Sprite(_0x1214B.Texture.EMPTY);
-                                this.nameSprite.addChild(this.nameEffectSprite)
-                            };
-                            var _0x1128F = _0x11F51[0].getTexture();
-                            this.nameEffectSprite.scale.set(this.nameSprite.texture.width / _0x1128F.width, this.nameSprite.texture.height / _0x1128F.height);
-                            this.nameEffectSprite.texture = _0x1128F
-                        }
-                    }
-                };
-               if (_0x12020.cShowMass && (_0x1121C <= _0x121D5.PARTY || _0x12190.serverData.autosplits) && _0x1124A) {
-                    var _0x111EE = this.getSizeCache();
-                    this.massSprite.texture = _0x111EE;
-                    this.massSprite.scale.set(_0x11278);
-                    this.massSprite.x = -(this.massSprite.width / 2);
-                    if (this.nameSprite != null && this.nameSprite.visible) {
-                        this.massSprite.y = this.nameSprite.y + this.nameSprite.height
-                    } else {
-                        this.massSprite.y = -(this.massSprite.height / 2)
-                    };
-                    this.massSprite.visible = true
-                } else {
-                    this.massSprite.visible = false
-                };
-                if ((_0x11205.flags & 4) == 4) {
-                    if (!this.debuffSprite) {
-                        this.debuffSprite = new _0x1214B.Sprite(_0x12203);
-                        this.debuffSprite.anchor.set(0.5);
-                        this.debuffSprite.width = _0x113FF;
-                        this.debuffSprite.height = _0x113FF;
-                        this.container.addChild(this.debuffSprite)
-                    }
-                } else {
-                    if (this.debuffSprite) {
-                        this.debuffSprite.parent.removeChild(this.debuffSprite);
-                        this.debuffSprite.destroy();
-                        this.debuffSprite = null
-                    }
-                };
-                if ((_0x11205.flags & 1) == 1) {
-                    if (!this.shieldSprite) {
-                        this.shieldSprite = new _0x1214B.Sprite(_0x1221A);
-                        this.shieldSprite.anchor.set(0.5);
-                        this.shieldSprite.width = _0x113FF;
-                        this.shieldSprite.height = _0x113FF;
-                        this.container.addChild(this.shieldSprite)
-                    }
-                } else {
-                    if (this.shieldSprite) {
-                        this.shieldSprite.parent.removeChild(this.shieldSprite);
-                        this.shieldSprite.destroy();
-                        this.shieldSprite = null
-                    }
-                };
-                this[_0x111C0[751]][_0x111C0[252]][_0x111C0[744]](this[_0x111C0[263]] / _0x11416);
-                this[_0x111C0[751]][_0x111C0[232]][_0x111C0[744]](this[_0x111C0[231]], this[_0x111C0[234]]);
-                break;
-            case 3:
-                if (this.needsPixiUpdate) {
-                    this.sprite.anchor.set(0.5);
-                    this.sprite.width = 128;
-                    this.sprite.height = 128;
-                    if (_0x116C8.aCustomSpike) {
-                        this.sprite.texture = _0x116C8.aCustomSpike
-                    } else {
-                        this.sprite.texture = _0x1263C
-                    };
-                    this.needsPixiUpdate = false
-                };
-                this[_0x111C0[743]][_0x111C0[252]][_0x111C0[744]](this[_0x111C0[263]] / 256);
-                this[_0x111C0[743]][_0x111C0[232]][_0x111C0[744]](this[_0x111C0[231]], this[_0x111C0[234]]);
-                break;
-            case 4:
-                if (this.needsPixiUpdate) {
-                    if (_0x116C8.aCustomMother) {
-                        this.sprite.texture = _0x116C8.aCustomMother
-                    } else {
-                        this.sprite.texture = _0x12653
-                    };
-                    if (_0x11894.enabled && _0x11894.motherCustomEnabled && !_0x12020.cDisableEventSkins && !_0x116C8.aCustomMother) {
-                        _0x11894.motherCustom(this)
-                    } else {
-                        this.setDefaultSpriteAnchor()
-                    };
-                    this.needsPixiUpdate = false
-                };
-                if (!_0x116C8.aCustomMother && _0x11894.enabled) {
-                    if (this.size >= 100 && !_0x12020.cDisableEventSkins) {
-                        this.sprite.texture = _0x1266A
-                    } else {
-                        this.sprite.texture = _0x12653
-                    }
-                };
-                this[_0x111C0[743]][_0x111C0[252]][_0x111C0[744]](this[_0x111C0[263]] / 256);
-                this[_0x111C0[743]][_0x111C0[232]][_0x111C0[744]](this[_0x111C0[231]], this[_0x111C0[234]]);
-                break;
-            case 5:
-                if (this.needsPixiUpdate) {
-                    this.sprite.texture = _0x12248[this[_0x111C0[481]]].texture;
-                    this.sprite.width = this.size * 2;
-                    this.sprite.height = this.size * 2;
-                    this.needsPixiUpdate = false
-                };
-                this[_0x111C0[743]][_0x111C0[232]][_0x111C0[744]](this[_0x111C0[231]], this[_0x111C0[234]]);
-                break
+
+        function ap(e7, e8) {
+            var e9 = '',
+                eb = '',
+                ec = 'white';
+            if (e8['flags']['STAFF']) eb = 'Gota.io\x20Staff', e9 = 'build', ec = 'royalblue';
+            else {
+                if (!e8['flags']['VERIFIED']) return;
+                eb = 'Verified\x20Player', e9 = 'check_circle';
             }
+            var ed = document['createElement']('i');
+            ed['className'] = 'material-icons', ed['id'] = 'user-badge', ed['innerText'] = e9, ed['style']['color'] = ec, $(ed)['attr']('data-balloon', eb), $(ed)['attr']('data-balloon-pos', 'right'), $(e7)['append'](ed);
         }
-        ;
-        _0x113D1.prototype.setDefaultSpriteAnchor = function () {
-            this.sprite.anchor.set(0.5);
-            this.sprite.width = 128;
-            this.sprite.height = 128
-        };
-        _0x113D1.prototype.onCreate = function (_0x111D7) {
-            if (this.type == 2) {
-                if (this.container) {
-                    return
-                };
-                this.container = new _0x1214B.Container();
-                this.container.parentCell = this;
-                this.needsPixiUpdate = true;
-                _0x1145B.addChild(this.container)
-            } else {
-                if (this.sprite) {
-                    return
-                };
-                this.sprite = new _0x1214B.Sprite(_0x1214B.Texture.EMPTY);
-                this.sprite.parentCell = this;
-                this.sprite.anchor.set(0.5);
-                this.needsPixiUpdate = true;
-                if (this.type != 0) {
-                    _0x1145B.addChild(this.sprite)
-                } else {
-                    _0x11907.addChild(this.sprite)
-                }
-            };
-            if (this.type == 6) {
-                _0x111D7.foodObjects[this.id] = this
-            } else {
-                _0x111D7.bucket[this.id] = this
-            };
-            if (this.playerId == _0x111D7.playerId) {
-                _0x111D7.myCells[this.id] = this
-            }
-        };
-        _0x113D1.prototype.onDelete = function () {
-            if (this.container) {
-                this.container.parent.removeChild(this.container);
-                this.container.parentCell = null;
-                this.container.destroy({
-                    children: true
-                });
-                this.container = null
-            } else {
-                if (this.sprite) {
-                    this.sprite.parent.removeChild(this.sprite);
-                    this.sprite.parentCell = null;
-                    this.sprite.destroy({
-                        children: true
-                    });
-                    this.sprite = null
-                }
-            };
-            if (this.team) {
-                this.team.destroy();
-                this.team = null
-            }
-        };
-        function _0x121BE() {
-            this.bucket = {};
-            this.defaultData;
-            this.updatedPlayers = [];
-            this.init = function () {
-                this.defaultData = new _0x121A7(0);
-                this.defaultData.name = "";
-                this.defaultData.cellColor = 0xaaaaaa
-            };
-            this.add = function (_0x111D7) {
-                this.bucket[_0x111D7.id] = _0x111D7
-            };
-            this.remove = function (_0x111D7) {
-                this.bucket[_0x111D7].onDelete();
-                delete this.bucket[_0x111D7]
-            };
-            this["clear"] = function () {
-                for (var _0x111D7 in this.bucket) {
-                    this.remove(_0x111D7)
-                }
-            };
-            this.getPlayer = function (_0x111D7) {
-                return this.bucket[_0x111D7]
-            };
-            this[_0x111C0[748]] = function (_0x111EE) {
-                var _0x111D7 = this.bucket[_0x111EE];
-                return _0x111D7 != null ? _0x111D7 : this.defaultData
-            };
-            this.updatePlayer = function (_0x111D7) {
-                _0x111D7.cacheUpdate = true;
-                this.updatedPlayers.push(_0x111D7)
-            };
-            this.handleUpdatedPlayers = function () {
-                while (this.updatedPlayers.length > 0) {
-                    var _0x111D7 = this.updatedPlayers.shift();
-                    _0x111D7.cacheUpdate = false
-                }
-            };
-            this.init()
+
+        function aq(e7, e8) {
+            var e9 = document['createElement']('i');
+            return e9['className'] = 'material-icons', e9['innerText'] = e7, e9['setAttribute']('data-balloon', e8), e9['setAttribute']('data-balloon-pos', 'up'), e9;
         }
-        function _0x121A7(_0x111D7) {
-            this.id = _0x111D7;
-            this.name;
-            this.skin;
-            this.skinCache;
-            this.cellColor;
-            this.nameColor = "#fff";
-            this.flags = 0;
-            this.effect = 0;
-            this.nameFont = 0;
-            this.lowerName = false;
-            this.nameCache = null;
-            this.cacheUpdate = false;
-            this.spiked = 0;
-            this.setFlags = function (_0x111D7) {
-                this.flags = _0x111D7;
-                if ((this.flags & 8) == 8) {
-                    this.spiked = 1
-                } else {
-                    if ((this.flags & 16) == 16) {
-                        this.spiked = 2
-                    } else {
-                        this.spiked = 0
-                    }
-                }
-            };
-            this.parseEffect = function (_0x111D7) {
-                if (_0x111D7 >= 64) {
-                    _0x111D7 -= 64;
-                    this.lowerName = true
-                } else {
-                    this.lowerName = false
-                };
-                this.effect = _0x111D7
-            };
-            this[_0x111C0[756]] = function (_0x111D7) {
-                if (_0x111D7 || this.nameCache == null) {
-                    var _0x111EE = _0x11A04(this.nameFont);
-                    var _0x1121C, _0x11205;
-                    if (_0x111EE == _0x11780) {
-                        _0x1121C = "bold";
-                        _0x11205 = _0x12037.textOutlineSize
-                    } else {
-                        _0x1121C = "normal";
-                        _0x11205 = 9
-                    };
-                    if (!this.nameCache) {
-                        this.nameCache = new _0x1214B.Text(this.name, {
-                            fontFamily: _0x111EE.font,
-                            fontWeight: _0x1121C,
-                            fontSize: _0x111EE.size,
-                            fill: this.nameColor,
-                            stroke: _0x111EE.outlineColor,
-                            strokeThickness: _0x11205
-                        })
-                    } else {
-                        this.nameCache.text = this.name;
-                        this.nameCache.style.fontFamily = _0x111EE.font;
-                        this.nameCache.style.stroke = _0x111EE.outlineColor;
-                        this.nameCache.style.fontWeight = _0x1121C;
-                        this.nameCache.style.fontSize = _0x111EE.size;
-                        this.nameCache.style.fill = this.nameColor;
-                        this.nameCache.updateText()
-                    };
-                    this.nameCache.width
-                };
-                return this.nameCache
-            };
-            this.setSkin = function (_0x111D7) {
-                if (_0x111D7.length == 0) {
-                    this.skin = null;
-                    this.skinCache = null
-                } else {
-                    if (_0x111D7 !== this.skin) {
-                        this.skin = _0x111D7;
-                        this.skinCache = null
-                    }
-                }
-            };
-            this.getSkin = function () {
-                if (this.skinCache != null) {
-                    return this.skinCache
-                };
-                if (this.skin != null) {
-                    if (!_0x125F7[this.skin]) {
-                        _0x125F7[this.skin] = _0x1260E.LOADING;
-                        if (this.skin.endsWith(".gif")) {
-                            var _0x11205 = this.skin;
-                            var _0x111D7 = this;
-                            gifFrames({
-                                url: _0x11205,
-                                frames: "all",
-                                cumulative: false,
-                                outputType: "canvas"
-                            }).then(function (_0x111D7) {
-                                var _0x111EE = new _0x11AA5();
-                                _0x111EE.loadFromFrameData(_0x111D7);
-                                _0x125F7[_0x11205] = _0x1260E.LOADED;
-                                _0x125E0[_0x11205] = _0x111EE
-                            }).catch(function (_0x111EE) {
-                                _0x111D7.skin = null
+
+        function ar(e7, e8, e9, eb) {
+            var ec = document['createElement']('li');
+            ec['className'] = 'user-embed\x20menu-sub-bg2', ec['style']['backgroundColor'] = d5['uiMenuHeaderBackgroundColor'];
+            var ed = document['createElement']('img');
+            ed['src'] = e7['avatar'], ed['alt'] = e7['username'], ec['appendChild'](ed);
+            var ef = document['createElement']('div');
+            ef['className'] = 'info';
+            var eg = document['createElement']('div');
+            eg['className'] = 'username', eg['innerText'] = e7['username'], ef['appendChild'](eg), ap(eg, e7);
+            var eh, ei = document['createElement']('div'),
+                ej = !0x1,
+                ek = null;
+            e9 ? (eh = e7['presence']['server'], ek = eh['charAt'](0x0)['toUpperCase']() + eh['slice'](0x1), e7['presence']['timestamp'] + 0xea60 < new Date()['getTime']() || void 0x0 === e7['presence']['id'] ? (ei['className'] = 'status\x20offline', ei['innerText'] = 'Not\x20playing\x20on\x20any\x20server') : (ej = !0x0, ei['className'] = 'status\x20' + ('ONLINE' === e7['presence']['status'] ? 'online' : 'spectate'), ei['innerText'] = ('ONLINE' === e7['presence']['status'] ? 'Playing\x20' : 'Spectating\x20') + e7['presence']['gamemode'] + '\x20on\x20' + ek + '\x20(ID\x20' + e7['presence']['id'] + ')')) : (ei['className'] = 'status\x20pending', ei['innerText'] = 'Pending\x20Friend\x20Request'), ef['appendChild'](ei);
+            var el = document['createElement']('div');
+            if (el['className'] = 'actions', eg['addEventListener']('click', function (eq) {
+                    as(e7, $('#main-social'));
+                }), e9 && ej) {
+                var em = aq('input', 'Join\x20Server');
+                em['addEventListener']('click', function (eq) {
+                    aN(ek), bU['play'](), bU['selfMsg'](e7['username'] + '\x27s\x20ID\x20is\x20' + e7['presence']['id']), b4($('#main-social'));
+                }), el['appendChild'](em);
+            }
+            if (!e9) {
+                var eo = aq('done', 'Add\x20as\x20Friend');
+                eo['isHandlingRequest'] = !0x1, eo['addEventListener']('click', function (eq) {
+                    eo['isHandlingRequest'] || (eo['isHandlingRequest'] = !0x0, firebase['auth']()['currentUser']['getIdToken']()['then'](er => {
+                        fetch(cQ + '/api/v1/social/friends', {
+                            'method': 'POST',
+                            'headers': {
+                                'Content-Type': 'application/json'
+                            },
+                            'body': JSON['stringify']({
+                                'token': er,
+                                'target': e7['uid'],
+                                'action': 0x2
                             })
-                        } else {
-                            var _0x111EE = new Image();
-                            _0x111EE.crossOrigin = "";
-                            var _0x11205 = this.skin;
-                            _0x111EE.addEventListener("load", function () {
-                                var _0x111D7 = document.createElement("canvas");
-                                _0x111D7.width = 512;
-                                _0x111D7.height = 512;
-                                var _0x1121C = _0x111D7.getContext("2d");
-                                _0x1121C.beginPath();
-                                _0x1121C.arc(256, 256, 256, 0, _0x1211D, false);
-                                _0x1121C.closePath();
-                                _0x1121C.clip();
-                                _0x1121C.drawImage(_0x111EE, 0, 0, 512, 512);
-                                var _0x11233 = _0x1214B.Texture.from(_0x111D7);
-                                _0x125F7[_0x11205] = _0x1260E.LOADED;
-                                _0x125E0[_0x11205] = _0x11233
+                        })['then'](es => es['json']())['then'](es => {
+                            0xc8 !== es['code'] && alert(es['message']), eo['isHandlingRequest'] = !0x1;
+                        })['catch'](es => {
+                            alert(es), eo['isHandlingRequest'] = !0x1;
+                        });
+                    })['catch'](er => {
+                        ao(er, !0x0), eo['isHandlingRequest'] = !0x1;
+                    }));
+                }), el['appendChild'](eo);
+            }
+            var ep = aq('block', 'Remove\x20Friend');
+            return ep['isHandlingRequest'] = !0x1, ep['addEventListener']('click', function (eq) {
+                !ep['isHandlingRequest'] && confirm('Are\x20you\x20sure\x20you\x20want\x20to\x20remove\x20\x22' + e7['username'] + '\x22\x20as\x20your\x20friend?') && (ep['isHandlingRequest'] = !0x0, firebase['auth']()['currentUser']['getIdToken']()['then'](er => {
+                    fetch(cQ + '/api/v1/social/friends', {
+                        'method': 'POST',
+                        'headers': {
+                            'Content-Type': 'application/json'
+                        },
+                        'body': JSON['stringify']({
+                            'token': er,
+                            'target': e7['uid'],
+                            'action': 0x4
+                        })
+                    })['then'](es => es['json']())['then'](es => {
+                        alert(es['message']), 0xc8 === es['code'] && (firebase['database']()['ref'](cx['callbacks'][e7['uid']])['off'](), cx['elements'][e7['uid']]['remove'](), delete cx['callbacks'][e7['uid']], delete cx['elements'][e7['uid']]), ep['isHandlingRequest'] = !0x1;
+                    })['catch'](es => {
+                        alert(es), ep['isHandlingRequest'] = !0x1;
+                    });
+                })['catch'](er => {
+                    ao(er, !0x0), ep['isHandlingRequest'] = !0x1;
+                }));
+            }), el['appendChild'](ep), ec['appendChild'](ef), ec['appendChild'](el), eb ? e8['appendChild'](ec) : ec;
+        }
+
+        function as(e7, e8, e9) {
+            e8 && b4(e8), $('#profile-username')['text'](e7['username']), $('#profile-avatar')['attr']('src', e7['avatar']), $('#profile-avatar')['attr']('alt', e7['username']), $('#profile-level')['html']('Level\x20' + e7['levelData']['level'] + '&nbsp;&nbsp;&nbsp;[' + bz(e7['levelData']['xp_current']) + '/' + bz(e7['levelData']['xp_needed']) + ']'), e7['title'] && e7['title'] > 0x0 && dF[e7['title']] ? $('#profile-title')['text'](dF[e7['title']]) : $('#profile-title')['text'](''), $('#profile-name')['off']('click'), e7['uid'] == cu['uid'] ? ($('#profile-name')['on']('click', function () {
+                $('#popup-profile')['hide'](), b5($('#popup-account-username'));
+            }), $('#profile-name')['css']('cursor', 'pointer')) : $('#profile-name')['css']('cursor', 'default'), e7['flags']['STAFF'] ? $('#profile-avatar')['addClass']('spin') : $('#profile-avatar')['removeClass']('spin'), ap($('#profile-username'), e7), $('#profile-close-btn')['off']('click'), $('#profile-close-btn')['on']('click', function () {
+                e8 && b2(e8), b4($('#popup-profile'));
+            }), b2($('#popup-profile'));
+        }
+
+        function au(e7) {
+            if (!cw) {
+                var e8 = $('#social-friends\x20.user-list')[0x0],
+                    e9 = $('#social-friends\x20.user-list')[0x1];
+                $('#social-uid')['text'](e7['uid']), firebase['database']()['ref']('/friendships/' + e7['uid'])['on']('value', function (eb) {
+                    if (null === eb['val']()) {
+                        var ec = document['createElement']('div'),
+                            ed = document['createElement']('span');
+                        return ec['className'] = 'title-text\x20center', ed['innerText'] = 'You\x20have\x20no\x20friends\x20рџҐ', ec['appendChild'](ed), void e8['appendChild'](ec);
+                    }
+                    var ef = 0x0,
+                        eg = eb['val'](),
+                        eh = !0x1;
+                    Object['keys'](eg)['map'](ei => {
+                        var ej = eg[ei];
+                        if (!ej && !eh) return eh = !0x0, void firebase['auth']()['currentUser']['getIdToken']()['then'](el => {
+                            fetch(cQ + '/api/v1/social/friends/pending', {
+                                'method': 'POST',
+                                'headers': {
+                                    'Content-Type': 'application/json'
+                                },
+                                'body': JSON['stringify']({
+                                    'token': el
+                                })
+                            })['then'](em => em['json']())['then'](em => {
+                                0xc8 === em['code'] && em['profiles']['forEach'](eo => {
+                                    if (cx['pendingFriends']['includes'](eo) || cx['pendingFriends']['push'](eo['uid']), cx['elements'][eo['uid']]) {
+                                        var ep = ar(eo, cx['elements'][eo['uid']], !0x1, !0x1);
+                                        return e9['replaceChild'](ep, cx['elements'][eo['uid']]), void(cx['elements'][ei] = ep);
+                                    }
+                                    cx['elements'][eo['uid']] = ar(eo, e9, !0x1, !0x0);
+                                });
                             });
-                            _0x111EE.addEventListener("error", function () {
-                                _0x125F7[_0x11205] = _0x1260E.ERROR
+                        })['catch'](el => ao(el, !0x1));
+                        if (!cx['callbacks'][ei]) {
+                            var ek = '/users/' + ei;
+                            cx['callbacks'][ei] = ek, firebase['database']()['ref'](ek)['on']('value', function (el) {
+                                if (null !== el['val']()) {
+                                    var em = el['val']();
+                                    if (cx['timestamps'][em['uid']] = em['presence']['timestamp'], cx['pendingFriends']['includes'](ei)) {
+                                        cx['elements'][ei]['remove']();
+                                        var eo = ar(em, cx['elements'][ei], !0x0, !0x1);
+                                        return e8['appendChild'](eo), void(cx['elements'][ei] = eo);
+                                    }
+                                    if (cx['elements'][ei]) return eo = ar(em, cx['elements'][ei], !0x0, !0x1), e8['replaceChild'](eo, cx['elements'][ei]), void(cx['elements'][ei] = eo);
+                                    cx['elements'][ei] = ar(em, e8, !0x0, !0x0), cO['friendOnlineCount']['text']((function () {
+                                        var ep = 0x0,
+                                            eq = new Date()['getTime']();
+                                        for (var er in cx['timestamps']) {
+                                            var es = cx['timestamps'][er];
+                                            es + 0xea60 < eq || void 0x0 === es || ep++;
+                                        }
+                                        return ep;
+                                    }()) + '\x20online');
+                                }
                             });
-                            _0x111EE.src = _0x11205
                         }
-                    } else {
-                        if (_0x125F7[this.skin] == _0x1260E.LOADED) {
-                            this.skinCache = _0x125E0[this.skin];
-                            return this.skinCache
-                        } else {
-                            if (_0x125F7[this.skin] == _0x1260E.ERROR) {
-                                this.skin = null
+                        ej && ef++;
+                    }), $('#social-friends-count')['text'](ef);
+                }), cF['friendsStatus'] && clearInterval(cF['friendsStatus']), cF['friendsStatus'] = setInterval(function () {
+                    if (!document['hidden'])
+                        for (var eb in cx['timestamps']) {
+                            if (!cx['timestamps']['hasOwnProperty'](eb)) return;
+                            var ec = cx['timestamps'][eb];
+                            if (ec + 0xea60 < new Date()['getTime']() || void 0x0 === ec) {
+                                var ed = cx['elements'][eb]['children'][0x1]['children'][0x1];
+                                ed['innerText'] = 'Not\x20playing\x20on\x20any\x20server', ed['className'] = 'status\x20offline';
+                                var ef = cx['elements'][eb]['children'][0x2]['children'][0x0];
+                                'Join\x20Server' === ef['dataset']['balloon'] && ef['remove']();
+                            }
+                        }
+                }, 0xea60), cw = !0x0;
+            }
+        }
+
+        function av() {
+            void 0x0 !== window['grecaptcha'] && (cA = window['grecaptcha'], window['grecaptcha'] = void 0x0, cA['ready'](function () {}));
+        }
+
+        function aw() {
+            var e7 = $('#food-color-list');
+            if (e7['empty'](), 0x0 != d5['_FoodColors']['length']) {
+                try {
+                    for (var e8 in d5['_FoodColors']) {
+                        var e9 = d5['_FoodColors'][e8];
+                        e7['append']('<div\x20c=\x27' + e9 + '\x27\x20style=\x27background:' + e9 + ';color:' + bB(e9) + ';\x27><span>' + e9 + '</span><div><button\x20class=\x27btn-food-color\x27>X</button></div></div>');
+                    }
+                    $('.btn-food-color')['on']('click', function () {
+                        for (var eb, ec, ed = $(this)['parents']()['eq'](0x1)['attr']('c'); - 0x1 !== (eb = d5['_FoodColors']['indexOf'](ed));) d5['_FoodColors']['splice'](eb, 0x1), ec = !0x0;
+                        ec && aw();
+                    });
+                } catch (eb) {
+                    d5['_FoodColors'] = [], e7['empty']();
+                }
+                ax();
+            } else ax();
+        }
+
+        function ax() {
+            for (var e7 of (d9 = [], d5['_FoodColors'])) d9['push'](bF['utils']['string2hex'](e7));
+            if (bU && bU['foodObjects']) {
+                for (var e8 in bU['foodObjects']) bU['foodObjects'][e8] && (bU['foodObjects'][e8]['needsPixiUpdate'] = !0x0);
+            }
+        }
+
+        function ay(e7) {
+            var e8 = $('.keybinds-btn-selected');
+            if (d3 = !0x1, 0x0 != e8['length']) {
+                var e9 = e8['first']();
+                e8['removeClass']('keybinds-btn-selected'), d2[e9['attr']('id')] = 0x1b != e7 ? e7 : -0x1, az(e9), aA();
+            }
+        }
+
+        function az(e7) {
+            var e8, e9 = d2[e7['attr']('id')];
+            e7['html']((e8 = e9) > 0x0 ? dL[e8]['toUpperCase']() : '&nbsp;');
+        }
+
+        function aA() {
+            di && clearTimeout(di), di = setTimeout(function () {
+                try {
+                    bg();
+                } catch (e7) {}
+            }, 0x96);
+        }
+
+        function aB() {
+            var e7 = document['getElementById']('logo');
+            d1['cDisableEventSkins'] || !cR['enabled'] ? e7['style']['backgroundImage'] = 'url(\x27./images/logo.png\x27)' : cR['enabled'] && (e7['style']['backgroundImage'] = 'url(\x27./images/events/' + cR['key'] + '/logo.png\x27)');
+        }
+
+        function aC() {
+            var e7, e8;
+            !d1['cDisableEventSkins'] && cR['enabled'] ? (e7 = 'images/events/' + cR['key'], e8 = '/spike_mother_happy.png') : (e7 = 'images', e8 = '/spike_mother.png');
+            var e9 = new Image();
+            e9['addEventListener']('load', function () {
+                if (c1 = bF['Texture']['from'](e9), bU)
+                    for (var ed in bU['bucket']) {
+                        var ef = bU['bucket'][ed];
+                        0x3 == ef['type'] && (ef['needsPixiUpdate'] = !0x0);
+                    }
+            }, {
+                'once': !0x0
+            });
+            var eb = new Image();
+            eb['addEventListener']('load', function () {
+                if (c2 = bF['Texture']['from'](eb), bU)
+                    for (var ed in bU['bucket']) {
+                        var ef = bU['bucket'][ed];
+                        0x4 == ef['type'] && (ef['needsPixiUpdate'] = !0x0);
+                    }
+            }, {
+                'once': !0x0
+            });
+            var ec = new Image();
+            ec['addEventListener']('load', function () {
+                if (c3 = bF['Texture']['from'](ec), bU)
+                    for (var ed in bU['bucket']) {
+                        var ef = bU['bucket'][ed];
+                        0x4 == ef['type'] && (ef['needsPixiUpdate'] = !0x0);
+                    }
+            }, {
+                'once': !0x0
+            }), e9['src'] = e7 + '/spike.png', eb['src'] = e7 + '/spike_mother.png', ec['src'] = e7 + e8;
+        }
+
+        function aD() {
+            dj && clearTimeout(dj), dj = setTimeout(function () {
+                dj = null, aE && aE() ? $('#performance-refresh')['hide']() : $('#performance-refresh')['css']('display', 'table-row');
+            }, 0xc8);
+        }
+
+        function aE() {
+            try {
+                if (!bG) return !0x1;
+                var e7 = bR;
+                if (!e7) return !0x1;
+                var e8 = !d1['cDisableAA'],
+                    e9 = d1['sRenderType'],
+                    eb = 'CANVAS' === e9,
+                    ec = 'WEBGL' === e9,
+                    ed = bG['renderer'];
+                if (!ed) return !0x1;
+                var ef = ed['type'] && ed['type'] === bF['RENDERER_TYPE']['CANVAS'],
+                    eg = ed['type'] && ed['type'] === bF['RENDERER_TYPE']['WEBGL'];
+                if (ed['options'] && ed['options']['antialias'] === e8 && (eb && ef || ec && eg || !eb && !ec)) return !0x0;
+                var eh = e7['width'],
+                    ei = e7['height'];
+                try {
+                    ed['destroy'](!0x1);
+                } catch (el) {}
+                var ej, ek = {
+                    'view': e7,
+                    'width': eh,
+                    'height': ei,
+                    'antialias': e8,
+                    'backgroundAlpha': 0x0,
+                    'resolution': cW['resolution'] || 0x1
+                };
+                return ej = eb && bF['CanvasRenderer'] ? new bF['CanvasRenderer'](ek) : ec && bF['Renderer'] ? new bF['Renderer']({
+                    ...ek,
+                    'forceCanvas': !0x1
+                }) : bF['autoDetectRenderer']({
+                    ...ek,
+                    'forceCanvas': eb
+                }), bG['renderer'] = ej, ej['resize'](eh, ei), bU && (bU['_forceNextRender'] = !0x0), !0x0;
+            } catch (em) {
+                return !0x1;
+            }
+        }
+
+        function aF() {
+            d1['cShowCoordinates'] ? ($('#minimap-canvas')['css']({
+                'border-top': '2px\x20solid\x20rgba(255,\x20255,\x20255,\x20.2)'
+            }), $('#minimap-panel')['css']({
+                'height': '270px'
+            })) : ($('#minimap-canvas')['css']({
+                'border-top': '0'
+            }), $('#minimap-panel')['css']({
+                'height': '250px'
+            }));
+        }
+
+        function aG(e7) {
+            0x3 === (e7 = e7['replace']('#', ''))['length'] && (e7 = e7['split']('')['map'](e9 => e9 + e9)['join'](''));
+            var e8 = parseInt(e7, 0x10);
+            return {
+                'r': e8 >> 0x10 & 0xff,
+                'g': e8 >> 0x8 & 0xff,
+                'b': 0xff & e8
+            };
+        }
+
+        function aH(e7) {
+            db['skinName'] = $('#spSkinName')['val']()['toLowerCase'](), db['lowerName'] = $('#spLowerName')['prop']('checked');
+            const e8 = document['getElementById']('spNameColor');
+            e8 && (db['nameColor'] = aG(e8['value']));
+            const e9 = document['getElementById']('spChatColor');
+            var eb = 0x0;
+            if (e9) {
+                for (var ec = e9['value']['toUpperCase'](), ed = 0x0; ed < dE['length']; ed++)
+                    if (dE[ed]['toUpperCase']() == ec) {
+                        eb = ed;
+                        break;
+                    }
+            }
+            db['chatColor'] = eb, db['effect'] = parseInt($('#spEffect')['val']()), db['nameFont'] = parseInt($('#spNameFont')['val']()), bU['sendPacket'](new bV['sendSubPanel'](e7));
+        }
+
+        function aI() {
+            cq || bU['subPanelOverride'] ? ($('#btn-cellpanel')['prop']('disabled', !0x1), cq ? $('.subpanel-name-dashboard')['css']('display', '') : $('.subpanel-name-dashboard')['css']('display', 'none'), db['rules'] ? ($('#subpanel-rules')['css']('display', 'none'), $('#subpanel-content')['css']('display', 'block')) : ($('#subpanel-content')['css']('display', 'none'), $('#subpanel-rules')['css']('display', 'block'))) : $('#btn-cellpanel')['prop']('disabled', !0x1);
+        }
+
+        function aJ(e7) {
+            bU['accountListeners']['loadSubPanel'] || (bU['accountListeners']['loadSubPanel'] = firebase['firestore']()['collection']('accounts')['doc'](e7)['onSnapshot'](e8 => {
+                e8['exists'] && e8['data']()['locked'] ? (cq = !0x0, $('#spLockedName')['html'](e8['data']()['name']), void 0x0 !== e8['data']()['lastChange'] && $('#btn-chg-ln')['attr']('title', 'Last\x20Changed:\x20' + new Date(e8['data']()['lastChange'])['toLocaleString']()), null !== e8['data']()['expiry'] ? $('#spExpiry')['html'](new Date(0x3e8 * e8['data']()['expiry']['seconds'])['toLocaleString']()) : $('#spExpiry')['html']('Never')) : (cq = !0x1, 'none' !== $('#main-subpanel')['css']('display') && j('main-servers')), aI(), bU['accountListeners']['loadSubPanel'](), bU['accountListeners']['loadSubPanel'] = null;
+            }, e8 => {
+                bU['accountListeners']['loadSubPanel'](), bU['accountListeners']['loadSubPanel'] = null;
+            }));
+        }
+
+        function aK(e7, e8, e9, eb, ec, ed, ef, eg, eh) {
+            this['name'] = e7, this['ip'] = e8, this['players'] = e9, this['bots'] = eb, this['playerText'] = ec, this['mode'] = ed, this['region'] = ef, this['ssl'] = eg, this['order'] = eh;
+        }
+
+        function aL() {
+            for (var e7 in ($('#servers-body-eu')['html'](''), $('#servers-body-na')['html'](''), $('#servers-body-ap')['html'](''), cU))
+                for (var e8 in cU[e7]) {
+                    var e9 = (eb = cU[e7][e8])['bots'] > 0x0 ? '\x20title=\x22Players:\x20' + eb['players'] + '&#10;Bots:\x20' + eb['bots'] + '\x22' : '';
+                    $('#servers-body-' + eb['region'])['append']('<tr\x20id=\x22s_' + eb['name'] + '\x22\x20class=\x22server-row\x22\x20server=\x22' + eb['name'] + '\x22><td\x20class=\x22server-table-name\x22>' + eb['name'] + '</td><td\x20class=\x22server-table-players\x22' + e9 + '>' + eb['playerText'] + '</td><td\x20class=\x22server-table-mode\x22>' + eb['mode'] + '</td></tr>');
+                }
+            for (var e8 in cV) {
+                var eb = cV[e8];
+                $('#servers-body-' + eb['region'])['prepend']('<tr\x20id=\x22s_' + eb['name'] + '\x22\x20class=\x22account-server\x20server-row\x22\x20server=\x22' + eb['name'] + '\x22><td\x20class=\x22server-table-name\x22>' + eb['name'] + '</td><td\x20class=\x22server-table-players\x22>' + eb['playerText'] + '</td><td\x20class=\x22server-table-mode\x22>' + eb['mode'] + '</td></tr>');
+            }
+            $('.server-row')['on']('click', function () {
+                aN($(this)['attr']('server'));
+            });
+        }
+
+        function aM(e7) {
+            for (var e8 in cU)
+                for (var e9 in cU[e8])
+                    if (e9['toLowerCase']() === e7['toLowerCase']()) return cU[e8][e9];
+            return null;
+        }
+
+        function aN(e7) {
+            null != c4 && $('#s_' + c4['name'])['removeClass']('server-selected'), c4 = aM(e7) || (Object['keys'](cV)['length'] > 0x0 ? function (e8) {
+                for (var e9 in cV)
+                    if (e8['toLowerCase']() === e9['toLowerCase']()) return cV[e9];
+                return null;
+            }(e7) : null), null != c4 && ($('#s_' + c4['name'])['addClass']('server-selected'), 'undefined' != typeof window && 'function' == typeof window['gtag'] && window['gtag']('event', 'select_server', {
+                'server_name': c4['name'],
+                'region': c4['region'],
+                'mode': c4['gamemode'],
+                'players': c4['players']
+            }));
+        }
+
+        function aO(e7) {
+            e7 = e7['toLowerCase']();
+            var e8 = $('#server-tab-' + e7);
+            $('.server-active')['css']('background-color', 'inherit'), $('#server-tab-container')['children']()['removeClass']('server-active'), e8['addClass']('server-active'), $('.server-active')['css']('background-color', d5['uiMenuSubBackgroundColor']), $('#server-content')['children']()['css']('display', 'none'), $('#servers-' + e7)['css']('display', 'block');
+        }
+
+        function aP(e7, e8) {
+            for (var e9 = e8, eb = !0x1, ec = 0x0, ed = d1['_ChatTabs'], ef = ed['length']; ec < ef; ec++) {
+                var eg = ed[ec];
+                if (eg && (e7 & eg['flags']) === e7) {
+                    var eh = dl[ec];
+                    if (!eh) {
+                        var ei = document['getElementById']('chat-body-' + ec);
+                        if (!ei) continue;
+                        var ej = document['getElementById']('chat-container-' + ec);
+                        dl[ec] = eh = {
+                            'bodyEl': ei,
+                            'containerEl': ej
+                        };
+                    }
+                    var ek = eh['bodyEl'],
+                        el = eh['containerEl'];
+                    if (ek && el) {
+                        var em;
+                        ek['children']['length'] >= eg['maxMessages'] && ek['firstElementChild'] && ek['removeChild'](ek['firstElementChild']), eb ? em = e9['cloneNode'](!0x0) : (em = e9, eb = !0x0);
+                        var eo = document['createElement']('tr');
+                        eo['appendChild'](em), ek['appendChild'](eo), el['scrollHeight'] - el['scrollTop'] - el['clientHeight'] < 0x96 && (el['scrollTop'] = el['scrollHeight']);
+                    }
+                }
+            }
+        }
+
+        function aQ(e7) {
+            $('#chat-input')['val'](e7);
+        }
+
+        function aR() {
+            return $('#chat-input')['val']();
+        }
+
+        function aS() {
+            dl['length'] = 0x0;
+            var e7 = document['getElementById']('chat-tab-container'),
+                e8 = document['getElementById']('chat-container');
+            if (e7 && e8) {
+                e7['innerHTML'] = '', e8['innerHTML'] = '';
+                for (var e9 = document['createDocumentFragment'](), eb = document['createDocumentFragment'](), ec = 0x0, ed = d1['_ChatTabs'], ef = ed['length']; ec < ef; ec++) {
+                    var eg = ed[ec];
+                    if (eg) {
+                        0x0 === eg['name']['length'] && (eg['name'] = 'Unnamed');
+                        var eh = document['createElement']('li');
+                        eh['className'] = 'chat-tab', eh['id'] = 'chat-tab-' + ec, eh['setAttribute']('name', ec), eh['innerHTML'] = '<span>' + eg['name'] + '</span>', e9['appendChild'](eh);
+                        var ei = document['createElement']('div');
+                        ei['className'] = 'chat-inner-container', ei['id'] = 'chat-container-' + ec, ei['innerHTML'] = '<table\x20class=\x27chat-table\x27><tbody\x20id=\x27chat-body-' + ec + '\x27></tbody></table>', eb['appendChild'](ei), dl[ec] = {
+                            'bodyEl': null,
+                            'containerEl': ei
+                        };
+                    }
+                }
+                e7['appendChild'](e9), e8['appendChild'](eb);
+                for (var ej = 0x0; ej < dl['length']; ej++) dl[ej] && (dl[ej]['bodyEl'] = document['getElementById']('chat-body-' + ej));
+                for (var ek = e7['getElementsByClassName']('chat-tab'), el = 0x0; el < ek['length']; el++) {
+                    var em = ek[el];
+                    em['addEventListener']('click', function (eo) {
+                        aT(this['getAttribute']('name'));
+                    }), em['style']['borderColor'] = d5['uiBorderColor'];
+                }
+                cY >= 0x0 && cY < d1['_ChatTabs']['length'] ? aT(cY) : aT(0x0);
+            }
+        }
+
+        function aT(e7) {
+            cY = e7;
+            var e8 = document['getElementById']('chat-tab-container'),
+                e9 = document['getElementById']('chat-container');
+            if (e8 && e9) {
+                for (var eb = e8['getElementsByClassName']('chat-tab'), ec = 0x0; ec < eb['length']; ec++) eb[ec]['classList']['remove']('chat-active-tab');
+                for (var ed = e9['getElementsByClassName']('chat-inner-container'), ef = 0x0; ef < ed['length']; ef++) ed[ef]['classList']['remove']('chat-active-container'), ed[ef]['style']['display'] = 'none';
+                var eg = document['getElementById']('chat-tab-' + e7),
+                    eh = document['getElementById']('chat-container-' + e7);
+                eg && eg['classList']['add']('chat-active-tab'), eh && (eh['classList']['add']('chat-active-container'), eh['style']['display'] = 'block');
+            }
+        }
+
+        function aU(e7 = 0x0) {
+            var e8 = $('#cte-tab-selector');
+            for (var e9 in (e8['empty'](), d1['_ChatTabs'])) e8['append']('<option\x20value=\x27' + e9 + '\x27>' + d1['_ChatTabs'][e9]['name'] + '</option>');
+            e8['prop']('selectedIndex', e7), e8['trigger']('change');
+        }
+
+        function aV(e7) {
+            var e8 = $('#cte-tab-selector')['val'](),
+                e9 = {
+                    'name': '',
+                    'flags': 0x0,
+                    'maxMessages': 0x0
+                },
+                eb = d1['_ChatTabs'][e8];
+            if (eb) {
+                for (var ec in e9) e9[ec] = eb[ec];
+            }
+            for (var ed in ($('#cte-tab-name')['val'](e9['name']), dY)) {
+                var ef = (dY[ed] & e9['flags']) == dY[ed];
+                $('#cte-type-' + ed['toLowerCase']())['prop']('checked', ef);
+            }
+            $('#cte-max-messages')['val'](e9['maxMessages']);
+        }
+
+        function aW(e7) {
+            var e8 = $('#cte-tab-selector')['val'](),
+                e9 = d1['_ChatTabs'][e8];
+            if (e9) {
+                var eb = e9['name'],
+                    ec = $('#cte-tab-name')['val']();
+                if (0x0 != ec['length']) {
+                    var ed = ec != eb,
+                        ef = 0x0,
+                        eg = parseInt($('#cte-max-messages')['val']());
+                    for (var eh in dY) $('#cte-type-' + eh['toLowerCase']())['prop']('checked') && (ef += dY[eh]);
+                    e9['name'] = ec, e9['flags'] = ef, e9['maxMessages'] = eg, ed && (aU(e8), (function () {
+                        for (var ei in d1['_ChatTabs']) {
+                            var ej = d1['_ChatTabs'][ei];
+                            if (ej) {
+                                0x0 == ej['name']['length'] && (ej['name'] = 'Unnamed');
+                                var ek = document['getElementById']('chat-tab-' + ei);
+                                if (ek) {
+                                    var el = ek['firstElementChild'],
+                                        em = ej['name'];
+                                    el ? el['textContent'] !== em && (el['textContent'] = em) : ((el = document['createElement']('span'))['textContent'] = em, ek['appendChild'](el));
+                                }
+                            }
+                        }
+                    }()));
+                }
+            }
+        }
+
+        function aX() {
+            d1['_ChatTabs']['push']({
+                'name': 'New',
+                'flags': 0x0,
+                'maxMessages': 0x64
+            }), aU(d1['_ChatTabs']['length'] - 0x1), aS();
+        }
+
+        function aY() {
+            var e7 = $('#cte-tab-selector')['val']();
+            d1['_ChatTabs'][e7] && (d1['_ChatTabs']['splice'](e7, 0x1), aU(), aS());
+        }
+
+        function aZ(e7, e8, e9, eb) {
+            document['getElementById']('context-name')['innerText'] = e8 || 'An\x20unnamed\x20cell', cb['data']('selected', e9), cb['data']('party', eb), $('.context-action')['css']('display', 'none'), -0x1 == eb ? ($('#menu-invite')['css']('display', 'block'), $('#menu-whisper')['css']('display', 'block'), $('#menu-block')['css']('display', 'block'), $('#menu-profile')['css']('display', 'block')) : ($('#menu-whisper')['css']('display', 'block'), $('#menu-profile')['css']('display', 'block'), bU['isPartyLeader']() && ($('#menu-pu_pr')['css']('display', 'block'), $('#menu-promote')['css']('display', 'block'), $('#menu-kick')['css']('display', 'block'))), bU['spectate'] && $('#menu-spectate')['css']('display', 'block'), cb['css']('display', 'block'), cb['css']('left', Math['min'](bU['mouseRawX'], window['innerWidth'] - cb['width']())), cb['css']('top', Math['min'](bU['mouseRawY'], window['innerHeight'] - cb['height']()));
+        }
+
+        function b0(e7) {
+            return e7['replace'](/</g, '&lt;')['replace'](/>/g, '&gt;');
+        }
+
+        function b1(e7, e8, e9, eb, ec, ed, ef) {
+            var eg = (e9 - bU['serverData']['border']['left']) / bU['serverData']['border']['width'] * bS['width'],
+                eh = (eb - bU['serverData']['border']['top']) / bU['serverData']['border']['height'] * bS['height'];
+            if (e7['beginPath'](), e7['arc'](eg, eh, ec, 0x0, cH, !0x1), e7['fillStyle'] = ed, e7['fill'](), ef) {
+                var ei = eg - e7['measureText'](e8)['width'] / 0x2,
+                    ej = eh - 0x5;
+                e7['fillText'](e8, ei, ej);
+            }
+        }
+
+        function b2(e7) {
+            var e8 = e7[0x0] || e7;
+            e8 && ('main' === e8['id'] && window['is_touch_device'] && 'undefined' != typeof touch_controls && (touch_controls['style']['display'] = 'none'), 'none' === e8['style']['display'] || 'none' === getComputedStyle(e8)['display'] ? (e8['classList']['contains']('menu-transition') || e8['classList']['add']('menu-transition'), e8['style']['display'] = 'block', e8['style']['pointerEvents'] = 'auto', e8['offsetWidth'], e8['classList']['add']('menu-open')) : e8['classList']['contains']('menu-open') || (e8['classList']['add']('menu-open'), e8['style']['pointerEvents'] = 'auto'), 'main' === e8['id'] && (a3['mainMenuVisible'] = !0x0));
+        }
+
+        function b3(e7) {
+            try {
+                if (!a3['mainMenuVisible']) {
+                    if (void 0x0 !== c9 && c9['css'] && 'block' === c9['css']('display')) return;
+                    b2(c6);
+                }
+            } catch (e8) {}
+        }
+
+        function b4(e7) {
+            var e8 = e7[0x0] || e7;
+            if (e8) {
+                'main' === e8['id'] && window['is_touch_device'] && 'undefined' != typeof touch_controls && (touch_controls['style']['display'] = 'block');
+                var e9 = getComputedStyle(e8);
+                if ('none' !== e9['display']) {
+                    e8['classList']['contains']('menu-transition') || e8['classList']['add']('menu-transition'), e8['classList']['remove']('menu-open'), e8['style']['pointerEvents'] = 'none';
+                    for (var eb = e9['transitionDuration']['split'](',')['map'](function (ei) {
+                            return parseFloat(ei) || 0x0;
+                        }), ec = e9['transitionDelay']['split'](',')['map'](function (ei) {
+                            return parseFloat(ei) || 0x0;
+                        }), ed = !0x1, ef = 0x0; ef < eb['length']; ef++)
+                        if (eb[ef] + (ec[ef] || 0x0) > 0x0) {
+                            ed = !0x0;
+                            break;
+                        } if (ed) {
+                        var eg = !0x1,
+                            eh = function (ei) {
+                                ei['target'] === e8 && (eg = !0x0, e8['style']['display'] = 'none', e8['removeEventListener']('transitionend', eh));
+                            };
+                        e8['addEventListener']('transitionend', eh), setTimeout(function () {
+                            eg || (e8['style']['display'] = 'none', e8['removeEventListener']('transitionend', eh));
+                        }, 0x190);
+                    } else e8['style']['display'] = 'none';
+                }
+                'main' === e8['id'] && (a3['mainMenuVisible'] = !0x1);
+            }
+        }
+
+        function b5(e7) {
+            var e8 = e7[0x0] || e7;
+            e8 && ('none' === e8['style']['display'] || 'none' === getComputedStyle(e8)['display'] ? b2(e8) : b4(e8));
+        }
+
+        function b6(e7) {
+            var e8 = e7[0x0] || e7;
+            return !!e8 && 'none' !== getComputedStyle(e8)['display'];
+        }
+
+        function b7() {
+            c8['show'](), (0x0 == bU['party']['length'] || d1['cHidePartyPanel']) && cO['partyPanel']['css']('display', 'none'), d1['cHideChat'] && $('#chat-panel')['css']('display', 'none'), d1['cHideMinimap'] && $('#minimap-panel')['css']('display', 'none');
+        }
+
+        function b8() {
+            c8['hide']();
+        }
+
+        function b9(e7) {
+            var e8 = e7['attr']('id');
+            d1[e8] = e7['prop']('checked'), bd(e8);
+        }
+
+        function bb(e7) {
+            var e8 = e7['attr']('id');
+            d1[e8] = e7['val'](), bd(e8, e7['val']());
+        }
+
+        function bc(e7) {
+            bd(e7['attr']('id'), e7['val']());
+        }
+
+        function bd(e7, e8) {
+            var e9 = dk[e7];
+            null != e9 && e9(e8);
+        }
+
+        function bf(e7, e8) {
+            null != e8 && (d5[e7] = e8, bd(e7, e8));
+        }
+
+        function bg() {
+            e5['consented'] && (d1['iChatWidth'] = $('#chat-panel')['css']('width'), d1['iChatHeight'] = $('#chat-panel')['css']('height'), window['localStorage']['setItem']('options', JSON['stringify'](d1)), window['localStorage']['setItem']('keybinds', JSON['stringify'](d2)), window['localStorage']['setItem']('name', $('#name-box')['val']()), window['localStorage']['setItem']('theme', JSON['stringify'](d5)), window['localStorage']['setItem']('subpanel', JSON['stringify'](db)));
+        }
+
+        function bh() {
+            for (var e7 in d6) {
+                var e8 = e7['charAt'](0x0);
+                if ('r' == e8) $('#' + e7)['val'](d6[e7]), bc($('#' + e7));
+                else {
+                    if ('u' == e8) {
+                        d5[e7] = d6[e7];
+                        const e9 = document['getElementById'](e7);
+                        e9 && (e9['value'] = d5[e7]), bd(e7, d5[e7]);
+                    } else 'a' == e8 ? bf(e7, '') : d5[e7] = d6[e7];
+                }
+            }
+            d5['_FoodColors'] = [];
+        }
+
+        function bi(e7) {
+            try {
+                var e8 = JSON['parse'](e7);
+                if (null == e8['version'] || 0x2 != e8['version']) return void bh();
+                for (var e9 in e8)
+                    if (null != d5[e9] && 0x0 != e8[e9]['length']) {
+                        d5[e9] = e8[e9];
+                        var eb = e9['charAt'](0x0);
+                        if ('u' == eb) {
+                            const ec = document['getElementById'](e9);
+                            ec && (ec['value'] = d5[e9], ec['dispatchEvent'](new Event('input', {
+                                'bubbles': !0x0
+                            }))), bd(e9, d5[e9]);
+                        } else 'r' == eb ? ($('#' + e9)['val'](d5[e9]), bc($('#' + e9))) : 'a' == eb && bf(e9, d5[e9]);
+                    }
+            } catch (ed) {
+                bh();
+            } finally {
+                ax();
+            }
+        }
+
+        function bj(e7) {
+            if (/\.(json)$/i ['test'](e7['name'])) {
+                var e8 = new FileReader();
+                e8['addEventListener']('load', function () {
+                    d1['cThemeEnabled'] || bk(), bh(), bi(this['result']);
+                }, {
+                    'once': !0x0
+                }), e8['readAsText'](e7);
+            }
+        }
+
+        function bk() {
+            $('#cThemeEnabled')['prop']('checked', !0x0)['trigger']('change');
+        }
+
+        function bl(e7) {
+            for (var e8 = e7['split']('\x20'), e9 = '', eb = null, ec = 0x0; ec < e8['length']; ec++) 0x0 != ec && (e9 += '\x20'), eb = e8[ec], null != cg[eb] ? (eb['startsWith'](':') && eb['endsWith'](':') && (eb = eb['substring'](0x1, eb['length'] - 0x1)), e9 += '<img\x20src=\x22images/emotes/' + eb + '.png\x22\x20height=\x2217\x22\x20width=\x2217\x22\x20alt=\x22' + eb + '\x22>') : null != ch[eb] ? (eb['startsWith'](':') && eb['endsWith'](':') && (eb = eb['substring'](0x1, eb['length'] - 0x1)), e9 += '<img\x20src=\x22images/emotes/gifs/' + eb + '.gif\x22\x20height=\x2217\x22\x20width=\x2217\x22\x20alt=\x22' + eb + '\x22>') : e9 += eb;
+            return e9;
+        }
+
+        function bm(e7, e8, e9) {
+            this['name'] = e7, this['img'] = e8, this['type'] = e9, this['image'] = null, this['texture'] = null;
+        }
+
+        function bo() {
+            this['passiveBuffs'] = {}, this['passiveSortedBuffs'] = [], this['consumableBuffs'] = [], this['cache'] = null, this['nextCacheUpdate'] = 0x0, this['texture'] = null, this['bonusMaxCells'] = 0x0, this['onAddBuff'] = function (e7, e8, e9) {
+                var eb = null;
+                du[e7]['type'] != dq['CONSUMABLE'] ? ((eb = this['passiveBuffs'][e7]) ? eb['update'](e8, e9) : (eb = new bp(e7, e8, e9), this['passiveBuffs'][e7] = eb, this['sortPassiveBuffs']()), this['onPassiveBuffsUpdate'](), this['markCacheForUpdate']()) : (eb = new bp(e7, e8, e9), this['consumableBuffs']['push'](eb), this['markCacheForUpdate']()), eb && bU['selfMsg']('Recieved\x20buff:\x20' + eb['powerup']['name']);
+            }, this['onRemoveBuff'] = function (e7) {
+                var e8 = null;
+                if (du[e7]['type'] != dq['CONSUMABLE'])(e8 = this['passiveBuffs'][e7]) && (delete this['passiveBuffs'][e7], this['sortPassiveBuffs'](), this['markCacheForUpdate'](), this['onPassiveBuffsUpdate']());
+                else {
+                    for (var e9 = 0x0; e9 < this['consumableBuffs']['length']; e9++)
+                        if ((e8 = this['consumableBuffs'][e9])['id'] == e7) {
+                            this['consumableBuffs']['splice'](e9, 0x1), this['markCacheForUpdate']();
+                            break;
+                        }
+                }
+                e8 && bU['selfMsg']('Lost\x20buff:\x20' + e8['powerup']['name']);
+            }, this['clearBuffs'] = function (e7) {
+                if (0x0 != this['passiveSortedBuffs']['length'] || 0x0 != this['consumableBuffs']['length']) {
+                    var e8 = e7 || !0x1;
+                    for (var e9 in this['passiveBuffs']) {
+                        var eb = this['passiveBuffs'][e9];
+                        e8 && eb['powerup']['type'] == dq['MODIFIER'] || delete this['passiveBuffs'][e9];
+                    }
+                    this['sortPassiveBuffs'](), this['onPassiveBuffsUpdate'](), this['consumableBuffs'] = [], this['markCacheForUpdate']();
+                }
+            }, this['sortPassiveBuffs'] = function () {
+                if (this['passiveSortedBuffs'] = [], 0x0 != this['passiveBuffs']['length']) {
+                    for (var e7 in this['passiveBuffs']) this['passiveBuffs'][e7]['powerup']['type'] == dq['MODIFIER'] ? this['passiveSortedBuffs']['splice'](0x0, 0x0, e7) : this['passiveSortedBuffs']['push'](e7);
+                }
+            }, this['onPassiveBuffsUpdate'] = function () {
+                if (this['bonusMaxCells'] = 0x0, null != this['passiveBuffs'][0x1]) {
+                    var e7 = this['passiveBuffs'][0x1];
+                    this['bonusMaxCells'] = 0x10 * e7['stack'];
+                }
+            }, this['update'] = function () {
+                0x0 != this['passiveSortedBuffs']['length'] || 0x0 != this['consumableBuffs']['length'] ? (Date['now']() >= this['nextCacheUpdate'] && (this['updateCache'](), this['nextCacheUpdate'] = Date['now']() + 0x3e8), this['texture'] || (this['texture'] = bF['Texture']['from'](this['cache']['canvas']), bO['texture'] = this['texture'], bO['anchor']['set'](0x0)), bO['position']['x'] = bR['width'] / 0x2 - bO['width'] / 0x2 - bG['stage']['position']['x'], bO['position']['y'] = bR['height'] - bO['height'] - 0xf - bG['stage']['position']['y'], bO['visible'] = !0x0) : bO['visible'] = !0x1;
+            }, this['updateCache'] = function () {
+                var e7 = null == this['cache'] || null == this['cache']['canvas'] ? document['createElement']('canvas') : this['cache']['canvas'],
+                    e8 = Math['max'](this['passiveSortedBuffs']['length'], this['consumableBuffs']['length']);
+                e7['width'] = 0x37 * e8, e7['height'] = 0x69, this['cache'] = e7['getContext']('2d'), this['cache']['fillStyle'] = '#222', this['cache']['font'] = 'bold\x2016pt\x20Calibri';
+                for (var e9 = 0x0, eb = 0x0, ec = 0x0; ec < this['passiveSortedBuffs']['length']; ec++) this['passiveBuffs'][this['passiveSortedBuffs'][ec]]['draw'](this['cache'], e9, eb), e9 += 0x37;
+                for (e9 = 0x0, eb = 0x37, ec = 0x0; ec < this['consumableBuffs']['length']; ec++) this['consumableBuffs'][ec]['draw'](this['cache'], e9, eb), e9 += 0x37;
+                this['texture'] && this['texture']['update'](), this['nextCacheUpdate'] = Date['now']() + 0x3e8;
+            }, this['markCacheForUpdate'] = function () {
+                this['nextCacheUpdate'] = 0x0;
+            };
+        }
+
+        function bp(e7, e8, e9) {
+            this['id'] = e7, this['powerup'] = du[e7], this['startTime'] = Date['now'](), this['expireTime'] = e9, this['stack'] = e8, this['update'] = function (eb, ec) {
+                this['startTime'] = Date['now'](), this['expireTime'] = ec, this['stack'] = eb;
+            }, this['getCooldown'] = function () {
+                if (Date['now']() >= this['expireTime']) return cH;
+                var eb = this['expireTime'] - Date['now'](),
+                    ec = this['expireTime'] - this['startTime'];
+                return 0x2 * Math['min'](eb / ec, 0x1) * Math['PI'];
+            }, this['draw'] = function (eb, ec, ed) {
+                eb['drawImage'](this['powerup']['image'], ec, ed, 0x32, 0x32), this['stack'] > 0x1 && (eb['fillStyle'] = '#000', eb['fillText'](this['stack'], ec + 0x23, ed + 0x11)), this['expireTime'] > 0x0 && (eb['beginPath'](), eb['moveTo'](ec + 0x19, ed + 0x19), eb['arc'](ec + 0x19, ed + 0x19, 0x19, dv, dv - this['getCooldown'](), !0x1), eb['closePath'](), eb['globalAlpha'] = 0.75, eb['fillStyle'] = '#222', eb['fill'](), eb['globalAlpha'] = 0x1);
+            };
+        }
+
+        function bq() {
+            this['delay'] = 0x0, this['frames'] = [], this['isGif'] = !0x0, this['push'] = function (e7) {
+                this['frames']['push'](e7);
+            }, this['getFrame'] = function (e7) {
+                return this['frames'][e7];
+            }, this['getLength'] = function () {
+                return this['frames']['length'];
+            }, this['getTexture'] = function () {
+                return this['getFrame'](Math['floor'](bW / this['delay']) % this['getLength']());
+            }, this['loadFromFrameData'] = function (e7) {
+                if (0x0 === e7['length']) return;
+                const e8 = document['createElement']('canvas'),
+                    e9 = e8['getContext']('2d'),
+                    eb = document['createElement']('canvas'),
+                    ec = eb['getContext']('2d'),
+                    ed = e7[0x0]['getImage']();
+                this['delay'] = 0xa * e7[0x0]['frameInfo']['delay'], e8['width'] = ed['width'], e8['height'] = ed['height'], eb['width'] = ed['width'], eb['height'] = ed['height'];
+                for (const ef of e7) {
+                    e9['clearRect'](0x0, 0x0, e8['width'], e8['height']), e9['drawImage'](eb, 0x0, 0x0);
+                    const eg = ef['getImage'](),
+                        eh = eg['getContext']('2d');
+                    ec['drawImage'](eg, 0x0, 0x0), eh['clearRect'](0x0, 0x0, eg['width'], eg['height']), eh['drawImage'](eb, 0x0, 0x0);
+                    const {
+                        frameInfo: ei
+                    } = ef, {
+                        disposal: ej
+                    } = ei;
+                    0x2 === ej ? ec['clearRect'](ei['x'], ei['y'], ei['width'], ei['height']) : 0x3 === ej && (ec['clearRect'](0x0, 0x0, eb['width'], eb['height']), ec['drawImage'](e8, 0x0, 0x0)), this['push'](bF['Texture']['from'](eg));
+                }
+            };
+        }
+
+        function br(e7) {
+            return dC[e7 % dC['length']];
+        }
+
+        function bs(e7) {
+            return dD[e7 % dD['length']];
+        }
+
+        function bu(e7) {
+            for (var e8 = e7['length'] - 0x1; e8 > 0x0; e8--) {
+                var e9 = Math['floor'](Math['random']() * (e8 + 0x1)),
+                    eb = e7[e8];
+                e7[e8] = e7[e9], e7[e9] = eb;
+            }
+            return e7;
+        }
+
+        function bv(e7) {
+            if (0x0 === e7 || e7 === bU['playerId']) return 'You\x20cannot\x20block\x20that\x20player.';
+            if (cy['includes'](e7)) {
+                const e8 = cy['indexOf'](e7);
+                return e8 > -0x1 && cy['splice'](e8, 0x1), 'Unblocked\x20player\x20with\x20ID:\x20' + e7;
+            }
+            return cy['push'](e7), 'Blocked\x20player\x20with\x20ID:\x20' + e7;
+        }
+
+        function bw(e7) {
+            return dK[e7 >> 0x4 & 0xf] + dK[0xf & e7];
+        }
+
+        function bx(e7, e8) {
+            var e9 = e7 >> 0x10 & 0xff,
+                eb = e7 >> 0x8 & 0xff,
+                ec = 0xff & e7;
+            return (e9 = Math['max'](0x0, Math['min'](0xff, Math['floor'](e9 * e8)))) << 0x10 | (eb = Math['max'](0x0, Math['min'](0xff, Math['floor'](eb * e8)))) << 0x8 | Math['max'](0x0, Math['min'](0xff, Math['floor'](ec * e8)));
+        }
+
+        function by(e7) {
+            if (e7 <= 0x0) return '0:00';
+            var e8 = Math['floor'](e7 / 0xe10),
+                e9 = Math['floor']((e7 - 0xe10 * e8) / 0x3c),
+                eb = e7 - 0xe10 * e8 - 0x3c * e9;
+            return e9 < 0xa && e8 > 0x0 && (e9 = '0' + e9), eb < 0xa && (eb = '0' + eb), (e8 > 0x0 ? e8 + ':' : '') + e9 + ':' + eb;
+        }
+
+        function bz(e7) {
+            var e8 = e7['toString']()['split']('.');
+            return e8[0x0] = e8[0x0]['replace'](/\B(?=(\d{3})+(?!\d))/g, ','), e8['join']('.');
+        }
+
+        function bA(e7) {
+            for (var e8 = e7['split'](''), e9 = 0x0; e9 < e8['length']; e9++) '_' == e8[e9] && (e9 + 0x1 < e8['length'] && (e8[e9 + 0x1] = e8[e9 + 0x1]['toUpperCase']()), e8[e9] = '\x20'), 0x0 == e9 && (e8[e9] = e8[e9]['toUpperCase']());
+            return e8['join']('');
+        }
+
+        function bB(e7) {
+            if (0x0 === e7['indexOf']('#') && (e7 = e7['slice'](0x1)), 0x3 === e7['length'] && (e7 = e7[0x0] + e7[0x0] + e7[0x1] + e7[0x1] + e7[0x2] + e7[0x2]), 0x6 !== e7['length']) throw new Error('Invalid\x20HEX\x20color.');
+            return 0.299 * parseInt(e7['slice'](0x0, 0x2), 0x10) + 0.587 * parseInt(e7['slice'](0x2, 0x4), 0x10) + 0.114 * parseInt(e7['slice'](0x4, 0x6), 0x10) > 0xba ? '#000000' : '#FFFFFF';
+        }
+
+        function bC(e7) {
+            if (e7['dataTransfer']['items']) {
+                for (var e8 = 0x0; e8 < e7['dataTransfer']['items']['length']; e8++)
+                    if ('file' === e7['dataTransfer']['items'][e8]['kind']) return e7['dataTransfer']['items'][e8]['getAsFile']();
+            } else {
+                for (e8 = 0x0; e8 < e7['dataTransfer']['files']['length']; e8++) return e7['dataTransfer']['files'][e8];
+            }
+        }
+
+        function bD(e7, e8, e9) {
+            this['font'] = e7, this['size'] = e8, this['outlineColor'] = e9 || '#000';
+        }
+
+        function bE() {
+            try {
+                'undefined' != typeof aiptag && aiptag['cmd'] && aiptag['cmd']['display'] && aiptag['cmd']['display']['push'](function () {
+                    try {
+                        if ('undefined' != typeof aipDisplayTag) {
+                            aipDisplayTag['refresh']('GOT_gota-io_336x280'), window['adDisplayAttempts'] && (window['adDisplayAttempts'] = 0x0);
+                            var e7 = document['getElementById']('GOT_gota-io_336x280'),
+                                e8 = document['getElementById']('adblock-fallback');
+                            e7 && (e7['style']['display'] = 'block', e7['style']['visibility'] = 'visible', e7['style']['opacity'] = '1', e7['hasVisibilityWatcher'] || (new MutationObserver(function (e9) {
+                                e9['forEach'](function (eb) {
+                                    if ('attributes' === eb['type'] && ('style' === eb['attributeName'] || 'class' === eb['attributeName'])) {
+                                        var ec = eb['target'];
+                                        'none' !== ec['style']['display'] && 'hidden' !== ec['style']['visibility'] && '0' !== ec['style']['opacity'] || (ec['children']['length'] > 0x0 || ec['innerHTML']['trim']()['length'] > 0x0 || null !== ec['querySelector']('iframe') ? (ec['style']['display'] = 'block', ec['style']['visibility'] = 'visible', ec['style']['opacity'] = '1', e8 && (e8['style']['display'] = 'none')) : e8 && (e8['style']['display'] = 'block'));
+                                    }
+                                });
+                            })['observe'](e7, {
+                                'attributes': !0x0,
+                                'attributeFilter': ['style', 'class']
+                            }), e7['hasVisibilityWatcher'] = !0x0), setTimeout(function () {
+                                var e9 = e7['children']['length'] > 0x0 || e7['innerHTML']['trim']()['length'] > 0x0 || null !== e7['querySelector']('iframe');
+                                e9 && e8 ? e8['style']['display'] = 'none' : !e9 && e8 && (e8['style']['display'] = 'block');
+                            }, 0x7d0));
+                        }
+                    } catch (e9) {}
+                });
+            } catch (e7) {}
+        }
+        const bF = window['PIXI'];
+        var bG;
+        window['PIXI'] = null;
+        const bH = new bF['Container'](),
+            bI = new bF['Container'](),
+            bJ = new bF['Container'](),
+            bK = new bF['Container'](),
+            bL = new bF['Container'](),
+            bM = new bF['Container'](),
+            bN = new bF['Container'](),
+            bO = new bF['Sprite'](bF['Texture']['EMPTY']);
+        var bP, bQ = null;
+        bK['addChild'](bJ), bK['addChild'](bL), bK['addChild'](bM), bK['addChild'](bN), bH['addChild'](bI), bH['addChild'](bK), bH['addChild'](bO);
+        var bR, bS, bT, bU, bV, bW, bX, bY, bZ, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, cb, cc, cd, cf, cg, ch, ci, cj, ck, cl, cm, co, cp, cq = !0x1,
+            cr = 0x0,
+            cs = 0x0,
+            cu = null,
+            cv = null,
+            cw = !0x1,
+            cx = {
+                'elements': [],
+                'callbacks': [],
+                'pendingFriends': [],
+                'timestamps': []
+            },
+            cy = [],
+            cz = !0x1,
+            cA = null,
+            cB = !0x0,
+            cC = !0x0,
+            cD = null,
+            cE = null,
+            cF = {
+                'serverRefresh': null,
+                'friendsStatus': null,
+                'statsUpdate': null,
+                'emoteButton': null
+            },
+            cG = {
+                'touchControls': [],
+                'windowEvents': [],
+                'uiElements': [],
+                'chatElements': [],
+                'firebaseListeners': [],
+                'customElements': []
+            };
+        const cH = 0x2 * Math['PI'],
+            cI = Math['PI'] / 0x2,
+            cJ = 0x100,
+            cK = 0x10c;
+        var cL, cM, cN;
+        const cO = {},
+            cP = new firebase['auth']['GoogleAuthProvider'](),
+            cQ = 'https://accounts.gota.io';
+        var cR = {
+                'key': '',
+                'foodColors': [],
+                'customEjectedMass': !0x1,
+                'motd': '',
+                'enabled': !0x1,
+                'motherCustomEnabled': !0x1
+            },
+            cS = {
+                'halloween': {
+                    'key': 'halloween',
+                    'foodColors': [0xee8d1c, 0xab4422, 0x903e6f, 0x602749],
+                    'customEjectedMass': !0x1,
+                    'motd': 'рџЋѓ\x20Happy\x20Halloween!\x20Spooky\x20season\x20is\x20here!\x20рџ‘»',
+                    'motherCustomEnabled': !0x0
+                },
+                'xmas': {
+                    'key': 'xmas',
+                    'foodColors': [0xff0000, 0xff00, 0xffffff, 0xffd700],
+                    'customEjectedMass': !0x0,
+                    'motd': 'рџЋ„\x20Merry\x20Christmas!\x20Ho\x20ho\x20ho!\x20рџЋ…',
+                    'motherCustomEnabled': !0x0
+                },
+                'new_years': {
+                    'key': 'new_years',
+                    'foodColors': [0xffd700, 0xffffff, 0xff69b4, 0xbfff],
+                    'customEjectedMass': !0x1,
+                    'motd': 'рџЋ‰\x20Happy\x20New\x20Year!\x20Here\x27s\x20to\x20new\x20beginnings!\x20вњЁ',
+                    'motherCustomEnabled': !0x0
+                },
+                'valentines': {
+                    'key': 'valentines',
+                    'foodColors': [0xff69b4, 0xff1493, 0xdc143c, 0xffc0cb],
+                    'customEjectedMass': !0x1,
+                    'motd': 'рџ’ќ\x20Happy\x20Valentine\x27s\x20Day!\x20Spread\x20the\x20love!\x20рџ’•',
+                    'motherCustomEnabled': !0x0
+                },
+                'spring': {
+                    'key': 'spring',
+                    'foodColors': [0x98fb98, 0xffc0cb, 0xffb6c1, 0x90ee90],
+                    'customEjectedMass': !0x1,
+                    'motd': 'рџЊё\x20Spring\x20has\x20arrived!\x20Everything\x20is\x20blooming!\x20рџЊє',
+                    'motherCustomEnabled': !0x0
+                },
+                'summer': {
+                    'key': 'summer',
+                    'foodColors': [0xffd700, 0xff8c00, 0xbfff, 0x32cd32],
+                    'customEjectedMass': !0x1,
+                    'motd': 'вЂпёЏ\x20Summer\x20vibes!\x20Time\x20for\x20some\x20fun\x20in\x20the\x20sun!\x20рџЏ–пёЏ',
+                    'motherCustomEnabled': !0x0
+                }
+            },
+            cT = !0x1;
+        firebase['initializeApp']({
+            'apiKey': 'AIzaSyCmYFIIazBPyg5goqvPb-7uA6W9-4TVqEM',
+            'authDomain': 'accounts.gota.io',
+            'databaseURL': 'https://gota-io.firebaseio.com',
+            'projectId': 'gota-io',
+            'storageBucket': 'gota-io.appspot.com',
+            'messagingSenderId': '570450309042',
+            'appId': '1:570450309042:web:380ab6c94d44de2f'
+        }), firebase['auth']()['setPersistence'](firebase['auth']['Auth']['Persistence']['SESSION'])['catch'](function () {});
+        var cU = {},
+            cV = {},
+            cW = {
+                'levelNames': 0x3,
+                'levelSkins': 0x3,
+                'textOutlineSize': 0x0,
+                'resolution': 0x1
+            },
+            cX = [{
+                'name': 'All',
+                'flags': 0xff,
+                'maxMessages': 0x64
+            }, {
+                'name': 'Party',
+                'flags': 0x2,
+                'maxMessages': 0x64
+            }],
+            cY = 0x0,
+            cZ = [],
+            d0 = -0x1,
+            d1 = {
+                'cDisableAA': !0x1,
+                'cAutoRespawn': !0x1,
+                'cHideId': !0x1,
+                'cHideServer': !0x1,
+                'cHidePartyPanel': !0x1,
+                'cHideLeaderboard': !0x1,
+                'cHideExtraPanel': !0x1,
+                'sShowNames': 'ALL',
+                'sShowSkins': 'ALL',
+                'sRenderType': 'AUTO',
+                'sTextOutlines': 'NONE',
+                'sQuality': 'ULTRA',
+                'sMassType': 'DEFAULT',
+                'cTransCells': !0x1,
+                'cShowMass': !0x1,
+                'cShowBorder': !0x1,
+                'cSilentLogin': !0x1,
+                'cShowChatIds': !0x1,
+                'cColoredChatIds': !0x1,
+                'cHideChat': !0x1,
+                'cHideMinimap': !0x1,
+                'sScorePanel': '2',
+                'cShowCoordinates': !0x1,
+                'cDarkerBots': !0x1,
+                'cHideFood': !0x1,
+                'cColoredPing': !0x1,
+                'cColoredCellCount': !0x1,
+                'cThemeEnabled': !0x1,
+                'cDisableAutoZoom': !0x1,
+                'cAutoDecline': !0x1,
+                'cDisableEventSkins': !0x1,
+                'cResizableChat': !0x1,
+                'cDisableAutoNameHiding': !0x1,
+                'cDisableAutoFoodHiding': !0x1,
+                'cDisablePersistEjectMass': !0x1,
+                'cShowTracer': !0x1,
+                'iChatWidth': '360px',
+                'iChatHeight': '250px',
+                'rUiScale': 0x1,
+                'rReconnectPeriod': 0x5,
+                'rAnimationDelay': 0x5a,
+                'rViewDistance': 0x64,
+                'rTracerOpacity': 0x32,
+                'rTracerColor': '#ffffff',
+                '_ChatTabs': JSON['parse'](JSON['stringify'](cX))
+            },
+            d2 = {
+                'kContextMenu': 0x3,
+                'kEjectMass': 0x57,
+                'kSplit': 0x20,
+                'kToggleSpec': 0x51,
+                'kDoubleSplit': -0x1,
+                'kTripleSplit': -0x1,
+                'kQuadSplit': -0x1,
+                'kHexaSplit': -0x1,
+                'kFreezeMouse': -0x1,
+                'kLineSplit': -0x1
+            },
+            d3 = !0x1;
+        const d4 = Object['assign']({}, d2);
+        window['is_touch_device'] = 'ontouchstart' in document['documentElement'];
+        const d5 = {
+                'version': 0x2,
+                'uiForegroundColor': 'rgb(255,\x20255,\x20255)',
+                'uiBackgroundColor': 'rgba(22,\x2022,\x2022,\x200.8)',
+                'uiBorderColor': 'rgba(255,\x20255,\x20255,\x20.2)',
+                'uiMenuBackgroundColor': '#2A2A2A',
+                'uiMenuTitleBackgroundColor': '#404040',
+                'uiMenuSubBackgroundColor': '#363636',
+                'uiMenuSubBackground2Color': '#404040',
+                'uiButtonColor': '#444444',
+                'uiGameBackgroundColor': '#121212',
+                'uiGameBorderColor': '#ff0000',
+                'uiLeaderboardHighlightSelf': '#ffaaaa',
+                'uiLeaderboardHighlightParty': '#ffff00',
+                'uiPartyLeaderColor': '#00ffff',
+                'uiGameColorSuccess': '#00ff00',
+                'uiGameColorWarning': '#ffff00',
+                'uiGameColorError': '#ff0000',
+                '_FoodColors': [],
+                'aCustomBackground': '',
+                'aCustomSpike': '',
+                'aCustomMother': '',
+                'rBorderSize': 0x20,
+                'rBackgroundOpacity': 0x1
+            },
+            d6 = {};
+        for (var d7 in d5) d6[d7] = d5[d7];
+        const d8 = {
+            'aCustomSpike': null,
+            'aCustomMother': null
+        };
+        var d9 = [],
+            db = {
+                'rules': !0x1,
+                'nameColor': {
+                    'r': 0x0,
+                    'g': 0xff,
+                    'b': 0xff
+                },
+                'chatColor': 0x0,
+                'lowerName': !0x1,
+                'skinName': '',
+                'effect': 0x0,
+                'nameFont': 0x0
+            },
+            dc = null,
+            dd = 0x0;
+        const df = (function () {
+            function e7() {
+                (cC = !document['hidden']) ? (cD && (clearInterval(cD), cD = null), cE && (cancelAnimationFrame(cE), cE = null), a5()) : (cE && (cancelAnimationFrame(cE), cE = null), cD || (cD = setInterval(a9, 0x3e8)));
+            }
+            return {
+                'start'() {
+                    e7(), document['addEventListener']('visibilitychange', e7);
+                },
+                'stop'() {
+                    document['removeEventListener']('visibilitychange', e7), cD && (clearInterval(cD), cD = null), cE && (cancelAnimationFrame(cE), cE = null);
+                }
+            };
+        }());
+        ad['prototype']['clearStats'] = function () {
+            this['stats'] = {
+                'name': 'An\x20unnamed\x20cell',
+                'alive': 0x0,
+                'eatenFood': 0x0,
+                'eatenEject': 0x0,
+                'eatenVirus': 0x0,
+                'eatenPlayer': 0x0,
+                'gainFood': 0x0,
+                'gainEject': 0x0,
+                'gainVirus': 0x0,
+                'gainPlayer': 0x0
+            };
+        }, ad['prototype']['play'] = function () {
+            null != c4 ? (this['name'] = $('#name-box')['val'](), aA(), this['spectate'] = !0x1, this['currentServerName'] = c4['name'], cO['serverSpan'] ? cO['serverSpan']['textContent'] = this['currentServerName'] : cm['querySelector']('#pServer\x20span')['textContent'] = this['currentServerName'], av(), this['isConnected']() && this['currentServer'] == c4['ip'] ? this['sendPacket'](new bV['setName'](this['name'])) : this['connect'](c4['ip']), b7(), b4(c6), window['is_touch_device'] && (touch_controls['style']['display'] = 'block')) : this['selfMsg']('No\x20server\x20selected!');
+        }, ad['prototype']['spec'] = function () {
+            null != c4 ? (this['spectate'] = !0x0, av(), this['isConnected']() && this['currentServer'] == c4['ip'] ? this['sendPacket'](new bV['sendSpectate']()) : this['connect'](c4['ip']), b7(), b4(c6)) : this['selfMsg']('No\x20server\x20selected!');
+        }, ad['prototype']['_resetReconnectDelay'] = function () {
+            this['_reconnectDelay'] = d1['rReconnectPeriod'] || 0x5;
+        }, ad['prototype']['_increaseReconnectDelay'] = function () {
+            this['_reconnectDelay'] || (this['_reconnectDelay'] = d1['rReconnectPeriod'] || 0x5), this['_reconnectDelay'] = Math['min'](0x2 * this['_reconnectDelay'], 0x3c);
+        }, ad['prototype']['_scheduleReconnect'] = function (e7, e8) {
+            if (!(d1['rReconnectPeriod'] <= 0x0 || this['_manualDisconnect'])) {
+                this['_pendingReconnectTimer'] && (clearTimeout(this['_pendingReconnectTimer']), this['_pendingReconnectTimer'] = null), this['_increaseReconnectDelay']();
+                var e9 = this['_reconnectDelay'];
+                this['selfMsg'](('close' === e8 ? 'Disconnected\x20from\x20server.' : 'Error\x20connecting\x20to\x20server...') + '\x20Retrying\x20in\x20' + e9 + '\x20second(s).');
+                var eb = this;
+                this['_pendingReconnectTimer'] = setTimeout(function () {
+                    eb['_pendingReconnectTimer'] = null, 0x0 != eb['isConnected']() || null != eb['socket'] || eb['_manualDisconnect'] || eb['connect'](e7);
+                }, 0x3e8 * e9);
+            }
+        }, ad['prototype']['connect'] = function (e7) {
+            if (null != this['socket']) return this['socket']['nextUrl'] = e7, void this['disconnect'](e7);
+            this['currentServer'] = e7, this['currentServerName'] = c4['name'], this['selfMsg']('Connecting\x20to\x20' + (d1['cHideServer'] ? '***Hidden***' : this['currentServerName'])), 0x1 == c4['ssl'] ? this['socket'] = new WebSocket('wss://' + e7) : this['socket'] = new WebSocket('ws://' + e7), this['socket']['binaryType'] = 'arraybuffer';
+            var e8 = this;
+            this['socket']['onopen'] = function () {
+                e8['_resetReconnectDelay'](), e8['onConnect']['apply'](e8, arguments);
+            }, this['socket']['onmessage'] = this['onMessage']['bind'](this), this['socket']['onclose'] = function (e9) {
+                if (e8['reset'](), e8['selfMsg']('You\x20have\x20been\x20disconnected\x20from\x20the\x20server.\x20Reason:\x20' + ('' === e9['reason'] ? 'Unknown' : e9['reason'])), null != this['nextUrl']) e8['connect'](this['nextUrl']);
+                else {
+                    if (!e8['_manualDisconnect']) {
+                        var eb = c4 && c4['ip'] ? c4['ip'] : e7;
+                        eb && e8['_scheduleReconnect'](eb, 'close');
+                    }
+                }
+                e8['_manualDisconnect'] = !0x1;
+            }, this['socket']['onerror'] = function (e9) {
+                e8['reset'](), this['nextUrl'] = null, e8['_scheduleReconnect'](e7, 'error');
+            }, document['body']['classList']['add']('hide-captcha-badge');
+        }, ad['prototype']['disconnect'] = function (e7) {
+            null != this['socket'] && (this['_manualDisconnect'] = !0x0, this['_pendingReconnectTimer'] && (clearTimeout(this['_pendingReconnectTimer']), this['_pendingReconnectTimer'] = null), this['socket']['close']());
+        }, ad['prototype']['clearBuckets'] = function () {
+            for (var e7 in this['bucket']) this['bucket'][e7]['onDelete'](), delete this['bucket'][e7];
+            for (var e7 in this['foodObjects']) this['foodObjects'][e7]['onDelete'](), delete this['foodObjects'][e7];
+            this['_bucketVersionCounter'] = (this['_bucketVersionCounter'] || 0x0) + 0x1, this['_foodVersionCounter'] = (this['_foodVersionCounter'] || 0x0) + 0x1;
+        }, ad['prototype']['reset'] = function () {
+            bP && (bP['destroy']({
+                'children': !0x0,
+                'texture': !0x0,
+                'baseTexture': !0x0
+            }), bP = null, bJ['cacheAsBitmap'] = !0x1), this['stopPingInterval'](), this['mousePacketInterval'] && (clearTimeout(this['mousePacketInterval']), this['mousePacketInterval'] = null), this['clearBuckets'](), this['myCells'] = {}, this['_myCellVersionCounter'] = (this['_myCellVersionCounter'] || 0x0) + 0x1, this['_forceNextRender'] = !0x0, this['playerRegistry']['clear'](), this['playerId'] = 0x0, this['score'] = 0x0, this['respawnCooldown'] = 0x0, this['customGameMap'] = null, this['currentServer'] = null, this['clearStats'](), this['clearParty'](), this['buffHolder']['clearBuffs'](), bW = 'undefined' != typeof performance && performance['now'] ? performance['now']() : Date['now'](), this['serverData']['hasSentSubPanel'] = !0x1, this['serverData']['resetType'] = 0x0, this['serverData']['autosplits'] = !0x1, null != this['socket'] && (this['socket'] = null), cO['idSpan'] ? cO['idSpan']['textContent'] = this['playerId'] : cm['querySelector']('#pId\x20span')['textContent'] = this['playerId'], this['subPanelOverride'] && (this['subPanelOverride'] = !0x1, aI()), b3();
+        }, ad['prototype']['handleKey'] = function (e7) {
+            if (e7 == d2['kEjectMass']) cf = !0x0, this['sendPacket'](new bV['sendEjectMass'](!0x0));
+            else {
+                if (e7 == d2['kSplit']) this['sendPacket'](new bV['sendKey'](0x11));
+                else {
+                    if (e7 == d2['kToggleSpec']) this['sendPacket'](new bV['sendKey'](0x12));
+                    else {
+                        if (e7 == d2['kDoubleSplit']) this['sendPacket'](new bV['sendKey'](0x11)), this['sendPacket'](new bV['sendKey'](0x11));
+                        else {
+                            if (e7 == d2['kTripleSplit']) {
+                                for (var e8 = 0x0; e8 < 0x3; e8++) this['sendPacket'](new bV['sendKey'](0x11));
+                            } else {
+                                if (e7 == d2['kQuadSplit']) {
+                                    for (e8 = 0x0; e8 < 0x4; e8++) this['sendPacket'](new bV['sendKey'](0x11));
+                                } else {
+                                    if (e7 == d2['kHexaSplit']) {
+                                        for (e8 = 0x0; e8 < 0x6; e8++) this['sendPacket'](new bV['sendKey'](0x11));
+                                    } else 0x26 == e7 ? (this['mouseZoom'] *= 1.05, this['mouseZoom'] = bU['mouseZoom'] > 0x5 ? 0x5 : this['mouseZoom'] < 0.1 ? 0.1 : this['mouseZoom']) : 0x28 == e7 ? (this['mouseZoom'] *= 0.95, this['mouseZoom'] = bU['mouseZoom'] > 0x5 ? 0x5 : this['mouseZoom'] < 0.1 ? 0.1 : this['mouseZoom']) : e7 == d2['kFreezeMouse'] ? (this['mouseFrozen'] = !this['mouseFrozen'], this['mouseFrozen'] ? cO['mouseFrozenDiv']['style']['display'] = 'block' : cO['mouseFrozenDiv']['style']['display'] = 'none') : e7 == d2['kLineSplit'] ? this['toggleLineSplit']() : e7 == d2['kContextMenu'] && (function () {
+                                        var e9, eb = bK['pivot']['x'] - bG['stage']['position']['x'] / bU['scale'] + bU['mouseRawX'] * cW['resolution'] / bU['scale'],
+                                            ec = bK['pivot']['y'] - bG['stage']['position']['y'] / bU['scale'] + bU['mouseRawY'] * cW['resolution'] / bU['scale'],
+                                            ed = null;
+                                        for (var ef in bU['bucket'])
+                                            if (!((e9 = bU['bucket'][ef])['size'] < 0x19)) {
+                                                var eg = e9['y'] - e9['size'],
+                                                    eh = e9['y'] + e9['size'],
+                                                    ei = e9['x'] - e9['size'],
+                                                    ej = e9['x'] + e9['size'];
+                                                if (!(ec > eh || ec < eg || eb > ej || eb < ei)) {
+                                                    ed = e9;
+                                                    break;
+                                                }
+                                            } if (null != ed && 0x0 != ed['playerId']) {
+                                            var ek = bU['playerRegistry']['getPlayer'](ed['playerId']);
+                                            null != ek && aZ(0x0, ek['name'], ed['playerId'], -0x1);
+                                        }
+                                    }());
+                                }
                             }
                         }
                     }
-                };
-                return null
-            };
-            this.onDelete = function () {
-                if (this.nameCache) {
-                    this.nameCache.destroy()
                 }
             }
-        }
-        function _0x1207C() {}
-        _0x1207C.prototype.connectionStart = function() {
-            var _0x111EE = "Gota Web " + version;
-            var _0x111D7 = new ArrayBuffer(1 + _0x111EE.length + 1 + 1);
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 255);
-            _0x11205.setUint8(1, 6);
-            _0x12864(2, _0x11205, _0x111EE);
-            return _0x111D7
-        };
-        _0x1207C.prototype.setName = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + 1 + ((_0x111EE.length + 1) * 2));
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 0);
-            _0x1284D(1, _0x11205, _0x111EE);
-            if (_0x12020.cSilentLogin) {
-                _0x11205.setUint8(2 + (_0x111EE.length * 2) + 1, 1)
-            };
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendKey = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1);
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, _0x111EE);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendMouse = function (_0x11205, _0x1121C) {
-            var _0x111D7 = new ArrayBuffer(9);
-            var _0x111EE = new DataView(_0x111D7);
-            _0x111EE.setUint8(0, 16);
-            _0x111EE.setInt32(1, _0x11205, true);
-            _0x111EE.setInt32(5, _0x1121C, true);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendEjectMass = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1);
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, _0x111EE ? 3 : 4);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendPing = function () {
-            var _0x111D7 = new ArrayBuffer(1);
-            var _0x111EE = new DataView(_0x111D7);
-            _0x111EE.setUint8(0, 71);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendSpectate = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + 2);
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 1);
-            if (_0x111EE) {
-                _0x11205.setUint16(1, _0x111EE, true)
-            };
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendChat = function (_0x11205, _0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + 1 + ((_0x11205.length + 1) * 2));
-            var _0x1121C = new DataView(_0x111D7);
-            _0x1121C.setUint8(0, 72);
-            _0x1121C.setUint8(1, _0x111EE);
-            _0x1284D(2, _0x1121C, _0x11205);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendInviteResponse = function (_0x111D7) {
-            var _0x111EE = new ArrayBuffer(2);
-            var _0x11205 = new DataView(_0x111EE);
-            _0x11205.setUint8(0, 41);
-            _0x11205.setUint8(1, _0x111D7 ? 1 : 0);
-            return _0x111EE
-        };
-        _0x1207C.prototype.sendPartyAction = function (_0x111D7, _0x11205) {
-            var _0x111EE = new ArrayBuffer(6);
-            var _0x1121C = new DataView(_0x111EE);
-            _0x1121C.setUint8(0, 40);
-            _0x1121C.setUint8(1, _0x111D7);
-            _0x1121C.setUint32(2, _0x11205, true);
-            return _0x111EE
-        };
-        _0x1207C.prototype.sendPartyJoin = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + _0x111EE.length + 1);
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 42);
-            _0x12864(1, _0x11205, _0x111EE);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendShowProfile = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + 2);
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 103);
-            _0x11205.setUint16(1, _0x111EE, true);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendWhisper = function (_0x111EE, _0x11205) {
-            var _0x111D7 = new ArrayBuffer(5 + ((_0x11205.length + 1) * 2));
-            var _0x1121C = new DataView(_0x111D7);
-            _0x1121C.setUint8(0, 73);
-            _0x1121C.setUint32(1, _0x111EE, true);
-            _0x1284D(5, _0x1121C, _0x11205);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendSubPanel = function () {
-            var _0x111D7 = new ArrayBuffer(1 + 7 + (_0x126C6.skinName.length + 1));
-            var _0x111EE = new DataView(_0x111D7);
-            _0x111EE.setUint8(0, 10);
-            _0x111EE.setUint8(1, _0x126C6.nameColor.r);
-            _0x111EE.setUint8(2, _0x126C6.nameColor.g);
-            _0x111EE.setUint8(3, _0x126C6.nameColor.b);
-            _0x111EE.setUint8(4, _0x126C6.chatColor);
-            _0x111EE.setUint8(5, _0x126C6.effect);
-            _0x111EE.setUint8(6, _0x126C6.lowerName ? 1 : 0);
-            _0x12864(7, _0x111EE, _0x126C6.skinName);
-            _0x111EE.setUint8(8 + _0x126C6.skinName.length, _0x126C6.nameFont);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendLockedNameChange = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + (_0x111EE.length + 1));
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 11);
-            _0x12864(1, _0x11205, _0x111EE);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendOptions = function () {
-            var _0x111D7 = new ArrayBuffer(1 + 2);
-            var _0x111EE = new DataView(_0x111D7);
-            _0x111EE.setUint8(0, 104);
-            _0x111EE.setUint16(1, _0x12020.rViewDistance, true);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendQueue = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + 4);
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 80);
-            _0x11205.setUint8(1, _0x111EE);
-            _0x11205.setUint8(2, 0);
-            _0x11205.setUint16(3, 0);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendCustomGame = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + 1);
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 90);
-            _0x11205.setUint8(1, _0x111EE);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendLeaveMatch = function () {
-            var _0x111D7 = new ArrayBuffer(1);
-            var _0x111EE = new DataView(_0x111D7);
-            _0x111EE.setUint8(0, 81);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendShowLobbies = function () {
-            var _0x111D7 = new ArrayBuffer(1 + 1);
-            var _0x111EE = new DataView(_0x111D7);
-            _0x111EE.setUint8(0, 93);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendJoinLobby = function (_0x111EE, _0x11205) {
-            var _0x111D7 = new ArrayBuffer(1 + 4 + (_0x11205.length * 2) + 2);
-            var _0x1121C = new DataView(_0x111D7);
-            _0x1121C.setUint8(0, 94);
-            _0x1121C.setUint32(1, _0x111EE, true);
-            _0x1284D(5, _0x1121C, _0x11205);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendCaptcha = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + (_0x111EE.length + 1));
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 100);
-            _0x12864(1, _0x11205, _0x111EE);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendAuthToken = function (_0x111EE) {
-            var _0x111D7 = new ArrayBuffer(1 + (_0x111EE.length + 1));
-            var _0x11205 = new DataView(_0x111D7);
-            _0x11205.setUint8(0, 101);
-            _0x12864(1, _0x11205, _0x111EE);
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendCustomGameUpdate = function (_0x111EE, _0x11205, _0x1121C) {
-            var _0x111D7 = new ArrayBuffer(1 + 3);
-            var _0x11233 = new DataView(_0x111D7);
-            _0x11233.setUint8(0, 91);
-            _0x11233.setUint8(1, _0x111EE);
-            if (_0x111EE == _0x1170D.STARTMASS || _0x111EE == _0x1170D.VIRUS_DENSITY) {
-                _0x11233.setUint16(2, _0x11205, false)
-            } else {
-                if (_0x111EE == _0x1170D.RESPAWN_DELAY) {
-                    _0x11233[_0x111C0[827]](2, _0x11205, false)
-                } else {
-                    _0x11233.setUint8(2, _0x11205);
-                    _0x11233.setUint8(3, _0x1121C)
-                }
-            };
-            return _0x111D7
-        };
-        _0x1207C.prototype.sendCustomGameUpdateString = function (_0x111EE, _0x11205) {
-            var _0x111D7 = new ArrayBuffer(1 + 3 + (_0x11205.length * 2));
-            var _0x1121C = new DataView(_0x111D7);
-            _0x1121C.setUint8(0, 92);
-            _0x1121C.setUint8(1, _0x111EE);
-            _0x1284D(2, _0x1121C, _0x11205);
-            return _0x111D7
-        };
-        function _0x12864(_0x111EE, _0x1121C, _0x11205) {
-            for (var _0x111D7 = 0; _0x111D7 < _0x11205.length; _0x111D7++) {
-                _0x1121C.setUint8(_0x111EE, _0x11205.charCodeAt(_0x111D7));
-                _0x111EE++
-            };
-            _0x1121C.setUint8(_0x111EE, 0)
-        }
-
-        function _0x1284D(_0x111EE, _0x1121C, _0x11205) {
-            for (var _0x111D7 = 0; _0x111D7 < _0x11205.length; _0x111D7++) {
-                _0x1121C.setUint16(_0x111EE, _0x11205.charCodeAt(_0x111D7), true);
-                _0x111EE += 2
+        }, ad['prototype']['isConnected'] = function () {
+            return null != this['socket'] && 0x1 == this['socket']['readyState'];
+        }, ad['prototype']['sendPacket'] = function (e7) {
+            this['isConnected']() && this['socket']['send'](e7);
+        }, ad['prototype']['sendMousePacket'] = function (e7, e8) {
+            var e9 = Date['now']();
+            this['pendingMousePacket'] = {
+                'x': e7,
+                'y': e8
+            }, e9 - this['lastMousePacket']['time'] >= this['MOUSE_PACKET_RATE'] ? (this['sendPacket'](new bV['sendMouse'](e7, e8)), this['lastMousePacket']['x'] = e7, this['lastMousePacket']['y'] = e8, this['lastMousePacket']['time'] = e9, this['pendingMousePacket'] = null) : this['mousePacketInterval'] || (this['mousePacketInterval'] = setTimeout(() => {
+                this['pendingMousePacket'] && this['isConnected']() && (this['sendPacket'](new bV['sendMouse'](this['pendingMousePacket']['x'], this['pendingMousePacket']['y'])), this['lastMousePacket']['x'] = this['pendingMousePacket']['x'], this['lastMousePacket']['y'] = this['pendingMousePacket']['y'], this['lastMousePacket']['time'] = Date['now']()), this['pendingMousePacket'] = null, this['mousePacketInterval'] = null;
+            }, this['MOUSE_PACKET_RATE'] - (e9 - this['lastMousePacket']['time'])));
+        }, ad['prototype']['onConnect'] = function () {
+            cy = [], cA['execute']('6LcycFwUAAAAANrun52k-J1_eNnF9zeLvgfJZSY3', {
+                'action': 'login'
+            })['then'](function (e7) {
+                bU['sendPacket'](new bV['sendCaptcha'](e7)), document['body']['classList']['add']('hide-captcha-badge'), bU['spectate'] ? bU['spec']() : bU['play']();
+            }), this['sendPacket'](new bV['connectionStart']()), this['sendPing'](), this['sendOptions'](), bW = 'undefined' != typeof performance && performance['now'] ? performance['now']() : Date['now'](), this['startPingInterval'](), null === firebase['auth']()['currentUser'] ? this['spectate'] ? this['sendPacket'](new bV['sendSpectate']()) : this['sendPacket'](new bV['setName'](this['name'])) : firebase['auth']()['currentUser']['getIdToken'](!0x0)['then'](e7 => {
+                bU['sendPacket'](new bV['sendAuthToken'](e7));
+            })['catch'](e7 => ao(e7, !0x0));
+        }, ad['prototype']['sendPing'] = function () {
+            this['isConnected']() && (bZ = +new Date(), this['sendPacket'](new bV['sendPing']()));
+        }, ad['prototype']['sendOptions'] = function () {
+            this['isConnected']() && this['sendPacket'](new bV['sendOptions']());
+        }, ad['prototype']['startPingInterval'] = function () {
+            function e7() {
+                const e9 = document['hidden'] ? 0x3a98 : 0x1388;
+                e8['pingInterval'] = setTimeout(function () {
+                    e8['isConnected']() && e8['sendPing'](), e7();
+                }, e9);
             }
-        }
-
-        function _0x12300(_0x11205) {
-            var _0x111EE = "";
-            while (true) {
-                var _0x111D7 = _0x11205.getUint8(_0x11205.offset);
-                _0x11205.offset++;
-                if (_0x111D7 == 0) {
-                    break
+            this['stopPingInterval']();
+            const e8 = this;
+            e7(), this['_pingVisibilityHandler'] || (this['_pingVisibilityHandler'] = function () {
+                !document['hidden'] && e8['isConnected']() && e8['sendPing'](), e8['pingInterval'] && (clearTimeout(e8['pingInterval']), e8['pingInterval'] = null, e7());
+            }, document['addEventListener']('visibilitychange', this['_pingVisibilityHandler']));
+        }, ad['prototype']['stopPingInterval'] = function () {
+            this['pingInterval'] && (clearTimeout(this['pingInterval']), this['pingInterval'] = null), this['_pingVisibilityHandler'] && (document['removeEventListener']('visibilitychange', this['_pingVisibilityHandler']), this['_pingVisibilityHandler'] = null);
+        }, ad['prototype']['selfMsg'] = function (e7) {
+            var e8 = document['createElement']('td'),
+                e9 = document['createElement']('span');
+            e9['style']['color'] = '#DDDD00', e9['innerHTML'] = '[System]\x20' + b0(e7), e8['appendChild'](e9), aP(dY['SYSTEM'], e8);
+        }, ad['prototype']['selfMsgWithJoinCode'] = function (e7, e8) {
+            var e9 = document['createElement']('td'),
+                eb = document['createElement']('span');
+            eb['style']['color'] = '#DDDD00', eb['innerHTML'] = '[System]\x20' + b0(e7), e9['appendChild'](eb);
+            var ec = document['createElement']('span');
+            ec['style']['color'] = '#DDDD00', ec['innerHTML'] = e8, ec['style']['pointerEvents'] = 'all', ec['style']['userSelect'] = 'all', e9['appendChild'](ec), aP(dY['SYSTEM'], e9);
+        }, ad['prototype']['setupVisibilityPing'] = function () {}, ad['prototype']['cleanupVisibilityPing'] = function () {}, ad['prototype']['selfMsgCopyable'] = function (e7, e8) {
+            var e9 = document['createElement']('td'),
+                eb = document['createElement']('span');
+            eb['style']['color'] = '#DDDD00', eb['innerHTML'] = '[System]\x20' + b0(e7), e9['appendChild'](eb);
+            var ec = document['createElement']('span');
+            ec['style']['color'] = '#428df5', ec['innerHTML'] = b0(e8), ec['style']['pointerEvents'] = 'all', ec['style']['userSelect'] = 'all', e9['appendChild'](ec), aP(dY['SYSTEM'], e9);
+        }, ad['prototype']['clearParty'] = function (e7) {
+            this['party'] = [], this['partyIds'] = {}, this['partyLeader'] = -0x1, this['partyIndex'] = -0x1, $('#party-panel')['css']('display', 'none'), 'block' == cl['css']('display') && this['handleCustomGameLeave'](), null == this['partyCode'] && null == ci || (this['partyCode'] = ci = null, window['history']['pushState']('page', '', '\x20'));
+        }, ad['prototype']['isPartyLeader'] = function () {
+            return this['partyLeader'] == this['playerId'];
+        }, ad['prototype']['getServerMaxCells'] = function () {
+            return this['serverData']['maxCells'] + this['buffHolder']['bonusMaxCells'];
+        }, ad['prototype']['onMessage'] = function (e7) {
+            var e8 = new DataView(e7['data']),
+                e9 = e8['getUint8'](0x0);
+            switch (e8['offset'] = 0x1, e9) {
+            case 0x7a:
+                let er = function () {
+                    try {
+                        var es = '__ak8saulr';
+                        if ('function' != typeof window[es]) return !0x1;
+                        var eu = window[es],
+                            ev = eu(eb, ec, ed, ef, eg, ek, el, em);
+                        if (eb >= 0x4 && eu['length'] < 0x8) try {
+                            var ew = parseInt(ev, 0x24);
+                            if (!isNaN(ew)) {
+                                var ex = 0x7 & em;
+                                ew = ((ew = ew >>> 0x0 ^ em >>> 0x0) << ex | ew >>> 0x20 - ex) >>> 0x0, ev = ((ew ^= em >>> 0x3) >>> 0x0)['toString'](0x24)['toUpperCase']();
+                            }
+                        } catch (eE) {}
+                        if (ev && '-' === ev['charAt'](0x0)) try {
+                            var ey = parseInt(ev, 0x24);
+                            isNaN(ey) || (ev = (ey >>> 0x0)['toString'](0x24)['toUpperCase']());
+                        } catch (eF) {}
+                        var ez = new TextEncoder()['encode'](ev),
+                            eA = new ArrayBuffer(0xc + ez['length']),
+                            eB = new DataView(eA),
+                            eC = 0x0;
+                        eB['setUint8'](eC++, 0x7b), eB['setUint8'](eC++, eb), eB['setUint32'](eC, ec, !0x0), eC += 0x4, eB['setUint32'](eC, ed, !0x0), eC += 0x4, eB['setUint16'](eC, ez['length'], !0x0), eC += 0x2;
+                        for (var eD = 0x0; eD < ez['length']; eD++) eB['setUint8'](eC + eD, ez[eD]);
+                        eo['socket']['send'](eA);
+                        try {
+                            sendEnvTelemetry(eo['socket'], ec, ed, es, ek, el, ef);
+                        } catch (eG) {}
+                        if (eb >= 0x4) try {
+                            setTimeout(function () {
+                                if (eo['socket'] && 0x1 === eo['socket']['readyState']) {
+                                    var eH = window[es],
+                                        eI = 0x0;
+                                    try {
+                                        for (var eJ = eH['toString'](), eK = 0x0; eK < eJ['length']; eK++) eI = 0x1000193 * (eI ^ eJ['charCodeAt'](eK)) >>> 0x0;
+                                    } catch (eQ) {}
+                                    var eL = 0x0;
+                                    eH && eH['_wasm'] && (eL |= 0x1);
+                                    var eM = 'v:' + eb + '|h:' + eI['toString'](0x24) + '|f:' + eL,
+                                        eN = new TextEncoder()['encode'](eM);
+                                    if (!(eN['length'] > 0x40)) {
+                                        var eO = new ArrayBuffer(0x2 + eN['length']),
+                                            eP = new DataView(eO);
+                                        for (eP['setUint8'](0x0, 0x7e), eP['setUint8'](0x1, eN['length']), eK = 0x0; eK < eN['length']; eK++) eP['setUint8'](0x2 + eK, eN[eK]);
+                                        eo['socket']['send'](eO);
+                                    }
+                                }
+                            }, 0x96);
+                        } catch (eH) {}
+                        return !0x0;
+                    } catch (eI) {
+                        return !0x1;
+                    }
                 };
-                _0x111EE += String.fromCharCode(_0x111D7)
-            };
-            return _0x111EE
-        }
-        function _0x122E9(_0x11205) {
-            var _0x111EE = "";
-            while (true) {
-                var _0x111D7 = _0x11205.getUint16(_0x11205.offset, true);
-                _0x11205.offset += 2;
-                if (_0x111D7 == 0) {
-                    break
-                };
-                _0x111EE += String.fromCharCode(_0x111D7)
-            };
-            return _0x111EE
-        }
-
-        function _0x12625(_0x111EE) {
-            while (true) {
-                var _0x111D7 = _0x111EE.getUint16(_0x111EE.offset, true);
-                _0x111EE.offset += 2;
-                if (_0x111D7 == 0) {
-                    break
+                var eb = e8['getUint8'](0x1),
+                    ec = e8['getUint32'](0x2, !0x0),
+                    ed = e8['getUint32'](0x6, !0x0),
+                    ef = e8['getUint32'](0xa, !0x0),
+                    eg = null,
+                    eh = 0xe;
+                if (eb >= 0x2) {
+                    var ei = e8['getUint8'](0xe);
+                    if (ei > 0x0) {
+                        eg = [];
+                        for (var ej = 0x0; ej < ei; ej++) eg['push'](e8['getUint8'](0xf + ej));
+                    }
+                    eh = 0xf + ei;
+                }
+                var ek = 0x9e3779b9,
+                    el = 0xa5a5a5a5,
+                    em = 0x0;
+                eb >= 0x3 && (ek = e8['getUint32'](eh, !0x0), eh += 0x4, el = e8['getUint32'](eh, !0x0), eh += 0x4, eb >= 0x4 && (em = e8['getUint32'](eh, !0x0) >>> 0x0, eh += 0x4));
+                var eo = this;
+                if (!er() && !window['__authScriptLoading']) {
+                    window['__authScriptLoading'] = !0x0;
+                    var ep = document['createElement']('script');
+                    ep['src'] = 'auth.js?_=' + Date['now'](), ep['async'] = !0x0, ep['onload'] = function () {
+                        if (!er()) {
+                            var es = 0x0;
+                            ! function eu() {
+                                er() || ++es >= 0x28 || setTimeout(eu, 0x64);
+                            }();
+                        }
+                    }, ep['onerror'] = function () {
+                        window['__authScriptLoading'] = !0x1;
+                    }, document['head']['appendChild'](ep);
+                }
+                break;
+            case 0x7c:
+                var eq = e8['getUint8'](0x1);
+                0x0 === eq || this['selfMsg']('Client\x20validation\x20warning\x20(code\x20' + eq + ').');
+                break;
+            case 0x2:
+                this['handleUpdate'](e8);
+                break;
+            case 0xa:
+                this['handlePosition'](e8);
+                break;
+            case 0x15:
+                this['handleStats'](e8);
+                break;
+            case 0x16:
+                this['showSubPanel'](e8);
+                break;
+            case 0x17:
+                this['updateSubPanel'](e8);
+                break;
+            case 0x28:
+                this['handleInvite'](e8);
+                break;
+            case 0x29:
+                this['handlePartyInfo'](e8);
+                break;
+            case 0x2d:
+                this['handlePartyData'](e8);
+                break;
+            case 0x2b:
+                this['handlePartyJoinCode'](e8);
+                break;
+            case 0x31:
+                this['handleLeaderboard'](e8);
+                break;
+            case 0x32:
+                this['handleLeaderboardCustom'](e8);
+                break;
+            case 0x3f:
+                this['handleRespawnCooldown'](e8);
+                break;
+            case 0x40:
+                this['handleMapData'](e8);
+                break;
+            case 0x41:
+                this['handleClearNodes']();
+                break;
+            case 0x42:
+                this['handleUpdateBorder'](e8);
+                break;
+            case 0x44:
+                this['handleResetTime'](e8);
+                break;
+            case 0x45:
+                this['handleSpectators'](e8);
+                break;
+            case 0x46:
+                this['handleSystemMsg'](e8);
+                break;
+            case 0x47:
+                this['handlePing']();
+                break;
+            case 0x48:
+                this['handleChat'](e8);
+                break;
+            case 0x49:
+                this['handleWhisper'](e8);
+                break;
+            case 0x4a:
+                this['handleEditMessage'](e8);
+                break;
+            case 0x4b:
+                this['handleCopyableMessage'](e8);
+                break;
+            case 0x50:
+                this['handleShowScrimmageMenu']();
+                break;
+            case 0x51:
+                this['handleQueueData'](e8);
+                break;
+            case 0x52:
+                this['handleQueueLeave'](e8);
+                break;
+            case 0x53:
+                this['handleMatchState'](e8);
+                break;
+            case 0x5a:
+                this['handleScrimmageData'](e8);
+                break;
+            case 0x5b:
+                this['handleCustomGameShow'](e8);
+                break;
+            case 0x5c:
+                this['handleCustomGameUpdate'](e8);
+                break;
+            case 0x5d:
+                this['handleCustomGameLeave']();
+                break;
+            case 0x5e:
+                this['handleShowCustomGameLobbies'](e8);
+                break;
+            case 0x64:
+                this['handleAddBuff'](e8);
+                break;
+            case 0x65:
+                this['handleRemoveBuff'](e8);
+                break;
+            case 0x66:
+                this['handleClearBuffs'](e8);
+                break;
+            case 0x67:
+                this['handleAuthenticated'](e8);
+                break;
+            case 0x68:
+                this['handleProfile'](e8);
+            }
+        }, ad['prototype']['handleUpdate'] = function (e7) {
+            var e8 = e7['getUint16'](e7['offset'], !0x0);
+            for (e7['offset'] += 0x2; e8 > 0x0;) {
+                var e9 = e7['getUint16'](e7['offset'], !0x0);
+                e7['offset'] += 0x2, bU['playerRegistry']['remove'](e9), e8--;
+            }
+            for (e8 = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2; e8 > 0x0;) e9 = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2, null != (ej = this['bucket'][e9] || this['foodObjects'][e9]) && (0x6 == ej['type'] ? (delete this['foodObjects'][e9], this['_foodVersionCounter'] = (this['_foodVersionCounter'] || 0x0) + 0x1) : (delete this['bucket'][e9], this['_bucketVersionCounter'] = (this['_bucketVersionCounter'] || 0x0) + 0x1), ej['playerId'] == this['playerId'] && (delete this['myCells'][e9], this['_myCellVersionCounter'] = (this['_myCellVersionCounter'] || 0x0) + 0x1, 0x0 == Object['keys'](this['myCells'])['length'] && (d1['cAutoRespawn'] ? 'none' == $('#main')['css']('display') && bU['play']() : ('block' != c9['css']('display') && b3(), bE()))), ej['onDelete']()), e8--;
+            for (; e9 = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2, 0x0 != e9;) {
+                var eb = this['playerRegistry']['getPlayer'](e9),
+                    ec = !0x1;
+                null == eb ? eb = new ah(e9) : ec = !0x0, eb['cellColor'] = (e7['getUint8'](e7['offset']++) << 0x10) + (e7['getUint8'](e7['offset']++) << 0x8) + e7['getUint8'](e7['offset']++), eb['name'] = am(e7), eb['isServerBot'] = eb['name'] && -0x1 !== eb['name']['indexOf']('рџ¤–'), eb['setSkin'](al(e7)), eb['setFlags'](e7['getUint8'](e7['offset']++)), 0x2 & ~eb['flags'] || (eb['nameColor'] = '#' + bw(e7['getUint8'](e7['offset']++)) + bw(e7['getUint8'](e7['offset']++)) + bw(e7['getUint8'](e7['offset']++)), eb['parseEffect'](e7['getUint8'](e7['offset']++)), eb['nameFont'] = e7['getUint8'](e7['offset']++)), ec ? bU['playerRegistry']['updatePlayer'](eb) : bU['playerRegistry']['add'](eb);
+            }
+            for (;;) {
+                var ed = 0x0;
+                if (0x0 == (ei = e7['getUint8'](e7['offset']++))) break;
+                for (; 0x2 != ei || 0x0 != ed || (ed = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2, 0x0 != ed);) {
+                    if (e9 = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2, 0x0 == e9) {
+                        if (0x2 == ei) {
+                            ed = 0x0;
+                            continue;
+                        }
+                        break;
+                    }
+                    switch ((ej = new af(e9))['setType'](ei), ej['setX'](e7['getInt16'](e7['offset'], !0x0)), ej['setY'](e7['getInt16'](e7['offset'] + 0x2, !0x0)), e7['offset'] += 0x4, ei) {
+                    case 0x6:
+                        ej['color'] = br(ej['id']);
+                        break;
+                    case 0x1:
+                        ej['setSize'](e7['getUint16'](e7['offset'], !0x0)), e7['offset'] += 0x2, ej['color'] = (e7['getUint8'](e7['offset']++) << 0x10) + (e7['getUint8'](e7['offset']++) << 0x8) + e7['getUint8'](e7['offset']++);
+                        var ef = e7['getUint8'](e7['offset']++);
+                        if (ej['skin'] = (0x7f & ef) - 0x1, ej['rainbow'] = !(0x80 & ~ef), d1['cDarkerBots'])
+                            for (var eg in bU['playerRegistry']['bucket']) {
+                                var eh = bU['playerRegistry']['bucket'][eg];
+                                if (eh && eh['isServerBot'] && eh['cellColor'] === ej['color']) {
+                                    ej['color'] = bx(ej['color'], 0.4);
+                                    break;
+                                }
+                            }
+                        break;
+                    case 0x2:
+                        ej['setSize'](e7['getUint16'](e7['offset'], !0x0)), e7['offset'] += 0x2, ej['playerId'] = ed;
+                        break;
+                    case 0x3:
+                    case 0x4:
+                        ej['setSize'](e7['getUint16'](e7['offset'], !0x0)), e7['offset'] += 0x2;
+                        break;
+                    case 0x5:
+                        ej['setSize'](e7['getUint16'](e7['offset'], !0x0)), e7['offset'] += 0x2, ej['buff'] = e7['getUint8'](e7['offset']++);
+                    }
+                    ej['onCreate'](this);
                 }
             }
-        }
-        function _0x11AEA(_0x111D7, _0x111EE) {
-            console["error"](_0x111D7.message, _0x111D7.code);
-            if (_0x111EE) {
-                switch (_0x111D7.code) {
-                case "auth/user-disabled":
-                    alert("This account has been permanently suspended by an administrator.");
+            for (;;) {
+                var ei;
+                if (0x0 == (ei = e7['getUint8'](e7['offset']++))) break;
+                for (; e9 = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2, 0x0 != e9;) {
+                    var ej, ek = e7['getInt16'](e7['offset'], !0x0),
+                        el = e7['getInt16'](e7['offset'] + 0x2, !0x0);
+                    switch (e7['offset'] += 0x4, null == (ej = 0x6 == ei ? this['foodObjects'][e9] : this['bucket'][e9]) ? ((ej = new af(e9))['setType'](ei), ej['setSize'](0xa), ej['setX'](ek), ej['setY'](el), ej['onCreate'](this)) : (ej['updateX'](ek), ej['updateY'](el)), ei) {
+                    case 0x2:
+                    case 0x3:
+                    case 0x4:
+                        ej['size_'] = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2;
+                    }
+                    ej['steps'] = 0x1e;
+                }
+            }
+            this['sortCells']();
+        }, ad['prototype']['handlePosition'] = function (e7) {
+            this['centerX_'] = e7['getFloat32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['centerY_'] = e7['getFloat32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['centerSteps'] = 0x1e, d1['cDisableAutoZoom'] || (this['scale_base'] = e7['getFloat32'](e7['offset'], !0x0));
+        }, ad['prototype']['handleRespawnCooldown'] = function (e7) {
+            var e8 = e7['getFloat64'](e7['offset'], !0x0);
+            this['respawnCooldown'] = e8;
+        }, ad['prototype']['handleMapData'] = function (e7) {
+            this['playerId'] = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x3, this['handleUpdateBorder'](e7), this['serverData']['maxCells'] = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2, al(e7), this['serverData']['autosplits'] = e7['getUint8'](e7['offset']++), cO['idSpan'] ? cO['idSpan']['textContent'] = this['playerId'] : cm['querySelector']('#pId\x20span')['textContent'] = this['playerId'], this['updateCellCounter'](0x0, !0x0), null != ci && bU['sendPacket'](new bV['sendPartyJoin'](ci)), c9['css']('display', 'none'), $('#scrimmage-btn-leave')['css']('display', 'none');
+        }, ad['prototype']['handleUpdateBorder'] = function (e7) {
+            this['serverData']['border'] = {}, this['serverData']['border']['left'] = e7['getInt16'](e7['offset'], !0x0), this['serverData']['border']['top'] = e7['getInt16'](e7['offset'] + 0x2, !0x0), this['serverData']['border']['right'] = e7['getInt16'](e7['offset'] + 0x4, !0x0), this['serverData']['border']['bottom'] = e7['getInt16'](e7['offset'] + 0x6, !0x0), e7['offset'] += 0x8, this['serverData']['border']['width'] = this['serverData']['border']['right'] - this['serverData']['border']['left'], this['serverData']['border']['height'] = this['serverData']['border']['bottom'] - this['serverData']['border']['top'], this['serverData']['border']['enabled'] = 0x0 != this['serverData']['border']['width'] && 0x0 != this['serverData']['border']['height'], ab();
+        }, ad['prototype']['handleResetTime'] = function (e7) {
+            var e8 = e7['getUint8'](e7['offset']++),
+                e9 = e7['getFloat64'](e7['offset'], !0x0);
+            this['serverData']['resetType'] = e8, this['serverData']['resetTime'] = e9;
+        }, ad['prototype']['handleSpectators'] = function (e7) {
+            this['spectators'] = e7['getUint16'](e7['offset'], !0x0), this['updateSpectators']();
+        }, ad['prototype']['handleClearNodes'] = function (e7) {
+            this['clearBuckets']();
+        }, ad['prototype']['handleLeaderboard'] = function (e7) {
+            var e8 = cO['leaderCanvas'],
+                e9 = cO['leaderCtx'] || e8 && e8['getContext']('2d');
+            if (e8 && e9) {
+                cO['leaderHeaderEl'] || (cO['leaderHeaderEl'] = document['getElementById']('leaderboard-header')), cO['leaderHeaderEl'] && 'Leaderboard' !== cO['leaderHeaderEl']['textContent'] && (cO['leaderHeaderEl']['textContent'] = 'Leaderboard');
+                var eb = e7['getUint32'](e7['offset'], !0x0);
+                e7['offset'] += 0x4;
+                var ec = 0x14 * eb + 0x5;
+                0xc8 !== e8['width'] && (e8['width'] = 0xc8), e8['height'] !== ec && (e8['height'] = ec), e9['clearRect'](0x0, 0x0, e8['width'], e8['height']), e9['font'] = '16px\x20Calibri';
+                for (var ed = 0x14, ef = 0x0; ef < eb; ef++) {
+                    var eg = e7['getUint16'](e7['offset'], !0x0);
+                    e7['offset'] += 0x2;
+                    var eh = am(e7) || 'An\x20unnamed\x20cell';
+                    eg == this['playerId'] ? e9['fillStyle'] = d5['uiLeaderboardHighlightSelf'] : null != this['partyIds'][eg] ? e9['fillStyle'] = d5['uiLeaderboardHighlightParty'] : e9['fillStyle'] = d5['uiForegroundColor'], e9['fillText'](ef + 0x1 + '.\x20' + eh, 0xa, ed), ed += 0x14;
+                }
+            }
+        }, ad['prototype']['handleLeaderboardCustom'] = function (e7) {
+            var e8 = cO['leaderCanvas'],
+                e9 = cO['leaderCtx'] || e8 && e8['getContext']('2d');
+            if (e8 && e9) {
+                cO['leaderHeaderEl'] || (cO['leaderHeaderEl'] = document['getElementById']('leaderboard-header')), cO['leaderHeaderEl'] && 'Leaderboard' !== cO['leaderHeaderEl']['textContent'] && (cO['leaderHeaderEl']['textContent'] = 'Leaderboard');
+                var eb = e7['getUint16'](e7['offset'], !0x0),
+                    ec = e7['getUint8'](e7['offset'] + 0x2, !0x0);
+                e7['getUint8'](e7['offset'] + 0x3, !0x0), e7['offset'] += 0x4;
+                var ed = 0x14 * eb + 0x5;
+                0xc8 !== e8['width'] && (e8['width'] = 0xc8), e8['height'] !== ed && (e8['height'] = ed), e9['clearRect'](0x0, 0x0, e8['width'], e8['height']), e9['font'] = '16px\x20Calibri';
+                for (var ef = 0x14, eg = 0x0; eg < eb; eg++) {
+                    var eh = al(e7);
+                    e9['fillStyle'] = eg == ec ? d5['uiLeaderboardHighlightSelf'] : d5['uiForegroundColor'], e9['fillText'](eh, 0x5, ef), ef += 0x14;
+                }
+            }
+        }, ad['prototype']['handlePing'] = function () {
+            var e7 = +new Date(),
+                e8 = 'number' == typeof bZ ? bZ : c0;
+            'number' != typeof e8 && (e8 = e7);
+            var e9 = e7 - e8;
+            d1['cColoredPing'] ? (cO['pingSpan'] || cm['querySelector']('#pPing\x20span'))['style']['color'] = d5['uiForegroundColor'] : (cO['pingSpan'] || cm['querySelector']('#pPing\x20span'))['style']['color'] = e9 < 0x64 ? d5['uiGameColorSuccess'] : e9 < 0xc8 ? d5['uiGameColorWarning'] : d5['uiGameColorError'], (cO['pingSpan'] || cm['querySelector']('#pPing\x20span'))['textContent'] = e9 + 'ms';
+        }, ad['prototype']['handleChat'] = function (e7) {
+            var e8 = e7['getUint8'](e7['offset']++),
+                e9 = 'rgb(' + e7['getUint8'](e7['offset']++) + ',' + e7['getUint8'](e7['offset']++) + ',' + e7['getUint8'](e7['offset']++) + ')',
+                eb = e7['getUint8'](e7['offset']++),
+                ec = e7['getUint16'](e7['offset'], !0x0);
+            if (e7['offset'] += 0x2, !cy['includes'](ec)) {
+                var ed = am(e7);
+                e7['getUint8'](e7['offset']++);
+                var ef, eg = b0(am(e7)) || 'An\x20unnamed\x20cell',
+                    eh = b0(am(e7)),
+                    ei = dY['ALL'],
+                    ej = e7['offset'] < e7['byteLength'] ? e7['getBigInt64'](e7['offset'], !0x0) : 0x0;
+                switch (e8) {
+                case 0x1:
+                    ef = 'Party', ei = dY['PARTY'];
                     break;
-                case "auth/popup-closed-by-user":
+                case 0x2:
+                    ef = 'Admin', ei = dY['ADMIN'];
                     break;
                 default:
-                    alert(_0x111D7.message + " (" + _0x111D7.code + ")");
-                    break
+                    ef = 'All';
+                }
+                var ek = null,
+                    el = ed;
+                if (ed['length'] > 0x0) {
+                    var em = null;
+                    for (var eo in dF)
+                        if (dF[eo] === ed) {
+                            em = parseInt(eo);
+                            break;
+                        } em && dG[em] && (ek = dG[em]), b0(ef += '\x20-\x20' + ed);
+                }
+                var ep = document['createElement']('td');
+                0x0 != ej && (ep['dataset']['msgid'] = ej);
+                var eq = document['createElement']('span');
+                if (ek && ek['style'] && el['length'] > 0x0) {
+                    var er = document['createElement']('span');
+                    for (var es in (er['innerText'] = el, er['className'] = 'chat-title', ek['style'])) er['style'][es] = ek['style'][es];
+                    eq['textContent'] = '[' + (0x1 === e8 ? 'Party' : 0x2 === e8 ? 'Admin' : 'All') + '\x20-\x20', eq['appendChild'](er), eq['appendChild'](document['createTextNode'](']\x20'));
+                } else eq['textContent'] = '[' + ef + ']\x20';
+                ep['appendChild'](eq);
+                var eu = null;
+                d1['cShowChatIds'] && ((eu = document['createElement']('span'))['innerText'] = '\x20(' + ec + ')', d1['cColoredChatIds'] || (eu['style']['color'] = 'gray'), eu['style']['fontWeight'] = 'bolder', eu['style']['pointerEvents'] = 'all', eu['style']['userSelect'] = 'all');
+                var ev = document['createElement']('span');
+                ev['innerText'] = eg, ev['dataset']['playerId'] = ec, ev['style']['color'] = e9, ev['className'] = 'chat-name', null !== eu && ev['appendChild'](eu), ep['appendChild'](ev);
+                var ew = document['createElement']('span');
+                ew['innerHTML'] = ':\x20', ep['appendChild'](ew);
+                var ex = document['createElement']('span');
+                ex['className'] = 'chat-content', ex['style']['color'] = dE[eb], ex['innerHTML'] = bl(eh), ep['appendChild'](ex), aP(ei, ep), 0x0 != ej && a4['set'](String(ej), ep);
+            }
+        }, ad['prototype']['handleWhisper'] = function (e7) {
+            var e8 = b0(am(e7)) || 'An\x20unnamed\x20cell',
+                e9 = e7['getUint16'](e7['offset'], !0x0);
+            if (e7['offset'] += 0x2, !cy['includes'](e9)) {
+                var eb = 'rgb(' + e7['getUint8'](e7['offset']++) + ',' + e7['getUint8'](e7['offset']++) + ',' + e7['getUint8'](e7['offset']++) + ')',
+                    ec = b0(am(e7)) || 'An\x20unnamed\x20cell',
+                    ed = e7['getUint16'](e7['offset'], !0x0);
+                e7['offset'] += 0x2;
+                var ef = 'rgb(' + e7['getUint8'](e7['offset']++) + ',' + e7['getUint8'](e7['offset']++) + ',' + e7['getUint8'](e7['offset']++) + ')',
+                    eg = b0(am(e7)),
+                    eh = document['createElement']('td'),
+                    ei = document['createElement']('span');
+                ei['innerText'] = e8, ei['dataset']['playerId'] = e9, ei['style']['color'] = eb, ei['className'] = 'chat-name', ei['oncontextmenu'] = dm, eh['appendChild'](ei);
+                var ej = document['createElement']('span');
+                ej['innerHTML'] = '\x20>\x20', eh['appendChild'](ej);
+                var ek = document['createElement']('span');
+                ek['innerText'] = ec, ek['dataset']['playerId'] = ed, ek['style']['color'] = ef, ek['className'] = 'chat-name', ek['oncontextmenu'] = dm, eh['appendChild'](ek);
+                var el = document['createElement']('span');
+                el['innerHTML'] = ':\x20' + bl(eg), eh['appendChild'](el), aP(dY['WHISPER'], eh);
+            }
+        }, ad['prototype']['handleEditMessage'] = function (e7) {
+            var e8 = e7['getBigInt64'](e7['offset'], !0x0);
+            e7['offset'] += 0x8;
+            var e9 = b0(am(e7));
+            const eb = String(e8),
+                ec = a4['get'](eb);
+            if (ec) {
+                if (e9['length'] > 0x0) {
+                    const ed = ec['querySelector']('.chat-content');
+                    ed && (ed['innerHTML'] = bl(e9));
+                } else {
+                    const ef = ec['closest']('tr');
+                    ef && ef['parentNode'] && ef['parentNode']['removeChild'](ef), a4['delete'](eb);
+                }
+            } else e9['length'] > 0x0 ? $('.chat-table\x20td[data-msgid=\x27' + e8 + '\x27]\x20.chat-content')['html'](bl(e9)) : $('.chat-table\x20td[data-msgid=\x27' + e8 + '\x27]')['closest']('tr')['remove']();
+        }, ad['prototype']['handleCopyableMessage'] = function (e7) {
+            var e8 = al(e7),
+                e9 = al(e7);
+            this['selfMsgCopyable'](e8, e9);
+        }, ad['prototype']['handleSystemMsg'] = function (e7) {
+            var e8 = am(e7);
+            this['selfMsg'](e8);
+        }, ad['prototype']['handleAuthenticated'] = function (e7) {
+            switch (e7['getUint8'](0x1)) {
+            case dW['SUCCESS']:
+                break;
+            case dW['FAILURE']:
+                this['selfMsg']('Invalid\x20authentication\x20token!\x20Please\x20logout\x20and\x20try\x20again!');
+            }
+            this['spectate'] ? this['sendPacket'](new bV['sendSpectate']()) : this['sendPacket'](new bV['setName'](this['name']));
+        }, ad['prototype']['handleProfile'] = function (e7) {
+            var e8 = al(e7);
+            as(JSON['parse'](e8));
+        }, ad['prototype']['handleInvite'] = function (e7) {
+            if (d1['cAutoDecline']) bU['sendPacket'](new bV['sendInviteResponse'](!0x1));
+            else {
+                var e8 = b0(am(e7));
+                document['getElementById']('popup-party-text')['innerText'] = e8 + '\x20has\x20invited\x20you\x20to\x20a\x20party.', b2($('#popup-party'));
+            }
+        }, ad['prototype']['handlePartyInfo'] = function (e7) {
+            var e8 = {},
+                e9 = [],
+                eb = -0x1,
+                ec = e7['getUint16'](e7['offset'], !0x0);
+            e7['offset'] += 0x2;
+            for (var ed = 0x0; ed < ec; ed++) {
+                var ef = {},
+                    eg = e7['getUint8'](e7['offset']++);
+                if (ef['id'] = e7['getUint16'](e7['offset'], !0x0), e8[ef['id']] = ed, e7['offset'] += 0x2, 0x1 == eg ? (eb = ef['id'], ef['isLeader'] = !0x0) : ef['isLeader'] = !0x1, ef['name'] = am(e7) || 'An\x20unnamed\x20cell', ef['x'] = 0x0, ef['y'] = 0x0, ef['x_'] = 0x0, ef['y_'] = 0x0, ef['score'] = 0x0, ef['cache'] = -0x1, ef['team'] = 0x0, ef['state'] = dZ['UNKNOWN'], null != this['partyIds'][ef['id']]) {
+                    var eh = this['party'][this['partyIds'][ef['id']]];
+                    ef['x'] = eh['x'], ef['y'] = eh['y'], ef['x_'] = eh['x_'], ef['y_'] = eh['y_'], ef['state'] = eh['state'], ef['score'] = eh['score'], ef['cache'] = eh['cache'], ef['mmColor'] = eh['mmColor'];
+                } else ef['mmColor'] = bs(ef['id']);
+                e9['push'](ef);
+            }
+            this['party'] = e9, this['partyIds'] = e8, this['partyLeader'] != eb && (this['partyLeader'] = eb, 'block' == cl['css']('display') && dg['checkLeader']()), ec > 0x0 ? this['drawParty']() : this['clearParty']();
+        }, ad['prototype']['handlePartyData'] = function (e7) {
+            var e8 = e7['getUint16'](e7['offset'], !0x0);
+            if (e7['offset'] += 0x2, e8 == this['party']['length']) {
+                for (var e9 = 0x0; e9 < e8; e9++) {
+                    var eb = this['party'][e9];
+                    eb['state'] = e7['getUint8'](e7['offset']++), eb['state'] === dZ['ALIVE'] && (eb['x_'] = e7['getInt16'](e7['offset'], !0x0), eb['y_'] = e7['getInt16'](e7['offset'] + 0x2, !0x0), eb['score'] = e7['getInt32'](e7['offset'] + 0x4, !0x0), e7['offset'] += 0x8);
+                }
+                this['drawParty']();
+            }
+        }, ad['prototype']['handlePartyJoinCode'] = function (e7) {
+            var e8 = al(e7);
+            if (this['partyCode'] = al(e7), 0x0 != this['partyCode']['length']) {
+                this['selfMsgCopyable']('рџЋ‰\x20Party\x20is\x20now\x20public!\x20Share\x20this\x20command\x20with\x20friends:\x20', '/join\x20' + this['partyCode']), $('#popup-party-code-content\x20input')['val']('/join\x20' + this['partyCode']), $('#popup-party-code')['show']();
+                var e9 = '#' + this['currentServerName'] + '&' + this['partyCode'];
+                window['history']['pushState']('page', '', e9);
+            } else this['selfMsg'](e8), this['partyCode'] = null, window['history']['pushState']('page', '', '\x20');
+        }, ad['prototype']['handleStats'] = function (e7) {
+            var e8 = e7['getUint16'](e7['offset'], !0x0);
+            e7['offset'] += 0x2, this['stats']['name'] = am(e7) || 'An\x20unnamed\x20cell', this['stats']['alive'] += e7['getUint32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['stats']['eatenFood'] += e7['getUint32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['stats']['eatenEject'] += e7['getUint32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['stats']['eatenVirus'] += e7['getUint32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['stats']['eatenPlayer'] += e7['getUint32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['stats']['gainFood'] += e7['getUint32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['stats']['gainEject'] += e7['getUint32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['stats']['gainVirus'] += e7['getUint32'](e7['offset'], !0x0), e7['offset'] += 0x4, this['stats']['gainPlayer'] += e7['getUint32'](e7['offset'], !0x0), e7['offset'] += 0x4;
+            var e9 = cO['statsMenuEl'] || document['getElementById']('main-stats');
+            if (e9) {
+                const eb = this['stats'],
+                    ec = '<span>Name:\x20' + eb['name'] + '\x20(' + e8 + ')</span><br><span>Alive:\x20' + by(eb['alive']) + '</span><br><span>Food\x20eaten:\x20' + eb['eatenFood'] + '\x20(' + eb['gainFood'] + ')</span><br><span>Ejected\x20mass\x20eaten:\x20' + eb['eatenEject'] + '\x20(' + eb['gainEject'] + ')</span><br><span>Viruses\x20eaten:\x20' + eb['eatenVirus'] + '\x20(' + eb['gainVirus'] + ')</span><br><span>Player\x20cells\x20eaten:\x20' + eb['eatenPlayer'] + '\x20(' + eb['gainPlayer'] + ')</span><br>';
+                e9['_lastHtml'] !== ec && (e9['innerHTML'] = ec, e9['_lastHtml'] = ec);
+            }
+        }, ad['prototype']['showSubPanel'] = function (e7) {
+            var e8 = 0x1 == e7['getUint8'](e7['offset']++);
+            this['subPanelOverride'] = e8, aI(), e8 && (this['serverData']['hasSentSubPanel'] || (aH(), this['serverData']['hasSentSubPanel'] = !0x0), document['body']['classList']['add']('hide-captcha-badge'));
+        }, ad['prototype']['updateSubPanel'] = function (e7) {
+            cu && aJ(cu['uid']);
+        }, ad['prototype']['updateSpectators'] = function () {
+            cO['spectatorCount']['html'](this['spectators']);
+        }, ad['prototype']['handleAddBuff'] = function (e7) {
+            var e8 = e7['getUint8'](e7['offset']++),
+                e9 = e7['getUint8'](e7['offset']++),
+                eb = e7['getFloat64'](e7['offset'], !0x0);
+            e7['offset'] += 0x8, this['buffHolder']['onAddBuff'](e8, e9, eb);
+        }, ad['prototype']['handleRemoveBuff'] = function (e7) {
+            var e8 = e7['getUint8'](e7['offset']++);
+            this['buffHolder']['onRemoveBuff'](e8);
+        }, ad['prototype']['handleClearBuffs'] = function (e7) {
+            var e8 = 0x1 == e7['getUint8'](e7['offset']++);
+            this['buffHolder']['clearBuffs'](e8);
+        }, ad['prototype']['sortCells'] = function () {
+            bM['children']['sort'](function (e7, e8) {
+                return e7['parentCell']['size'] - e8['parentCell']['size'];
+            }), this['updateScorePanel']();
+        }, ad['prototype']['updateScorePanel'] = function () {
+            var e7 = 0x0,
+                e8 = 0x0;
+            for (var e9 in this['myCells']) e7 += this['myCells'][e9]['getRealMass'](), e8++;
+            cO['playerMass']['textContent'] = e7['toLocaleString'](), e7 > this['score'] && (this['score'] = e7, cO['playerScore']['textContent'] = this['score']['toLocaleString']()), this['updateCellCounter'](e8);
+        }, ad['prototype']['updateCellCounter'] = function (e7, e8) {
+            if (cO['playerCellCount'] != e7 || e8) {
+                if (cO['playerCellCount'] = e7, cO['playerCells']['textContent'] = e7 + '/' + this['getServerMaxCells'](), d1['cColoredCellCount']) cO['playerCells']['style']['color'] = d5['uiForegroundColor'];
+                else {
+                    var e9 = e7 / this['getServerMaxCells']();
+                    cO['playerCells']['style']['color'] = e9 >= 0x1 ? d5['uiGameColorError'] : e9 >= 0.5 ? d5['uiGameColorWarning'] : d5['uiGameColorSuccess'];
                 }
             }
-        }
-        function _0x113A3(_0x111D7) {
-            return _0x111D7.charAt(0).toUpperCase() + _0x111D7.slice(1)
-        }
-        function _0x1169A(_0x1124A, _0x11233) {
-            var _0x11205 = "";
-            var _0x1121C = "";
-            var _0x111EE = "white";
-            if (_0x11233.flags.STAFF) {
-                _0x1121C = "Gota.io Staff";
-                _0x11205 = "build";
-                _0x111EE = "royalblue"
-            } else {
-                if (_0x11233.flags.VERIFIED) {
-                    _0x1121C = "Verified Player";
-                    _0x11205 = "check_circle"
-                } else {
-                    return
+        }, ad['prototype']['toggleLineSplit'] = function () {
+            if (this['lineSplitEnabled'] = !this['lineSplitEnabled'], this['lineSplitEnabled']) {
+                var e7 = 0x0,
+                    e8 = 0x0,
+                    e9 = 0x0,
+                    eb = 0x0;
+                for (var ec in this['myCells']) {
+                    var ed = this['myCells'][ec];
+                    e7 += ed['x'] * ed['size'], e8 += ed['y'] * ed['size'], e9 += ed['size'], eb++;
                 }
-            };
-            var _0x111D7 = document.createElement("i");
-            _0x111D7.className = "material-icons";
-            _0x111D7.id = "user-badge";
-            _0x111D7.innerText = _0x11205;
-            _0x111D7.style.color = _0x111EE;
-            $(_0x111D7).attr("data-balloon", _0x1121C);
-            $(_0x111D7).attr("data-balloon-pos", "right");
-            $(_0x1124A).append(_0x111D7)
-        }
-        function _0x1166C(_0x111EE, _0x11205) {
-            var _0x111D7 = document.createElement("i");
-            _0x111D7.className = "material-icons";
-            _0x111D7.innerText = _0x111EE;
-            _0x111D7.setAttribute("data-balloon", _0x11205);
-            _0x111D7.setAttribute("data-balloon-pos", "up");
-            return _0x111D7
-        }
-        function _0x116B1(_0x11302, _0x11330, _0x11278, _0x11205) {
-            var _0x1124A = document.createElement("li");
-            _0x1124A.className = "user-embed menu-sub-bg2";
-            _0x1124A.style.backgroundColor = _0x126F4.uiMenuHeaderBackgroundColor;
-            var _0x11233 = document.createElement("img");
-            _0x11233.src = _0x11302.avatar;
-            _0x11233.alt = _0x11302.username;
-            _0x1124A.appendChild(_0x11233);
-            var _0x11261 = document.createElement("div");
-            _0x11261.className = "info";
-            var _0x11319 = document.createElement("div");
-            _0x11319.className = "username";
-            _0x11319.innerText = _0x11302.username;
-            _0x11261.appendChild(_0x11319);
-            _0x1169A(_0x11319, _0x11302);
-            var _0x112EB = document.createElement("div");
-            var _0x1128F = false;
-            var _0x112D4 = null;
-            if (_0x11278) {
-                _0x112D4 = _0x113A3(_0x11302.presence["server"]);
-                if ((_0x11302.presence.timestamp + (1000 * 60)) < new Date().getTime() || _0x11302.presence.id === undefined) {
-                    _0x112EB.className = "status offline";
-                    _0x112EB.innerText = "Not playing on any server"
-                } else {
-                    _0x1128F = true;
-                    _0x112EB.className = "status " + (_0x11302.presence.status === "ONLINE" ? "online" : "spectate");
-                    _0x112EB.innerText = (_0x11302.presence.status === "ONLINE" ? "Playing " : "Spectating ") + _0x11302.presence.gamemode + " on " + _0x112D4 + " (ID " + _0x11302.presence.id + ")"
-                }
-            } else {
-                _0x112EB.className = "status pending";
-                _0x112EB.innerText = "Pending Friend Request"
-            };
-            _0x11261.appendChild(_0x112EB);
-            var _0x111EE = document.createElement("div");
-            _0x111EE.className = "actions";
-            _0x11319.addEventListener("click", function (_0x111D7) {
-                _0x11DE1(_0x11302, $("#main-social"))
-            });
-            if (_0x11278 && _0x1128F) {
-                var _0x112A6 = _0x1166C("input", "Join Server");
-                _0x112A6.addEventListener("click", function (_0x111D7) {
-                    _0x1249E(_0x112D4);
-                    _0x12190.play();
-                    _0x12190.selfMsg(_0x11302.username + "'s ID is " + _0x11302.presence.id);
-                    _0x11B5D($("#main-social"))
-                });
-                _0x111EE.appendChild(_0x112A6)
-            };
-            if (!_0x11278) {
-                var _0x1121C = _0x1166C("done", "Add as Friend");
-                _0x1121C.isHandlingRequest = false;
-                _0x1121C.addEventListener("click", function (_0x111EE) {
-                    if (_0x1121C.isHandlingRequest) {
-                        return
+                if (0x0 === eb) return;
+                var ef = e7 / e9,
+                    eg = e8 / e9,
+                    eh = bK['pivot']['x'] - bG['stage']['position']['x'] / this['scale'] + this['mouseRawX'] * cW['resolution'] / this['scale'] - ef,
+                    ei = bK['pivot']['y'] - bG['stage']['position']['y'] / this['scale'] + this['mouseRawY'] * cW['resolution'] / this['scale'] - eg,
+                    ej = (0xb4 * Math['atan2'](ei, eh) / Math['PI'] + 0x168) % 0x168;
+                switch (Math['round'](ej / 0x2d)) {
+                case 0x0:
+                case 0x8:
+                    this['lineSplitDirection'] = {
+                        'x': 0x1,
+                        'y': 0x0
                     };
-                    _0x1121C.isHandlingRequest = true;
-                    firebase.auth().currentUser.getIdToken().then((_0x111EE) => {
-                        fetch(_0x111D7 + "/api/v1/social/friends", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
+                    break;
+                case 0x1:
+                    this['lineSplitDirection'] = {
+                        'x': 0x1,
+                        'y': 0x1
+                    };
+                    break;
+                case 0x2:
+                    this['lineSplitDirection'] = {
+                        'x': 0x0,
+                        'y': 0x1
+                    };
+                    break;
+                case 0x3:
+                    this['lineSplitDirection'] = {
+                        'x': -0x1,
+                        'y': 0x1
+                    };
+                    break;
+                case 0x4:
+                    this['lineSplitDirection'] = {
+                        'x': -0x1,
+                        'y': 0x0
+                    };
+                    break;
+                case 0x5:
+                    this['lineSplitDirection'] = {
+                        'x': -0x1,
+                        'y': -0x1
+                    };
+                    break;
+                case 0x6:
+                    this['lineSplitDirection'] = {
+                        'x': 0x0,
+                        'y': -0x1
+                    };
+                    break;
+                case 0x7:
+                    this['lineSplitDirection'] = {
+                        'x': 0x1,
+                        'y': -0x1
+                    };
+                }
+                this['lineSplitLocked'] = !0x0, this['lineSplitPhaseStart'] = 'undefined' != typeof performance && performance['now'] ? performance['now']() : Date['now'](), this['calculateAndLockMousePosition']();
+                var ek = '';
+                if (this['lineSplitDirection']['y'] < 0x0 && 0x0 === this['lineSplitDirection']['x'] ? ek = 'в†‘' : this['lineSplitDirection']['y'] > 0x0 && 0x0 === this['lineSplitDirection']['x'] ? ek = 'в†“' : this['lineSplitDirection']['x'] < 0x0 && 0x0 === this['lineSplitDirection']['y'] ? ek = 'в†ђ' : this['lineSplitDirection']['x'] > 0x0 && 0x0 === this['lineSplitDirection']['y'] ? ek = 'в†’' : this['lineSplitDirection']['y'] < 0x0 && this['lineSplitDirection']['x'] > 0x0 ? ek = 'в†—' : this['lineSplitDirection']['y'] < 0x0 && this['lineSplitDirection']['x'] < 0x0 ? ek = 'в†–' : this['lineSplitDirection']['y'] > 0x0 && this['lineSplitDirection']['x'] > 0x0 ? ek = 'в†' : this['lineSplitDirection']['y'] > 0x0 && this['lineSplitDirection']['x'] < 0x0 && (ek = 'в†™'), cO['pLineSpan']) cO['pLineSpan']['parentElement']['style']['display'] = 'block', cO['pLineSpan']['textContent'] = ek;
+                else {
+                    if (em = document['getElementById']('pLine')) {
+                        em['style']['display'] = 'block';
+                        var el = em['querySelector']('span');
+                        el && (el['textContent'] = ek);
+                    }
+                }
+            } else {
+                var em;
+                this['lineSplitLocked'] = !0x1, cO['pLineSpan'] ? cO['pLineSpan']['parentElement']['style']['display'] = 'none' : (em = document['getElementById']('pLine')) && (em['style']['display'] = 'none');
+            }
+        }, ad['prototype']['_screenFractionToWorld'] = function (e7, e8) {
+            var e9 = bG['stage']['position']['x'],
+                eb = bG['stage']['position']['y'];
+            return {
+                'x': bK['pivot']['x'] - e9 / this['scale'] + bR['width'] * e7 / this['scale'],
+                'y': bK['pivot']['y'] - eb / this['scale'] + bR['height'] * e8 / this['scale']
+            };
+        }, ad['prototype']['_directionToScreenEdge'] = function () {
+            var e7 = this['lineSplitDirection']['x'],
+                e8 = this['lineSplitDirection']['y'],
+                e9 = 0.5,
+                eb = 0.5;
+            return 0x1 === e7 && 0x0 === e8 ? (e9 = 0.985, eb = 0.5) : -0x1 === e7 && 0x0 === e8 ? (e9 = 0.015, eb = 0.5) : 0x0 === e7 && 0x1 === e8 ? (e9 = 0.5, eb = 0.985) : 0x0 === e7 && -0x1 === e8 ? (e9 = 0.5, eb = 0.015) : 0x1 === e7 && -0x1 === e8 ? (e9 = 0.985, eb = 0.015) : -0x1 === e7 && -0x1 === e8 ? (e9 = 0.015, eb = 0.015) : 0x1 === e7 && 0x1 === e8 ? (e9 = 0.985, eb = 0.985) : -0x1 === e7 && 0x1 === e8 && (e9 = 0.015, eb = 0.985), this['_screenFractionToWorld'](e9, eb);
+        }, ad['prototype']['calculateOptimalLineSplitMouse'] = function () {
+            return ('undefined' != typeof performance && performance['now'] ? performance['now']() : Date['now']()) - this['lineSplitPhaseStart'] < this['lineSplitPhaseDelayMs'] ? this['_screenFractionToWorld'](0.5, 0.5) : this['_directionToScreenEdge']();
+        }, ad['prototype']['calculateAndLockMousePosition'] = function () {
+            var e7 = this['calculateOptimalLineSplitMouse']();
+            this['lineSplitMouseX'] = e7['x'], this['lineSplitMouseY'] = e7['y'];
+        }, ad['prototype']['drawParty'] = function () {
+            if (0x0 != this['party']['length']) {
+                if (d1['cHidePartyPanel']) cO['partyPanel'][0x0] && (cO['partyPanel'][0x0]['style']['display'] = 'none');
+                else {
+                    var e7 = cO['partyPanel'][0x0],
+                        e8 = c8 && c8[0x0];
+                    e7 && e8 && 'none' === e7['style']['display'] && 'none' !== e8['style']['display'] && (e7['style']['display'] = 'block');
+                }
+                var e9 = cO['partyCanvas'],
+                    eb = cO['partyCtx'] || e9 && e9['getContext']('2d');
+                if (e9 && eb) {
+                    eb['font'] = '16px\x20Calibri';
+                    for (var ec = 0x0, ed = 0x0, ef = 0x0, eg = 0x0; eg < this['party']['length']; eg++) {
+                        -0x1 == (el = this['party'][eg])['cache'] && (el['cache'] = eb['measureText'](eg + 0x1 + '.\x20' + el['name'])['width']), el['cache'] > ec && (ec = el['cache']), el['state'] === dZ['ALIVE'] || el['state'] === dZ['UNKNOWN'] ? (el['scoreText'] = el['score']['toLocaleString'](), ef += el['score']) : el['state'] === dZ['DEAD'] ? el['scoreText'] = 'DEAD' : el['state'] === dZ['SPECTATE'] && (el['scoreText'] = 'SPEC');
+                        var eh = eb['measureText'](el['scoreText'])['width'];
+                        eh > ed && (ed = eh);
+                    }
+                    var ei = ef['toLocaleString']();
+                    ed = Math['max'](ed, eb['measureText'](ei)['width']), e9['width'] = 0xf + ec + 0x32 + ed, e9['height'] = 0x14 * this['party']['length'] + 0x5 + (this['party']['length'] > 0x1 ? 0x14 : 0x0), eb['font'] = '16px\x20Calibri';
+                    var ej = 0x14,
+                        ek = 0x5 + ec + 0x32;
+                    for (eg = 0x0; eg < this['party']['length']; eg++) {
+                        var el = this['party'][eg];
+                        eb['fillStyle'] = el['isLeader'] ? d5['uiPartyLeaderColor'] : d5['uiForegroundColor'], eb['fillText'](eg + 0x1 + '.\x20' + el['name'], 0x5, ej), eb['fillText'](el['scoreText'], ek, ej), ej += 0x14;
+                    }
+                    this['party']['length'] > 0x1 && (eb['fillStyle'] = d5['uiForegroundColor'], eb['fillText']('Total:', 0x5, ej), eb['fillText'](ei, ek, ej));
+                }
+            }
+        }, ad['prototype']['handleShowScrimmageMenu'] = function () {
+            b4(c6), c9['css']('display', 'block'), $('#scrimmage-btn-leave')['css']('display', 'none'), bU['serverData']['border']['enabled'] = !0x1;
+        }, ad['prototype']['handleQueueData'] = function (e7) {
+            var e8 = al(e7),
+                e9 = e7['getUint32'](e7['offset'], !0x0);
+            e7['offset'] += 0x4;
+            var eb = e7['offset'] < e7['byteLength'] ? e7['getUint8'](e7['offset']) : -0x1,
+                ec = cO['leaderCanvas'],
+                ed = cO['leaderCtx'] || ec && ec['getContext']('2d');
+            if (ec && ed) {
+                cO['leaderHeaderEl'] || (cO['leaderHeaderEl'] = document['getElementById']('leaderboard-header')), cO['leaderHeaderEl'] && 'Queue' !== cO['leaderHeaderEl']['textContent'] && (cO['leaderHeaderEl']['textContent'] = 'Queue'), ec['width'] = 0xc8, ec['height'] = 0x14 * (0x2 + (-0x1 != eb ? 0x1 : 0x0)) + 0x5, ed['font'] = '16px\x20Calibri';
+                var ef = 0x14;
+                ed['fillStyle'] = d5['uiForegroundColor'], ed['fillText']('Mode:\x20' + e8, 0x5, ef), ef += 0x14, ed['fillText']('Time:\x20' + by(e9), 0x5, ef), -0x1 != eb && (ef += 0x14, ed['fillText']('Queued\x20players:\x20' + eb, 0x5, ef));
+            }
+        }, ad['prototype']['handleQueueLeave'] = function (e7) {
+            var e8 = al(e7),
+                e9 = cO['leaderCanvas'];
+            e9 && (e9['width'] = 0x0, e9['height'] = 0x0), this['selfMsg']('You\x20have\x20left\x20the\x20queue\x20for\x20[' + e8 + ']');
+        }, ad['prototype']['handleMatchState'] = function (e7) {
+            var e8 = 0x1 == e7['byteLength'] ? 0x0 : e7['getUint8'](e7['offset']++);
+            0x0 == e8 ? (this['selfMsg']('A\x20match\x20has\x20been\x20found.\x20Good\x20luck\x20and\x20have\x20fun!'), cB || 'Notification' in window && 'granted' === Notification['permission'] && new Notification('Your\x20match\x20has\x20started.', {
+                'icon': 'https://gota.io/assets/images/favicon.png'
+            })) : 0x1 == e8 && $('#scrimmage-btn-leave')['css']('display', 'block');
+        }, ad['prototype']['handleScrimmageData'] = function (e7) {
+            var e8 = e7['getUint8'](e7['offset']++),
+                e9 = $('#scrimmage-mode-select'),
+                eb = $('#scrimmage-mode-info'),
+                ec = parseInt(e9['val']());
+            e9['empty'](), eb['empty']();
+            for (var ed = {}; e8 > 0x0;) {
+                var ef = e7['getUint8'](e7['offset']++),
+                    eg = al(e7),
+                    eh = al(e7),
+                    ei = document['createElement']('option');
+                ei['innerHTML'] = eg, ei['value'] = ef, e9['append'](ei), (ei = document['createElement']('div'))['innerHTML'] = eh, ei['id'] = 'scrimmage-info-' + ef, ei['style']['display'] = 'none', eb['append'](ei), ed[ef] = !0x0, e8--;
+            }
+            if (cj = {
+                    'modes': {},
+                    'sizes': {},
+                    'maps': []
+                }, e7['byteLength'] - 0x1 > e7['offset']) {
+                for (e8 = e7['getUint8'](e7['offset']++); e8 > 0x0;) ef = e7['getUint8'](e7['offset']++), eg = al(e7), cj['modes'][ef] = {
+                    'id': ef,
+                    'name': eg
+                }, e8--;
+                for (e8 = e7['getUint8'](e7['offset']++); e8 > 0x0;) ef = e7['getUint8'](e7['offset']++), eg = al(e7), cj['sizes'][ef] = {
+                    'id': ef,
+                    'name': eg
+                }, e8--;
+                for (e8 = e7['getUint8'](e7['offset']++); e8 > 0x0;) {
+                    for (var ej = {
+                            'name': eg = al(e7),
+                            'startmass': 0x0,
+                            'teams': 0x0,
+                            'modes': [],
+                            'sizes': []
+                        }, ek = e7['getUint8'](e7['offset']++); ek > 0x0;) ej['modes']['push'](e7['getUint8'](e7['offset']++)), ek--;
+                    for (ek = e7['getUint8'](e7['offset']++); ek > 0x0;) ej['sizes']['push'](e7['getUint8'](e7['offset']++)), ek--;
+                    ej['startmass'] = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2, ej['respawnDelay'] = e7['getInt16'](e7['offset'], !0x0), e7['offset'] += 0x2, ej['teams'] = e7['getUint8'](e7['offset']++), cj['maps']['push'](ej), e8--;
+                }
+            }
+            for ($('#scrimmage-custom-btn-container')['css']('display', 0x0 == cj['maps']['length'] ? 'none' : 'block'), $('#scrimmage-map')['empty'](), ek = 0x0; ek < cj['maps']['length']; ek++) $('#scrimmage-map')['append']('<option\x20value=\x27' + ek + '\x27>' + cj['maps'][ek]['name'] + '</option>');
+            null != ed[ec] ? (e9['val'](ec), e9['trigger']('change')) : (e9['prop']('selectedIndex', 0x0), e9['trigger']('change'));
+        }, ad['prototype']['handleCustomGameUpdate'] = function (e7) {
+            switch (e7['getUint8'](e7['offset']++)) {
+            case dU['MAP']:
+                dg['updateMap'](e7['getUint8'](e7['offset']++));
+                break;
+            case dU['MODE']:
+                dg['updateMode'](e7['getUint8'](e7['offset']++));
+                break;
+            case dU['SIZE']:
+                dg['updateSize'](e7['getUint8'](e7['offset']++));
+                break;
+            case dU['STARTMASS']:
+                dg['updateStartMass'](e7['getUint16'](e7['offset'], !0x0)), e7['offset'] += 0x2;
+                break;
+            case dU['LOCK']:
+                dg['updateLock'](0x1 === e7['getUint8'](e7['offset']++));
+                break;
+            case dU['PLAYER_UPDATE']:
+                var e8 = e7['getUint8'](e7['offset']++),
+                    e9 = e7['getUint8'](e7['offset']++);
+                bU['party'][e8]['team'] = e9, dg['updatePlayerById'](e8);
+                break;
+            case dU['PLAYER_LIST']:
+                var eb = e7['getUint8'](e7['offset']++);
+                for (e8 = 0x0; eb > 0x0;) bU['party'][e8]['team'] = e7['getUint8'](e7['offset']++), eb--, e8++;
+                dg['updatePlayers']();
+                break;
+            case dU['VIRUS_DENSITY']:
+                dg['updateVirusDensity'](e7['getUint16'](e7['offset'], !0x0)), e7['offset'] += 0x2;
+                break;
+            case dU['RESPAWN_DELAY']:
+                dg['updateRespawnDelay'](e7['getInt16'](e7['offset'], !0x0)), e7['offset'] += 0x2;
+                break;
+            case dU['AUTOSPLIT']:
+                dg['updateAutoSplit'](0x1 === e7['getUint8'](e7['offset']++));
+                break;
+            case dU['PUBLIC']:
+                dg['updatePublic'](0x1 === e7['getUint8'](e7['offset']++));
+                break;
+            case dU['PASSWORD']:
+                dg['updatePassword'](0x1 === e7['getUint8'](e7['offset']++));
+                break;
+            case dU['NAME']:
+                dg['updateName'](am(e7));
+            }
+        }, ad['prototype']['handleCustomGameShow'] = function (e7) {
+            $('.scrimmage-full')['css']('display', 'none'), $('#scrimmage-custom')['css']('display', 'block');
+            var e8 = am(e7),
+                e9 = e7['getUint8'](e7['offset']++),
+                eb = e7['getUint8'](e7['offset']++),
+                ec = e7['getUint8'](e7['offset']++),
+                ed = e7['getUint16'](e7['offset'], !0x0);
+            e7['offset'] += 0x2;
+            var ef = e7['getUint16'](e7['offset'], !0x0);
+            e7['offset'] += 0x2;
+            var eg = e7['getInt16'](e7['offset'], !0x0);
+            e7['offset'] += 0x2;
+            for (var eh = 0x1 === e7['getUint8'](e7['offset']++), ei = 0x1 === e7['getUint8'](e7['offset']++), ej = 0x1 === e7['getUint8'](e7['offset']++), ek = 0x1 === e7['getUint8'](e7['offset']++), el = e7['getUint8'](e7['offset']++), em = 0x0; el > 0x0;) bU['party'][em]['team'] = e7['getUint8'](e7['offset']++), el--, em++;
+            dg['updateName'](e8), dg['updateMap'](e9), dg['updateMode'](eb), dg['updateSize'](ec), dg['updateStartMass'](ed), dg['updateVirusDensity'](ef), dg['updateLock'](ei), dg['updateRespawnDelay'](eg), dg['updateAutoSplit'](eh), dg['updatePublic'](ej), dg['updatePassword'](ek), dg['updatePlayers'](), dg['checkLeader']();
+        }, ad['prototype']['handleCustomGameLeave'] = function () {
+            $('.scrimmage-full')['css']('display', 'none'), $('#scrimmage-menu')['css']('display', 'block');
+        }, ad['prototype']['handleShowCustomGameLobbies'] = function (e7) {
+            $('.scrimmage-full')['css']('display', 'none'), $('#scrimmage-lobbies')['css']('display', 'block'), ck = {};
+            var e8 = $('#scrimmage-lobbies-tbody');
+            for (e8['empty']();;) {
+                var e9 = e7['getUint32'](e7['offset'], !0x0);
+                if (e7['offset'] += 0x4, 0x0 == e9) break;
+                var eb = {};
+                eb['id'] = e9, eb['name'] = am(e7), eb['leaderId'] = e7['getUint32'](e7['offset']), e7['offset'] += 0x4, eb['leaderName'] = am(e7) || 'An\x20unnamed\x20cell', eb['map'] = e7['getUint8'](e7['offset']++), eb['mode'] = e7['getUint8'](e7['offset']++), eb['size'] = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2, eb['maxSize'] = e7['getUint16'](e7['offset'], !0x0), e7['offset'] += 0x2, eb['hasPasscode'] = 0x1 == e7['getUint8'](e7['offset']++), ck[eb['id']] = eb;
+                var ec = eb['hasPasscode'] ? '<div\x20class=\x27scrimmage-lock\x27></div>' : '';
+                e8['append']('<tr\x20partyId=\x27' + eb['id'] + '\x27><td><span>' + ec + b0(eb['name']) + '</span></td><td><span>' + b0(eb['leaderName']) + '</span></td><td><span>' + cj['maps'][eb['map']]['name'] + '</span></td><td><span>' + cj['modes'][eb['mode']]['name'] + '</span></td><td><span>' + eb['size'] + '/' + eb['maxSize'] + '</span></td></tr>');
+            }
+            $('#scrimmage-lobbies-tbody\x20tr')['on']('click', function () {
+                $('.custom-game-selected')['removeClass']('custom-game-selected'), c5 = $(this)['attr']('partyId'), $(this)['addClass']('custom-game-selected');
+            });
+        };
+        var dg = {
+            'updateName': function (e7) {
+                $('#scrimmage-name')['text'](e7);
+            },
+            'updateMap': function (e7) {
+                $('#scrimmage-map\x20option[value=\x27' + e7 + '\x27]')['prop']('selected', !0x0);
+                var e8 = cj['maps'][e7];
+                $('#scrimmage-mapmode')['empty']();
+                for (var e9 = 0x0; e9 < e8['modes']['length']; e9++) {
+                    var eb = cj['modes'][e8['modes'][e9]];
+                    $('#scrimmage-mapmode')['append']('<option\x20value=\x27' + e9 + '\x27>' + eb['name'] + '</option>');
+                }
+                for ($('#scrimmage-mapsize')['empty'](), e9 = 0x0; e9 < e8['sizes']['length']; e9++) {
+                    var ec = cj['sizes'][e8['sizes'][e9]];
+                    $('#scrimmage-mapsize')['append']('<option\x20value=\x27' + e9 + '\x27>' + ec['name'] + '</option>');
+                }
+                dg['updateMode'](0x0), dg['updateSize'](0x0), dg['updateStartMass'](e8['startmass']), $('#scrimmage-startmass')['attr']('placeholder', e8['startmass']), dg['updateRespawnDelay'](e8['respawnDelay']), $('#scrimmage-map')['attr']('data', e7), bU['customGameMap'] = e8;
+            },
+            'updateMode': function (e7) {
+                $('#scrimmage-mapmode\x20option[value=\x27' + e7 + '\x27]')['prop']('selected', !0x0), $('#scrimmage-mapmode')['attr']('data', e7);
+            },
+            'updateSize': function (e7) {
+                $('#scrimmage-mapsize\x20option[value=\x27' + e7 + '\x27]')['prop']('selected', !0x0), $('#scrimmage-mapsize')['attr']('data', e7);
+            },
+            'updateStartMass': function (e7) {
+                $('#scrimmage-startmass')['val'](e7), $('#scrimmage-startmass')['attr']('data', e7);
+            },
+            'updateVirusDensity': function (e7) {
+                $('#scrimmage-virusDensity')['val'](e7), $('#scrimmage-virusDensity')['attr']('data', e7);
+            },
+            'updateRespawnDelay': function (e7) {
+                $('#scrimmage-respawnDelay')['val'](e7), $('#scrimmage-respawnDelay')['attr']('data', e7);
+            },
+            'updateAutoSplit': function (e7) {
+                $('#scrimmage-autoSplit')['prop']('checked', e7);
+            },
+            'updatePublic': function (e7) {
+                $('#scrimmage-public')['prop']('checked', e7);
+            },
+            'updatePassword': function (e7) {
+                $('#scrimmage-password')['prop']('checked', e7);
+            },
+            'updateLock': function (e7) {
+                $('#scrimmage-lockteams')['prop']('checked', e7), dg['checkLock']();
+            },
+            'checkLock': function () {
+                $('#scrimmage-lockteams')['prop']('checked') && !bU['isPartyLeader']() ? $('#cgp-' + bU['partyIndex'])['attr']('disabled', 'disabled') : $('#cgp-' + bU['partyIndex'])['removeAttr']('disabled');
+            },
+            'checkLeader': function () {
+                bU['isPartyLeader']() ? $('.custom-game')['removeAttr']('disabled') : ($('.custom-game')['attr']('disabled', 'disabled'), dg['checkLock']());
+            },
+            'updatePlayerById': function (e7) {
+                var e8 = bU['party'][e7];
+                $('#cgp-' + e7 + '\x20option[value=\x27' + e8['team'] + '\x27]')['prop']('selected', !0x0), $('#cgp-name-' + e7)['text'](e8['name']), $('#cgp-name-' + e7)['css']('color', e0[e8['team']]);
+            },
+            'updatePlayers': function () {
+                $('#scrimmage-custom-players')['empty']();
+                for (var e7 = 0x0; e7 < bU['party']['length']; e7++) {
+                    var e8 = bU['party'][e7];
+                    e8['id'] == bU['playerId'] && (bU['partyIndex'] = e7), $('#scrimmage-custom-players')['append']('<tr><td><span\x20id=\x27cgp-name-' + e7 + '\x27>' + e8['name'] + '</span></td>' + dg['getTeamOptions'](e7, bU['customGameMap']['teams']) + '</tr>'), $('#cgp-' + e7 + '\x20option[value=\x27' + e8['team'] + '\x27]')['prop']('selected', !0x0), $('#cgp-name-' + e7)['css']('color', e0[e8['team']]), $('#cgp-' + e7)['on']('change', function (e9) {
+                        var eb = parseInt($(this)['attr']('id')['match']('\x5cd+')[0x0]),
+                            ec = $(this)['find']('option:selected')['val']();
+                        $('#cgp-' + e7 + '\x20option[value=\x27' + $(this)['attr']('data') + '\x27]')['prop']('selected', !0x0), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['PLAYER_UPDATE'], eb, ec));
+                    });
+                }
+                dg['checkLeader']();
+            },
+            'getTeamOptions': function (e7, e8) {
+                var e9 = '';
+                if (null != e8 && e8 > 0x1) {
+                    e9 = '<td><select\x20class=\x27custom-game\x27\x20id=\x27cgp-' + e7 + '\x27><option\x20value=\x270\x27>Spectator</option>';
+                    for (var eb = 0x1; eb <= e8; eb++) e9 += '<option\x20value=\x27' + eb + '\x27\x20class=\x27t' + eb + '\x27>' + dV[eb] + '</option>';
+                    e9 += '</select></td>';
+                }
+                return e9;
+            }
+        };
+        af['prototype']['setType'] = function (e7) {
+            this['type'] = e7;
+        }, af['prototype']['setX'] = function (e7) {
+            this['x_'] = e7, this['x'] = e7;
+        }, af['prototype']['setY'] = function (e7) {
+            this['y_'] = e7, this['y'] = e7;
+        }, af['prototype']['updateX'] = function (e7) {
+            this['x_'] = e7;
+        }, af['prototype']['updateY'] = function (e7) {
+            this['y_'] = e7;
+        }, af['prototype']['setSize'] = function (e7) {
+            this['size_'] = e7, this['size'] = e7;
+        }, af['prototype']['getMass'] = function () {
+            return this['size'] * this['size'] / 0x19 | 0x0;
+        }, af['prototype']['getRealMass'] = function () {
+            return this['size_'] * this['size_'] / 0x19 | 0x0;
+        }, af['prototype']['animate'] = function (e7) {
+            this['x'] += (this['x_'] - this['x']) * e7, this['y'] += (this['y_'] - this['y']) * e7, this['size'] += (this['size_'] - this['size']) * e7, this['steps']--;
+        }, af['prototype']['getSizeCache'] = function () {
+            var e7 = this['getMass'](),
+                e8 = !0x1;
+            if (this['massLastAmount'] < 0x0 ? e8 = !0x0 : e7 !== this['massLastAmount'] ? (Math['abs'](e7 - this['massLastAmount']) >= this['_massChangeThreshold'] || bW - this['_massCacheLastRedraw'] >= this['_massRegenIntervalMs']) && (e8 = !0x0) : bW - this['_massCacheLastRedraw'] >= 0x3e8 && null == this['cache'] && (e8 = !0x0), e8) {
+                var e9;
+                e9 = 0x1 == cW['massType'] ? this['toShortString'](e7) : e7['toString']();
+                for (var eb = 0x0, ec = 0x0, ed = 0x0; ed < e9['length']; ed++) {
+                    var ef = e9['charAt'](ed);
+                    eb += (ei = dh['getNumber'](ef))['width'] - 0x2, ec = Math['max'](ei['height'], ec);
+                }
+                null == this['cache'] ? this['cache'] = bF['RenderTexture']['create'](eb, ec) : eb == this['cache']['width'] && ec == this['cache']['height'] || (this['cache']['destroy']({
+                    'children': !0x0,
+                    'texture': !0x0,
+                    'baseTexture': !0x0
+                }), this['cache'] = bF['RenderTexture']['create'](eb, ec));
+                var eg = dh['cacheContainer'],
+                    eh = 0x0;
+                for (ed = 0x0; ed < e9['length']; ed++) {
+                    var ei;
+                    ef = e9['charAt'](ed), (ei = dh['getSizeCacheSprite']())['texture'] = dh['getNumber'](ef)['texture'], ei['position']['x'] = eh, eg['addChild'](ei), eh += ei['width'] - 0x2;
+                }
+                bG['renderer']['render'](eg, {
+                    'renderTexture': this['cache'],
+                    'clear': !0x0
+                }), dh['clearCacheContainer'](), this['massLastAmount'] = e7, this['_massCacheLastRedraw'] = bW;
+            }
+            return this['cache'];
+        }, af['prototype']['toShortString'] = function (e7) {
+            return e7 < 0x3e8 ? e7['toString']() : e7 < 0xf4240 ? (Math['floor'](e7 / 0x64) / 0xa)['toFixed'](0x1) + 'K' : e7 < 0x3b9aca00 ? (Math['floor'](e7 / 0x186a0) / 0xa)['toFixed'](0x1) + 'M' : e7 >= 0x3b9aca00 ? (Math['floor'](e7 / 0x5f5e100) / 0xa)['toFixed'](0x1) + 'B' : e7['toString']();
+        };
+        const dh = new function () {
+            this['cache'] = {}, this['cacheContainer'] = new bF['Container'](), this['sprites'] = [], this['spritesIndex'] = 0x0, this['getNumber'] = function (e7) {
+                return this['cache'][e7];
+            }, this['clearCacheContainer'] = function () {
+                for (; this['cacheContainer']['children'][0x0];) this['cacheContainer']['removeChild'](this['cacheContainer']['children'][0x0]);
+                this['spritesIndex'] = 0x0;
+            }, this['getSizeCacheSprite'] = function () {
+                for (; this['spritesIndex'] >= this['sprites']['length'];) this['sprites']['push'](new bF['Sprite']());
+                return this['sprites'][this['spritesIndex']++];
+            }, this['buildSizeCache'] = function () {
+                for (var e7 of ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'K', 'M', 'B', 'T']) {
+                    var e8 = new bF['Text'](e7, {
+                        'fontFamily': 'Verdana',
+                        'fontWeight': 'bold',
+                        'fontSize': 0x36,
+                        'fill': '#fff',
+                        'stroke': 'black',
+                        'strokeThickness': cW['textOutlineSize']
+                    });
+                    this['cache'][e7] = e8;
+                }
+            };
+        }();
+        af['prototype']['handleFood'] = function () {
+            var e7;
+            this['needsPixiUpdate'] && this['sprite']['visible'] && (this['sprite']['texture'] = cN, this['sprite']['anchor']['set'](0.5), this['sprite']['width'] = 0xc, this['sprite']['height'] = 0xc, d1['cThemeEnabled'] && d9['length'] > 0x0 ? this['sprite']['tint'] = (e7 = this['id'], d9[e7 % d9['length']]) : cR['enabled'] && cR['foodColors'] && cR['foodColors']['length'] > 0x0 && !d1['cDisableEventSkins'] ? this['sprite']['tint'] = cR['foodColors'][this['id'] % cR['foodColors']['length']] : this['sprite']['tint'] = this['color'], this['needsPixiUpdate'] = !0x1), this['sprite']['position']['set'](this['x'], this['y']);
+        }, af['prototype']['handle'] = function () {
+            switch (this['type']) {
+            case 0x0:
+                break;
+            case 0x1:
+                this['needsPixiUpdate'] && (this['skin'] >= 0x0 && this['skin'] < dN['length'] ? this['sprite']['texture'] = dN[this['skin']] : this['sprite']['texture'] = cM, this['sprite']['tint'] = this['color'], this['sprite']['width'] = 0x2 * this['size'], this['sprite']['height'] = 0x2 * this['size'], this['needsPixiUpdate'] = !0x1), this['rainbow'] && (this['sprite']['tint'] = dO[Math['floor'](bW % dP / 0x64)]), this['sprite']['position']['set'](this['x'], this['y']);
+                break;
+            case 0x2:
+                var e7 = bU['playerRegistry']['getPlayerById'](this['playerId']),
+                    e8 = dQ['ALL'];
+                bU['playerId'] == this['playerId'] ? e8 = dQ['SELF'] : null != bU['partyIds'][this['playerId']] && (e8 = dQ['PARTY']);
+                let ei = this['needsPixiUpdate'];
+                if (this['needsPixiUpdate'] && (this['cellSprite'] = new bF['Sprite'](bF['Texture']['EMPTY']), this['cellSprite']['anchor']['set'](0.5), this['cellSprite']['width'] = cJ, this['cellSprite']['height'] = cJ, this['container']['addChild'](this['cellSprite']), this['skinSprite'] = new bF['Sprite'](bF['Texture']['EMPTY']), this['skinSprite']['anchor']['set'](0.5), this['skinSprite']['width'] = cJ, this['skinSprite']['height'] = cJ, this['container']['addChild'](this['skinSprite']), this['massSprite'] = new bF['Sprite'](bF['Texture']['EMPTY']), this['container']['addChild'](this['massSprite']), e7['name']['length'] > 0x0 && (this['nameSprite'] = new bF['Sprite'](bF['Texture']['EMPTY']), this['container']['addChild'](this['nameSprite'])), this['needsPixiUpdate'] = !0x1), e7['cacheUpdate'] || ei) {
+                    if (this['nameSprite'] && (this['nameSprite']['texture'] = e7['getNameCache'](e7['cacheUpdate'])['texture'], this['nameSprite']['texture']['update']()), 0x1 == e7['spiked']) d8['aCustomSpike'] ? this['cellSprite']['texture'] = d8['aCustomSpike'] : this['cellSprite']['texture'] = c1, this['cellSprite']['tint'] = 0xffffff;
+                    else {
+                        if (0x2 == e7['spiked']) d8['aCustomMother'] ? this['cellSprite']['texture'] = d8['aCustomMother'] : this['cellSprite']['texture'] = c2, this['cellSprite']['tint'] = 0xffffff;
+                        else {
+                            this['cellSprite']['texture'] = cL;
+                            var e9 = e7['cellColor'];
+                            e7['isServerBot'] && d1['cDarkerBots'] && (e9 = bx(e9, 0.4)), this['cellSprite']['tint'] = e9;
+                        }
+                    }
+                }
+                if (this['skinSprite']['visible'] = cW['levelSkins'] >= e8 && 0x0 == e7['spiked'], this['skinSprite']['visible']) {
+                    var eb = e7['getSkin']();
+                    null != eb ? eb['isGif'] ? this['skinSprite']['texture'] = eb['getTexture']() : eb !== this['skinSprite']['texture'] && (this['skinSprite']['texture'] = eb) : this['skinSprite']['visible'] = !0x1;
+                }
+                var ec = 0x4 / this['size'],
+                    ed = 0x4 * Math['max'](ec, 0.16),
+                    ef = bU['scale'] >= 0x4 * ec || d1['cDisableAutoNameHiding'];
+                if (this['nameSprite'] && (this['nameSprite']['visible'] = cW['levelNames'] >= e8 && ef, this['nameSprite']['visible'] && (this['nameSprite']['scale']['set'](ed), this['nameSprite']['x'] = -this['nameSprite']['width'] / 0x2, e7['lowerName'] ? this['nameSprite']['y'] = 0x40 - this['nameSprite']['height'] / 0x2 : this['nameSprite']['y'] = -this['nameSprite']['height'] / 0x2, 0x1 == e7['effect'] && null != dx[0x0]))) {
+                    this['nameEffectSprite'] || (this['nameEffectSprite'] = new bF['Sprite'](bF['Texture']['EMPTY']), this['nameSprite']['addChild'](this['nameEffectSprite']));
+                    var eg = dx[0x0]['getTexture']();
+                    this['nameEffectSprite']['scale']['set'](this['nameSprite']['texture']['width'] / eg['width'], this['nameSprite']['texture']['height'] / eg['height']), this['nameEffectSprite']['texture'] = eg;
+                }
+                if (d1['cShowMass'] && (e8 <= dQ['PARTY'] || bU['serverData']['autosplits']) && ef) {
+                    var eh = this['getSizeCache']();
+                    this['massSprite']['texture'] = eh, this['massSprite']['scale']['set'](ed), this['massSprite']['x'] = -this['massSprite']['width'] / 0x2, null != this['nameSprite'] && this['nameSprite']['visible'] ? this['massSprite']['y'] = this['nameSprite']['y'] + this['nameSprite']['height'] : this['massSprite']['y'] = -this['massSprite']['height'] / 0x2, this['massSprite']['visible'] = !0x0;
+                } else this['massSprite']['visible'] = !0x1;
+                0x4 & ~e7['flags'] ? this['debuffSprite'] && (this['debuffSprite']['parent']['removeChild'](this['debuffSprite']), this['debuffSprite']['destroy'](), this['debuffSprite'] = null) : this['debuffSprite'] || (this['debuffSprite'] = new bF['Sprite'](dr), this['debuffSprite']['anchor']['set'](0.5), this['debuffSprite']['width'] = cK, this['debuffSprite']['height'] = cK, this['container']['addChild'](this['debuffSprite'])), 0x1 & ~e7['flags'] ? this['shieldSprite'] && (this['shieldSprite']['parent']['removeChild'](this['shieldSprite']), this['shieldSprite']['destroy'](), this['shieldSprite'] = null) : this['shieldSprite'] || (this['shieldSprite'] = new bF['Sprite'](ds), this['shieldSprite']['anchor']['set'](0.5), this['shieldSprite']['width'] = cK, this['shieldSprite']['height'] = cK, this['container']['addChild'](this['shieldSprite'])), this['container']['scale']['set'](this['size'] / 0x80), this['container']['position']['set'](this['x'], this['y']);
+                break;
+            case 0x3:
+                this['needsPixiUpdate'] && (this['sprite']['anchor']['set'](0.5), this['sprite']['width'] = 0x80, this['sprite']['height'] = 0x80, d8['aCustomSpike'] ? this['sprite']['texture'] = d8['aCustomSpike'] : this['sprite']['texture'] = c1, this['needsPixiUpdate'] = !0x1), this['sprite']['scale']['set'](this['size'] / 0x100), this['sprite']['position']['set'](this['x'], this['y']);
+                break;
+            case 0x4:
+                this['needsPixiUpdate'] && (d8['aCustomMother'] ? this['sprite']['texture'] = d8['aCustomMother'] : this['sprite']['texture'] = c2, cR['enabled'] && cR['motherCustomEnabled'] && !d1['cDisableEventSkins'] && !d8['aCustomMother'] || this['setDefaultSpriteAnchor'](), this['needsPixiUpdate'] = !0x1), !d8['aCustomMother'] && cR['enabled'] && (this['size'] >= 0x64 && !d1['cDisableEventSkins'] ? this['sprite']['texture'] = c3 : this['sprite']['texture'] = c2), this['sprite']['scale']['set'](this['size'] / 0x100), this['sprite']['position']['set'](this['x'], this['y']);
+                break;
+            case 0x5:
+                this['needsPixiUpdate'] && (this['sprite']['texture'] = du[this['buff']]['texture'], this['sprite']['width'] = 0x2 * this['size'], this['sprite']['height'] = 0x2 * this['size'], this['needsPixiUpdate'] = !0x1), this['sprite']['position']['set'](this['x'], this['y']);
+            }
+        }, af['prototype']['setDefaultSpriteAnchor'] = function () {
+            this['sprite']['anchor']['set'](0.5), this['sprite']['width'] = 0x80, this['sprite']['height'] = 0x80;
+        }, af['prototype']['onCreate'] = function (e7) {
+            if (0x2 == this['type']) {
+                if (this['container']) return;
+                this['container'] = new bF['Container'](), this['container']['parentCell'] = this, this['needsPixiUpdate'] = !0x0, bM['addChild'](this['container']);
+            } else {
+                if (this['sprite']) return;
+                this['sprite'] = new bF['Sprite'](bF['Texture']['EMPTY']), this['sprite']['parentCell'] = this, this['sprite']['anchor']['set'](0.5), this['needsPixiUpdate'] = !0x0, 0x6 === this['type'] ? bL['addChild'](this['sprite']) : bM['addChild'](this['sprite']);
+            }
+            0x6 == this['type'] ? (e7['foodObjects'][this['id']] = this, e7['_foodVersionCounter'] = (e7['_foodVersionCounter'] || 0x0) + 0x1) : (e7['bucket'][this['id']] = this, e7['_bucketVersionCounter'] = (e7['_bucketVersionCounter'] || 0x0) + 0x1), this['playerId'] == e7['playerId'] && (e7['myCells'][this['id']] = this, e7['_myCellVersionCounter'] = (e7['_myCellVersionCounter'] || 0x0) + 0x1, e7['_forceNextRender'] = !0x0);
+        }, af['prototype']['onDelete'] = function () {
+            this['container'] ? (this['container']['parent']['removeChild'](this['container']), this['container']['parentCell'] = null, this['container']['destroy']({
+                'children': !0x0
+            }), this['container'] = null) : this['sprite'] && (this['sprite']['parent']['removeChild'](this['sprite']), this['sprite']['parentCell'] = null, this['sprite']['destroy']({
+                'children': !0x0
+            }), this['sprite'] = null), this['cache'] && (this['cache']['destroy'](), this['cache'] = null), void 0x0 !== bU && (0x6 == this['type'] ? bU['_foodVersionCounter'] = (bU['_foodVersionCounter'] || 0x0) + 0x1 : bU['_bucketVersionCounter'] = (bU['_bucketVersionCounter'] || 0x0) + 0x1, this['playerId'] == (bU && bU['playerId']) && (bU['_myCellVersionCounter'] = (bU['_myCellVersionCounter'] || 0x0) + 0x1));
+        }, ai['prototype']['connectionStart'] = function () {
+            var e7 = 'Gota\x20Web\x20' + version,
+                e8 = new ArrayBuffer(0x1 + e7['length'] + 0x1 + 0x1),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0xff), e9['setUint8'](0x1, 0x6), aj(0x2, e9, e7), e8;
+        }, ai['prototype']['setName'] = function (e7) {
+            var e8 = new ArrayBuffer(0x2 + 0x2 * (e7['length'] + 0x1)),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0x0), ak(0x1, e9, e7), d1['cSilentLogin'] && e9['setUint8'](0x2 + 0x2 * e7['length'] + 0x1, 0x1), e8;
+        }, ai['prototype']['sendKey'] = function (e7) {
+            var e8 = new ArrayBuffer(0x1);
+            return new DataView(e8)['setUint8'](0x0, e7), e8;
+        }, ai['prototype']['sendMouse'] = function (e7, e8) {
+            var e9 = new ArrayBuffer(0x9),
+                eb = new DataView(e9);
+            return eb['setUint8'](0x0, 0x10), eb['setInt32'](0x1, e7, !0x0), eb['setInt32'](0x5, e8, !0x0), e9;
+        }, ai['prototype']['sendEjectMass'] = function (e7) {
+            var e8 = new ArrayBuffer(0x1);
+            return new DataView(e8)['setUint8'](0x0, e7 ? 0x3 : 0x4), e8;
+        }, ai['prototype']['sendPing'] = function () {
+            var e7 = new ArrayBuffer(0x1);
+            return new DataView(e7)['setUint8'](0x0, 0x47), c0 = Date['now'](), e7;
+        }, ai['prototype']['sendSpectate'] = function (e7) {
+            var e8 = new ArrayBuffer(0x3),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0x1), e7 && e9['setUint16'](0x1, e7, !0x0), e8;
+        }, ai['prototype']['sendChat'] = function (e7, e8) {
+            var e9 = new ArrayBuffer(0x2 + 0x2 * (e7['length'] + 0x1)),
+                eb = new DataView(e9);
+            return eb['setUint8'](0x0, 0x48), eb['setUint8'](0x1, e8), ak(0x2, eb, e7), e9;
+        }, ai['prototype']['sendInviteResponse'] = function (e7) {
+            var e8 = new ArrayBuffer(0x2),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0x29), e9['setUint8'](0x1, e7 ? 0x1 : 0x0), e8;
+        }, ai['prototype']['sendPartyAction'] = function (e7, e8) {
+            var e9 = new ArrayBuffer(0x6),
+                eb = new DataView(e9);
+            return eb['setUint8'](0x0, 0x28), eb['setUint8'](0x1, e7), eb['setUint32'](0x2, e8, !0x0), e9;
+        }, ai['prototype']['sendPartyJoin'] = function (e7) {
+            var e8 = new ArrayBuffer(0x1 + e7['length'] + 0x1),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0x2a), aj(0x1, e9, e7), e8;
+        }, ai['prototype']['sendShowProfile'] = function (e7) {
+            var e8 = new ArrayBuffer(0x3),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0x67), e9['setUint16'](0x1, e7, !0x0), e8;
+        }, ai['prototype']['sendWhisper'] = function (e7, e8) {
+            var e9 = new ArrayBuffer(0x5 + 0x2 * (e8['length'] + 0x1)),
+                eb = new DataView(e9);
+            return eb['setUint8'](0x0, 0x49), eb['setUint32'](0x1, e7, !0x0), ak(0x5, eb, e8), e9;
+        }, ai['prototype']['sendSubPanel'] = function () {
+            var e7 = new ArrayBuffer(0x8 + (db['skinName']['length'] + 0x1)),
+                e8 = new DataView(e7);
+            return e8['setUint8'](0x0, 0xa), e8['setUint8'](0x1, db['nameColor']['r']), e8['setUint8'](0x2, db['nameColor']['g']), e8['setUint8'](0x3, db['nameColor']['b']), e8['setUint8'](0x4, db['chatColor']), e8['setUint8'](0x5, db['effect']), e8['setUint8'](0x6, db['lowerName'] ? 0x1 : 0x0), aj(0x7, e8, db['skinName']), e8['setUint8'](0x8 + db['skinName']['length'], db['nameFont']), e7;
+        }, ai['prototype']['sendLockedNameChange'] = function (e7) {
+            var e8 = new ArrayBuffer(0x1 + (e7['length'] + 0x1)),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0xb), aj(0x1, e9, e7), e8;
+        }, ai['prototype']['sendOptions'] = function () {
+            var e7 = new ArrayBuffer(0x3),
+                e8 = new DataView(e7);
+            return e8['setUint8'](0x0, 0x68), e8['setUint16'](0x1, d1['rViewDistance'], !0x0), e7;
+        }, ai['prototype']['sendQueue'] = function (e7) {
+            var e8 = new ArrayBuffer(0x5),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0x50), e9['setUint8'](0x1, e7), e9['setUint8'](0x2, 0x0), e9['setUint16'](0x3, 0x0), e8;
+        }, ai['prototype']['sendCustomGame'] = function (e7) {
+            var e8 = new ArrayBuffer(0x2),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0x5a), e9['setUint8'](0x1, e7), e8;
+        }, ai['prototype']['sendLeaveMatch'] = function () {
+            var e7 = new ArrayBuffer(0x1);
+            return new DataView(e7)['setUint8'](0x0, 0x51), e7;
+        }, ai['prototype']['sendShowLobbies'] = function () {
+            var e7 = new ArrayBuffer(0x2);
+            return new DataView(e7)['setUint8'](0x0, 0x5d), e7;
+        }, ai['prototype']['sendJoinLobby'] = function (e7, e8) {
+            var e9 = new ArrayBuffer(0x5 + 0x2 * e8['length'] + 0x2),
+                eb = new DataView(e9);
+            return eb['setUint8'](0x0, 0x5e), eb['setUint32'](0x1, e7, !0x0), ak(0x5, eb, e8), e9;
+        }, ai['prototype']['sendCaptcha'] = function (e7) {
+            var e8 = new ArrayBuffer(0x1 + (e7['length'] + 0x1)),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0x64), aj(0x1, e9, e7), e8;
+        }, ai['prototype']['sendAuthToken'] = function (e7) {
+            var e8 = new ArrayBuffer(0x1 + (e7['length'] + 0x1)),
+                e9 = new DataView(e8);
+            return e9['setUint8'](0x0, 0x65), aj(0x1, e9, e7), e8;
+        }, ai['prototype']['sendCustomGameUpdate'] = function (e7, e8, e9) {
+            var eb = new ArrayBuffer(0x4),
+                ec = new DataView(eb);
+            return ec['setUint8'](0x0, 0x5b), ec['setUint8'](0x1, e7), e7 == dU['STARTMASS'] || e7 == dU['VIRUS_DENSITY'] ? ec['setUint16'](0x2, e8, !0x1) : e7 == dU['RESPAWN_DELAY'] ? ec['setInt16'](0x2, e8, !0x1) : (ec['setUint8'](0x2, e8), ec['setUint8'](0x3, e9)), eb;
+        }, ai['prototype']['sendCustomGameUpdateString'] = function (e7, e8) {
+            var e9 = new ArrayBuffer(0x4 + 0x2 * e8['length']),
+                eb = new DataView(e9);
+            return eb['setUint8'](0x0, 0x5c), eb['setUint8'](0x1, e7), ak(0x2, eb, e8), e9;
+        };
+        var di = null,
+            dj = null;
+        const dk = {
+            'cDisableAA': function () {
+                bG && aD();
+            },
+            'sRenderType': function () {
+                bG && aD();
+            },
+            'cHideId': function () {
+                var e7 = d1['cHideId'] ? 'none' : 'block';
+                document['getElementById']('pId')['style']['display'] = e7;
+            },
+            'cHideServer': function () {
+                var e7 = d1['cHideServer'] ? 'none' : 'block';
+                document['getElementById']('pServer')['style']['display'] = e7;
+            },
+            'cTransCells': function () {
+                bM['alpha'] = d1['cTransCells'] ? 0.5 : 0x1;
+            },
+            'cColoredCellCount': function () {
+                bU['updateCellCounter'](cO['playerCellCount'], !0x0);
+            },
+            'cShowChatIds': function () {
+                var e7 = d1['cShowChatIds'] ? 'table-row' : 'none';
+                document['getElementById']('opt_colored_ids')['style']['display'] = e7;
+            },
+            'cHideChat': function () {
+                var e7 = d1['cHideChat'] ? 'none' : 'block';
+                $('#chat-panel')['css']('display', e7);
+            },
+            'cHideMinimap': function () {
+                var e7 = d1['cHideMinimap'] ? 'none' : 'block';
+                $('#minimap-panel')['css']('display', e7);
+            },
+            'cHidePartyPanel': function () {
+                d1['cHidePartyPanel'] ? $('#party-panel')['css']('display', 'none') : bU && bU['party'] && bU['party']['length'] > 0x0 && $('#party-panel')['css']('display', 'block');
+            },
+            'cDarkerBots': function () {
+                if (bU)
+                    for (var e7 in bU['bucket']) {
+                        var e8 = bU['bucket'][e7];
+                        e8 && (e8['needsPixiUpdate'] = !0x0);
+                    }
+            },
+            'sScorePanel': function () {
+                switch (d1['sScorePanel']) {
+                case '0':
+                    cm['style']['display'] = 'none';
+                    break;
+                case '1':
+                    cm['style']['display'] = 'flex';
+                    break;
+                case '2':
+                    cm['style']['display'] = 'block';
+                }
+            },
+            'cHideLeaderboard': function () {
+                var e7 = d1['cHideLeaderboard'] ? 'none' : 'block';
+                $('#leaderboard-panel')['css']('display', e7);
+            },
+            'cHideExtraPanel': function () {
+                var e7 = d1['cHideExtraPanel'] ? 'none' : 'block';
+                $('#extra-panel')['css']('display', e7);
+            },
+            'cShowCoordinates': function () {
+                var e7 = d1['cShowCoordinates'] ? 'block' : 'none';
+                $('#minimap-coordinates')['css']('display', e7), aF();
+            },
+            'cDisableAutoZoom': function () {
+                d1['cDisableAutoZoom'] && (bU['scale_base'] = 0.2 * Math['max'](bR['height'] / 0x438, bR['width'] / 0x780));
+            },
+            'cThemeEnabled': function () {
+                d1['cThemeEnabled'] ? a8(function (e7) {
+                    const e8 = document['getElementById'](e7);
+                    e8 && (e8['disabled'] = !0x1);
+                }) : (bh(), a8(function (e7) {
+                    const e8 = document['getElementById'](e7);
+                    e8 && (e8['disabled'] = !0x0);
+                }));
+            },
+            'cShowBorder': function () {
+                ab();
+            },
+            'cDisableEventSkins': function () {
+                cR['enabled'] && $('body')['toggleClass']('event-' + cR['key']), aC(), aB();
+            },
+            'cResizableChat': function () {
+                $('#chat-resize')['css']('display', d1['cResizableChat'] ? 'block' : 'none');
+            },
+            'sShowNames': function () {
+                cW['levelNames'] = dQ[d1['sShowNames']];
+            },
+            'sShowSkins': function () {
+                cW['levelSkins'] = dQ[d1['sShowSkins']];
+            },
+            'sMassType': function () {
+                cW['massType'] = dR[d1['sMassType']];
+            },
+            'sTextOutlines': function () {
+                for (var e7 in (cW['textOutlineSize'] = dS[d1['sTextOutlines']], bU['playerRegistry']['bucket'])) {
+                    var e8 = bU['playerRegistry']['bucket'][e7];
+                    e8['nameCache'] && (e8['nameCache']['style']['strokeThickness'] = cW['textOutlineSize']), bU['playerRegistry']['updatePlayer'](e8);
+                }
+                dh['buildSizeCache']();
+            },
+            'sQuality': function () {
+                var e7 = cW['resolution'];
+                if (cW['resolution'] = dT[d1['sQuality']], e7 !== cW['resolution']) try {
+                    a6();
+                } catch (e8) {}
+            },
+            'uiForegroundColor': function (e7) {
+                bU && bU['drawParty'](), $('.fg-interface-color')['css']('color', e7), $('.interface-color')['css']('color', e7), $('.gota-btn')['css']('color', e7)['css']('border-color', e7), $('.popup-panel')['css']('color', e7), $('.main')['css']('color', e7), $('.main-bottom-stats')['css']('border-color', e7), $('#authed')['css']('color', e7), $('#guest')['css']('color', e7);
+            },
+            'uiBackgroundColor': function (e7) {
+                $('.hud-panel\x20.interface-color')['css']('background-color', e7);
+            },
+            'uiButtonColor': function (e7) {
+                $('.gota-btn')['css']('background-color', e7);
+            },
+            'uiBorderColor': function (e7) {
+                $('.ui-pane')['css']('border-color', e7), $('#chat-tab-container')['css']('border-color', e7), $('.chat-tab')['css']('border-color', e7);
+            },
+            'uiMenuBackgroundColor': function (e7) {
+                $('.main-panel')['css']('background-color', e7), $('.popup-panel')['css']('background-color', e7), $('.options-container')['css']('background-color', e7);
+            },
+            'uiMenuTitleBackgroundColor': function (e7) {
+                $('.menu-title')['css']('background-color', e7);
+            },
+            'uiMenuSubBackgroundColor': function (e7) {
+                $('.menu-sub-bg')['css']('background-color', e7), $('.server-active')['css']('background-color', e7), $('#server-content')['css']('background-color', e7);
+            },
+            'uiMenuSubBackground2Color': function (e7) {
+                $('.menu-sub-bg2')['css']('background-color', e7), $('.server-table\x20tbody')['css']('background-color', e7);
+            },
+            'uiPartyLeaderColor': function (e7) {
+                bU && bU['drawParty']();
+            },
+            'uiGameColorSuccess': function (e7) {
+                $('#social-friends-online-count')['css']('color', e7);
+            },
+            'uiGameBackgroundColor': function (e7) {
+                document['body']['style']['background'] = e7;
+            },
+            'uiGameBorderColor': function () {
+                ab();
+            },
+            'rUiScale': function (e7) {
+                d1['rUiScale'] = Math['min'](Math['max'](e7, 0.5), 1.25), $('#uiScale')['val'](Number['parseFloat'](0x64 * d1['rUiScale'])['toFixed'](0x0)), $('.ui-scale')['css']('transform', 'scale(' + d1['rUiScale'] + ')');
+            },
+            'rReconnectPeriod': function (e7) {
+                d1['rReconnectPeriod'] = Math['min'](Math['max'](e7, 0x0), 0xa), $('#reconnectPeriod')['val'](d1['rReconnectPeriod']);
+            },
+            'rAnimationDelay': function (e7) {
+                d1['rAnimationDelay'] = Math['min'](Math['max'](e7, 0x1), 0xfa), $('#animationDelay')['val'](d1['rAnimationDelay']);
+            },
+            'rViewDistance': function (e7) {
+                d1['rViewDistance'] = Math['min'](Math['max'](e7, 0x32), 0x96), $('#viewDistance')['val'](d1['rViewDistance']), bU['sendOptions']();
+            },
+            'rBorderSize': function (e7) {
+                d5['rBorderSize'] = Math['min'](Math['max'](e7, 0x1), 0x100), $('#borderSize')['text'](d5['rBorderSize']), ab();
+            },
+            'rBackgroundOpacity': function (e7) {
+                d5['rBackgroundOpacity'] = Math['min'](Math['max'](e7, 0x0), 0x1), $('#backgroundOpacity')['text'](Number['parseFloat'](0x64 * d5['rBackgroundOpacity'])['toFixed'](0x0)), document['getElementById']('canvas-background')['style']['opacity'] = d5['rBackgroundOpacity'];
+            },
+            'rTracerOpacity': function (e7) {
+                d1['rTracerOpacity'] = Math['min'](Math['max'](e7, 0xa), 0x64), $('#tracerOpacity')['val'](d1['rTracerOpacity']), $('#rTracerOpacity')['val'](d1['rTracerOpacity']);
+            },
+            'rTracerColor': function (e7) {
+                d1['rTracerColor'] = e7, $('#rTracerColor')['val'](d1['rTracerColor']);
+            },
+            'aCustomBackground': function (e7) {
+                document['getElementById']('canvas-background')['style']['backgroundImage'] = 'url(\x27' + e7 + '\x27)', document['getElementById']('canvas-background')['style']['backgroundSize'] = '100%\x20100%';
+            },
+            'aCustomSpike': function (e7) {
+                for (var e8 in (d8['aCustomSpike'] && d8['aCustomSpike']['destroy'](), d8['aCustomSpike'] = null, bU['bucket'])) {
+                    var e9 = bU['bucket'][e8];
+                    0x3 == e9['type'] && (e9['needsPixiUpdate'] = !0x0);
+                }
+                if (0x0 != e7['length']) {
+                    var eb = new Image();
+                    eb['crossOrigin'] = '';
+                    var ec = function () {
+                            d8['aCustomSpike'] = bF['Texture']['from'](eb);
+                        },
+                        ed = function () {
+                            bU['selfMsg']('Unable\x20to\x20load\x20custom\x20theme\x20virus.');
+                        };
+                    eb['addEventListener']('load', ec), eb['addEventListener']('error', ed), cG['customElements']['push']({
+                        'element': eb,
+                        'event': 'load',
+                        'handler': ec
+                    }, {
+                        'element': eb,
+                        'event': 'error',
+                        'handler': ed
+                    }), eb['src'] = e7;
+                }
+            },
+            'aCustomMother': function (e7) {
+                for (var e8 in (d8['aCustomMother'] && d8['aCustomMother']['destroy'](), d8['aCustomMother'] = null, bU['bucket'])) {
+                    var e9 = bU['bucket'][e8];
+                    0x4 == e9['type'] && (e9['needsPixiUpdate'] = !0x0);
+                }
+                if (0x0 != e7['length']) {
+                    var eb = new Image();
+                    eb['crossOrigin'] = '';
+                    var ec = function () {
+                            d8['aCustomMother'] = bF['Texture']['from'](eb);
+                        },
+                        ed = function () {
+                            bU['selfMsg']('Unable\x20to\x20load\x20custom\x20theme\x20mother\x20cell.');
+                        };
+                    eb['addEventListener']('load', ec), eb['addEventListener']('error', ed), cG['customElements']['push']({
+                        'element': eb,
+                        'event': 'load',
+                        'handler': ec
+                    }, {
+                        'element': eb,
+                        'event': 'error',
+                        'handler': ed
+                    }), eb['src'] = e7;
+                }
+            }
+        };
+        var dl = [],
+            dm = function (e7) {
+                aZ(0x0, this['innerText'], this['dataset']['playerId'], -0x1);
+            },
+            dp = function (e7) {
+                var e8 = e7['offsetY'],
+                    e9 = Math['floor'](e8 / 0x14);
+                if (!(e8 % 0x14 < 0x5)) {
+                    var eb = bU['party'][e9];
+                    null != eb && aZ(0x0, eb['name'], eb['id'], e9);
+                }
+            };
+        const dq = {
+            'MODIFIER': 0x1,
+            'PASSIVE': 0x2,
+            'CONSUMABLE': 0x3,
+            'DEBUFF': 0x4,
+            'NONE': 0x0
+        };
+        var dr, ds, du = {
+            0x0: new bm('Random', 'random', dq['NONE']),
+            0x1: new bm('Maximum\x20Cells\x20Upgrade', 'extracells', dq['MODIFIER']),
+            0x2: new bm('Extra\x20Consumable\x20Slot', 'extraconsumable', dq['MODIFIER']),
+            0x3: new bm('Merge', 'merge', dq['PASSIVE']),
+            0x4: new bm('Grow', 'grow', dq['PASSIVE']),
+            0x5: new bm('Speed', 'speed', dq['PASSIVE']),
+            0x6: new bm('Shield', 'shield', dq['PASSIVE']),
+            0x7: new bm('Virus', 'spike', dq['CONSUMABLE']),
+            0x8: new bm('Disrupt', 'disrupt', dq['CONSUMABLE']),
+            0x9: new bm('Teleport', 'teleport', dq['CONSUMABLE']),
+            0xa: new bm('Disrupt', '_disrupt', dq['DEBUFF']),
+            0xb: new bm('Silver', 'phoenix', dq['MODIFIER']),
+            0xc: new bm('Consumable\x20Shield', '_shield', dq['CONSUMABLE']),
+            0xd: new bm('Magnet', 'magnet', dq['PASSIVE']),
+            0xe: new bm('Decay', 'decay', dq['CONSUMABLE']),
+            0xf: new bm('Decay', '_decay', dq['DEBUFF'])
+        };
+        const dv = 0x3 * cI,
+            dw = ['hearts'];
+        for (var dx = [], dy = [], dz = [], dA = 0x0; dA < 0xb4; dA++) {
+            var dB = a2({
+                'h': 0x2 * dA,
+                's': 97.25,
+                'v': 0x64,
+                'a': 0x1
+            })['toRgb']();
+            dy[dA] = (dB['r'] << 0x10) + (dB['g'] << 0x8) + dB['b'], dz[dA] = a2({
+                'h': 0x2 * dA,
+                's': 97.25,
+                'v': 0x64,
+                'a': 0x1
+            })['toHex']();
+        }
+        const dC = bu(dy['slice'](0x0)),
+            dD = bu(dz['slice'](0x0));
+        dy = null, dz = null;
+        const dE = ['#FFFFFF', '#FF9BDC', '#FF00FF', '#FF0000', '#C80000', '#FF6900', '#FFFF00', '#00FF00', '#008000', '#008080', '#00FFFF', '#0096FF', '#0000FF', '#CA48FA', '#8A2BE2', '#D2C878', '#8C4614'],
+            dF = {},
+            dG = {
+                0x1f4: {
+                    'style': {
+                        'color': '#FFD700',
+                        'textShadow': '0\x200\x208px\x20#FFD700,\x200\x200\x2012px\x20#FF8C00',
+                        'fontWeight': 'bold'
+                    }
+                },
+                0x1f5: {
+                    'style': {
+                        'color': '#00FF00',
+                        'textShadow': '0\x200\x208px\x20#00FF00,\x200\x200\x2012px\x20#00AA00',
+                        'fontWeight': 'bold'
+                    }
+                }
+            },
+            dH = {
+                'whisper': {
+                    'description': 'Whisper\x20a\x20player\x20by\x20ID',
+                    'triggers': ['whisper', 't', 'w'],
+                    'action': function (e7) {
+                        var e8 = parseInt(e7[0x0]);
+                        if (isNaN(e8)) bU['selfMsg']('Invalid\x20player\x20id.');
+                        else {
+                            var e9 = e7['slice'](0x1)['join']('\x20');
+                            0x0 != e9['length'] && bU['sendPacket'](new bV['sendWhisper'](e8, e9)), aQ('/t\x20' + e8 + '\x20');
+                        }
+                    }
+                },
+                'reply_whisper': {
+                    'description': 'Reply\x20to\x20previous\x20whisper',
+                    'triggers': ['reply', 'r'],
+                    'action': function (e7) {
+                        var e8 = e7['join']('\x20');
+                        0x0 != e8['length'] && bU['sendPacket'](new bV['sendWhisper'](0x0, e8)), aQ('/r\x20');
+                    }
+                },
+                'party_chat': {
+                    'description': 'Send\x20a\x20message\x20to\x20other\x20party\x20members',
+                    'triggers': ['party', 'p'],
+                    'action': function (e7) {
+                        var e8 = e7['join']('\x20');
+                        0x0 != e8['length'] && bU['sendPacket'](new bV['sendChat'](e8, 0x1)), aQ('/p\x20');
+                    }
+                },
+                'invite': {
+                    'description': 'Invite\x20a\x20player\x20to\x20the\x20party',
+                    'triggers': ['invite', 'i'],
+                    'action': function (e7) {
+                        var e8 = parseInt(e7[0x0]);
+                        isNaN(e8) ? bU['selfMsg']('Invalid\x20ID.') : bU['sendPacket'](new bV['sendPartyAction'](0x0, e8));
+                    }
+                },
+                'leave': {
+                    'description': 'Leave\x20your\x20current\x20party',
+                    'triggers': ['leave', 'l'],
+                    'action': function (e7) {
+                        bU['sendPacket'](new bV['sendPartyAction'](0x3, 0x0));
+                    }
+                },
+                'promote': {
+                    'description': 'Promote\x20a\x20party\x20member\x20to\x20leader',
+                    'triggers': ['promote'],
+                    'action': function (e7) {
+                        var e8 = parseInt(e7[0x0]);
+                        isNaN(e8) ? bU['selfMsg']('Invalid\x20ID.') : bU['sendPacket'](new bV['sendPartyAction'](0x2, e8));
+                    }
+                },
+                'kick': {
+                    'description': 'Kick\x20a\x20player\x20from\x20the\x20party',
+                    'triggers': ['kick'],
+                    'action': function (e7) {
+                        var e8 = parseInt(e7[0x0]);
+                        isNaN(e8) ? bU['selfMsg']('Invalid\x20ID.') : bU['sendPacket'](new bV['sendPartyAction'](0x1, e8));
+                    }
+                },
+                'clear': {
+                    'description': 'Clear\x20the\x20chat',
+                    'triggers': ['clear'],
+                    'action': function (e7) {
+                        for (var e8 = document['getElementsByClassName']('chat-active-tab')[0x0]['getAttribute']('name'), e9 = document['getElementById']('chat-body-' + e8); null != e9['firstChild'];) e9['removeChild'](e9['firstChild']);
+                    }
+                },
+                'info': {
+                    'description': 'Get\x20your\x20current\x20ID',
+                    'triggers': ['info'],
+                    'action': function (e7) {
+                        bU['playerId'] > 0x0 ? bU['selfMsg']('Your\x20id\x20is\x20' + bU['playerId']) : bU['selfMsg']('You\x20need\x20to\x20be\x20connected\x20to\x20a\x20server\x20to\x20use\x20this\x20command.');
+                    }
+                },
+                'scrimmenu': {
+                    'description': 'Show\x20the\x20scrimmage\x20menu',
+                    'triggers': ['scrimmenu'],
+                    'action': function (e7) {
+                        c9['css']('display', 'none' == c9['css']('display') ? 'block' : 'none');
+                    }
+                },
+                'join': {
+                    'description': 'Join\x20a\x20party\x20with\x20a\x20code',
+                    'triggers': ['join', 'j'],
+                    'action': function (e7) {
+                        var e8 = e7[0x0];
+                        null != e8 && 0x0 != e8['length'] && bU['sendPacket'](new bV['sendPartyJoin'](e8));
+                    }
+                },
+                'private': {
+                    'description': 'Set\x20the\x20party\x20to\x20private',
+                    'triggers': ['private'],
+                    'action': function (e7) {
+                        bU['sendPacket'](new bV['sendPartyAction'](0x4, 0x1));
+                    }
+                },
+                'public': {
+                    'description': 'Allow\x20players\x20to\x20join\x20the\x20party\x20without\x20an\x20invite',
+                    'triggers': ['public'],
+                    'action': function (e7) {
+                        bU['sendPacket'](new bV['sendPartyAction'](0x4, 0x0));
+                    }
+                },
+                'reset_chat': {
+                    'description': 'Reset\x20chat\x20size',
+                    'triggers': ['resetchat'],
+                    'action': function (e7) {
+                        $('#chat-panel')['css']('width', '360px'), $('#chat-panel')['css']('height', '250px');
+                    }
+                },
+                'reset_chat_tabs': {
+                    'description': 'Reset\x20chat\x20tab\x20settings',
+                    'triggers': ['resetchattabs'],
+                    'action': function (e7) {
+                        d1['_ChatTabs'] = JSON['parse'](JSON['stringify'](cX)), aU(), aS();
+                    }
+                },
+                'spectate': {
+                    'description': 'Spectate\x20a\x20player',
+                    'triggers': ['spectate', 's'],
+                    'action': function (e7) {
+                        var e8 = parseInt(e7[0x0]);
+                        isNaN(e8) ? bU['selfMsg']('Invalid\x20ID.') : bU['sendPacket'](new bV['sendSpectate'](e8));
+                    }
+                },
+                'disconnect': {
+                    'description': 'Disconnect\x20from\x20the\x20server',
+                    'triggers': ['disconnect'],
+                    'action': function (e7) {
+                        bU['disconnect']();
+                    }
+                },
+                'account': {
+                    'description': 'Get\x20Account\x20UID',
+                    'triggers': ['account'],
+                    'action': function (e7) {
+                        null !== cu ? bU['selfMsg']('UID:\x20' + cu['uid']) : bU['selfMsg']('You\x20are\x20not\x20logged\x20in.');
+                    }
+                },
+                'block': {
+                    'description': 'Block\x20or\x20unblock\x20a\x20player\x20by\x20ID',
+                    'triggers': ['block', 'b'],
+                    'action': function (e7) {
+                        var e8 = parseInt(e7[0x0]);
+                        if (!isNaN(e8)) {
+                            var e9 = bv(e8);
+                            bU['selfMsg'](e9);
+                        }
+                    }
+                }
+            },
+            dI = ['4Head', 'BibleThump', 'DansGame', 'DatSheffy', 'FailFish', 'FeelsBadMan', 'FeelsGoodMan', 'FeelsMadMan', 'GabeN', 'HassanChop', 'HeyGuys', 'Kappa', 'KappaPride', 'Keepo', 'Kreygasm', 'NotLikeThis', 'OMGScoots', 'PJSalt', 'PogChamp', 'rekt', 'rip', 'SaltyCorn', 'sodaC', 'sodaHeyGuys', 'sodaNOPE', 'sodaW', 'SwiftRage', 'WutFace', 'ResidentSleeper', 'LUL', 'MikuFail', 'PepoHype', 'KKona', 'MeguFace', 'AngryBork', 'AngeryBOYE', 'TohruFlex', 'Sadness', 'nou', 'MarioFP'],
+            dJ = ['Ditto', 'MichaelPls', 'RareParrot', 'PepePls', 'RooNoticeMe', 'PepeEyes', 'EverythingsFine', 'WeSmart', 'PandaAww', 'SleepyCat', 'Clap'],
+            dK = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'],
+            dL = ['', 'MOUSE1', 'MOUSE2', 'MOUSE3', 'MOUSE4', 'MOUSE5', 'HELP', '', 'BACK_SPACE', 'TAB', '', '', 'CLEAR', 'ENTER', 'ENTER_SPECIAL', '', 'SHIFT', 'CONTROL', 'ALT', 'PAUSE', 'CAPS_LOCK', 'KANA', 'EISU', 'JUNJA', 'FINAL', 'HANJA', '', 'ESCAPE', 'CONVERT', 'NONCONVERT', 'ACCEPT', 'MODECHANGE', 'SPACE', 'PAGE_UP', 'PAGE_DOWN', 'END', 'HOME', 'LEFT', 'UP', 'RIGHT', 'DOWN', 'SELECT', 'PRINT', 'EXECUTE', 'PRINTSCREEN', 'INSERT', 'DELETE', '', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?', 'AT', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'OS_KEY', '', 'CONTEXT_MENU', '', 'SLEEP', 'NUMPAD0', 'NUMPAD1', 'NUMPAD2', 'NUMPAD3', 'NUMPAD4', 'NUMPAD5', 'NUMPAD6', 'NUMPAD7', 'NUMPAD8', 'NUMPAD9', 'MULTIPLY', 'ADD', 'SEPARATOR', 'SUBTRACT', 'DECIMAL', 'DIVIDE', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19', 'F20', 'F21', 'F22', 'F23', 'F24', '', '', '', '', '', '', '', '', 'NUM_LOCK', 'SCROLL_LOCK', 'WIN_OEM_FJ_JISHO', 'WIN_OEM_FJ_MASSHOU', 'WIN_OEM_FJ_TOUROKU', 'WIN_OEM_FJ_LOYA', 'WIN_OEM_FJ_ROYA', '', '', '', '', '', '', '', '', '', 'CIRCUMFLEX', 'EXCLAMATION', 'DOUBLE_QUOTE', 'HASH', 'DOLLAR', 'PERCENT', 'AMPERSAND', 'UNDERSCORE', 'OPEN_PAREN', 'CLOSE_PAREN', 'ASTERISK', 'PLUS', 'PIPE', 'HYPHEN_MINUS', 'OPEN_CURLY_BRACKET', 'CLOSE_CURLY_BRACKET', 'TILDE', '', '', '', '', 'VOLUME_MUTE', 'VOLUME_DOWN', 'VOLUME_UP', '', '', 'SEMICOLON', 'EQUALS', 'COMMA', 'MINUS', 'PERIOD', 'SLASH', 'BACK_QUOTE', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'OPEN_BRACKET', 'BACK_SLASH', 'CLOSE_BRACKET', 'QUOTE', '', 'META', 'ALTGR', '', 'WIN_ICO_HELP', 'WIN_ICO_00', '', 'WIN_ICO_CLEAR', '', '', 'WIN_OEM_RESET', 'WIN_OEM_JUMP', 'WIN_OEM_PA1', 'WIN_OEM_PA2', 'WIN_OEM_PA3', 'WIN_OEM_WSCTRL', 'WIN_OEM_CUSEL', 'WIN_OEM_ATTN', 'WIN_OEM_FINISH', 'WIN_OEM_COPY', 'WIN_OEM_AUTO', 'WIN_OEM_ENLW', 'WIN_OEM_BACKTAB', 'ATTN', 'CRSEL', 'EXSEL', 'EREOF', 'PLAY', 'ZOOM', '', 'PA1', 'WIN_OEM_CLEAR', ''];
+        var dM = ['heart', 'star', 'home', 'apple', 'spiral', 'dice', 'chicken', 'ghost', 'burger', 'bow', 'cloud', 'skull', 'mug', 'flower', 'music', 'checkmark', 'clover', 'crown', 'fancy', 'fish', 'fire', 'lightning', 'paw', 'duck', 'snowflake', 'bomb', 'butterfly', 'cherry', 'watermelon', 'cat', 'cupid', 'sword', 'shield', 'tornado', 'radioactive', 'rocket', 'wave', 'letter_a', 'letter_b', 'letter_c', 'letter_d', 'letter_e', 'letter_f', 'letter_g', 'letter_h', 'letter_i', 'letter_j', 'letter_k', 'letter_l', 'letter_m', 'letter_n', 'letter_o', 'letter_p', 'letter_q', 'letter_r', 'letter_s', 'letter_t', 'letter_u', 'letter_v', 'letter_w', 'letter_x', 'letter_y', 'letter_z', 'number_0', 'number_1', 'number_2', 'number_3', 'number_4', 'number_5', 'number_6', 'number_7', 'number_8', 'number_9'],
+            dN = [];
+        const dO = [0xfef200, 0xcadb2a, 0x8ec63f, 0x3ab54a, 0xa652, 0xa674, 0x1a89e, 0xabc5, 0xadef, 0x8fd5, 0x72bb, 0x54a5, 0x2e3192, 0x662e91, 0x92278f, 0xbd1a8d, 0xed008c, 0xec0974, 0xed145b, 0xed1941, 0xed1b24, 0xf36523, 0xf7941d, 0xffc20f],
+            dP = 0x64 * dO['length'] - 0x1,
+            dQ = {
+                'ALL': 0x3,
+                'PARTY': 0x2,
+                'SELF': 0x1,
+                'NONE': 0x0
+            },
+            dR = {
+                'DEFAULT': 0x0,
+                'SHORT': 0x1
+            },
+            dS = {
+                'THICK': 0x9,
+                'THIN': 0x2,
+                'NONE': 0x0
+            },
+            dT = {
+                'ULTRA': 0x1,
+                'HIGH': 0.8,
+                'MEDIUM': 0.7,
+                'LOW': 0.5,
+                'VERYLOW': 0.25
+            },
+            dU = {
+                'MAP': 0x0,
+                'MODE': 0x1,
+                'SIZE': 0x2,
+                'STARTMASS': 0x3,
+                'LOCK': 0x4,
+                'PLAYER_UPDATE': 0x5,
+                'PLAYER_LIST': 0x6,
+                'VIRUS_DENSITY': 0x7,
+                'PUBLIC': 0x8,
+                'PASSWORD': 0x9,
+                'NAME': 0xa,
+                'RESPAWN_DELAY': 0xb,
+                'AUTOSPLIT': 0xc
+            },
+            dV = {
+                0x0: 'Spectator',
+                0x1: 'Blue',
+                0x2: 'Red',
+                0x3: 'Green',
+                0x4: 'Yellow',
+                0x5: 'Purple',
+                0x6: 'Orange',
+                0x7: 'Pink',
+                0x8: 'Brown'
+            },
+            dW = {
+                'FAILURE': 0x1,
+                'SUCCESS': 0x0
+            },
+            dX = {
+                'ERROR': -0x1,
+                'LOADING': 0x1,
+                'LOADED': 0x2
+            },
+            dY = {
+                'ALL': 0x1,
+                'PARTY': 0x2,
+                'WHISPER': 0x4,
+                'SYSTEM': 0x8,
+                'ADMIN': 0x10
+            },
+            dZ = {
+                'UNKNOWN': -0x1,
+                'ALIVE': 0x0,
+                'DEAD': 0x1,
+                'SPECTATE': 0x2
+            };
+        var e0 = ['white', '#25f', '#f31', 'green', 'yellow', 'purple', 'orange'];
+        const e1 = {
+                0x0: new bD('Verdana', 0x36),
+                0x1: new bD('ampad', 0x4b),
+                0x2: new bD('burnstown', 0x51),
+                0x3: new bD('chlorinar', 0x4b),
+                0x4: new bD('Facon', 0x4b),
+                0x5: new bD('archistico', 0x4b),
+                0x6: new bD('breakaway', 0x51),
+                0x7: new bD('conformity', 0x51),
+                0x8: new bD('electroharmonix', 0x46),
+                0x9: new bD('pwjoyeuxnoel', 0x46),
+                0xa: new bD('leckerli-one', 0x4b),
+                0x65: new bD('IceCaps', 0x51, '#00c9ff'),
+                0x66: new bD('BrazierFlame', 0x51, '#e25822')
+            },
+            e2 = e1[0x0];
+        for (var e3 in e1) {
+            var e4 = e1[e3];
+            new FontFaceObserver(e4['font'])['load'](null, 0x2710)['then'](() => {}, () => {}), e3 > 0x0 && e3 < 0x40 && $('#spNameFont')['append']('<option\x20value=\x22' + e3 + '\x22\x20style=\x22font-family:' + e4['font'] + '\x22>' + e4['font']['charAt'](0x0)['toUpperCase']() + e4['font']['slice'](0x1) + '</option>');
+        }
+        $(window)['focus'](function () {
+            cB = !0x0;
+        }), $(window)['blur'](function () {
+            cB = !0x1;
+        });
+        var e5 = new function () {
+                this['consented'] = !0x1, this['policyID'] = 'CP_0918_01', this['policyLink'] = 'https://gota.io/policies/privacy.html?v=' + this['policyID'] + '#cookies', this['consentOption'] = $('#cc_acceptCookies'), this['consentCookie'] = {
+                    'name': 'cookieConsent',
+                    'value': 'yes+' + this['policyID'],
+                    'exdays': 0x2da,
+                    'path': '/web'
+                }, this['cookieBanner'] = {
+                    'banner': $('#cookie-banner'),
+                    'decline': $('#declineCookies'),
+                    'accept': $('#acceptCookies'),
+                    'handlersBound': !0x1
+                }, this['init'] = function () {
+                    this['backwardsCompatable'](), this['consentOption']['on']('change', function (e7) {
+                        e5['consentHandler']($(this)['prop']('checked'));
+                    }), this['getConsentCookie']() === this['consentCookie']['value'] ? (this['consentHandler'](!0x0), this['showCookieBanner'](!0x1)) : (this['consentHandler'](!0x1), this['showCookieBanner'](!0x0));
+                }, this['consentHandler'] = function (e7) {
+                    this['consented'] = e7, aiptag['consented'] = e7, this['consentOption']['prop']('checked', e7), e7 ? (this['createConsentCookie'](), this['showCookieBanner'](!0x1), (function () {
+                        if (e5['consented']) {
+                            var e8 = window['localStorage']['getItem']('theme');
+                            e8 && bi(e8);
+                            var e9 = window['localStorage']['getItem']('keybinds');
+                            if (e9) {
+                                for (var eb in e9 = JSON['parse'](e9)) null != e9[eb] && Number['isInteger'](e9[eb]) && (d2[eb] = e9[eb], az($('#' + eb)));
+                            }
+                            var ec = window['localStorage']['getItem']('options');
+                            if (ec) {
+                                for (var ed in (ec = JSON['parse'](ec), d1)) ed in ec == 0x0 && (ec[ed] = d1[ed]);
+                            } else ec = d1;
+                            for (var ed in ec) {
+                                var ef = ed['charAt'](0x0);
+                                if ('c' == ef) {
+                                    if (0x1 == ec[ed]) {
+                                        var eg = $('#' + ed);
+                                        eg['prop']('checked', ec[ed]), b9(eg);
+                                    }
+                                } else {
+                                    if ('s' == ef) {
+                                        var eh = $('#' + ed);
+                                        eh['val'](ec[ed]), bb(eh);
+                                    } else 'i' == ef ? d1[ed] = ec[ed] : 'r' == ef ? (d1[ed] = ec[ed], $('#' + ed)['val'](d1[ed]), bc($('#' + ed)), 'rTracerColor' === ed && cO['tracerColorInput'] && (cO['tracerColorInput']['value'] = d1['rTracerColor'] || '#ffffff', cO['tracerColorInput']['dispatchEvent'](new Event('input', {
+                                        'bubbles': !0x0
+                                    })))) : d1[ed] = ec[ed];
+                                }
+                            }
+                            $('#chat-panel')['css']('width', d1['iChatWidth']), $('#chat-panel')['css']('height', d1['iChatHeight']), d1['cThemeEnabled'] || bd('cThemeEnabled');
+                            var ei = window['localStorage']['getItem']('name');
+                            null != ei && $('#name-box')['val'](ei);
+                            var ej = window['localStorage']['getItem']('subpanel');
+                            if (ej) {
+                                for (var ed in ej = JSON['parse'](ej)) ej[ed] && 0x0 != ej[ed]['length'] && (db[ed] = ej[ed]);
+                            }
+                            void 0x0 === db['lockedName'] && (db['lockedName'] = ''), aI();
+                        }
+                    }()), (function () {
+                        aI();
+                        const e8 = document['getElementById']('spNameColor');
+                        var e9;
+                        e8 && (e8['value'] = 'string' == typeof (e9 = db['nameColor']) && e9['startsWith']('#') ? e9 : 'object' == typeof e9 && null !== e9 ? '#' + e9['r']['toString'](0x10)['padStart'](0x2, '0') + e9['g']['toString'](0x10)['padStart'](0x2, '0') + e9['b']['toString'](0x10)['padStart'](0x2, '0') : '#ffffff', e8['dispatchEvent'](new Event('input', {
+                            'bubbles': !0x0
+                        })), e8['addEventListener']('input', function (ec) {
+                            db['nameColor'] = aG(ec['target']['value']);
+                        }));
+                        const eb = document['getElementById']('spChatColor');
+                        eb && (eb['value'] = dE[db['chatColor']], eb['dispatchEvent'](new Event('input', {
+                            'bubbles': !0x0
+                        })), eb['addEventListener']('input', function (ec) {
+                            db['chatColor'] = dE['indexOf'](ec['target']['value']);
+                        })), $('#spSkinName')['val'](db['skinName']), $('#spLowerName')['prop']('checked', db['lowerName']), $('#spEffect\x20select')['val'](db['effect']), $('#spNameFont\x20select')['val'](db['nameFont']);
+                    }()), $('#btn-chg-ln')['on']('click', function () {
+                        if (cq) {
+                            var e8 = prompt('Enter\x20new\x20locked\x20name!');
+                            if (e8) {
+                                var e9 = null;
+                                'string' != typeof e8 && (e9 = 'Please\x20enter\x20a\x20valid\x20name!'), e8['length'] < 0x2 && (e9 = 'Locked\x20names\x20must\x20be\x202\x20or\x20more\x20characters\x20long.'), e8['length'] > 0x14 && (e9 = 'Locked\x20names\x20must\x20be\x2020\x20or\x20less\x20characters\x20long.'), null === e9 ? (e8 = e8['trim'](), confirm('You\x20are\x20about\x20to\x20change\x20your\x20locked\x20name\x20to:\x20\x27' + e8 + '\x27.\x0aLocked\x20names\x20can\x20only\x20be\x20changed\x20once\x20per\x20week.\x0a\x0aAre\x20you\x20sure\x20you\x20wish\x20to\x20continue?') && bU['sendPacket'](new bV['sendLockedNameChange'](e8))) : alert(e9);
+                            }
+                        }
+                    }), $('#btn-updateSP')['on']('click', function () {
+                        aH();
+                    }), $('#btn-subpanel-rules')['on']('click', function () {
+                        db['rules'] = !0x0, aI();
+                    }), $('#no_cookie_consent')['hide'](), firebase['auth']()['setPersistence'](firebase['auth']['Auth']['Persistence']['SESSION'])['catch'](function () {}), 'none' !== $('#account-loader')['css']('display') ? $('#guest')['hide']() : $('#guest')['show'](), 'undefined' != typeof window && 'function' == typeof window['gtag'] && window['gtag']('consent', 'update', {
+                        'ad_storage': 'granted',
+                        'analytics_storage': 'granted',
+                        'ad_user_data': 'granted',
+                        'ad_personalization': 'granted'
+                    })) : (this['deleteConsentCookie'](), null !== firebase['auth']()['currentUser'] && firebase['auth']()['signOut']()['then'](function () {})['catch'](e8 => {}), firebase['auth']()['setPersistence'](firebase['auth']['Auth']['Persistence']['NONE'])['catch'](function () {}), $('#authed')['hide'](), $('#account-loader')['hide'](), $('#guest')['hide'](), $('#no_cookie_consent')['show'](), this['showCookieBanner'](!0x0), 'undefined' != typeof window && 'function' == typeof window['gtag'] && window['gtag']('consent', 'update', {
+                        'ad_storage': 'denied',
+                        'analytics_storage': 'denied',
+                        'ad_user_data': 'denied',
+                        'ad_personalization': 'denied'
+                    }));
+                }, this['showCookieBanner'] = function (e7) {
+                    e7 ? (this['cookieBanner']['handlersBound'] || (this['bindBannerHandlers'](), this['cookieBanner']['handlersBound'] = !0x0), this['cookieBanner']['banner']['slideDown']()) : this['cookieBanner']['banner']['slideUp']();
+                }, this['bindBannerHandlers'] = function () {
+                    this['cookieBanner']['decline']['on']('click', function (e7) {
+                        e5['consentHandler'](!0x1), e5['showCookieBanner'](!0x1);
+                    }), this['cookieBanner']['accept']['on']('click', function (e7) {
+                        e5['consentHandler'](!0x0), e5['showCookieBanner'](!0x1);
+                    }), $('#cookie-banner\x20.description')['append']('\x20<a\x20href=\x22' + this['policyLink'] + '\x22\x20target=\x22_blank\x22>Our\x20Cookie\x20Policy!</a>');
+                }, this['createConsentCookie'] = function () {
+                    var e7 = new Date();
+                    e7['setTime'](e7['getTime']() + 0x18 * this['consentCookie']['exdays'] * 0x3c * 0x3c * 0x3e8);
+                    var e8 = 'expires=' + e7['toUTCString']();
+                    document['cookie'] = this['consentCookie']['name'] + '=' + this['consentCookie']['value'] + ';' + e8 + ';path=' + this['consentCookie']['path'] + ';';
+                }, this['deleteConsentCookie'] = function () {
+                    document['cookie'] = this['consentCookie']['name'] + '=;\x20expires=Thu,\x2001\x20Jan\x201970\x2000:00:00\x20UTC;\x20path=' + this['consentCookie']['path'] + ';';
+                }, this['getConsentCookie'] = function () {
+                    for (var e7 = this['consentCookie']['name'] + '=', e8 = decodeURIComponent(document['cookie'])['split'](';'), e9 = 0x0; e9 < e8['length']; e9++) {
+                        for (var eb = e8[e9];
+                            '\x20' == eb['charAt'](0x0);) eb = eb['substring'](0x1);
+                        if (0x0 == eb['indexOf'](e7)) return eb['substring'](e7['length'], eb['length']);
+                    }
+                    return !0x1;
+                }, this['backwardsCompatable'] = function () {
+                    for (var e7 = decodeURIComponent(document['cookie'])['split'](';'), e8 = null, e9 = 0x0; e9 < e7['length']; e9++) {
+                        for (var eb = e7[e9];
+                            '\x20' == eb['charAt'](0x0);) eb = eb['substring'](0x1);
+                        0x0 == eb['indexOf']('cookieconsent_status=') && (e8 = eb['substring'](0x15, eb['length']));
+                    }
+                    'allow' === e8 ? (this['createConsentCookie'](), document['cookie'] = 'cookieconsent_status=;\x20expires=Thu,\x2001\x20Jan\x201970\x2000:00:00\x20UTC;\x20path=/web;') : document['cookie'] = 'cookieconsent_status=;\x20expires=Thu,\x2001\x20Jan\x201970\x2000:00:00\x20UTC;\x20path=/web;';
+                };
+            }(),
+            e6 = new function () {
+                this['playCounter'] = 0x0, this['incrementPlay'] = function () {
+                    return !cq && (this['playCounter']++, this['playCounter'] % 0x5 == 0x1);
+                };
+            }();
+        'undefined' != typeof aipPlayer && aiptag['cmd']['player']['push'](function () {
+            adplayer = new aipPlayer({
+                'AD_WIDTH': 0x3c0,
+                'AD_HEIGHT': 0x21c,
+                'AD_CENTERPLAYER': !0x1,
+                'LOADING_TEXT': 'Advertisement\x20Loading...',
+                'PREROLL_ELEM': document['getElementById']('preroll'),
+                'AIP_COMPLETE': function () {
+                    bU['spectate'] ? bU['spec']() : bU['play']();
+                }
+            });
+        }), (function () {
+            function e7(ez) {
+                jQuery['ajax']({
+                    'type': 'GET',
+                    'dataType': 'json',
+                    'url': cQ + '/api/v1/utilities/servers',
+                    'success': function (eA) {
+                        for (var eB of eA) {
+                            var eC = [];
+                            for (var eD of eB['servers']) {
+                                eD['players'] = parseInt(eD['players']), eD['bots'] = eD['bots'] || 0x0;
+                                var eE = eD['players'] + eD['bots'] + '/' + eD['playersMax'];
+                                eD['bots'] > 0x0 && (eE += '*');
+                                var eF = new aK(eD['name'], eD['address'], eD['players'], eD['bots'], eE, eD['gamemode'], eB['region'], eD['ssl'], eD['order']);
+                                eC['push'](eF);
+                            }
+                            eC['sort']((eH, eI) => eH['order'] - eI['order']), cU[eB['region']] = {};
+                            for (var eG = 0x0; eG < eC['length']; eG++) eF = eC[eG], cU[eB['region']][eF['name']] = eF;
+                        }
+                        aL(), null != ez ? ez() : null != c4 && aN(c4['name']);
+                    },
+                    'error': function (eA) {
+                        aL();
+                    }
+                });
+            }
+
+            function e8() {
+                null == c4 ? (aO('eu'), aN('Vendetta')) : aN(c4['name']);
+            }
+            if (bR = document['getElementById']('canvas'), bS = document['getElementById']('minimap-canvas'), bT = bS['getContext']('2d'), c6 = $('#main'), c7 = $('#party-panel'), c8 = $('.hud-panel'), cm = document['getElementById']('score-panel'), c9 = $('#main-scrimmage'), cb = $('#context-menu'), cc = document['getElementById']('chat-container'), cd = document['getElementById']('chat-input'), $('#leaderboard-header'), cl = $('#scrimmage-custom'), cO['mouseFrozenDiv'] = document['getElementById']('pMouse'), cO['playerScore'] = document['getElementById']('pScore')['querySelector']('span'), cO['playerMass'] = document['getElementById']('pMass')['querySelector']('span'), cO['playerCells'] = document['getElementById']('pCells')['querySelector']('span'), cO['playerFps'] = document['getElementById']('pFps')['querySelector']('span'), cO['serverSpan'] = document['querySelector']('#pServer\x20span'), cO['idSpan'] = document['querySelector']('#pId\x20span'), cO['pingSpan'] = document['querySelector']('#pPing\x20span'), cO['pLineSpan'] = document['querySelector']('#pLine\x20span'), cO['resetInfo'] = $('#extra-reset-timer'), cO['resetTime'] = $('#resetTime'), cO['respawnInfo'] = $('#extra-respawn-cooldown'), cO['respawnCooldown'] = $('#respawnCooldown'), cO['spectatorCount'] = $('#spectatorCount'), cO['playerCellCount'] = 0x0, cO['minimapCoords'] = $('#minimap-coordinates'), cO['partyPanel'] = c7, cO['friendOnlineCount'] = $('#social-online-friends-count'), cO['leaderCanvas'] = document['getElementById']('leaderboard-canvas'), cO['leaderCanvas'] && (cO['leaderCtx'] = cO['leaderCanvas']['getContext']('2d')), cO['partyCanvas'] = document['getElementById']('party-canvas'), cO['partyCanvas'] && (cO['partyCtx'] = cO['partyCanvas']['getContext']('2d')), cO['minimapCoordsEl'] = document['getElementById']('minimap-coordinates'), cO['statsMenuEl'] = document['getElementById']('main-stats'), cO['tracerColorInput'] = document['getElementById']('rTracerColor'), cO['tracerColorInput'] && window['PIXI'] && (d1['_tracerColorCached'] = bF['utils']['string2hex'](d1['rTracerColor'] || cO['tracerColorInput']['value'] || '#ffffff'), cO['tracerColorInput']['addEventListener']('input', ez => {
+                    d1['rTracerColor'] = ez['target']['value'], d1['_tracerColorCached'] = bF['utils']['string2hex'](d1['rTracerColor']);
+                })), cc && cc['addEventListener']('contextmenu', ez => {
+                    const eA = ez['target']['closest'] && ez['target']['closest']('.chat-name');
+                    eA && eA['dataset'] && eA['dataset']['playerId'] && (ez['preventDefault'](), 'function' == typeof dm && dm['call'](eA, ez));
+                }), b8(), cf = !0x1, FastClick['attach'](document['body']), window['is_touch_device']) {
+                window['joystick_manager'] = nipplejs['create']({
+                    'zone': document['getElementById']('joystick'),
+                    'mode': 'static',
+                    'position': {
+                        'left': '10%',
+                        'bottom': '20%'
+                    },
+                    'color': 'red',
+                    'size': 0x64,
+                    'restOpacity': 0.5,
+                    'dynamicPage': !0x0
+                }), d1['cHideChat'] = !0x0, d1['cHideLeaderboard'] = !0x0;
+                var e9 = function (ez) {
+                        ez['target']['style']['opacity'] = 0x1, bU['handleKey'](d2['kSplit']);
+                    },
+                    eb = function (ez) {
+                        ez['target']['style']['opacity'] = 0.3;
+                    },
+                    ec = function (ez) {
+                        ez['target']['style']['opacity'] = 0x1, cf = !0x0, bU && bU['sendPacket'](new bV['sendEjectMass'](!0x0));
+                    },
+                    ed = function (ez) {
+                        ez['target']['style']['opacity'] = 0.3, cf = !0x1, bU && bU['sendPacket'](new bV['sendEjectMass'](!0x1));
+                    },
+                    ef = function (ez) {
+                        ez['target']['style']['opacity'] = 0x1, bU['handleKey'](d2['kDoubleSplit']);
+                    },
+                    eg = function (ez) {
+                        ez['target']['style']['opacity'] = 0.3;
+                    },
+                    eh = function (ez) {
+                        ez['target']['style']['opacity'] = 0x1, bU['handleKey'](d2['kTripleSplit']);
+                    },
+                    ei = function (ez) {
+                        ez['target']['style']['opacity'] = 0.3;
+                    };
+                document['getElementById']('button_split')['addEventListener']('touchstart', e9, {
+                    'passive': !0x0
+                }), document['getElementById']('button_split')['addEventListener']('touchend', eb, {
+                    'passive': !0x0
+                }), document['getElementById']('button_eject')['addEventListener']('touchstart', ec, {
+                    'passive': !0x0
+                }), document['getElementById']('button_eject')['addEventListener']('touchend', ed, {
+                    'passive': !0x0
+                }), document['getElementById']('button_double')['addEventListener']('touchstart', ef, {
+                    'passive': !0x0
+                }), document['getElementById']('button_double')['addEventListener']('touchend', eg, {
+                    'passive': !0x0
+                }), document['getElementById']('button_triple')['addEventListener']('touchstart', eh, {
+                    'passive': !0x0
+                }), document['getElementById']('button_triple')['addEventListener']('touchend', ei, {
+                    'passive': !0x0
+                }), cG['touchControls']['push']({
+                    'element': document['getElementById']('button_split'),
+                    'event': 'touchstart',
+                    'handler': e9
+                }, {
+                    'element': document['getElementById']('button_split'),
+                    'event': 'touchend',
+                    'handler': eb
+                }, {
+                    'element': document['getElementById']('button_eject'),
+                    'event': 'touchstart',
+                    'handler': ec
+                }, {
+                    'element': document['getElementById']('button_eject'),
+                    'event': 'touchend',
+                    'handler': ed
+                }, {
+                    'element': document['getElementById']('button_double'),
+                    'event': 'touchstart',
+                    'handler': ef
+                }, {
+                    'element': document['getElementById']('button_double'),
+                    'event': 'touchend',
+                    'handler': eg
+                }, {
+                    'element': document['getElementById']('button_triple'),
+                    'event': 'touchstart',
+                    'handler': eh
+                }, {
+                    'element': document['getElementById']('button_triple'),
+                    'event': 'touchend',
+                    'handler': ei
+                }), window['joystick_manager']['on']('move', function (ez, eA) {
+                    bU['mouseRawX'] = eA['distance'] * eA['force'] * Math['cos'](eA['angle']['radian']) + window['innerWidth'] / 0x2, bU['mouseRawY'] = eA['distance'] * eA['force'] * Math['sin'](-eA['angle']['radian']) + window['innerHeight'] / 0x2;
+                });
+            } else {
+                var ej = function (ez) {
+                        bU['mouseRawX'] = ez['clientX'], bU['mouseRawY'] = ez['clientY'];
+                    },
+                    ek = function (ez) {
+                        var eA = ez['button'] + 0x1;
+                        if (d3) return ay(eA), void ez['preventDefault']();
+                        document['activeElement'] && 'INPUT' === document['activeElement']['tagName'] || c6 && c6['css'] && 'none' != c6['css']('display') || bU['handleKey'](eA);
+                    },
+                    el = function (ez) {
+                        ez['button'] + 0x1 == d2['kEjectMass'] && (cf = !0x1, bU && bU['sendPacket'](new bV['sendEjectMass'](!0x1)));
+                    },
+                    em = function (ez) {
+                        var eA = c6 && (c6[0x0] || c6) || document['getElementById']('main'),
+                            eB = !0x1;
+                        if (eA) {
+                            var eC = getComputedStyle(eA);
+                            eB = 'none' !== eC['display'] && 'none' !== eC['pointerEvents'];
+                        }
+                        if (!a3['mainMenuVisible'] && !eB && 'canvas' == ez['target']['id']) {
+                            var eD = ez['wheelDelta'] || -0x1 * ez['deltaY'];
+                            ez['preventDefault'](), bU['mouseZoom'] *= eD > 0x0 ? 1.1 : 0.9, bU['mouseZoom'] = bU['mouseZoom'] > 0x5 ? 0x5 : bU['mouseZoom'] < 0.1 ? 0.1 : bU['mouseZoom'];
+                        }
+                    };
+                window['onmousemove'] = ej, window['onmousedown'] = ek, window['onmouseup'] = el;
+                var eo = document['getElementById']('canvas');
+                eo && eo['addEventListener'] && eo['addEventListener']('wheel', em, {
+                    'passive': !0x1
+                }), cG['windowEvents']['push']({
+                    'element': window,
+                    'event': 'mousemove',
+                    'handler': ej,
+                    'isProperty': !0x0
+                }, {
+                    'element': window,
+                    'event': 'mousedown',
+                    'handler': ek,
+                    'isProperty': !0x0
+                }, {
+                    'element': window,
+                    'event': 'mouseup',
+                    'handler': el,
+                    'isProperty': !0x0
+                }), eo && cG['windowEvents']['push']({
+                    'element': eo,
+                    'event': 'wheel',
+                    'handler': em
+                });
+            }
+            var ep = function (ez) {
+                    var eA = ez['which'] || ez['keyCode'] || ez['charCode'];
+                    if (!(eA <= 0x5)) return d3 ? (ay(eA), void ez['preventDefault']()) : void(document['activeElement'] && 'INPUT' === document['activeElement']['tagName'] || (0x1b == eA && (b5(c6), (b6($('#popup-profile')) || b6($('#popup-account-username'))) && (b4($('#popup-profile')), b4($('#popup-account-username')))), a3['mainMenuVisible'] || bU['handleKey'](eA)));
+                },
+                eq = function (ez) {
+                    (ez['which'] || ez['keyCode'] || ez['charCode']) == d2['kEjectMass'] && (cf = !0x1, bU && bU['sendPacket'](new bV['sendEjectMass'](!0x1)));
+                },
+                er = function (ez) {
+                    cf && d1['cDisablePersistEjectMass'] && (cf = !0x1, bU && bU['sendPacket'](new bV['sendEjectMass'](!0x1)));
+                };
+            window['onkeydown'] = ep, window['onkeyup'] = eq, window['onblur'] = er, cG['windowEvents']['push']({
+                'element': window,
+                'event': 'keydown',
+                'handler': ep,
+                'isProperty': !0x0
+            }, {
+                'element': window,
+                'event': 'keyup',
+                'handler': eq,
+                'isProperty': !0x0
+            }, {
+                'element': window,
+                'event': 'blur',
+                'handler': er,
+                'isProperty': !0x0
+            });
+            var es = function (ez) {
+                ez['preventDefault']();
+            };
+            document['addEventListener']('contextmenu', es), cG['windowEvents']['push']({
+                'element': document,
+                'event': 'contextmenu',
+                'handler': es
+            }), aB(), (function () {
+                function ez(eE, eF) {
+                    return new Promise(function (eG, eH) {
+                        var eI = new Image();
+                        eI['onload'] = function () {
+                            try {
+                                var eJ = bF['Texture']['from'](eI);
+                                eG(eJ);
+                            } catch (eK) {
+                                eH(eK);
+                            }
+                        }, eI['onerror'] = function (eJ) {
+                            eH(eJ);
+                        }, eI['src'] = 'images/ejected_mass_skins/' + eF + '.png';
+                    });
+                }
+                for (var eA in (aC(), cg = {}, ch = {}, dI)) {
+                    var eB = dI[eA];
+                    $('.emote-list')['append']('<li><img\x20name=\x27' + eB + '\x27\x20title=\x27' + eB + '\x27\x20src=\x27images/emotes/' + eB + '.png\x27\x20/></li>'), cg[eB] = !0x0;
+                }
+                for (var eA in dJ) eB = dJ[eA], $('.gif-list')['append']('<li><img\x20name=\x27' + eB + '\x27\x20title=\x27' + eB + '\x27\x20src=\x27images/emotes/gifs/' + eB + '.gif\x27\x20/></li>'), ch[eB] = !0x0;
+                for (eA = 0x0; eA < dM['length']; eA++) {
+                    var eC = dM[eA];
+                    $('#spEffect')['append']('<option\x20value=\x22' + (eA + 0x1) + '\x22>' + bA(eC) + '</option>'), dN[eA] = cM,
+                        function (eE, eF) {
+                            ez(0x0, eF)['then'](function (eG) {
+                                dN[eE] = eG;
+                            })['catch'](function (eG) {});
+                        }(eA, eC);
+                }
+                for (cR['enabled'] && cR['customEjectedMass'] && (new Image()['src'] = 'images/events/' + cR['key'] + '/ejected_mass.png'), (function () {
+                        for (var eE in du) {
+                            var eF = du[eE],
+                                eG = 'images/powerups/' + eF['img'] + '.png',
+                                eH = new Image();
+                            eH['addEventListener']('load', function (eI, eJ) {
+                                eI['texture'] = bF['Texture']['from'](eJ);
+                            } ['bind'](null, eF, eH)), eH['src'] = eG, eF['image'] = eH;
+                        }
+                        ds = bF['Texture']['from']('images/shield.png'), dr = bF['Texture']['from']('images/debuff.png');
+                    }()), eA = 0x0; eA < dw['length']; eA++) {
+                    var eD = eA;
+                    gifFrames({
+                        'url': 'images/effects/' + dw[eD] + '.gif',
+                        'frames': 'all',
+                        'cumulative': !0x1,
+                        'outputType': 'canvas'
+                    })['then'](function (eE) {
+                        var eF = new bq();
+                        eF['loadFromFrameData'](eE), dx[eD] = eF;
+                    });
+                }
+            }());
+            var eu = window['location']['href']['split']('#')['slice'](0x1)['join']('#')['split']('&'),
+                ev = '';
+            eu[0x0] && (ev = eu[0x0]['toLowerCase']()), eu[0x1] && (ci = eu[0x1]), null != ev && '' != ev ? (ev = ev[0x0]['toUpperCase']() + ev['slice'](0x1), dc = function () {
+                var ez;
+                null != (ez = aM(ev)) ? (aN(ez['name']), aO(ez['region'])) : e8();
+            }) : dc = e8;
+            var ew = function (ez) {
+                var eA = ez['val']();
+                for (var eB in (eA['version'] !== version && bU['selfMsg']('Woah!\x20Version\x20' + eA['version'] + '\x20is\x20now\x20available.\x20Press\x20Ctrl+F5\x20to\x20update!'), co != eA['motd'] && '' !== eA['motd'] && (co = eA['motd'], bU['selfMsg'](eA['motd'])), eA['listRefresh'] != dd && (dd = eA['listRefresh'], cU = {}, e7(dc), cF['serverRefresh'] && clearInterval(cF['serverRefresh']), cF['serverRefresh'] = setInterval(() => {
+                        document['hidden'] || e7();
+                    }, eA['listRefresh'])), eA['titles'])) dF[eB] = eA['titles'][eB];
+            };
+            firebase['database']()['ref']('/game')['on']('value', ew), cG['firebaseListeners']['push']({
+                'element': firebase['database']()['ref']('/game'),
+                'event': 'value',
+                'handler': ew,
+                'isFirebase': !0x0
+            }), bX = {}, bY = {}, (function () {
+                function ez(eG, eH) {
+                    try {
+                        'undefined' != typeof window && 'function' == typeof window['gtag'] && window['gtag']('event', eG, eH || {});
+                    } catch (eI) {}
+                }
+
+                function eA(eG, eH) {
+                    if (eG) return $(eH)['prop']('disabled', !0x1), void $(eH)['text']('Set');
+                    $(eH)['prop']('disabled', !0x0), $(eH)['text']('...');
+                }
+                cR['enabled'] && !d1['cDisableEventSkins'] && $('body')['toggleClass']('event-' + cR['key']), $('.server-tab')['on']('click', function () {
+                    aO($(this)['attr']('region'));
+                }), $('#btn-play')['on']('click', function () {
+                    null == c4 || Date['now']() < cp || (0x0 == Object['keys'](bU['myCells'])['length'] || this['currentServerName'] != c4['name'] ? (bU['spectate'] = !0x1, e6['incrementPlay']() && 'undefined' != typeof adplayer ? (aiptag['cmd']['player']['push'](function () {
+                        adplayer['startPreRoll']();
+                    }), b4(c6), b8(), cp = Date['now']() + 0x7d0) : (bU['play'](), ez('play_click', {
+                        'server_name': c4 ? c4['name'] : void 0x0,
+                        'region': c4 ? c4['region'] : void 0x0,
+                        'mode': c4 ? c4['gamemode'] : void 0x0
+                    }))) : b4(c6));
+                }), $('#btn-servers')['on']('click', function () {
+                    j('main-servers'), ez('menu_open', {
+                        'menu': 'servers'
+                    });
+                }), $('#btn-options')['on']('click', function () {
+                    j('main-options'), ez('menu_open', {
+                        'menu': 'options'
+                    });
+                }), $('#btn-hotkeys')['on']('click', function () {
+                    j('main-hotkeys'), ez('menu_open', {
+                        'menu': 'hotkeys'
+                    });
+                }), $('#btn-themes')['on']('click', function () {
+                    j('main-themes'), ez('menu_open', {
+                        'menu': 'themes'
+                    });
+                }), $('#btn-cellpanel')['on']('click', function () {
+                    firebase['auth']()['currentUser'] ? j('main-subpanel') : window['open']('https://store.gota.io', '_blank');
+                }), $('#btn-reddit')['on']('click', function () {
+                    window['open']('https://www.reddit.com/r/PlayGotaIO/', '_blank'), 'undefined' != typeof window && 'function' == typeof window['gtag'] && window['gtag']('event', 'social_click', {
+                        'network': 'reddit'
+                    });
+                }), $('#btn-discord')['on']('click', function () {
+                    window['open']('https://gota.io/discord', '_blank'), 'undefined' != typeof window && 'function' == typeof window['gtag'] && window['gtag']('event', 'social_click', {
+                        'network': 'discord'
+                    });
+                }), $('#name-box')['keypress'](function (eG) {
+                    0xd == eG['keyCode'] && $(this)['is'](':focus') && (bU['play'](), ez('play_click', {
+                        'server_name': c4 ? c4['name'] : void 0x0,
+                        'region': c4 ? c4['region'] : void 0x0,
+                        'mode': c4 ? c4['gamemode'] : void 0x0
+                    }));
+                }), $('#btn-spec')['on']('click', function () {
+                    null == c4 || Date['now']() < cp || (bU['spectate'] && this['currentServerName'] == c4['name'] ? b4(c6) : (bU['spectate'] = !0x0, e6['incrementPlay']() && 'undefined' != typeof adplayer ? (aiptag['cmd']['player']['push'](function () {
+                        adplayer['startPreRoll']();
+                    }), b4(c6), b8(), cp = Date['now']() + 0x7d0) : (bU['spec'](), ez('spectate_click', {
+                        'server_name': c4 ? c4['name'] : void 0x0,
+                        'region': c4 ? c4['region'] : void 0x0,
+                        'mode': c4 ? c4['gamemode'] : void 0x0
+                    }))));
+                });
+                var eB = function (eG) {
+                    var eH, eI = eG['target']['value'],
+                        eJ = eI['split']('\x20');
+                    if (0x26 == eG['keyCode'] && $(this)['is'](':focus')) return -0x1 == d0 ? d0 = cZ['length'] - 0x1 : d0 > 0x1 && d0--, d0 <= 0x0 && (d0 = 0x0), void aQ(cZ[d0]);
+                    if (0x28 == eG['keyCode'] && $(this)['is'](':focus')) return -0x1 == d0 ? d0 = 0x0 : d0 < cZ['length'] - 0x1 && d0++, d0 >= cZ['length'] - 0x1 && (d0 = cZ['length'] - 0x1), void aQ(cZ[d0]);
+                    if (0xd == eG['keyCode'] && $(this)['is'](':focus') && (0x0 != (eH = $(this)['val']())['length'] && ('/' == eH['charAt'](0x0) ? function (eN) {
+                            var eO = eN['split']('\x20'),
+                                eP = eO[0x0]['substring'](0x1);
+                            aQ('');
+                            var eQ = !0x1;
+                            Object['keys'](dH)['findIndex'](eR => {
+                                if (dH[eR]['triggers']['findIndex'](eS => eS['toUpperCase']() === eP['toUpperCase']()) > -0x1 && 0x0 == eQ) return dH[eR]['action'](eO['slice'](0x1)), void(eQ = !0x0);
+                            }), 0x0 == eQ && bU['selfMsg']('Invalid\x20command!');
+                        }(eH) : (bU['sendPacket'](new bV['sendChat'](eH, 0x0)), aQ('')), cZ['length'] > 0x14 && cZ['shift'](), cZ['push'](eH))), 0x0 == eI['length'] || eI['endsWith']('\x20') || 0xd == eG['keyCode']) $('#autocomplete-panel')['html'](''), $('#autocomplete-panel')['hide']();
+                    else {
+                        if (eI['startsWith']('/')) {
+                            if (eJ['length'] > 0x1) return;
+                            $('#autocomplete-panel')['html']('<table><thead><tr><th>Command</th><th>Aliases</th><th>Description</th></tr></thead><tbody></tbody></table>');
+                            var eK = -0x1;
+                            Object['values'](dH)['map'](eN => {
+                                (eK = eN['triggers']['findIndex'](eO => eO['toLowerCase']()['startsWith'](eJ[0x0]['substring'](0x1)['toLowerCase']()))) > -0x1 && $('#autocomplete-panel\x20tbody')['append']('<tr><td>' + eN['triggers'][eK] + '</td><td>' + eN['triggers'] + '</td><td>' + eN['description'] + '</td></tr>');
+                            }), 0x0 == $('#autocomplete-panel\x20tbody')['children']()['length'] ? $('#autocomplete-panel')['hide']() : $('#autocomplete-panel')['show']();
+                        } else {
+                            if (eJ[eJ['length'] - 0x1]['startsWith'](':')) {
+                                $('#autocomplete-panel')['html']('');
+                                var eL = Object['keys'](cg)['filter'](eN => eN['toLowerCase']()['includes'](eJ[eJ['length'] - 0x1]['substring'](0x1)['toLowerCase']())),
+                                    eM = Object['keys'](ch)['filter'](eN => eN['toLowerCase']()['includes'](eJ[eJ['length'] - 0x1]['substring'](0x1)['toLowerCase']()));
+                                if (0x0 === eL['length'] && 0x0 === eM['length']) return $('#autocomplete-panel')['html'](''), void $('#autocomplete-panel')['hide']();
+                                $('#autocomplete-panel')['show'](), eL['length'] > 0x0 && ($('#autocomplete-panel')['append']('<h3>Emotes</h3>'), eL['forEach'](eN => {
+                                    $('#autocomplete-panel')['append']('<img\x20name=\x27' + eN + '\x27\x20title=\x27' + eN + '\x27\x20src=\x27images/emotes/' + eN + '.png\x27\x20/>');
+                                })), eM['length'] > 0x0 && ($('#autocomplete-panel')['append']('<h3>Gifs</h3>'), eM['forEach'](eN => {
+                                    $('#autocomplete-panel')['append']('<img\x20name=\x27' + eN + '\x27\x20title=\x27' + eN + '\x27\x20src=\x27images/emotes/gifs/' + eN + '.gif\x27\x20/>');
+                                }));
+                            }
+                        }
+                    }
+                    d0 = -0x1;
+                };
+                cd['addEventListener']('keyup', eB), cG['chatElements']['push']({
+                    'element': cd,
+                    'event': 'keyup',
+                    'handler': eB
+                }), $('#autocomplete-panel')['on']('click', function (eG) {
+                    var eH = aR()['split']('\x20');
+                    'TD' === eG['target']['nodeName'] ? (aQ('/' + eG['target']['parentElement']['children'][0x0]['innerHTML'] + '\x20'), $('#autocomplete-panel')['html'](''), $('#autocomplete-panel')['hide'](), $('#chat-input')['focus']()) : 'IMG' === eG['target']['nodeName'] && (aQ(aR()['substring'](0x0, aR()['length'] - eH[eH['length'] - 0x1]['length']) + eG['target']['attributes']['name']['nodeValue'] + '\x20'), $('#autocomplete-panel')['html'](''), $('#autocomplete-panel')['hide'](), $('#chat-input')['focus']());
+                }), $('#animationDelay')['on']('change', function () {
+                    var eG = parseInt($(this)['val']());
+                    isNaN(eG) && (eG = 0x5a), d1['rAnimationDelay'] = Math['min'](Math['max'](eG, 0x1), 0xfa), $('#animationDelay')['val'](d1['rAnimationDelay']), $('#rAnimationDelay')['val'](d1['rAnimationDelay']);
+                }), $('#reconnectPeriod')['on']('change', function () {
+                    var eG = parseInt($(this)['val']());
+                    isNaN(eG) && (eG = 0x5), d1['rReconnectPeriod'] = Math['min'](Math['max'](eG, 0x0), 0xa), $('#reconnectPeriod')['val'](d1['rReconnectPeriod']), $('#rReconnectPeriod')['val'](d1['rReconnectPeriod']);
+                }), $('#viewDistance')['on']('change', function () {
+                    var eG = parseInt($(this)['val']());
+                    isNaN(eG) && (eG = 0x64), d1['rViewDistance'] = Math['min'](Math['max'](eG, 0x32), 0x96), $('#viewDistance')['val'](d1['rViewDistance']), $('#rViewDistance')['val'](d1['rViewDistance']), bU['sendOptions']();
+                }), $('#uiScale')['on']('change', function () {
+                    var eG = parseInt($(this)['val']());
+                    isNaN(eG) && (eG = 0x64), eG *= 0.01, d1['rUiScale'] = Math['min'](Math['max'](eG, 0.5), 1.25), $('#uiScale')['val'](Number['parseFloat'](0x64 * d1['rUiScale'])['toFixed'](0x0)), $('#rUiScale')['val'](d1['rUiScale']), $('.ui-scale')['css']('transform', 'scale(' + d1['rUiScale'] + ')');
+                });
+                var eC = $('#chat-emote-btn'),
+                    eD = function () {
+                        var eG = dI[Math['floor'](Math['random']() * dI['length'])];
+                        eC['css']('background-image', 'url(images/emotes/' + eG + '.png)');
+                    };
+                eD(), cF['emoteButton'] && clearInterval(cF['emoteButton']), cF['emoteButton'] = setInterval(function () {
+                    document['hidden'] || eD();
+                }, 0x7530);
+                var eE = $('#emote-panel'),
+                    eF = $('#chat-input');
+                eC['on']('click', function () {
+                    eE['toggle']();
+                }), $('#emote-panel\x20ul\x20li\x20img')['on']('click', function (eG) {
+                    var eH;
+                    eH = eG['target']['name'] + '\x20', $('#chat-input')['val'](aR() + eH), eF['focus']();
+                }), (function () {
+                    function eG(eP) {
+                        eO = eP, eN || (eN = !0x0, requestAnimationFrame(function () {
+                            var eQ = eO;
+                            eM['style']['width'] = eK + eQ['clientX'] - eI + 'px', eM['style']['height'] = eL - (eQ['clientY'] - eJ) + 'px', eN = !0x1;
+                        }));
+                    }
+
+                    function eH(eP) {
+                        document['documentElement']['removeEventListener']('mousemove', eG, !0x1), document['documentElement']['removeEventListener']('mouseup', eH, !0x1);
+                    }
+                    var eI, eJ, eK, eL, eM = document['getElementById']('chat-panel');
+                    document['getElementById']('chat-resize')['addEventListener']('mousedown', function (eP) {
+                        eI = eP['clientX'], eJ = eP['clientY'], eK = parseInt(document['defaultView']['getComputedStyle'](eM)['width'], 0xa), eL = parseInt(document['defaultView']['getComputedStyle'](eM)['height'], 0xa), document['documentElement']['addEventListener']('mousemove', eG, !0x1), document['documentElement']['addEventListener']('mouseup', eH, !0x1);
+                    }, !0x1);
+                    var eN = !0x1,
+                        eO = null;
+                }()), $('.checkbox-options')['on']('change', function (eG) {
+                    b9($(this));
+                }), $('.options-container\x20select')['on']('change', function (eG) {
+                    bb($(this));
+                }), $('.options-container\x20input[type=range]')['on']('change', function (eG) {
+                    bc($(this));
+                }), $('#btn-changelog')['on']('click', function () {
+                    b4($('#popup-changelog')), b2(c6), window['open']('https://discord.com/channels/166703751053312000/630428963889741854', '_blank'), ez('changelog_open');
+                }), $('#btn-close-changelog')['on']('click', function () {
+                    b4($('#popup-changelog')), b2(c6), ez('changelog_close');
+                }), $('#btn-accept')['on']('click', function () {
+                    bU['sendPacket'](new bV['sendInviteResponse'](!0x0)), b4($('#popup-party'));
+                }), $('#btn-decline')['on']('click', function () {
+                    bU['sendPacket'](new bV['sendInviteResponse'](!0x1)), b4($('#popup-party'));
+                }), $('#popup-party-code-content\x20button')['on']('click', function () {
+                    $('#popup-party-code-content\x20input')['select'](), document['execCommand']('Copy'), $('#popup-party-code')['hide']();
+                }), $('#menu-invite')['on']('click', function () {
+                    var eG = cb['data']('selected');
+                    bU['sendPacket'](new bV['sendPartyAction'](0x0, eG));
+                }), $('#menu-whisper')['on']('click', function () {
+                    var eG = cb['data']('selected'),
+                        eH = $('#chat-input')['val']();
+                    $('#chat-input')['val']('/t\x20' + eG + '\x20' + eH);
+                }), $('#menu-profile')['on']('click', function () {
+                    var eG = cb['data']('selected');
+                    bU['sendPacket'](new bV['sendShowProfile'](eG));
+                }), $('#menu-pu_pr')['on']('click', function () {
+                    null == bU['partyCode'] ? (bU['sendPacket'](new bV['sendPartyAction'](0x4, 0x0)), $('#menu-pu_pr\x20span')['text']('Private')) : (bU['sendPacket'](new bV['sendPartyAction'](0x4, 0x1)), $('#menu-pu_pr\x20span')['text']('Public'));
+                }), $('#menu-promote')['on']('click', function () {
+                    var eG = cb['data']('party') + 0x1;
+                    eG >= 0x0 && bU['sendPacket'](new bV['sendPartyAction'](0x2, eG));
+                }), $('#menu-kick')['on']('click', function () {
+                    var eG = cb['data']('party') + 0x1;
+                    eG >= 0x0 && bU['sendPacket'](new bV['sendPartyAction'](0x1, eG));
+                }), $('#menu-spectate')['on']('click', function () {
+                    var eG = cb['data']('selected');
+                    eG >= 0x0 && bU['sendPacket'](new bV['sendSpectate'](eG));
+                }), $('#menu-block')['on']('click', function () {
+                    var eG = bv(parseInt(cb['data']('selected')));
+                    bU['selfMsg'](eG);
+                }), $(document)['on']('click', function (eG) {
+                    cb['hide'](), 'chat-emote-btn' !== eG['target']['id'] && $('#emote-panel')['hide'](), 'none' !== $('#popup-party-code')['css']('display') && 'popup-party-code' !== eG['target']['id'] && $('#popup-party-code')['hide']();
+                }), $('#aEditChatTabs')['on']('click', function (eG) {
+                    aU(), b4(c6), b2($('#popup-chat-tab-editor'));
+                }), $('#cte-tab-selector')['on']('change', aV), $('#btn-chat-tab-editor-add')['on']('click', aX), $('#btn-chat-tab-editor-remove')['on']('click', aY), $('#btn-chat-tab-editor-update')['on']('click', aW), $('.custom-asset-skinner')['on']('click', function () {
+                    $('#popup-asset-skinner\x20.title-text')['text']($(this)['text']()), $('#input-asset-skinner')['attr']('asset', $(this)['attr']('id'))['val'](''), b4(c6), b2($('#popup-asset-skinner'));
+                }), $('#btn-custom-asset-set')['on']('click', function () {
+                    d1['cThemeEnabled'] || bk();
+                    var eG = $('#input-asset-skinner')['val']();
+                    if (eG) {
+                        var eH = $('#input-asset-skinner')['attr']('asset');
+                        'a' == eH['charAt'](0x0) && null != d5[eH] && bf(eH, eG);
+                    }
+                    $('#popup-asset-skinner\x20.back-button')['trigger']('click');
+                }), $('#btn-custom-asset-clear')['on']('click', function () {
+                    d1['cThemeEnabled'] || bk();
+                    var eG = $('#input-asset-skinner')['attr']('asset');
+                    'a' == eG['charAt'](0x0) && null != d5[eG] && bf(eG, '');
+                }), $('#popup-asset-skinner')['on']('dragover', !0x1)['on']('drop', function (eG) {
+                    d1['cThemeEnabled'] || bk();
+                    var eH = $('#input-asset-skinner')['attr']('asset');
+                    if ('a' == eH['charAt'](0x0) && null != d5[eH]) {
+                        var eI = bC(eG['originalEvent']);
+                        if (/\.(jpe?g|png|gif)$/i ['test'](eI['name'])) {
+                            var eJ = new FileReader();
+                            eJ['addEventListener']('load', function () {
+                                bf(eH, this['result']);
+                            }, {
+                                'once': !0x0
+                            }), eJ['readAsDataURL'](eI);
+                        }
+                    }
+                    return !0x1;
+                }), $('#btn-food-colors')['on']('click', function () {
+                    aw(), b4(c6), b2($('#popup-food-colors'));
+                }), $('#btn-theme-export')['on']('click', function () {
+                    d1['cThemeEnabled'] && function (eG, eH) {
+                        var eI = new Blob([eH], {
+                            'type': 'text/plain'
+                        });
+                        if (window['navigator']['msSaveOrOpenBlob']) window['navigator']['msSaveOrOpenBlob'](eI, eG);
+                        else {
+                            var eJ = document['createElement']('a'),
+                                eK = URL['createObjectURL'](eI);
+                            eJ['href'] = eK, eJ['download'] = eG, document['body']['appendChild'](eJ), eJ['click'](), setTimeout(function () {
+                                document['body']['removeChild'](eJ), window['URL']['revokeObjectURL'](eK);
+                            }, 0x0);
+                        }
+                    }('theme.json', JSON['stringify'](d5, null, 0x2));
+                }), $('#btn-theme-import')['on']('click', function () {
+                    $('#theme-import')['trigger']('click');
+                }), $('#theme-import')['on']('change', function () {
+                    var eG = $(this)['prop']('files');
+                    eG['length'] > 0x0 && bj(eG[0x0]);
+                }), $('#main-themes\x20.options-container')['on']('dragover', !0x1)['on']('drop', function (eG) {
+                    return bj(bC(eG['originalEvent'])), !0x1;
+                }), $('#cGlobalLeaderboard')['on']('change', function () {
+                    cu && !cz && (cz = !0x0, firebase['auth']()['currentUser']['getIdToken']()['then'](eG => {
+                        fetch(cQ + '/api/v1/options/setFlags', {
+                            'method': 'POST',
+                            'headers': {
+                                'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({
-                                token: _0x111EE,
-                                target: _0x11302.uid,
-                                action: 2
+                            'body': JSON['stringify']({
+                                'token': eG
                             })
-                        }).then((_0x111D7) => {
-                            return _0x111D7["json"]()
-                        }).then((_0x111D7) => {
-                            if (_0x111D7.code !== 200) {
-                                alert(_0x111D7.message)
-                            };
-                            _0x1121C.isHandlingRequest = false
-                        }).catch((_0x111D7) => {
-                            alert(_0x111D7);
-                            _0x1121C.isHandlingRequest = false
-                        })
-                    }).catch((_0x111D7) => {
-                        _0x11AEA(_0x111D7, true);
-                        _0x1121C.isHandlingRequest = false
-                    })
-                });
-                _0x111EE.appendChild(_0x1121C)
-            };
-            var _0x112BD = _0x1166C("block", "Remove Friend");
-            _0x112BD.isHandlingRequest = false;
-            _0x112BD.addEventListener("click", function (_0x111EE) {
-                if (_0x112BD.isHandlingRequest || !confirm('Are you sure you want to remove "' + _0x11302.username + '" as your friend?')) {
-                    return
-                };
-                _0x112BD.isHandlingRequest = true;
-                firebase.auth().currentUser.getIdToken().then((_0x111EE) => {
-                    fetch(_0x111D7 + "/api/v1/social/friends", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            token: _0x111EE,
-                            target: _0x11302.uid,
-                            action: 4
-                        })
-                    }).then((_0x111D7) => {
-                        return _0x111D7["json"]()
-                    }).then((_0x111D7) => {
-                        alert(_0x111D7.message);
-                        if (_0x111D7.code === 200) {
-                            firebase.database().ref(_0x12767.callbacks[_0x11302.uid]).off();
-                            _0x12767.elements[_0x11302.uid].remove();
-                            delete _0x12767.callbacks[_0x11302.uid];
-                            delete _0x12767.elements[_0x11302.uid]
-                        };
-                        _0x112BD.isHandlingRequest = false
-                    }).catch((_0x111D7) => {
-                        alert(_0x111D7);
-                        _0x112BD.isHandlingRequest = false
-                    })
-                }).catch((_0x111D7) => {
-                    _0x11AEA(_0x111D7, true);
-                    _0x112BD.isHandlingRequest = false
-                })
-            });
-            _0x111EE.appendChild(_0x112BD);
-            _0x1124A.appendChild(_0x11261);
-            _0x1124A.appendChild(_0x111EE);
-            if (_0x11205) {
-                return _0x11330.appendChild(_0x1124A)
-            } else {
-                return _0x1124A
-            }
-        }
-        function _0x11DE1(_0x11205, _0x111EE, _0x111D7) {
-            if (_0x111EE) {
-                _0x11B5D(_0x111EE)
-            };
-            $("#profile-username").text(_0x11205.username);
-            $("#profile-avatar").attr("src", _0x11205.avatar);
-            $("#profile-avatar").attr("alt", _0x11205.username);
-            $("#profile-level").html("Level " + _0x11205.levelData.level + "&nbsp;&nbsp;&nbsp;[" + _0x1194C(_0x11205.levelData.xp_current) + "/" + _0x1194C(_0x11205.levelData.xp_needed) + "]");
-            if (_0x11205.title && _0x11205.title > 0 && _0x12739[_0x11205.title]) {
-                $("#profile-title").text(_0x12739[_0x11205.title])
-            } else {
-                $("#profile-title").text("")
-            };
-            $("#profile-name").off("click");
-            if (_0x11205.uid == _0x1281F.uid) {
-                $("#profile-name").on("click", function () {
-                    $("#popup-profile").hide();
-                    _0x12750($("#popup-account-username"))
-                });
-                $("#profile-name").css(_0x111C0[905], _0x111C0[906])
-            } else {
-                $("#profile-name").css(_0x111C0[905], _0x111C0[907])
-            };
-            if (_0x11205.flags.STAFF) {
-                $("#profile-avatar").addClass(_0x111C0[908])
-            } else {
-                $("#profile-avatar").removeClass(_0x111C0[908])
-            };
-            _0x1169A($("#profile-username"), _0x11205);
-            $(_0x111C0[909]).off("click");
-            $(_0x111C0[909]).on("click", function () {
-                if (_0x111EE) {
-                    _0x12584(_0x111EE)
-                };
-                _0x11B5D($("#popup-profile"))
-            });
-            _0x12584($("#popup-profile"))
-        }
-
-        function _0x11E26(_0x111EE) {
-            if (_0x11B01) {
-                return
-            };
-            var _0x11205 = $("#social-friends .user-list")[0];
-            var _0x1121C = $("#social-friends .user-list")[1];
-            $("#social-uid").text(_0x111EE.uid);
-            firebase.database().ref("/friendships/" + _0x111EE.uid).on("value", function (_0x11261) {
-                if (_0x11261.val() === null) {
-                    var _0x11278 = document.createElement("div");
-                    var _0x1128F = document.createElement("span");
-                    _0x11278.className = "title-text center";
-                    _0x1128F.innerText = "You have no friends 😥";
-                    _0x11278.appendChild(_0x1128F);
-                    _0x11205.appendChild(_0x11278);
-                    return
-                };
-                var _0x111EE = 0;
-                var _0x11233 = _0x11261.val();
-                var _0x1124A = false;
-                Object.keys(_0x11233).map((_0x11261) => {
-                    var _0x11278 = _0x11233[_0x11261];
-                    if (!_0x11278 && !_0x1124A) {
-                        _0x1124A = true;
-                        firebase.auth().currentUser.getIdToken().then((_0x111EE) => {
-                            fetch(_0x111D7 + _0x111C0[918], {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
-                                body: JSON.stringify({
-                                    token: _0x111EE
-                                })
-                            }).then((_0x111D7) => {
-                                return _0x111D7["json"]()
-                            }).then((_0x111D7) => {
-                                if (_0x111D7.code === 200) {
-                                    _0x111D7.profiles.forEach((_0x111EE) => {
-                                        if (!_0x12767.pendingFriends.includes(_0x111EE)) {
-                                            _0x12767.pendingFriends.push(_0x111EE.uid)
-                                        };
-                                        if (_0x12767.elements[_0x111EE.uid]) {
-                                            var _0x111D7 = _0x116B1(_0x111EE, _0x12767.elements[_0x111EE.uid], false, false);
-                                            _0x1121C.replaceChild(_0x111D7, _0x12767.elements[_0x111EE.uid]);
-                                            _0x12767.elements[_0x11261] = _0x111D7;
-                                            return
-                                        };
-                                        _0x12767.elements[_0x111EE.uid] = _0x116B1(_0x111EE, _0x1121C, false, true)
-                                    })
-                                }
-                            })
-                        }).catch((_0x111C0) => {
-                            return _0x11AEA(_0x111C0, false)
+                        })['then'](eH => eH['json']())['then'](eH => {
+                            cz = !0x1, $(this)['prop']('checked', eH['message']);
+                        })['catch'](eH => {
+                            cz = !0x1, alert(eH);
                         });
-                        return
-                    };
-                    if (!_0x12767.callbacks[_0x11261]) {
-                        var _0x1128F = "/users/" + _0x11261;
-                        _0x12767.callbacks[_0x11261] = _0x1128F;
-                        firebase.database().ref(_0x1128F).on("value", function (_0x1121C) {
-                            if (_0x1121C.val() === null) {
-                                return
-                            };
-                            var _0x111EE = _0x1121C.val();
-                            _0x12767.timestamps[_0x111EE.uid] = _0x111EE.presence.timestamp;
-                            if (_0x12767.pendingFriends.includes(_0x11261)) {
-                                _0x12767.pendingFriends.slice(_0x12767.pendingFriends.indexOf(_0x11261), 1);
-                                _0x12767.elements[_0x11261].remove();
-                                var _0x111D7 = _0x116B1(_0x111EE, _0x12767.elements[_0x11261], true, false);
-                                _0x11205.appendChild(_0x111D7);
-                                _0x12767.elements[_0x11261] = _0x111D7;
-                                return
-                            };
-                            if (_0x12767.elements[_0x11261]) {
-                                var _0x111D7 = _0x116B1(_0x111EE, _0x12767.elements[_0x11261], true, false);
-                                _0x11205.replaceChild(_0x111D7, _0x12767.elements[_0x11261]);
-                                _0x12767.elements[_0x11261] = _0x111D7;
-                                return
-                            };
-                            _0x12767.elements[_0x11261] = _0x116B1(_0x111EE, _0x11205, true, true);
-                            _0x117C5.friendOnlineCount.text(_0x11A1B() + " online")
-                        })
-                    };
-                    if (_0x11278) {
-                        _0x111EE++
-                    }
-                });
-                $("#social-friends-count").text(_0x111EE)
-            });
-            setInterval(function () {
-                for (var _0x111D7 in _0x12767.timestamps) {
-                    if (!_0x12767.timestamps.hasOwnProperty(_0x111D7)) {
-                        return
-                    };
-                    var _0x1121C = _0x12767.timestamps[_0x111D7];
-                    if ((_0x1121C + (1000 * 60)) < new Date().getTime() || _0x1121C === undefined) {
-                        var _0x11205 = _0x12767.elements[_0x111D7].children[1].children[1];
-                        _0x11205.innerText = "Not playing on any server";
-                        _0x11205.className = "status offline";
-                        var _0x111EE = _0x12767.elements[_0x111D7].children[2].children[0];
-                        if (_0x111EE.dataset.balloon === "Join Server") {
-                            _0x111EE.remove()
-                        }
-                    }
-                }
-            }, 1000 * 60);
-            _0x11B01 = true
-        }
-        function _0x11A1B() {
-            var _0x11205 = 0;
-            var _0x111D7 = new Date().getTime();
-            for (var _0x111EE in _0x12767.timestamps) {
-                var _0x1121C = _0x12767.timestamps[_0x111EE];
-                if ((_0x1121C + (1000 * 60)) < _0x111D7 || _0x1121C === undefined) {} else {
-                    _0x11205++
-                }
-            }
-            return _0x11205
-        }
-        function _0x11E99() {
-            if (_0x11894.enabled && !_0x12020.cDisableEventSkins) {
-                $("body").toggleClass("event-" + _0x11894.key)
-            };
-            $(".server-tab").on("click", function () {
-                var _0x111D7 = $(this).attr("region");
-                _0x12487(_0x111D7)
-            });
-            $("#btn-play").on("click", function () {
-                if (_0x12470 == null || Date.now() < _0x117AE) {
-                    return
-                };
-                if (Object.keys(_0x12190.myCells).length != 0 && this.currentServerName == _0x12470.name) {
-                    _0x11B5D(_0x11EDE);
-                    return
-                };
-                _0x12190.spectate = false;
-                if (_0x12698.incrementPlay() && typeof adplayer != "undefined") {
-                    aiptag.cmd.display.push(function () {
-                        adplayer.startPreRoll()
-                    });
-                    _0x11B5D(_0x11EDE);
-                    _0x11B46();
-                    _0x117AE = Date.now() + 2000
-                } else {
-                    _0x12190.play()
-                }
-            });
-            $("#btn-servers").on("click", function () {
-                _0x111EE("main-servers")
-            });
-            $("#btn-options").on("click", function () {
-                _0x111EE("main-options")
-            });
-            $("#btn-hotkeys").on("click", function () {
-                _0x111EE("main-hotkeys")
-            });
-            $("#btn-themes").on("click", function () {
-                _0x111EE("main-themes")
-            });
-            $("#btn-cellpanel").on("click", function () {
-                _0x111EE("main-subpanel")
-            });
-            $("#btn-reddit").on("click", function () {
-                window.open("https://www.reddit.com/r/PlayGotaIO/", "_blank")
-            });
-            $("#btn-discord").on("click", function () {
-                window.open("https://gota.io/discord", "_blank")
-            });
-            $("#name-box").keypress(function (_0x111D7) {
-                if (_0x111D7.keyCode == 13 && $(this).is(":focus")) {
-                    _0x12190.play()
-                }
-            });
-            $("#btn-spec").on("click", function () {
-                if (_0x12470 == null || Date.now() < _0x117AE) {
-                    return
-                };
-                if (_0x12190.spectate && this.currentServerName == _0x12470.name) {
-                    _0x11B5D(_0x11EDE);
-                    return
-                };
-                _0x12190.spectate = true;
-                if (_0x12698.incrementPlay() && typeof adplayer != "undefined") {
-                    aiptag.cmd.display.push(function () {
-                        adplayer.startPreRoll()
-                    });
-                    _0x11B5D(_0x11EDE);
-                    _0x11B46();
-                    _0x117AE = Date.now() + 2000
-                } else {
-                    _0x12190.spec()
-                }
-            });
-            _0x11489.addEventListener(_0x111C0[954], function (_0x111D7) {
-                var _0x1121C = _0x111D7[_0x111C0[131]]["value"];
-                var _0x11233 = _0x1121C.split(" ");
-                if (_0x111D7.keyCode == 38 && $(this).is(":focus")) {
-                    if (_0x1242B == -1) {
-                        _0x1242B = _0x11472.length - 1
-                    } else {
-                        if (_0x1242B > 1) {
-                            _0x1242B--
-                        }
-                    };
-                    if (_0x1242B <= 0) {
-                        _0x1242B = 0
-                    };
-                    _0x12511(_0x11472[_0x1242B]);
-                    return
-                } else {
-                    if (_0x111D7.keyCode == 40 && $(this).is(":focus")) {
-                        if (_0x1242B == -1) {
-                            _0x1242B = 0
-                        } else {
-                            if (_0x1242B < _0x11472.length - 1) {
-                                _0x1242B++
-                            }
-                        };
-                        if (_0x1242B >= _0x11472.length - 1) {
-                            _0x1242B = _0x11472.length - 1
-                        };
-                        _0x12511(_0x11472[_0x1242B]);
-                        return
-                    }
-                };
-                if (_0x111D7.keyCode == 13 && $(this).is(":focus")) {
-                    _0x1187D($(this).val())
-                };
-                if (_0x1121C.length == 0 || _0x1121C.endsWith(" ") || _0x111D7.keyCode == 13) {
-                    $("#autocomplete-panel").html("");
-                    $("#autocomplete-panel").hide()
-                } else {
-                    if (_0x1121C.startsWith("/")) {
-                        if (_0x11233.length > 1) {
-                            return
-                        };
-                        $("#autocomplete-panel").html("<table><thead><tr><th>Command</th><th>Aliases</th><th>Description</th></tr></thead><tbody></tbody></table>");
-                        var _0x1124A = -1;
-                        Object[_0x111C0[966]](_0x11610).map((_0x111D7) => {
-                            if ((_0x1124A = _0x111D7.triggers.findIndex((_0x111D7) => {
-                                    return _0x111D7.toLowerCase().startsWith(_0x11233[0].substring(1).toLowerCase())
-                                })) > -1) {
-                                $("#autocomplete-panel tbody").append("<tr><td>" + _0x111D7.triggers[_0x1124A] + "</td><td>" + _0x111D7.triggers + "</td><td>" + _0x111D7.description + "</td></tr>")
-                            }
-                        });
-                        if ($("#autocomplete-panel tbody").children().length == 0) {
-                            $("#autocomplete-panel").hide()
-                        } else {
-                            $("#autocomplete-panel").show()
-                        }
-                    } else {
-                        if (_0x11233[_0x11233.length - 1].startsWith(":")) {
-                            $("#autocomplete-panel").html("");
-                            var _0x111EE = Object.keys(_0x11838).filter((_0x111D7) => {
-                                return _0x111D7.toLowerCase().includes(_0x11233[_0x11233.length - 1].substring(1).toLowerCase())
-                            });
-                            var _0x11205 = Object.keys(gifEmoteList).filter((_0x111D7) => {
-                                return _0x111D7.toLowerCase().includes(_0x11233[_0x11233.length - 1].substring(1).toLowerCase())
-                            });
-                            if (_0x111EE.length === 0 && _0x11205.length === 0) {
-                                $("#autocomplete-panel").html("");
-                                $("#autocomplete-panel").hide();
-                                return
-                            } else {
-                                $("#autocomplete-panel").show()
-                            };
-                            if (_0x111EE.length > 0) {
-                                $("#autocomplete-panel").append("<h3>Emotes</h3>");
-                                _0x111EE.forEach((_0x111D7) => {
-                                    $("#autocomplete-panel").append("<img name='" + _0x111D7 + "' title='" + _0x111D7 + "' src='https://gota.io/emotes/" + _0x111D7 + ".png' />")
-                                })
-                            };
-                            if (_0x11205.length > 0) {
-                                $("#autocomplete-panel").append("<h3>Gifs</h3>");
-                                _0x11205.forEach((_0x111D7) => {
-                                    $("#autocomplete-panel").append("<img name='" + _0x111D7 + "' title='" + _0x111D7 + "' src='https://gota.io/emotes/gifs/" + _0x111D7 + ".gif' />")
-                                })
-                            }
-                        }
-                    }
-                };
-                _0x1242B = -1
-            });
-            $("#autocomplete-panel").on("click", function (_0x111D7) {
-                var _0x111EE = _0x119D6().split(" ");
-                if (_0x111D7.target.nodeName === "TD") {
-                    _0x12511("/" + _0x111D7.target.parentElement.children[0].innerHTML + " ");
-                    $("#autocomplete-panel").html("");
-                    $("#autocomplete-panel").hide();
-                    $("#chat-input").focus()
-                } else {
-                    if (_0x111D7.target.nodeName === "IMG") {
-                        _0x12511(_0x119D6().substring(0, (_0x119D6().length - _0x111EE[_0x111EE.length - 1].length)) + _0x111D7.target.attributes.name.nodeValue + " ");
-                        $("#autocomplete-panel").html("");
-                        $("#autocomplete-panel").hide();
-                        $("#chat-input").focus()
-                    }
-                }
-            });
-            $("#animationDelay").on("change", function () {
-                var _0x111D7 = parseInt($(this).val());
-                if (isNaN(_0x111D7)) {
-                    _0x111D7 = 90
-                };
-                _0x12020.rAnimationDelay = Math.min(Math.max(_0x111D7, 1), 250);
-                $("#animationDelay").val(_0x12020.rAnimationDelay);
-                $("#rAnimationDelay").val(_0x12020.rAnimationDelay)
-            });
-            $("#viewDistance").on("change", function () {
-                var _0x111D7 = parseInt($(this).val());
-                if (isNaN(_0x111D7)) {
-                    _0x111D7 = 150
-                };
-                _0x12020rViewDistance = Math.min(Math.max(_0x111D7, 50), 150);
-                $("#viewDistance").val(_0x12020rViewDistance);
-                $("#rViewDistance").val(_0x12020rViewDistance);
-                _0x12190.sendOptions()
-            });
-            $("#uiScale").on("change", function () {
-                var _0x111D7 = parseInt($(this).val());
-                if (isNaN(_0x111D7)) {
-                    _0x111D7 = 100
-                };
-                _0x111D7 *= 0.01;
-                _0x12020.rUiScale = Math.min(Math.max(_0x111D7, 0.5), 1.25);
-                $("#uiScale").val(Number.parseFloat(_0x12020.rUiScale * 100).toFixed(0));
-                $("#rUiScale").val(_0x12020.rUiScale);
-                $(".ui-scale").css("transform", "scale(" + _0x12020.rUiScale + ")")
-            });
-            $("#chat-emote-btn").css("background-image", "url(https://gota.io/emotes/" + _0x122D2[Math.floor(Math.random() * _0x122D2.length)] + ".png)");
-            $("#chat-emote-btn").on("click", function () {
-                $("#emote-panel").toggle()
-            });
-            $("#emote-panel ul li img").on("click", function (_0x111D7) {
-                _0x11233(_0x111D7.target.name + " ");
-                $("#chat-input").focus()
-            });
-            (function () {
-                var _0x111D7 = document.getElementById("chat-panel");
-                document.getElementById("chat-resize").addEventListener("mousedown", _0x11205, false);
-                var _0x1124A, _0x11261, _0x11233, _0x1121C;
-
-                function _0x11205(_0x11205) {
-                    _0x1124A = _0x11205.clientX;
-                    _0x11261 = _0x11205.clientY;
-                    _0x11233 = parseInt(document.defaultView.getComputedStyle(_0x111D7).width, 10);
-                    _0x1121C = parseInt(document.defaultView.getComputedStyle(_0x111D7).height, 10);
-                    document[_0x111C0[60]].addEventListener("mousemove", _0x111EE, false);
-                    document[_0x111C0[60]].addEventListener("mouseup", _0x11278, false)
-                }
-
-                function _0x111EE(_0x111EE) {
-                    _0x111D7.style.width = (_0x11233 + _0x111EE.clientX - _0x1124A) + "px";
-                    _0x111D7.style.height = (_0x1121C - (_0x111EE.clientY - _0x11261)) + "px"
-                }
-
-                function _0x11278(_0x111D7) {
-                    document[_0x111C0[60]][_0x111C0[1013]]("mousemove", _0x111EE, false);
-                    document[_0x111C0[60]][_0x111C0[1013]]("mouseup", _0x11278, false)
-                }
-            })();
-            $(".checkbox-options").on("change", function (_0x111C0) {
-                _0x11586($(this));
-                if (this.id === "cRainbowFood") {
-                    _0x12020.cRainbowFood = this.checked;
-                    if (window._0x12190 && window._0x12190.myCells) {
-                        Object.values(window._0x12190.myCells).forEach(cell => {
-                            if (cell) cell.rainbow = _0x12020.cRainbowFood;
-                        });
-                    }
-                }
-            });
-            setInterval(function() {
-                if (window._0x12020 && window._0x12190 && window._0x12190.myCells) {
-                    Object.values(window._0x12190.myCells).forEach(cell => {
-                        if (cell) cell.rainbow = window._0x12020.cRainbowFood;
-                    });
-                }
-            }, 200);
-            $(".options-container select").on("change", function (_0x111C0) {
-                _0x115B4($(this))
-            });
-            $(".options-container input[type=range]").on("change", function (_0x111C0) {
-                _0x1159D($(this))
-            });
-            $("#btn-changelog").on("click", function () {
-                _0x11B5D($("#popup-changelog"));
-                _0x12584(_0x11EDE);
-                window.open(_0x1277E, "_blank")
-            });
-            $("#btn-close-changelog").on("click", function () {
-                _0x11B5D($("#popup-changelog"));
-                _0x12584(_0x11EDE)
-            });
-            $("#btn-accept").on("click", function () {
-                _0x12190.sendPacket(new _0x12065.sendInviteResponse(true));
-                _0x11B5D($("#popup-party"))
-            });
-            $("#btn-decline").on("click", function () {
-                _0x12190.sendPacket(new _0x12065.sendInviteResponse(false));
-                _0x11B5D($("#popup-party"))
-            });
-            $("#popup-party-code-content button").on("click", function () {
-                $("#popup-party-code-content input").select();
-                document.execCommand("Copy");
-                $("#popup-party-code").hide()
-            });
-            $("#menu-invite").on("click", function () {
-                var _0x111D7 = _0x11627.data("selected");
-                _0x12190.sendPacket(new _0x12065.sendPartyAction(0, _0x111D7))
-            });
-            $("#menu-whisper").on("click", function () {
-                var _0x111D7 = _0x11627.data("selected");
-                var _0x111EE = $("#chat-input").val();
-                $("#chat-input").val("/t " + _0x111D7 + " " + _0x111EE)
-            });
-            // Добавляем кнопку Track в контекстное меню (если еще нет)
-            if (!document.getElementById('menu-track')) {
-                var trackBtn = document.createElement('li');
-                trackBtn.id = 'menu-track';
-                trackBtn.className = 'context-action';
-                trackBtn.innerHTML = '<span>Track</span>';
-                var whisperBtn = document.getElementById('menu-whisper');
-                if (whisperBtn && whisperBtn.parentNode) {
-                    whisperBtn.parentNode.insertBefore(trackBtn, whisperBtn.nextSibling);
-                }
-            }
-            // Обработчик для кнопки Track
-            $(document).on('click', '#menu-track', function () {
-                var playerId = _0x11627.data('selected');
-                var player = _0x12190.playerRegistry.getPlayer(playerId);
-                
-                // If tracking is already active, stop it
-                if (window.trackInterval) {
-                    clearInterval(window.trackInterval);
-                    window.trackInterval = null;
-                    // Reset counter text
-                    var counter = document.getElementById('cell-counter');
-                    if (counter) {
-                        counter.textContent = 'Tracked: None';
-                    }
-                    console.log('Track stopped');
-                    return;
-                }
-                
-                if (player) {
-                    var lastCellCount = 0;
-                    // Start tracking
-                    window.trackInterval = setInterval(function() {
-                        // Проверяем, включён ли Autorev
-                        var autorevEnabled = localStorage.getItem('weyno-autorev-enabled') === 'true';
-                        if (!autorevEnabled) return;
-                        var id = player.id;
-                        var name = player.name;
-                        var cellsCount = 0;
-                        
-                        // Count cells in main bucket
-                        for (var cellId in _0x12190.bucket) {
-                            var cell = _0x12190.bucket[cellId];
-                            if (cell.playerId === playerId && cell.type !== 6) {
-                                cellsCount++;
-                            }
-                        }
-                        
-                        // Count cells in food objects
-                        for (var cellId in _0x12190.foodObjects) {
-                            var cell = _0x12190.foodObjects[cellId];
-                            if (cell.playerId === playerId && cell.type !== 6) {
-                                cellsCount++;
-                            }
-                        }
-                        
-                        // Update cell counter display
-                        var counter = document.getElementById('cell-counter');
-                        if (counter) {
-                            counter.textContent = 'Tracked: ' + name + ' - Cells: ' + cellsCount;
-                        }
-                        
-                        // Получаем значение TriggerCells из localStorage (по умолчанию 8)
-                        var triggerCells = parseInt(localStorage.getItem('weyno-autorev-triggercells'), 10);
-                        if (isNaN(triggerCells) || triggerCells < 1) triggerCells = 8;
-
-                        // Check if cell count changed к TriggerCells
-                        if (cellsCount === triggerCells && lastCellCount !== triggerCells) {
-                            var event = new KeyboardEvent('keydown', { key: ' ', code: 'Space', keyCode: 32, which: 32, bubbles: true });
-                            document.dispatchEvent(event);
-
-                            var delay = parseInt(localStorage.getItem('weyno-autorev-delay'), 10);
-                            if (isNaN(delay) || delay < 0) delay = 50;
-
-                            setTimeout(function() {
-                                document.dispatchEvent(event);
-                                // Останавливаем трекинг после двойного пробела
-                                if (window.trackInterval) {
-                                    clearInterval(window.trackInterval);
-                                    window.trackInterval = null;
-                                    var counter = document.getElementById('cell-counter');
-                                    if (counter) {
-                                        counter.textContent = 'Tracked: None';
-                                    }
-                                    console.log('Track auto-stopped after double space');
-                                }
-                            }, delay);
-                        }
-                
-                        lastCellCount = cellsCount;
-                    }, 10);
-                
-                    console.log('Track started');
-                } else {
-                    console.log('Track: игрок не найден', playerId);
-                }
-            });
-            $("#menu-profile").on("click", function () {
-                var _0x111D7 = _0x11627.data("selected");
-                _0x12190.sendPacket(new _0x12065.sendShowProfile(_0x111D7))
-            });
-            $("#menu-pu_pr").on("click", function () {
-                if (_0x12190.partyCode == undefined) {
-                    _0x12190.sendPacket(new _0x12065.sendPartyAction(4, 0));
-                    $("#menu-pu_pr span").text("Private")
-                } else {
-                    _0x12190.sendPacket(new _0x12065.sendPartyAction(4, 1));
-                    $("#menu-pu_pr span").text("Public")
-                }
-            });
-            $("#menu-promote").on("click", function () {
-                var _0x111D7 = _0x11627.data("party") + 1;
-                if (_0x111D7 >= 0) {
-                    _0x12190.sendPacket(new _0x12065.sendPartyAction(2, _0x111D7))
-                }
-            });
-            $("#menu-kick").on("click", function () {
-                var _0x111D7 = _0x11627.data("party") + 1;
-                if (_0x111D7 >= 0) {
-                    _0x12190.sendPacket(new _0x12065.sendPartyAction(1, _0x111D7))
-                }
-            });
-            $("#menu-spectate").on("click", function () {
-                var _0x111D7 = _0x11627.data("selected");
-                if (_0x111D7 >= 0) {
-                    _0x12190.sendPacket(new _0x12065.sendSpectate(_0x111D7))
-                }
-            });
-            $("#menu-block").on("click", function () {
-                var _0x111EE = parseInt(_0x11627.data("selected"));
-                var _0x111D7 = _0x112D4(_0x111EE);
-                _0x12190.selfMsg(_0x111D7)
-            });
-            $(document).on("click", function (_0x111D7) {
-                _0x11627.hide();
-                if (_0x111D7.target.id !== _0x111C0[1038]) {
-                    $("#emote-panel").hide()
-                };
-                if ($("#popup-party-code").css("display") !== "none" && _0x111D7.target.id !== "popup-party-code") {
-                    $("#popup-party-code").hide()
-                }
-            });
-            $("#aEditChatTabs").on("click", function (_0x111D7) {
-                _0x1135E();
-                _0x11B5D(_0x11EDE);
-                _0x12584($("#popup-chat-tab-editor"))
-            });
-            $("#cte-tab-selector").on("change", _0x114FC);
-            $("#btn-chat-tab-editor-add").on("click", _0x114CE);
-            $("#btn-chat-tab-editor-remove").on("click", _0x114E5);
-            $("#btn-chat-tab-editor-update").on("click", _0x1152A);
-            $(".custom-asset-skinner").on("click", function () {
-                $("#popup-asset-skinner .title-text").text($(this).text());
-                $("#input-asset-skinner").attr("asset", $(this).attr("id")).val("");
-                _0x11B5D(_0x11EDE);
-                _0x12584($("#popup-asset-skinner"))
-            });
-            $("#btn-custom-asset-set").on("click", function () {
-                if (!_0x12020.cThemeEnabled) {
-                    _0x1191E()
-                };
-                var _0x111EE = $("#input-asset-skinner").val();
-                if (_0x111EE) {
-                    var _0x111D7 = $("#input-asset-skinner").attr("asset");
-                    if (_0x111D7.charAt(0) == "a" && _0x126F4[_0x111D7] != null) {
-                        _0x12528(_0x111D7, _0x111EE)
-                    }
-                };
-                $("#popup-asset-skinner .back-button").trigger("click")
-            });
-            $("#btn-custom-asset-clear").on("click", function () {
-                if (!_0x12020.cThemeEnabled) {
-                    _0x1191E()
-                };
-                var _0x111D7 = $("#input-asset-skinner").attr("asset");
-                if (_0x111D7.charAt(0) == "a" && _0x126F4[_0x111D7] != null) {
-                    _0x12528(_0x111D7, "")
-                }
-            });
-            $("#popup-asset-skinner").on("dragover", false).on("drop", function (_0x111D7) {
-                if (!_0x12020.cThemeEnabled) {
-                    _0x1191E()
-                };
-                var _0x11205 = $("#input-asset-skinner").attr("asset");
-                if (_0x11205.charAt(0) == "a" && _0x126F4[_0x11205] != null) {
-                    var _0x111EE = _0x119ED(_0x111D7.originalEvent);
-                    if (/\.(jpe?g|png|gif)$/i.test(_0x111EE.name)) {
-                        var _0x1121C = new FileReader();
-                        _0x1121C.addEventListener("load", function () {
-                            _0x12528(_0x11205, thisresult)
-                        }, false);
-                        _0x1121C.readAsDataURL(_0x111EE)
-                    }
-                }
-                ;return false
-            });
-            $("#btn-food-colors").on("click", function () {
-                _0x12795();
-                _0x11B5D(_0x11EDE);
-                _0x12584($("#popup-food-colors"))
-            });
-            $("#btn-theme-export").on("click", function () {
-                if (!_0x12020.cThemeEnabled) {
-                    return
-                };
-                var _0x111EE = "theme.json";
-                var _0x111D7 = JSON.stringify(_0x126F4, null, 2);
-                _0x117DC(_0x111EE, _0x111D7, "text/plain")
-            });
-            $("#btn-theme-import").on("click", function () {
-                $("#theme-import").trigger("click")
-            });
-            $("#theme-import").on("change", function () {
-                var _0x111EE = $(this).prop("files");
-                if (_0x111EE.length > 0) {
-                    var _0x111D7 = _0x111EE[0];
-                    _0x11E82(_0x111D7)
-                }
-            });
-            $("#main-themes .options-container").on("dragover", false).on("drop", function (_0x111D7) {
-                var _0x111EE = _0x119ED(_0x111D7.originalEvent);
-                _0x11E82(_0x111EE);
-                return false
-            });
-            $("#cGlobalLeaderboard").on("change", function () {
-                if (!_0x1281F || _0x119A8) {
-                    return
-                };
-                _0x119A8 = true;
-                firebase.auth().currentUser.getIdToken().then((_0x111EE) => {
-                    fetch(_0x111D7 + "/api/v1/options/setFlags", {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': "application/json"
-                        },
-                        body: JSON.stringify({
-                            token: _0x111EE
-                        })
-                    }).then(((_0x111D7) => {
-                        return _0x111D7["json"]()
-                    })).then((_0x111D7) => {
-                        _0x119A8 = false;
-                        $(this).prop("checked", _0x111D7.message)
-                    }).catch((_0x111D7) => {
-                        console["error"](_0x111D7);
-                        _0x119A8 = false;
-                        alert(_0x111D7)
-                    })
-                }).catch((_0x111C0) => {
-                    _0x11AEA(_0x111C0, true);
-                    _0x119A8 = false
-                })
-            });
-            firebase.auth().onAuthStateChanged(function (_0x111D7) {
-                if (_0x111D7) {
-                    if (!_0x1163E.consented) {
-                        firebase.auth().signOut().then(function () {});
-                        return
-                    };
-                    _0x12556();
-                    if (_0x12190.isConnected() && firebase.auth().currentUser !== null) {
-                        firebase.auth().currentUser.getIdToken(true).then((_0x111D7) => {
-                            _0x12190.sendPacket(new _0x12065.sendAuthToken(_0x111D7))
-                        }).catch((_0x111C0) => {
-                            return _0x11AEA(_0x111C0, true)
-                        })
-                    };
-                    var _0x111EE = firebase.database().ref("users/" + _0x111D7.uid);
-                    var _0x1121C = false;
-                    _0x111EE.on("value", function (_0x1128F) {
-                        var _0x11233 = _0x1128F.val();
-                        if (!_0x11233) {
-                            return
-                        };
-                        if (!_0x1121C) {
-                            $("#account-loader").hide();
-                            $("#authed").show();
-                            $("#authed").attr("style", "display: flex;");
-                            $("#cGlobalLeaderboard").removeAttr("disabled");
-                            $("#cGlobalLeaderboard").prop("checked", _0x11233.flags.PUBLIC);
-                            _0x1121C = true
-                        };
-                        _0x1281F = _0x11233;
-                        $("#account-avatar").attr("src", _0x11233.avatar);
-                        $("#account-username").text(_0x11233.username);
-                        if (_0x11233.flags.STAFF) {
-                            chatContainer.style.userSelect = _0x111C0[498]
-                        };
-                        _0x1169A($("#account-username"), _0x11233);
-                        $("#account-level").html("Level " + _0x11233.levelData.level + "&nbsp;&nbsp;&nbsp;&nbsp;" + _0x1194C(_0x11233.levelData.xp_current) + "/" + _0x1194C(_0x11233.levelData.xp_needed) + " XP");
-                        $(".xp-meter > span").each(function () {
-                            var _0x111D7 = ((_0x11233.levelData.xp_current / _0x11233.levelData.xp_needed) * 100);
-                            $(this).animate({
-                                width: _0x111D7 + _0x111C0[1083]
-                            }, 1200)
-                        });
-                        if (!_0x12190.accountListeners.loadServers) {
-                            _0x12190.accountListeners.loadServers = firebase.database().ref("servers/account/" + _0x1281F.uid).on("value", function (_0x11233) {
-                                var _0x111D7 = _0x11233.val();
-                                if (!_0x111D7) {
-                                    return
-                                };
-                                _0x11205 = {};
-                                for (var _0x111EE in _0x111D7) {
-                                    var _0x1121C = _0x111D7[_0x111EE];
-                                    if (_0x1121C["up"]) {
-                                        _0x11205[_0x1121C.name] = new _0x124CC(_0x1121C.name, _0x1121C.ip + ":" + _0x1121C.port, 0, 0, "?", _0x1121C.gamemode, _0x1121C.region, _0x1121C.ssl, 0)
-                                    }
-                                };
-                                _0x11E0F();
-                                if (_0x12470 != null) {
-                                    _0x1249E(_0x12470.name)
-                                }
-                            })
-                        };
-                        if (_0x11233.flags.DISCORD_LINKED && !_0x12190.accountListeners.loadDiscord) {
-                            _0x12190.accountListeners.loadDiscord = firebase.firestore().collection("discord").doc(_0x1281F.uid).onSnapshot((_0x111D7) => {
-                                if (_0x111D7.exists) {
-                                    $("#discordLinkStatus").text("Your account is linked with " + _0x111D7.data().username + "#" + _0x111D7.data().discrim);
-                                    $("#discordLinkStatus").show();
-                                    $("#discordLink").hide();
-                                    $("#discordUnlink").show();
-                                    $(".discord-login-container").css("padding", "15px")
-                                } else {
-                                    $("#discordLinkStatus").hide();
-                                    $("#discordUnlink").hide();
-                                    $("#discordLink").show();
-                                    $(".discord-login-container").css("padding", "30px")
-                                }
-                            })
-                        };
-                        if (_0x11233.tokens !== undefined) {
-                            var _0x11261 = new Date();
-                            _0x11261.setMonth(_0x11261.getMonth() + _0x11233.tokens);
-                            if (_0x11233.tokens == 0) {
-                                $("#redeem-tokens").hide();
-                                $("#token-amount").text("You have 0 tokens.")
-                            } else {
-                                $("#redeem-tokens").show();
-                                $("#token-amount").text("You have " + _0x11233.tokens + " tokens, maximum expiry date: " + _0x11261.toString());
-                                $("#redeem-spend").attr("max", _0x11233.tokens)
-                            }
-                        } else {
-                            $("#token-amount").text("You have 0 tokens.")
-                        };
-                        if (_0x1281F.title && _0x1281F.title > 0 && _0x12808 && _0x12808.titles && _0x12808.titles.length > 0) {
-                            var _0x111EE = $("#account-titles");
-                            var _0x11278 = 0;
-                            for (var _0x1124A = 0; _0x1124A < _0x12808.titles.length; _0x1124A++) {
-                                if (_0x12808.titles[_0x1124A] == _0x1281F.title) {
-                                    _0x11278 = _0x1124A + 1
-                                }
-                            };
-                            if (_0x11278 > 0) {
-                                _0x111EE.val(_0x11278)
-                            }
-                        };
-                        if (!_0x12190.accountListeners[_0x111C0[1116]]) {
-                            _0x12190.accountListeners[_0x111C0[1116]] = firebase.database().ref(_0x111C0[1124] + _0x111D7.uid).on("value", function (_0x11233) {
-                                var _0x111EE = _0x11233.val();
-                                if (!_0x111EE) {
-                                    return
-                                };
-                                _0x12808 = _0x111EE;
-                                if (_0x12808.titles && _0x12808.titles.length > 0) {
-                                    var _0x111D7 = $("#account-titles");
-                                    var _0x1121C = 0;
-                                    _0x111D7.empty();
-                                    _0x111D7.append("<option value='0'>Default Title</option>");
-                                    for (var _0x11205 = 0; _0x11205 < _0x111EE.titles.length; _0x11205++) {
-                                        _0x111D7.append("<option value='" + (_0x11205 + 1) + "'>" + _0x12739[_0x12808.titles[_0x11205]] + "</option>");
-                                        if (_0x12808.titles[_0x11205] == _0x1281F.title) {
-                                            _0x1121C = _0x11205 + 1
+                    })['catch'](eG => {
+                        ao(eG, !0x0), cz = !0x1;
+                    }));
+                }), firebase['auth']()['onAuthStateChanged'](function (eG) {
+                    if (eG) {
+                        if (!e5['consented']) return void firebase['auth']()['signOut']()['then'](function () {});
+                        cT || setTimeout(function () {
+                            cT = !0x0;
+                        }, 0x64), $('#guest')['hide'](), $('#account-loader')['show'](), bU['isConnected']() && null !== firebase['auth']()['currentUser'] && firebase['auth']()['currentUser']['getIdToken'](!0x0)['then'](eJ => {
+                            bU['sendPacket'](new bV['sendAuthToken'](eJ));
+                        })['catch'](eJ => ao(eJ, !0x0));
+                        var eH = firebase['database']()['ref']('users/' + eG['uid']),
+                            eI = !0x1;
+                        eH['on']('value', function (eJ) {
+                            var eK = eJ['val']();
+                            if (eK) {
+                                if (eI || ($('#account-loader')['hide'](), $('#authed')['show'](), $('#authed')['attr']('style', 'display:\x20flex;'), $('#cGlobalLeaderboard')['removeAttr']('disabled'), $('#cGlobalLeaderboard')['prop']('checked', eK['flags']['PUBLIC']), eI = !0x0), cu = eK, $('#account-avatar')['attr']('src', eK['avatar']), $('#account-username')['text'](eK['username']), eK['flags']['STAFF'] && (cc['style']['userSelect'] = 'text'), ap($('#account-username'), eK), $('#account-level')['html']('Level\x20' + eK['levelData']['level'] + '&nbsp;&nbsp;&nbsp;&nbsp;' + bz(eK['levelData']['xp_current']) + '/' + bz(eK['levelData']['xp_needed']) + '\x20XP'), $('.xp-meter\x20>\x20span')['each'](function () {
+                                        var eP = eK['levelData']['xp_current'] / eK['levelData']['xp_needed'] * 0x64;
+                                        $(this)['animate']({
+                                            'width': eP + '%'
+                                        }, 0x4b0);
+                                    }), bU['accountListeners']['loadServers'] || (bU['accountListeners']['loadServers'] = firebase['database']()['ref']('servers/account/' + cu['uid'])['on']('value', function (eP) {
+                                        var eQ = eP['val']();
+                                        if (eQ) {
+                                            for (var eR in (cV = {}, eQ)) {
+                                                var eS = eQ[eR];
+                                                eS['up'] && (cV[eS['name']] = new aK(eS['name'], eS['ip'] + ':' + eS['port'], 0x0, 0x0, '?', eS['gamemode'], eS['region'], eS['ssl'], 0x0));
+                                            }
+                                            aL(), null != c4 && aN(c4['name']);
                                         }
-                                    };
-                                    if (_0x1121C > 0) {
-                                        _0x111D7.val(_0x1121C)
-                                    };
-                                    _0x111D7.css("display", "inline-block")
-                                } else {
-                                    $("#account-titles").css("display", "none")
-                                };
-                                if (_0x12808.message && _0x12808.message.title && _0x12808.message.content && !_0x12808.message.read) {
-                                    $("#popup-message-title").text(_0x12808.message.title);
-                                    $("#popup-message-content").html(_0x12808.message.content);
-                                    _0x12584($("#popup-message"));
-                                    _0x11B5D(_0x11EDE)
+                                    })), eK['flags']['DISCORD_LINKED'] && !bU['accountListeners']['loadDiscord'] && (bU['accountListeners']['loadDiscord'] = firebase['firestore']()['collection']('discord')['doc'](cu['uid'])['onSnapshot'](eP => {
+                                        eP['exists'] ? ($('#discordLinkStatus')['text']('Your\x20account\x20is\x20linked\x20with\x20' + eP['data']()['username'] + '#' + eP['data']()['discrim']), $('#discordLinkStatus')['show'](), $('#discordLink')['hide'](), $('#discordUnlink')['show'](), $('.discord-login-container')['css']('padding', '15px')) : ($('#discordLinkStatus')['hide'](), $('#discordUnlink')['hide'](), $('#discordLink')['show'](), $('.discord-login-container')['css']('padding', '30px'));
+                                    })), void 0x0 !== eK['tokens']) {
+                                    var eL = new Date();
+                                    eL['setMonth'](eL['getMonth']() + eK['tokens']), 0x0 == eK['tokens'] ? ($('#redeem-tokens')['hide'](), $('#token-amount')['text']('You\x20have\x200\x20tokens.')) : ($('#redeem-tokens')['show'](), $('#token-amount')['text']('You\x20have\x20' + eK['tokens'] + '\x20tokens,\x20maximum\x20expiry\x20date:\x20' + eL['toString']()), $('#redeem-spend')['attr']('max', eK['tokens']));
+                                } else $('#token-amount')['text']('You\x20have\x200\x20tokens.');
+                                if (cu['title'] && cu['title'] > 0x0 && cv && cv['titles'] && cv['titles']['length'] > 0x0) {
+                                    for (var eM = $('#account-titles'), eN = 0x0, eO = 0x0; eO < cv['titles']['length']; eO++) cv['titles'][eO] == cu['title'] && (eN = eO + 0x1);
+                                    eN > 0x0 && eM['val'](eN);
                                 }
+                                bU['accountListeners']['loadPrivateData'] || (bU['accountListeners']['loadPrivateData'] = firebase['database']()['ref']('private/' + eG['uid'])['on']('value', function (eP) {
+                                    var eQ = eP['val']();
+                                    if (eQ) {
+                                        if ((cv = eQ)['titles'] && cv['titles']['length'] > 0x0) {
+                                            var eR = $('#account-titles'),
+                                                eS = 0x0;
+                                            eR['empty'](), eR['append']('<option\x20value=\x270\x27>Default\x20Title</option>');
+                                            for (var eT = 0x0; eT < eQ['titles']['length']; eT++) eR['append']('<option\x20value=\x27' + (eT + 0x1) + '\x27>' + dF[cv['titles'][eT]] + '</option>'), cv['titles'][eT] == cu['title'] && (eS = eT + 0x1);
+                                            eS > 0x0 && eR['val'](eS), eR['css']('display', 'inline-block');
+                                        } else $('#account-titles')['css']('display', 'none');
+                                        cv['message'] && cv['message']['title'] && cv['message']['content'] && !cv['message']['read'] && ($('#popup-message-title')['text'](cv['message']['title']), $('#popup-message-content')['html'](cv['message']['content']), b2($('#popup-message')), b4(c6));
+                                    }
+                                })), cw && au(cu), aJ(eG['uid']);
+                            }
+                        });
+                    } else $('#cGlobalLeaderboard')['attr']('disabled'), e5['consented'] ? ($('#authed')['hide'](), $('#account-loader')['hide'](), $('#no_cookie_consent')['hide'](), $('#guest')['show']()) : ($('#authed')['hide'](), $('#account-loader')['hide'](), $('#guest')['hide'](), $('#no_cookie_consent')['show']());
+                }), $('#account-login')['on']('click', function () {
+                    e5['consented'] && firebase['auth']()['signInWithPopup'](cP)['then'](function (eG) {})['catch'](eG => ao(eG, !0x0));
+                }), $('#account-logout')['on']('click', function () {
+                    firebase['auth']()['signOut']()['then'](function () {
+                        $('#authed')['hide'](0x1f4), $('#guest')['show'](), $('#discordLinkStatus')['hide'](), $('.discord-login-container')['show']();
+                    })['catch'](eG => ao(eG, !0x0));
+                }), $('#account-shop')['on']('click', function () {
+                    window['open']('https://store.gota.io/', '_blank');
+                }), $('#account-social')['on']('click', function () {
+                    cu && (au(cu), b2($('#main-social')), b4($(c6)));
+                }), $('#social-back-button')['on']('click', function () {
+                    b4($('#main-social')), b2($(c6));
+                }), $('#account-profile')['on']('click', function () {
+                    as(cu, c6);
+                }), $('#food-colors-close-btn')['on']('click', function () {
+                    b5(c6), b4($('#popup-food-colors'));
+                }), $('#account-titles')['on']('change', function () {
+                    if (!cz) {
+                        var eG = parseInt($(this)['val']());
+                        cz = !0x0, firebase['auth']()['currentUser']['getIdToken']()['then'](eH => {
+                            fetch(cQ + '/api/v1/options/setTitle', {
+                                'method': 'POST',
+                                'headers': {
+                                    'Content-Type': 'application/json'
+                                },
+                                'body': JSON['stringify']({
+                                    'token': eH,
+                                    'title': eG
+                                })
+                            })['then'](eI => eI['json']())['then'](eI => {
+                                cz = !0x1;
+                            })['catch'](eI => {
+                                cz = !0x1;
+                            });
+                        })['catch'](eH => {
+                            ao(eH, !0x0), cz = !0x1;
+                        });
+                    }
+                }), $('#popup-message-read-btn')['on']('click', function () {
+                    cz || (b4($('#popup-message')), b5(c6), cz = !0x0, firebase['auth']()['currentUser']['getIdToken']()['then'](eG => {
+                        fetch(cQ + '/api/v1/options/markAsRead', {
+                            'method': 'POST',
+                            'headers': {
+                                'Content-Type': 'application/json'
+                            },
+                            'body': JSON['stringify']({
+                                'token': eG
                             })
-                        };
-                        if (_0x11B01) {
-                            _0x11E26(_0x1281F)
-                        };
-                        _0x11D6E(_0x111D7.uid)
-                    })
-                } else {
-                    $("#cGlobalLeaderboard").attr("disabled");
-                    if (!_0x1163E.consented) {
-                        $("#authed").hide();
-                        $("#account-loader").hide();
-                        $("#guest").hide();
-                        $("#no_cookie_consent").show()
-                    } else {
-                        $("#authed").hide();
-                        $("#account-loader").hide();
-                        $("#no_cookie_consent").hide();
-                        $("#guest").show()
+                        })['then'](eH => eH['json']())['then'](eH => {
+                            cz = !0x1;
+                        })['catch'](eH => {
+                            cz = !0x1;
+                        });
+                    })['catch'](eG => {
+                        ao(eG, !0x0), cz = !0x1;
+                    }));
+                }), $('#account-set-username-btn')['on']('click', function () {
+                    if (cu) {
+                        eA(!0x1, this);
+                        var eG = $('#account-username-input')['val']();
+                        if (!eG || '' == eG || '' == eG['trim']()) return alert('Please\x20provide\x20a\x20username!'), void eA(!0x0, this);
+                        firebase['auth']()['currentUser']['getIdToken']()['then'](eH => {
+                            fetch(cQ + '/api/v1/social/username', {
+                                'method': 'POST',
+                                'headers': {
+                                    'Content-Type': 'application/json'
+                                },
+                                'body': JSON['stringify']({
+                                    'token': eH,
+                                    'username': eG
+                                })
+                            })['then'](eI => eI['json']())['then'](eI => {
+                                if (eA(!0x0, this), 0xc8 == eI['code']) return b5(c6), void $('#popup-account-username')['hide']();
+                                alert(eI['message']);
+                            })['catch'](eI => {
+                                alert(eI), eA(!0x0, this);
+                            });
+                        })['catch'](eH => {
+                            eA(!0x0, this), ao(eH, !0x0);
+                        });
                     }
-                }
-            });
-            $("#account-login").on("click", function () {
-                if (_0x1163E.consented) {
-                    firebase.auth().signInWithPopup(_0x1124A).then(function (_0x111C0) {}).catch((_0x111C0) => {
-                        return _0x11AEA(_0x111C0, true)
-                    })
-                }
-            });
-            $("#account-logout").on("click", function () {
-                firebase.auth().signOut().then(function () {
-                    $("#authed").hide(500);
-                    $("#guest").show();
-                    $("#discordLinkStatus").hide();
-                    $(".discord-login-container").show()
-                }).catch((_0x111C0) => {
-                    return _0x11AEA(_0x111C0, true)
-                })
-            });
-            $("#account-shop").on("click", function () {
-                window.open("https://store.gota.io/", "_blank")
-            });
-            $("#account-social").on("click", function () {
-                if (!_0x1281F) {
-                    return
-                };
-                _0x11E26(_0x1281F);
-                _0x12584($("#main-social"));
-                _0x11B5D($(_0x11EDE))
-            });
-            $("#social-back-button").on("click", function () {
-                _0x11B5D($("#main-social"));
-                _0x12584($(_0x11EDE))
-            });
-            $("#account-profile").on("click", function () {
-                _0x11DE1(_0x1281F, _0x11EDE)
-            });
-            $("#food-colors-close-btn").on("click", function () {
-                _0x12750(_0x11EDE);
-                _0x11B5D($("#popup-food-colors"))
-            });
-            function _0x1121C(_0x111EE, _0x111D7) {
-                if (_0x111EE) {
-                    $(_0x111D7).prop("disabled", false);
-                    $(_0x111D7).text("Set");
-                    return
-                };
-                $(_0x111D7).prop("disabled", true);
-                $(_0x111D7).text("...")
-            }
-            $("#account-titles").on("change", function () {
-                if (_0x119A8) {
-                    return
-                };
-                var _0x111EE = parseInt($(this).val());
-                _0x119A8 = true;
-                firebase.auth().currentUser.getIdToken().then((_0x11205) => {
-                    fetch(_0x111D7 + "/api/v1/options/setTitle", {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': "application/json"
-                        },
-                        body: JSON.stringify({
-                            token: _0x11205,
-                            title: _0x111EE
-                        })
-                    }).then(((_0x111D7) => {
-                        return _0x111D7["json"]()
-                    })).then((_0x111C0) => {
-                        _0x119A8 = false
-                    }).catch((_0x111D7) => {
-                        console["error"](_0x111D7);
-                        _0x119A8 = false
-                    })
-                }).catch((_0x111C0) => {
-                    _0x11AEA(_0x111C0, true);
-                    _0x119A8 = false
-                })
-            });
-            $("#popup-message-read-btn").on("click", function () {
-                if (_0x119A8) {
-                    return
-                };
-                _0x11B5D($("#popup-message"));
-                _0x12750(_0x11EDE);
-                _0x119A8 = true;
-                firebase.auth().currentUser.getIdToken().then((_0x111EE) => {
-                    fetch(_0x111D7 + "/api/v1/options/markAsRead", {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': "application/json"
-                        },
-                        body: JSON.stringify({
-                            token: _0x111EE
-                        })
-                    }).then(((_0x111D7) => {
-                        return _0x111D7["json"]()
-                    })).then((_0x111C0) => {
-                        _0x119A8 = false
-                    }).catch((_0x111D7) => {
-                        console["error"](_0x111D7);
-                        _0x119A8 = false
-                    })
-                }).catch((_0x111C0) => {
-                    _0x11AEA(_0x111C0, true);
-                    _0x119A8 = false
-                })
-            });
-            $("#account-set-username-btn").on("click", function () {
-                if (!_0x1281F) {
-                    return
-                };
-                _0x1121C(false, this);
-                var _0x111EE = $("#account-username-input").val();
-                if (!_0x111EE || _0x111EE == "" || _0x111EE.trim() == "") {
-                    alert("Please provide a username!");
-                    _0x1121C(true, this);
-                    return
-                };
-                firebase.auth().currentUser.getIdToken().then((_0x11205) => {
-                    fetch(_0x111D7 + "/api/v1/social/username", {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': "application/json"
-                        },
-                        body: JSON.stringify({
-                            token: _0x11205,
-                            username: _0x111EE
-                        })
-                    }).then((_0x111D7) => {
-                        return _0x111D7["json"]()
-                    }).then((_0x111D7) => {
-                        _0x1121C(true, this);
-                        if (_0x111D7.code == 200) {
-                            _0x12750(_0x11EDE);
-                            $("#popup-account-username").hide();
-                            return
-                        };
-                        alert(_0x111D7.message)
-                    }).catch((_0x111D7) => {
-                        console["error"](_0x111D7);
-                        alert(_0x111D7);
-                        _0x1121C(true, this)
-                    })
-                }).catch((_0x111C0) => {
-                    _0x1121C(true, this);
-                    _0x11AEA(_0x111C0, true)
-                })
-            });
-            $(".popup-panel .back-button").on("click", function () {
-                _0x11B74();
-                _0x12750(_0x11EDE)
-            });
-            $("#discordLink").on("click", function () {
-                if (!_0x1281F) {
-                    return
-                };
-                firebase.auth().currentUser.getIdToken().then((_0x111D7) => {
-                    window.open("https://accounts.gota.io/api/v1/options/discord/redirect?token=" + _0x111D7, "popup", "width=600,height=700")
-                })
-            });
-            $("#discordUnlink").on("click", function () {
-                if (!_0x1281F) {
-                    return
-                };
-                firebase.auth().currentUser.getIdToken().then((_0x111EE) => {
-                    fetch(_0x111D7 + "/api/v1/options/discord/unlink", {
-                        method: "POST",
-                        body: JSON.stringify({
-                            token: _0x111EE
-                        }),
-                        headers: {
-                            'Content-Type': "application/json"
-                        }
-                    }).then((_0x111D7) => {
-                        return _0x111D7["json"]()
-                    }).then((_0x111D7) => {
-                        alert(_0x111D7.message)
-                    })
-                }).catch((_0x111C0) => {
-                    return _0x11AEA(_0x111C0)
-                })
-            });
-            $("#redeem-tokens").submit(function (_0x111EE) {
-                _0x111EE.preventDefault();
-                if (!_0x1281F) {
-                    return
-                };
-                if (!confirm(_0x111C0[1152])) {
-                    return
-                };
-                var _0x11205 = $("#redeem-name").val();
-                var _0x1121C = $("#redeem-spend").val();
-                firebase.auth().currentUser.getIdToken().then((_0x111EE) => {
-                    fetch(_0x111D7 + "/api/v1/options/redeem", {
-                        method: "POST",
-                        body: JSON.stringify({
-                            token: _0x111EE,
-                            name: _0x11205,
-                            spend: parseInt(_0x1121C)
-                        }),
-                        headers: {
-                            'Content-Type': "application/json"
-                        }
-                    }).then((_0x111D7) => {
-                        return _0x111D7["json"]()
-                    }).then((_0x111D7) => {
-                        alert(_0x111D7.message);
-                        if (_0x111D7.code === 200) {
-                            _0x11D6E(_0x1281F.uid)
-                        }
-                    })
-                }).catch((_0x111C0) => {
-                    return _0x11AEA(_0x111C0)
-                })
-            });
-            $(".error-banner").on("click", function () {
-                $(this).hide()
-            });
-            $("#btn-add-friend").on("click", function (_0x111EE) {
-                _0x111EE.preventDefault();
-                if (!_0x1281F) {
-                    return
-                };
-                var _0x1121C = prompt("Enter friend's UID (found above add friend button)");
-                if (!_0x1121C) {
-                    return
-                };
-                var _0x11205 = _0x1121C.replace(/\s/g, "");
-                if (typeof _0x1121C !== "string" || _0x11205.length === 0) {
-                    return alert("Please enter a valid UID")
-                };
-                firebase.auth().currentUser.getIdToken().then((_0x111EE) => {
-                    fetch(_0x111D7 + "/api/v1/social/friends", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            token: _0x111EE,
-                            target: _0x11205,
-                            action: 1
-                        })
-                    }).then((_0x111D7) => {
-                        return _0x111D7["json"]()
-                    }).then((_0x111D7) => {
-                        alert(_0x111D7.message)
-                    })
-                }).catch((_0x111C0) => {
-                    return _0x11AEA(_0x111C0, true)
-                })
-            });
-            document.getElementById("party-canvas").oncontextmenu = _0x120D8;
-            $(document).keyup(function (_0x111D7) {
-                if (_0x111D7.keyCode == 13) {
-                    var _0x111EE = $("#chat-input");
-                    if (document.activeElement.tagName != "INPUT") {
-                        var _0x11205 = _0x111EE[0];
-                        if (_0x11205) {
-                            _0x11205.setSelectionRange(_0x11205["value"].length, _0x11205["value"].length)
-                        };
-                        _0x111EE.focus()
-                    } else {
-                        if (_0x111EE.is(":focus")) {
-                            _0x111EE.blur()
-                        }
-                    }
-                }
-            });
-            $(window).bind("beforeunload", function () {
-                return "Are you sure you want to leave Gota.io?"
-            });
-            _0x12373();
-            $(".keybinds-btn").on("click", function () {
-                $(".keybinds-btn").removeClass("keybinds-btn-selected");
-                $(this).addClass("keybinds-btn-selected");
-                _0x11C9F = true
-            });
-            $("#btn-reset-keybinds").on("click", function () {
-                $(".keybinds-btn").each(function () {
-                    var _0x111D7 = $(this);
-                    var _0x111EE = _0x111D7.attr("id");
-                    if (_0x11769[_0x111EE] != null) {
-                        _0x11CB6[_0x111EE] = _0x11769[_0x111EE];
-                        _0x127AC(_0x111D7)
-                    }
-                })
-            });
-            $("#scrimmage-mode-select").on("change", function () {
-                $("#scrimmage-mode-info").children().css("display", "none");
-                $("#scrimmage-info-" + $(this).val()).css("display", "block")
-            });
-            $("#btn-queue").on("click", function () {
-                var _0x111D7 = parseInt($("#scrimmage-mode-select").val());
-                var _0x111EE = isNaN(_0x111D7) ? 0 : Math.min(Math.max(_0x111D7, 0), 100);
-                _0x12190.sendPacket(new _0x12065.sendQueue(_0x111EE));
-                $(this).blur()
-            });
-            $("#btn-leave-match").on("click", function () {
-                _0x12190.sendPacket(new _0x12065.sendLeaveMatch())
-            });
-            $("#btn-custom-create").on("click", function () {
-                _0x12190.sendPacket(new _0x12065.sendCustomGame(0));
-                $(this).blur()
-            });
-            $("#btn-custom-return").on("click", function () {
-                _0x12190.sendPacket(new _0x12065.sendCustomGame(1))
-            });
-            $("#btn-custom-start").on("click", function () {
-                _0x12190.sendPacket(new _0x12065.sendCustomGame(2))
-            });
-            $("#btn-custom-lobbies").on("click", function () {
-                _0x12190.sendPacket(new _0x12065.sendShowLobbies())
-            });
-            $("#btn-lobbies-refresh").on("click", function () {
-                _0x12190.sendPacket(new _0x12065.sendShowLobbies())
-            });
-            $("#btn-lobbies-join").on("click", function () {
-                if (_0x12459 === 0) {
-                    return
-                };
-                var _0x111EE = _0x12459;
-                var _0x11205 = "";
-                var _0x111D7 = _0x1173B[_0x111EE];
-                if (_0x111D7 == null) {
-                    return
-                };
-                if (_0x111D7.hasPasscode) {
-                    _0x11205 = prompt("Enter the password to join this game", "")
-                };
-                if (_0x11205 == null) {
-                    _0x11205 = ""
-                };
-                _0x12190.sendPacket(new _0x12065.sendJoinLobby(_0x111EE, _0x11205))
-            });
-            $("#btn-lobbies-return").on("click", function () {
-                $(".scrimmage-full").css("display", "none");
-                $(_0x111C0[649]).css("display", "block")
-            });
-            $("#scrimmage-map").on("change", function (_0x111EE) {
-                var _0x11205 = $(this).find("option:selected").val();
-                var _0x111D7 = $(this).attr("data");
-                if (_0x11205 != _0x111D7) {
-                    $("#scrimmage-map option[value='" + _0x111D7 + "']").prop("selected", true);
-                    _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.MAP, _0x11205))
-                }
-            });
-            $("#scrimmage-mapmode").on("change", function (_0x111EE) {
-                var _0x11205 = $(this).find("option:selected").val();
-                var _0x111D7 = $(this).attr("data");
-                if (_0x11205 != _0x111D7) {
-                    $("#scrimmage-mapmode option[value='" + _0x111D7 + "']").prop("selected", true);
-                    _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.MODE, _0x11205))
-                }
-            });
-            $("#scrimmage-mapsize").on("change", function (_0x111EE) {
-                var _0x11205 = $(this).find("option:selected").val();
-                var _0x111D7 = $(this).attr("data");
-                if (_0x11205 != _0x111D7) {
-                    $("#scrimmage-mapsize option[value='" + _0x111D7 + "']").prop("selected", true);
-                    _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.SIZE, _0x11205))
-                }
-            });
-            $("#scrimmage-startmass").on("change", function (_0x111EE) {
-                var _0x11205 = $(this).val();
-                var _0x111D7 = $(this).attr("data");
-                if (isNaN(_0x11205)) {
-                    $(this).val(_0x111D7);
-                    return
-                };
-                _0x11205 = Math.max(1, Math.min(parseInt(_0x11205), 32000));
-                if (_0x11205 != _0x111D7) {
-                    $(this).val(_0x111D7);
-                    _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.STARTMASS, _0x11205))
-                }
-            });
-            $("#scrimmage-virusDensity").on("change", function (_0x111EE) {
-                var _0x11205 = $(this).val();
-                var _0x111D7 = $(this).attr("data");
-                if (isNaN(_0x11205)) {
-                    $(this).val(_0x111D7);
-                    return
-                };
-                _0x11205 = Math.max(0, Math.min(parseInt(_0x11205), 1000));
-                if (_0x11205 != _0x111D7) {
-                    $(this).val(_0x111D7);
-                    _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.VIRUS_DENSITY, _0x11205))
-                }
-            });
-            $(_0x111C0[680])[_0x111C0[155]](_0x111C0[618], function(_0x111EE) {
-                var _0x11205 = $(this)[_0x111C0[190]]();
-                var _0x111D7 = $(this)[_0x111C0[668]](_0x111C0[419]);
-                if (isNaN(_0x11205)) {
-                    $(this)[_0x111C0[190]](_0x111D7);
-                    return
-                }
-                ;_0x11205 = Math[_0x111C0[269]](0, Math[_0x111C0[251]](parseInt(_0x11205), 1000));
-                if (_0x11205 != _0x111D7) {
-                    $(this)[_0x111C0[190]](_0x111D7);
-                    _0x12190[_0x111C0[138]](new _0x12065[_0x111C0[703]](_0x1170D[_0x111C0[637]],_0x11205))
-                }
-            });
-            $("#scrimmage-respawnDelay").on("change", function (_0x111EE) {
-                var _0x11205 = $(this).val();
-                var _0x111D7 = $(this).attr("data");
-                if (isNaN(_0x11205)) {
-                    $(this).val(_0x111D7);
-                    return
-                };
-                _0x11205 = Math.max(-1, Math.min(parseInt(_0x11205), 600));
-                if (_0x11205 != _0x111D7) {
-                    $(this).val(_0x111D7);
-                    _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.RESPAWN_DELAY, _0x11205))
-                }
-            });
-            $("#scrimmage-lockteams").on("change", function (_0x111D7) {
-                var _0x111EE = $(this).prop("checked");
-                $(this).prop("checked", !_0x111EE);
-                _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.LOCK, _0x111EE == true ? 1 : 0))
-            });
-            $("#scrimmage-autoSplit").on("change", function (_0x111D7) {
-                var _0x111EE = $(this).prop("checked");
-                $(this).prop("checked", !_0x111EE);
-                _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.AUTOSPLIT, _0x111EE == true ? 1 : 0))
-            });
-            $("#scrimmage-public").on("change", function (_0x111D7) {
-                var _0x111EE = $(this).prop("checked");
-                $(this).prop("checked", !_0x111EE);
-                _0x12190.sendPacket(new _0x12065.sendCustomGameUpdate(_0x1170D.PUBLIC, _0x111EE == true ? 1 : 0))
-            });
-            $("#scrimmage-password").on("change", function (_0x111D7) {
-                var _0x11205 = $(this).prop("checked");
-                $(this).prop("checked", !_0x11205);
-                var _0x111EE = "";
-                if (_0x11205) {
-                    _0x111EE = prompt("Enter a password to join your game (32 max characters)", "")
-                };
-                if (_0x111EE == null) {
-                    _0x111EE = ""
-                };
-                _0x12190.sendPacket(new _0x12065.sendCustomGameUpdateString(_0x1170D.PASSWORD, _0x111EE))
-            });
-            $("#scrimmage-name").on("click", function (_0x111D7) {
-                if (!_0x12190.isPartyLeader()) {
-                    return
-                };
-                var _0x111EE = prompt("Enter a new name for your game (32 max characters)", $(this).text());
-                if (_0x111EE != null) {
-                    _0x12190.sendPacket(new _0x12065.sendCustomGameUpdateString(_0x1170D.NAME, _0x111EE))
-                }
-            })
-        }
-        function _0x11DF8() {
-            if (window.grecaptcha === undefined) {
-                return
-            };
-            _0x113BA = window.grecaptcha;
-            window.grecaptcha = undefined;
-            _0x113BA.ready(function () {})
-        }
-
-        function _0x118C2() {
-            _0x113BA.execute("6LcycFwUAAAAANrun52k-J1_eNnF9zeLvgfJZSY3", {
-                action: "login"
-            }).then(function (_0x111D7) {
-                _0x12190.sendPacket(new _0x12065.sendCaptcha(_0x111D7));
-                document.body.classList.add("hide-captcha-badge");
-                if (!_0x12190.spectate) {
-                    _0x12190.play()
-                } else {
-                    _0x12190.spec()
-                }
-            })
-        }
-        function _0x11D57() {
-            _0x11935(function (_0x111D7) {
-                $("#" + _0x111D7).spectrum({
-                    color: _0x126F4[_0x111D7],
-                    preferredFormat: "hex",
-                    showInput: true,
-                    showAlpha: true,
-                    clickoutFiresChange: false,
-                    change: function (_0x111EE) {
-                        _0x126F4[_0x111D7] = _0x111EE.toRgbString();
-                        _0x1238A(_0x111D7, _0x126F4[_0x111D7])
-                    }
-                })
-            });
-            $("#uiGameBackgroundColor").spectrum("option", "showAlpha", false);
-            $("#uiGameBorderColor").spectrum("option", "showAlpha", false);
-            $("#pFoodColors").spectrum({
-                preferredFormat: "hex",
-                showInput: true,
-                chooseText: "Add",
-                flat: true,
-                clickoutFiresChange: false,
-                change: function (_0x111D7) {
-                    if (!_0x12020.cThemeEnabled) {
-                        _0x1191E()
-                    };
-                    var _0x111EE = _0x111D7.toHexString();
-                    if (!_0x126F4._FoodColors.includes(_0x111EE)) {
-                        _0x126F4._FoodColors.push(_0x111EE);
-                        _0x12795()
-                    }
-                }
-            })
-        }
-        function _0x12795() {
-            var _0x11205 = $("#food-color-list");
-            _0x11205.empty();
-            if (_0x126F4._FoodColors.length == 0) {
-                _0x12345();
-                return
-            };
-            try {
-                for (var _0x111EE in _0x126F4._FoodColors) {
-                    var _0x111D7 = _0x126F4._FoodColors[_0x111EE];
-                    _0x11205.append("<div c='" + _0x111D7 + "' style='background:" + _0x111D7 + ";color:" + _0x11C2C(_0x111D7) + ";'><span>" + _0x111D7 + "</span><div><button class='btn-food-color'>X</button></div></div>")
-                };
-                $(".btn-food-color").on("click", function () {
-                    var _0x11205 = $(this).parents().eq(1).attr("c");
-                    var _0x111D7, _0x111EE;
-                    while ((_0x111D7 = _0x126F4._FoodColors.indexOf(_0x11205)) !== -1) {
-                        _0x126F4._FoodColors.splice(_0x111D7, 1);
-                        _0x111EE = true
-                    };
-                    if (_0x111EE) {
-                        _0x12795()
-                    }
-                })
-            } catch (e) {
-                _0x126F4._FoodColors = [];
-                _0x11205.empty()
-            };
-            _0x12345()
-        }
-        function _0x12345() {
-            _0x116DF = [];
-            for (var _0x111D7 of _0x126F4._FoodColors) {
-                _0x116DF.push(_0x1214B.utils.string2hex(_0x111D7))
-            };
-            for (var _0x111EE in _0x12190.foodObjects) {
-                _0x12190.foodObjects[_0x111EE].needsPixiUpdate = true
-            }
-        }
-
-        function _0x112A6(_0x11205) {
-            var _0x111EE = $(_0x111C0[1210]);
-            _0x11C9F = false;
-            if (_0x111EE.size() == 0) {
-                return
-            };
-            var _0x111D7 = _0x111EE[_0x111C0[1211]]();
-            _0x111EE.removeClass("keybinds-btn-selected");
-            if (_0x11205 != 27) {
-                _0x11CB6[_0x111D7.attr("id")] = _0x11205
-            } else {
-                _0x11CB6[_0x111D7.attr("id")] = -1
-            };
-            _0x127AC(_0x111D7)
-        }
-
-        function _0x127AC(_0x111D7) {
-            var _0x111EE = _0x11CB6[_0x111D7.attr("id")];
-            _0x111D7.html(_0x11CE4(_0x111EE))
-        }
-
-        function _0x11CE4(_0x111D7) {
-            return _0x111D7 > 0 ? _0x11CCD[_0x111D7].toUpperCase() :"&nbsp;"
-        }
-
-        function _0x11D9C() {
-            var _0x111D7 = document.getElementById("logo");
-            if (_0x12020.cDisableEventSkins || !_0x11894.enabled) {
-                _0x111D7.style.backgroundImage = "url('images/logo.png')"
-            } else {
-                if (_0x11894.enabled) {
-                    _0x111D7.style.backgroundImage = "url('images/events/" + _0x11894.key + "/logo.png')"
-                }
-            }
-        }
-        function _0x11D85() {
-            _0x11E3D();
-            _0x11838 = {};
-            gifEmoteList = {};
-            for (var _0x111EE in _0x122D2) {
-                var _0x111D7 = _0x122D2[_0x111EE];
-                $(".emote-list").append("<li><img name='" + _0x111D7 + "' title='" + _0x111D7 + "' src='https://gota.io/emotes/" + _0x111D7 + ".png' /></li>");
-                _0x11838[_0x111D7] = true
-            };
-            for (var _0x111EE in _0x11A8E) {
-                var _0x111D7 = _0x11A8E[_0x111EE];
-                $(".gif-list").append("<li><img name='" + _0x111D7 + "' title='" + _0x111D7 + "' src='https://gota.io/emotes/gifs/" + _0x111D7 + ".gif' /></li>");
-                gifEmoteList[_0x111D7] = true
-            };
-            for (var _0x111EE = 0; _0x111EE < _0x1184F.length; _0x111EE++) {
-                var _0x11233 = _0x1184F[_0x111EE];
-                $("#spEffect").append('<option value="' + (_0x111EE + 1) + '">' + _0x11FAD(_0x11233) + "</option>");
-                _0x11866[_0x111EE] = _0x11821;
-                var _0x1121C = new Image();
-                _0x1121C.src = "images/ejected_mass_skins/" + _0x11233 + ".png";
-                _0x1121C.index = _0x111EE;
-                _0x1121C.addEventListener("load", function () {
-                    _0x11866[this.index] = _0x1214B.Texture.from(this)
-                })
-            };
-            if (_0x11894.enabled && _0x11894.customEjectedMass) {
-                _0x118AB = new Image();
-                _0x118AB.src = "images/events/" + _0x11894.key + "/ejected_mass.png"
-            };
-            _0x11DCA();
-            for (var _0x111EE = 0; _0x111EE < _0x11F68.length; _0x111EE++) {
-                var _0x11205 = _0x111EE;
-                gifFrames({
-                    url: "images/effects/" + _0x11F68[_0x11205] + ".gif",
-                    frames: "all",
-                    cumulative: false,
-                    outputType: "canvas"
-                }).then(function (_0x111D7) {
-                    var _0x111EE = new _0x11AA5();
-                    _0x111EE.loadFromFrameData(_0x111D7);
-                    _0x11F51[_0x11205] = _0x111EE
-                })
-            }
-        }
-        function _0x11E3D() {
-            var _0x111D7, _0x11233;
-            if (!_0x12020.cDisableEventSkins && _0x11894.enabled) {
-                _0x111D7 = "images/events/" + _0x11894.key;
-                _0x11233 = "/spike_mother_happy.png"
-            } else {
-                _0x111D7 = "images";
-                _0x11233 = "/spike_mother.png"
-            };
-            var _0x111EE = new Image();
-            _0x111EE.addEventListener("load", function () {
-                _0x1263C = _0x1214B.Texture.from(_0x111EE);
-                if (_0x12190) {
-                    for (var _0x111D7 in _0x12190.bucket) {
-                        var _0x11205 = _0x12190.bucket[_0x111D7];
-                        if (_0x11205.type == 3) {
-                            _0x11205.needsPixiUpdate = true
-                        }
-                    }
-                }
-            });
-            var _0x11205 = new Image();
-            _0x11205.addEventListener("load", function () {
-                _0x12653 = _0x1214B.Texture.from(_0x11205);
-                if (_0x12190) {
-                    for (var _0x111D7 in _0x12190.bucket) {
-                        var _0x111EE = _0x12190.bucket[_0x111D7];
-                        if (_0x111EE.type == 4) {
-                            _0x111EE.needsPixiUpdate = true
-                        }
-                    }
-                }
-            });
-            var _0x1121C = new Image();
-            _0x1121C.addEventListener("load", function () {
-                _0x1266A = _0x1214B.Texture.from(_0x1121C);
-                if (_0x12190) {
-                    for (var _0x111D7 in _0x12190.bucket) {
-                        var _0x111EE = _0x12190.bucket[_0x111D7];
-                        if (_0x111EE.type == 4) {
-                            _0x111EE.needsPixiUpdate = true
-                        }
-                    }
-                }
-            });
-            _0x111EE.src = _0x111D7 + "/spike.png";
-            _0x11205.src = _0x111D7 + "/spike_mother.png";
-            _0x1121C.src = _0x111D7 + _0x11233
-        }
-        const _0x11558 = {
-            "cDisableAA": function () {
-                if (_0x12162) {
-                    $("#performance-refresh").css("display", "table-row")
-                }
-            },
-            "sRenderType": function () {
-                if (_0x12162) {
-                    $("#performance-refresh").css("display", "table-row")
-                }
-            },
-            "cHideId": function () {
-                var _0x111D7 = _0x12020.cHideId ? "none" : "block";
-                document.getElementById(_0x111C0[1240]).style["display"] = _0x111D7
-            },
-            "cHideServer": function () {
-                var _0x111D7 = _0x12020.cHideServerDisplay ? "none" : "block";
-                document.getElementById(_0x111C0[1241]).style["display"] = _0x111D7
-            },
-            
-            "cTransCells": function () {
-                _0x1145B.alpha = _0x12020.cTransCells ? 0.5 : 1.0
-            },
-            "cColoredCellCount": function () {
-                _0x12190.updateCellCounter(_0x117C5.playerCellCount, true)
-            },
-            "cHideChat": function () {
-                var _0x111D7 = _0x12020.cHideChat ? "none" : "block";
-                $("#chat-panel").css("display", _0x111D7)
-            },
-            "cHideMinimap": function () {
-                var _0x111D7 = _0x12020.cHideMinimap ? "none" : "block";
-                $("#minimap-panel").css("display", _0x111D7)
-            },
-            "sScorePanel": function () {
-                switch (_0x12020[_0x111C0[1247]]) {
-                case "0":
-                    _0x123B8.style["display"] = "none";
-                    break;
-                case _0x111C0[727]:
-                    _0x123B8.style["display"] = _0x111C0[1246];
-                    break;
-                case _0x111C0[52]:
-                    _0x123B8.style["display"] = "inline-block";
-                    break
-                }
-            },
-            "cHideLeaderboard": function () {
-                var _0x111D7 = _0x12020.cHideLeaderboard ? "none" : "block";
-                $("#leaderboard-panel").css("display", _0x111D7)
-            },
-            "cHideExtraPanel": function () {
-                var _0x111D7 = _0x12020.cHideExtraPanel ? "none" : "block";
-                $("#extra-panel").css("display", _0x111D7)
-            },
-            "cShowCoordinates": function () {
-                var _0x111D7 = _0x12020.cShowCoordinates ? "block" : "none";
-                $("#minimap-coordinates").css("display", _0x111D7);
-                _0x12373()
-            },
-            "cDisableAutoZoom": function () {
-                if (_0x12020.cDisableAutoZoom) {
-                    _0x12190.scale_base = 0.2 * Math.max(_0x1138C.height / 1080, _0x1138C.width / 1920)
-                }
-            },
-            "cThemeEnabled": function () {
-                if (!_0x12020.cThemeEnabled) {
-                    _0x1235C();
-                    _0x11935(function (_0x111D7) {
-                        $("#" + _0x111D7).spectrum("disable")
-                    })
-                } else {
-                    _0x11935(function (_0x111D7) {
-                        $("#" + _0x111D7).spectrum("enable")
-                    })
-                }
-            },
-            "cShowBorder": function () {
-                _0x11AD3()
-            },
-            "cDisableEventSkins": function () {
-                if (_0x11894.enabled) {
-                    $("body").toggleClass("event-" + _0x11894.key)
-                };
-                _0x11E3D();
-                _0x11D9C()
-            },
-            "cResizableChat": function () {
-                $("#chat-resize").css("display", _0x12020.cResizableChat ? "block" : "none")
-            },
-            "sShowNames": function () {
-                _0x12037.levelNames = _0x121D5[_0x12020.sShowNames]
-            },
-            "sShowSkins": function () {
-                _0x12037.levelSkins = _0x121D5[_0x12020.sShowSkins]
-            },
-            "sMassType": function () {
-                _0x12037.massType = _0x11F0C[_0x12020.sMassType]
-            },
-            "sTextOutlines": function () {
-                _0x12037.textOutlineSize = _0x126DD[_0x12020.sTextOutlines];
-                for (var _0x111D7 in _0x12190.playerRegistry.bucket) {
-                    var _0x111EE = _0x12190.playerRegistry.bucket[_0x111D7];
-                    if (_0x111EE.nameCache) {
-                        _0x111EE.nameCache.style.strokeThickness = _0x12037.textOutlineSize
-                    };
-                    _0x12190.playerRegistry.updatePlayer(_0x111EE)
-                };
-                _0x125C9.buildSizeCache()
-            },
-            "sQuality": function () {
-                var _0x111D7 = _0x12037.resolution;
-                _0x12037.resolution = _0x11ABC[_0x12020.sQuality];
-                if (_0x111D7 !== _0x12037.resolution) {
-                    $(window).trigger("resize")
-                }
-            },
-            "uiForegroundColor": function (_0x111D7) {
-                if (_0x12190) {
-                    _0x12190.drawParty()
-                };
-                $(".fg-interface-color").css("color", _0x111D7);
-                $(".interface-color").css("color", _0x111D7);
-                $(".gota-btn").css("color", _0x111D7).css("border-color", _0x111D7);
-                $(".popup-panel").css("color", _0x111D7);
-                $(".main").css("color", _0x111D7);
-                $(".main-bottom-stats").css("border-color", _0x111D7)
-            },
-            "uiBackgroundColor": function (_0x111D7) {
-                $(".hud-panel .interface-color").css("background-color", _0x111D7)
-            },
-            "uiButtonColor": function (_0x111D7) {
-                $(".gota-btn").css("background-color", _0x111D7)
-            },
-            "uiBorderColor": function (_0x111D7) {
-                $(".ui-pane").css("border-color", _0x111D7);
-                $("#chat-tab-container").css("border-color", _0x111D7);
-                $(".chat-tab").css("border-color", _0x111D7)
-            },
-            "uiMenuBackgroundColor": function (_0x111D7) {
-                $(".main-panel").css("background-color", _0x111D7);
-                $(".popup-panel").css("background-color", _0x111D7);
-                $(".options-container").css("background-color", _0x111D7)
-            },
-            "uiMenuTitleBackgroundColor": function (_0x111D7) {
-                $(".menu-title").css("background-color", _0x111D7)
-            },
-            "uiMenuSubBackgroundColor": function (_0x111D7) {
-                $(".menu-sub-bg").css("background-color", _0x111D7);
-                $(".server-active").css("background-color", _0x111D7);
-                $("#server-content").css("background-color", _0x111D7)
-            },
-            "uiMenuSubBackground2Color": function (_0x111D7) {
-                $(".menu-sub-bg2").css("background-color", _0x111D7);
-                $(".server-table tbody").css("background-color", _0x111D7)
-            },
-            "uiPartyLeaderColor": function (_0x111D7) {
-                if (_0x12190) {
-                    _0x12190.drawParty()
-                }
-            },
-            "uiGameColorSuccess": function (_0x111D7) {
-                $("#social-friends-online-count").css("color", _0x111D7)
-            },
-            "uiGameBackgroundColor": function (_0x111D7) {
-                document["body"].style.background = _0x111D7
-            },
-            "uiGameBorderColor": function () {
-                _0x11AD3()
-            },
-            "rUiScale": function (_0x111D7) {
-                _0x12020.rUiScale = Math.min(Math.max(_0x111D7, 0.5), 1.25);
-                $("#uiScale").val(Number.parseFloat(_0x12020.rUiScale * 100).toFixed(0));
-                $(".ui-scale").css("transform", "scale(" + _0x12020.rUiScale + ")")
-            },
-            "rReconnectPeriod": function (_0x111D7) {
-                _0x12020[_0x111C0[366]] = Math.min(Math.max(_0x111D7, 0), 10);
-                $(_0x111C0[986]).val(_0x12020[_0x111C0[366]])
-            },
-            "rAnimationDelay": function (_0x111D7) {
-                _0x12020.rAnimationDelay = Math.min(Math.max(_0x111D7, 1), 250);
-                $("#animationDelay").val(_0x12020.rAnimationDelay)
-            },
-            "rViewDistance": function (_0x111D7) {
-                _0x12020rViewDistance = Math.min(Math.max(_0x111D7, 50), 150);
-                $("#viewDistance").val(_0x12020rViewDistance);
-                _0x12190.sendOptions()
-            },
-            "rBorderSize": function (_0x111D7) {
-                _0x126F4.rBorderSize = Math.min(Math.max(_0x111D7, 1), 256);
-                $("#borderSize").text(_0x126F4.rBorderSize);
-                _0x11AD3()
-            },
-            "rBackgroundOpacity": function (_0x111D7) {
-                _0x126F4.rBackgroundOpacity = Math.min(Math.max(_0x111D7, 0), 1);
-                $("#backgroundOpacity").text(Number.parseFloat(_0x126F4.rBackgroundOpacity * 100).toFixed(0));
-                document.getElementById("canvas-background").style.opacity = _0x126F4.rBackgroundOpacity
-            },
-            "aCustomBackground": function (_0x111D7) {
-                document.getElementById("canvas-background").style.backgroundImage = "url('" + _0x111D7 + "')";
-                document.getElementById("canvas-background").style.backgroundSize = "100% 100%"
-            },
-            "aCustomSpike": function (_0x1121C) {
-                if (_0x116C8.aCustomSpike) {
-                    _0x116C8.aCustomSpike.destroy()
-                };
-                _0x116C8.aCustomSpike = null;
-                for (var _0x111EE in _0x12190.bucket) {
-                    var _0x11205 = _0x12190.bucket[_0x111EE];
-                    if (_0x11205.type == 3) {
-                        _0x11205.needsPixiUpdate = true
-                    }
-                };
-                if (_0x1121C.length == 0) {
-                    return
-                };
-                var _0x111D7 = new Image();
-                _0x111D7.crossOrigin = "";
-                _0x111D7.addEventListener("load", function () {
-                    _0x116C8.aCustomSpike = _0x1214B.Texture.from(_0x111D7)
-                });
-                _0x111D7.addEventListener("error", function () {
-                    _0x12190.selfMsg(_0x111C0[1291])
-                });
-                _0x111D7.src = _0x1121C
-            },
-            "aCustomMother": function (_0x1121C) {
-                if (_0x116C8.aCustomMother) {
-                    _0x116C8.aCustomMother.destroy()
-                };
-                _0x116C8.aCustomMother = null;
-                for (var _0x111EE in _0x12190.bucket) {
-                    var _0x11205 = _0x12190.bucket[_0x111EE];
-                    if (_0x11205.type == 4) {
-                        _0x11205.needsPixiUpdate = true
-                    }
-                };
-                if (_0x1121C.length == 0) {
-                    return
-                };
-                var _0x111D7 = new Image();
-                _0x111D7.crossOrigin = "";
-                _0x111D7.addEventListener("load", function () {
-                    _0x116C8.aCustomMother = _0x1214B.Texture.from(_0x111D7)
-                });
-                _0x111D7.addEventListener("error", function () {
-                    _0x12190.selfMsg("Unable to load custom theme mother cell.")
-                });
-                _0x111D7.src = _0x1121C
-            }
-        };
-        function _0x12373() {
-            if (!_0x12020.cShowCoordinates) {
-                $("#minimap-canvas").css({
-                    "border-top": "0"
-                });
-                $("#minimap-panel").css({
-                    "height": "250px"
-                })
-            } else {
-                $("#minimap-canvas").css({
-                    "border-top": "2px solid rgba(255, 255, 255, .2)"
-                });
-                $("#minimap-panel").css({
-                    "height": "270px"
-                })
-            }
-        }
-
-        function _0x11E54() {
-            _0x1253F();
-            $("#btn-chg-ln").on("click", function () {
-                if (!_0x11EB0) {
-                    return
-                };
-                var _0x111EE = prompt("Enter new locked name!");
-                if (!_0x111EE) {
-                    return
-                };
-                var _0x111D7 = null;
-                if (typeof _0x111EE !== "string") {
-                    _0x111D7 = "Please enter a valid name!"
-                };
-                if (_0x111EE.length < 2) {
-                    _0x111D7 = "Locked names must be 2 or more characters long."
-                };
-                if (_0x111EE.length > 20) {
-                    _0x111D7 = "Locked names must be 20 or less characters long."
-                };
-                if (_0x111D7 !== null) {
-                    alert(_0x111D7);
-                    return
-                };
-                _0x111EE = _0x111EE.trim();
-                if (confirm("You are about to change your locked name to: '" + _0x111EE + "'.\nLocked names can only be changed once per week.\n\nAre you sure you wish to continue?")) {
-                    _0x12190.sendPacket(new _0x12065.sendLockedNameChange(_0x111EE))
-                }
-            });
-            $("#btn-updateSP").on("click", function () {
-                _0x127DA()
-            });
-            $("#btn-subpanel-rules").on("click", function () {
-                _0x126C6.rules = true;
-                _0x127F1()
-            })
-        }
-        function _0x1253F() {
-            _0x127F1();
-            $("#spNameColor").spectrum({
-                color: _0x126C6.nameColor,
-                showAlpha: false,
-                showInput: true,
-                preferredFormat: "rgb"
-            });
-            $("#spChatColor").spectrum({
-                showPaletteOnly: true,
-                showPalette: true,
-                color: _0x114A0[_0x126C6.chatColor],
-                palette: _0x114A0
-            });
-            $("#spSkinName").val(_0x126C6.skinName);
-            $("#spLowerName").prop("checked", _0x126C6.lowerName);
-            $("#spEffect select").val(_0x126C6.effect);
-            $("#spNameFont select").val(_0x126C6.nameFont)
-        }
-
-        function _0x127DA(_0x1121C) {
-            _0x126C6.skinName = $("#spSkinName").val().toLowerCase();
-            _0x126C6.lowerName = $("#spLowerName").prop("checked");
-            _0x126C6.nameColor = $("#spNameColor").spectrum("get").toRgb();
-            var _0x111EE = $("#spChatColor").spectrum("get").toHexString().toUpperCase();
-            var _0x111D7 = 0;
-            for (var _0x11205 = 0; _0x11205 < _0x114A0.length; _0x11205++) {
-                if (_0x114A0[_0x11205] == _0x111EE) {
-                    _0x111D7 = _0x11205;
-                    break
-                }
-            };
-            _0x126C6.chatColor = _0x111D7;
-            _0x126C6.effect = parseInt($("#spEffect").val());
-            _0x126C6.nameFont = parseInt($("#spNameFont").val());
-            _0x12190.sendPacket(new _0x12065.sendSubPanel(_0x1121C))
-        }
-        function _0x127F1() {
-            if (_0x11EB0 || _0x12190.subPanelOverride) {
-                $("#btn-cellpanel").prop("disabled", false);
-                if (_0x11EB0) {
-                    $(".subpanel-name-dashboard").css("display", "")
-                } else {
-                    $(".subpanel-name-dashboard").css("display", "none")
-                };
-                if (_0x126C6.rules) {
-                    $("#subpanel-rules").css("display", "none");
-                    $("#subpanel-content").css("display", "block")
-                } else {
-                    $("#subpanel-content").css("display", "none");
-                    $("#subpanel-rules").css("display", "block")
-                }
-            } else {
-                $("#btn-cellpanel").prop("disabled", true)
-            }
-        }
-        function _0x11D6E(_0x111D7) {
-            if (!_0x12190.accountListeners.loadSubPanel) {
-                _0x12190.accountListeners.loadSubPanel = firebase.firestore().collection("accounts").doc(_0x111D7).onSnapshot((_0x111D7) => {
-                    if (!_0x111D7.exists || !_0x111D7.data().locked) {
-                        _0x11EB0 = false;
-                        if ($("#main-subpanel").css("display") !== "none") {
-                            _0x111EE("main-servers")
-                        }
-                    } else {
-                        _0x11EB0 = true;
-                        $("#spLockedName").html(_0x111D7.data().name);
-                        if (_0x111D7.data().lastChange !== undefined) {
-                            $("#btn-chg-ln").attr("title", "Last Changed: " + new Date(_0x111D7.data().lastChange).toLocaleString())
-                        };
-                        if (_0x111D7.data().expiry !== null) {
-                            $("#spExpiry").html(new Date(_0x111D7.data().expiry.seconds * 1000).toLocaleString())
-                        } else {
-                            $("#spExpiry").html(_0x111C0[1328])
-                        }
-                    };
-                    _0x127F1();
-                    _0x12190.accountListeners.loadSubPanel();
-                    _0x12190.accountListeners.loadSubPanel = null
-                }, (_0x111D7) => {
-                    _0x12190.accountListeners.loadSubPanel();
-                    _0x12190.accountListeners.loadSubPanel = null
-                })
-            }
-        }
-        function _0x124CC(_0x1121C, _0x111EE, _0x1124A, _0x111D7, _0x11261, _0x11205, _0x11278, _0x1128F, _0x11233) {
-            this.name = _0x1121C;
-            this.ip = _0x111EE;
-            this.players = _0x1124A;
-            this.bots = _0x111D7;
-            this.playerText = _0x11261;
-            this.mode = _0x11205;
-            this.region = _0x11278;
-            this.ssl = _0x1128F;
-            this.order = _0x11233
-        }
-        function _0x11E0F() {
-            $("#servers-body-eu").html("");
-            $("#servers-body-na").html("");
-            $("#servers-body-ap").html("");
-            for (var _0x111D7 in _0x124FA) {
-                for (var _0x111EE in _0x124FA[_0x111D7]) {
-                    var _0x1121C = _0x124FA[_0x111D7][_0x111EE];
-                    var _0x11233 = _0x1121C.bots > 0 ? ' title="Players: ' + _0x1121C.players + "&#10;Bots: " + _0x1121C.bots + '"' : "";
-                    $("#servers-body-" + _0x1121C.region).append('<tr id="s_' + _0x1121C.name + '" class="server-row" server="' + _0x1121C.name + '"><td class="server-table-name">' + _0x1121C.name + '</td><td class="server-table-players"' + _0x11233 + ">" + _0x1121C.playerText + '</td><td class="server-table-mode">' + _0x1121C.mode + "</td></tr>")
-                }
-            };
-            for (var _0x111EE in _0x11205) {
-                var _0x1121C = _0x11205[_0x111EE];
-                $("#servers-body-" + _0x1121C.region).prepend('<tr id="s_' + _0x1121C.name + '" class="account-server server-row" server="' + _0x1121C.name + '"><td class="server-table-name">' + _0x1121C.name + '</td><td class="server-table-players">' + _0x1121C.playerText + '</td><td class="server-table-mode">' + _0x1121C.mode + "</td></tr>")
-            };
-            $(".server-row").on("click", function () {
-                _0x1249E($(this).attr("server"))
-            })
-        }
-        function _0x119BF(_0x111D7) {
-            for (var _0x111EE in _0x11205) {
-                if (_0x111D7.toLowerCase() === _0x111EE.toLowerCase()) {
-                    return _0x11205[_0x111EE]
-                }
-            };
-            return null
-        }
-        function _0x11A77(_0x111D7) {
-            for (var _0x111EE in _0x124FA) {
-                for (var _0x11205 in _0x124FA[_0x111EE]) {
-                    if (_0x11205.toLowerCase() === _0x111D7.toLowerCase()) {
-                        return _0x124FA[_0x111EE][_0x11205]
-                    }
-                }
-            };
-            return null
-        }
-        function _0x1249E(_0x111D7) {
-            if (_0x12470 != null) {
-                $("#s_" + _0x12470.name).removeClass("server-selected")
-            };
-            _0x12470 = _0x11A77(_0x111D7) || (Object.keys(_0x11205).length > 0 ? _0x119BF(_0x111D7) : null);
-            if (_0x12470 != null) {
-                $("#s_" + _0x12470.name).addClass("server-selected")
-            }
-        }
-        function _0x12487(_0x111D7) {
-            _0x111D7 = _0x111D7.toLowerCase();
-            var _0x111EE = $("#server-tab-" + _0x111D7);
-            $(".server-active").css("background-color", "inherit");
-            $("#server-tab-container").children().removeClass("server-active");
-            _0x111EE.addClass("server-active");
-            $(".server-active").css("background-color", _0x126F4.uiMenuSubBackgroundColor);
-            $("#server-content").children().css("display", "none");
-            $("#servers-" + _0x111D7).css("display", "block")
-        }
-        function _0x1121C(_0x111EE, _0x1124A) {
-            var _0x1121C = 0;
-            for (tab in _0x12020._ChatTabs) {
-                var _0x11278 = _0x12020._ChatTabs[tab];
-                if ((_0x111EE & _0x11278.flags) != _0x111EE) {
-                    continue
-                };
-                var _0x11233 = $("#chat-body-" + tab + " tr").length;
-                if (_0x11233 >= _0x11278.maxMessages) {
-                    $("#chat-body-" + tab + " tr:first-child").remove()
-                };
-                var _0x111D7 = _0x1121C > 0 ? _0x1124A.cloneNode(true) : _0x1124A;
-                _0x1121C++;
-                var _0x11261 = document.createElement("tr");
-                _0x11261.appendChild(_0x111D7);
-                document.getElementById("chat-body-" + tab).appendChild(_0x11261);
-                var _0x11205 = $("#chat-container-" + tab);
-                if (_0x11205[0].scrollHeight - _0x11205[0].scrollTop < _0x11205.outerHeight() + 150) {
-                    _0x11205.scrollTop(_0x11205[0].scrollHeight)
-                }
-            }
-        }
-        function _0x1187D(_0x111D7) {
-            if (_0x111D7.length == 0) {
-                return
-            } else {
-                if (_0x111D7.charAt(0) == "/") {
-                    _0x12093(_0x111D7)
-                } else {
-                    _0x12190.sendPacket(new _0x12065.sendChat(_0x111D7, 0));
-                    _0x12511("")
-                }
-            };
-            if (_0x11472.length > 20) {
-                _0x11472.shift()
-            };
-            _0x11472.push(_0x111D7)
-        }
-        function _0x12511(_0x111D7) {
-            $("#chat-input").val(_0x111D7)
-        }
-
-        function _0x11233(_0x111D7) {
-            $("#chat-input").val(_0x119D6() + _0x111D7)
-        }
-
-        function _0x119D6() {
-            return $("#chat-input").val()
-        }
-
-        function _0x12093(_0x1121C) {
-            var _0x11233 = _0x1121C.split(" ");
-            var _0x111EE = _0x11233[0];
-            var _0x111D7 = _0x111EE.substring(1);
-            _0x12511("");
-            var _0x11205 = false;
-            Object.keys(_0x11610).findIndex((_0x111EE) => {
-                if (_0x11610[_0x111EE].triggers.findIndex((_0x111EE) => {
-                        return _0x111EE.toUpperCase() === _0x111D7.toUpperCase()
-                    }) > -1 && _0x11205 == false) {
-                    _0x11610[_0x111EE][_0x111C0[1367]](_0x11233.slice(1));
-                    _0x11205 = true;
-                    return
-                }
-            });
-            if (_0x11205 == false) {
-                _0x12190.selfMsg("Invalid command!")
-            }
-        }
-        function _0x12317() {
-            var _0x111EE = $("#chat-tab-container");
-            var _0x111D7 = $("#chat-container");
-            _0x111EE.empty();
-            _0x111D7.empty();
-            for (var _0x11205 in _0x12020._ChatTabs) {
-                var _0x1121C = _0x12020._ChatTabs[_0x11205];
-                if (_0x1121C.name.length == 0) {
-                    _0x1121C.name = "Unnamed"
-                };
-                _0x111EE.append("<li class='chat-tab' id='chat-tab-" + _0x11205 + "' name='" + _0x11205 + "'><span>" + _0x1121C.name + "</span></li>");
-                _0x111D7.append("<div class='chat-inner-container' id='chat-container-" + _0x11205 + "'><table class='chat-table'><tbody id='chat-body-" + _0x11205 + "'></tbody></table></div>")
-            };
-            $(".chat-tab").on("click", function () {
-                _0x12414($(this).attr("name"))
-            }).css("border-color", _0x126F4.uiBorderColor);
-            if (_0x12442 >= 0 && _0x12442 < _0x12020._ChatTabs.length) {
-                _0x12414(_0x12442)
-            } else {
-                _0x12414(0)
-            }
-        }
-        function _0x1232E() {
-            for (var _0x111D7 in _0x12020._ChatTabs) {
-                var _0x111EE = _0x12020._ChatTabs[_0x111D7];
-                if (!_0x111EE) {
-                    continue
-                };
-                if (_0x111EE.name.length == 0) {
-                    _0x111EE.name = "Unnamed"
-                };
-                var _0x11205 = $("#chat-tab-" + _0x111D7);
-                if (_0x11205) {
-                    _0x11205.html("<span>" + _0x111EE.name + "</span>")
-                }
-            }
-        }
-        function _0x12414(_0x111D7) {
-            $(".chat-tab").removeClass("chat-active-tab");
-            $(".chat-inner-container").removeClass("chat-active-container").css("display", "none");
-            _0x12442 = _0x111D7;
-            var _0x111EE = _0x12020._ChatTabs[_0x111D7];
-            if (!_0x111EE) {
-                return
-            };
-            $("#chat-tab-" + _0x111D7).addClass("chat-active-tab");
-            $("#chat-container-" + _0x111D7).addClass("chat-active-container").css("display", "block")
-        }
-        function _0x1135E(_0x11205 = 0) {
-            var _0x111D7 = $("#cte-tab-selector");
-            _0x111D7.empty();
-            for (var _0x111EE in _0x12020._ChatTabs) {
-                _0x111D7.append("<option value='" + _0x111EE + "'>" + _0x12020._ChatTabs[_0x111EE].name + "</option>")
-            };
-            _0x111D7.prop("selectedIndex", _0x11205);
-            _0x111D7.trigger("change")
-        }
-        function _0x114FC(_0x11205) {
-            var _0x1124A = $("#cte-tab-selector").val();
-            var _0x11233 = {
-                name: "",
-                flags: 0,
-                maxMessages: 0
-            };
-            var _0x111EE = _0x12020._ChatTabs[_0x1124A];
-            if (_0x111EE) {
-                for (var _0x1121C in _0x11233) {
-                    _0x11233[_0x1121C] = _0x111EE[_0x1121C]
-                }
-            };
-            $("#cte-tab-name").val(_0x11233.name);
-            for (var _0x11261 in _0x11541) {
-                var _0x111D7 = (_0x11541[_0x11261] & _0x11233.flags) == _0x11541[_0x11261];
-                $("#cte-type-" + _0x11261.toLowerCase()).prop("checked", _0x111D7)
-            };
-            $("#cte-max-messages").val(_0x11233.maxMessages)
-        }
-        function _0x1152A(_0x111D7) {
-            var _0x1121C = $("#cte-tab-selector").val();
-            var _0x11278 = _0x12020._ChatTabs[_0x1121C];
-            if (!_0x11278) {
-                return
-            };
-            var _0x11261 = _0x11278.name;
-            var _0x1124A = $("#cte-tab-name").val();
-            if (_0x1124A.length == 0) {
-                return
-            };
-            var _0x11205 = _0x1124A != _0x11261;
-            var _0x111EE = 0;
-            var _0x11233 = parseInt($("#cte-max-messages").val());
-            for (var _0x1128F in _0x11541) {
-                if ($("#cte-type-" + _0x1128F.toLowerCase()).prop("checked")) {
-                    _0x111EE += _0x11541[_0x1128F]
-                }
-            };
-            _0x11278.name = _0x1124A;
-            _0x11278.flags = _0x111EE;
-            _0x11278.maxMessages = _0x11233;
-            if (_0x11205) {
-                _0x1135E(_0x1121C);
-                _0x1232E()
-            }
-        }
-        function _0x114CE() {
-            var _0x111D7 = {
-                name: "New",
-                flags: 0,
-                maxMessages: 100
-            };
-            _0x12020._ChatTabs.push(_0x111D7);
-            _0x1135E(_0x12020._ChatTabs.length - 1);
-            _0x12317()
-        }
-        function _0x114E5() {
-            var _0x111D7 = $("#cte-tab-selector").val();
-            var _0x111EE = _0x12020._ChatTabs[_0x111D7];
-            if (!_0x111EE) {
-                return
-            };
-            _0x12020._ChatTabs.splice(_0x111D7, 1);
-            _0x1135E();
-            _0x12317()
-        }
-        function _0x11513(_0x11233) {
-            var _0x111D7 = parseInt($("#cte-tab-selector").val());
-            var _0x1121C = _0x12020._ChatTabs[_0x111D7];
-            if (!_0x1121C) {
-                return
-            };
-            var _0x111EE;
-            if (_0x11233) {
-                _0x111EE = _0x111D7 - 1
-            } else {
-                _0x111EE = _0x111D7 + 1
-            };
-            var _0x11205 = _0x12020._ChatTabs[_0x111EE];
-            if (!_0x11205) {
-                return
-            };
-            var _0x11205 = _0x12020._ChatTabs[_0x111EE];
-            if (!_0x11205) {
-                return
-            };
-            _0x12020._ChatTabs[_0x111D7] = _0x11205;
-            _0x12020._ChatTabs[_0x111EE] = _0x1121C;
-            _0x1135E(_0x111EE);
-            _0x1232E();
-            _0x12414(_0x111EE)
-        }
-        var _0x114B7 = function (_0x111D7) {
-            _0x12009(_0x111D7, this.innerText, this.dataset.playerId, -1)
-        };
-        var _0x120D8 = function (_0x111D7) {
-            var _0x1121C = _0x111D7.offsetY;
-            var _0x11205 = Math.floor(_0x1121C / 20);
-            if (_0x1121C % 20 < 5) {
-                return
-            };
-            var _0x111EE = _0x12190.party[_0x11205];
-            if (_0x111EE == null) {
-                return
-            };
-            _0x12009(_0x111D7, _0x111EE.name, _0x111EE.id, _0x11205)
-        };
-        function _0x12009(_0x111D7, _0x11205, _0x111EE, _0x11233) {
-            var _0x1121C = document.getElementById(_0x111C0[1389]);
-            _0x1121C.innerText = _0x11205 || "An unnamed cell";
-            _0x11627.data("selected", _0x111EE);
-            _0x11627.data("party", _0x11233);
-            $(_0x111C0[1390]).css("display", "none");
-            if (_0x11233 == -1) {
-                $("#menu-invite").css("display", "block");
-                $("#menu-whisper").css("display", "block");
-                $("#menu-track").css("display", "block");
-                $("#menu-block").css("display", "block");
-                $("#menu-profile").css("display", "block")
-            } else {
-                $("#menu-whisper").css("display", "block");
-                $("#menu-track").css("display", "block");
-                $("#menu-profile").css("display", "block");
-                if (_0x12190.isPartyLeader()) {
-                    $("#menu-pu_pr").css("display", "block");
-                    $("#menu-promote").css("display", "block");
-                    $("#menu-kick").css("display", "block")
-                }
-            };
-            if (_0x12190.spectate) {
-                $("#menu-spectate").css("display", "block")
-            };
-            _0x11627.css("display", "block");
-            _0x11627.css("left", Math.min(_0x12190.mouseRawX, window.innerWidth - _0x11627.width()));
-            _0x11627.css("top", Math.min(_0x12190.mouseRawY, window.innerHeight - _0x11627.height()))
-        }
-        function _0x120C1(_0x111D7) {
-            return _0x111D7.replace(/</g, _0x111C0[1392]).replace(/>/g, _0x111C0[1391])
-        }
-        function _0x11F3A(_0x111EE, _0x1124A, _0x112BD, _0x112D4, _0x112A6, _0x111D7, _0x11233) {
-            var _0x11205 = ((_0x112BD - _0x12190.serverData.border.left) / _0x12190.serverData.border.width) * _0x11EF5.width;
-            var _0x1121C = ((_0x112D4 - _0x12190.serverData.border.top) / _0x12190.serverData.border.height) * _0x11EF5.height;
-            _0x111EE.beginPath();
-            _0x111EE.arc(_0x11205, _0x1121C, _0x112A6, 0, _0x1211D, false);
-            _0x111EE.fillStyle = _0x111D7;
-            _0x111EE.fill();
-            if (_0x11233) {
-                var _0x1128F = (_0x111EE.measureText(_0x1124A).width / 2);
-                var _0x11261 = _0x11205 - _0x1128F;
-                var _0x11278 = _0x1121C - 5;
-                _0x111EE.fillText(_0x1124A, _0x11261, _0x11278)
-            }
-        }
-        function _0x1156F(_0x111EE) {
-            var _0x112A6 = _0x11EC7.pivot.x - (_0x12162.stage.position.x / _0x12190.scale) + ((_0x12190.mouseRawX * _0x12037.resolution) / _0x12190.scale);
-            var _0x112BD = _0x11EC7.pivot.y - (_0x12162.stage.position.y / _0x12190.scale) + ((_0x12190.mouseRawY * _0x12037.resolution) / _0x12190.scale);
-            var _0x11278 = null;
-            var _0x11233;
-            for (var _0x11205 in _0x12190.bucket) {
-                _0x11233 = _0x12190.bucket[_0x11205];
-                if (_0x11233.size < 25) {
-                    continue
-                };
-                var _0x1128F = _0x11233[_0x111C0[234]] - _0x11233[_0x111C0[263]];
-                var _0x111D7 = _0x11233[_0x111C0[234]] + _0x11233[_0x111C0[263]];
-                var _0x1121C = _0x11233[_0x111C0[231]] - _0x11233[_0x111C0[263]];
-                var _0x11261 = _0x11233[_0x111C0[231]] + _0x11233[_0x111C0[263]];
-                if (_0x112BD > _0x111D7) {
-                    continue
-                }
-                ;if (_0x112BD < _0x1128F) {
-                    continue
-                }
-                ;if (_0x112A6 > _0x11261) {
-                    continue
-                }
-                ;if (_0x112A6 < _0x1121C) {
-                    continue
-                }
-                ;_0x11278 = _0x11233;
-                break
-            }
-            if (_0x11278 != null && _0x11278.playerId != 0 && (!_0x111EE || _0x111EE.target.id == "canvas")) {
-                var _0x1124A = _0x12190.playerRegistry.getPlayer(_0x11278.playerId);
-                if (_0x1124A != null) {
-                    _0x12009(_0x111EE, _0x1124A.name, _0x11278.playerId, -1)
-                }
-            }
-        }
-        function _0x12584(_0x111D7) {
-            if (_0x111D7.attr("id") == _0x111C0[1393] && window[_0x111C0[58]]) {
-                touch_controls.style["display"] = "none"
-            };
-            if (_0x111D7.css("display") == "none") {
-                _0x111D7.css("display", "block");
-                _0x111D7.animate({
-                    opacity: 1
-                }, 500)
-            }
-        }
-        function _0x11B5D(_0x111D7) {
-            if (_0x111D7.attr("id") == _0x111C0[1393] && window[_0x111C0[58]]) {
-                touch_controls.style["display"] = "block"
-            };
-            if (_0x111D7.css("display") == "block" && _0x111D7.css("opacity") == 1) {
-                _0x111D7.animate({
-                    opacity: 0
-                }, 500, function () {
-                    _0x111D7.css("display", "none")
-                })
-            }
-        }
-        function _0x12750(_0x111D7) {
-            if (_0x111D7.css("display") == "block" && _0x111D7.css("opacity") == 1) {
-                _0x11B5D(_0x111D7)
-            } else {
-                if (_0x111D7.css("display") == "none") {
-                    _0x12584(_0x111D7)
-                }
-            }
-        }
-        function _0x11B74() {
-            $(".popup-panel").each(function () {
-                _0x11B5D($(this))
-            })
-        }
-        function _0x11C71(_0x111D7) {
-            return _0x111D7.css("display") === "none"
-        }
-        function _0x1256D() {
-            _0x11BB9.show();
-            if (_0x12190.party.length == 0 || _0x12020.cHidePartyPanel) {
-                _0x117C5.partyPanel.css("display", "none")
-            };
-            if (_0x12020.cHideChat) {
-                $("#chat-panel").css("display", "none")
-            };
-            if (_0x12020.cHideMinimap) {
-                $("#minimap-panel").css("display", "none")
-            }
-        }
-        function _0x11B46() {
-            _0x11BB9.hide()
-        }
-        function _0x12556() {
-            $("#guest").hide();
-            $("#account-loader").show()
-        }
-        function _0x11B2F() {
-            $("#authed").hide();
-            $("#account-loader").hide();
-            $("#no_cookie_consent").hide();
-            $("#guest").show()
-        }
-        function _0x11586(_0x111D7) {
-            var _0x111EE = _0x111D7.attr("id");
-            _0x12020[_0x111EE] = _0x111D7.prop("checked");
-            _0x1238A(_0x111EE)
-        }
-        function _0x115B4(_0x111D7) {
-            var _0x111EE = _0x111D7.attr("id");
-            _0x12020[_0x111EE] = _0x111D7.val();
-            _0x1238A(_0x111EE, _0x111D7.val())
-        }
-        function _0x1159D(_0x111D7) {
-            var _0x111EE = _0x111D7.attr("id");
-            _0x1238A(_0x111EE, _0x111D7.val())
-        }
-        function _0x1238A(_0x111D7, _0x111EE) {
-            var _0x111C0 = _0x11558[_0x111D7];
-            if (_0x111C0 != null) {
-                _0x111C0(_0x111EE)
-            }
-        }
-        function _0x12528(_0x111C0, _0x111D7) {
-            if (_0x111D7 != null) {
-                _0x126F4[_0x111C0] = _0x111D7;
-                _0x1238A(_0x111C0, _0x111D7)
-            }
-        }
-        function _0x123A1() {
-            if (!_0x1163E.consented) {
-                return
-            };
-            _0x12020.iChatWidth = $("#chat-panel").css("width");
-            _0x12020.iChatHeight = $("#chat-panel").css("height");
-            window.localStorage.setItem("options", JSON.stringify(_0x12020));
-            window.localStorage.setItem("keybinds", JSON.stringify(_0x11CB6));
-            window.localStorage.setItem("name", $("#name-box").val());
-            window.localStorage.setItem("theme", JSON.stringify(_0x126F4));
-            window.localStorage.setItem("subpanel", JSON.stringify(_0x126C6))
-        }
-        function _0x11DB3() {
-            if (!_0x1163E.consented) {
-                return
-            };
-            var _0x112A6 = window.localStorage.getItem("theme");
-            if (_0x112A6) {
-                _0x11E6B(_0x112A6)
-            };
-            var _0x11233 = window.localStorage.getItem("keybinds");
-            if (_0x11233) {
-                _0x11233 = JSON.parse(_0x11233);
-                for (var _0x11205 in _0x11233) {
-                    if (_0x11233[_0x11205] != null && Number.isInteger(_0x11233[_0x11205])) {
-                        _0x11CB6[_0x11205] = _0x11233[_0x11205];
-                        _0x127AC($("#" + _0x11205))
-                    }
-                }
-            };
-            var _0x11261 = window.localStorage.getItem("options");
-            if (_0x11261) {
-                _0x11261 = JSON.parse(_0x11261);
-                for (var _0x1121C in _0x12020) {
-                    if ((_0x1121C in _0x11261) === false) {
-                        _0x11261[_0x1121C] = _0x12020[_0x1121C]
-                    }
-                }
-            } else {
-                _0x11261 = _0x12020
-            };
-            ;for (var _0x1121C in _0x11261) {
-                var _0x111EE = _0x1121C[_0x111C0[248]](0);
-                if (_0x111EE == _0x111C0[1205]) {
-                    if (_0x11261[_0x1121C] == true) {
-                        var _0x111D7 = $(_0x111C0[13] + _0x1121C);
-                        _0x111D7[_0x111C0[621]](_0x111C0[682], _0x11261[_0x1121C]);
-                        _0x11586(_0x111D7)
-                    }
-                } else {
-                    if (_0x111EE == "s") {
-                        var _0x11278 = $("#" + _0x1121C);
-                        _0x11278.val(_0x11261[_0x1121C]);
-                        _0x115B4(_0x11278)
-                    } else {
-                        if (_0x111EE == "i") {
-                            _0x12020[_0x1121C] = _0x11261[_0x1121C]
-                        } else {
-                            if (_0x111EE == "r") {
-                                _0x12020[_0x1121C] = _0x11261[_0x1121C];
-                                $("#" + _0x1121C).val(_0x12020[_0x1121C]);
-                                _0x1159D($("#" + _0x1121C))
-                            } else {
-                                _0x12020[_0x1121C] = _0x11261[_0x1121C]
+                }), $('.popup-panel\x20.back-button')['on']('click', function () {
+                    $('.popup-panel')['each'](function () {
+                        b4($(this));
+                    }), b5(c6);
+                }), $('#discordLink')['on']('click', function () {
+                    cu && firebase['auth']()['currentUser']['getIdToken']()['then'](eG => {
+                        window['open']('https://accounts.gota.io/api/v1/options/discord/redirect?token=' + eG, 'popup', 'width=600,height=700');
+                    });
+                }), $('#discordUnlink')['on']('click', function () {
+                    cu && firebase['auth']()['currentUser']['getIdToken']()['then'](eG => {
+                        fetch(cQ + '/api/v1/options/discord/unlink', {
+                            'method': 'POST',
+                            'body': JSON['stringify']({
+                                'token': eG
+                            }),
+                            'headers': {
+                                'Content-Type': 'application/json'
                             }
-                        }
-                    }
-                }
-            };
-            $("#chat-panel").css("width", _0x12020.iChatWidth);
-            $("#chat-panel").css("height", _0x12020.iChatHeight);
-            if (!_0x12020.cThemeEnabled) {
-                _0x1238A("cThemeEnabled")
-            };
-            var _0x1124A = window.localStorage.getItem("name");
-            if (_0x1124A != null) {
-                $("#name-box").val(_0x1124A)
-            };
-            var _0x1128F = window.localStorage.getItem("subpanel");
-            if (_0x1128F) {
-                _0x1128F = JSON.parse(_0x1128F);
-                for (var _0x1121C in _0x1128F) {
-                    if (!_0x1128F[_0x1121C]) {
-                        continue
-                    };
-                    if (_0x1128F[_0x1121C].length != 0) {
-                        _0x126C6[_0x1121C] = _0x1128F[_0x1121C]
-                    }
-                }
-            };
-            _0x126C6.lockedName = "";
-            _0x127F1()
-        }
-        function _0x1235C() {
-            for (var _0x111EE in _0x11797) {
-                var _0x111D7 = _0x111EE[_0x111C0[248]](0);
-                if (_0x111D7 == _0x111C0[815]) {
-                    $(_0x111C0[13] + _0x111EE)[_0x111C0[190]](_0x11797[_0x111EE]);
-                    _0x1159D($(_0x111C0[13] + _0x111EE))
-                } else {
-                    if (_0x111D7 == _0x111C0[249]) {
-                        _0x126F4[_0x111EE] = _0x11797[_0x111EE];
-                        $(_0x111C0[13] + _0x111EE)[_0x111C0[1192]](_0x111C0[744], _0x126F4[_0x111EE]);
-                        _0x1238A(_0x111EE, _0x126F4[_0x111EE])
-                    } else {
-                        if (_0x111D7 == _0x111C0[1051]) {
-                            _0x12528(_0x111EE, _0x111C0[1])
-                        } else {
-                            _0x126F4[_0x111EE] = _0x11797[_0x111EE]
-                        }
-                    }
-                }
-            }
-            ;_0x126F4[_0x111C0[1197]] = []
-        }
-        function _0x11E6B(_0x111D7) {
-            try {
-                var _0x1121C = JSON.parse(_0x111D7);
-                if (_0x1121C.version == null || _0x1121C.version != _0x1270B) {
-                    _0x1235C();
-                    return
-                };
-                for (var _0x11205 in _0x1121C) {
-                    if (_0x126F4[_0x11205] != null && _0x1121C[_0x11205].length != 0) {
-                        _0x126F4[_0x11205] = _0x1121C[_0x11205];
-                        var _0x111EE = _0x11205.charAt(0);
-                        if (_0x111EE == "u") {
-                            $("#" + _0x11205).spectrum("set", _0x126F4[_0x11205]);
-                            _0x1238A(_0x11205, _0x126F4[_0x11205])
-                        } else {
-                            if (_0x111EE == "r") {
-                                $("#" + _0x11205).val(_0x126F4[_0x11205]);
-                                _0x1159D($("#" + _0x11205))
-                            } else {
-                                if (_0x111EE == "a") {
-                                    _0x12528(_0x11205, _0x126F4[_0x11205])
+                        })['then'](eH => eH['json']())['then'](eH => {
+                            alert(eH['message']);
+                        });
+                    })['catch'](eG => ao(eG));
+                }), $('#redeem-tokens')['submit'](function (eG) {
+                    if (eG['preventDefault'](), cu && confirm('By\x20redeeming,\x20you\x20are\x20agreeing\x20the\x20locked\x20name\x20rules\x20linked\x20below\x20the\x20form.\x0a\x0aABUSE\x20WILL\x20RESULT\x20IN\x20THE\x20DELETION\x20OF\x20YOUR\x20LOCKED\x20NAME\x20WITH\x20NO\x20REFUND\x20AND\x20THE\x20POSSIBILITY\x20OF\x20ACCOUNT\x20SUSPENSION.\x0a\x0aPress\x20OK\x20to\x20redeem.')) {
+                        var eH = $('#redeem-name')['val'](),
+                            eI = $('#redeem-spend')['val']();
+                        firebase['auth']()['currentUser']['getIdToken']()['then'](eJ => {
+                            fetch(cQ + '/api/v1/options/redeem', {
+                                'method': 'POST',
+                                'body': JSON['stringify']({
+                                    'token': eJ,
+                                    'name': eH,
+                                    'spend': parseInt(eI)
+                                }),
+                                'headers': {
+                                    'Content-Type': 'application/json'
                                 }
+                            })['then'](eK => eK['json']())['then'](eK => {
+                                alert(eK['message']), 0xc8 === eK['code'] && aJ(cu['uid']);
+                            });
+                        })['catch'](eJ => ao(eJ));
+                    }
+                }), $('.error-banner')['on']('click', function () {
+                    $(this)['hide']();
+                }), $('#btn-add-friend')['on']('click', function (eG) {
+                    if (eG['preventDefault'](), cu) {
+                        var eH = prompt('Enter\x20friend\x27s\x20UID\x20(found\x20above\x20add\x20friend\x20button)');
+                        if (eH) {
+                            var eI = eH['replace'](/\s/g, '');
+                            if ('string' != typeof eH || 0x0 === eI['length']) return alert('Please\x20enter\x20a\x20valid\x20UID');
+                            firebase['auth']()['currentUser']['getIdToken']()['then'](eJ => {
+                                fetch(cQ + '/api/v1/social/friends', {
+                                    'method': 'POST',
+                                    'headers': {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    'body': JSON['stringify']({
+                                        'token': eJ,
+                                        'target': eI,
+                                        'action': 0x1
+                                    })
+                                })['then'](eK => eK['json']())['then'](eK => {
+                                    alert(eK['message']);
+                                });
+                            })['catch'](eJ => ao(eJ, !0x0));
+                        }
+                    }
+                }), cO['partyCanvas'] && (cO['partyCanvas']['oncontextmenu'] = dp), $(document)['keyup'](function (eG) {
+                    if (0xd == eG['keyCode']) {
+                        var eH = $('#chat-input');
+                        if ('INPUT' != document['activeElement']['tagName']) {
+                            var eI = eH[0x0];
+                            eI && eI['setSelectionRange'](eI['value']['length'], eI['value']['length']), eH['focus']();
+                        } else eH['is'](':focus') && eH['blur']();
+                    }
+                }), $(window)['bind']('beforeunload', function () {
+                    return 'Are\x20you\x20sure\x20you\x20want\x20to\x20leave\x20Gota.io?';
+                }), aF(), $('.keybinds-btn')['on']('click', function () {
+                    $('.keybinds-btn')['removeClass']('keybinds-btn-selected'), $(this)['addClass']('keybinds-btn-selected'), d3 = !0x0;
+                }), $('#btn-reset-keybinds')['on']('click', function () {
+                    $('.keybinds-btn')['each'](function () {
+                        var eG = $(this),
+                            eH = eG['attr']('id');
+                        null != d4[eH] && (d2[eH] = d4[eH], az(eG));
+                    }), aA();
+                }), $('#scrimmage-mode-select')['on']('change', function () {
+                    $('#scrimmage-mode-info')['children']()['css']('display', 'none'), $('#scrimmage-info-' + $(this)['val']())['css']('display', 'block');
+                }), $('#btn-queue')['on']('click', function () {
+                    var eG = parseInt($('#scrimmage-mode-select')['val']()),
+                        eH = isNaN(eG) ? 0x0 : Math['min'](Math['max'](eG, 0x0), 0x64);
+                    bU['sendPacket'](new bV['sendQueue'](eH)), $(this)['blur']();
+                }), $('#btn-leave-match')['on']('click', function () {
+                    bU['sendPacket'](new bV['sendLeaveMatch']()), 'undefined' != typeof window && 'function' == typeof window['gtag'] && window['gtag']('event', 'leave_match', {
+                        'server_name': bU['currentServerName'] || (c4 ? c4['name'] : void 0x0)
+                    });
+                }), $('#btn-custom-create')['on']('click', function () {
+                    bU['sendPacket'](new bV['sendCustomGame'](0x0)), $(this)['blur']();
+                }), $('#btn-custom-return')['on']('click', function () {
+                    bU['sendPacket'](new bV['sendCustomGame'](0x1));
+                }), $('#btn-custom-start')['on']('click', function () {
+                    bU['sendPacket'](new bV['sendCustomGame'](0x2));
+                }), $('#btn-custom-lobbies')['on']('click', function () {
+                    bU['sendPacket'](new bV['sendShowLobbies']());
+                }), $('#btn-lobbies-refresh')['on']('click', function () {
+                    bU['sendPacket'](new bV['sendShowLobbies']());
+                }), $('#btn-lobbies-join')['on']('click', function () {
+                    if (0x0 !== c5) {
+                        var eG = c5,
+                            eH = '',
+                            eI = ck[eG];
+                        null != eI && (eI['hasPasscode'] && (eH = prompt('Enter\x20the\x20password\x20to\x20join\x20this\x20game', '')), null == eH && (eH = ''), bU['sendPacket'](new bV['sendJoinLobby'](eG, eH)));
+                    }
+                }), $('#btn-lobbies-return')['on']('click', function () {
+                    $('.scrimmage-full')['css']('display', 'none'), $('#scrimmage-menu')['css']('display', 'block');
+                }), $('#scrimmage-map')['on']('change', function (eG) {
+                    var eH = $(this)['find']('option:selected')['val'](),
+                        eI = $(this)['attr']('data');
+                    eH != eI && ($('#scrimmage-map\x20option[value=\x27' + eI + '\x27]')['prop']('selected', !0x0), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['MAP'], eH)));
+                }), $('#scrimmage-mapmode')['on']('change', function (eG) {
+                    var eH = $(this)['find']('option:selected')['val'](),
+                        eI = $(this)['attr']('data');
+                    eH != eI && ($('#scrimmage-mapmode\x20option[value=\x27' + eI + '\x27]')['prop']('selected', !0x0), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['MODE'], eH)));
+                }), $('#scrimmage-mapsize')['on']('change', function (eG) {
+                    var eH = $(this)['find']('option:selected')['val'](),
+                        eI = $(this)['attr']('data');
+                    eH != eI && ($('#scrimmage-mapsize\x20option[value=\x27' + eI + '\x27]')['prop']('selected', !0x0), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['SIZE'], eH)));
+                }), $('#scrimmage-startmass')['on']('change', function (eG) {
+                    var eH = $(this)['val'](),
+                        eI = $(this)['attr']('data');
+                    isNaN(eH) ? $(this)['val'](eI) : (eH = Math['max'](0x1, Math['min'](parseInt(eH), 0x7d00))) != eI && ($(this)['val'](eI), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['STARTMASS'], eH)));
+                }), $('#scrimmage-virusDensity')['on']('change', function (eG) {
+                    var eH = $(this)['val'](),
+                        eI = $(this)['attr']('data');
+                    isNaN(eH) ? $(this)['val'](eI) : (eH = Math['max'](0x0, Math['min'](parseInt(eH), 0x3e8))) != eI && ($(this)['val'](eI), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['VIRUS_DENSITY'], eH)));
+                }), $('#scrimmage-respawnDelay')['on']('change', function (eG) {
+                    var eH = $(this)['val'](),
+                        eI = $(this)['attr']('data');
+                    isNaN(eH) ? $(this)['val'](eI) : (eH = Math['max'](-0x1, Math['min'](parseInt(eH), 0x258))) != eI && ($(this)['val'](eI), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['RESPAWN_DELAY'], eH)));
+                }), $('#scrimmage-lockteams')['on']('change', function (eG) {
+                    var eH = $(this)['prop']('checked');
+                    $(this)['prop']('checked', !eH), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['LOCK'], 0x1 == eH ? 0x1 : 0x0));
+                }), $('#scrimmage-autoSplit')['on']('change', function (eG) {
+                    var eH = $(this)['prop']('checked');
+                    $(this)['prop']('checked', !eH), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['AUTOSPLIT'], 0x1 == eH ? 0x1 : 0x0));
+                }), $('#scrimmage-public')['on']('change', function (eG) {
+                    var eH = $(this)['prop']('checked');
+                    $(this)['prop']('checked', !eH), bU['sendPacket'](new bV['sendCustomGameUpdate'](dU['PUBLIC'], 0x1 == eH ? 0x1 : 0x0));
+                }), $('#scrimmage-password')['on']('change', function (eG) {
+                    var eH = $(this)['prop']('checked');
+                    $(this)['prop']('checked', !eH);
+                    var eI = '';
+                    eH && (eI = prompt('Enter\x20a\x20password\x20to\x20join\x20your\x20game\x20(32\x20max\x20characters)', '')), null == eI && (eI = ''), bU['sendPacket'](new bV['sendCustomGameUpdateString'](dU['PASSWORD'], eI));
+                }), $('#scrimmage-name')['on']('click', function (eG) {
+                    if (bU['isPartyLeader']()) {
+                        var eH = prompt('Enter\x20a\x20new\x20name\x20for\x20your\x20game\x20(32\x20max\x20characters)', $(this)['text']());
+                        null != eH && bU['sendPacket'](new bV['sendCustomGameUpdateString'](dU['NAME'], eH));
+                    }
+                });
+            }());
+            var ex = ac;
+            window['addEventListener']('unload', ex), cG['windowEvents']['push']({
+                'element': window,
+                'event': 'unload',
+                'handler': ex
+            }), bU = new ad(), bV = new ai(), (function () {
+                function ez(eN) {
+                    var eO = eN['start'],
+                        eP = eN['end'];
+                    return eO['month'] > eP['month'] ? eC >= eO['month'] && eD >= eO['day'] || eC <= eP['month'] && eD <= eP['day'] : (eC > eO['month'] || eC === eO['month'] && eD >= eO['day']) && (eC < eP['month'] || eC === eP['month'] && eD <= eP['day']);
+                }
+
+                function eA(eN) {
+                    return void 0x0 !== cS[eN];
+                }
+                var eB = new Date(),
+                    eC = eB['getMonth']() + 0x1,
+                    eD = eB['getDate'](),
+                    eE = {
+                        'halloween': {
+                            'start': {
+                                'month': 0xa,
+                                'day': 0x1
+                            },
+                            'end': {
+                                'month': 0xb,
+                                'day': 0x7
+                            },
+                            'themes': ['halloween', 'halloween2020', 'halloween2023']
+                        },
+                        'xmas': {
+                            'start': {
+                                'month': 0xc,
+                                'day': 0x1
+                            },
+                            'end': {
+                                'month': 0x1,
+                                'day': 0x7
+                            },
+                            'themes': ['xmas']
+                        },
+                        'valentines': {
+                            'start': {
+                                'month': 0x2,
+                                'day': 0x1
+                            },
+                            'end': {
+                                'month': 0x2,
+                                'day': 0x15
+                            },
+                            'themes': ['valentines']
+                        },
+                        'spring': {
+                            'start': {
+                                'month': 0x3,
+                                'day': 0xf
+                            },
+                            'end': {
+                                'month': 0x5,
+                                'day': 0x1f
+                            },
+                            'themes': ['spring']
+                        },
+                        'summer': {
+                            'start': {
+                                'month': 0x6,
+                                'day': 0xf
+                            },
+                            'end': {
+                                'month': 0x8,
+                                'day': 0x1f
+                            },
+                            'themes': ['summer']
+                        },
+                        'new_years': {
+                            'start': {
+                                'month': 0xc,
+                                'day': 0x1e
+                            },
+                            'end': {
+                                'month': 0x1,
+                                'day': 0x5
+                            },
+                            'themes': ['new_years']
+                        },
+                        'birthday': {
+                            'start': {
+                                'month': 0x0,
+                                'day': 0x0
+                            },
+                            'end': {
+                                'month': 0x0,
+                                'day': 0x0
+                            },
+                            'themes': ['birthday_2018']
+                        }
+                    },
+                    eF = null;
+                for (var eG in eE) {
+                    var eH = eE[eG];
+                    if (ez(eH)) {
+                        for (var eI = 0x0; eI < eH['themes']['length']; eI++) {
+                            var eJ = eH['themes'][eI];
+                            if (eA(eJ)) {
+                                eF = eJ;
+                                break;
                             }
                         }
+                        if (eF) break;
                     }
                 }
-            } catch (e) {
-                _0x1235C()
-            } finally {
-                _0x12345()
-            }
-        }
-        function _0x11E82(_0x111D7) {
-            if (/\.(json)$/i.test(_0x111D7.name)) {
-                var _0x111EE = new FileReader();
-                _0x111EE.addEventListener("load", function () {
-                    if (!_0x12020.cThemeEnabled) {
-                        _0x1191E()
-                    };
-                    _0x1235C();
-                    _0x11E6B(thisresult)
-                }, false);
-                _0x111EE.readAsText(_0x111D7)
-            }
-        }
-
-        function _0x1191E() {
-            $(_0x111C0[1407]).prop("checked", true).trigger("change")
-        }
-        function _0x120AA(_0x11205) {
-            var _0x1121C = _0x11205.split(" ");
-            var _0x111EE = "";
-            var _0x11233 = null;
-            for (var _0x111D7 = 0; _0x111D7 < _0x1121C.length; _0x111D7++) {
-                if (_0x111D7 != 0) {
-                    _0x111EE += " "
-                };
-                _0x11233 = _0x1121C[_0x111D7];
-                if (_0x11838[_0x11233] != null) {
-                    if (_0x11233.startsWith(":") && _0x11233.endsWith(":")) {
-                        _0x11233 = _0x11233.substring(1, _0x11233.length - 1)
-                    };
-                    _0x111EE += '<img src="https://gota.io/emotes/' + _0x11233 + '.png" height="17" width="17" alt="' + _0x11233 + '">'
-                } else {
-                    if (gifEmoteList[_0x11233] != null) {
-                        if (_0x11233.startsWith(":") && _0x11233.endsWith(":")) {
-                            _0x11233 = _0x11233.substring(1, _0x11233.length - 1)
-                        };
-                        _0x111EE += '<img src="https://gota.io/emotes/gifs/' + _0x11233 + '.gif" height="17" width="17" alt="' + _0x11233 + '">'
-                    } else {
-                        _0x111EE += _0x11233
-                    }
-                }
-            };
-            return _0x111EE
-        }
-        const _0x1225F = {
-            MODIFIER: 1,
-            PASSIVE: 2,
-            CONSUMABLE: 3,
-            DEBUFF: 4,
-            NONE: 0
-        };
-        var _0x12203, _0x1221A;
-        var _0x12248 = {
-            0: new _0x121EC("Random", "random", _0x1225F["NONE"]),
-            1: new _0x121EC("Maximum Cells Upgrade", "extracells", _0x1225F.MODIFIER),
-            2: new _0x121EC("Extra Consumable Slot", "extraconsumable", _0x1225F.MODIFIER),
-            3: new _0x121EC("Merge", "merge", _0x1225F.PASSIVE),
-            4: new _0x121EC("Grow", "grow", _0x1225F.PASSIVE),
-            5: new _0x121EC("Speed", "speed", _0x1225F.PASSIVE),
-            6: new _0x121EC("Shield", "shield", _0x1225F.PASSIVE),
-            7: new _0x121EC("Virus", "spike", _0x1225F.CONSUMABLE),
-            8: new _0x121EC("Disrupt", "disrupt", _0x1225F.CONSUMABLE),
-            9: new _0x121EC("Teleport", "teleport", _0x1225F.CONSUMABLE),
-            10: new _0x121EC("Disrupt", "_disrupt", _0x1225F.DEBUFF),
-            11: new _0x121EC("Silver", "phoenix", _0x1225F.MODIFIER),
-            12: new _0x121EC("Consumable Shield", "_shield", _0x1225F.CONSUMABLE),
-            13: new _0x121EC("Magnet", "magnet", _0x1225F.PASSIVE),
-            14: new _0x121EC("Decay", "decay", _0x1225F.CONSUMABLE),
-            15: new _0x121EC("Decay", "_decay", _0x1225F.DEBUFF)
-        };
-        function _0x121EC(_0x111EE, _0x111D7, _0x11205) {
-            this.name = _0x111EE;
-            this["img"] = _0x111D7;
-            this.type = _0x11205;
-            this.image = null;
-            this.texture = null
-        }
-        function _0x11DCA() {
-            for (var _0x111EE in _0x12248) {
-                var _0x111D7 = _0x12248[_0x111EE];
-                var _0x1121C = "images/powerups/" + _0x111D7["img"] + ".png";
-                var _0x11205 = new Image();
-                _0x11205.addEventListener("load", function (_0x111D7, _0x111EE) {
-                        _0x111D7.texture = _0x1214B.Texture.from(_0x111EE)
-                    }
-                    .bind(null, _0x111D7, _0x11205));
-                _0x11205.src = _0x1121C;
-                _0x111D7.image = _0x11205
-            };
-            _0x1221A = _0x1214B.Texture.from("images/shield.png");
-            _0x12203 = _0x1214B.Texture.from("images/debuff.png")
-        }
-        function _0x11347() {
-            this.passiveBuffs = {};
-            this.passiveSortedBuffs = [];
-            this.consumableBuffs = [];
-            this.team = null;
-            this.nextCacheUpdate = 0;
-            this.texture = null;
-            this.bonusMaxCells = 0;
-            this.onAddBuff = function(_0x11205, _0x1121C, _0x111EE) {
-                var _0x111D7 = null;
-                var _0x11233 = _0x12248[_0x11205].type;
-                if (_0x11233 != _0x1225F.CONSUMABLE) {
-                    _0x111D7 = this.passiveBuffs[_0x11205];
-                    if (_0x111D7) {
-                        _0x111D7.update(_0x1121C, _0x111EE)
-                    } else {
-                        _0x111D7 = new _0x11330(_0x11205, _0x1121C, _0x111EE);
-                        this.passiveBuffs[_0x11205] = _0x111D7;
-                        this.sortPassiveBuffs()
-                    };
-                    this.onPassiveBuffsUpdate();
-                    this.markCacheForUpdate()
-                } else {
-                    _0x111D7 = new _0x11330(_0x11205, _0x1121C, _0x111EE);
-                    this.consumableBuffs.push(_0x111D7);
-                    this.markCacheForUpdate()
-                };
-                if (_0x111D7) {
-                    _0x12190.selfMsg("Recieved buff: " + _0x111D7.powerup.name)
-                }
-            };
-            this[_0x111C0[579]] = function(_0x11205) {
-                var _0x111D7 = null;
-                var _0x1121C = _0x12248[_0x11205].type;
-                if (_0x1121C != _0x1225F.CONSUMABLE) {
-                    _0x111D7 = this.passiveBuffs[_0x11205];
-                    if (_0x111D7) {
-                        delete this.passiveBuffs[_0x11205];
-                        this.sortPassiveBuffs();
-                        this.markCacheForUpdate();
-                        this.onPassiveBuffsUpdate()
+                if (eF && cS[eF]) {
+                    var eK = cS[eF];
+                    cR['key'] = eK['key'], cR['foodColors'] = eK['foodColors']['slice'](), cR['customEjectedMass'] = eK['customEjectedMass'], cR['motd'] = eK['motd'], cR['motherCustomEnabled'] = eK['motherCustomEnabled'], cR['enabled'] = !0x0;
+                } else cR['enabled'] = !0x1, cR['key'] = '', cR['foodColors'] = [], cR['motd'] = '';
+                if (cR['enabled'] && !d1['cDisableEventSkins'] && $('body')['addClass']('event-' + cR['key']), cR['enabled'] && cR['foodColors'] && cR['foodColors']['length'] > 0x0 && !d1['cDisableEventSkins']) {
+                    if (br = function (eN) {
+                            return cR['foodColors'][eN % cR['foodColors']['length']];
+                        }, void 0x0 !== bU && bU && bU['foodObjects']) {
+                        for (var eL in bU['foodObjects'])(eM = bU['foodObjects'][eL]) && (eM['color'] = br(eM['id']), eM['needsPixiUpdate'] = !0x0);
                     }
                 } else {
-                    for (var _0x111EE = 0; _0x111EE < this.consumableBuffs.length; _0x111EE++) {
-                        _0x111D7 = this.consumableBuffs[_0x111EE];
-                        if (_0x111D7.id == _0x11205) {
-                            this.consumableBuffs.splice(_0x111EE, 1);
-                            this.markCacheForUpdate();
-                            break
+                    if (br = function (eN) {
+                            return dC[eN % dC['length']];
+                        }, void 0x0 !== bU && bU && bU['foodObjects'])
+                        for (var eL in bU['foodObjects']) {
+                            var eM;
+                            (eM = bU['foodObjects'][eL]) && (eM['color'] = br(eM['id']), eM['needsPixiUpdate'] = !0x0);
                         }
-                    }
-                };
-                if (_0x111D7) {
-                    _0x12190.selfMsg(_0x111C0[1458] + _0x111D7[_0x111C0[1457]][_0x111C0[187]])
                 }
-            }
-            ;
-            this.clearBuffs = function (_0x1121C) {
-                if (this.passiveSortedBuffs.length == 0 && this.consumableBuffs.length == 0) {
-                    return
-                };
-                var _0x11205 = _0x1121C ? _0x1121C : false;
-                for (var _0x111EE in this.passiveBuffs) {
-                    var _0x111D7 = this.passiveBuffs[_0x111EE];
-                    if (_0x11205 && _0x111D7.powerup.type == _0x1225F.MODIFIER) {} else {
-                        delete this.passiveBuffs[_0x111EE]
-                    }
-                };
-                this.sortPassiveBuffs();
-                this.onPassiveBuffsUpdate();
-                this.consumableBuffs = [];
-                this.markCacheForUpdate()
-            };
-            this.sortPassiveBuffs = function () {
-                this.passiveSortedBuffs = [];
-                if (this.passiveBuffs.length == 0) {
-                    return
-                };
-                for (var _0x111EE in this.passiveBuffs) {
-                    var _0x111D7 = this.passiveBuffs[_0x111EE];
-                    if (_0x111D7.powerup.type == _0x1225F.MODIFIER) {
-                        this.passiveSortedBuffs.splice(0, 0, _0x111EE)
-                    } else {
-                        this.passiveSortedBuffs.push(_0x111EE)
-                    }
+                aB(), aC();
+            }()), (function () {
+                if (Coloris({
+                        'theme': 'pill',
+                        'themeMode': 'dark',
+                        'el': '[data-coloris]'
+                    }), window['Coloris'] && 'function' == typeof Coloris['setInstance']) {
+                    Coloris['setInstance']('#spChatColor', {
+                        'swatches': dE,
+                        'swatchesOnly': !0x0,
+                        'theme': 'pill',
+                        'themeMode': 'dark',
+                        'alpha': !0x1
+                    }), Coloris['setInstance']('#spNameColor', {
+                        'swatches': [],
+                        'swatchesOnly': !0x1,
+                        'theme': 'pill',
+                        'themeMode': 'dark',
+                        'alpha': !0x1
+                    });
+                    const eC = document['getElementById']('spNameColor'),
+                        eD = document['getElementById']('spChatColor');
+                    eC && eC['addEventListener']('focus', function () {
+                        Coloris['setInstance']('#spNameColor', {
+                            'swatches': [],
+                            'swatchesOnly': !0x1,
+                            'theme': 'pill',
+                            'themeMode': 'dark',
+                            'alpha': !0x1
+                        });
+                    }), eD && eD['addEventListener']('focus', function () {
+                        Coloris['setInstance']('#spChatColor', {
+                            'swatches': dE,
+                            'swatchesOnly': !0x0,
+                            'theme': 'pill',
+                            'themeMode': 'dark',
+                            'alpha': !0x1
+                        });
+                    }), document['querySelectorAll']('[data-coloris]')['forEach'](function (eE) {
+                        eE['id'] && 'spChatColor' !== eE['id'] && 'spNameColor' !== eE['id'] && eE['addEventListener']('focus', function () {
+                            Coloris['setInstance']('#' + eE['id'], {
+                                'swatches': [],
+                                'swatchesOnly': !0x1,
+                                'theme': 'pill',
+                                'themeMode': 'dark',
+                                'alpha': !0x1
+                            });
+                        });
+                    });
                 }
-            };
-            this.onPassiveBuffsUpdate = function () {
-                this.bonusMaxCells = 0;
-                if (this.passiveBuffs[1] != null) {
-                    var _0x111D7 = this.passiveBuffs[1];
-                    this.bonusMaxCells = _0x111D7.stack * 16
-                }
-            };
-            this.update = function () {
-                if (this.passiveSortedBuffs.length == 0 && this.consumableBuffs.length == 0) {
-                    _0x12231.visible = false;
-                    return
-                };
-                if (Date.now() >= this.nextCacheUpdate) {
-                    this.updateCache();
-                    this.nextCacheUpdate = Date.now() + 1000
-                };
-                if (!this.texture) {
-                    this.texture = _0x1214B.Texture.from(this.team["canvas"]);
-                    _0x12231.texture = this.texture;
-                    _0x12231.anchor.set(0)
-                };
-                _0x12231.position.x.x = _0x123B8.style.width + 20 - _0x12162.stage.position.x;
-                _0x12231.position.x.y = 15 - _0x12162.stage.position.y;
-                _0x12231.visible = true
-            };
-            this.updateCache = function () {
-                var _0x111EE = (this.team == null || this.team["canvas"] == null) ? document.createElement("canvas") : this.team["canvas"];
-                var _0x1121C = Math.max(this.passiveSortedBuffs.length, this.consumableBuffs.length);
-                _0x111EE.width = 55 * _0x1121C;
-                _0x111EE.height = 105;
-                this.team = _0x111EE.getContext("2d");
-                this.team.fillStyle = "#222";
-                this.team.font = "bold 16pt Calibri";
-                var _0x11233 = 0,
-                    _0x1124A = 0;
-                for (var _0x11205 = 0; _0x11205 < this.passiveSortedBuffs.length; _0x11205++) {
-                    var _0x111D7 = this.passiveBuffs[this.passiveSortedBuffs[_0x11205]];
-                    _0x111D7.draw(this.team, _0x11233, _0x1124A);
-                    _0x11233 += 55
-                };
-                _0x11233 = 0;
-                _0x1124A = 55;
-                for (var _0x11205 = 0; _0x11205 < this.consumableBuffs.length; _0x11205++) {
-                    var _0x111D7 = this.consumableBuffs[_0x11205];
-                    _0x111D7.draw(this.team, _0x11233, _0x1124A);
-                    _0x11233 += 55
-                };
-                if (this.texture) {
-                    this.texture.update()
-                };
-                this.nextCacheUpdate = Date.now() + 1000
-            };
-            this.markCacheForUpdate = function () {
-                this.nextCacheUpdate = 0
-            }
-        }
-        const _0x11319 = Math.PI * 1.5;
-        function _0x11330(_0x111EE, _0x11205, _0x111D7) {
-            this.id = _0x111EE;
-            this.powerup = _0x12248[_0x111EE];
-            this.startTime = Date.now();
-            this.expireTime = _0x111D7;
-            this.stack = _0x11205;
-            this.update = function (_0x111EE, _0x111D7) {
-                this.startTime = Date.now();
-                this.expireTime = _0x111D7;
-                this.stack = _0x111EE
-            };
-            this.getCooldown = function () {
-                if (Date.now() >= this.expireTime) {
-                    return 2.0 * Math.PI
-                } else {
-                    var _0x111EE = this.expireTime - Date.now();
-                    var _0x11205 = this.expireTime - this.startTime;
-                    var _0x111D7 = Math.min(_0x111EE / _0x11205, 1.0) * 2.0;
-                    return _0x111D7 * Math.PI
-                }
-            };
-            this.draw = function (_0x111D7, _0x111EE, _0x11205) {
-                _0x111D7.drawImage(this.powerup.image, _0x111EE, _0x11205, 50, 50);
-                if (this.stack > 1) {
-                    _0x111D7.fillStyle = "#000";
-                    _0x111D7.fillText(this.stack, _0x111EE + 35, _0x11205 + 17)
-                };
-                if (this.expireTime > 0) {
-                    _0x111D7.beginPath();
-                    _0x111D7.moveTo(_0x111EE + 25, _0x11205 + 25);
-                    _0x111D7.arc(_0x111EE + 25, _0x11205 + 25, 25, _0x11319, _0x11319 - this.getCooldown(), false);
-                    _0x111D7.closePath();
-                    _0x111D7.globalAlpha = 0.75;
-                    _0x111D7.fillStyle = "#222";
-                    _0x111D7.fill();
-                    _0x111D7.globalAlpha = 1.0
-                }
-            }
-        }
-        const _0x11F68 = ["hearts"];
-        var _0x11F51 = [];
-        function _0x11AA5() {
-            this.delay = 0;
-            this.frames = [];
-            this.isGif = true;
-            this.push = function (_0x111D7) {
-                this.frames.push(_0x111D7)
-            };
-            this.getFrame = function (_0x111D7) {
-                return this.frames[_0x111D7]
-            };
-            this.getLength = function () {
-                return this.frames.length
-            };
-            this.getTexture = function () {
-                return this.getFrame(Math.floor(_0x11CFB / this.delay) % (this.getLength()))
-            };
-            this.loadFromFrameData = function (_0x11278) {
-                if (_0x11278.length === 0) {
-                    return
-                };
-                const _0x112A6 = document.createElement("canvas");
-                const _0x112BD = _0x112A6.getContext("2d");
-                const _0x11205 = document.createElement("canvas");
-                const _0x1121C = _0x11205.getContext("2d");
-                const _0x1124A = _0x11278[0].getImage();
-                this.delay = _0x11278[0].frameInfo.delay * 10;
-                _0x112A6.width = _0x1124A.width;
-                _0x112A6.height = _0x1124A.height;
-                _0x11205.width = _0x1124A.width;
-                _0x11205.height = _0x1124A.height;
-                for (const _0x11261 of _0x11278) {
-                    _0x112BD.clearRect(0, 0, _0x112A6.width, _0x112A6.height);
-                    _0x112BD.drawImage(_0x11205, 0, 0);
-                    const _0x111D7 = _0x11261.getImage();
-                    const _0x111EE = _0x111D7.getContext("2d");
-                    _0x1121C.drawImage(_0x111D7, 0, 0);
-                    _0x111EE.clearRect(0, 0, _0x111D7.width, _0x111D7.height);
-                    _0x111EE.drawImage(_0x11205, 0, 0);
-                    const {frameInfo} = _0x11261;
-                    const {disposal} = frameInfo;
-                    if (disposal === 2) {
-                        _0x1121C.clearRect(frameInfo[_0x111C0[231]], frameInfo[_0x111C0[234]], frameInfo.width, frameInfo.height)
-                    } else {
-                        if (disposal === 3) {
-                            _0x1121C.clearRect(0, 0, _0x11205.width, _0x11205.height);
-                            _0x1121C.drawImage(_0x112A6, 0, 0)
-                        }
-                    };
-                    this.push(_0x1214B.Texture.from(_0x111D7))
-                }
-            }
-        }
-        function _0x11A49(_0x111D7) {
-            return _0x122A4[_0x111D7 % _0x122A4.length]
-        }
-
-        function _0x11A32(_0x111D7) {
-            return _0x122BB[_0x111D7 % _0x122BB.length]
-        }
-
-        function _0x11A60(_0x111D7) {
-            return _0x116DF[_0x111D7 % _0x116DF.length]
-        }
-
-        function _0x1259B(_0x111D7) {
-            for (var _0x111EE = _0x111D7.length - 1; _0x111EE > 0; _0x111EE--) {
-                var _0x11205 = Math.floor(Math.random() * (_0x111EE + 1));
-                var _0x1121C = _0x111D7[_0x111EE];
-                _0x111D7[_0x111EE] = _0x111D7[_0x11205];
-                _0x111D7[_0x11205] = _0x1121C
-            };
-            return _0x111D7
-        }
-        var _0x11B8B = [];
-        var _0x11BA2 = [];
-        for (var _0x11BD0 = 0; _0x11BD0 < 180; _0x11BD0++) {
-            var _0x115E2 = tinycolor({
-                h: (_0x11BD0 * 2),
-                s: 97.25,
-                v: 100
-            });
-            var _0x115F9 = _0x115E2.toRgb();
-            _0x11B8B[_0x11BD0] = (_0x115F9.r << 16) + (_0x115F9.g << 8) + _0x115F9.b;
-            _0x11BA2[_0x11BD0] = _0x115E2.toHexString()
-        };
-        const _0x122A4 = _0x1259B(_0x11B8B.slice(0));
-        const _0x122BB = _0x1259B(_0x11BA2.slice(0));
-        delete _0x11B8B;
-        delete _0x11BA2;
-        if (_0x11894.enabled && _0x11894.foodColors) {
-            _0x11A49 = function (_0x111D7) {
-                return _0x11894.foodColors[_0x111D7 % _0x11894.foodColors.length]
-            }
-        };
-        const _0x114A0 = ["#FFFFFF", "#FF9BDC", "#FF00FF", "#FF0000", "#C80000", "#FF6900", "#FFFF00", "#00FF00", "#008000", "#008080", "#00FFFF", "#0096FF", "#0000FF", "#CA48FA", "#8A2BE2", "#D2C878", "#8C4614"];
-        const _0x12739 = {};
-        function _0x112D4(_0x111D7) {
-            if (_0x111D7 === 0 || _0x111D7 === _0x12190.playerId) {
-                return "You cannot block that player."
-            };
-            if (_0x112BD.includes(_0x111D7)) {
-                delete _0x112BD[_0x111D7];
-                return "Unblocked player with ID: " + _0x111D7
-            };
-            _0x112BD.push(_0x111D7);
-            return "Blocked player with ID: " + _0x111D7
-        }
-        const _0x11610 = {
-            whisper: {
-                description: "Whisper a player by ID",
-                triggers: ["whisper", "t", "w"],
-                action: function (_0x111D7) {
-                    var _0x111EE = parseInt(_0x111D7[0]);
-                    if (isNaN(_0x111EE)) {
-                        _0x12190.selfMsg("Invalid player id.");
-                        return
-                    };
-                    var _0x11205 = _0x111D7.slice(1).join(" ");
-                    if (_0x11205.length != 0) {
-                        _0x12190.sendPacket(new _0x12065.sendWhisper(_0x111EE, _0x11205))
-                    };
-                    _0x12511("/t " + _0x111EE + " ")
-                }
-            },
-            reply_whisper: {
-                description: "Reply to previous whisper",
-                triggers: ["reply", "r"],
-                action: function (_0x111D7) {
-                    var _0x111EE = _0x111D7.join(" ");
-                    if (_0x111EE.length != 0) {
-                        _0x12190.sendPacket(new _0x12065.sendWhisper(0, _0x111EE))
-                    };
-                    _0x12511("/r ")
-                }
-            },
-            party_chat: {
-                description: "Send a message to other party members",
-                triggers: ["party", "p"],
-                action: function (_0x111D7) {
-                    var _0x111EE = _0x111D7.join(" ");
-                    if (_0x111EE.length != 0) {
-                        _0x12190.sendPacket(new _0x12065.sendChat(_0x111EE, 1))
-                    };
-                    _0x12511("/p ")
-                }
-            },
-            invite: {
-                description: "Invite a player to the party",
-                triggers: ["invite", "i"],
-                action: function (_0x111D7) {
-                    var _0x111EE = parseInt(_0x111D7[0]);
-                    if (!isNaN(_0x111EE)) {
-                        _0x12190.sendPacket(new _0x12065.sendPartyAction(0, _0x111EE))
-                    } else {
-                        _0x12190.selfMsg("Invalid ID.")
-                    }
-                }
-            },
-            leave: {
-                description: "Leave your current party",
-                triggers: ["leave", "l"],
-                action: function (_0x111D7) {
-                    _0x12190.sendPacket(new _0x12065.sendPartyAction(3, 0))
-                }
-            },
-            promote: {
-                description: "Promote a party member to leader",
-                triggers: ["promote"],
-                action: function (_0x111D7) {
-                    var _0x111EE = parseInt(_0x111D7[0]);
-                    if (!isNaN(_0x111EE)) {
-                        _0x12190.sendPacket(new _0x12065.sendPartyAction(2, _0x111EE))
-                    } else {
-                        _0x12190.selfMsg("Invalid ID.")
-                    }
-                }
-            },
-            kick: {
-                description: "Kick a player from the party",
-                triggers: ["kick"],
-                action: function (_0x111D7) {
-                    var _0x111EE = parseInt(_0x111D7[0]);
-                    if (!isNaN(_0x111EE)) {
-                        _0x12190.sendPacket(new _0x12065.sendPartyAction(1, _0x111EE))
-                    } else {
-                        _0x12190.selfMsg("Invalid ID.")
-                    }
-                }
-            },
-            clear: {
-                description: "Clear the chat",
-                triggers: ["clear"],
-                action: function (_0x111D7) {
-                    var _0x11205 = document[_0x111C0[1521]]("chat-active-tab")[0][_0x111C0[1520]]("name");
-                    var _0x111EE = document.getElementById("chat-body-" + _0x11205);
-                    while (_0x111EE.firstChild != null) {
-                        _0x111EE.removeChild(_0x111EE.firstChild)
-                    }
-                }
-            },
-            info: {
-                description: "Get your current ID",
-                triggers: ["info"],
-                action: function (_0x111D7) {
-                    if (_0x12190.playerId > 0) {
-                        _0x12190.selfMsg("Your id is " + _0x12190.playerId)
-                    } else {
-                        _0x12190.selfMsg("You need to be connected to a server to use this command.")
-                    }
-                }
-            },
-            scrimmenu: {
-                description: "Show the scrimmage menu",
-                triggers: ["scrimmenu"],
-                action: function (_0x111D7) {
-                    _0x123E6.css("display", _0x123E6.css("display") == "none" ? "block" : "none")
-                }
-            },
-            join: {
-                description: "Join a party with a code",
-                triggers: ["join", "j"],
-                action: function (_0x111D7) {
-                    var _0x111EE = _0x111D7[0];
-                    if (_0x111EE != null && _0x111EE.length != 0) {
-                        _0x12190.sendPacket(new _0x12065.sendPartyJoin(_0x111EE))
-                    }
-                }
-            },
-            private: {
-                description: "Set the party to private",
-                triggers: ["private"],
-                action: function (_0x111D7) {
-                    _0x12190.sendPacket(new _0x12065.sendPartyAction(4, 1))
-                }
-            },
-            public: {
-                description: "Allow players to join the party without an invite",
-                triggers: ["public"],
-                action: function (_0x111D7) {
-                    _0x12190.sendPacket(new _0x12065.sendPartyAction(4, 0))
-                }
-            },
-            reset_chat: {
-                description: "Reset chat size",
-                triggers: ["resetchat"],
-                action: function (_0x111D7) {
-                    $("#chat-panel").css("width", "360px");
-                    $("#chat-panel").css("height", "250px")
-                }
-            },
-            reset_chat_tabs: {
-                description: "Reset chat tab settings",
-                triggers: ["resetchattabs"],
-                action: function (_0x111D7) {
-                    _0x12020._ChatTabs = JSON.parse(JSON.stringify(_0x11752));
-                    _0x1135E();
-                    _0x12317()
-                }
-            },
-            spectate: {
-                description: "Spectate a player",
-                triggers: ["spectate", "s"],
-                action: function (_0x111D7) {
-                    var _0x111EE = parseInt(_0x111D7[0]);
-                    if (!isNaN(_0x111EE)) {
-                        _0x12190.sendPacket(new _0x12065.sendSpectate(_0x111EE))
-                    } else {
-                        _0x12190.selfMsg("Invalid ID.")
-                    }
-                }
-            },
-            disconnect: {
-                description: "Disconnect from the server",
-                triggers: ["disconnect"],
-                action: function (_0x111D7) {
-                    _0x12190.disconnect()
-                }
-            },
-            account: {
-                description: "Get Account UID",
-                triggers: ["account"],
-                action: function (_0x111D7) {
-                    if (_0x1281F === null) {
-                        _0x12190.selfMsg("You are not logged in.");
-                        return
-                    };
-                    _0x12190.selfMsg("UID: " + _0x1281F.uid)
-                }
-            },
-            block: {
-                description: "Block or unblock a player by ID",
-                triggers: ["block", "b"],
-                action: function (_0x111D7) {
-                    var _0x11205 = parseInt(_0x111D7[0]);
-                    if (!isNaN(_0x11205)) {
-                        var _0x111EE = _0x112D4(_0x11205);
-                        _0x12190.selfMsg(_0x111EE)
-                    }
-                }
-            }
-        };
-        const _0x122D2 = ["4Head", "BibleThump", "DansGame", "DatSheffy", "FailFish", "FeelsBadMan", "FeelsGoodMan", "FeelsMadMan", "GabeN", "HassanChop", "HeyGuys", "Kappa", "KappaPride", "Keepo", "Kreygasm", "NotLikeThis", "OMGScoots", "PJSalt", "PogChamp", "rekt", "rip", "SaltyCorn", "sodaC", "sodaHeyGuys", "sodaNOPE", "sodaW", "SwiftRage", "WutFace", "ResidentSleeper", "LUL", "MikuFail", "PepoHype", "KKona", "MeguFace", "AngryBork", "AngeryBOYE", "TohruFlex", "Sadness", "nou", "MarioFP"];
-        const _0x11A8E = ["Ditto", "MichaelPls", "RareParrot", "PepePls", "RooNoticeMe", "PepeEyes", "EverythingsFine", "WeSmart", "PandaAww", "SleepyCat", "Clap"];
-        const _0x11B18 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
-        const _0x11CCD = ["", "MOUSE1", "MOUSE2", "MOUSE3", "MOUSE4", "MOUSE5", "HELP", "", "BACK_SPACE", "TAB", "", "", "CLEAR", "ENTER", "ENTER_SPECIAL", "", "SHIFT", "CONTROL", "ALT", "PAUSE", "CAPS_LOCK", "KANA", "EISU", "JUNJA", "FINAL", "HANJA", "", "ESCAPE", "CONVERT", "NONCONVERT", "ACCEPT", "MODECHANGE", "SPACE", "PAGE_UP", "PAGE_DOWN", "END", "HOME", "LEFT", "UP", "RIGHT", "DOWN", "SELECT", "PRINT", "EXECUTE", "PRINTSCREEN", "INSERT", "DELETE", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ":", ";", "<", "=", ">", "?", "AT", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "OS_KEY", "", "CONTEXT_MENU", "", "SLEEP", "NUMPAD0", "NUMPAD1", "NUMPAD2", "NUMPAD3", "NUMPAD4", "NUMPAD5", "NUMPAD6", "NUMPAD7", "NUMPAD8", "NUMPAD9", "MULTIPLY", "ADD", "SEPARATOR", "SUBTRACT", "DECIMAL", "DIVIDE", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23", "F24", "", "", "", "", "", "", "", "", "NUM_LOCK", "SCROLL_LOCK", "WIN_OEM_FJ_JISHO", "WIN_OEM_FJ_MASSHOU", "WIN_OEM_FJ_TOUROKU", "WIN_OEM_FJ_LOYA", "WIN_OEM_FJ_ROYA", "", "", "", "", "", "", "", "", "", "CIRCUMFLEX", "EXCLAMATION", "DOUBLE_QUOTE", "HASH", "DOLLAR", "PERCENT", "AMPERSAND", "UNDERSCORE", "OPEN_PAREN", "CLOSE_PAREN", "ASTERISK", "PLUS", "PIPE", "HYPHEN_MINUS", "OPEN_CURLY_BRACKET", "CLOSE_CURLY_BRACKET", "TILDE", "", "", "", "", "VOLUME_MUTE", "VOLUME_DOWN", "VOLUME_UP", "", "", "SEMICOLON", "EQUALS", "COMMA", "MINUS", "PERIOD", "SLASH", "BACK_QUOTE", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "OPEN_BRACKET", "BACK_SLASH", "CLOSE_BRACKET", "QUOTE", "", "META", "ALTGR", "", "WIN_ICO_HELP", "WIN_ICO_00", "", "WIN_ICO_CLEAR", "", "", "WIN_OEM_RESET", "WIN_OEM_JUMP", "WIN_OEM_PA1", "WIN_OEM_PA2", "WIN_OEM_PA3", "WIN_OEM_WSCTRL", "WIN_OEM_CUSEL", "WIN_OEM_ATTN", "WIN_OEM_FINISH", "WIN_OEM_COPY", "WIN_OEM_AUTO", "WIN_OEM_ENLW", "WIN_OEM_BACKTAB", "ATTN", "CRSEL", "EXSEL", "EREOF", "PLAY", "ZOOM", "", "PA1", "WIN_OEM_CLEAR", ""];
-        var _0x1184F = ["heart", "star", "home", "apple", "spiral", "dice", "chicken", "ghost", "burger", "bow", "cloud", "skull", "mug", "flower", "music", "checkmark", "clover", "crown", "fancy", "fish", "fire", "lightning", "paw", "duck", "snowflake", "bomb", "butterfly", "cherry", "watermelon", "cat", "cupid", "sword", "shield", "tornado", "radioactive", "rocket", "wave", "letter_a", "letter_b", "letter_c", "letter_d", "letter_e", "letter_f", "letter_g", "letter_h", "letter_i", "letter_j", "letter_k", "letter_l", "letter_m", "letter_n", "letter_o", "letter_p", "letter_q", "letter_r", "letter_s", "letter_t", "letter_u", "letter_v", "letter_w", "letter_x", "letter_y", "letter_z", "number_0", "number_1", "number_2", "number_3", "number_4", "number_5", "number_6", "number_7", "number_8", "number_9"];
-        var _0x11866 = [];
-        var _0x118AB = null;
-        const _0x12276 = [16708096, 13294378, 9356863, 3847498, 42578, 42612, 108702, 43973, 44527, 36821, 29371, 21669, 3027346, 6696593, 9578383, 12393101, 15532172, 15468916, 15537243, 15538497, 15538980, 15951139, 16225309, 16761359];
-        const _0x1228D = (_0x12276.length * 100) - 1;
-        
-        function _0x11375(_0x111C0) {
-            return _0x11B18[(_0x111C0 >> 4) & 0x0f] + _0x11B18[_0x111C0 & 0x0f]
-        }
-        function _0x11963(_0x1121C) {
-            if (_0x1121C <= 0) {
-                return _0x111C0[1842]
-            };
-            var _0x111D7 = Math.floor(_0x1121C / 3600);
-            var _0x111EE = Math.floor((_0x1121C - (_0x111D7 * 3600)) / 60);
-            var _0x11205 = _0x1121C - (_0x111D7 * 3600) - (_0x111EE * 60);
-            if (_0x111EE < 10 && _0x111D7 > 0) {
-                _0x111EE = "0" + _0x111EE
-            };
-            if (_0x11205 < 10) {
-                _0x11205 = "0" + _0x11205
-            };
-            return (_0x111D7 > 0 ? _0x111D7 + ":" : "") + _0x111EE + ":" + _0x11205
-        }
-
-        function _0x1194C(_0x111EE) {
-            var _0x111D7 = _0x111EE.toString().split(".");
-            _0x111D7[0] = _0x111D7[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            return _0x111D7.join(".")
-        }
-
-        function _0x11FAD(_0x1121C) {
-            var _0x111EE = _0x1121C.split("");
-            for (var _0x11205 = 0; _0x11205 < _0x111EE.length; _0x11205++) {
-                var _0x111D7 = _0x111EE[_0x11205];
-                if (_0x111D7 == _0x111C0[1843]) {
-                    if (_0x11205 + 1 < _0x111EE.length) {
-                        _0x111EE[_0x11205 + 1] = _0x111EE[_0x11205 + 1].toUpperCase()
-                    };
-                    _0x111EE[_0x11205] = " "
-                };
-                if (_0x11205 == 0) {
-                    _0x111EE[_0x11205] = _0x111EE[_0x11205].toUpperCase()
-                }
-            };
-            return _0x111EE.join("")
-        }
-        function _0x11C2C(_0x11205) {
-            if (_0x11205.indexOf("#") === 0) {
-                _0x11205 = _0x11205.slice(1)
-            };
-            if (_0x11205.length === 3) {
-                _0x11205 = _0x11205[0] + _0x11205[0] + _0x11205[1] + _0x11205[1] + _0x11205[2] + _0x11205[2]
-            };
-            if (_0x11205.length !== 6) {
-                throw new Error("Invalid HEX color.")
-            };
-            var _0x1121C = parseInt(_0x11205.slice(0, 2), 16),
-                _0x111EE = parseInt(_0x11205.slice(2, 4), 16),
-                _0x111D7 = parseInt(_0x11205.slice(4, 6), 16);
-            return (_0x1121C * 0.299 + _0x111EE * 0.587 + _0x111D7 * 0.114) > 186 ? "#000000" : "#FFFFFF"
-        }
-
-        function _0x119ED(_0x111D7) {
-            if (_0x111D7.dataTransfer.items) {
-                for (var _0x11205 = 0; _0x11205 < _0x111D7.dataTransfer.items.length; _0x11205++) {
-                    if (_0x111D7.dataTransfer.items[_0x11205].kind === "file") {
-                        var _0x111EE = _0x111D7.dataTransfer.items[_0x11205].getAsFile();
-                        return _0x111EE
-                    }
-                }
-            } else {
-                for (var _0x11205 = 0; _0x11205 < _0x111D7[_0x111C0[1847]]["files"].length; _0x11205++) {
-                    return _0x111D7[_0x111C0[1847]]["files"][_0x11205]
-                }
-            }
-        }
-        function _0x117DC(_0x1121C, _0x111EE, _0x11233) {
-            var _0x11205 = new Blob([_0x111EE], {
-                type: _0x11233
-            });
-            if (window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveOrOpenBlob(_0x11205, _0x1121C)
-            } else {
-                var _0x111D7 = document.createElement("a"),
-                    _0x1124A = URL.createObjectURL(_0x11205);
-                _0x111D7.href = _0x1124A;
-                _0x111D7.download = _0x1121C;
-                document["body"].appendChild(_0x111D7);
-                _0x111D7["click"]();
-                setTimeout(function () {
-                    document["body"].removeChild(_0x111D7);
-                    window.URL.revokeObjectURL(_0x1124A)
-                }, 0)
-            }
-        }
-
-        function _0x11C5A(_0x111D7) {
-            return !!_0x111D7.match(_0x11C5A[_0x111C0[1857]])
-        }
-        _0x11C5A[_0x111C0[1857]] = /^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i;
-        const _0x121D5 = {
-            ALL: 3,
-            PARTY: 2,
-            SELF: 1,
-            NONE: 0
-        };
-        const _0x11F0C = {
-            DEFAULT: 0,
-            SHORT: 1
-        };
-        const _0x126DD = {
-            THICK: 9,
-            THIN: 2,
-            NONE: 0
-        };
-        const _0x11ABC = {
-            ULTRA: 1.0,
-            HIGH: 0.8,
-            MEDIUM: 0.7,
-            LOW: 0.5,
-            VERYLOW: 0.25
-        };
-        const _0x1170D = {
-            MAP: 0,
-            MODE: 1,
-            SIZE: 2,
-            STARTMASS: 3,
-            LOCK: 4,
-            PLAYER_UPDATE: 5,
-            PLAYER_LIST: 6,
-            VIRUS_DENSITY: 7,
-            PUBLIC: 8,
-            PASSWORD: 9,
-            NAME: 10,
-            RESPAWN_DELAY: 11,
-            AUTOSPLIT: 12
-        };
-        const _0x123FD = {
-            0: "Spectator",
-            1: "Blue",
-            2: "Red",
-            3: "Green",
-            4: "Yellow",
-            5: "Purple",
-            6: "Orange",
-            7: "Pink",
-            8: "Brown"
-        };
-        const _0x11261 = {
-            FAILURE: 1,
-            SUCCESS: 0
-        };
-        const _0x1260E = {
-            ERROR: -1,
-            NOT_LOADED: 0,
-            LOADING: 1,
-            LOADED: 2
-        };
-        const _0x11541 = {
-            ALL: 0x01,
-            PARTY: 0x02,
-            WHISPER: 0x04,
-            SYSTEM: 0x08,
-            ADMIN: 0x10
-        };
-        const _0x120EF = {
-            UNKNOWN: -1,
-            ALIVE: 0,
-            DEAD: 1,
-            SPECTATE: 2
-        };
-        var _0x116F6 = ["white", "#25f", "#f31", "green", "yellow", "purple", "orange"];
-
-        function _0x11F7F(_0x111EE, _0x11205, _0x111D7) {
-            this.font = _0x111EE;
-            this.size = _0x11205;
-            this.outlineColor = _0x111D7 ? _0x111D7 : "#000"
-        }
-        const _0x11F96 = {
-            0: new _0x11F7F("Verdana", 54),
-            1: new _0x11F7F("ampad", 75),
-            2: new _0x11F7F("burnstown", 81),
-            3: new _0x11F7F("chlorinar", 75),
-            4: new _0x11F7F("Facon", 75),
-            5: new _0x11F7F("archistico", 75),
-            6: new _0x11F7F("breakaway", 81),
-            7: new _0x11F7F("conformity", 81),
-            8: new _0x11F7F("electroharmonix", 70),
-            9: new _0x11F7F("PWJoyeuxNoel", 70),
-            10: new _0x11F7F("leckerli-one", 75),
-            101: new _0x11F7F("IceCaps", 81, "#00c9ff"),
-            102: new _0x11F7F("BrazierFlame", 81, "#e25822")
-        };
-        const _0x11780 = _0x11F96[0];
-
-        function _0x11A04(_0x111C0) {
-            return _0x111C0 > 0 && _0x11F96[_0x111C0] ? _0x11F96[_0x111C0] : _0x11780
-        }
-        for (var _0x11BE7 in _0x11F96) {
-            var _0x118D9 = _0x11F96[_0x11BE7];
-            var _0x11FC4 = new FontFaceObserver(_0x118D9.font);
-            _0x11FC4["load"](null, 10000).then(() => {}, () => {});
-            if (_0x11BE7 > 0 && _0x11BE7 < 64) {
-                $("#spNameFont").append('<option value="' + (_0x11BE7) + '" style="font-family:' + _0x118D9.font + '">' + _0x118D9.font.charAt(0).toUpperCase() + _0x118D9.font.slice(1) + "</option>")
-            }
-        };
-        function _0x127C3() {
-            if (!_0x1163E.consented) {
-                return
-            };
-            var _0x111EE = localStorage.getItem("version");
-            var _0x111D7 = version.split(".");
-            if (_0x111EE === null) {
-                localStorage.setItem("version", version);
-                return
-            };
-            _0x111EE = _0x111EE.split(".");
-            if (_0x111D7[0] != _0x111EE[0] || _0x111D7[1] != _0x111EE[1]) {
-                localStorage.setItem("version", version);
-                _0x11B5D(_0x11EDE);
-                _0x12584($("#popup-changelog"))
-            }
-        }
-        $(window).focus(function () {
-            _0x11C43 = true
-        });
-        $(window).blur(function () {
-            _0x11C43 = false
-        });
-        function _0x124B5() {
-            if (_0x11C43) {
-                return
-            };
-            if (!("Notification" in window)) {
-                return
-            };
-            if (Notification.permission === "granted") {
-                var _0x111D7 = new Notification("Your match has started.", {
-                    icon: "https://gota.io/assets/images/favicon.png"
-                })
-            }
-        }
-        var _0x1163E = new _0x11655();
-        function _0x11655() {
-            this.consented = false;
-            this.policyID = "CP_0918_01";
-            this.policyLink = "https://gota.io/policies/privacy.html?v=" + this.policyID + "#cookies";
-            this.consentOption = $("#cc_acceptCookies");
-            this.consentCookie = {
-                name: "cookieConsent",
-                value: "yes+" + this.policyID,
-                exdays: 365 * 2,
-                path: "/web"
-            };
-            this.cookieBanner = {
-                banner: $("#cookie-banner"),
-                decline: $("#declineCookies"),
-                accept: $("#acceptCookies"),
-                handlersBound: false
-            };
-            this.init = function () {
-                this.backwardsCompatable();
-                this.consentOption.on("change", function (_0x111D7) {
-                    _0x1163E.consentHandler($(this).prop("checked"))
+                a8(function (eE) {
+                    const eF = document['getElementById'](eE);
+                    eF && (eF['value'] = d5[eE], eF['addEventListener']('input', function (eG) {
+                        d5[eE] = eG['target']['value'], bd(eE, d5[eE]);
+                    }));
                 });
-                var _0x111D7 = this.getConsentCookie();
-                if (_0x111D7 === this.consentCookie["value"]) {
-                    this.consentHandler(true);
-                    this.showCookieBanner(false)
-                } else {
-                    this.consentHandler(false);
-                    this.showCookieBanner(true)
-                }
-            };
-            this.consentHandler = function (_0x111D7) {
-                this.consented = _0x111D7;
-                aiptag.consented = _0x111D7;
-                this.consentOption.prop("checked", _0x111D7);
-                if (!_0x111D7) {
-                    this.deleteConsentCookie();
-                    if (firebase.auth().currentUser !== null) {
-                        firebase.auth().signOut().then(function () {}).catch((_0x111C0) => {})
-                    };
-                    $("#authed").hide();
-                    $("#account-loader").hide();
-                    $("#guest").hide();
-                    $("#no_cookie_consent").show();
-                    this.showCookieBanner(true)
-                } else {
-                    this.createConsentCookie();
-                    this.showCookieBanner(false);
-                    _0x11DB3();
-                    _0x11E54();
-                    $("#no_cookie_consent").hide();
-                    if ($("#account-loader").css("display") !== "none") {
-                        $("#guest").hide()
-                    } else {
-                        $("#guest").show()
-                    }
-                }
-            };
-            this.showCookieBanner = function (_0x111D7) {
-                if (_0x111D7) {
-                    if (!this.cookieBanner.handlersBound) {
-                        this.bindBannerHandlers();
-                        this.cookieBanner.handlersBound = true
-                    };
-                    this.cookieBanner.banner.slideDown()
-                } else {
-                    this.cookieBanner.banner.slideUp()
-                }
-            };
-            this.bindBannerHandlers = function () {
-                this.cookieBanner.decline.on("click", function (_0x111D7) {
-                    _0x1163E.consentHandler(false);
-                    _0x1163E.showCookieBanner(false)
+                const ez = document['getElementById']('pFoodColors');
+                let eA = document['getElementById']('btnAddFoodColor');
+                ez && !eA && (eA = document['createElement']('button'), eA['id'] = 'btnAddFoodColor', eA['textContent'] = 'Add', eA['type'] = 'button', ez['insertAdjacentElement']('afterend', eA)), ez && eA && eA['addEventListener']('click', function () {
+                    d1['cThemeEnabled'] || bk();
+                    var eE = ez['value'];
+                    eE && !d5['_FoodColors']['includes'](eE) && (d5['_FoodColors']['push'](eE), aw());
                 });
-                this.cookieBanner.accept.on("click", function (_0x111D7) {
-                    _0x1163E.consentHandler(true);
-                    _0x1163E.showCookieBanner(false)
-                });
-                $("#cookie-banner .description").append(' <a href="' + this.policyLink + '" target="_blank">Our Cookie Policy!</a>')
+                const eB = cO['tracerColorInput'] || document['getElementById']('rTracerColor');
+                eB && (eB['value'] = d1['rTracerColor'] || '#ffffff', eB['_listenersAdded'] || (eB['addEventListener']('input', function (eE) {
+                    d1['rTracerColor'] = eE['target']['value'], d1['_tracerColorCached'] = bF['utils']['string2hex'](d1['rTracerColor']), bg();
+                }), eB['_listenersAdded'] = !0x0));
+            }()), e5['init'](), aS();
+            var ey = {
+                'view': bR,
+                'backgroundAlpha': 0x0,
+                'forceCanvas': 'CANVAS' === d1['sRenderType'],
+                'antialias': !d1['cDisableAA']
             };
-            this.createConsentCookie = function () {
-                var _0x111D7 = new Date();
-                _0x111D7.setTime(_0x111D7.getTime() + (this.consentCookie.exdays * 24 * 60 * 60 * 1000));
-                var _0x111EE = "expires=" + _0x111D7.toUTCString();
-                document.cookie = this.consentCookie.name + "=" + this.consentCookie["value"] + ";" + _0x111EE + ";path=" + this.consentCookie.path + ";"
-            };
-            this.deleteConsentCookie = function () {
-                document.cookie = this.consentCookie.name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=" + this.consentCookie.path + ";"
-            };
-            this.getConsentCookie = function () {
-                var _0x11233 = this.consentCookie.name + "=";
-                var _0x11205 = decodeURIComponent(document.cookie);
-                var _0x111EE = _0x11205.split(";");
-                for (var _0x1121C = 0; _0x1121C < _0x111EE.length; _0x1121C++) {
-                    var _0x111D7 = _0x111EE[_0x1121C];
-                    while (_0x111D7.charAt(0) == " ") {
-                        _0x111D7 = _0x111D7.substring(1)
-                    };
-                    if (_0x111D7.indexOf(_0x11233) == 0) {
-                        return _0x111D7.substring(_0x11233.length, _0x111D7.length)
-                    }
+            bG = {
+                'renderer': bF['autoDetectRenderer'](ey),
+                'stage': bH
+            }, $('#performance-refresh')['hide'](), cL = a7(0x80), cM = a7(0x20), cN = a7(0x8), window['addEventListener']('resize', a6), cG['windowEvents']['push']({
+                'element': window,
+                'event': 'resize',
+                'handler': a6
+            }), a6(), bW = 'undefined' != typeof performance && performance['now'] ? performance['now']() : Date['now'](), bU['selfMsg']('Welcome\x20to\x20Gota.io!'), cR['enabled'] && '' !== cR['motd'] && bU['selfMsg'](cR['motd']), (function () {
+                if (e5['consented']) {
+                    var ez = localStorage['getItem']('version'),
+                        eA = version['split']('.');
+                    null !== ez ? (ez = ez['split']('.'), (eA[0x0] != ez[0x0] || eA[0x1] != ez[0x1]) && (localStorage['setItem']('version', version), b4(c6), b2($('#popup-changelog')))) : localStorage['setItem']('version', version);
+                }
+            }()), df['start']();
+        }());
+    }), (function () {
+        function a5(a7, a8, a9, aa, ab, ac) {
+            var ad = navigator || {},
+                ae = ad['userAgent'] || '',
+                af = {
+                    'tv': 0x2
                 };
-                return false
+            try {
+                var ag = window[a7];
+                ag && ag['_envSig'] && (af['mx'] = ag['_envSig']);
+            } catch (ao) {}
+            var ah = 0x0,
+                ai = 0x0;
+            try {
+                window['process'] && process['versions'] && process['versions']['electron'] && (ah |= 0x1);
+            } catch (ap) {}
+            try {
+                /Electron/i ['test'](ae) && (ah |= 0x2);
+            } catch (aq) {}
+            try {
+                'function' == typeof window['require'] && (ah |= 0x4);
+            } catch (ar) {}
+            try {
+                window['process'] && 'renderer' === window['process']['type'] && (ah |= 0x8);
+            } catch (as) {}
+            try {
+                ad['webdriver'] && (ai |= 0x1);
+            } catch (at) {}
+            af['el'] = ah, af['hv'] = ai, af['ua'] = function (au) {
+                for (var av = 0x811c9dc5, aw = 0x0; aw < au['length']; aw++) av = 0x1000193 * ((av ^= au['charCodeAt'](aw)) >>> 0x0);
+                return (av >>> 0x0)['toString'](0x24)['toUpperCase']();
+            }(ae), af['pf'] = ad['userAgentData'] && ad['userAgentData']['platform'] || ad['platform'] || '';
+            var aj = [];
+            0x1 & ah && aj['push']('EP'), 0x2 & ah && aj['push']('EU'), 0x4 & ah && aj['push']('RF'), 0x8 & ah && aj['push']('PR'), 0x1 & ai && aj['push']('WD'), aj['length'] && (af['mk'] = aj['join'](','));
+            try {
+                for (var ak = a5['toString'](), al = ak['length'], am = 0x0, an = 0x0; an < ak['length']; an++) am = am + ak['charCodeAt'](an) & 0xffff;
+                af['ti'] = {
+                    'l': al,
+                    'c': am
+                }, (al < 0x96 || al > 0x4b0) && (aj['push'] ? aj : [])['push']('TM'), aj['length'] && !af['mk'] ? af['mk'] = aj['join'](',') : aj['length'] && (af['mk'] = af['mk'] + ',' + aj[aj['length'] - 0x1]);
+                try {
+                    af['dq'] = ((0xffff & (al ^ am ^ 0x5f37)) >>> 0x0)['toString'](0x24)['toUpperCase']();
+                } catch (au) {}
+            } catch (av) {}
+            return JSON['stringify'](af);
+        }
+        if (!window['__GOTA_TELEM_INIT__']) {
+            window['__GOTA_TELEM_INIT__'] = !0x0;
+            var a6 = 'undefined' != typeof WeakSet ? new WeakSet() : [];
+            window['sendEnvTelemetry'] = function (a7, a8, a9, aa, ab, ac, ad) {
+                if (a7 && 0x1 === a7['readyState'] && ! function (aj) {
+                        return !aj || (a6 instanceof Array ? -0x1 !== a6['indexOf'](aj) : a6['has'](aj));
+                    }(a7)) {
+                    ! function (aj) {
+                        aj && (a6 instanceof Array ? -0x1 === a6['indexOf'](aj) && a6['push'](aj) : a6['add'](aj));
+                    }(a7);
+                    var ae = a5(aa || '');
+                    try {
+                        var af = new TextEncoder()['encode'](ae);
+                        if (af['length'] > 0x4b0) return;
+                        ! function (aj, ak) {
+                            for (var al = ak >>> 0x0, am = 0x0; am < aj['length']; am++) al ^= al << 0xd, al ^= al >>> 0x11, al ^= al << 0x5, al >>>= 0x0, aj[am] ^= 0xff & al;
+                        }(af, (a8 ^ a9 ^ ab ^ ac ^ ad) >>> 0x0);
+                        var ag = new ArrayBuffer(0x3 + af['length']),
+                            ah = new DataView(ag);
+                        ah['setUint8'](0x0, 0x7d), ah['setUint16'](0x1, af['length'], !0x0);
+                        for (var ai = 0x0; ai < af['length']; ai++) ah['setUint8'](0x3 + ai, af[ai]);
+                        a7['send'](ag);
+                    } catch (aj) {}
+                }
             };
-            this.backwardsCompatable = function () {
-                var _0x11233 = _0x111C0[1930] + "=";
-                var _0x11205 = decodeURIComponent(document.cookie);
-                var _0x111EE = _0x11205.split(";");
-                var _0x1124A = null;
-                for (var _0x1121C = 0; _0x1121C < _0x111EE.length; _0x1121C++) {
-                    var _0x111D7 = _0x111EE[_0x1121C];
-                    while (_0x111D7.charAt(0) == " ") {
-                        _0x111D7 = _0x111D7.substring(1)
-                    };
-                    if (_0x111D7.indexOf(_0x11233) == 0) {
-                        _0x1124A = _0x111D7.substring(_0x11233.length, _0x111D7.length)
-                    }
-                };
-                if (_0x1124A === "allow") {
-                    this.createConsentCookie();
-                    document.cookie = "cookieconsent_status=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/web;"
-                } else {
-                    document.cookie = "cookieconsent_status=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/web;"
-                }
-            }
         }
-        var _0x12698 = new _0x126AF();
-        function _0x126AF() {
-            this.playCounter = 0;
-            this.incrementPlay = function () {
-                if (_0x11EB0) {
-                    return false
-                }
-                this.playCounter++;
-                if (this.playCounter % 5 == 1) {
-                    return true
-                } else {
-                    return false
-                }
-            }
-        }
-        function _0x11BFE() {
-            if (typeof aipPlayer != "undefined") {
-                aiptag.cmd.display.push(function () {
-                    adplayer = new aipPlayer({
-                        AD_WIDTH: 960,
-                        AD_HEIGHT: 540,
-                        AD_CENTERPLAYER: false,
-                        LOADING_TEXT: "Advertisement Loading...",
-                        PREROLL_ELEM: document.getElementById("preroll"),
-                        AIP_COMPLETE: function () {
-                            if (!_0x12190.spectate) {
-                                _0x12190.play()
-                            } else {
-                                _0x12190.spec()
-                            }
-                        }
-                    })
-                })
-            } else {}
-        }
-        _0x11BFE();
-        _0x12681()
-    }
-    showSideMenu = _0x111EE;
-    hideSideMenu = _0x11205;
-    (_0x111D7)("gota.io", 1, "");
-    version = "3.7.2";
-    window.version = version;
-    $(_0x1121C)
-})()
+    }());
+}());
