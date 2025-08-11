@@ -6782,7 +6782,7 @@
 				'element': window
 				, 'event': 'resize'
 				, 'handler': a6
-			}), a6(), bW = 'undefined' != typeof performance && performance.now ? performance.now() : Date.now(), bU.selfMsg('Welcome to Gota.io!'), cR.enabled && '' !== cR.motd && bU.selfMsg(cR.motd), (function ()
+			}), a6(), bW = 'undefined' != typeof performance && performance.now ? performance.now() : Date.now(), bU.selfMsg('Welcome to Weyno Gota.io Mode!'), cR.enabled && '' !== cR.motd && bU.selfMsg(cR.motd), (function ()
 			{
 				if (e5.consented)
 				{
