@@ -1,6905 +1,10401 @@
-!(function ()
-{
-	function j(a5)
-	{
-		var a6 = $('#' + a5)[0x0];
-		if (a6)
-		{
-			a6.classList.contains('side-menu-transition') || a6.classList.add('side-menu-transition');
-			var a7 = document.getElementById('main-right');
-			if (a7)
-				for (var a8 = a7.children, a9 = 0x0; a9 < a8.length; a9++)
-				{
-					var aa = a8[a9];
-					aa !== a6 && (aa.classList && aa.classList.contains('side-menu-transition') && aa.classList.remove('menu-open'), 'none' !== getComputedStyle(aa).display && (aa.style.display = 'none'));
-				}
-			a6.classList.contains('menu-open') && 'none' !== getComputedStyle(a6).display || (a6.style.display = 'block', a6.offsetWidth, a6.classList.add('menu-open'));
-		}
-	}
-	var q = {
-			'grad': 0.9
-			, 'turn': 0x168
-			, 'rad': 0x168 / (0x2 * Math.PI)
-		}
-		, z = function (a5)
-		{
-			return 'string' == typeof a5 ? a5.length > 0x0 : 'number' == typeof a5;
-		}
-		, A = function (a5, a6, a7)
-		{
-			return void 0x0 === a6 && (a6 = 0x0), void 0x0 === a7 && (a7 = Math.pow(0xa, a6)), Math.round(a7 * a5) / a7 + 0x0;
-		}
-		, B = function (a5, a6, a7)
-		{
-			return void 0x0 === a6 && (a6 = 0x0), void 0x0 === a7 && (a7 = 0x1), a5 > a7 ? a7 : a5 > a6 ? a5 : a6;
-		}
-		, D = function (a5)
-		{
-			return (a5 = isFinite(a5) ? a5 % 0x168 : 0x0) > 0x0 ? a5 : a5 + 0x168;
-		}
-		, F = function (a5)
-		{
-			return {
-				'r': B(a5.r, 0x0, 0xff)
-				, 'g': B(a5.g, 0x0, 0xff)
-				, 'b': B(a5.b, 0x0, 0xff)
-				, 'a': B(a5.a)
-			};
-		}
-		, G = function (a5)
-		{
-			return {
-				'r': A(a5.r)
-				, 'g': A(a5.g)
-				, 'b': A(a5.b)
-				, 'a': A(a5.a, 0x3)
-			};
-		}
-		, H = /^#([0-9a-f]{3,8})$/i
-		, J = function (a5)
-		{
-			var a6 = a5.toString(0x10);
-			return a6.length < 0x2 ? '0' + a6 : a6;
-		}
-		, K = function (a5)
-		{
-			var a6 = a5.r
-				, a7 = a5.g
-				, a8 = a5.b
-				, a9 = a5.a
-				, aa = Math.max(a6, a7, a8)
-				, ab = aa - Math.min(a6, a7, a8)
-				, ac = ab ? aa === a6 ? (a7 - a8) / ab : aa === a7 ? 0x2 + (a8 - a6) / ab : 0x4 + (a6 - a7) / ab : 0x0;
-			return {
-				'h': 0x3c * (ac < 0x0 ? ac + 0x6 : ac)
-				, 's': aa ? ab / aa * 0x64 : 0x0
-				, 'v': aa / 0xff * 0x64
-				, 'a': a9
-			};
-		}
-		, L = function (a5)
-		{
-			var a6 = a5.h
-				, a7 = a5.s
-				, a8 = a5.v
-				, a9 = a5.a;
-			a6 = a6 / 0x168 * 0x6, a7 /= 0x64, a8 /= 0x64;
-			var aa = Math.floor(a6)
-				, ab = a8 * (0x1 - a7)
-				, ac = a8 * (0x1 - (a6 - aa) * a7)
-				, ad = a8 * (0x1 - (0x1 - a6 + aa) * a7)
-				, ae = aa % 0x6;
-			return {
-				'r': 0xff * [a8, ac, ab, ab, ad, a8][ae]
-				, 'g': 0xff * [ad, a8, a8, ac, ab, ab][ae]
-				, 'b': 0xff * [ab, ab, ad, a8, a8, ac][ae]
-				, 'a': a9
-			};
-		}
-		, M = function (a5)
-		{
-			return {
-				'h': D(a5.h)
-				, 's': B(a5.s, 0x0, 0x64)
-				, 'l': B(a5.l, 0x0, 0x64)
-				, 'a': B(a5.a)
-			};
-		}
-		, N = function (a5)
-		{
-			return {
-				'h': A(a5.h)
-				, 's': A(a5.s)
-				, 'l': A(a5.l)
-				, 'a': A(a5.a, 0x3)
-			};
-		}
-		, O = function (a5)
-		{
-			return L((a7 = (a6 = a5).s
-				, {
-					'h': a6.h
-					, 's': (a7 *= ((a8 = a6.l) < 0x32 ? a8 : 0x64 - a8) / 0x64) > 0x0 ? 0x2 * a7 / (a8 + a7) * 0x64 : 0x0
-					, 'v': a8 + a7
-					, 'a': a6.a
-				}));
-			var a6, a7, a8;
-		}
-		, Q = function (a5)
-		{
-			return {
-				'h': (a6 = K(a5)).h
-				, 's': (a9 = (0xc8 - (a7 = a6.s)) * (a8 = a6.v) / 0x64) > 0x0 && a9 < 0xc8 ? a7 * a8 / 0x64 / (a9 <= 0x64 ? a9 : 0xc8 - a9) * 0x64 : 0x0
-				, 'l': a9 / 0x2
-				, 'a': a6.a
-			};
-			var a6, a7, a8, a9;
-		}
-		, R = /^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s*,\s*([+-]?\d*\.?\d+)%\s*,\s*([+-]?\d*\.?\d+)%\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i
-		, T = /^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s+([+-]?\d*\.?\d+)%\s+([+-]?\d*\.?\d+)%\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i
-		, U = /^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i
-		, V = /^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i
-		, W = {
-			'string': [
-              [function (a5)
-					{
-						var a6 = H.exec(a5);
-						return a6 ? (a5 = a6[0x1]).length <= 0x4 ?
-						{
-							'r': parseInt(a5[0x0] + a5[0x0], 0x10)
-							, 'g': parseInt(a5[0x1] + a5[0x1], 0x10)
-							, 'b': parseInt(a5[0x2] + a5[0x2], 0x10)
-							, 'a': 0x4 === a5.length ? A(parseInt(a5[0x3] + a5[0x3], 0x10) / 0xff, 0x2) : 0x1
-						} : 0x6 === a5.length || 0x8 === a5.length ?
-						{
-							'r': parseInt(a5.substr(0x0, 0x2), 0x10)
-							, 'g': parseInt(a5.substr(0x2, 0x2), 0x10)
-							, 'b': parseInt(a5.substr(0x4, 0x2), 0x10)
-							, 'a': 0x8 === a5.length ? A(parseInt(a5.substr(0x6, 0x2), 0x10) / 0xff, 0x2) : 0x1
-						} : null : null;
-              }, 'hex']
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, [function (a5)
-					{
-						var a6 = U.exec(a5) || V.exec(a5);
-						return a6 ? a6[0x2] !== a6[0x4] || a6[0x4] !== a6[0x6] ? null : F(
-						{
-							'r': Number(a6[0x1]) / (a6[0x2] ? 0x64 / 0xff : 0x1)
-							, 'g': Number(a6[0x3]) / (a6[0x4] ? 0x64 / 0xff : 0x1)
-							, 'b': Number(a6[0x5]) / (a6[0x6] ? 0x64 / 0xff : 0x1)
-							, 'a': void 0x0 === a6[0x7] ? 0x1 : Number(a6[0x7]) / (a6[0x8] ? 0x64 : 0x1)
-						}) : null;
-              }, 'rgb']
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, [function (a5)
-					{
-						var a6 = R.exec(a5) || T.exec(a5);
-						if (!a6) return null;
-						var a7, a8, a9 = M(
-						{
-							'h': (a7 = a6[0x1], a8 = a6[0x2], void 0x0 === a8 && (a8 = 'deg'), Number(a7) * (q[a8] || 0x1))
-							, 's': Number(a6[0x3])
-							, 'l': Number(a6[0x4])
-							, 'a': void 0x0 === a6[0x5] ? 0x1 : Number(a6[0x5]) / (a6[0x6] ? 0x64 : 0x1)
-						});
-						return O(a9);
-              }, 'hsl']
-          ]
-			, 'object': [
-              [function (a5)
-					{
-						var a6 = a5.r
-							, a7 = a5.g
-							, a8 = a5.b
-							, a9 = a5.a
-							, aa = void 0x0 === a9 ? 0x1 : a9;
-						return z(a6) && z(a7) && z(a8) ? F(
-						{
-							'r': Number(a6)
-							, 'g': Number(a7)
-							, 'b': Number(a8)
-							, 'a': Number(aa)
-						}) : null;
-              }, 'rgb']
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, [function (a5)
-					{
-						var a6 = a5.h
-							, a7 = a5.s
-							, a8 = a5.l
-							, a9 = a5.a
-							, aa = void 0x0 === a9 ? 0x1 : a9;
-						if (!z(a6) || !z(a7) || !z(a8)) return null;
-						var ab = M(
-						{
-							'h': Number(a6)
-							, 's': Number(a7)
-							, 'l': Number(a8)
-							, 'a': Number(aa)
-						});
-						return O(ab);
-              }, 'hsl']
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, [function (a5)
-					{
-						var a6 = a5.h
-							, a7 = a5.s
-							, a8 = a5.v
-							, a9 = a5.a
-							, aa = void 0x0 === a9 ? 0x1 : a9;
-						if (!z(a6) || !z(a7) || !z(a8)) return null;
-						var ab, ac = (ab = {
-								'h': Number(a6)
-								, 's': Number(a7)
-								, 'v': Number(a8)
-								, 'a': Number(aa)
-							}
-							, {
-								'h': D(ab.h)
-								, 's': B(ab.s, 0x0, 0x64)
-								, 'v': B(ab.v, 0x0, 0x64)
-								, 'a': B(ab.a)
-							});
-						return L(ac);
-              }, 'hsv']
-          ]
-		}
-		, X = function (a5, a6)
-		{
-			for (var a7 = 0x0; a7 < a6.length; a7++)
-			{
-				var a8 = a6[a7][0x0](a5);
-				if (a8) return [a8, a6[a7][0x1]];
-			}
-			return [null, void 0x0];
-		}
-		, Y = function (a5, a6)
-		{
-			var a7 = Q(a5);
-			return {
-				'h': a7.h
-				, 's': B(a7.s + 0x64 * a6, 0x0, 0x64)
-				, 'l': a7.l
-				, 'a': a7.a
-			};
-		}
-		, Z = function (a5)
-		{
-			return (0x12b * a5.r + 0x24b * a5.g + 0x72 * a5.b) / 0x3e8 / 0xff;
-		}
-		, a0 = function (a5, a6)
-		{
-			var a7 = Q(a5);
-			return {
-				'h': a7.h
-				, 's': a7.s
-				, 'l': B(a7.l + 0x64 * a6, 0x0, 0x64)
-				, 'a': a7.a
-			};
-		}
-		, a1 = (function ()
-		{
-			function a5(a6)
-			{
-				this.parsed = function (a7)
-				{
-					return 'string' == typeof a7 ? X(a7.trim(), W.string) : 'object' == typeof a7 && null !== a7 ? X(a7, W.object) : [null, void 0x0];
-				}(a6)[0x0], this.rgba = this.parsed ||
-				{
-					'r': 0x0
-					, 'g': 0x0
-					, 'b': 0x0
-					, 'a': 0x1
-				};
-			}
-			return a5.prototype.isValid = function ()
-			{
-				return null !== this.parsed;
-			}, a5.prototype.brightness = function ()
-			{
-				return A(Z(this.rgba), 0x2);
-			}, a5.prototype.isDark = function ()
-			{
-				return Z(this.rgba) < 0.5;
-			}, a5.prototype.isLight = function ()
-			{
-				return Z(this.rgba) >= 0.5;
-			}, a5.prototype.toHex = function ()
-			{
-				return a7 = (a6 = G(this.rgba)).r, a8 = a6.g, a9 = a6.b, ab = (aa = a6.a) < 0x1 ? J(A(0xff * aa)) : '', '#' + J(a7) + J(a8) + J(a9) + ab;
-				var a6, a7, a8, a9, aa, ab;
-			}, a5.prototype.toRgb = function ()
-			{
-				return G(this.rgba);
-			}, a5.prototype.toRgbString = function ()
-			{
-				return a7 = (a6 = G(this.rgba)).r, a8 = a6.g, a9 = a6.b, (aa = a6.a) < 0x1 ? 'rgba(' + a7 + ', ' + a8 + ', ' + a9 + ', ' + aa + ')' : 'rgb(' + a7 + ', ' + a8 + ', ' + a9 + ')';
-				var a6, a7, a8, a9, aa;
-			}, a5.prototype.toHsl = function ()
-			{
-				return N(Q(this.rgba));
-			}, a5.prototype.toHslString = function ()
-			{
-				return a7 = (a6 = N(Q(this.rgba))).h, a8 = a6.s, a9 = a6.l, (aa = a6.a) < 0x1 ? 'hsla(' + a7 + ', ' + a8 + '%, ' + a9 + '%, ' + aa + ')' : 'hsl(' + a7 + ', ' + a8 + '%, ' + a9 + '%)';
-				var a6, a7, a8, a9, aa;
-			}, a5.prototype.toHsv = function ()
-			{
-				return a6 = K(this.rgba)
-					, {
-						'h': A(a6.h)
-						, 's': A(a6.s)
-						, 'v': A(a6.v)
-						, 'a': A(a6.a, 0x3)
-					};
-				var a6;
-			}, a5.prototype.invert = function ()
-			{
-				return a2(
-				{
-					'r': 0xff - (a6 = this.rgba).r
-					, 'g': 0xff - a6.g
-					, 'b': 0xff - a6.b
-					, 'a': a6.a
-				});
-				var a6;
-			}, a5.prototype.saturate = function (a6)
-			{
-				return void 0x0 === a6 && (a6 = 0.1), a2(Y(this.rgba, a6));
-			}, a5.prototype.desaturate = function (a6)
-			{
-				return void 0x0 === a6 && (a6 = 0.1), a2(Y(this.rgba, -a6));
-			}, a5.prototype.grayscale = function ()
-			{
-				return a2(Y(this.rgba, -0x1));
-			}, a5.prototype.lighten = function (a6)
-			{
-				return void 0x0 === a6 && (a6 = 0.1), a2(a0(this.rgba, a6));
-			}, a5.prototype.darken = function (a6)
-			{
-				return void 0x0 === a6 && (a6 = 0.1), a2(a0(this.rgba, -a6));
-			}, a5.prototype.rotate = function (a6)
-			{
-				return void 0x0 === a6 && (a6 = 0xf), this.hue(this.hue() + a6);
-			}, a5.prototype.alpha = function (a6)
-			{
-				return 'number' == typeof a6 ? a2(
-				{
-					'r': (a7 = this.rgba).r
-					, 'g': a7.g
-					, 'b': a7.b
-					, 'a': a6
-				}) : A(this.rgba.a, 0x3);
-				var a7;
-			}, a5.prototype.hue = function (a6)
-			{
-				var a7 = Q(this.rgba);
-				return 'number' == typeof a6 ? a2(
-				{
-					'h': a6
-					, 's': a7.s
-					, 'l': a7.l
-					, 'a': a7.a
-				}) : A(a7.h);
-			}, a5.prototype.isEqual = function (a6)
-			{
-				return this.toHex() === a2(a6).toHex();
-			}, a5;
-		}())
-		, a2 = function (a5)
-		{
-			return a5 instanceof a1 ? a5 : new a1(a5);
-		};
-	!(function ()
-	{
-		function a5(aa, ab, ac, ad, ae, af, ag, ah)
-		{
-			var ai = 0x0
-				, aj = 0x0
-				, ak = Array.isArray(af) && af.length ? af : a9;
-			null == ag && (ag = 0x9e3779b1), null == ah && (ah = 0xa5a5a5a5);
-			for (var al = 0x0; al < ak.length; al++) switch (ak[al])
-			{
-			case 0x0:
-				ai = Math.imul(ab >>> 0x0, ag >>> 0x0) >>> 0x0;
-				break;
-			case 0x1:
-				aj = (ac >>> 0x0 ^ ai) >>> 0x0;
-				break;
-			case 0x2:
-				aj = aj + ((0xff & aa) << 0x10) >>> 0x0;
-				break;
-			case 0x3:
-				aj = aj + (0xffff & ad) >>> 0x0;
-				break;
-			case 0x4:
-				aj = ae(aj >>> 0x0, ac >>> 0x0) >>> 0x0;
-				break;
-			case 0x5:
-				aj = (aj ^ ah >>> 0x0) >>> 0x0;
-				break;
-			case 0x6:
-				aj = (aj ^ aj >>> 0x7) >>> 0x0;
-			}
-			var am = new Array(0x7).fill(!0x1);
-			for (al = 0x0; al < ak.length; al++)(an = ak[al]) >= 0x0 && an <= 0x6 && (am[an] = !0x0);
-			for (var an = 0x0; an <= 0x6; an++)
-				if (!am[an]) switch (an)
-				{
-				case 0x0:
-					ai = Math.imul(ab >>> 0x0, ag >>> 0x0) >>> 0x0;
-					break;
-				case 0x1:
-					aj = (ac >>> 0x0 ^ ai) >>> 0x0;
-					break;
-				case 0x2:
-					aj = aj + ((0xff & aa) << 0x10) >>> 0x0;
-					break;
-				case 0x3:
-					aj = aj + (0xffff & ad) >>> 0x0;
-					break;
-				case 0x4:
-					aj = ae(aj >>> 0x0, ac >>> 0x0) >>> 0x0;
-					break;
-				case 0x5:
-					aj = (aj ^ ah >>> 0x0) >>> 0x0;
-					break;
-				case 0x6:
-					aj = (aj ^ aj >>> 0x7) >>> 0x0;
-				}
-			return (aj >>> 0x0).toString(0x24).toUpperCase();
-		}
-		
-		function a6(aa)
-		{
-			for (var ab = 0x811c9dc5, ac = 0x0; ac < aa.length; ac++) ab = 0x1000193 * ((ab ^= aa.charCodeAt(ac)) >>> 0x0);
-			return (ab >>> 0x0).toString(0x24).toUpperCase();
-		}
-		var a7 = '__ak8saulr';
-		if (!window[a7])
-		{
-			var a8 = new Uint8Array([0x0, 0x61, 0x73, 0x6d, 0x1, 0x0, 0x0, 0x0, 0x1, 0x7, 0x1, 0x60, 0x4, 0x7f, 0x7f, 0x7f, 0x7f
-					
-					
-					
-					
-					
-					
-					
-					
-                                        
-					, 0x1, 0x7f, 0x3, 0x2, 0x1, 0x0, 0x7, 0x7, 0x1, 0x3, 0x72, 0x6f, 0x74, 0x0, 0x0, 0xa, 0x17, 0x1
-					
-					
-					
-					
-					
-					
-					
-					
-                                        
-					, 0x15, 0x0, 0x20, 0x3, 0x20, 0x2, 0x41, 0x7, 0x71, 0x74, 0x20, 0x3, 0x41, 0x20, 0x20, 0x2, 0x41
-					
-					
-					
-					
-					
-					
-					
-					
-                                        
-					, 0x7, 0x71, 0x6b, 0x76, 0x72, 0xb])
-				, a9 = [0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6];
-			if (function (aa)
-				{
-					Object.defineProperty(window, a7
-						, {
-							'value': function (ab, ac, ad, ae, af, ag, ah, ai)
-							{
-								var aj = a5(ab, ac, ad, ae, aa, af, ag, ah);
-								if (ab >= 0x4) try
-								{
-									var ak = parseInt(aj, 0x24);
-									if (!isNaN(ak))
-									{
-										var al = 0x7 & ai;
-										ak = ((ak = ak >>> 0x0 ^ ai >>> 0x0) << al | ak >>> 0x20 - al) >>> 0x0, aj = ((ak ^= ai >>> 0x3) >>> 0x0).toString(0x24).toUpperCase();
-									}
-								}
-								catch (am)
-								{}
-								return aj;
-							}
-							, 'writable': !0x1
-						});
-					try
-					{
-						!(function ()
-						{
-							var ab = window[a7];
-							if (ab && !ab._envSig)
-							{
-								var ac = window.navigator ||
-									{}
-									, ad = ac.userAgent || ''
-									, ae = ac.userAgentData && ac.userAgentData.platform || ac.platform || ''
-									, af = 0x0;
-								try
-								{
-									af = ac.plugins && ac.plugins.length || 0x0;
-								}
-								catch (ao)
-								{}
-								var ag = ''
-									, ah = ''
-									, ai = 0x0;
-								try
-								{
-									var aj = document.createElement('canvas')
-										, ak = aj.getContext('webgl') || aj.getContext('experimental-webgl');
-									if (ak)
-									{
-										ai = 0x1;
-										var al = ak.getExtension('WEBGL_debug_renderer_info');
-										al && (ag = ak.getParameter(al.UNMASKED_VENDOR_WEBGL) || '', ah = ak.getParameter(al.UNMASKED_RENDERER_WEBGL) || '');
-									}
-								}
-								catch (ap)
-								{}
-								var am = 0x0;
-								try
-								{
-									window.process && window.process.versions && window.process.versions.electron && (am |= 0x1);
-								}
-								catch (aq)
-								{}
-								try
-								{
-									/Electron/i.test(ad) && (am |= 0x2);
-								}
-								catch (ar)
-								{}
-								var an = [a6(ad), a6(ae), af, ai, a6(ag), a6(ah), am].join('.');
-								ab._envSig = an, ab._env = {
-									'uaH': a6(ad)
-									, 'pf': ae
-									, 'pc': af
-									, 'gl': ai
-									, 'gvH': a6(ag)
-									, 'grH': a6(ah)
-									, 'eb': am
-								};
-							}
-						}());
-					}
-					catch (ab)
-					{}
-				}(function (aa, ab)
-				{
-					var ac = 0x7 & ab;
-					return (aa << ac | aa >>> 0x20 - ac) >>> 0x0;
-				}), 'object' == typeof WebAssembly) try
-			{
-				WebAssembly.instantiate(a8).then(function (aa)
-				{
-					try
-					{
-						var ab = aa.instance.exports.rot
-							, ac = window[a7];
-						Object.defineProperty(window, a7
-							, {
-								'value': function (ad, ae, af, ag, ah, ai, aj, ak)
-								{
-									var al = a5(ad, ae, af, ag, function (ao, ap)
-									{
-										return ab(0x0, 0x0, 0x0 | ap, 0x0 | ao) >>> 0x0;
-									}, ah, ai, aj);
-									if (ad >= 0x4) try
-									{
-										var am = parseInt(al, 0x24);
-										if (!isNaN(am))
-										{
-											var an = 0x7 & ak;
-											am = ((am = am >>> 0x0 ^ ak >>> 0x0) << an | am >>> 0x20 - an) >>> 0x0, al = ((am ^= ak >>> 0x3) >>> 0x0).toString(0x24).toUpperCase();
-										}
-									}
-									catch (ao)
-									{}
-									return al;
-								}
-								, 'writable': !0x1
-							});
-						try
-						{
-							ac && ac._envSig && !window[a7]._envSig && (window[a7]._envSig = ac._envSig, window[a7]._env = ac._env), window[a7]._wasm = 0x1;
-						}
-						catch (ad)
-						{}
-					}
-					catch (ae)
-					{}
-				}).catch(function () {});
-			}
-			catch (aa)
-			{}
-		}
-	}());
-	const a3 = {
-			'mainMenuVisible': !0x0
-			, 'minimapAccum': 0x0
-			, 'minimapIntervalMs': 0x21
-		}
-		, a4 = new Map();
-	$(function ()
-	{
-		function a5()
-		{
-			cC && (cE = requestAnimationFrame(a5), a9());
-		}
-		
-		function a6()
-		{
-			var e7 = window.innerWidth
-				, e8 = window.innerHeight
-				, e9 = cW.resolution || 0x1;
-			bR.style.width = e7 + 'px', bR.style.height = e8 + 'px', bR.width = Math.round(e7 * e9), bR.height = Math.round(e8 * e9), bG && bG.renderer && (bG.renderer.resolution !== e9 && (bG.renderer.resolution = e9), bG.renderer.resize(bR.width, bR.height)), bG && bG.stage && (bG.stage.position.x = e7 * e9 / 0x2, bG.stage.position.y = e8 * e9 / 0x2);
-		}
-		
-		function a7(e7)
-		{
-			const e8 = new bF.Graphics();
-			e8.beginFill(0xffffff), e8.drawCircle(e7, e7, e7), e8.endFill();
-			const e9 = bG.renderer.generateTexture(e8, bF.SCALE_MODES.LINEAR, window.devicePixelRatio);
-			return e8.destroy(), e9;
-		}
-		
-		function a8(e7)
-		{
-			for (var e8 in d5) 'u' == e8.charAt(0x0) && e7(e8);
-		}
-		
-		function a9()
-		{
-			const e7 = 'undefined' != typeof performance && performance.now ? performance.now() : Date.now()
-				, e8 = e7 - bW;
-			bW = e7;
-			const e9 = Math.min(e8 / d1.rAnimationDelay, 0x1);
-			cr += e8;
-			let eb = !0x1;
-			const ec = (bU.scale > 0.12 || d1.cDisableAutoFoodHiding) && !d1.cHideFood;
-			if (bL.visible = ec, ec)
-			{
-				bU._foodValues && bU._foodValuesVersion === bU._foodVersionCounter || (bU._foodValues = Object.values(bU.foodObjects), bU._foodValuesVersion = bU._foodVersionCounter);
-				const em = bU._foodValues;
-				for (let eo = 0x0, ep = em.length; eo < ep; eo++)
-				{
-					const eq = em[eo];
-					eq.steps > 0x0 && (eq.animate(e9), eb = !0x0), eq.handleFood();
-				}
-			}
-			bU._bucketValues && bU._bucketValuesVersion === bU._bucketVersionCounter || (bU._bucketValues = Object.values(bU.bucket), bU._bucketValuesVersion = bU._bucketVersionCounter);
-			const ed = bU._bucketValues;
-			for (let er = 0x0, es = ed.length; er < es; er++)
-			{
-				const eu = ed[er];
-				eu.steps > 0x0 && (eu.animate(e9), eb = !0x0), eu.handle();
-			}
-			let ef = 0x0
-				, eg = 0x0
-				, eh = 0x0
-				, ei = 0x0;
-			bU._myCellValues && bU._myCellValuesVersion === bU._myCellVersionCounter || (bU._myCellValues = Object.values(bU.myCells), bU._myCellValuesVersion = bU._myCellVersionCounter);
-			const ej = bU._myCellValues;
-			for (let ev = 0x0, ew = ej.length; ev < ew; ev++)
-			{
-				const ex = ej[ev];
-				ef += ex.x, eg += ex.y, ei += ex.size, eh++;
-			}
-			if (eh > 0x0)
-			{
-				bU.centerX = ef / eh, bU.centerY = eg / eh, bU.centerSteps = 0x0;
-				const ey = Math.max(bR.height / 0x438, bR.width / 0x780);
-				if (d1.cDisableAutoZoom) bU.scale_base = 0.2 * ey;
-				else
-				{
-					const ez = Math.min(0x20 / ei, 0x1);
-					bU.scale_base = Math.pow(ez, 0.4) * ey;
-				}
-			}
-			bU.centerSteps > 0x0 && (bU.centerX += (bU.centerX_ - bU.centerX) * e9, bU.centerY += (bU.centerY_ - bU.centerY) * e9);
-			const ek = bU.scale_base * bU.mouseZoom
-				, el = bU.scale;
-			if (bU.scale = 0.9 * bU.scale + 0.1 * ek, bU.scale !== el && (bK.scale.set(bU.scale), eb = !0x0), bK.pivot.x === bU.centerX && bK.pivot.y === bU.centerY || (bK.pivot.set(bU.centerX, bU.centerY), eb = !0x0), bU.isConnected() && !a3.mainMenuVisible && !bU.mouseFrozen)
-			{
-				let eA = bU._cachedWorldMouseX
-					, eB = bU._cachedWorldMouseY;
-				if (void 0x0 !== eA && bU._cachedWorldMouseScale === bU.scale && bU._cachedMouseRawX === bU.mouseRawX && bU._cachedMouseRawY === bU.mouseRawY && bU._cachedPivotX === bK.pivot.x && bU._cachedPivotY === bK.pivot.y || (eA = bK.pivot.x - bG.stage.position.x / bU.scale + bU.mouseRawX * cW.resolution / bU.scale, eB = bK.pivot.y - bG.stage.position.y / bU.scale + bU.mouseRawY * cW.resolution / bU.scale, bU._cachedWorldMouseX = eA, bU._cachedWorldMouseY = eB, bU._cachedWorldMouseScale = bU.scale, bU._cachedMouseRawX = bU.mouseRawX, bU._cachedMouseRawY = bU.mouseRawY, bU._cachedPivotX = bK.pivot.x, bU._cachedPivotY = bK.pivot.y), bU.lineSplitEnabled && bU.lineSplitLocked)
-				{
-					const eC = bU.calculateOptimalLineSplitMouse();
-					eA = eC.x, eB = eC.y;
-				}
-				bU.sendMousePacket(eA, eB);
-			}
-			if (a3.minimapAccum += e8, !d1.cHideMinimap && a3.minimapAccum >= a3.minimapIntervalMs && (function (eD)
-				{
-					if (bU.serverData.border.enabled)
-					{
-						bT.clearRect(0x0, 0x0, bS.width, bS.height), bT.font = '12px Calibri';
-						for (var eE = 0x0; eE < bU.party.length; eE++)
-						{
-							var eF = bU.party[eE];
-							eF.state === dZ.ALIVE && eF.id != bU.playerId && (b1(bT, eF.name, eF.x, eF.y, 0x4, eF.mmColor, !0x0), eF.x += (eF.x_ - eF.x) * eD, eF.y += (eF.y_ - eF.y) * eD);
-						}
-						b1(bT, bU.name, bU.centerX, bU.centerY, 0x6, '#fefefe', !0x1);
-					}
-				}(e9), a3.minimapAccum = 0x0, eb = !0x0), d1.cShowCoordinates && ((function ()
-				{
-					var eD = cO.minimapCoordsEl || cO.minimapCoords || document.getElementById('minimap-coordinates');
-					if (eD)
-					{
-						var eE = 'X: ' + bU.centerX.toFixed(0x0) + ' Y: ' + bU.centerY.toFixed(0x0);
-						eD._lastCoordText !== eE && (eD.style.color !== d5.uiForegroundColor && (eD.style.color = d5.uiForegroundColor), eD.textContent = eE, eD._lastCoordText = eE);
-					}
-				}()), eb = !0x0), (function ()
-				{
-					if (!d1.cShowTracer || a3.mainMenuVisible || !bU.isConnected()) return bN.visible && (bN.visible = !0x1), !0x1;
-					if (!bU._myCellValues || 0x0 === bU._myCellValues.length) return bN.visible && (bN.visible = !0x1), !0x1;
-					const eD = bW;
-					if (bN.visible && bU._lastTracerDraw && eD - bU._lastTracerDraw < 0x21 && bU._cachedWorldMouseX === bU._lastTracerMouseX && bU._cachedWorldMouseY === bU._lastTracerMouseY) return !0x1;
-					bQ ? bQ.clear() : (bQ = new bF.Graphics(), bN.addChild(bQ));
-					const eE = void 0x0 !== bU._cachedWorldMouseX ? bU._cachedWorldMouseX : 0x0
-						, eF = void 0x0 !== bU._cachedWorldMouseY ? bU._cachedWorldMouseY : 0x0
-						, eG = d1._tracerColorCached || bF.utils.string2hex('#ffffff');
-					bQ.lineStyle(0x2, eG, d1.rTracerOpacity / 0x64);
-					const eH = bU._myCellValues;
-					for (let eI = 0x0, eJ = eH.length; eI < eJ; eI++)
-					{
-						const eK = eH[eI];
-						bQ.moveTo(eK.x, eK.y), bQ.lineTo(eE, eF);
-					}
-					return bN.visible = !0x0, bU._lastTracerDraw = eD, bU._lastTracerMouseX = eE, bU._lastTracerMouseY = eF, !0x0;
-				}()) && (eb = !0x0), bU.buffHolder.update(), (eb || bU._forceNextRender || e7 - (bU._lastForcedRenderTs || 0x0) > 0x1f4) && (bG.renderer.render(bG.stage), bU._lastForcedRenderTs = e7, bU._forceNextRender = !0x1), cs++, cr >= 0x3e8)
-			{
-				cO.playerFps.textContent = cs;
-				const eD = Date.now();
-				bU.serverData.resetType > 0x0 && bU.serverData.resetTime > 0x0 ? (cO.resetInfo.show(), cO.resetTime.html(by(Math.max(0x0, Math.floor((bU.serverData.resetTime - eD) / 0x3e8))))) : cO.resetInfo.hide(), bU.respawnCooldown > 0x0 && bU.respawnCooldown >= eD ? (cO.respawnInfo.show(), cO.respawnCooldown.html(by(Math.max(0x0, Math.ceil((bU.respawnCooldown - eD) / 0x3e8))))) : bU.respawnCooldown < 0x0 ? (cO.respawnInfo.show(), cO.respawnCooldown.html('NEVER')) : cO.respawnInfo.hide(), cr = 0x0, cs = 0x0;
-			}
-			bU.playerRegistry.handleUpdatedPlayers();
-		}
-		
-		function ab()
-		{
-			d1.cShowBorder && bU.serverData.border.enabled ? (bP || (bP = new bF.Graphics(), bJ.addChild(bP)), bP.clear(), bP.lineStyle(d5.rBorderSize, bF.utils.string2hex(a2(d5.uiGameBorderColor).toHex())), bP.drawRect(bU.serverData.border.left, bU.serverData.border.top, bU.serverData.border.width, bU.serverData.border.height), bP.visible = !0x0) : bP && (bP.visible = !0x1);
-		}
-		
-		function ac()
-		{
-			if (bG && bG.renderer) try
-			{
-				bG.renderer.destroy(!0x0);
-			}
-			catch (e8)
-			{}
-			if (bH && bH.destroy) try
-			{
-				bH.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				});
-			}
-			catch (e9)
-			{}
-			if (bK && bK.destroy) try
-			{
-				bK.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				});
-			}
-			catch (eb)
-			{}
-			if (bL && bL.destroy) try
-			{
-				bL.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				});
-			}
-			catch (ec)
-			{}
-			if (bM && bM.destroy) try
-			{
-				bM.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				});
-			}
-			catch (ed)
-			{}
-			if (bN && bN.destroy) try
-			{
-				bN.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				});
-			}
-			catch (ef)
-			{}
-			if (bI && bI.destroy) try
-			{
-				bI.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				});
-			}
-			catch (eg)
-			{}
-			if (bO && bO.destroy) try
-			{
-				bO.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				});
-			}
-			catch (eh)
-			{}
-			if (bP && bP.destroy) try
-			{
-				bP.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				});
-			}
-			catch (ei)
-			{}
-			if (bQ && bQ.destroy) try
-			{
-				bQ.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				});
-			}
-			catch (ej)
-			{}
-			for (var e7 in cF) cF[e7] && (clearInterval(cF[e7]), cF[e7] = null);
-			void 0x0 !== cD && cD && (clearInterval(cD), cD = null), void 0x0 !== cE && cE && (cancelAnimationFrame(cE), cE = null), (function ()
-			{
-				for (var ek in cG)
-				{
-					for (var el = cG[ek], em = 0x0; em < el.length; em++)
-					{
-						var eo = el[em];
-						try
-						{
-							eo.isProperty ? eo.element['on' + eo.event] = null : eo.isFirebase ? eo.element.off(eo.event, eo.handler) : eo.element && eo.element.removeEventListener && eo.element.removeEventListener(eo.event, eo.handler);
-						}
-						catch (ep)
-						{}
-					}
-					cG[ek] = [];
-				}
-				'undefined' != typeof $ && ($(window).off(), $(document).off());
-			}()), bU && bU.mousePacketInterval && (clearTimeout(bU.mousePacketInterval), bU.mousePacketInterval = null), bg();
-		}
-		
-		function ad()
-		{
-			this.socket = null, this.currentServer = null, this.currentServerName = null, this.spectate = !0x1, this.name = '', this.playerId = 0x0, this.bucket = {}, this.foodObjects = {}, this.myCells = {}, this.playerRegistry = new ag(), this.buffHolder = new bo(), this.centerX = 0x0, this.centerY = 0x0, this.centerX_ = 0x0, this.centerY_ = 0x0, this.centerSteps = 0x0, this.scale = 0.5, this.scale_ = 0.5, this.scale_base = 0.5, this.mouseZoom = 0x1, this.offsetX = 0x0, this.offsetY = 0x0, this.mouseRawX = 0x0, this.mouseRawY = 0x0, this.mouseX = 0x0, this.mouseY = 0x0, this.mouseFrozen = !0x1, this.lineSplitEnabled = !0x1, this.lineSplitDirection = {
-				'x': 0x0
-				, 'y': 0x0
-			}, this.lineSplitLocked = !0x1, this.lineSplitMouseX = 0x0, this.lineSplitMouseY = 0x0, this.lineSplitPhaseStart = 0x0, this.lineSplitPhaseDelayMs = 0x64, this.party = [], this.partyIds = {}, this.subPanelOverride = !0x1, this.serverData = {
-				'hasSentSubPanel': !0x1
-				, 'border':
-				{}
-				, 'maxCells': 0x10
-			}, this.score = 0x0, this.respawnCooldown = 0x0, this.customGameMap = null, this.accountListeners = {}, this.pingInterval = null, this.lastMousePacket = {
-				'x': 0x0
-				, 'y': 0x0
-				, 'time': 0x0
-			}, this.mousePacketInterval = null, this.pendingMousePacket = null, this.MOUSE_PACKET_RATE = 0x19, this.clearStats(), this.visibilityPingTimer = null, this.lastVisibilityChange = 0x0;
-		}
-		
-		function af(e7)
-		{
-			this.id = e7, this.type = 0x0, this.nameCache = null, this.skin = null, this.playerId = 0x0, this.color = null, this.x = 0x0, this.y = 0x0, this.x_ = 0x0, this.y_ = 0x0, this.size = 0x0, this.size_ = 0x0, this.steps = 0x0, this.massLastAmount = -0x1, this.cache = null, this._massCacheLastRedraw = 0x0, this._massChangeThreshold = 0x5, this._massRegenIntervalMs = 0xfa;
-		}
-		
-		function ag()
-		{
-			this.bucket = {}, this.defaultData, this.updatedPlayers = [], this.init = function ()
-			{
-				this.defaultData = new ah(0x0), this.defaultData.name = '', this.defaultData.cellColor = 0xaaaaaa;
-			}, this.add = function (e7)
-			{
-				this.bucket[e7.id] = e7;
-			}, this.remove = function (e7)
-			{
-				this.bucket[e7].onDelete(), delete this.bucket[e7];
-			}, this.clear = function ()
-			{
-				for (var e7 in this.bucket) this.remove(e7);
-			}, this.getPlayer = function (e7)
-			{
-				return this.bucket[e7];
-			}, this.getPlayerById = function (e7)
-			{
-				var e8 = this.bucket[e7];
-				return null != e8 ? e8 : this.defaultData;
-			}, this.updatePlayer = function (e7)
-			{
-				e7.cacheUpdate = !0x0, this.updatedPlayers.push(e7);
-			}, this.handleUpdatedPlayers = function ()
-			{
-				for (; this.updatedPlayers.length > 0x0;) this.updatedPlayers.shift().cacheUpdate = !0x1;
-			}, this.init();
-		}
-		
-		function ah(e7)
-		{
-			this.id = e7, this.name, this.skin, this.skinCache, this.cellColor, this.nameColor = '#fff', this.flags = 0x0, this.effect = 0x0, this.nameFont = 0x0, this.lowerName = !0x1, this.isServerBot = !0x1, this.nameCache = null, this.cacheUpdate = !0x1, this.spiked = 0x0, this.setFlags = function (e8)
-			{
-				this.flags = e8, 0x8 & ~this.flags ? 0x10 & ~this.flags ? this.spiked = 0x0 : this.spiked = 0x2 : this.spiked = 0x1;
-			}, this.parseEffect = function (e8)
-			{
-				e8 >= 0x40 ? (e8 -= 0x40, this.lowerName = !0x0) : this.lowerName = !0x1, this.effect = e8;
-			}, this.getNameCache = function (e8)
-			{
-				if (e8 || null == this.nameCache)
-				{
-					var e9, eb, ec = function (ed)
-					{
-						return ed > 0x0 && e1[ed] ? e1[ed] : e2;
-					}(this.nameFont);
-					ec == e2 ? (e9 = 'bold', eb = cW.textOutlineSize) : (e9 = 'normal', eb = 0x9), this.nameCache ? (this.nameCache.text = this.name, this.nameCache.style.fontFamily = ec.font, this.nameCache.style.stroke = ec.outlineColor, this.nameCache.style.fontWeight = e9, this.nameCache.style.fontSize = ec.size, this.nameCache.style.fill = this.nameColor, this.nameCache.updateText()) : this.nameCache = new bF.Text(this.name
-						, {
-							'fontFamily': ec.font
-							, 'fontWeight': e9
-							, 'fontSize': ec.size
-							, 'fill': this.nameColor
-							, 'stroke': ec.outlineColor
-							, 'strokeThickness': eb
-						}), this.nameCache.width;
-				}
-				return this.nameCache;
-			}, this.setSkin = function (e8)
-			{
-				0x0 == e8.length ? (this.skin = null, this.skinCache = null) : e8 !== this.skin && (this.skin = e8, this.skinCache = null);
-			}, this.getSkin = function ()
-			{
-				if (null != this.skinCache) return this.skinCache;
-				if (null != this.skin)
-				{
-					if (bY[this.skin])
-					{
-						if (bY[this.skin] == dX.LOADED) return this.skinCache = bX[this.skin], this.skinCache;
-						bY[this.skin] == dX.ERROR && (this.skin = null);
-					}
-					else
-					{
-						if (bY[this.skin] = dX.LOADING, this.skin.endsWith('.gif'))
-						{
-							var e8 = this.skin
-								, e9 = this;
-							gifFrames(
-							{
-								'url': e8
-								, 'frames': 'all'
-								, 'cumulative': !0x1
-								, 'outputType': 'canvas'
-							}).then(function (ec)
-							{
-								var ed = new bq();
-								ed.loadFromFrameData(ec), bY[e8] = dX.LOADED, bX[e8] = ed;
-							}).catch(function (ec)
-							{
-								e9.skin = null;
-							});
-						}
-						else
-						{
-							var eb = new Image();
-							eb.crossOrigin = '', e8 = this.skin, eb.addEventListener('load', function ()
-							{
-								var ec = document.createElement('canvas');
-								ec.width = 0x200, ec.height = 0x200;
-								var ed = ec.getContext('2d');
-								ed.beginPath(), ed.arc(0x100, 0x100, 0x100, 0x0, cH, !0x1), ed.closePath(), ed.clip(), ed.drawImage(eb, 0x0, 0x0, 0x200, 0x200);
-								var ef = bF.Texture.from(ec);
-								bY[e8] = dX.LOADED, bX[e8] = ef;
-							}), eb.addEventListener('error', function ()
-							{
-								bY[e8] = dX.ERROR;
-							}), eb.src = e8;
-						}
-					}
-				}
-				return null;
-			}, this.onDelete = function ()
-			{
-				this.nameCache && this.nameCache.destroy();
-			};
-		}
-		
-		function ai()
-		{}
-		
-		function aj(e7, e8, e9)
-		{
-			for (var eb = 0x0; eb < e9.length; eb++) e8.setUint8(e7, e9.charCodeAt(eb)), e7++;
-			e8.setUint8(e7, 0x0);
-		}
-		
-		function ak(e7, e8, e9)
-		{
-			for (var eb = 0x0; eb < e9.length; eb++) e8.setUint16(e7, e9.charCodeAt(eb), !0x0), e7 += 0x2;
-			e8.setUint16(e7, 0x0, !0x0);
-		}
-		
-		function al(e7)
-		{
-			for (var e8 = '';;)
-			{
-				var e9 = e7.getUint8(e7.offset);
-				if (e7.offset++, 0x0 == e9) break;
-				e8 += String.fromCharCode(e9);
-			}
-			return e8;
-		}
-		
-		function am(e7)
-		{
-			for (var e8 = '';;)
-			{
-				var e9 = e7.getUint16(e7.offset, !0x0);
-				if (e7.offset += 0x2, 0x0 == e9) break;
-				e8 += String.fromCharCode(e9);
-			}
-			return e8;
-		}
-		
-		function ao(e7, e8)
-		{
-			if (e8) switch (e7.code)
-			{
-			case 'auth/user-disabled':
-				alert('This account has been permanently suspended by an administrator.');
-				break;
-			case 'auth/popup-closed-by-user':
-				break;
-			default:
-				alert(e7.message + ' (' + e7.code + ')');
-			}
-		}
-		
-		function ap(e7, e8)
-		{
-			var e9 = ''
-				, eb = ''
-				, ec = 'white';
-			if (e8.flags.STAFF) eb = 'Gota.io Staff', e9 = 'build', ec = 'royalblue';
-			else
-			{
-				if (!e8.flags.VERIFIED) return;
-				eb = 'Verified Player', e9 = 'check_circle';
-			}
-			var ed = document.createElement('i');
-			ed.className = 'material-icons', ed.id = 'user-badge', ed.innerText = e9, ed.style.color = ec, $(ed).attr('data-balloon', eb), $(ed).attr('data-balloon-pos', 'right'), $(e7).append(ed);
-		}
-		
-		function aq(e7, e8)
-		{
-			var e9 = document.createElement('i');
-			return e9.className = 'material-icons', e9.innerText = e7, e9.setAttribute('data-balloon', e8), e9.setAttribute('data-balloon-pos', 'up'), e9;
-		}
-		
-		function ar(e7, e8, e9, eb)
-		{
-			var ec = document.createElement('li');
-			ec.className = 'user-embed menu-sub-bg2', ec.style.backgroundColor = d5.uiMenuHeaderBackgroundColor;
-			var ed = document.createElement('img');
-			ed.src = e7.avatar, ed.alt = e7.username, ec.appendChild(ed);
-			var ef = document.createElement('div');
-			ef.className = 'info';
-			var eg = document.createElement('div');
-			eg.className = 'username', eg.innerText = e7.username, ef.appendChild(eg), ap(eg, e7);
-			var eh, ei = document.createElement('div')
-				, ej = !0x1
-				, ek = null;
-			e9 ? (eh = e7.presence.server, ek = eh.charAt(0x0).toUpperCase() + eh.slice(0x1), e7.presence.timestamp + 0xea60 < new Date().getTime() || void 0x0 === e7.presence.id ? (ei.className = 'status offline', ei.innerText = 'Not playing on any server') : (ej = !0x0, ei.className = 'status ' + ('ONLINE' === e7.presence.status ? 'online' : 'spectate'), ei.innerText = ('ONLINE' === e7.presence.status ? 'Playing ' : 'Spectating ') + e7.presence.gamemode + ' on ' + ek + ' (ID ' + e7.presence.id + ')')) : (ei.className = 'status pending', ei.innerText = 'Pending Friend Request'), ef.appendChild(ei);
-			var el = document.createElement('div');
-			if (el.className = 'actions', eg.addEventListener('click', function (eq)
-				{
-					as(e7, $('#main-social'));
-				}), e9 && ej)
-			{
-				var em = aq('input', 'Join Server');
-				em.addEventListener('click', function (eq)
-				{
-					aN(ek), bU.play(), bU.selfMsg(e7.username + '\'s ID is ' + e7.presence.id), b4($('#main-social'));
-				}), el.appendChild(em);
-			}
-			if (!e9)
-			{
-				var eo = aq('done', 'Add as Friend');
-				eo.isHandlingRequest = !0x1, eo.addEventListener('click', function (eq)
-				{
-					eo.isHandlingRequest || (eo.isHandlingRequest = !0x0, firebase.auth().currentUser.getIdToken().then(er =>
-					{
-						fetch(cQ + '/api/v1/social/friends'
-							, {
-								'method': 'POST'
-								, 'headers':
-								{
-									'Content-Type': 'application/json'
-								}
-								, 'body': JSON.stringify(
-								{
-									'token': er
-									, 'target': e7.uid
-									, 'action': 0x2
-								})
-							}).then(es => es.json()).then(es =>
-						{
-							0xc8 !== es.code && alert(es.message), eo.isHandlingRequest = !0x1;
-						}).catch(es =>
-						{
-							alert(es), eo.isHandlingRequest = !0x1;
-						});
-					}).catch(er =>
-					{
-						ao(er, !0x0), eo.isHandlingRequest = !0x1;
-					}));
-				}), el.appendChild(eo);
-			}
-			var ep = aq('block', 'Remove Friend');
-			return ep.isHandlingRequest = !0x1, ep.addEventListener('click', function (eq)
-			{
-				!ep.isHandlingRequest && confirm('Are you sure you want to remove \"' + e7.username + '\" as your friend?') && (ep.isHandlingRequest = !0x0, firebase.auth().currentUser.getIdToken().then(er =>
-				{
-					fetch(cQ + '/api/v1/social/friends'
-						, {
-							'method': 'POST'
-							, 'headers':
-							{
-								'Content-Type': 'application/json'
-							}
-							, 'body': JSON.stringify(
-							{
-								'token': er
-								, 'target': e7.uid
-								, 'action': 0x4
-							})
-						}).then(es => es.json()).then(es =>
-					{
-						alert(es.message), 0xc8 === es.code && (firebase.database().ref(cx.callbacks[e7.uid]).off(), cx.elements[e7.uid].remove(), delete cx.callbacks[e7.uid], delete cx.elements[e7.uid]), ep.isHandlingRequest = !0x1;
-					}).catch(es =>
-					{
-						alert(es), ep.isHandlingRequest = !0x1;
-					});
-				}).catch(er =>
-				{
-					ao(er, !0x0), ep.isHandlingRequest = !0x1;
-				}));
-			}), el.appendChild(ep), ec.appendChild(ef), ec.appendChild(el), eb ? e8.appendChild(ec) : ec;
-		}
-		
-		function as(e7, e8, e9)
-		{
-			e8 && b4(e8), $('#profile-username').text(e7.username), $('#profile-avatar').attr('src', e7.avatar), $('#profile-avatar').attr('alt', e7.username), $('#profile-level').html('Level ' + e7.levelData.level + '&nbsp;&nbsp;&nbsp;[' + bz(e7.levelData.xp_current) + '/' + bz(e7.levelData.xp_needed) + ']'), e7.title && e7.title > 0x0 && dF[e7.title] ? $('#profile-title').text(dF[e7.title]) : $('#profile-title').text(''), $('#profile-name').off('click'), e7.uid == cu.uid ? ($('#profile-name').on('click', function ()
-			{
-				$('#popup-profile').hide(), b5($('#popup-account-username'));
-			}), $('#profile-name').css('cursor', 'pointer')) : $('#profile-name').css('cursor', 'default'), e7.flags.STAFF ? $('#profile-avatar').addClass('spin') : $('#profile-avatar').removeClass('spin'), ap($('#profile-username'), e7), $('#profile-close-btn').off('click'), $('#profile-close-btn').on('click', function ()
-			{
-				e8 && b2(e8), b4($('#popup-profile'));
-			}), b2($('#popup-profile'));
-		}
-		
-		function au(e7)
-		{
-			if (!cw)
-			{
-				var e8 = $('#social-friends .user-list')[0x0]
-					, e9 = $('#social-friends .user-list')[0x1];
-				$('#social-uid').text(e7.uid), firebase.database().ref('/friendships/' + e7.uid).on('value', function (eb)
-				{
-					if (null === eb.val())
-					{
-						var ec = document.createElement('div')
-							, ed = document.createElement('span');
-						return ec.className = 'title-text center', ed.innerText = 'You have no friends рџҐ', ec.appendChild(ed), void e8.appendChild(ec);
-					}
-					var ef = 0x0
-						, eg = eb.val()
-						, eh = !0x1;
-					Object.keys(eg).map(ei =>
-					{
-						var ej = eg[ei];
-						if (!ej && !eh) return eh = !0x0, void firebase.auth().currentUser.getIdToken().then(el =>
-						{
-							fetch(cQ + '/api/v1/social/friends/pending'
-								, {
-									'method': 'POST'
-									, 'headers':
-									{
-										'Content-Type': 'application/json'
-									}
-									, 'body': JSON.stringify(
-									{
-										'token': el
-									})
-								}).then(em => em.json()).then(em =>
-							{
-								0xc8 === em.code && em.profiles.forEach(eo =>
-								{
-									if (cx.pendingFriends.includes(eo) || cx.pendingFriends.push(eo.uid), cx.elements[eo.uid])
-									{
-										var ep = ar(eo, cx.elements[eo.uid], !0x1, !0x1);
-										return e9.replaceChild(ep, cx.elements[eo.uid]), void(cx.elements[ei] = ep);
-									}
-									cx.elements[eo.uid] = ar(eo, e9, !0x1, !0x0);
-								});
-							});
-						}).catch(el => ao(el, !0x1));
-						if (!cx.callbacks[ei])
-						{
-							var ek = '/users/' + ei;
-							cx.callbacks[ei] = ek, firebase.database().ref(ek).on('value', function (el)
-							{
-								if (null !== el.val())
-								{
-									var em = el.val();
-									if (cx.timestamps[em.uid] = em.presence.timestamp, cx.pendingFriends.includes(ei))
-									{
-										cx.elements[ei].remove();
-										var eo = ar(em, cx.elements[ei], !0x0, !0x1);
-										return e8.appendChild(eo), void(cx.elements[ei] = eo);
-									}
-									if (cx.elements[ei]) return eo = ar(em, cx.elements[ei], !0x0, !0x1), e8.replaceChild(eo, cx.elements[ei]), void(cx.elements[ei] = eo);
-									cx.elements[ei] = ar(em, e8, !0x0, !0x0), cO.friendOnlineCount.text((function ()
-										{
-											var ep = 0x0
-												, eq = new Date().getTime();
-											for (var er in cx.timestamps)
-											{
-												var es = cx.timestamps[er];
-												es + 0xea60 < eq || void 0x0 === es || ep++;
-											}
-											return ep;
-										}
-										()) + ' online');
-								}
-							});
-						}
-						ej && ef++;
-					}), $('#social-friends-count').text(ef);
-				}), cF.friendsStatus && clearInterval(cF.friendsStatus), cF.friendsStatus = setInterval(function ()
-				{
-					if (!document.hidden)
-						for (var eb in cx.timestamps)
-						{
-							if (!cx.timestamps.hasOwnProperty(eb)) return;
-							var ec = cx.timestamps[eb];
-							if (ec + 0xea60 < new Date().getTime() || void 0x0 === ec)
-							{
-								var ed = cx.elements[eb].children[0x1].children[0x1];
-								ed.innerText = 'Not playing on any server', ed.className = 'status offline';
-								var ef = cx.elements[eb].children[0x2].children[0x0];
-								'Join Server' === ef.dataset.balloon && ef.remove();
-							}
-						}
-				}, 0xea60), cw = !0x0;
-			}
-		}
-		
-		function av()
-		{
-			void 0x0 !== window.grecaptcha && (cA = window.grecaptcha, window.grecaptcha = void 0x0, cA.ready(function () {}));
-		}
-		
-		function aw()
-		{
-			var e7 = $('#food-color-list');
-			if (e7.empty(), 0x0 != d5._FoodColors.length)
-			{
-				try
-				{
-					for (var e8 in d5._FoodColors)
-					{
-						var e9 = d5._FoodColors[e8];
-						e7.append('<div c=\'' + e9 + '\' style=\'background:' + e9 + ';color:' + bB(e9) + ';\'><span>' + e9 + '</span><div><button class=\'btn-food-color\'>X</button></div></div>');
-					}
-					$('.btn-food-color').on('click', function ()
-					{
-						for (var eb, ec, ed = $(this).parents().eq(0x1).attr('c'); - 0x1 !== (eb = d5._FoodColors.indexOf(ed));) d5._FoodColors.splice(eb, 0x1), ec = !0x0;
-						ec && aw();
-					});
-				}
-				catch (eb)
-				{
-					d5._FoodColors = [], e7.empty();
-				}
-				ax();
-			}
-			else ax();
-		}
-		
-		function ax()
-		{
-			for (var e7 of (d9 = [], d5._FoodColors)) d9.push(bF.utils.string2hex(e7));
-			if (bU && bU.foodObjects)
-			{
-				for (var e8 in bU.foodObjects) bU.foodObjects[e8] && (bU.foodObjects[e8].needsPixiUpdate = !0x0);
-			}
-		}
-		
-		function ay(e7)
-		{
-			var e8 = $('.keybinds-btn-selected');
-			if (d3 = !0x1, 0x0 != e8.length)
-			{
-				var e9 = e8.first();
-				e8.removeClass('keybinds-btn-selected'), d2[e9.attr('id')] = 0x1b != e7 ? e7 : -0x1, az(e9), aA();
-			}
-		}
-		
-		function az(e7)
-		{
-			var e8, e9 = d2[e7.attr('id')];
-			e7.html((e8 = e9) > 0x0 ? dL[e8].toUpperCase() : '&nbsp;');
-		}
-		
-		function aA()
-		{
-			di && clearTimeout(di), di = setTimeout(function ()
-			{
-				try
-				{
-					bg();
-				}
-				catch (e7)
-				{}
-			}, 0x96);
-		}
-		
-		function aB()
-		{
-			var e7 = document.getElementById('logo');
-			d1.cDisableEventSkins || !cR.enabled ? e7.style.backgroundImage = 'url(\'./images/logo.png\')' : cR.enabled && (e7.style.backgroundImage = 'url(\'./images/events/' + cR.key + '/logo.png\')');
-		}
-		
-		function aC()
-		{
-			var e7, e8;
-			!d1.cDisableEventSkins && cR.enabled ? (e7 = 'images/events/' + cR.key, e8 = '/spike_mother_happy.png') : (e7 = 'images', e8 = '/spike_mother.png');
-			var e9 = new Image();
-			e9.addEventListener('load', function ()
-				{
-					if (c1 = bF.Texture.from(e9), bU)
-						for (var ed in bU.bucket)
-						{
-							var ef = bU.bucket[ed];
-							0x3 == ef.type && (ef.needsPixiUpdate = !0x0);
-						}
-				}
-				, {
-					'once': !0x0
-				});
-			var eb = new Image();
-			eb.addEventListener('load', function ()
-				{
-					if (c2 = bF.Texture.from(eb), bU)
-						for (var ed in bU.bucket)
-						{
-							var ef = bU.bucket[ed];
-							0x4 == ef.type && (ef.needsPixiUpdate = !0x0);
-						}
-				}
-				, {
-					'once': !0x0
-				});
-			var ec = new Image();
-			ec.addEventListener('load', function ()
-				{
-					if (c3 = bF.Texture.from(ec), bU)
-						for (var ed in bU.bucket)
-						{
-							var ef = bU.bucket[ed];
-							0x4 == ef.type && (ef.needsPixiUpdate = !0x0);
-						}
-				}
-				, {
-					'once': !0x0
-				}), e9.src = e7 + '/spike.png', eb.src = e7 + '/spike_mother.png', ec.src = e7 + e8;
-		}
-		
-		function aD()
-		{
-			dj && clearTimeout(dj), dj = setTimeout(function ()
-			{
-				dj = null, aE && aE() ? $('#performance-refresh').hide() : $('#performance-refresh').css('display', 'table-row');
-			}, 0xc8);
-		}
-		
-		function aE()
-		{
-			try
-			{
-				if (!bG) return !0x1;
-				var e7 = bR;
-				if (!e7) return !0x1;
-				var e8 = !d1.cDisableAA
-					, e9 = d1.sRenderType
-					, eb = 'CANVAS' === e9
-					, ec = 'WEBGL' === e9
-					, ed = bG.renderer;
-				if (!ed) return !0x1;
-				var ef = ed.type && ed.type === bF.RENDERER_TYPE.CANVAS
-					, eg = ed.type && ed.type === bF.RENDERER_TYPE.WEBGL;
-				if (ed.options && ed.options.antialias === e8 && (eb && ef || ec && eg || !eb && !ec)) return !0x0;
-				var eh = e7.width
-					, ei = e7.height;
-				try
-				{
-					ed.destroy(!0x1);
-				}
-				catch (el)
-				{}
-				var ej, ek = {
-					'view': e7
-					, 'width': eh
-					, 'height': ei
-					, 'antialias': e8
-					, 'backgroundAlpha': 0x0
-					, 'resolution': cW.resolution || 0x1
-				};
-				return ej = eb && bF.CanvasRenderer ? new bF.CanvasRenderer(ek) : ec && bF.Renderer ? new bF.Renderer(
-				{
-					...ek
-					, 'forceCanvas': !0x1
-				}) : bF.autoDetectRenderer(
-				{
-					...ek
-					, 'forceCanvas': eb
-				}), bG.renderer = ej, ej.resize(eh, ei), bU && (bU._forceNextRender = !0x0), !0x0;
-			}
-			catch (em)
-			{
-				return !0x1;
-			}
-		}
-		
-		function aF()
-		{
-			d1.cShowCoordinates ? ($('#minimap-canvas').css(
-			{
-				'border-top': '2px solid rgba(255, 255, 255, .2)'
-			}), $('#minimap-panel').css(
-			{
-				'height': '270px'
-			})) : ($('#minimap-canvas').css(
-			{
-				'border-top': '0'
-			}), $('#minimap-panel').css(
-			{
-				'height': '250px'
-			}));
-		}
-		
-		function aG(e7)
-		{
-			0x3 === (e7 = e7.replace('#', '')).length && (e7 = e7.split('').map(e9 => e9 + e9).join(''));
-			var e8 = parseInt(e7, 0x10);
-			return {
-				'r': e8 >> 0x10 & 0xff
-				, 'g': e8 >> 0x8 & 0xff
-				, 'b': 0xff & e8
-			};
-		}
-		
-		function aH(e7)
-		{
-			db.skinName = $('#spSkinName').val().toLowerCase(), db.lowerName = $('#spLowerName').prop('checked');
-			const e8 = document.getElementById('spNameColor');
-			e8 && (db.nameColor = aG(e8.value));
-			const e9 = document.getElementById('spChatColor');
-			var eb = 0x0;
-			if (e9)
-			{
-				for (var ec = e9.value.toUpperCase(), ed = 0x0; ed < dE.length; ed++)
-					if (dE[ed].toUpperCase() == ec)
-					{
-						eb = ed;
-						break;
-					}
-			}
-			db.chatColor = eb, db.effect = parseInt($('#spEffect').val()), db.nameFont = parseInt($('#spNameFont').val()), bU.sendPacket(new bV.sendSubPanel(e7));
-		}
-		
-		function aI()
-		{
-			cq || bU.subPanelOverride ? ($('#btn-cellpanel').prop('disabled', !0x1), cq ? $('.subpanel-name-dashboard').css('display', '') : $('.subpanel-name-dashboard').css('display', 'none'), db.rules ? ($('#subpanel-rules').css('display', 'none'), $('#subpanel-content').css('display', 'block')) : ($('#subpanel-content').css('display', 'none'), $('#subpanel-rules').css('display', 'block'))) : $('#btn-cellpanel').prop('disabled', !0x1);
-		}
-		
-		function aJ(e7)
-		{
-			bU.accountListeners.loadSubPanel || (bU.accountListeners.loadSubPanel = firebase.firestore().collection('accounts').doc(e7).onSnapshot(e8 =>
-			{
-				e8.exists && e8.data().locked ? (cq = !0x0, $('#spLockedName').html(e8.data().name), void 0x0 !== e8.data().lastChange && $('#btn-chg-ln').attr('title', 'Last Changed: ' + new Date(e8.data().lastChange).toLocaleString()), null !== e8.data().expiry ? $('#spExpiry').html(new Date(0x3e8 * e8.data().expiry.seconds).toLocaleString()) : $('#spExpiry').html('Never')) : (cq = !0x1, 'none' !== $('#main-subpanel').css('display') && j('main-servers')), aI(), bU.accountListeners.loadSubPanel(), bU.accountListeners.loadSubPanel = null;
-			}, e8 =>
-			{
-				bU.accountListeners.loadSubPanel(), bU.accountListeners.loadSubPanel = null;
-			}));
-		}
-		
-		function aK(e7, e8, e9, eb, ec, ed, ef, eg, eh)
-		{
-			this.name = e7, this.ip = e8, this.players = e9, this.bots = eb, this.playerText = ec, this.mode = ed, this.region = ef, this.ssl = eg, this.order = eh;
-		}
-		
-		function aL()
-		{
-			for (var e7 in ($('#servers-body-eu').html(''), $('#servers-body-na').html(''), $('#servers-body-ap').html(''), cU))
-				for (var e8 in cU[e7])
-				{
-					var e9 = (eb = cU[e7][e8]).bots > 0x0 ? ' title=\"Players: ' + eb.players + '&#10;Bots: ' + eb.bots + '\"' : '';
-					$('#servers-body-' + eb.region).append('<tr id=\"s_' + eb.name + '\" class=\"server-row\" server=\"' + eb.name + '\"><td class=\"server-table-name\">' + eb.name + '</td><td class=\"server-table-players\"' + e9 + '>' + eb.playerText + '</td><td class=\"server-table-mode\">' + eb.mode + '</td></tr>');
-				}
-			for (var e8 in cV)
-			{
-				var eb = cV[e8];
-				$('#servers-body-' + eb.region).prepend('<tr id=\"s_' + eb.name + '\" class=\"account-server server-row\" server=\"' + eb.name + '\"><td class=\"server-table-name\">' + eb.name + '</td><td class=\"server-table-players\">' + eb.playerText + '</td><td class=\"server-table-mode\">' + eb.mode + '</td></tr>');
-			}
-			$('.server-row').on('click', function ()
-			{
-				aN($(this).attr('server'));
-			});
-		}
-		
-		function aM(e7)
-		{
-			for (var e8 in cU)
-				for (var e9 in cU[e8])
-					if (e9.toLowerCase() === e7.toLowerCase()) return cU[e8][e9];
-			return null;
-		}
-		
-		function aN(e7)
-		{
-			null != c4 && $('#s_' + c4.name).removeClass('server-selected'), c4 = aM(e7) || (Object.keys(cV).length > 0x0 ? function (e8)
-			{
-				for (var e9 in cV)
-					if (e8.toLowerCase() === e9.toLowerCase()) return cV[e9];
-				return null;
-			}(e7) : null), null != c4 && ($('#s_' + c4.name).addClass('server-selected'), 'undefined' != typeof window && 'function' == typeof window.gtag && window.gtag('event', 'select_server'
-				, {
-					'server_name': c4.name
-					, 'region': c4.region
-					, 'mode': c4.gamemode
-					, 'players': c4.players
-				}));
-		}
-		
-		function aO(e7)
-		{
-			e7 = e7.toLowerCase();
-			var e8 = $('#server-tab-' + e7);
-			$('.server-active').css('background-color', 'inherit'), $('#server-tab-container').children().removeClass('server-active'), e8.addClass('server-active'), $('.server-active').css('background-color', d5.uiMenuSubBackgroundColor), $('#server-content').children().css('display', 'none'), $('#servers-' + e7).css('display', 'block');
-		}
-		
-		function aP(e7, e8)
-		{
-			for (var e9 = e8, eb = !0x1, ec = 0x0, ed = d1._ChatTabs, ef = ed.length; ec < ef; ec++)
-			{
-				var eg = ed[ec];
-				if (eg && (e7 & eg.flags) === e7)
-				{
-					var eh = dl[ec];
-					if (!eh)
-					{
-						var ei = document.getElementById('chat-body-' + ec);
-						if (!ei) continue;
-						var ej = document.getElementById('chat-container-' + ec);
-						dl[ec] = eh = {
-							'bodyEl': ei
-							, 'containerEl': ej
-						};
-					}
-					var ek = eh.bodyEl
-						, el = eh.containerEl;
-					if (ek && el)
-					{
-						var em;
-						ek.children.length >= eg.maxMessages && ek.firstElementChild && ek.removeChild(ek.firstElementChild), eb ? em = e9.cloneNode(!0x0) : (em = e9, eb = !0x0);
-						var eo = document.createElement('tr');
-						eo.appendChild(em), ek.appendChild(eo), el.scrollHeight - el.scrollTop - el.clientHeight < 0x96 && (el.scrollTop = el.scrollHeight);
-					}
-				}
-			}
-		}
-		
-		function aQ(e7)
-		{
-			$('#chat-input').val(e7);
-		}
-		
-		function aR()
-		{
-			return $('#chat-input').val();
-		}
-		
-		function aS()
-		{
-			dl.length = 0x0;
-			var e7 = document.getElementById('chat-tab-container')
-				, e8 = document.getElementById('chat-container');
-			if (e7 && e8)
-			{
-				e7.innerHTML = '', e8.innerHTML = '';
-				for (var e9 = document.createDocumentFragment(), eb = document.createDocumentFragment(), ec = 0x0, ed = d1._ChatTabs, ef = ed.length; ec < ef; ec++)
-				{
-					var eg = ed[ec];
-					if (eg)
-					{
-						0x0 === eg.name.length && (eg.name = 'Unnamed');
-						var eh = document.createElement('li');
-						eh.className = 'chat-tab', eh.id = 'chat-tab-' + ec, eh.setAttribute('name', ec), eh.innerHTML = '<span>' + eg.name + '</span>', e9.appendChild(eh);
-						var ei = document.createElement('div');
-						ei.className = 'chat-inner-container', ei.id = 'chat-container-' + ec, ei.innerHTML = '<table class=\'chat-table\'><tbody id=\'chat-body-' + ec + '\'></tbody></table>', eb.appendChild(ei), dl[ec] = {
-							'bodyEl': null
-							, 'containerEl': ei
-						};
-					}
-				}
-				e7.appendChild(e9), e8.appendChild(eb);
-				for (var ej = 0x0; ej < dl.length; ej++) dl[ej] && (dl[ej].bodyEl = document.getElementById('chat-body-' + ej));
-				for (var ek = e7.getElementsByClassName('chat-tab'), el = 0x0; el < ek.length; el++)
-				{
-					var em = ek[el];
-					em.addEventListener('click', function (eo)
-					{
-						aT(this.getAttribute('name'));
-					}), em.style.borderColor = d5.uiBorderColor;
-				}
-				cY >= 0x0 && cY < d1._ChatTabs.length ? aT(cY) : aT(0x0);
-			}
-		}
-		
-		function aT(e7)
-		{
-			cY = e7;
-			var e8 = document.getElementById('chat-tab-container')
-				, e9 = document.getElementById('chat-container');
-			if (e8 && e9)
-			{
-				for (var eb = e8.getElementsByClassName('chat-tab'), ec = 0x0; ec < eb.length; ec++) eb[ec].classList.remove('chat-active-tab');
-				for (var ed = e9.getElementsByClassName('chat-inner-container'), ef = 0x0; ef < ed.length; ef++) ed[ef].classList.remove('chat-active-container'), ed[ef].style.display = 'none';
-				var eg = document.getElementById('chat-tab-' + e7)
-					, eh = document.getElementById('chat-container-' + e7);
-				eg && eg.classList.add('chat-active-tab'), eh && (eh.classList.add('chat-active-container'), eh.style.display = 'block');
-			}
-		}
-		
-		function aU(e7 = 0x0)
-		{
-			var e8 = $('#cte-tab-selector');
-			for (var e9 in (e8.empty(), d1._ChatTabs)) e8.append('<option value=\'' + e9 + '\'>' + d1._ChatTabs[e9].name + '</option>');
-			e8.prop('selectedIndex', e7), e8.trigger('change');
-		}
-		
-		function aV(e7)
-		{
-			var e8 = $('#cte-tab-selector').val()
-				, e9 = {
-					'name': ''
-					, 'flags': 0x0
-					, 'maxMessages': 0x0
-				}
-				, eb = d1._ChatTabs[e8];
-			if (eb)
-			{
-				for (var ec in e9) e9[ec] = eb[ec];
-			}
-			for (var ed in ($('#cte-tab-name').val(e9.name), dY))
-			{
-				var ef = (dY[ed] & e9.flags) == dY[ed];
-				$('#cte-type-' + ed.toLowerCase()).prop('checked', ef);
-			}
-			$('#cte-max-messages').val(e9.maxMessages);
-		}
-		
-		function aW(e7)
-		{
-			var e8 = $('#cte-tab-selector').val()
-				, e9 = d1._ChatTabs[e8];
-			if (e9)
-			{
-				var eb = e9.name
-					, ec = $('#cte-tab-name').val();
-				if (0x0 != ec.length)
-				{
-					var ed = ec != eb
-						, ef = 0x0
-						, eg = parseInt($('#cte-max-messages').val());
-					for (var eh in dY) $('#cte-type-' + eh.toLowerCase()).prop('checked') && (ef += dY[eh]);
-					e9.name = ec, e9.flags = ef, e9.maxMessages = eg, ed && (aU(e8), (function ()
-					{
-						for (var ei in d1._ChatTabs)
-						{
-							var ej = d1._ChatTabs[ei];
-							if (ej)
-							{
-								0x0 == ej.name.length && (ej.name = 'Unnamed');
-								var ek = document.getElementById('chat-tab-' + ei);
-								if (ek)
-								{
-									var el = ek.firstElementChild
-										, em = ej.name;
-									el ? el.textContent !== em && (el.textContent = em) : ((el = document.createElement('span')).textContent = em, ek.appendChild(el));
-								}
-							}
-						}
-					}()));
-				}
-			}
-		}
-		
-		function aX()
-		{
-			d1._ChatTabs.push(
-			{
-				'name': 'New'
-				, 'flags': 0x0
-				, 'maxMessages': 0x64
-			}), aU(d1._ChatTabs.length - 0x1), aS();
-		}
-		
-		function aY()
-		{
-			var e7 = $('#cte-tab-selector').val();
-			d1._ChatTabs[e7] && (d1._ChatTabs.splice(e7, 0x1), aU(), aS());
-		}
-		
-		function aZ(e7, e8, e9, eb)
-		{
-			document.getElementById('context-name').innerText = e8 || 'An unnamed cell', cb.data('selected', e9), cb.data('party', eb), $('.context-action').css('display', 'none'), -0x1 == eb ? ($('#menu-invite').css('display', 'block'), $('#menu-whisper').css('display', 'block'), $('#menu-block').css('display', 'block'), $('#menu-profile').css('display', 'block')) : ($('#menu-whisper').css('display', 'block'), $('#menu-profile').css('display', 'block'), bU.isPartyLeader() && ($('#menu-pu_pr').css('display', 'block'), $('#menu-promote').css('display', 'block'), $('#menu-kick').css('display', 'block'))), bU.spectate && $('#menu-spectate').css('display', 'block'), cb.css('display', 'block'), cb.css('left', Math.min(bU.mouseRawX, window.innerWidth - cb.width())), cb.css('top', Math.min(bU.mouseRawY, window.innerHeight - cb.height()));
-		}
-		
-		function b0(e7)
-		{
-			return e7.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-		}
-		
-		function b1(e7, e8, e9, eb, ec, ed, ef)
-		{
-			var eg = (e9 - bU.serverData.border.left) / bU.serverData.border.width * bS.width
-				, eh = (eb - bU.serverData.border.top) / bU.serverData.border.height * bS.height;
-			if (e7.beginPath(), e7.arc(eg, eh, ec, 0x0, cH, !0x1), e7.fillStyle = ed, e7.fill(), ef)
-			{
-				var ei = eg - e7.measureText(e8).width / 0x2
-					, ej = eh - 0x5;
-				e7.fillText(e8, ei, ej);
-			}
-		}
-		
-		function b2(e7)
-		{
-			var e8 = e7[0x0] || e7;
-			e8 && ('main' === e8.id && window.is_touch_device && 'undefined' != typeof touch_controls && (touch_controls.style.display = 'none'), 'none' === e8.style.display || 'none' === getComputedStyle(e8).display ? (e8.classList.contains('menu-transition') || e8.classList.add('menu-transition'), e8.style.display = 'block', e8.style.pointerEvents = 'auto', e8.offsetWidth, e8.classList.add('menu-open')) : e8.classList.contains('menu-open') || (e8.classList.add('menu-open'), e8.style.pointerEvents = 'auto'), 'main' === e8.id && (a3.mainMenuVisible = !0x0));
-		}
-		
-		function b3(e7)
-		{
-			try
-			{
-				if (!a3.mainMenuVisible)
-				{
-					if (void 0x0 !== c9 && c9.css && 'block' === c9.css('display')) return;
-					b2(c6);
-				}
-			}
-			catch (e8)
-			{}
-		}
-		
-		function b4(e7)
-		{
-			var e8 = e7[0x0] || e7;
-			if (e8)
-			{
-				'main' === e8.id && window.is_touch_device && 'undefined' != typeof touch_controls && (touch_controls.style.display = 'block');
-				var e9 = getComputedStyle(e8);
-				if ('none' !== e9.display)
-				{
-					e8.classList.contains('menu-transition') || e8.classList.add('menu-transition'), e8.classList.remove('menu-open'), e8.style.pointerEvents = 'none';
-					for (var eb = e9.transitionDuration.split(',').map(function (ei)
-						{
-							return parseFloat(ei) || 0x0;
-						}), ec = e9.transitionDelay.split(',').map(function (ei)
-						{
-							return parseFloat(ei) || 0x0;
-						}), ed = !0x1, ef = 0x0; ef < eb.length; ef++)
-						if (eb[ef] + (ec[ef] || 0x0) > 0x0)
-						{
-							ed = !0x0;
-							break;
-						} if (ed)
-					{
-						var eg = !0x1
-							, eh = function (ei)
-							{
-								ei.target === e8 && (eg = !0x0, e8.style.display = 'none', e8.removeEventListener('transitionend', eh));
-							};
-						e8.addEventListener('transitionend', eh), setTimeout(function ()
-						{
-							eg || (e8.style.display = 'none', e8.removeEventListener('transitionend', eh));
-						}, 0x190);
-					}
-					else e8.style.display = 'none';
-				}
-				'main' === e8.id && (a3.mainMenuVisible = !0x1);
-			}
-		}
-		
-		function b5(e7)
-		{
-			var e8 = e7[0x0] || e7;
-			e8 && ('none' === e8.style.display || 'none' === getComputedStyle(e8).display ? b2(e8) : b4(e8));
-		}
-		
-		function b6(e7)
-		{
-			var e8 = e7[0x0] || e7;
-			return !!e8 && 'none' !== getComputedStyle(e8).display;
-		}
-		
-		function b7()
-		{
-			c8.show(), (0x0 == bU.party.length || d1.cHidePartyPanel) && cO.partyPanel.css('display', 'none'), d1.cHideChat && $('#chat-panel').css('display', 'none'), d1.cHideMinimap && $('#minimap-panel').css('display', 'none');
-		}
-		
-		function b8()
-		{
-			c8.hide();
-		}
-		
-		function b9(e7)
-		{
-			var e8 = e7.attr('id');
-			d1[e8] = e7.prop('checked'), bd(e8);
-		}
-		
-		function bb(e7)
-		{
-			var e8 = e7.attr('id');
-			d1[e8] = e7.val(), bd(e8, e7.val());
-		}
-		
-		function bc(e7)
-		{
-			bd(e7.attr('id'), e7.val());
-		}
-		
-		function bd(e7, e8)
-		{
-			var e9 = dk[e7];
-			null != e9 && e9(e8);
-		}
-		
-		function bf(e7, e8)
-		{
-			null != e8 && (d5[e7] = e8, bd(e7, e8));
-		}
-		
-		function bg()
-		{
-			e5.consented && (d1.iChatWidth = $('#chat-panel').css('width'), d1.iChatHeight = $('#chat-panel').css('height'), window.localStorage.setItem('options', JSON.stringify(d1)), window.localStorage.setItem('keybinds', JSON.stringify(d2)), window.localStorage.setItem('name', $('#name-box').val()), window.localStorage.setItem('theme', JSON.stringify(d5)), window.localStorage.setItem('subpanel', JSON.stringify(db)));
-		}
-		
-		function bh()
-		{
-			for (var e7 in d6)
-			{
-				var e8 = e7.charAt(0x0);
-				if ('r' == e8) $('#' + e7).val(d6[e7]), bc($('#' + e7));
-				else
-				{
-					if ('u' == e8)
-					{
-						d5[e7] = d6[e7];
-						const e9 = document.getElementById(e7);
-						e9 && (e9.value = d5[e7]), bd(e7, d5[e7]);
-					}
-					else 'a' == e8 ? bf(e7, '') : d5[e7] = d6[e7];
-				}
-			}
-			d5._FoodColors = [];
-		}
-		
-		function bi(e7)
-		{
-			try
-			{
-				var e8 = JSON.parse(e7);
-				if (null == e8.version || 0x2 != e8.version) return void bh();
-				for (var e9 in e8)
-					if (null != d5[e9] && 0x0 != e8[e9].length)
-					{
-						d5[e9] = e8[e9];
-						var eb = e9.charAt(0x0);
-						if ('u' == eb)
-						{
-							const ec = document.getElementById(e9);
-							ec && (ec.value = d5[e9], ec.dispatchEvent(new Event('input'
-								, {
-									'bubbles': !0x0
-								}))), bd(e9, d5[e9]);
-						}
-						else 'r' == eb ? ($('#' + e9).val(d5[e9]), bc($('#' + e9))) : 'a' == eb && bf(e9, d5[e9]);
-					}
-			}
-			catch (ed)
-			{
-				bh();
-			}
-			finally
-			{
-				ax();
-			}
-		}
-		
-		function bj(e7)
-		{
-			if (/\.(json)$/i.test(e7.name))
-			{
-				var e8 = new FileReader();
-				e8.addEventListener('load', function ()
-					{
-						d1.cThemeEnabled || bk(), bh(), bi(this.result);
-					}
-					, {
-						'once': !0x0
-					}), e8.readAsText(e7);
-			}
-		}
-		
-		function bk()
-		{
-			$('#cThemeEnabled').prop('checked', !0x0).trigger('change');
-		}
-		
-		function bl(e7)
-		{
-			for (var e8 = e7.split(' '), e9 = '', eb = null, ec = 0x0; ec < e8.length; ec++) 0x0 != ec && (e9 += ' '), eb = e8[ec], null != cg[eb] ? (eb.startsWith(':') && eb.endsWith(':') && (eb = eb.substring(0x1, eb.length - 0x1)), e9 += '<img src=\"images/emotes/' + eb + '.png\" height=\"17\" width=\"17\" alt=\"' + eb + '\">') : null != ch[eb] ? (eb.startsWith(':') && eb.endsWith(':') && (eb = eb.substring(0x1, eb.length - 0x1)), e9 += '<img src=\"images/emotes/gifs/' + eb + '.gif\" height=\"17\" width=\"17\" alt=\"' + eb + '\">') : e9 += eb;
-			return e9;
-		}
-		
-		function bm(e7, e8, e9)
-		{
-			this.name = e7, this.img = e8, this.type = e9, this.image = null, this.texture = null;
-		}
-		
-		function bo()
-		{
-			this.passiveBuffs = {}, this.passiveSortedBuffs = [], this.consumableBuffs = [], this.cache = null, this.nextCacheUpdate = 0x0, this.texture = null, this.bonusMaxCells = 0x0, this.onAddBuff = function (e7, e8, e9)
-			{
-				var eb = null;
-				du[e7].type != dq.CONSUMABLE ? ((eb = this.passiveBuffs[e7]) ? eb.update(e8, e9) : (eb = new bp(e7, e8, e9), this.passiveBuffs[e7] = eb, this.sortPassiveBuffs()), this.onPassiveBuffsUpdate(), this.markCacheForUpdate()) : (eb = new bp(e7, e8, e9), this.consumableBuffs.push(eb), this.markCacheForUpdate()), eb && bU.selfMsg('Recieved buff: ' + eb.powerup.name);
-			}, this.onRemoveBuff = function (e7)
-			{
-				var e8 = null;
-				if (du[e7].type != dq.CONSUMABLE)(e8 = this.passiveBuffs[e7]) && (delete this.passiveBuffs[e7], this.sortPassiveBuffs(), this.markCacheForUpdate(), this.onPassiveBuffsUpdate());
-				else
-				{
-					for (var e9 = 0x0; e9 < this.consumableBuffs.length; e9++)
-						if ((e8 = this.consumableBuffs[e9]).id == e7)
-						{
-							this.consumableBuffs.splice(e9, 0x1), this.markCacheForUpdate();
-							break;
-						}
-				}
-				e8 && bU.selfMsg('Lost buff: ' + e8.powerup.name);
-			}, this.clearBuffs = function (e7)
-			{
-				if (0x0 != this.passiveSortedBuffs.length || 0x0 != this.consumableBuffs.length)
-				{
-					var e8 = e7 || !0x1;
-					for (var e9 in this.passiveBuffs)
-					{
-						var eb = this.passiveBuffs[e9];
-						e8 && eb.powerup.type == dq.MODIFIER || delete this.passiveBuffs[e9];
-					}
-					this.sortPassiveBuffs(), this.onPassiveBuffsUpdate(), this.consumableBuffs = [], this.markCacheForUpdate();
-				}
-			}, this.sortPassiveBuffs = function ()
-			{
-				if (this.passiveSortedBuffs = [], 0x0 != this.passiveBuffs.length)
-				{
-					for (var e7 in this.passiveBuffs) this.passiveBuffs[e7].powerup.type == dq.MODIFIER ? this.passiveSortedBuffs.splice(0x0, 0x0, e7) : this.passiveSortedBuffs.push(e7);
-				}
-			}, this.onPassiveBuffsUpdate = function ()
-			{
-				if (this.bonusMaxCells = 0x0, null != this.passiveBuffs[0x1])
-				{
-					var e7 = this.passiveBuffs[0x1];
-					this.bonusMaxCells = 0x10 * e7.stack;
-				}
-			}, this.update = function ()
-			{
-				0x0 != this.passiveSortedBuffs.length || 0x0 != this.consumableBuffs.length ? (Date.now() >= this.nextCacheUpdate && (this.updateCache(), this.nextCacheUpdate = Date.now() + 0x3e8), this.texture || (this.texture = bF.Texture.from(this.cache.canvas), bO.texture = this.texture, bO.anchor.set(0x0)), bO.position.x = bR.width / 0x2 - bO.width / 0x2 - bG.stage.position.x, bO.position.y = bR.height - bO.height - 0xf - bG.stage.position.y, bO.visible = !0x0) : bO.visible = !0x1;
-			}, this.updateCache = function ()
-			{
-				var e7 = null == this.cache || null == this.cache.canvas ? document.createElement('canvas') : this.cache.canvas
-					, e8 = Math.max(this.passiveSortedBuffs.length, this.consumableBuffs.length);
-				e7.width = 0x37 * e8, e7.height = 0x69, this.cache = e7.getContext('2d'), this.cache.fillStyle = '#222', this.cache.font = 'bold 16pt Calibri';
-				for (var e9 = 0x0, eb = 0x0, ec = 0x0; ec < this.passiveSortedBuffs.length; ec++) this.passiveBuffs[this.passiveSortedBuffs[ec]].draw(this.cache, e9, eb), e9 += 0x37;
-				for (e9 = 0x0, eb = 0x37, ec = 0x0; ec < this.consumableBuffs.length; ec++) this.consumableBuffs[ec].draw(this.cache, e9, eb), e9 += 0x37;
-				this.texture && this.texture.update(), this.nextCacheUpdate = Date.now() + 0x3e8;
-			}, this.markCacheForUpdate = function ()
-			{
-				this.nextCacheUpdate = 0x0;
-			};
-		}
-		
-		function bp(e7, e8, e9)
-		{
-			this.id = e7, this.powerup = du[e7], this.startTime = Date.now(), this.expireTime = e9, this.stack = e8, this.update = function (eb, ec)
-			{
-				this.startTime = Date.now(), this.expireTime = ec, this.stack = eb;
-			}, this.getCooldown = function ()
-			{
-				if (Date.now() >= this.expireTime) return cH;
-				var eb = this.expireTime - Date.now()
-					, ec = this.expireTime - this.startTime;
-				return 0x2 * Math.min(eb / ec, 0x1) * Math.PI;
-			}, this.draw = function (eb, ec, ed)
-			{
-				eb.drawImage(this.powerup.image, ec, ed, 0x32, 0x32), this.stack > 0x1 && (eb.fillStyle = '#000', eb.fillText(this.stack, ec + 0x23, ed + 0x11)), this.expireTime > 0x0 && (eb.beginPath(), eb.moveTo(ec + 0x19, ed + 0x19), eb.arc(ec + 0x19, ed + 0x19, 0x19, dv, dv - this.getCooldown(), !0x1), eb.closePath(), eb.globalAlpha = 0.75, eb.fillStyle = '#222', eb.fill(), eb.globalAlpha = 0x1);
-			};
-		}
-		
-		function bq()
-		{
-			this.delay = 0x0, this.frames = [], this.isGif = !0x0, this.push = function (e7)
-			{
-				this.frames.push(e7);
-			}, this.getFrame = function (e7)
-			{
-				return this.frames[e7];
-			}, this.getLength = function ()
-			{
-				return this.frames.length;
-			}, this.getTexture = function ()
-			{
-				return this.getFrame(Math.floor(bW / this.delay) % this.getLength());
-			}, this.loadFromFrameData = function (e7)
-			{
-				if (0x0 === e7.length) return;
-				const e8 = document.createElement('canvas')
-					, e9 = e8.getContext('2d')
-					, eb = document.createElement('canvas')
-					, ec = eb.getContext('2d')
-					, ed = e7[0x0].getImage();
-				this.delay = 0xa * e7[0x0].frameInfo.delay, e8.width = ed.width, e8.height = ed.height, eb.width = ed.width, eb.height = ed.height;
-				for (const ef of e7)
-				{
-					e9.clearRect(0x0, 0x0, e8.width, e8.height), e9.drawImage(eb, 0x0, 0x0);
-					const eg = ef.getImage()
-						, eh = eg.getContext('2d');
-					ec.drawImage(eg, 0x0, 0x0), eh.clearRect(0x0, 0x0, eg.width, eg.height), eh.drawImage(eb, 0x0, 0x0);
-					const
-					{
-						frameInfo: ei
-					} = ef
-					, {
-						disposal: ej
-					} = ei;
-					0x2 === ej ? ec.clearRect(ei.x, ei.y, ei.width, ei.height) : 0x3 === ej && (ec.clearRect(0x0, 0x0, eb.width, eb.height), ec.drawImage(e8, 0x0, 0x0)), this.push(bF.Texture.from(eg));
-				}
-			};
-		}
-		
-		function br(e7)
-		{
-			return dC[e7 % dC.length];
-		}
-		
-		function bs(e7)
-		{
-			return dD[e7 % dD.length];
-		}
-		
-		function bu(e7)
-		{
-			for (var e8 = e7.length - 0x1; e8 > 0x0; e8--)
-			{
-				var e9 = Math.floor(Math.random() * (e8 + 0x1))
-					, eb = e7[e8];
-				e7[e8] = e7[e9], e7[e9] = eb;
-			}
-			return e7;
-		}
-		
-		function bv(e7)
-		{
-			if (0x0 === e7 || e7 === bU.playerId) return 'You cannot block that player.';
-			if (cy.includes(e7))
-			{
-				const e8 = cy.indexOf(e7);
-				return e8 > -0x1 && cy.splice(e8, 0x1), 'Unblocked player with ID: ' + e7;
-			}
-			return cy.push(e7), 'Blocked player with ID: ' + e7;
-		}
-		
-		function bw(e7)
-		{
-			return dK[e7 >> 0x4 & 0xf] + dK[0xf & e7];
-		}
-		
-		function bx(e7, e8)
-		{
-			var e9 = e7 >> 0x10 & 0xff
-				, eb = e7 >> 0x8 & 0xff
-				, ec = 0xff & e7;
-			return (e9 = Math.max(0x0, Math.min(0xff, Math.floor(e9 * e8)))) << 0x10 | (eb = Math.max(0x0, Math.min(0xff, Math.floor(eb * e8)))) << 0x8 | Math.max(0x0, Math.min(0xff, Math.floor(ec * e8)));
-		}
-		
-		function by(e7)
-		{
-			if (e7 <= 0x0) return '0:00';
-			var e8 = Math.floor(e7 / 0xe10)
-				, e9 = Math.floor((e7 - 0xe10 * e8) / 0x3c)
-				, eb = e7 - 0xe10 * e8 - 0x3c * e9;
-			return e9 < 0xa && e8 > 0x0 && (e9 = '0' + e9), eb < 0xa && (eb = '0' + eb), (e8 > 0x0 ? e8 + ':' : '') + e9 + ':' + eb;
-		}
-		
-		function bz(e7)
-		{
-			var e8 = e7.toString().split('.');
-			return e8[0x0] = e8[0x0].replace(/\B(?=(\d{3})+(?!\d))/g, ','), e8.join('.');
-		}
-		
-		function bA(e7)
-		{
-			for (var e8 = e7.split(''), e9 = 0x0; e9 < e8.length; e9++) '_' == e8[e9] && (e9 + 0x1 < e8.length && (e8[e9 + 0x1] = e8[e9 + 0x1].toUpperCase()), e8[e9] = ' '), 0x0 == e9 && (e8[e9] = e8[e9].toUpperCase());
-			return e8.join('');
-		}
-		
-		function bB(e7)
-		{
-			if (0x0 === e7.indexOf('#') && (e7 = e7.slice(0x1)), 0x3 === e7.length && (e7 = e7[0x0] + e7[0x0] + e7[0x1] + e7[0x1] + e7[0x2] + e7[0x2]), 0x6 !== e7.length) throw new Error('Invalid HEX color.');
-			return 0.299 * parseInt(e7.slice(0x0, 0x2), 0x10) + 0.587 * parseInt(e7.slice(0x2, 0x4), 0x10) + 0.114 * parseInt(e7.slice(0x4, 0x6), 0x10) > 0xba ? '#000000' : '#FFFFFF';
-		}
-		
-		function bC(e7)
-		{
-			if (e7.dataTransfer.items)
-			{
-				for (var e8 = 0x0; e8 < e7.dataTransfer.items.length; e8++)
-					if ('file' === e7.dataTransfer.items[e8].kind) return e7.dataTransfer.items[e8].getAsFile();
-			}
-			else
-			{
-				for (e8 = 0x0; e8 < e7.dataTransfer.files.length; e8++) return e7.dataTransfer.files[e8];
-			}
-		}
-		
-		function bD(e7, e8, e9)
-		{
-			this.font = e7, this.size = e8, this.outlineColor = e9 || '#000';
-		}
-		
-		function bE()
-		{
-			try
-			{
-				'undefined' != typeof aiptag && aiptag.cmd && aiptag.cmd.display && aiptag.cmd.display.push(function ()
-				{
-					try
-					{
-						if ('undefined' != typeof aipDisplayTag)
-						{
-							aipDisplayTag.refresh('GOT_gota-io_336x280'), window.adDisplayAttempts && (window.adDisplayAttempts = 0x0);
-							var e7 = document.getElementById('GOT_gota-io_336x280')
-								, e8 = document.getElementById('adblock-fallback');
-							e7 && (e7.style.display = 'block', e7.style.visibility = 'visible', e7.style.opacity = '1', e7.hasVisibilityWatcher || (new MutationObserver(function (e9)
-							{
-								e9.forEach(function (eb)
-								{
-									if ('attributes' === eb.type && ('style' === eb.attributeName || 'class' === eb.attributeName))
-									{
-										var ec = eb.target;
-										'none' !== ec.style.display && 'hidden' !== ec.style.visibility && '0' !== ec.style.opacity || (ec.children.length > 0x0 || ec.innerHTML.trim().length > 0x0 || null !== ec.querySelector('iframe') ? (ec.style.display = 'block', ec.style.visibility = 'visible', ec.style.opacity = '1', e8 && (e8.style.display = 'none')) : e8 && (e8.style.display = 'block'));
-									}
-								});
-							}).observe(e7
-								, {
-									'attributes': !0x0
-									, 'attributeFilter': [
-                                                                                        'style'
-										
-										
-										
-										
-										
-										
-										
-										
-                                                                                
-										, 'class'
-                                                                                                        ]
-								}), e7.hasVisibilityWatcher = !0x0), setTimeout(function ()
-							{
-								var e9 = e7.children.length > 0x0 || e7.innerHTML.trim().length > 0x0 || null !== e7.querySelector('iframe');
-								e9 && e8 ? e8.style.display = 'none' : !e9 && e8 && (e8.style.display = 'block');
-							}, 0x7d0));
-						}
-					}
-					catch (e9)
-					{}
-				});
-			}
-			catch (e7)
-			{}
-		}
-		const bF = window.PIXI;
-		var bG;
-		window.PIXI = null;
-		const bH = new bF.Container()
-			, bI = new bF.Container()
-			, bJ = new bF.Container()
-			, bK = new bF.Container()
-			, bL = new bF.Container()
-			, bM = new bF.Container()
-			, bN = new bF.Container()
-			, bO = new bF.Sprite(bF.Texture.EMPTY);
-		var bP, bQ = null;
-		bK.addChild(bJ), bK.addChild(bL), bK.addChild(bM), bK.addChild(bN), bH.addChild(bI), bH.addChild(bK), bH.addChild(bO);
-		var bR, bS, bT, bU, bV, bW, bX, bY, bZ, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, cb, cc, cd, cf, cg, ch, ci, cj, ck, cl, cm, co, cp, cq = !0x1
-			, cr = 0x0
-			, cs = 0x0
-			, cu = null
-			, cv = null
-			, cw = !0x1
-			, cx = {
-				'elements': []
-				, 'callbacks': []
-				, 'pendingFriends': []
-				, 'timestamps': []
-			}
-			, cy = []
-			, cz = !0x1
-			, cA = null
-			, cB = !0x0
-			, cC = !0x0
-			, cD = null
-			, cE = null
-			, cF = {
-				'serverRefresh': null
-				, 'friendsStatus': null
-				, 'statsUpdate': null
-				, 'emoteButton': null
-			}
-			, cG = {
-				'touchControls': []
-				, 'windowEvents': []
-				, 'uiElements': []
-				, 'chatElements': []
-				, 'firebaseListeners': []
-				, 'customElements': []
-			};
-		const cH = 0x2 * Math.PI
-			, cI = Math.PI / 0x2
-			, cJ = 0x100
-			, cK = 0x10c;
-		var cL, cM, cN;
-		const cO = {}
-			, cP = new firebase.auth.GoogleAuthProvider()
-			, cQ = 'https://accounts.gota.io';
-		var cR = {
-				'key': ''
-				, 'foodColors': []
-				, 'customEjectedMass': !0x1
-				, 'motd': ''
-				, 'enabled': !0x1
-				, 'motherCustomEnabled': !0x1
-			}
-			, cS = {
-				'halloween':
-				{
-					'key': 'halloween'
-					, 'foodColors': [0xee8d1c, 0xab4422, 0x903e6f, 0x602749]
-					, 'customEjectedMass': !0x1
-					, 'motd': 'рџЋѓ Happy Halloween! Spooky season is here! рџ‘»'
-					, 'motherCustomEnabled': !0x0
-				}
-				, 'xmas':
-				{
-					'key': 'xmas'
-					, 'foodColors': [0xff0000, 0xff00, 0xffffff, 0xffd700]
-					, 'customEjectedMass': !0x0
-					, 'motd': 'рџЋ„ Merry Christmas! Ho ho ho! рџЋ…'
-					, 'motherCustomEnabled': !0x0
-				}
-				, 'new_years':
-				{
-					'key': 'new_years'
-					, 'foodColors': [0xffd700, 0xffffff, 0xff69b4, 0xbfff]
-					, 'customEjectedMass': !0x1
-					, 'motd': 'рџЋ‰ Happy New Year! Here\'s to new beginnings! вњЁ'
-					, 'motherCustomEnabled': !0x0
-				}
-				, 'valentines':
-				{
-					'key': 'valentines'
-					, 'foodColors': [0xff69b4, 0xff1493, 0xdc143c, 0xffc0cb]
-					, 'customEjectedMass': !0x1
-					, 'motd': 'рџ’ќ Happy Valentine\'s Day! Spread the love! рџ’•'
-					, 'motherCustomEnabled': !0x0
-				}
-				, 'spring':
-				{
-					'key': 'spring'
-					, 'foodColors': [0x98fb98, 0xffc0cb, 0xffb6c1, 0x90ee90]
-					, 'customEjectedMass': !0x1
-					, 'motd': 'рџЊё Spring has arrived! Everything is blooming! рџЊє'
-					, 'motherCustomEnabled': !0x0
-				}
-				, 'summer':
-				{
-					'key': 'summer'
-					, 'foodColors': [0xffd700, 0xff8c00, 0xbfff, 0x32cd32]
-					, 'customEjectedMass': !0x1
-					, 'motd': 'вЂпёЏ Summer vibes! Time for some fun in the sun! рџЏ–пёЏ'
-					, 'motherCustomEnabled': !0x0
-				}
-			}
-			, cT = !0x1;
-		firebase.initializeApp(
-		{
-			'apiKey': 'AIzaSyCmYFIIazBPyg5goqvPb-7uA6W9-4TVqEM'
-			, 'authDomain': 'accounts.gota.io'
-			, 'databaseURL': 'https://gota-io.firebaseio.com'
-			, 'projectId': 'gota-io'
-			, 'storageBucket': 'gota-io.appspot.com'
-			, 'messagingSenderId': '570450309042'
-			, 'appId': '1:570450309042:web:380ab6c94d44de2f'
-		}), firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).catch(function () {});
-		var cU = {}
-			, cV = {}
-			, cW = {
-				'levelNames': 0x3
-				, 'levelSkins': 0x3
-				, 'textOutlineSize': 0x0
-				, 'resolution': 0x1
-			}
-			, cX = [
-				{
-					'name': 'All'
-					, 'flags': 0xff
-					, 'maxMessages': 0x64
+import {
+  AxisLockThreshold,
+  minimapSmoothFactor,
+  drawMinimapInterval,
+  baseCellSize,
+  combinedCameraDistanceThreshold,
+  combinedZoomFocusStrength,
+  combinedInterpSpeed,
+  messageColors,
+} from "./config/constants.js";
+import {
+  MESSAGE_TYPES,
+  CellVisibility,
+  MassDisplayType,
+  SKIN_LOAD_STATUS,
+  PlayerState,
+} from "./config/enums.js";
+import {
+  defaultKeyMappings,
+  defaultOptions,
+  defaultSubPanelSettings,
+  fontConfigs,
+} from "./config/settings.js";
+import {
+  readAscii,
+  readUtf16,
+  writeAscii,
+  writeUtf16,
+} from "./utils/binary.js";
+import {
+  byteToHex,
+  capitalize,
+  findServerByName,
+  formatAliveTime,
+  formatExperience,
+  formatSnakeCaseString,
+  initFirebaseApp,
+  initializeNord,
+  injectShadowStyle,
+  transformCellColor,
+} from "./utils/helpers.js";
+import { Logger } from "./utils/logger.js";
+import { defaultTheme } from "./utils/theme.js";
+import { SERVER_PORT } from "./config.js";
+import Pto5ea937_Inst from "./vendor/js/tinycolor.min.js";
+var Mao5huZea938_run;
+var CoKB;
+var VuerW6rI_ea93a_neq;
+var DEFAULT$HB0T_ea93b_Status;
+var B5O8N2Mea93c_ret;
+var Date$F4EY;
+var async_gvZqk_Dc_ea93e_div;
+var If$sEyzqKbhea93f_Exec;
+var Str_NmyJ4kX;
+var VoidGBYH;
+var ObjectueAUtq;
+var in_hpdqea943_div;
+var tRyea944_Id;
+var NOgc$oea945_num;
+var React_RtHu4Gea946;
+var for_JCpm;
+var for_zWYea948_lte;
+var El_SqvbXGiea949_Tmp;
+var Map_brr9MVea94a_Idx;
+var hVJea94b_Data;
+var AtgnhF;
+var qRcea94d_init;
+var FalseJax;
+var xhr_tj9avEM;
+var Promise_28_SVO_ea950_fn;
+var Kb5zM5ea951_neq;
+var UX3IB;
+var LodashmDBDNdea953_mul;
+var e$Iqgea954_Proc;
+var iU2ea955_Id;
+var ijs;
+var Lodashif3ebPI;
+var while_dFOcH$ea958_ret;
+var qq8ea959_idx;
+var Cd8Hiea95a_Init;
+var FalsebDqti5ea95b_eq;
+var Map$pA_ea95c_Obj;
+var WeakMapxkJW_ea95d_bool;
+var Callback$wD5ea95e_Ctx;
+var svqea95f_bool;
+var yZBjeytPea960_Cb;
+var Evt_zsUK;
+var DateDg_57Yb;
+var VARJb6ea963_Ref;
+var asyncq0oTeVQT;
+var NghauAMea965_VAL;
+var PeBgnB15ea966_and;
+var sA76M0oea967_gte;
+var IMPORTjQwS8jD7;
+var For_lVMfr;
+var Cb_W4cW2;
+var Catch_wCYNjd$ea96b_exec;
+var ReactFCGxs$ea96c_Tmp;
+var CTXgGGYfuSi_ea96d_Opt;
+var AlIjpjxYea96e_Id;
+var RegExp_yFv;
+var pQQAhea970_Tmp;
+var U0QG_Qf;
+var dNwtiUlea972_Handler;
+var Math_zxd$ea973_Obj;
+var Map$XDb6n5y_ea974_State;
+var WeakMap$jAciSKVZea975_or;
+var xmea976_xor;
+var kLdlPea977_lte;
+var JcVea978_neq;
+var yield_L2zEL16;
+var Promise_KDZM8Y_ea97a_Cfg;
+var HandlerbspL;
+var El_jtxnG4q;
+var CLASS_3Ft;
+var instanceof_NYxWUQj_ea97e_Err;
+var SetGjfJUkLJea97f_Buf;
+var LGeF78Jea980_type;
+var Switch$DDqRA_ea981_mul;
+var Catch_tLBy;
+var bXFgW$Qq;
+var letwtfOyM80ea984_num;
+var WeakMaphlyBuhea985_num;
+var New_cKB3q5G_ea986_cb;
+var React$vkea987_Idx;
+var let_ExdFq$65;
+var FN_okkea989_Handler;
+var AwaitNM$mbea98a_mul;
+var Symbol_I0$w5g$ea98b_Opt;
+var nh6XVqea98c_Cb;
+var IMPORT_f936f76C_ea98d_lte;
+var djUgiSea98e_Fn;
+var WeakMap$J22VUWjRea98f_ex;
+var Get$NeypNg;
+var AhC4E4RR;
+var Array_eUa8SZ3Z$ea992_Buf;
+var async_D8l9NKg;
+var PMulimorea994_str;
+function HelpervL9ea995_opt(
+  AxisLockThreshold,
+  minimapSmoothFactor,
+  drawMinimapInterval
+) {
+  for (
+    drawMinimapInterval = 0;
+    drawMinimapInterval < minimapSmoothFactor;
+    drawMinimapInterval++
+  ) {
+    AxisLockThreshold.push(AxisLockThreshold.shift());
+  }
+  return AxisLockThreshold;
+}
+// Deobfuscator: Removed original data array 'c7$6'
+Object$kDcGWUY(y2jX$eaa13_Idx);
+Object$kDcGWUY(RETURN_zuR);
+Object$kDcGWUY(J8EVQ);
+Object$kDcGWUY(CHueaa10_Proc, 2);
+Object$kDcGWUY(HXgYeaa0d_TYPE);
+Object$kDcGWUY(XHR_uLPuP9eaa0c_Ex);
+Object$kDcGWUY(TruejJBgB31q);
+Object$kDcGWUY(fGuNueaa0a_err);
+Object$kDcGWUY(bmBtnjkeaa09_or);
+Object$kDcGWUY(HelperBFZkQ, 2);
+Object$kDcGWUY(yield_a4eFrbK9_eaa07_Ret);
+Object$kDcGWUY(This_GCC, 2);
+Object$kDcGWUY(rCRuBeaa05_res, 2);
+Object$kDcGWUY(React_a3eebzUUeaa04, 2);
+Object$kDcGWUY(If_yEAw_eaa03_Res);
+Object$kDcGWUY(Promise_OUmY4gHt_ea9fe_idx, 3);
+Object$kDcGWUY(hjScxea9fd_res);
+Object$kDcGWUY(zPY7Wy_, 6);
+Object$kDcGWUY(JRZXea9f8_obj);
+Object$kDcGWUY(GnQwWt, 4);
+Object$kDcGWUY(IND8m_ea9f5_add, 4);
+Object$kDcGWUY(MapODojwDKKea9eb_Key);
+Object$kDcGWUY(hdnn_8ea9ea_Idx);
+Object$kDcGWUY(HelperUhSO_ea9e8_Run);
+Object$kDcGWUY(Await_IJIz2M);
+Object$kDcGWUY(KEGPXBW, 2);
+Object$kDcGWUY(Qbnjfea9e3_lte);
+Object$kDcGWUY(in_Lv7rr7N);
+Object$kDcGWUY(CtxBk7q_);
+Object$kDcGWUY(Void$jyv1Bm3);
+Object$kDcGWUY(Catch$HaPx87ea9df_ret);
+Object$kDcGWUY(TruepwDZ3M$ea9dc_Res);
+Object$kDcGWUY(Map_f43ea9db_ret);
+Object$kDcGWUY(EkFea9da_mul);
+Object$kDcGWUY(Gu0B6FmO, 2);
+Object$kDcGWUY(dNwVcfi$ea9d8_type);
+Object$kDcGWUY(BOOLqoaO);
+Object$kDcGWUY(do_QEm141);
+Object$kDcGWUY(NaN_semFS17);
+Object$kDcGWUY(BigInt_ZShVUjt$ea9d0_err, 2);
+Object$kDcGWUY(BOOLxEFAPea9cf_or);
+Object$kDcGWUY(Evt_gCqea9ce_Val);
+Object$kDcGWUY(letl8FDUOw_ea9cd_Ref);
+Object$kDcGWUY(LodashxQu4);
+Object$kDcGWUY(Void_ojp$ea9ca_neq, 7);
+Object$kDcGWUY(DOC_FDXvy4GG);
+Object$kDcGWUY(DEFAULT_B6Cea9c5_Ret);
+Object$kDcGWUY(XHReYHH$ea9c2_bool);
+Object$kDcGWUY(FNmsM);
+Object$kDcGWUY(DateN4UN, 2);
+Object$kDcGWUY(Str_MMr1pN24$ea9b9_not, 2);
+function Object$kDcGWUY(AxisLockThreshold, minimapSmoothFactor = 1) {
+  Object.defineProperty(AxisLockThreshold, "length", {
+    value: minimapSmoothFactor,
+    configurable: false,
+  });
+  return AxisLockThreshold;
+}
+const Await_RRv = {
+  ...defaultOptions,
+  sSoloTrickMode: "MANUAL",
+  cameraMode: "cameraDefault",
+  followMouseMode: "followMouseAlways",
+};
+Mao5huZea938_run = JSON.parse(JSON.stringify(Await_RRv));
+CoKB = JSON.parse(JSON.stringify(defaultKeyMappings));
+VuerW6rI_ea93a_neq = defaultSubPanelSettings;
+DEFAULT$HB0T_ea93b_Status = defaultTheme;
+B5O8N2Mea93c_ret = {
+  massType: 0,
+  levelNames: 3,
+  levelSkins: 3,
+};
+const KR7DmFbea999_bool = new firebase.auth.GoogleAuthProvider();
+Date$F4EY = undefined;
+async_gvZqk_Dc_ea93e_div = undefined;
+If$sEyzqKbhea93f_Exec = undefined;
+Str_NmyJ4kX = undefined;
+VoidGBYH = undefined;
+ObjectueAUtq = false;
+in_hpdqea943_div = false;
+tRyea944_Id = false;
+NOgc$oea945_num = false;
+React_RtHu4Gea946 = false;
+for_JCpm = false;
+for_zWYea948_lte = false;
+El_SqvbXGiea949_Tmp = true;
+Map_brr9MVea94a_Idx = [];
+hVJea94b_Data = false;
+AtgnhF = null;
+qRcea94d_init = null;
+FalseJax = {};
+xhr_tj9avEM = {};
+Promise_28_SVO_ea950_fn = {};
+Kb5zM5ea951_neq = false;
+UX3IB = -1;
+LodashmDBDNdea953_mul = -1;
+e$Iqgea954_Proc = "-1";
+iU2ea955_Id = [];
+ijs = false;
+Lodashif3ebPI = [];
+while_dFOcH$ea958_ret = -1;
+qq8ea959_idx = "cameraDefault";
+Cd8Hiea95a_Init = "followMouseAlways";
+FalsebDqti5ea95b_eq = -1;
+Map$pA_ea95c_Obj = -1;
+WeakMapxkJW_ea95d_bool = -1;
+Callback$wD5ea95e_Ctx = -1;
+svqea95f_bool = -1;
+yZBjeytPea960_Cb = -1;
+Evt_zsUK = 0;
+DateDg_57Yb = -1;
+VARJb6ea963_Ref = -1;
+asyncq0oTeVQT = {};
+NghauAMea965_VAL = undefined;
+PeBgnB15ea966_and = null;
+sA76M0oea967_gte = 0;
+IMPORTjQwS8jD7 = null;
+For_lVMfr = null;
+Cb_W4cW2 = null;
+Catch_wCYNjd$ea96b_exec = 0;
+ReactFCGxs$ea96c_Tmp = -Infinity;
+CTXgGGYfuSi_ea96d_Opt = -Infinity;
+let GetEre34Q = 0;
+let RZL = 0;
+let Stringify_J7krEf_Q_ea99c_Inst;
+const El_adcGQ944ea99d_Cb = new Map([
+  [1, "LMB"],
+  [2, "MMB"],
+  [3, "RMB"],
+  [4, "Mouse 4"],
+  [5, "Mouse 5"],
+  [8, "Backspace"],
+  [9, "Tab"],
+  [13, "Enter"],
+  [16, "Shift"],
+  [17, "Ctrl"],
+  [18, "Alt"],
+  [19, "Pause"],
+  [20, "Caps Lock"],
+  [27, "Escape"],
+  [32, "Space"],
+  [33, "Page Up"],
+  [34, "Page Down"],
+  [35, "End"],
+  [36, "Home"],
+  [37, "←"],
+  [38, "↑"],
+  [39, "→"],
+  [40, "↓"],
+  [45, "Insert"],
+  [46, "Delete"],
+  [48, "0"],
+  [49, "1"],
+  [50, "2"],
+  [51, "3"],
+  [52, "4"],
+  [53, "5"],
+  [54, "6"],
+  [55, "7"],
+  [56, "8"],
+  [59, "9"],
+  [65, "A"],
+  [66, "B"],
+  [67, "C"],
+  [68, "D"],
+  [69, "E"],
+  [70, "F"],
+  [71, "G"],
+  [72, "H"],
+  [73, "I"],
+  [74, "J"],
+  [75, "K"],
+  [76, "L"],
+  [77, "M"],
+  [78, "N"],
+  [79, "O"],
+  [80, "P"],
+  [81, "Q"],
+  [82, "R"],
+  [83, "S"],
+  [84, "T"],
+  [85, "U"],
+  [86, "V"],
+  [87, "W"],
+  [88, "X"],
+  [89, "Y"],
+  [90, "Z"],
+  [91, "Meta"],
+  [93, "Menu"],
+  [96, "Numpad 0"],
+  [97, "Numpad 1"],
+  [98, "Numpad 2"],
+  [99, "Numpad 3"],
+  [100, "Numpad 4"],
+  [101, "Numpad 5"],
+  [102, "Numpad 6"],
+  [103, "Numpad 7"],
+  [104, "Numpad 8"],
+  [105, "Numpad 9"],
+  [106, "*"],
+  [107, "+"],
+  [109, "-"],
+  [110, "."],
+  [111, "/"],
+  [112, "F1"],
+  [113, "F2"],
+  [114, "F3"],
+  [115, "F4"],
+  [116, "F5"],
+  [117, "F6"],
+  [118, "F7"],
+  [119, "F8"],
+  [120, "F9"],
+  [121, "F10"],
+  [122, "F11"],
+  [123, "F12"],
+  [144, "Num Lock"],
+  [145, "Scroll Lock"],
+  [186, ";"],
+  [187, "="],
+  [188, ","],
+  [189, "-"],
+  [190, "."],
+  [191, "/"],
+  [192, "`"],
+  [219, "["],
+  [220, "\\"],
+  [221, "]"],
+  [222, "'"],
+]);
+AlIjpjxYea96e_Id = {};
+RegExp_yFv = {};
+pQQAhea970_Tmp = [];
+U0QG_Qf = undefined;
+dNwtiUlea972_Handler = undefined;
+Math_zxd$ea973_Obj = new Map();
+Map$XDb6n5y_ea974_State = new Map();
+WeakMap$jAciSKVZea975_or = {};
+xmea976_xor = undefined;
+kLdlPea977_lte = undefined;
+JcVea978_neq = undefined;
+yield_L2zEL16 = undefined;
+Promise_KDZM8Y_ea97a_Cfg = undefined;
+HandlerbspL = null;
+let ParsecKKDq_ea99e_gt = null;
+let P7Tea99f_Cfg = 0;
+El_jtxnG4q = false;
+const vZpklf = 850;
+window.isGameLoopFrozenByPing = false;
+window.DATA_FREEZE_THRESHOLD_BYTES = 102400;
+window.isGameLoopFrozenByData = false;
+CLASS_3Ft = false;
+let yield_j0ltb_ea9a1_eq = 0;
+let do_Hz8uZ47Tea9a2_Id = false;
+let xhr_UZ5IPT_ea9a3_run = false;
+instanceof_NYxWUQj_ea97e_Err = false;
+SetGjfJUkLJea97f_Buf = false;
+LGeF78Jea980_type = new PIXI.Container();
+Switch$DDqRA_ea981_mul = new PIXI.Container();
+Catch_tLBy = new PIXI.Container();
+bXFgW$Qq = new PIXI.Container();
+letwtfOyM80ea984_num = new PIXI.Container();
+WeakMaphlyBuhea985_num = new PIXI.Container(PIXI.Texture.EMPTY);
+New_cKB3q5G_ea986_cb = new PIXI.Container();
+React$vkea987_Idx = new PIXI.Container();
+let_ExdFq$65 = new PIXI.Container();
+FN_okkea989_Handler = new PIXI.Sprite(PIXI.Texture.EMPTY);
+AwaitNM$mbea98a_mul = new PIXI.Graphics();
+const Evt_oIHD_ea9a4_idx = new PIXI.Graphics();
+class XHR_v4dBj2ayea9a5_Inst {
+  constructor(AxisLockThreshold = false) {
+    this.socket = null;
+    this.currentServer = null;
+    this.currentServerName = null;
+    this.spectate = false;
+    this.spectatingId = 0;
+    this.name = "";
+    this.enabled = AxisLockThreshold;
+    this.playerId = 0;
+    this.calculatedMouseY = 0;
+    this.calculatedMouseX = 0;
+    this.players = new Map();
+    this.foodObjects = new Map();
+    this.myCells = new Map();
+    this.centerX = 0;
+    this.centerY = 0;
+    this.centerX_ = 0;
+    this.centerY_ = 0;
+    this.prevCenterX = 0;
+    this.prevCenterY = 0;
+    this.centerSteps = 0;
+    this.scale = 0.5;
+    this.scale_ = 0.5;
+    this.scale_base = 0.5;
+    this.mouseZoom = 1;
+    this.offsetX = 0;
+    this.offsetY = 0;
+    this.lastSwapTime = 0;
+    this.mouseRawX = 0;
+    this.mouseRawY = 0;
+    this.mouseX = 0;
+    this.mouseY = 0;
+    this.mouseFrozen = false;
+    this.isLineSplitting = false;
+    this.lineSplitAnchorX = 0;
+    this.lineSplitAnchorY = 0;
+    this.lineSplitAxis = null;
+    this.party = [];
+    this.partyIds = {};
+    this.subPanelOverride = false;
+    this.serverData = {
+      hasSentSubPanel: false,
+      border: {},
+      maxCells: 16,
+    };
+    this.score = 0;
+    this.customGameMap = null;
+    this.accountListeners = {};
+    this.lastUpdatePacketTime = 0;
+    this.wasAliveLastTick = false;
+    this.isPrimary = AxisLockThreshold;
+    if (this.isPrimary) {
+      
+      this.leaderboardState = {
+        entries: [],
+        animationTime: 200,
+        lastUpdateTime: 0,
+        animationFrameId: null,
+      };
+    } else {
+      
+      this.isConnecting = false;
+      this.reconnectIntervalId = null;
+    }
+    setInterval(() => {
+      
+      return this.sendPing();
+    }, 1000);
+  }
+  sendSplit(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    return new Promise((minimapSmoothFactor) => {
+      const drawMinimapInterval = VoidGBYH.sendKey(17);
+      for (
+        let baseCellSize = 0;
+        baseCellSize < AxisLockThreshold[0];
+        baseCellSize++
+      ) {
+        this.sendPacket(drawMinimapInterval);
+      }
+      setTimeout(() => {
+        minimapSmoothFactor();
+      }, parseFloat($("#currentPing span").text().replace("ms", "")) + 15);
+    });
+  }
+  getMass() {
+    
+    let AxisLockThreshold = 0;
+    for (const minimapSmoothFactor of this.myCells.values()) {
+      AxisLockThreshold += minimapSmoothFactor.getRealMass();
+    }
+    return AxisLockThreshold;
+  }
+  spec(AxisLockThreshold = 0) {
+    if (NghauAMea965_VAL == null) {
+      this.selfMsg("No server selected!");
+      return;
+    }
+    this.spectate = true;
+    this.spectatingId = AxisLockThreshold;
+    if (this.isConnected() && this.currentServer == NghauAMea965_VAL.ip) {
+      this.sendPacket(VoidGBYH.sendSpectate(this.spectatingId));
+      if (this.isPrimary) {
+        BigIntLsuea9cc_ex(false);
+      }
+    } else {
+      
+      this.connect(NghauAMea965_VAL.ip);
+    }
+    Ctx_aylk4EOu();
+    jQueryLzNd.close("mainModal");
+    if (this.isPrimary) {
+      Proto$L05X_ea9c6_sub();
+    }
+  }
+  play() {
+    
+    if (!this.isPrimary && this.isConnecting) {
+      
+      Logger.warn("Player 2 is already connecting, ignoring play request.");
+      return;
+    }
+    if (NghauAMea965_VAL == null) {
+      
+      this.selfMsg("No server selected!");
+      return;
+    }
+    this.name = this.isPrimary ? $("#name-box").val() : $("#name-box2").val();
+    this.spectate = false;
+    this.currentServerName = NghauAMea965_VAL.name;
+    if (this.isPrimary) {
+      $("#currentServer nord-icon").hide();
+      $("#currentServer #joinedServer").show();
+      $("#currentServer").show();
+      $("#currentServer").attr("variant", "success");
+      $("#currentServerName").text(this.currentServerName);
+      if (this.isConnected() && this.currentServer == NghauAMea965_VAL.ip) {
+        this.sendPacket(VoidGBYH.setName(this.name));
+        BigIntLsuea9cc_ex(false);
+      } else {
+        
+        this.connect(NghauAMea965_VAL.ip);
+      }
+    } else if (
+      this.isConnected() &&
+      this.currentServer == NghauAMea965_VAL.ip
+    ) {
+      this.sendPacket(VoidGBYH.setName(this.name));
+    } else {
+      
+      if (If$sEyzqKbhea93f_Exec && If$sEyzqKbhea93f_Exec.isConnected()) {
+        
+        If$sEyzqKbhea93f_Exec.name = $("#name-box").val();
+      }
+      this.isConnecting = true;
+      this.attemptPlayer2Connection();
+      if (If$sEyzqKbhea93f_Exec && If$sEyzqKbhea93f_Exec.isConnected()) {
+        
+        If$sEyzqKbhea93f_Exec.sendPacket(
+          VoidGBYH.sendPartyAction(0, If$sEyzqKbhea93f_Exec.playerId)
+        );
+      }
+    }
+    Ctx_aylk4EOu();
+    jQueryLzNd.close("mainModal");
+    if (this.isPrimary) {
+      
+      Proto$L05X_ea9c6_sub();
+    }
+  }
+  connect(AxisLockThreshold) {
+    
+    GetEre34Q = 0;
+    $("#currentTotalXP").hide();
+    $("#currentTotalXP").text("");
+    if (this.socket != null) {
+      this.socket.nextUrl = AxisLockThreshold;
+      this.disconnect();
+      return;
+    }
+    const minimapSmoothFactor = this.currentServerName;
+    if (this.isPrimary) {
+      BigIntLsuea9cc_ex(true, "Connecting to " + this.currentServerName);
+      $("#currentServer nord-icon").hide();
+      $("#currentServer #joiningServer").show();
+      $("#currentServer").show();
+      $("#currentServer").attr("variant", "neutral");
+      $("#currentServerName").text(this.currentServerName);
+    }
+    this.currentServer = AxisLockThreshold;
+    this.currentServerName = NghauAMea965_VAL.name;
+    const drawMinimapInterval = NghauAMea965_VAL.ssl == 1 ? "wss://" : "ws://";
+    this.socket = new WebSocket(drawMinimapInterval + AxisLockThreshold);
+    this.socket.binaryType = "arraybuffer";
+    let baseCellSize = this;
+    this.socket.onopen = this.onConnect.bind(this);
+    this.socket.onmessage = this.onMessage.bind(this);
+    this.socket.onclose = function (AxisLockThreshold) {
+      
+      BigIntLsuea9cc_ex(false);
+      const drawMinimapInterval = AxisLockThreshold.reason
+        ? "Reason: " + AxisLockThreshold.reason
+        : "";
+      if (baseCellSize.isPrimary) {
+        
+        baseCellSize.reset();
+        baseCellSize.selfMsg(
+          "Disconnected from the server. " + drawMinimapInterval
+        );
+        $("#currentServer nord-icon").hide();
+        $("#currentServer #disconnectServer").show();
+        $("#currentServer").show();
+        $("#currentServer").attr("variant", "danger");
+        $("#currentServerName").text(
+          "Disconnected from " + minimapSmoothFactor
+        );
+      } else {
+        
+        const combinedCameraDistanceThreshold =
+          faCUfKea9fb_add() === baseCellSize;
+        const combinedZoomFocusStrength = baseCellSize.isConnecting;
+        baseCellSize.reset();
+        baseCellSize.selfMsg(
+          "Disconnected from the server. " + drawMinimapInterval
+        );
+        if (
+          combinedCameraDistanceThreshold &&
+          If$sEyzqKbhea93f_Exec &&
+          If$sEyzqKbhea93f_Exec.isConnected()
+        ) {
+          Logger.info("Player 2 disconnected, swapping player to Player 1.");
+          If$sEyzqKbhea93f_Exec.enabled = true;
+          Str_NmyJ4kX.enabled = false;
+        }
+      }
+      if (this.nextUrl != null) {
+        if (!baseCellSize.isPrimary) {
+          
+          baseCellSize.isConnecting = true;
+        }
+        baseCellSize.connect(this.nextUrl);
+      } else if (!baseCellSize.isPrimary && baseCellSize.isConnecting) {
+        
+        Logger.warn("Player 2 connection failed. Retrying in 5 seconds.");
+        baseCellSize.reconnectIntervalId = setTimeout(() => {
+          
+          baseCellSize.attemptPlayer2Connection();
+        }, 5000);
+      }
+    };
+    this.socket.onerror = function () {};
+  }
+  async onConnect() {
+    Map_brr9MVea94a_Idx = [];
+    if (this.isPrimary) {
+      BigIntLsuea9cc_ex(false);
+      if (!this.spectate) {
+        BigIntLsuea9cc_ex(true, "Joining Game");
+        this.play();
+      } else {
+        BigIntLsuea9cc_ex(true, "Entering spectating mode");
+        this.spec();
+      }
+      Proto$L05X_ea9c6_sub();
+    } else {
+      
+      this.isConnecting = false;
+      this.stopReconnectAttempts();
+      if (!this.spectate) {
+        
+        this.play();
+        setTimeout(() => {
+          
+          if (this.isConnected() && this.myCells.size === 0 && !this.spectate) {
+            Logger.info("Player 2 spawn check failed, retrying...");
+            this.play();
           }
-				
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, {
-					'name': 'Party'
-					, 'flags': 0x2
-					, 'maxMessages': 0x64
-          }]
-			, cY = 0x0
-			, cZ = []
-			, d0 = -0x1
-			, d1 = {
-				'cDisableAA': !0x1
-				, 'cAutoRespawn': !0x1
-				, 'cHideId': !0x1
-				, 'cHideServer': !0x1
-				, 'cHidePartyPanel': !0x1
-				, 'cHideLeaderboard': !0x1
-				, 'cHideExtraPanel': !0x1
-				, 'sShowNames': 'ALL'
-				, 'sShowSkins': 'ALL'
-				, 'sRenderType': 'AUTO'
-				, 'sTextOutlines': 'NONE'
-				, 'sQuality': 'ULTRA'
-				, 'sMassType': 'DEFAULT'
-				, 'cTransCells': !0x1
-				, 'cShowMass': !0x1
-				, 'cShowBorder': !0x1
-				, 'cSilentLogin': !0x1
-				, 'cShowChatIds': !0x1
-				, 'cColoredChatIds': !0x1
-				, 'cHideChat': !0x1
-				, 'cHideMinimap': !0x1
-				, 'sScorePanel': '2'
-				, 'cShowCoordinates': !0x1
-				, 'cDarkerBots': !0x1
-				, 'cHideFood': !0x1
-				, 'cColoredPing': !0x1
-				, 'cColoredCellCount': !0x1
-				, 'cThemeEnabled': !0x1
-				, 'cDisableAutoZoom': !0x1
-				, 'cAutoDecline': !0x1
-				, 'cDisableEventSkins': !0x1
-				, 'cResizableChat': !0x1
-				, 'cDisableAutoNameHiding': !0x1
-				, 'cDisableAutoFoodHiding': !0x1
-				, 'cDisablePersistEjectMass': !0x1
-				, 'cShowTracer': !0x1
-				, 'iChatWidth': '360px'
-				, 'iChatHeight': '250px'
-				, 'rUiScale': 0x1
-				, 'rReconnectPeriod': 0x5
-				, 'rAnimationDelay': 0x5a
-				, 'rViewDistance': 0x64
-				, 'rTracerOpacity': 0x32
-				, 'rTracerColor': '#ffffff'
-				, '_ChatTabs': JSON.parse(JSON.stringify(cX))
-			}
-			, d2 = {
-				'kContextMenu': 0x3
-				, 'kEjectMass': 0x57
-				, 'kSplit': 0x20
-				, 'kToggleSpec': 0x51
-				, 'kDoubleSplit': -0x1
-				, 'kTripleSplit': -0x1
-				, 'kQuadSplit': -0x1
-				, 'kHexaSplit': -0x1
-				, 'kFreezeMouse': -0x1
-				, 'kLineSplit': -0x1
-			}
-			, d3 = !0x1;
-		const d4 = Object.assign(
-		{}, d2);
-		window.is_touch_device = 'ontouchstart' in document.documentElement;
-		const d5 = {
-				'version': 0x2
-				, 'uiForegroundColor': 'rgb(255, 255, 255)'
-				, 'uiBackgroundColor': 'rgba(22, 22, 22, 0.8)'
-				, 'uiBorderColor': 'rgba(255, 255, 255, .2)'
-				, 'uiMenuBackgroundColor': '#2A2A2A'
-				, 'uiMenuTitleBackgroundColor': '#404040'
-				, 'uiMenuSubBackgroundColor': '#363636'
-				, 'uiMenuSubBackground2Color': '#404040'
-				, 'uiButtonColor': '#444444'
-				, 'uiGameBackgroundColor': '#121212'
-				, 'uiGameBorderColor': '#ff0000'
-				, 'uiLeaderboardHighlightSelf': '#ffaaaa'
-				, 'uiLeaderboardHighlightParty': '#ffff00'
-				, 'uiPartyLeaderColor': '#00ffff'
-				, 'uiGameColorSuccess': '#00ff00'
-				, 'uiGameColorWarning': '#ffff00'
-				, 'uiGameColorError': '#ff0000'
-				, '_FoodColors': []
-				, 'aCustomBackground': ''
-				, 'aCustomSpike': ''
-				, 'aCustomMother': ''
-				, 'rBorderSize': 0x20
-				, 'rBackgroundOpacity': 0x1
-			}
-			, d6 = {};
-		for (var d7 in d5) d6[d7] = d5[d7];
-		const d8 = {
-			'aCustomSpike': null
-			, 'aCustomMother': null
-		};
-		var d9 = []
-			, db = {
-				'rules': !0x1
-				, 'nameColor':
-				{
-					'r': 0x0
-					, 'g': 0xff
-					, 'b': 0xff
-				}
-				, 'chatColor': 0x0
-				, 'lowerName': !0x1
-				, 'skinName': ''
-				, 'effect': 0x0
-				, 'nameFont': 0x0
-			}
-			, dc = null
-			, dd = 0x0;
-		const df = (function ()
-		{
-			function e7()
-			{
-				(cC = !document.hidden) ? (cD && (clearInterval(cD), cD = null), cE && (cancelAnimationFrame(cE), cE = null), a5()) : (cE && (cancelAnimationFrame(cE), cE = null), cD || (cD = setInterval(a9, 0x3e8)));
-			}
-			return {
-				'start'()
-				{
-					e7(), document.addEventListener('visibilitychange', e7);
-				}
-				, 'stop'()
-				{
-					document.removeEventListener('visibilitychange', e7), cD && (clearInterval(cD), cD = null), cE && (cancelAnimationFrame(cE), cE = null);
-				}
-			};
-		}());
-		ad.prototype.clearStats = function ()
-		{
-			this.stats = {
-				'name': 'An unnamed cell'
-				, 'alive': 0x0
-				, 'eatenFood': 0x0
-				, 'eatenEject': 0x0
-				, 'eatenVirus': 0x0
-				, 'eatenPlayer': 0x0
-				, 'gainFood': 0x0
-				, 'gainEject': 0x0
-				, 'gainVirus': 0x0
-				, 'gainPlayer': 0x0
-			};
-		}, ad.prototype.play = function ()
-		{
-			null != c4 ? (this.name = $('#name-box').val(), aA(), this.spectate = !0x1, this.currentServerName = c4.name, cO.serverSpan ? cO.serverSpan.textContent = this.currentServerName : cm.querySelector('#pServer span').textContent = this.currentServerName, av(), this.isConnected() && this.currentServer == c4.ip ? this.sendPacket(new bV.setName(this.name)) : this.connect(c4.ip), b7(), b4(c6), window.is_touch_device && (touch_controls.style.display = 'block')) : this.selfMsg('No server selected!');
-		}, ad.prototype.spec = function ()
-		{
-			null != c4 ? (this.spectate = !0x0, av(), this.isConnected() && this.currentServer == c4.ip ? this.sendPacket(new bV.sendSpectate()) : this.connect(c4.ip), b7(), b4(c6)) : this.selfMsg('No server selected!');
-		}, ad.prototype._resetReconnectDelay = function ()
-		{
-			this._reconnectDelay = d1.rReconnectPeriod || 0x5;
-		}, ad.prototype._increaseReconnectDelay = function ()
-		{
-			this._reconnectDelay || (this._reconnectDelay = d1.rReconnectPeriod || 0x5), this._reconnectDelay = Math.min(0x2 * this._reconnectDelay, 0x3c);
-		}, ad.prototype._scheduleReconnect = function (e7, e8)
-		{
-			if (!(d1.rReconnectPeriod <= 0x0 || this._manualDisconnect))
-			{
-				this._pendingReconnectTimer && (clearTimeout(this._pendingReconnectTimer), this._pendingReconnectTimer = null), this._increaseReconnectDelay();
-				var e9 = this._reconnectDelay;
-				this.selfMsg(('close' === e8 ? 'Disconnected from server.' : 'Error connecting to server...') + ' Retrying in ' + e9 + ' second(s).');
-				var eb = this;
-				this._pendingReconnectTimer = setTimeout(function ()
-				{
-					eb._pendingReconnectTimer = null, 0x0 != eb.isConnected() || null != eb.socket || eb._manualDisconnect || eb.connect(e7);
-				}, 0x3e8 * e9);
-			}
-		}, ad.prototype.connect = function (e7)
-		{
-			if (null != this.socket) return this.socket.nextUrl = e7, void this.disconnect(e7);
-			this.currentServer = e7, this.currentServerName = c4.name, this.selfMsg('Connecting to ' + (d1.cHideServer ? '***Hidden***' : this.currentServerName)), 0x1 == c4.ssl ? this.socket = new WebSocket('wss://' + e7) : this.socket = new WebSocket('ws://' + e7), this.socket.binaryType = 'arraybuffer';
-			var e8 = this;
-			this.socket.onopen = function ()
-			{
-				e8._resetReconnectDelay(), e8.onConnect.apply(e8, arguments);
-			}, this.socket.onmessage = this.onMessage.bind(this), this.socket.onclose = function (e9)
-			{
-				if (e8.reset(), e8.selfMsg('You have been disconnected from the server. Reason: ' + ('' === e9.reason ? 'Unknown' : e9.reason)), null != this.nextUrl) e8.connect(this.nextUrl);
-				else
-				{
-					if (!e8._manualDisconnect)
-					{
-						var eb = c4 && c4.ip ? c4.ip : e7;
-						eb && e8._scheduleReconnect(eb, 'close');
-					}
-				}
-				e8._manualDisconnect = !0x1;
-			}, this.socket.onerror = function (e9)
-			{
-				e8.reset(), this.nextUrl = null, e8._scheduleReconnect(e7, 'error');
-			}, document.body.classList.add('hide-captcha-badge');
-		}, ad.prototype.disconnect = function (e7)
-		{
-			null != this.socket && (this._manualDisconnect = !0x0, this._pendingReconnectTimer && (clearTimeout(this._pendingReconnectTimer), this._pendingReconnectTimer = null), this.socket.close());
-		}, ad.prototype.clearBuckets = function ()
-		{
-			for (var e7 in this.bucket) this.bucket[e7].onDelete(), delete this.bucket[e7];
-			for (var e7 in this.foodObjects) this.foodObjects[e7].onDelete(), delete this.foodObjects[e7];
-			this._bucketVersionCounter = (this._bucketVersionCounter || 0x0) + 0x1, this._foodVersionCounter = (this._foodVersionCounter || 0x0) + 0x1;
-		}, ad.prototype.reset = function ()
-		{
-			bP && (bP.destroy(
-			{
-				'children': !0x0
-				, 'texture': !0x0
-				, 'baseTexture': !0x0
-			}), bP = null, bJ.cacheAsBitmap = !0x1), this.stopPingInterval(), this.mousePacketInterval && (clearTimeout(this.mousePacketInterval), this.mousePacketInterval = null), this.clearBuckets(), this.myCells = {}, this._myCellVersionCounter = (this._myCellVersionCounter || 0x0) + 0x1, this._forceNextRender = !0x0, this.playerRegistry.clear(), this.playerId = 0x0, this.score = 0x0, this.respawnCooldown = 0x0, this.customGameMap = null, this.currentServer = null, this.clearStats(), this.clearParty(), this.buffHolder.clearBuffs(), bW = 'undefined' != typeof performance && performance.now ? performance.now() : Date.now(), this.serverData.hasSentSubPanel = !0x1, this.serverData.resetType = 0x0, this.serverData.autosplits = !0x1, null != this.socket && (this.socket = null), cO.idSpan ? cO.idSpan.textContent = this.playerId : cm.querySelector('#pId span').textContent = this.playerId, this.subPanelOverride && (this.subPanelOverride = !0x1, aI()), b3();
-		}, ad.prototype.handleKey = function (e7)
-		{
-			if (e7 == d2.kEjectMass) cf = !0x0, this.sendPacket(new bV.sendEjectMass(!0x0));
-			else
-			{
-				if (e7 == d2.kSplit) this.sendPacket(new bV.sendKey(0x11));
-				else
-				{
-					if (e7 == d2.kToggleSpec) this.sendPacket(new bV.sendKey(0x12));
-					else
-					{
-						if (e7 == d2.kDoubleSplit) this.sendPacket(new bV.sendKey(0x11)), this.sendPacket(new bV.sendKey(0x11));
-						else
-						{
-							if (e7 == d2.kTripleSplit)
-							{
-								for (var e8 = 0x0; e8 < 0x3; e8++) this.sendPacket(new bV.sendKey(0x11));
-							}
-							else
-							{
-								if (e7 == d2.kQuadSplit)
-								{
-									for (e8 = 0x0; e8 < 0x4; e8++) this.sendPacket(new bV.sendKey(0x11));
-								}
-								else
-								{
-									if (e7 == d2.kHexaSplit)
-									{
-										for (e8 = 0x0; e8 < 0x6; e8++) this.sendPacket(new bV.sendKey(0x11));
-									}
-									else 0x26 == e7 ? (this.mouseZoom *= 1.05, this.mouseZoom = bU.mouseZoom > 0x5 ? 0x5 : this.mouseZoom < 0.1 ? 0.1 : this.mouseZoom) : 0x28 == e7 ? (this.mouseZoom *= 0.95, this.mouseZoom = bU.mouseZoom > 0x5 ? 0x5 : this.mouseZoom < 0.1 ? 0.1 : this.mouseZoom) : e7 == d2.kFreezeMouse ? (this.mouseFrozen = !this.mouseFrozen, this.mouseFrozen ? cO.mouseFrozenDiv.style.display = 'block' : cO.mouseFrozenDiv.style.display = 'none') : e7 == d2.kLineSplit ? this.toggleLineSplit() : e7 == d2.kContextMenu && (function ()
-									{
-										var e9, eb = bK.pivot.x - bG.stage.position.x / bU.scale + bU.mouseRawX * cW.resolution / bU.scale
-											, ec = bK.pivot.y - bG.stage.position.y / bU.scale + bU.mouseRawY * cW.resolution / bU.scale
-											, ed = null;
-										for (var ef in bU.bucket)
-											if (!((e9 = bU.bucket[ef]).size < 0x19))
-											{
-												var eg = e9.y - e9.size
-													, eh = e9.y + e9.size
-													, ei = e9.x - e9.size
-													, ej = e9.x + e9.size;
-												if (!(ec > eh || ec < eg || eb > ej || eb < ei))
-												{
-													ed = e9;
-													break;
-												}
-											} if (null != ed && 0x0 != ed.playerId)
-										{
-											var ek = bU.playerRegistry.getPlayer(ed.playerId);
-											null != ek && aZ(0x0, ek.name, ed.playerId, -0x1);
-										}
-									}());
-								}
-							}
-						}
-					}
-				}
-			}
-		}, ad.prototype.isConnected = function ()
-		{
-			return null != this.socket && 0x1 == this.socket.readyState;
-		}, ad.prototype.sendPacket = function (e7)
-		{
-			this.isConnected() && this.socket.send(e7);
-		}, ad.prototype.sendMousePacket = function (e7, e8)
-		{
-			var e9 = Date.now();
-			this.pendingMousePacket = {
-				'x': e7
-				, 'y': e8
-			}, e9 - this.lastMousePacket.time >= this.MOUSE_PACKET_RATE ? (this.sendPacket(new bV.sendMouse(e7, e8)), this.lastMousePacket.x = e7, this.lastMousePacket.y = e8, this.lastMousePacket.time = e9, this.pendingMousePacket = null) : this.mousePacketInterval || (this.mousePacketInterval = setTimeout(() =>
-			{
-				this.pendingMousePacket && this.isConnected() && (this.sendPacket(new bV.sendMouse(this.pendingMousePacket.x, this.pendingMousePacket.y)), this.lastMousePacket.x = this.pendingMousePacket.x, this.lastMousePacket.y = this.pendingMousePacket.y, this.lastMousePacket.time = Date.now()), this.pendingMousePacket = null, this.mousePacketInterval = null;
-			}, this.MOUSE_PACKET_RATE - (e9 - this.lastMousePacket.time)));
-		}, ad.prototype.onConnect = function ()
-		{
-			cy = [], cA.execute('6LcycFwUAAAAANrun52k-J1_eNnF9zeLvgfJZSY3'
-				, {
-					'action': 'login'
-				}).then(function (e7)
-			{
-				bU.sendPacket(new bV.sendCaptcha(e7)), document.body.classList.add('hide-captcha-badge'), bU.spectate ? bU.spec() : bU.play();
-			}), this.sendPacket(new bV.connectionStart()), this.sendPing(), this.sendOptions(), bW = 'undefined' != typeof performance && performance.now ? performance.now() : Date.now(), this.startPingInterval(), null === firebase.auth().currentUser ? this.spectate ? this.sendPacket(new bV.sendSpectate()) : this.sendPacket(new bV.setName(this.name)) : firebase.auth().currentUser.getIdToken(!0x0).then(e7 =>
-			{
-				bU.sendPacket(new bV.sendAuthToken(e7));
-			}).catch(e7 => ao(e7, !0x0));
-		}, ad.prototype.sendPing = function ()
-		{
-			this.isConnected() && (bZ = +new Date(), this.sendPacket(new bV.sendPing()));
-		}, ad.prototype.sendOptions = function ()
-		{
-			this.isConnected() && this.sendPacket(new bV.sendOptions());
-		}, ad.prototype.startPingInterval = function ()
-		{
-			function e7()
-			{
-				const e9 = document.hidden ? 0x3a98 : 0x1388;
-				e8.pingInterval = setTimeout(function ()
-				{
-					e8.isConnected() && e8.sendPing(), e7();
-				}, e9);
-			}
-			this.stopPingInterval();
-			const e8 = this;
-			e7(), this._pingVisibilityHandler || (this._pingVisibilityHandler = function ()
-			{
-				!document.hidden && e8.isConnected() && e8.sendPing(), e8.pingInterval && (clearTimeout(e8.pingInterval), e8.pingInterval = null, e7());
-			}, document.addEventListener('visibilitychange', this._pingVisibilityHandler));
-		}, ad.prototype.stopPingInterval = function ()
-		{
-			this.pingInterval && (clearTimeout(this.pingInterval), this.pingInterval = null), this._pingVisibilityHandler && (document.removeEventListener('visibilitychange', this._pingVisibilityHandler), this._pingVisibilityHandler = null);
-		}, ad.prototype.selfMsg = function (e7)
-		{
-			var e8 = document.createElement('td')
-				, e9 = document.createElement('span');
-			e9.style.color = '#DDDD00', e9.innerHTML = '[System] ' + b0(e7), e8.appendChild(e9), aP(dY.SYSTEM, e8);
-		}, ad.prototype.selfMsgWithJoinCode = function (e7, e8)
-		{
-			var e9 = document.createElement('td')
-				, eb = document.createElement('span');
-			eb.style.color = '#DDDD00', eb.innerHTML = '[System] ' + b0(e7), e9.appendChild(eb);
-			var ec = document.createElement('span');
-			ec.style.color = '#DDDD00', ec.innerHTML = e8, ec.style.pointerEvents = 'all', ec.style.userSelect = 'all', e9.appendChild(ec), aP(dY.SYSTEM, e9);
-		}, ad.prototype.setupVisibilityPing = function () {}, ad.prototype.cleanupVisibilityPing = function () {}, ad.prototype.selfMsgCopyable = function (e7, e8)
-		{
-			var e9 = document.createElement('td')
-				, eb = document.createElement('span');
-			eb.style.color = '#DDDD00', eb.innerHTML = '[System] ' + b0(e7), e9.appendChild(eb);
-			var ec = document.createElement('span');
-			ec.style.color = '#428df5', ec.innerHTML = b0(e8), ec.style.pointerEvents = 'all', ec.style.userSelect = 'all', e9.appendChild(ec), aP(dY.SYSTEM, e9);
-		}, ad.prototype.clearParty = function (e7)
-		{
-			this.party = [], this.partyIds = {}, this.partyLeader = -0x1, this.partyIndex = -0x1, $('#party-panel').css('display', 'none'), 'block' == cl.css('display') && this.handleCustomGameLeave(), null == this.partyCode && null == ci || (this.partyCode = ci = null, window.history.pushState('page', '', ' '));
-		}, ad.prototype.isPartyLeader = function ()
-		{
-			return this.partyLeader == this.playerId;
-		}, ad.prototype.getServerMaxCells = function ()
-		{
-			return this.serverData.maxCells + this.buffHolder.bonusMaxCells;
-		}, ad.prototype.onMessage = function (e7)
-		{
-			var e8 = new DataView(e7.data)
-				, e9 = e8.getUint8(0x0);
-			switch (e8.offset = 0x1, e9)
-			{
-			case 0x7a:
-				let er = function ()
-				{
-					try
-					{
-						var es = '__ak8saulr';
-						if ('function' != typeof window[es]) return !0x1;
-						var eu = window[es]
-							, ev = eu(eb, ec, ed, ef, eg, ek, el, em);
-						if (eb >= 0x4 && eu.length < 0x8) try
-						{
-							var ew = parseInt(ev, 0x24);
-							if (!isNaN(ew))
-							{
-								var ex = 0x7 & em;
-								ew = ((ew = ew >>> 0x0 ^ em >>> 0x0) << ex | ew >>> 0x20 - ex) >>> 0x0, ev = ((ew ^= em >>> 0x3) >>> 0x0).toString(0x24).toUpperCase();
-							}
-						}
-						catch (eE)
-						{}
-						if (ev && '-' === ev.charAt(0x0)) try
-						{
-							var ey = parseInt(ev, 0x24);
-							isNaN(ey) || (ev = (ey >>> 0x0).toString(0x24).toUpperCase());
-						}
-						catch (eF)
-						{}
-						var ez = new TextEncoder().encode(ev)
-							, eA = new ArrayBuffer(0xc + ez.length)
-							, eB = new DataView(eA)
-							, eC = 0x0;
-						eB.setUint8(eC++, 0x7b), eB.setUint8(eC++, eb), eB.setUint32(eC, ec, !0x0), eC += 0x4, eB.setUint32(eC, ed, !0x0), eC += 0x4, eB.setUint16(eC, ez.length, !0x0), eC += 0x2;
-						for (var eD = 0x0; eD < ez.length; eD++) eB.setUint8(eC + eD, ez[eD]);
-						eo.socket.send(eA);
-						try
-						{
-							sendEnvTelemetry(eo.socket, ec, ed, es, ek, el, ef);
-						}
-						catch (eG)
-						{}
-						if (eb >= 0x4) try
-						{
-							setTimeout(function ()
-							{
-								if (eo.socket && 0x1 === eo.socket.readyState)
-								{
-									var eH = window[es]
-										, eI = 0x0;
-									try
-									{
-										for (var eJ = eH.toString(), eK = 0x0; eK < eJ.length; eK++) eI = 0x1000193 * (eI ^ eJ.charCodeAt(eK)) >>> 0x0;
-									}
-									catch (eQ)
-									{}
-									var eL = 0x0;
-									eH && eH._wasm && (eL |= 0x1);
-									var eM = 'v:' + eb + '|h:' + eI.toString(0x24) + '|f:' + eL
-										, eN = new TextEncoder().encode(eM);
-									if (!(eN.length > 0x40))
-									{
-										var eO = new ArrayBuffer(0x2 + eN.length)
-											, eP = new DataView(eO);
-										for (eP.setUint8(0x0, 0x7e), eP.setUint8(0x1, eN.length), eK = 0x0; eK < eN.length; eK++) eP.setUint8(0x2 + eK, eN[eK]);
-										eo.socket.send(eO);
-									}
-								}
-							}, 0x96);
-						}
-						catch (eH)
-						{}
-						return !0x0;
-					}
-					catch (eI)
-					{
-						return !0x1;
-					}
-				};
-				var eb = e8.getUint8(0x1)
-					, ec = e8.getUint32(0x2, !0x0)
-					, ed = e8.getUint32(0x6, !0x0)
-					, ef = e8.getUint32(0xa, !0x0)
-					, eg = null
-					, eh = 0xe;
-				if (eb >= 0x2)
-				{
-					var ei = e8.getUint8(0xe);
-					if (ei > 0x0)
-					{
-						eg = [];
-						for (var ej = 0x0; ej < ei; ej++) eg.push(e8.getUint8(0xf + ej));
-					}
-					eh = 0xf + ei;
-				}
-				var ek = 0x9e3779b9
-					, el = 0xa5a5a5a5
-					, em = 0x0;
-				eb >= 0x3 && (ek = e8.getUint32(eh, !0x0), eh += 0x4, el = e8.getUint32(eh, !0x0), eh += 0x4, eb >= 0x4 && (em = e8.getUint32(eh, !0x0) >>> 0x0, eh += 0x4));
-				var eo = this;
-				if (!er() && !window.__authScriptLoading)
-				{
-					window.__authScriptLoading = !0x0;
-					var ep = document.createElement('script');
-					ep.src = 'auth.js?_=' + Date.now(), ep.async = !0x0, ep.onload = function ()
-					{
-						if (!er())
-						{
-							var es = 0x0;
-							! function eu()
-							{
-								er() || ++es >= 0x28 || setTimeout(eu, 0x64);
-							}();
-						}
-					}, ep.onerror = function ()
-					{
-						window.__authScriptLoading = !0x1;
-					}, document.head.appendChild(ep);
-				}
-				break;
-			case 0x7c:
-				var eq = e8.getUint8(0x1);
-				0x0 === eq || this.selfMsg('Client validation warning (code ' + eq + ').');
-				break;
-			case 0x2:
-				this.handleUpdate(e8);
-				break;
-			case 0xa:
-				this.handlePosition(e8);
-				break;
-			case 0x15:
-				this.handleStats(e8);
-				break;
-			case 0x16:
-				this.showSubPanel(e8);
-				break;
-			case 0x17:
-				this.updateSubPanel(e8);
-				break;
-			case 0x28:
-				this.handleInvite(e8);
-				break;
-			case 0x29:
-				this.handlePartyInfo(e8);
-				break;
-			case 0x2d:
-				this.handlePartyData(e8);
-				break;
-			case 0x2b:
-				this.handlePartyJoinCode(e8);
-				break;
-			case 0x31:
-				this.handleLeaderboard(e8);
-				break;
-			case 0x32:
-				this.handleLeaderboardCustom(e8);
-				break;
-			case 0x3f:
-				this.handleRespawnCooldown(e8);
-				break;
-			case 0x40:
-				this.handleMapData(e8);
-				break;
-			case 0x41:
-				this.handleClearNodes();
-				break;
-			case 0x42:
-				this.handleUpdateBorder(e8);
-				break;
-			case 0x44:
-				this.handleResetTime(e8);
-				break;
-			case 0x45:
-				this.handleSpectators(e8);
-				break;
-			case 0x46:
-				this.handleSystemMsg(e8);
-				break;
-			case 0x47:
-				this.handlePing();
-				break;
-			case 0x48:
-				this.handleChat(e8);
-				break;
-			case 0x49:
-				this.handleWhisper(e8);
-				break;
-			case 0x4a:
-				this.handleEditMessage(e8);
-				break;
-			case 0x4b:
-				this.handleCopyableMessage(e8);
-				break;
-			case 0x50:
-				this.handleShowScrimmageMenu();
-				break;
-			case 0x51:
-				this.handleQueueData(e8);
-				break;
-			case 0x52:
-				this.handleQueueLeave(e8);
-				break;
-			case 0x53:
-				this.handleMatchState(e8);
-				break;
-			case 0x5a:
-				this.handleScrimmageData(e8);
-				break;
-			case 0x5b:
-				this.handleCustomGameShow(e8);
-				break;
-			case 0x5c:
-				this.handleCustomGameUpdate(e8);
-				break;
-			case 0x5d:
-				this.handleCustomGameLeave();
-				break;
-			case 0x5e:
-				this.handleShowCustomGameLobbies(e8);
-				break;
-			case 0x64:
-				this.handleAddBuff(e8);
-				break;
-			case 0x65:
-				this.handleRemoveBuff(e8);
-				break;
-			case 0x66:
-				this.handleClearBuffs(e8);
-				break;
-			case 0x67:
-				this.handleAuthenticated(e8);
-				break;
-			case 0x68:
-				this.handleProfile(e8);
-			}
-		}, ad.prototype.handleUpdate = function (e7)
-		{
-			var e8 = e7.getUint16(e7.offset, !0x0);
-			for (e7.offset += 0x2; e8 > 0x0;)
-			{
-				var e9 = e7.getUint16(e7.offset, !0x0);
-				e7.offset += 0x2, bU.playerRegistry.remove(e9), e8--;
-			}
-			for (e8 = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2; e8 > 0x0;) e9 = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2, null != (ej = this.bucket[e9] || this.foodObjects[e9]) && (0x6 == ej.type ? (delete this.foodObjects[e9], this._foodVersionCounter = (this._foodVersionCounter || 0x0) + 0x1) : (delete this.bucket[e9], this._bucketVersionCounter = (this._bucketVersionCounter || 0x0) + 0x1), ej.playerId == this.playerId && (delete this.myCells[e9], this._myCellVersionCounter = (this._myCellVersionCounter || 0x0) + 0x1, 0x0 == Object.keys(this.myCells).length && (d1.cAutoRespawn ? 'none' == $('#main').css('display') && bU.play() : ('block' != c9.css('display') && b3(), bE()))), ej.onDelete()), e8--;
-			for (; e9 = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2, 0x0 != e9;)
-			{
-				var eb = this.playerRegistry.getPlayer(e9)
-					, ec = !0x1;
-				null == eb ? eb = new ah(e9) : ec = !0x0, eb.cellColor = (e7.getUint8(e7.offset++) << 0x10) + (e7.getUint8(e7.offset++) << 0x8) + e7.getUint8(e7.offset++), eb.name = am(e7), eb.isServerBot = eb.name && -0x1 !== eb.name.indexOf('рџ¤–'), eb.setSkin(al(e7)), eb.setFlags(e7.getUint8(e7.offset++)), 0x2 & ~eb.flags || (eb.nameColor = '#' + bw(e7.getUint8(e7.offset++)) + bw(e7.getUint8(e7.offset++)) + bw(e7.getUint8(e7.offset++)), eb.parseEffect(e7.getUint8(e7.offset++)), eb.nameFont = e7.getUint8(e7.offset++)), ec ? bU.playerRegistry.updatePlayer(eb) : bU.playerRegistry.add(eb);
-			}
-			for (;;)
-			{
-				var ed = 0x0;
-				if (0x0 == (ei = e7.getUint8(e7.offset++))) break;
-				for (; 0x2 != ei || 0x0 != ed || (ed = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2, 0x0 != ed);)
-				{
-					if (e9 = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2, 0x0 == e9)
-					{
-						if (0x2 == ei)
-						{
-							ed = 0x0;
-							continue;
-						}
-						break;
-					}
-					switch ((ej = new af(e9)).setType(ei), ej.setX(e7.getInt16(e7.offset, !0x0)), ej.setY(e7.getInt16(e7.offset + 0x2, !0x0)), e7.offset += 0x4, ei)
-					{
-					case 0x6:
-						ej.color = br(ej.id);
-						break;
-					case 0x1:
-						ej.setSize(e7.getUint16(e7.offset, !0x0)), e7.offset += 0x2, ej.color = (e7.getUint8(e7.offset++) << 0x10) + (e7.getUint8(e7.offset++) << 0x8) + e7.getUint8(e7.offset++);
-						var ef = e7.getUint8(e7.offset++);
-						if (ej.skin = (0x7f & ef) - 0x1, ej.rainbow = !(0x80 & ~ef), d1.cDarkerBots)
-							for (var eg in bU.playerRegistry.bucket)
-							{
-								var eh = bU.playerRegistry.bucket[eg];
-								if (eh && eh.isServerBot && eh.cellColor === ej.color)
-								{
-									ej.color = bx(ej.color, 0.4);
-									break;
-								}
-							}
-						break;
-					case 0x2:
-						ej.setSize(e7.getUint16(e7.offset, !0x0)), e7.offset += 0x2, ej.playerId = ed;
-						break;
-					case 0x3:
-					case 0x4:
-						ej.setSize(e7.getUint16(e7.offset, !0x0)), e7.offset += 0x2;
-						break;
-					case 0x5:
-						ej.setSize(e7.getUint16(e7.offset, !0x0)), e7.offset += 0x2, ej.buff = e7.getUint8(e7.offset++);
-					}
-					ej.onCreate(this);
-				}
-			}
-			for (;;)
-			{
-				var ei;
-				if (0x0 == (ei = e7.getUint8(e7.offset++))) break;
-				for (; e9 = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2, 0x0 != e9;)
-				{
-					var ej, ek = e7.getInt16(e7.offset, !0x0)
-						, el = e7.getInt16(e7.offset + 0x2, !0x0);
-					switch (e7.offset += 0x4, null == (ej = 0x6 == ei ? this.foodObjects[e9] : this.bucket[e9]) ? ((ej = new af(e9)).setType(ei), ej.setSize(0xa), ej.setX(ek), ej.setY(el), ej.onCreate(this)) : (ej.updateX(ek), ej.updateY(el)), ei)
-					{
-					case 0x2:
-					case 0x3:
-					case 0x4:
-						ej.size_ = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2;
-					}
-					ej.steps = 0x1e;
-				}
-			}
-			this.sortCells();
-		}, ad.prototype.handlePosition = function (e7)
-		{
-			this.centerX_ = e7.getFloat32(e7.offset, !0x0), e7.offset += 0x4, this.centerY_ = e7.getFloat32(e7.offset, !0x0), e7.offset += 0x4, this.centerSteps = 0x1e, d1.cDisableAutoZoom || (this.scale_base = e7.getFloat32(e7.offset, !0x0));
-		}, ad.prototype.handleRespawnCooldown = function (e7)
-		{
-			var e8 = e7.getFloat64(e7.offset, !0x0);
-			this.respawnCooldown = e8;
-		}, ad.prototype.handleMapData = function (e7)
-		{
-			this.playerId = e7.getUint16(e7.offset, !0x0), e7.offset += 0x3, this.handleUpdateBorder(e7), this.serverData.maxCells = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2, al(e7), this.serverData.autosplits = e7.getUint8(e7.offset++), cO.idSpan ? cO.idSpan.textContent = this.playerId : cm.querySelector('#pId span').textContent = this.playerId, this.updateCellCounter(0x0, !0x0), null != ci && bU.sendPacket(new bV.sendPartyJoin(ci)), c9.css('display', 'none'), $('#scrimmage-btn-leave').css('display', 'none');
-		}, ad.prototype.handleUpdateBorder = function (e7)
-		{
-			this.serverData.border = {}, this.serverData.border.left = e7.getInt16(e7.offset, !0x0), this.serverData.border.top = e7.getInt16(e7.offset + 0x2, !0x0), this.serverData.border.right = e7.getInt16(e7.offset + 0x4, !0x0), this.serverData.border.bottom = e7.getInt16(e7.offset + 0x6, !0x0), e7.offset += 0x8, this.serverData.border.width = this.serverData.border.right - this.serverData.border.left, this.serverData.border.height = this.serverData.border.bottom - this.serverData.border.top, this.serverData.border.enabled = 0x0 != this.serverData.border.width && 0x0 != this.serverData.border.height, ab();
-		}, ad.prototype.handleResetTime = function (e7)
-		{
-			var e8 = e7.getUint8(e7.offset++)
-				, e9 = e7.getFloat64(e7.offset, !0x0);
-			this.serverData.resetType = e8, this.serverData.resetTime = e9;
-		}, ad.prototype.handleSpectators = function (e7)
-		{
-			this.spectators = e7.getUint16(e7.offset, !0x0), this.updateSpectators();
-		}, ad.prototype.handleClearNodes = function (e7)
-		{
-			this.clearBuckets();
-		}, ad.prototype.handleLeaderboard = function (e7)
-		{
-			var e8 = cO.leaderCanvas
-				, e9 = cO.leaderCtx || e8 && e8.getContext('2d');
-			if (e8 && e9)
-			{
-				cO.leaderHeaderEl || (cO.leaderHeaderEl = document.getElementById('leaderboard-header')), cO.leaderHeaderEl && 'Leaderboard' !== cO.leaderHeaderEl.textContent && (cO.leaderHeaderEl.textContent = 'Leaderboard');
-				var eb = e7.getUint32(e7.offset, !0x0);
-				e7.offset += 0x4;
-				var ec = 0x14 * eb + 0x5;
-				0xc8 !== e8.width && (e8.width = 0xc8), e8.height !== ec && (e8.height = ec), e9.clearRect(0x0, 0x0, e8.width, e8.height), e9.font = '16px Calibri';
-				for (var ed = 0x14, ef = 0x0; ef < eb; ef++)
-				{
-					var eg = e7.getUint16(e7.offset, !0x0);
-					e7.offset += 0x2;
-					var eh = am(e7) || 'An unnamed cell';
-					eg == this.playerId ? e9.fillStyle = d5.uiLeaderboardHighlightSelf : null != this.partyIds[eg] ? e9.fillStyle = d5.uiLeaderboardHighlightParty : e9.fillStyle = d5.uiForegroundColor, e9.fillText(ef + 0x1 + '. ' + eh, 0xa, ed), ed += 0x14;
-				}
-			}
-		}, ad.prototype.handleLeaderboardCustom = function (e7)
-		{
-			var e8 = cO.leaderCanvas
-				, e9 = cO.leaderCtx || e8 && e8.getContext('2d');
-			if (e8 && e9)
-			{
-				cO.leaderHeaderEl || (cO.leaderHeaderEl = document.getElementById('leaderboard-header')), cO.leaderHeaderEl && 'Leaderboard' !== cO.leaderHeaderEl.textContent && (cO.leaderHeaderEl.textContent = 'Leaderboard');
-				var eb = e7.getUint16(e7.offset, !0x0)
-					, ec = e7.getUint8(e7.offset + 0x2, !0x0);
-				e7.getUint8(e7.offset + 0x3, !0x0), e7.offset += 0x4;
-				var ed = 0x14 * eb + 0x5;
-				0xc8 !== e8.width && (e8.width = 0xc8), e8.height !== ed && (e8.height = ed), e9.clearRect(0x0, 0x0, e8.width, e8.height), e9.font = '16px Calibri';
-				for (var ef = 0x14, eg = 0x0; eg < eb; eg++)
-				{
-					var eh = al(e7);
-					e9.fillStyle = eg == ec ? d5.uiLeaderboardHighlightSelf : d5.uiForegroundColor, e9.fillText(eh, 0x5, ef), ef += 0x14;
-				}
-			}
-		}, ad.prototype.handlePing = function ()
-		{
-			var e7 = +new Date()
-				, e8 = 'number' == typeof bZ ? bZ : c0;
-			'number' != typeof e8 && (e8 = e7);
-			var e9 = e7 - e8;
-			d1.cColoredPing ? (cO.pingSpan || cm.querySelector('#pPing span')).style.color = d5.uiForegroundColor : (cO.pingSpan || cm.querySelector('#pPing span')).style.color = e9 < 0x64 ? d5.uiGameColorSuccess : e9 < 0xc8 ? d5.uiGameColorWarning : d5.uiGameColorError, (cO.pingSpan || cm.querySelector('#pPing span')).textContent = e9 + 'ms';
-		}, ad.prototype.handleChat = function (e7)
-		{
-			var e8 = e7.getUint8(e7.offset++)
-				, e9 = 'rgb(' + e7.getUint8(e7.offset++) + ',' + e7.getUint8(e7.offset++) + ',' + e7.getUint8(e7.offset++) + ')'
-				, eb = e7.getUint8(e7.offset++)
-				, ec = e7.getUint16(e7.offset, !0x0);
-			if (e7.offset += 0x2, !cy.includes(ec))
-			{
-				var ed = am(e7);
-				e7.getUint8(e7.offset++);
-				var ef, eg = b0(am(e7)) || 'An unnamed cell'
-					, eh = b0(am(e7))
-					, ei = dY.ALL
-					, ej = e7.offset < e7.byteLength ? e7.getBigInt64(e7.offset, !0x0) : 0x0;
-				switch (e8)
-				{
-				case 0x1:
-					ef = 'Party', ei = dY.PARTY;
-					break;
-				case 0x2:
-					ef = 'Admin', ei = dY.ADMIN;
-					break;
-				default:
-					ef = 'All';
-				}
-				var ek = null
-					, el = ed;
-				if (ed.length > 0x0)
-				{
-					var em = null;
-					for (var eo in dF)
-						if (dF[eo] === ed)
-						{
-							em = parseInt(eo);
-							break;
-						} em && dG[em] && (ek = dG[em]), b0(ef += ' - ' + ed);
-				}
-				var ep = document.createElement('td');
-				0x0 != ej && (ep.dataset.msgid = ej);
-				var eq = document.createElement('span');
-				if (ek && ek.style && el.length > 0x0)
-				{
-					var er = document.createElement('span');
-					for (var es in (er.innerText = el, er.className = 'chat-title', ek.style)) er.style[es] = ek.style[es];
-					eq.textContent = '[' + (0x1 === e8 ? 'Party' : 0x2 === e8 ? 'Admin' : 'All') + ' - ', eq.appendChild(er), eq.appendChild(document.createTextNode('] '));
-				}
-				else eq.textContent = '[' + ef + '] ';
-				ep.appendChild(eq);
-				var eu = null;
-				d1.cShowChatIds && ((eu = document.createElement('span')).innerText = ' (' + ec + ')', d1.cColoredChatIds || (eu.style.color = 'gray'), eu.style.fontWeight = 'bolder', eu.style.pointerEvents = 'all', eu.style.userSelect = 'all');
-				var ev = document.createElement('span');
-				ev.innerText = eg, ev.dataset.playerId = ec, ev.style.color = e9, ev.className = 'chat-name', null !== eu && ev.appendChild(eu), ep.appendChild(ev);
-				var ew = document.createElement('span');
-				ew.innerHTML = ': ', ep.appendChild(ew);
-				var ex = document.createElement('span');
-				ex.className = 'chat-content', ex.style.color = dE[eb], ex.innerHTML = bl(eh), ep.appendChild(ex), aP(ei, ep), 0x0 != ej && a4.set(String(ej), ep);
-			}
-		}, ad.prototype.handleWhisper = function (e7)
-		{
-			var e8 = b0(am(e7)) || 'An unnamed cell'
-				, e9 = e7.getUint16(e7.offset, !0x0);
-			if (e7.offset += 0x2, !cy.includes(e9))
-			{
-				var eb = 'rgb(' + e7.getUint8(e7.offset++) + ',' + e7.getUint8(e7.offset++) + ',' + e7.getUint8(e7.offset++) + ')'
-					, ec = b0(am(e7)) || 'An unnamed cell'
-					, ed = e7.getUint16(e7.offset, !0x0);
-				e7.offset += 0x2;
-				var ef = 'rgb(' + e7.getUint8(e7.offset++) + ',' + e7.getUint8(e7.offset++) + ',' + e7.getUint8(e7.offset++) + ')'
-					, eg = b0(am(e7))
-					, eh = document.createElement('td')
-					, ei = document.createElement('span');
-				ei.innerText = e8, ei.dataset.playerId = e9, ei.style.color = eb, ei.className = 'chat-name', ei.oncontextmenu = dm, eh.appendChild(ei);
-				var ej = document.createElement('span');
-				ej.innerHTML = ' > ', eh.appendChild(ej);
-				var ek = document.createElement('span');
-				ek.innerText = ec, ek.dataset.playerId = ed, ek.style.color = ef, ek.className = 'chat-name', ek.oncontextmenu = dm, eh.appendChild(ek);
-				var el = document.createElement('span');
-				el.innerHTML = ': ' + bl(eg), eh.appendChild(el), aP(dY.WHISPER, eh);
-			}
-		}, ad.prototype.handleEditMessage = function (e7)
-		{
-			var e8 = e7.getBigInt64(e7.offset, !0x0);
-			e7.offset += 0x8;
-			var e9 = b0(am(e7));
-			const eb = String(e8)
-				, ec = a4.get(eb);
-			if (ec)
-			{
-				if (e9.length > 0x0)
-				{
-					const ed = ec.querySelector('.chat-content');
-					ed && (ed.innerHTML = bl(e9));
-				}
-				else
-				{
-					const ef = ec.closest('tr');
-					ef && ef.parentNode && ef.parentNode.removeChild(ef), a4.delete(eb);
-				}
-			}
-			else e9.length > 0x0 ? $('.chat-table td[data-msgid=\'' + e8 + '\'] .chat-content').html(bl(e9)) : $('.chat-table td[data-msgid=\'' + e8 + '\']').closest('tr').remove();
-		}, ad.prototype.handleCopyableMessage = function (e7)
-		{
-			var e8 = al(e7)
-				, e9 = al(e7);
-			this.selfMsgCopyable(e8, e9);
-		}, ad.prototype.handleSystemMsg = function (e7)
-		{
-			var e8 = am(e7);
-			this.selfMsg(e8);
-		}, ad.prototype.handleAuthenticated = function (e7)
-		{
-			switch (e7.getUint8(0x1))
-			{
-			case dW.SUCCESS:
-				break;
-			case dW.FAILURE:
-				this.selfMsg('Invalid authentication token! Please logout and try again!');
-			}
-			this.spectate ? this.sendPacket(new bV.sendSpectate()) : this.sendPacket(new bV.setName(this.name));
-		}, ad.prototype.handleProfile = function (e7)
-		{
-			var e8 = al(e7);
-			as(JSON.parse(e8));
-		}, ad.prototype.handleInvite = function (e7)
-		{
-			if (d1.cAutoDecline) bU.sendPacket(new bV.sendInviteResponse(!0x1));
-			else
-			{
-				var e8 = b0(am(e7));
-				document.getElementById('popup-party-text').innerText = e8 + ' has invited you to a party.', b2($('#popup-party'));
-			}
-		}, ad.prototype.handlePartyInfo = function (e7)
-		{
-			var e8 = {}
-				, e9 = []
-				, eb = -0x1
-				, ec = e7.getUint16(e7.offset, !0x0);
-			e7.offset += 0x2;
-			for (var ed = 0x0; ed < ec; ed++)
-			{
-				var ef = {}
-					, eg = e7.getUint8(e7.offset++);
-				if (ef.id = e7.getUint16(e7.offset, !0x0), e8[ef.id] = ed, e7.offset += 0x2, 0x1 == eg ? (eb = ef.id, ef.isLeader = !0x0) : ef.isLeader = !0x1, ef.name = am(e7) || 'An unnamed cell', ef.x = 0x0, ef.y = 0x0, ef.x_ = 0x0, ef.y_ = 0x0, ef.score = 0x0, ef.cache = -0x1, ef.team = 0x0, ef.state = dZ.UNKNOWN, null != this.partyIds[ef.id])
-				{
-					var eh = this.party[this.partyIds[ef.id]];
-					ef.x = eh.x, ef.y = eh.y, ef.x_ = eh.x_, ef.y_ = eh.y_, ef.state = eh.state, ef.score = eh.score, ef.cache = eh.cache, ef.mmColor = eh.mmColor;
-				}
-				else ef.mmColor = bs(ef.id);
-				e9.push(ef);
-			}
-			this.party = e9, this.partyIds = e8, this.partyLeader != eb && (this.partyLeader = eb, 'block' == cl.css('display') && dg.checkLeader()), ec > 0x0 ? this.drawParty() : this.clearParty();
-		}, ad.prototype.handlePartyData = function (e7)
-		{
-			var e8 = e7.getUint16(e7.offset, !0x0);
-			if (e7.offset += 0x2, e8 == this.party.length)
-			{
-				for (var e9 = 0x0; e9 < e8; e9++)
-				{
-					var eb = this.party[e9];
-					eb.state = e7.getUint8(e7.offset++), eb.state === dZ.ALIVE && (eb.x_ = e7.getInt16(e7.offset, !0x0), eb.y_ = e7.getInt16(e7.offset + 0x2, !0x0), eb.score = e7.getInt32(e7.offset + 0x4, !0x0), e7.offset += 0x8);
-				}
-				this.drawParty();
-			}
-		}, ad.prototype.handlePartyJoinCode = function (e7)
-		{
-			var e8 = al(e7);
-			if (this.partyCode = al(e7), 0x0 != this.partyCode.length)
-			{
-				this.selfMsgCopyable('рџЋ‰ Party is now public! Share this command with friends: ', '/join ' + this.partyCode), $('#popup-party-code-content input').val('/join ' + this.partyCode), $('#popup-party-code').show();
-				var e9 = '#' + this.currentServerName + '&' + this.partyCode;
-				window.history.pushState('page', '', e9);
-			}
-			else this.selfMsg(e8), this.partyCode = null, window.history.pushState('page', '', ' ');
-		}, ad.prototype.handleStats = function (e7)
-		{
-			var e8 = e7.getUint16(e7.offset, !0x0);
-			e7.offset += 0x2, this.stats.name = am(e7) || 'An unnamed cell', this.stats.alive += e7.getUint32(e7.offset, !0x0), e7.offset += 0x4, this.stats.eatenFood += e7.getUint32(e7.offset, !0x0), e7.offset += 0x4, this.stats.eatenEject += e7.getUint32(e7.offset, !0x0), e7.offset += 0x4, this.stats.eatenVirus += e7.getUint32(e7.offset, !0x0), e7.offset += 0x4, this.stats.eatenPlayer += e7.getUint32(e7.offset, !0x0), e7.offset += 0x4, this.stats.gainFood += e7.getUint32(e7.offset, !0x0), e7.offset += 0x4, this.stats.gainEject += e7.getUint32(e7.offset, !0x0), e7.offset += 0x4, this.stats.gainVirus += e7.getUint32(e7.offset, !0x0), e7.offset += 0x4, this.stats.gainPlayer += e7.getUint32(e7.offset, !0x0), e7.offset += 0x4;
-			var e9 = cO.statsMenuEl || document.getElementById('main-stats');
-			if (e9)
-			{
-				const eb = this.stats
-					, ec = '<span>Name: ' + eb.name + ' (' + e8 + ')</span><br><span>Alive: ' + by(eb.alive) + '</span><br><span>Food eaten: ' + eb.eatenFood + ' (' + eb.gainFood + ')</span><br><span>Ejected mass eaten: ' + eb.eatenEject + ' (' + eb.gainEject + ')</span><br><span>Viruses eaten: ' + eb.eatenVirus + ' (' + eb.gainVirus + ')</span><br><span>Player cells eaten: ' + eb.eatenPlayer + ' (' + eb.gainPlayer + ')</span><br>';
-				e9._lastHtml !== ec && (e9.innerHTML = ec, e9._lastHtml = ec);
-			}
-		}, ad.prototype.showSubPanel = function (e7)
-		{
-			var e8 = 0x1 == e7.getUint8(e7.offset++);
-			this.subPanelOverride = e8, aI(), e8 && (this.serverData.hasSentSubPanel || (aH(), this.serverData.hasSentSubPanel = !0x0), document.body.classList.add('hide-captcha-badge'));
-		}, ad.prototype.updateSubPanel = function (e7)
-		{
-			cu && aJ(cu.uid);
-		}, ad.prototype.updateSpectators = function ()
-		{
-			cO.spectatorCount.html(this.spectators);
-		}, ad.prototype.handleAddBuff = function (e7)
-		{
-			var e8 = e7.getUint8(e7.offset++)
-				, e9 = e7.getUint8(e7.offset++)
-				, eb = e7.getFloat64(e7.offset, !0x0);
-			e7.offset += 0x8, this.buffHolder.onAddBuff(e8, e9, eb);
-		}, ad.prototype.handleRemoveBuff = function (e7)
-		{
-			var e8 = e7.getUint8(e7.offset++);
-			this.buffHolder.onRemoveBuff(e8);
-		}, ad.prototype.handleClearBuffs = function (e7)
-		{
-			var e8 = 0x1 == e7.getUint8(e7.offset++);
-			this.buffHolder.clearBuffs(e8);
-		}, ad.prototype.sortCells = function ()
-		{
-			bM.children.sort(function (e7, e8)
-			{
-				return e7.parentCell.size - e8.parentCell.size;
-			}), this.updateScorePanel();
-		}, ad.prototype.updateScorePanel = function ()
-		{
-			var e7 = 0x0
-				, e8 = 0x0;
-			for (var e9 in this.myCells) e7 += this.myCells[e9].getRealMass(), e8++;
-			cO.playerMass.textContent = e7.toLocaleString(), e7 > this.score && (this.score = e7, cO.playerScore.textContent = this.score.toLocaleString()), this.updateCellCounter(e8);
-		}, ad.prototype.updateCellCounter = function (e7, e8)
-		{
-			if (cO.playerCellCount != e7 || e8)
-			{
-				if (cO.playerCellCount = e7, cO.playerCells.textContent = e7 + '/' + this.getServerMaxCells(), d1.cColoredCellCount) cO.playerCells.style.color = d5.uiForegroundColor;
-				else
-				{
-					var e9 = e7 / this.getServerMaxCells();
-					cO.playerCells.style.color = e9 >= 0x1 ? d5.uiGameColorError : e9 >= 0.5 ? d5.uiGameColorWarning : d5.uiGameColorSuccess;
-				}
-			}
-		}, ad.prototype.toggleLineSplit = function ()
-		{
-			if (this.lineSplitEnabled = !this.lineSplitEnabled, this.lineSplitEnabled)
-			{
-				var e7 = 0x0
-					, e8 = 0x0
-					, e9 = 0x0
-					, eb = 0x0;
-				for (var ec in this.myCells)
-				{
-					var ed = this.myCells[ec];
-					e7 += ed.x * ed.size, e8 += ed.y * ed.size, e9 += ed.size, eb++;
-				}
-				if (0x0 === eb) return;
-				var ef = e7 / e9
-					, eg = e8 / e9
-					, eh = bK.pivot.x - bG.stage.position.x / this.scale + this.mouseRawX * cW.resolution / this.scale - ef
-					, ei = bK.pivot.y - bG.stage.position.y / this.scale + this.mouseRawY * cW.resolution / this.scale - eg
-					, ej = (0xb4 * Math.atan2(ei, eh) / Math.PI + 0x168) % 0x168;
-				switch (Math.round(ej / 0x2d))
-				{
-				case 0x0:
-				case 0x8:
-					this.lineSplitDirection = {
-						'x': 0x1
-						, 'y': 0x0
-					};
-					break;
-				case 0x1:
-					this.lineSplitDirection = {
-						'x': 0x1
-						, 'y': 0x1
-					};
-					break;
-				case 0x2:
-					this.lineSplitDirection = {
-						'x': 0x0
-						, 'y': 0x1
-					};
-					break;
-				case 0x3:
-					this.lineSplitDirection = {
-						'x': -0x1
-						, 'y': 0x1
-					};
-					break;
-				case 0x4:
-					this.lineSplitDirection = {
-						'x': -0x1
-						, 'y': 0x0
-					};
-					break;
-				case 0x5:
-					this.lineSplitDirection = {
-						'x': -0x1
-						, 'y': -0x1
-					};
-					break;
-				case 0x6:
-					this.lineSplitDirection = {
-						'x': 0x0
-						, 'y': -0x1
-					};
-					break;
-				case 0x7:
-					this.lineSplitDirection = {
-						'x': 0x1
-						, 'y': -0x1
-					};
-				}
-				this.lineSplitLocked = !0x0, this.lineSplitPhaseStart = 'undefined' != typeof performance && performance.now ? performance.now() : Date.now(), this.calculateAndLockMousePosition();
-				var ek = '';
-				if (this.lineSplitDirection.y < 0x0 && 0x0 === this.lineSplitDirection.x ? ek = 'в†‘' : this.lineSplitDirection.y > 0x0 && 0x0 === this.lineSplitDirection.x ? ek = 'в†“' : this.lineSplitDirection.x < 0x0 && 0x0 === this.lineSplitDirection.y ? ek = 'в†ђ' : this.lineSplitDirection.x > 0x0 && 0x0 === this.lineSplitDirection.y ? ek = 'в†’' : this.lineSplitDirection.y < 0x0 && this.lineSplitDirection.x > 0x0 ? ek = 'в†—' : this.lineSplitDirection.y < 0x0 && this.lineSplitDirection.x < 0x0 ? ek = 'в†–' : this.lineSplitDirection.y > 0x0 && this.lineSplitDirection.x > 0x0 ? ek = 'в†' : this.lineSplitDirection.y > 0x0 && this.lineSplitDirection.x < 0x0 && (ek = 'в†™'), cO.pLineSpan) cO.pLineSpan.parentElement.style.display = 'block', cO.pLineSpan.textContent = ek;
-				else
-				{
-					if (em = document.getElementById('pLine'))
-					{
-						em.style.display = 'block';
-						var el = em.querySelector('span');
-						el && (el.textContent = ek);
-					}
-				}
-			}
-			else
-			{
-				var em;
-				this.lineSplitLocked = !0x1, cO.pLineSpan ? cO.pLineSpan.parentElement.style.display = 'none' : (em = document.getElementById('pLine')) && (em.style.display = 'none');
-			}
-		}, ad.prototype._screenFractionToWorld = function (e7, e8)
-		{
-			var e9 = bG.stage.position.x
-				, eb = bG.stage.position.y;
-			return {
-				'x': bK.pivot.x - e9 / this.scale + bR.width * e7 / this.scale
-				, 'y': bK.pivot.y - eb / this.scale + bR.height * e8 / this.scale
-			};
-		}, ad.prototype._directionToScreenEdge = function ()
-		{
-			var e7 = this.lineSplitDirection.x
-				, e8 = this.lineSplitDirection.y
-				, e9 = 0.5
-				, eb = 0.5;
-			return 0x1 === e7 && 0x0 === e8 ? (e9 = 0.985, eb = 0.5) : -0x1 === e7 && 0x0 === e8 ? (e9 = 0.015, eb = 0.5) : 0x0 === e7 && 0x1 === e8 ? (e9 = 0.5, eb = 0.985) : 0x0 === e7 && -0x1 === e8 ? (e9 = 0.5, eb = 0.015) : 0x1 === e7 && -0x1 === e8 ? (e9 = 0.985, eb = 0.015) : -0x1 === e7 && -0x1 === e8 ? (e9 = 0.015, eb = 0.015) : 0x1 === e7 && 0x1 === e8 ? (e9 = 0.985, eb = 0.985) : -0x1 === e7 && 0x1 === e8 && (e9 = 0.015, eb = 0.985), this._screenFractionToWorld(e9, eb);
-		}, ad.prototype.calculateOptimalLineSplitMouse = function ()
-		{
-			return ('undefined' != typeof performance && performance.now ? performance.now() : Date.now()) - this.lineSplitPhaseStart < this.lineSplitPhaseDelayMs ? this._screenFractionToWorld(0.5, 0.5) : this._directionToScreenEdge();
-		}, ad.prototype.calculateAndLockMousePosition = function ()
-		{
-			var e7 = this.calculateOptimalLineSplitMouse();
-			this.lineSplitMouseX = e7.x, this.lineSplitMouseY = e7.y;
-		}, ad.prototype.drawParty = function ()
-		{
-			if (0x0 != this.party.length)
-			{
-				if (d1.cHidePartyPanel) cO.partyPanel[0x0] && (cO.partyPanel[0x0].style.display = 'none');
-				else
-				{
-					var e7 = cO.partyPanel[0x0]
-						, e8 = c8 && c8[0x0];
-					e7 && e8 && 'none' === e7.style.display && 'none' !== e8.style.display && (e7.style.display = 'block');
-				}
-				var e9 = cO.partyCanvas
-					, eb = cO.partyCtx || e9 && e9.getContext('2d');
-				if (e9 && eb)
-				{
-					eb.font = '16px Calibri';
-					for (var ec = 0x0, ed = 0x0, ef = 0x0, eg = 0x0; eg < this.party.length; eg++)
-					{
-						-0x1 == (el = this.party[eg]).cache && (el.cache = eb.measureText(eg + 0x1 + '. ' + el.name).width), el.cache > ec && (ec = el.cache), el.state === dZ.ALIVE || el.state === dZ.UNKNOWN ? (el.scoreText = el.score.toLocaleString(), ef += el.score) : el.state === dZ.DEAD ? el.scoreText = 'DEAD' : el.state === dZ.SPECTATE && (el.scoreText = 'SPEC');
-						var eh = eb.measureText(el.scoreText).width;
-						eh > ed && (ed = eh);
-					}
-					var ei = ef.toLocaleString();
-					ed = Math.max(ed, eb.measureText(ei).width), e9.width = 0xf + ec + 0x32 + ed, e9.height = 0x14 * this.party.length + 0x5 + (this.party.length > 0x1 ? 0x14 : 0x0), eb.font = '16px Calibri';
-					var ej = 0x14
-						, ek = 0x5 + ec + 0x32;
-					for (eg = 0x0; eg < this.party.length; eg++)
-					{
-						var el = this.party[eg];
-						eb.fillStyle = el.isLeader ? d5.uiPartyLeaderColor : d5.uiForegroundColor, eb.fillText(eg + 0x1 + '. ' + el.name, 0x5, ej), eb.fillText(el.scoreText, ek, ej), ej += 0x14;
-					}
-					this.party.length > 0x1 && (eb.fillStyle = d5.uiForegroundColor, eb.fillText('Total:', 0x5, ej), eb.fillText(ei, ek, ej));
-				}
-			}
-		}, ad.prototype.handleShowScrimmageMenu = function ()
-		{
-			b4(c6), c9.css('display', 'block'), $('#scrimmage-btn-leave').css('display', 'none'), bU.serverData.border.enabled = !0x1;
-		}, ad.prototype.handleQueueData = function (e7)
-		{
-			var e8 = al(e7)
-				, e9 = e7.getUint32(e7.offset, !0x0);
-			e7.offset += 0x4;
-			var eb = e7.offset < e7.byteLength ? e7.getUint8(e7.offset) : -0x1
-				, ec = cO.leaderCanvas
-				, ed = cO.leaderCtx || ec && ec.getContext('2d');
-			if (ec && ed)
-			{
-				cO.leaderHeaderEl || (cO.leaderHeaderEl = document.getElementById('leaderboard-header')), cO.leaderHeaderEl && 'Queue' !== cO.leaderHeaderEl.textContent && (cO.leaderHeaderEl.textContent = 'Queue'), ec.width = 0xc8, ec.height = 0x14 * (0x2 + (-0x1 != eb ? 0x1 : 0x0)) + 0x5, ed.font = '16px Calibri';
-				var ef = 0x14;
-				ed.fillStyle = d5.uiForegroundColor, ed.fillText('Mode: ' + e8, 0x5, ef), ef += 0x14, ed.fillText('Time: ' + by(e9), 0x5, ef), -0x1 != eb && (ef += 0x14, ed.fillText('Queued players: ' + eb, 0x5, ef));
-			}
-		}, ad.prototype.handleQueueLeave = function (e7)
-		{
-			var e8 = al(e7)
-				, e9 = cO.leaderCanvas;
-			e9 && (e9.width = 0x0, e9.height = 0x0), this.selfMsg('You have left the queue for [' + e8 + ']');
-		}, ad.prototype.handleMatchState = function (e7)
-		{
-			var e8 = 0x1 == e7.byteLength ? 0x0 : e7.getUint8(e7.offset++);
-			0x0 == e8 ? (this.selfMsg('A match has been found. Good luck and have fun!'), cB || 'Notification' in window && 'granted' === Notification.permission && new Notification('Your match has started.'
-				, {
-					'icon': 'https://gota.io/assets/images/favicon.png'
-				})) : 0x1 == e8 && $('#scrimmage-btn-leave').css('display', 'block');
-		}, ad.prototype.handleScrimmageData = function (e7)
-		{
-			var e8 = e7.getUint8(e7.offset++)
-				, e9 = $('#scrimmage-mode-select')
-				, eb = $('#scrimmage-mode-info')
-				, ec = parseInt(e9.val());
-			e9.empty(), eb.empty();
-			for (var ed = {}; e8 > 0x0;)
-			{
-				var ef = e7.getUint8(e7.offset++)
-					, eg = al(e7)
-					, eh = al(e7)
-					, ei = document.createElement('option');
-				ei.innerHTML = eg, ei.value = ef, e9.append(ei), (ei = document.createElement('div')).innerHTML = eh, ei.id = 'scrimmage-info-' + ef, ei.style.display = 'none', eb.append(ei), ed[ef] = !0x0, e8--;
-			}
-			if (cj = {
-					'modes':
-					{}
-					, 'sizes':
-					{}
-					, 'maps': []
-				}, e7.byteLength - 0x1 > e7.offset)
-			{
-				for (e8 = e7.getUint8(e7.offset++); e8 > 0x0;) ef = e7.getUint8(e7.offset++), eg = al(e7), cj.modes[ef] = {
-					'id': ef
-					, 'name': eg
-				}, e8--;
-				for (e8 = e7.getUint8(e7.offset++); e8 > 0x0;) ef = e7.getUint8(e7.offset++), eg = al(e7), cj.sizes[ef] = {
-					'id': ef
-					, 'name': eg
-				}, e8--;
-				for (e8 = e7.getUint8(e7.offset++); e8 > 0x0;)
-				{
-					for (var ej = {
-							'name': eg = al(e7)
-							, 'startmass': 0x0
-							, 'teams': 0x0
-							, 'modes': []
-							, 'sizes': []
-						}, ek = e7.getUint8(e7.offset++); ek > 0x0;) ej.modes.push(e7.getUint8(e7.offset++)), ek--;
-					for (ek = e7.getUint8(e7.offset++); ek > 0x0;) ej.sizes.push(e7.getUint8(e7.offset++)), ek--;
-					ej.startmass = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2, ej.respawnDelay = e7.getInt16(e7.offset, !0x0), e7.offset += 0x2, ej.teams = e7.getUint8(e7.offset++), cj.maps.push(ej), e8--;
-				}
-			}
-			for ($('#scrimmage-custom-btn-container').css('display', 0x0 == cj.maps.length ? 'none' : 'block'), $('#scrimmage-map').empty(), ek = 0x0; ek < cj.maps.length; ek++) $('#scrimmage-map').append('<option value=\'' + ek + '\'>' + cj.maps[ek].name + '</option>');
-			null != ed[ec] ? (e9.val(ec), e9.trigger('change')) : (e9.prop('selectedIndex', 0x0), e9.trigger('change'));
-		}, ad.prototype.handleCustomGameUpdate = function (e7)
-		{
-			switch (e7.getUint8(e7.offset++))
-			{
-			case dU.MAP:
-				dg.updateMap(e7.getUint8(e7.offset++));
-				break;
-			case dU.MODE:
-				dg.updateMode(e7.getUint8(e7.offset++));
-				break;
-			case dU.SIZE:
-				dg.updateSize(e7.getUint8(e7.offset++));
-				break;
-			case dU.STARTMASS:
-				dg.updateStartMass(e7.getUint16(e7.offset, !0x0)), e7.offset += 0x2;
-				break;
-			case dU.LOCK:
-				dg.updateLock(0x1 === e7.getUint8(e7.offset++));
-				break;
-			case dU.PLAYER_UPDATE:
-				var e8 = e7.getUint8(e7.offset++)
-					, e9 = e7.getUint8(e7.offset++);
-				bU.party[e8].team = e9, dg.updatePlayerById(e8);
-				break;
-			case dU.PLAYER_LIST:
-				var eb = e7.getUint8(e7.offset++);
-				for (e8 = 0x0; eb > 0x0;) bU.party[e8].team = e7.getUint8(e7.offset++), eb--, e8++;
-				dg.updatePlayers();
-				break;
-			case dU.VIRUS_DENSITY:
-				dg.updateVirusDensity(e7.getUint16(e7.offset, !0x0)), e7.offset += 0x2;
-				break;
-			case dU.RESPAWN_DELAY:
-				dg.updateRespawnDelay(e7.getInt16(e7.offset, !0x0)), e7.offset += 0x2;
-				break;
-			case dU.AUTOSPLIT:
-				dg.updateAutoSplit(0x1 === e7.getUint8(e7.offset++));
-				break;
-			case dU.PUBLIC:
-				dg.updatePublic(0x1 === e7.getUint8(e7.offset++));
-				break;
-			case dU.PASSWORD:
-				dg.updatePassword(0x1 === e7.getUint8(e7.offset++));
-				break;
-			case dU.NAME:
-				dg.updateName(am(e7));
-			}
-		}, ad.prototype.handleCustomGameShow = function (e7)
-		{
-			$('.scrimmage-full').css('display', 'none'), $('#scrimmage-custom').css('display', 'block');
-			var e8 = am(e7)
-				, e9 = e7.getUint8(e7.offset++)
-				, eb = e7.getUint8(e7.offset++)
-				, ec = e7.getUint8(e7.offset++)
-				, ed = e7.getUint16(e7.offset, !0x0);
-			e7.offset += 0x2;
-			var ef = e7.getUint16(e7.offset, !0x0);
-			e7.offset += 0x2;
-			var eg = e7.getInt16(e7.offset, !0x0);
-			e7.offset += 0x2;
-			for (var eh = 0x1 === e7.getUint8(e7.offset++), ei = 0x1 === e7.getUint8(e7.offset++), ej = 0x1 === e7.getUint8(e7.offset++), ek = 0x1 === e7.getUint8(e7.offset++), el = e7.getUint8(e7.offset++), em = 0x0; el > 0x0;) bU.party[em].team = e7.getUint8(e7.offset++), el--, em++;
-			dg.updateName(e8), dg.updateMap(e9), dg.updateMode(eb), dg.updateSize(ec), dg.updateStartMass(ed), dg.updateVirusDensity(ef), dg.updateLock(ei), dg.updateRespawnDelay(eg), dg.updateAutoSplit(eh), dg.updatePublic(ej), dg.updatePassword(ek), dg.updatePlayers(), dg.checkLeader();
-		}, ad.prototype.handleCustomGameLeave = function ()
-		{
-			$('.scrimmage-full').css('display', 'none'), $('#scrimmage-menu').css('display', 'block');
-		}, ad.prototype.handleShowCustomGameLobbies = function (e7)
-		{
-			$('.scrimmage-full').css('display', 'none'), $('#scrimmage-lobbies').css('display', 'block'), ck = {};
-			var e8 = $('#scrimmage-lobbies-tbody');
-			for (e8.empty();;)
-			{
-				var e9 = e7.getUint32(e7.offset, !0x0);
-				if (e7.offset += 0x4, 0x0 == e9) break;
-				var eb = {};
-				eb.id = e9, eb.name = am(e7), eb.leaderId = e7.getUint32(e7.offset), e7.offset += 0x4, eb.leaderName = am(e7) || 'An unnamed cell', eb.map = e7.getUint8(e7.offset++), eb.mode = e7.getUint8(e7.offset++), eb.size = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2, eb.maxSize = e7.getUint16(e7.offset, !0x0), e7.offset += 0x2, eb.hasPasscode = 0x1 == e7.getUint8(e7.offset++), ck[eb.id] = eb;
-				var ec = eb.hasPasscode ? '<div class=\'scrimmage-lock\'></div>' : '';
-				e8.append('<tr partyId=\'' + eb.id + '\'><td><span>' + ec + b0(eb.name) + '</span></td><td><span>' + b0(eb.leaderName) + '</span></td><td><span>' + cj.maps[eb.map].name + '</span></td><td><span>' + cj.modes[eb.mode].name + '</span></td><td><span>' + eb.size + '/' + eb.maxSize + '</span></td></tr>');
-			}
-			$('#scrimmage-lobbies-tbody tr').on('click', function ()
-			{
-				$('.custom-game-selected').removeClass('custom-game-selected'), c5 = $(this).attr('partyId'), $(this).addClass('custom-game-selected');
-			});
-		};
-		var dg = {
-			'updateName': function (e7)
-			{
-				$('#scrimmage-name').text(e7);
-			}
-			, 'updateMap': function (e7)
-			{
-				$('#scrimmage-map option[value=\'' + e7 + '\']').prop('selected', !0x0);
-				var e8 = cj.maps[e7];
-				$('#scrimmage-mapmode').empty();
-				for (var e9 = 0x0; e9 < e8.modes.length; e9++)
-				{
-					var eb = cj.modes[e8.modes[e9]];
-					$('#scrimmage-mapmode').append('<option value=\'' + e9 + '\'>' + eb.name + '</option>');
-				}
-				for ($('#scrimmage-mapsize').empty(), e9 = 0x0; e9 < e8.sizes.length; e9++)
-				{
-					var ec = cj.sizes[e8.sizes[e9]];
-					$('#scrimmage-mapsize').append('<option value=\'' + e9 + '\'>' + ec.name + '</option>');
-				}
-				dg.updateMode(0x0), dg.updateSize(0x0), dg.updateStartMass(e8.startmass), $('#scrimmage-startmass').attr('placeholder', e8.startmass), dg.updateRespawnDelay(e8.respawnDelay), $('#scrimmage-map').attr('data', e7), bU.customGameMap = e8;
-			}
-			, 'updateMode': function (e7)
-			{
-				$('#scrimmage-mapmode option[value=\'' + e7 + '\']').prop('selected', !0x0), $('#scrimmage-mapmode').attr('data', e7);
-			}
-			, 'updateSize': function (e7)
-			{
-				$('#scrimmage-mapsize option[value=\'' + e7 + '\']').prop('selected', !0x0), $('#scrimmage-mapsize').attr('data', e7);
-			}
-			, 'updateStartMass': function (e7)
-			{
-				$('#scrimmage-startmass').val(e7), $('#scrimmage-startmass').attr('data', e7);
-			}
-			, 'updateVirusDensity': function (e7)
-			{
-				$('#scrimmage-virusDensity').val(e7), $('#scrimmage-virusDensity').attr('data', e7);
-			}
-			, 'updateRespawnDelay': function (e7)
-			{
-				$('#scrimmage-respawnDelay').val(e7), $('#scrimmage-respawnDelay').attr('data', e7);
-			}
-			, 'updateAutoSplit': function (e7)
-			{
-				$('#scrimmage-autoSplit').prop('checked', e7);
-			}
-			, 'updatePublic': function (e7)
-			{
-				$('#scrimmage-public').prop('checked', e7);
-			}
-			, 'updatePassword': function (e7)
-			{
-				$('#scrimmage-password').prop('checked', e7);
-			}
-			, 'updateLock': function (e7)
-			{
-				$('#scrimmage-lockteams').prop('checked', e7), dg.checkLock();
-			}
-			, 'checkLock': function ()
-			{
-				$('#scrimmage-lockteams').prop('checked') && !bU.isPartyLeader() ? $('#cgp-' + bU.partyIndex).attr('disabled', 'disabled') : $('#cgp-' + bU.partyIndex).removeAttr('disabled');
-			}
-			, 'checkLeader': function ()
-			{
-				bU.isPartyLeader() ? $('.custom-game').removeAttr('disabled') : ($('.custom-game').attr('disabled', 'disabled'), dg.checkLock());
-			}
-			, 'updatePlayerById': function (e7)
-			{
-				var e8 = bU.party[e7];
-				$('#cgp-' + e7 + ' option[value=\'' + e8.team + '\']').prop('selected', !0x0), $('#cgp-name-' + e7).text(e8.name), $('#cgp-name-' + e7).css('color', e0[e8.team]);
-			}
-			, 'updatePlayers': function ()
-			{
-				$('#scrimmage-custom-players').empty();
-				for (var e7 = 0x0; e7 < bU.party.length; e7++)
-				{
-					var e8 = bU.party[e7];
-					e8.id == bU.playerId && (bU.partyIndex = e7), $('#scrimmage-custom-players').append('<tr><td><span id=\'cgp-name-' + e7 + '\'>' + e8.name + '</span></td>' + dg.getTeamOptions(e7, bU.customGameMap.teams) + '</tr>'), $('#cgp-' + e7 + ' option[value=\'' + e8.team + '\']').prop('selected', !0x0), $('#cgp-name-' + e7).css('color', e0[e8.team]), $('#cgp-' + e7).on('change', function (e9)
-					{
-						var eb = parseInt($(this).attr('id').match('\\d+')[0x0])
-							, ec = $(this).find('option:selected').val();
-						$('#cgp-' + e7 + ' option[value=\'' + $(this).attr('data') + '\']').prop('selected', !0x0), bU.sendPacket(new bV.sendCustomGameUpdate(dU.PLAYER_UPDATE, eb, ec));
-					});
-				}
-				dg.checkLeader();
-			}
-			, 'getTeamOptions': function (e7, e8)
-			{
-				var e9 = '';
-				if (null != e8 && e8 > 0x1)
-				{
-					e9 = '<td><select class=\'custom-game\' id=\'cgp-' + e7 + '\'><option value=\'0\'>Spectator</option>';
-					for (var eb = 0x1; eb <= e8; eb++) e9 += '<option value=\'' + eb + '\' class=\'t' + eb + '\'>' + dV[eb] + '</option>';
-					e9 += '</select></td>';
-				}
-				return e9;
-			}
-		};
-		af.prototype.setType = function (e7)
-		{
-			this.type = e7;
-		}, af.prototype.setX = function (e7)
-		{
-			this.x_ = e7, this.x = e7;
-		}, af.prototype.setY = function (e7)
-		{
-			this.y_ = e7, this.y = e7;
-		}, af.prototype.updateX = function (e7)
-		{
-			this.x_ = e7;
-		}, af.prototype.updateY = function (e7)
-		{
-			this.y_ = e7;
-		}, af.prototype.setSize = function (e7)
-		{
-			this.size_ = e7, this.size = e7;
-		}, af.prototype.getMass = function ()
-		{
-			return this.size * this.size / 0x19 | 0x0;
-		}, af.prototype.getRealMass = function ()
-		{
-			return this.size_ * this.size_ / 0x19 | 0x0;
-		}, af.prototype.animate = function (e7)
-		{
-			this.x += (this.x_ - this.x) * e7, this.y += (this.y_ - this.y) * e7, this.size += (this.size_ - this.size) * e7, this.steps--;
-		}, af.prototype.getSizeCache = function ()
-		{
-			var e7 = this.getMass()
-				, e8 = !0x1;
-			if (this.massLastAmount < 0x0 ? e8 = !0x0 : e7 !== this.massLastAmount ? (Math.abs(e7 - this.massLastAmount) >= this._massChangeThreshold || bW - this._massCacheLastRedraw >= this._massRegenIntervalMs) && (e8 = !0x0) : bW - this._massCacheLastRedraw >= 0x3e8 && null == this.cache && (e8 = !0x0), e8)
-			{
-				var e9;
-				e9 = 0x1 == cW.massType ? this.toShortString(e7) : e7.toString();
-				for (var eb = 0x0, ec = 0x0, ed = 0x0; ed < e9.length; ed++)
-				{
-					var ef = e9.charAt(ed);
-					eb += (ei = dh.getNumber(ef)).width - 0x2, ec = Math.max(ei.height, ec);
-				}
-				null == this.cache ? this.cache = bF.RenderTexture.create(eb, ec) : eb == this.cache.width && ec == this.cache.height || (this.cache.destroy(
-				{
-					'children': !0x0
-					, 'texture': !0x0
-					, 'baseTexture': !0x0
-				}), this.cache = bF.RenderTexture.create(eb, ec));
-				var eg = dh.cacheContainer
-					, eh = 0x0;
-				for (ed = 0x0; ed < e9.length; ed++)
-				{
-					var ei;
-					ef = e9.charAt(ed), (ei = dh.getSizeCacheSprite()).texture = dh.getNumber(ef).texture, ei.position.x = eh, eg.addChild(ei), eh += ei.width - 0x2;
-				}
-				bG.renderer.render(eg
-					, {
-						'renderTexture': this.cache
-						, 'clear': !0x0
-					}), dh.clearCacheContainer(), this.massLastAmount = e7, this._massCacheLastRedraw = bW;
-			}
-			return this.cache;
-		}, af.prototype.toShortString = function (e7)
-		{
-			return e7 < 0x3e8 ? e7.toString() : e7 < 0xf4240 ? (Math.floor(e7 / 0x64) / 0xa).toFixed(0x1) + 'K' : e7 < 0x3b9aca00 ? (Math.floor(e7 / 0x186a0) / 0xa).toFixed(0x1) + 'M' : e7 >= 0x3b9aca00 ? (Math.floor(e7 / 0x5f5e100) / 0xa).toFixed(0x1) + 'B' : e7.toString();
-		};
-		const dh = new function ()
-		{
-			this.cache = {}, this.cacheContainer = new bF.Container(), this.sprites = [], this.spritesIndex = 0x0, this.getNumber = function (e7)
-			{
-				return this.cache[e7];
-			}, this.clearCacheContainer = function ()
-			{
-				for (; this.cacheContainer.children[0x0];) this.cacheContainer.removeChild(this.cacheContainer.children[0x0]);
-				this.spritesIndex = 0x0;
-			}, this.getSizeCacheSprite = function ()
-			{
-				for (; this.spritesIndex >= this.sprites.length;) this.sprites.push(new bF.Sprite());
-				return this.sprites[this.spritesIndex++];
-			}, this.buildSizeCache = function ()
-			{
-				for (var e7 of ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'K', 'M', 'B'
-						
-						
-						
-						
-						
-						
-						
-						
-                                                
-						, 'T'])
-				{
-					var e8 = new bF.Text(e7
-						, {
-							'fontFamily': 'Verdana'
-							, 'fontWeight': 'bold'
-							, 'fontSize': 0x36
-							, 'fill': '#fff'
-							, 'stroke': 'black'
-							, 'strokeThickness': cW.textOutlineSize
-						});
-					this.cache[e7] = e8;
-				}
-			};
-		}();
-		af.prototype.handleFood = function ()
-		{
-			var e7;
-			this.needsPixiUpdate && this.sprite.visible && (this.sprite.texture = cN, this.sprite.anchor.set(0.5), this.sprite.width = 0xc, this.sprite.height = 0xc, d1.cThemeEnabled && d9.length > 0x0 ? this.sprite.tint = (e7 = this.id, d9[e7 % d9.length]) : cR.enabled && cR.foodColors && cR.foodColors.length > 0x0 && !d1.cDisableEventSkins ? this.sprite.tint = cR.foodColors[this.id % cR.foodColors.length] : this.sprite.tint = this.color, this.needsPixiUpdate = !0x1), this.sprite.position.set(this.x, this.y);
-		}, af.prototype.handle = function ()
-		{
-			switch (this.type)
-			{
-			case 0x0:
-				break;
-			case 0x1:
-				this.needsPixiUpdate && (this.skin >= 0x0 && this.skin < dN.length ? this.sprite.texture = dN[this.skin] : this.sprite.texture = cM, this.sprite.tint = this.color, this.sprite.width = 0x2 * this.size, this.sprite.height = 0x2 * this.size, this.needsPixiUpdate = !0x1), this.rainbow && (this.sprite.tint = dO[Math.floor(bW % dP / 0x64)]), this.sprite.position.set(this.x, this.y);
-				break;
-			case 0x2:
-				var e7 = bU.playerRegistry.getPlayerById(this.playerId)
-					, e8 = dQ.ALL;
-				bU.playerId == this.playerId ? e8 = dQ.SELF : null != bU.partyIds[this.playerId] && (e8 = dQ.PARTY);
-				let ei = this.needsPixiUpdate;
-				if (this.needsPixiUpdate && (this.cellSprite = new bF.Sprite(bF.Texture.EMPTY), this.cellSprite.anchor.set(0.5), this.cellSprite.width = cJ, this.cellSprite.height = cJ, this.container.addChild(this.cellSprite), this.skinSprite = new bF.Sprite(bF.Texture.EMPTY), this.skinSprite.anchor.set(0.5), this.skinSprite.width = cJ, this.skinSprite.height = cJ, this.container.addChild(this.skinSprite), this.massSprite = new bF.Sprite(bF.Texture.EMPTY), this.container.addChild(this.massSprite), e7.name.length > 0x0 && (this.nameSprite = new bF.Sprite(bF.Texture.EMPTY), this.container.addChild(this.nameSprite)), this.needsPixiUpdate = !0x1), e7.cacheUpdate || ei)
-				{
-					if (this.nameSprite && (this.nameSprite.texture = e7.getNameCache(e7.cacheUpdate).texture, this.nameSprite.texture.update()), 0x1 == e7.spiked) d8.aCustomSpike ? this.cellSprite.texture = d8.aCustomSpike : this.cellSprite.texture = c1, this.cellSprite.tint = 0xffffff;
-					else
-					{
-						if (0x2 == e7.spiked) d8.aCustomMother ? this.cellSprite.texture = d8.aCustomMother : this.cellSprite.texture = c2, this.cellSprite.tint = 0xffffff;
-						else
-						{
-							this.cellSprite.texture = cL;
-							var e9 = e7.cellColor;
-							e7.isServerBot && d1.cDarkerBots && (e9 = bx(e9, 0.4)), this.cellSprite.tint = e9;
-						}
-					}
-				}
-				if (this.skinSprite.visible = cW.levelSkins >= e8 && 0x0 == e7.spiked, this.skinSprite.visible)
-				{
-					var eb = e7.getSkin();
-					null != eb ? eb.isGif ? this.skinSprite.texture = eb.getTexture() : eb !== this.skinSprite.texture && (this.skinSprite.texture = eb) : this.skinSprite.visible = !0x1;
-				}
-				var ec = 0x4 / this.size
-					, ed = 0x4 * Math.max(ec, 0.16)
-					, ef = bU.scale >= 0x4 * ec || d1.cDisableAutoNameHiding;
-				if (this.nameSprite && (this.nameSprite.visible = cW.levelNames >= e8 && ef, this.nameSprite.visible && (this.nameSprite.scale.set(ed), this.nameSprite.x = -this.nameSprite.width / 0x2, e7.lowerName ? this.nameSprite.y = 0x40 - this.nameSprite.height / 0x2 : this.nameSprite.y = -this.nameSprite.height / 0x2, 0x1 == e7.effect && null != dx[0x0])))
-				{
-					this.nameEffectSprite || (this.nameEffectSprite = new bF.Sprite(bF.Texture.EMPTY), this.nameSprite.addChild(this.nameEffectSprite));
-					var eg = dx[0x0].getTexture();
-					this.nameEffectSprite.scale.set(this.nameSprite.texture.width / eg.width, this.nameSprite.texture.height / eg.height), this.nameEffectSprite.texture = eg;
-				}
-				if (d1.cShowMass && (e8 <= dQ.PARTY || bU.serverData.autosplits) && ef)
-				{
-					var eh = this.getSizeCache();
-					this.massSprite.texture = eh, this.massSprite.scale.set(ed), this.massSprite.x = -this.massSprite.width / 0x2, null != this.nameSprite && this.nameSprite.visible ? this.massSprite.y = this.nameSprite.y + this.nameSprite.height : this.massSprite.y = -this.massSprite.height / 0x2, this.massSprite.visible = !0x0;
-				}
-				else this.massSprite.visible = !0x1;
-				0x4 & ~e7.flags ? this.debuffSprite && (this.debuffSprite.parent.removeChild(this.debuffSprite), this.debuffSprite.destroy(), this.debuffSprite = null) : this.debuffSprite || (this.debuffSprite = new bF.Sprite(dr), this.debuffSprite.anchor.set(0.5), this.debuffSprite.width = cK, this.debuffSprite.height = cK, this.container.addChild(this.debuffSprite)), 0x1 & ~e7.flags ? this.shieldSprite && (this.shieldSprite.parent.removeChild(this.shieldSprite), this.shieldSprite.destroy(), this.shieldSprite = null) : this.shieldSprite || (this.shieldSprite = new bF.Sprite(ds), this.shieldSprite.anchor.set(0.5), this.shieldSprite.width = cK, this.shieldSprite.height = cK, this.container.addChild(this.shieldSprite)), this.container.scale.set(this.size / 0x80), this.container.position.set(this.x, this.y);
-				break;
-			case 0x3:
-				this.needsPixiUpdate && (this.sprite.anchor.set(0.5), this.sprite.width = 0x80, this.sprite.height = 0x80, d8.aCustomSpike ? this.sprite.texture = d8.aCustomSpike : this.sprite.texture = c1, this.needsPixiUpdate = !0x1), this.sprite.scale.set(this.size / 0x100), this.sprite.position.set(this.x, this.y);
-				break;
-			case 0x4:
-				this.needsPixiUpdate && (d8.aCustomMother ? this.sprite.texture = d8.aCustomMother : this.sprite.texture = c2, cR.enabled && cR.motherCustomEnabled && !d1.cDisableEventSkins && !d8.aCustomMother || this.setDefaultSpriteAnchor(), this.needsPixiUpdate = !0x1), !d8.aCustomMother && cR.enabled && (this.size >= 0x64 && !d1.cDisableEventSkins ? this.sprite.texture = c3 : this.sprite.texture = c2), this.sprite.scale.set(this.size / 0x100), this.sprite.position.set(this.x, this.y);
-				break;
-			case 0x5:
-				this.needsPixiUpdate && (this.sprite.texture = du[this.buff].texture, this.sprite.width = 0x2 * this.size, this.sprite.height = 0x2 * this.size, this.needsPixiUpdate = !0x1), this.sprite.position.set(this.x, this.y);
-			}
-		}, af.prototype.setDefaultSpriteAnchor = function ()
-		{
-			this.sprite.anchor.set(0.5), this.sprite.width = 0x80, this.sprite.height = 0x80;
-		}, af.prototype.onCreate = function (e7)
-		{
-			if (0x2 == this.type)
-			{
-				if (this.container) return;
-				this.container = new bF.Container(), this.container.parentCell = this, this.needsPixiUpdate = !0x0, bM.addChild(this.container);
-			}
-			else
-			{
-				if (this.sprite) return;
-				this.sprite = new bF.Sprite(bF.Texture.EMPTY), this.sprite.parentCell = this, this.sprite.anchor.set(0.5), this.needsPixiUpdate = !0x0, 0x6 === this.type ? bL.addChild(this.sprite) : bM.addChild(this.sprite);
-			}
-			0x6 == this.type ? (e7.foodObjects[this.id] = this, e7._foodVersionCounter = (e7._foodVersionCounter || 0x0) + 0x1) : (e7.bucket[this.id] = this, e7._bucketVersionCounter = (e7._bucketVersionCounter || 0x0) + 0x1), this.playerId == e7.playerId && (e7.myCells[this.id] = this, e7._myCellVersionCounter = (e7._myCellVersionCounter || 0x0) + 0x1, e7._forceNextRender = !0x0);
-		}, af.prototype.onDelete = function ()
-		{
-			this.container ? (this.container.parent.removeChild(this.container), this.container.parentCell = null, this.container.destroy(
-			{
-				'children': !0x0
-			}), this.container = null) : this.sprite && (this.sprite.parent.removeChild(this.sprite), this.sprite.parentCell = null, this.sprite.destroy(
-			{
-				'children': !0x0
-			}), this.sprite = null), this.cache && (this.cache.destroy(), this.cache = null), void 0x0 !== bU && (0x6 == this.type ? bU._foodVersionCounter = (bU._foodVersionCounter || 0x0) + 0x1 : bU._bucketVersionCounter = (bU._bucketVersionCounter || 0x0) + 0x1, this.playerId == (bU && bU.playerId) && (bU._myCellVersionCounter = (bU._myCellVersionCounter || 0x0) + 0x1));
-		}, ai.prototype.connectionStart = function ()
-		{
-			var e7 = 'Gota Web ' + version
-				, e8 = new ArrayBuffer(0x1 + e7.length + 0x1 + 0x1)
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0xff), e9.setUint8(0x1, 0x6), aj(0x2, e9, e7), e8;
-		}, ai.prototype.setName = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x2 + 0x2 * (e7.length + 0x1))
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0x0), ak(0x1, e9, e7), d1.cSilentLogin && e9.setUint8(0x2 + 0x2 * e7.length + 0x1, 0x1), e8;
-		}, ai.prototype.sendKey = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x1);
-			return new DataView(e8).setUint8(0x0, e7), e8;
-		}, ai.prototype.sendMouse = function (e7, e8)
-		{
-			var e9 = new ArrayBuffer(0x9)
-				, eb = new DataView(e9);
-			return eb.setUint8(0x0, 0x10), eb.setInt32(0x1, e7, !0x0), eb.setInt32(0x5, e8, !0x0), e9;
-		}, ai.prototype.sendEjectMass = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x1);
-			return new DataView(e8).setUint8(0x0, e7 ? 0x3 : 0x4), e8;
-		}, ai.prototype.sendPing = function ()
-		{
-			var e7 = new ArrayBuffer(0x1);
-			return new DataView(e7).setUint8(0x0, 0x47), c0 = Date.now(), e7;
-		}, ai.prototype.sendSpectate = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x3)
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0x1), e7 && e9.setUint16(0x1, e7, !0x0), e8;
-		}, ai.prototype.sendChat = function (e7, e8)
-		{
-			var e9 = new ArrayBuffer(0x2 + 0x2 * (e7.length + 0x1))
-				, eb = new DataView(e9);
-			return eb.setUint8(0x0, 0x48), eb.setUint8(0x1, e8), ak(0x2, eb, e7), e9;
-		}, ai.prototype.sendInviteResponse = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x2)
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0x29), e9.setUint8(0x1, e7 ? 0x1 : 0x0), e8;
-		}, ai.prototype.sendPartyAction = function (e7, e8)
-		{
-			var e9 = new ArrayBuffer(0x6)
-				, eb = new DataView(e9);
-			return eb.setUint8(0x0, 0x28), eb.setUint8(0x1, e7), eb.setUint32(0x2, e8, !0x0), e9;
-		}, ai.prototype.sendPartyJoin = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x1 + e7.length + 0x1)
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0x2a), aj(0x1, e9, e7), e8;
-		}, ai.prototype.sendShowProfile = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x3)
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0x67), e9.setUint16(0x1, e7, !0x0), e8;
-		}, ai.prototype.sendWhisper = function (e7, e8)
-		{
-			var e9 = new ArrayBuffer(0x5 + 0x2 * (e8.length + 0x1))
-				, eb = new DataView(e9);
-			return eb.setUint8(0x0, 0x49), eb.setUint32(0x1, e7, !0x0), ak(0x5, eb, e8), e9;
-		}, ai.prototype.sendSubPanel = function ()
-		{
-			var e7 = new ArrayBuffer(0x8 + (db.skinName.length + 0x1))
-				, e8 = new DataView(e7);
-			return e8.setUint8(0x0, 0xa), e8.setUint8(0x1, db.nameColor.r), e8.setUint8(0x2, db.nameColor.g), e8.setUint8(0x3, db.nameColor.b), e8.setUint8(0x4, db.chatColor), e8.setUint8(0x5, db.effect), e8.setUint8(0x6, db.lowerName ? 0x1 : 0x0), aj(0x7, e8, db.skinName), e8.setUint8(0x8 + db.skinName.length, db.nameFont), e7;
-		}, ai.prototype.sendLockedNameChange = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x1 + (e7.length + 0x1))
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0xb), aj(0x1, e9, e7), e8;
-		}, ai.prototype.sendOptions = function ()
-		{
-			var e7 = new ArrayBuffer(0x3)
-				, e8 = new DataView(e7);
-			return e8.setUint8(0x0, 0x68), e8.setUint16(0x1, d1.rViewDistance, !0x0), e7;
-		}, ai.prototype.sendQueue = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x5)
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0x50), e9.setUint8(0x1, e7), e9.setUint8(0x2, 0x0), e9.setUint16(0x3, 0x0), e8;
-		}, ai.prototype.sendCustomGame = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x2)
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0x5a), e9.setUint8(0x1, e7), e8;
-		}, ai.prototype.sendLeaveMatch = function ()
-		{
-			var e7 = new ArrayBuffer(0x1);
-			return new DataView(e7).setUint8(0x0, 0x51), e7;
-		}, ai.prototype.sendShowLobbies = function ()
-		{
-			var e7 = new ArrayBuffer(0x2);
-			return new DataView(e7).setUint8(0x0, 0x5d), e7;
-		}, ai.prototype.sendJoinLobby = function (e7, e8)
-		{
-			var e9 = new ArrayBuffer(0x5 + 0x2 * e8.length + 0x2)
-				, eb = new DataView(e9);
-			return eb.setUint8(0x0, 0x5e), eb.setUint32(0x1, e7, !0x0), ak(0x5, eb, e8), e9;
-		}, ai.prototype.sendCaptcha = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x1 + (e7.length + 0x1))
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0x64), aj(0x1, e9, e7), e8;
-		}, ai.prototype.sendAuthToken = function (e7)
-		{
-			var e8 = new ArrayBuffer(0x1 + (e7.length + 0x1))
-				, e9 = new DataView(e8);
-			return e9.setUint8(0x0, 0x65), aj(0x1, e9, e7), e8;
-		}, ai.prototype.sendCustomGameUpdate = function (e7, e8, e9)
-		{
-			var eb = new ArrayBuffer(0x4)
-				, ec = new DataView(eb);
-			return ec.setUint8(0x0, 0x5b), ec.setUint8(0x1, e7), e7 == dU.STARTMASS || e7 == dU.VIRUS_DENSITY ? ec.setUint16(0x2, e8, !0x1) : e7 == dU.RESPAWN_DELAY ? ec.setInt16(0x2, e8, !0x1) : (ec.setUint8(0x2, e8), ec.setUint8(0x3, e9)), eb;
-		}, ai.prototype.sendCustomGameUpdateString = function (e7, e8)
-		{
-			var e9 = new ArrayBuffer(0x4 + 0x2 * e8.length)
-				, eb = new DataView(e9);
-			return eb.setUint8(0x0, 0x5c), eb.setUint8(0x1, e7), ak(0x2, eb, e8), e9;
-		};
-		var di = null
-			, dj = null;
-		const dk = {
-			'cDisableAA': function ()
-			{
-				bG && aD();
-			}
-			, 'sRenderType': function ()
-			{
-				bG && aD();
-			}
-			, 'cHideId': function ()
-			{
-				var e7 = d1.cHideId ? 'none' : 'block';
-				document.getElementById('pId').style.display = e7;
-			}
-			, 'cHideServer': function ()
-			{
-				var e7 = d1.cHideServer ? 'none' : 'block';
-				document.getElementById('pServer').style.display = e7;
-			}
-			, 'cTransCells': function ()
-			{
-				bM.alpha = d1.cTransCells ? 0.5 : 0x1;
-			}
-			, 'cColoredCellCount': function ()
-			{
-				bU.updateCellCounter(cO.playerCellCount, !0x0);
-			}
-			, 'cShowChatIds': function ()
-			{
-				var e7 = d1.cShowChatIds ? 'table-row' : 'none';
-				document.getElementById('opt_colored_ids').style.display = e7;
-			}
-			, 'cHideChat': function ()
-			{
-				var e7 = d1.cHideChat ? 'none' : 'block';
-				$('#chat-panel').css('display', e7);
-			}
-			, 'cHideMinimap': function ()
-			{
-				var e7 = d1.cHideMinimap ? 'none' : 'block';
-				$('#minimap-panel').css('display', e7);
-			}
-			, 'cHidePartyPanel': function ()
-			{
-				d1.cHidePartyPanel ? $('#party-panel').css('display', 'none') : bU && bU.party && bU.party.length > 0x0 && $('#party-panel').css('display', 'block');
-			}
-			, 'cDarkerBots': function ()
-			{
-				if (bU)
-					for (var e7 in bU.bucket)
-					{
-						var e8 = bU.bucket[e7];
-						e8 && (e8.needsPixiUpdate = !0x0);
-					}
-			}
-			, 'sScorePanel': function ()
-			{
-				switch (d1.sScorePanel)
-				{
-				case '0':
-					cm.style.display = 'none';
-					break;
-				case '1':
-					cm.style.display = 'flex';
-					break;
-				case '2':
-					cm.style.display = 'block';
-				}
-			}
-			, 'cHideLeaderboard': function ()
-			{
-				var e7 = d1.cHideLeaderboard ? 'none' : 'block';
-				$('#leaderboard-panel').css('display', e7);
-			}
-			, 'cHideExtraPanel': function ()
-			{
-				var e7 = d1.cHideExtraPanel ? 'none' : 'block';
-				$('#extra-panel').css('display', e7);
-			}
-			, 'cShowCoordinates': function ()
-			{
-				var e7 = d1.cShowCoordinates ? 'block' : 'none';
-				$('#minimap-coordinates').css('display', e7), aF();
-			}
-			, 'cDisableAutoZoom': function ()
-			{
-				d1.cDisableAutoZoom && (bU.scale_base = 0.2 * Math.max(bR.height / 0x438, bR.width / 0x780));
-			}
-			, 'cThemeEnabled': function ()
-			{
-				d1.cThemeEnabled ? a8(function (e7)
-				{
-					const e8 = document.getElementById(e7);
-					e8 && (e8.disabled = !0x1);
-				}) : (bh(), a8(function (e7)
-				{
-					const e8 = document.getElementById(e7);
-					e8 && (e8.disabled = !0x0);
-				}));
-			}
-			, 'cShowBorder': function ()
-			{
-				ab();
-			}
-			, 'cDisableEventSkins': function ()
-			{
-				cR.enabled && $('body').toggleClass('event-' + cR.key), aC(), aB();
-			}
-			, 'cResizableChat': function ()
-			{
-				$('#chat-resize').css('display', d1.cResizableChat ? 'block' : 'none');
-			}
-			, 'sShowNames': function ()
-			{
-				cW.levelNames = dQ[d1.sShowNames];
-			}
-			, 'sShowSkins': function ()
-			{
-				cW.levelSkins = dQ[d1.sShowSkins];
-			}
-			, 'sMassType': function ()
-			{
-				cW.massType = dR[d1.sMassType];
-			}
-			, 'sTextOutlines': function ()
-			{
-				for (var e7 in (cW.textOutlineSize = dS[d1.sTextOutlines], bU.playerRegistry.bucket))
-				{
-					var e8 = bU.playerRegistry.bucket[e7];
-					e8.nameCache && (e8.nameCache.style.strokeThickness = cW.textOutlineSize), bU.playerRegistry.updatePlayer(e8);
-				}
-				dh.buildSizeCache();
-			}
-			, 'sQuality': function ()
-			{
-				var e7 = cW.resolution;
-				if (cW.resolution = dT[d1.sQuality], e7 !== cW.resolution) try
-				{
-					a6();
-				}
-				catch (e8)
-				{}
-			}
-			, 'uiForegroundColor': function (e7)
-			{
-				bU && bU.drawParty(), $('.fg-interface-color').css('color', e7), $('.interface-color').css('color', e7), $('.gota-btn').css('color', e7).css('border-color', e7), $('.popup-panel').css('color', e7), $('.main').css('color', e7), $('.main-bottom-stats').css('border-color', e7), $('#authed').css('color', e7), $('#guest').css('color', e7);
-			}
-			, 'uiBackgroundColor': function (e7)
-			{
-				$('.hud-panel .interface-color').css('background-color', e7);
-			}
-			, 'uiButtonColor': function (e7)
-			{
-				$('.gota-btn').css('background-color', e7);
-			}
-			, 'uiBorderColor': function (e7)
-			{
-				$('.ui-pane').css('border-color', e7), $('#chat-tab-container').css('border-color', e7), $('.chat-tab').css('border-color', e7);
-			}
-			, 'uiMenuBackgroundColor': function (e7)
-			{
-				$('.main-panel').css('background-color', e7), $('.popup-panel').css('background-color', e7), $('.options-container').css('background-color', e7);
-			}
-			, 'uiMenuTitleBackgroundColor': function (e7)
-			{
-				$('.menu-title').css('background-color', e7);
-			}
-			, 'uiMenuSubBackgroundColor': function (e7)
-			{
-				$('.menu-sub-bg').css('background-color', e7), $('.server-active').css('background-color', e7), $('#server-content').css('background-color', e7);
-			}
-			, 'uiMenuSubBackground2Color': function (e7)
-			{
-				$('.menu-sub-bg2').css('background-color', e7), $('.server-table tbody').css('background-color', e7);
-			}
-			, 'uiPartyLeaderColor': function (e7)
-			{
-				bU && bU.drawParty();
-			}
-			, 'uiGameColorSuccess': function (e7)
-			{
-				$('#social-friends-online-count').css('color', e7);
-			}
-			, 'uiGameBackgroundColor': function (e7)
-			{
-				document.body.style.background = e7;
-			}
-			, 'uiGameBorderColor': function ()
-			{
-				ab();
-			}
-			, 'rUiScale': function (e7)
-			{
-				d1.rUiScale = Math.min(Math.max(e7, 0.5), 1.25), $('#uiScale').val(Number.parseFloat(0x64 * d1.rUiScale).toFixed(0x0)), $('.ui-scale').css('transform', 'scale(' + d1.rUiScale + ')');
-			}
-			, 'rReconnectPeriod': function (e7)
-			{
-				d1.rReconnectPeriod = Math.min(Math.max(e7, 0x0), 0xa), $('#reconnectPeriod').val(d1.rReconnectPeriod);
-			}
-			, 'rAnimationDelay': function (e7)
-			{
-				d1.rAnimationDelay = Math.min(Math.max(e7, 0x1), 0xfa), $('#animationDelay').val(d1.rAnimationDelay);
-			}
-			, 'rViewDistance': function (e7)
-			{
-				d1.rViewDistance = Math.min(Math.max(e7, 0x32), 0x96), $('#viewDistance').val(d1.rViewDistance), bU.sendOptions();
-			}
-			, 'rBorderSize': function (e7)
-			{
-				d5.rBorderSize = Math.min(Math.max(e7, 0x1), 0x100), $('#borderSize').text(d5.rBorderSize), ab();
-			}
-			, 'rBackgroundOpacity': function (e7)
-			{
-				d5.rBackgroundOpacity = Math.min(Math.max(e7, 0x0), 0x1), $('#backgroundOpacity').text(Number.parseFloat(0x64 * d5.rBackgroundOpacity).toFixed(0x0)), document.getElementById('canvas-background').style.opacity = d5.rBackgroundOpacity;
-			}
-			, 'rTracerOpacity': function (e7)
-			{
-				d1.rTracerOpacity = Math.min(Math.max(e7, 0xa), 0x64), $('#tracerOpacity').val(d1.rTracerOpacity), $('#rTracerOpacity').val(d1.rTracerOpacity);
-			}
-			, 'rTracerColor': function (e7)
-			{
-				d1.rTracerColor = e7, $('#rTracerColor').val(d1.rTracerColor);
-			}
-			, 'aCustomBackground': function (e7)
-			{
-				document.getElementById('canvas-background').style.backgroundImage = 'url(\'' + e7 + '\')', document.getElementById('canvas-background').style.backgroundSize = '100% 100%';
-			}
-			, 'aCustomSpike': function (e7)
-			{
-				for (var e8 in (d8.aCustomSpike && d8.aCustomSpike.destroy(), d8.aCustomSpike = null, bU.bucket))
-				{
-					var e9 = bU.bucket[e8];
-					0x3 == e9.type && (e9.needsPixiUpdate = !0x0);
-				}
-				if (0x0 != e7.length)
-				{
-					var eb = new Image();
-					eb.crossOrigin = '';
-					var ec = function ()
-						{
-							d8.aCustomSpike = bF.Texture.from(eb);
-						}
-						, ed = function ()
-						{
-							bU.selfMsg('Unable to load custom theme virus.');
-						};
-					eb.addEventListener('load', ec), eb.addEventListener('error', ed), cG.customElements.push(
-						{
-							'element': eb
-							, 'event': 'load'
-							, 'handler': ec
-						}
-						, {
-							'element': eb
-							, 'event': 'error'
-							, 'handler': ed
-						}), eb.src = e7;
-				}
-			}
-			, 'aCustomMother': function (e7)
-			{
-				for (var e8 in (d8.aCustomMother && d8.aCustomMother.destroy(), d8.aCustomMother = null, bU.bucket))
-				{
-					var e9 = bU.bucket[e8];
-					0x4 == e9.type && (e9.needsPixiUpdate = !0x0);
-				}
-				if (0x0 != e7.length)
-				{
-					var eb = new Image();
-					eb.crossOrigin = '';
-					var ec = function ()
-						{
-							d8.aCustomMother = bF.Texture.from(eb);
-						}
-						, ed = function ()
-						{
-							bU.selfMsg('Unable to load custom theme mother cell.');
-						};
-					eb.addEventListener('load', ec), eb.addEventListener('error', ed), cG.customElements.push(
-						{
-							'element': eb
-							, 'event': 'load'
-							, 'handler': ec
-						}
-						, {
-							'element': eb
-							, 'event': 'error'
-							, 'handler': ed
-						}), eb.src = e7;
-				}
-			}
-		};
-		var dl = []
-			, dm = function (e7)
-			{
-				aZ(0x0, this.innerText, this.dataset.playerId, -0x1);
-			}
-			, dp = function (e7)
-			{
-				var e8 = e7.offsetY
-					, e9 = Math.floor(e8 / 0x14);
-				if (!(e8 % 0x14 < 0x5))
-				{
-					var eb = bU.party[e9];
-					null != eb && aZ(0x0, eb.name, eb.id, e9);
-				}
-			};
-		const dq = {
-			'MODIFIER': 0x1
-			, 'PASSIVE': 0x2
-			, 'CONSUMABLE': 0x3
-			, 'DEBUFF': 0x4
-			, 'NONE': 0x0
-		};
-		var dr, ds, du = {
-			0x0: new bm('Random', 'random', dq.NONE)
-			, 0x1: new bm('Maximum Cells Upgrade', 'extracells', dq.MODIFIER)
-			, 0x2: new bm('Extra Consumable Slot', 'extraconsumable', dq.MODIFIER)
-			, 0x3: new bm('Merge', 'merge', dq.PASSIVE)
-			, 0x4: new bm('Grow', 'grow', dq.PASSIVE)
-			, 0x5: new bm('Speed', 'speed', dq.PASSIVE)
-			, 0x6: new bm('Shield', 'shield', dq.PASSIVE)
-			, 0x7: new bm('Virus', 'spike', dq.CONSUMABLE)
-			, 0x8: new bm('Disrupt', 'disrupt', dq.CONSUMABLE)
-			, 0x9: new bm('Teleport', 'teleport', dq.CONSUMABLE)
-			, 0xa: new bm('Disrupt', '_disrupt', dq.DEBUFF)
-			, 0xb: new bm('Silver', 'phoenix', dq.MODIFIER)
-			, 0xc: new bm('Consumable Shield', '_shield', dq.CONSUMABLE)
-			, 0xd: new bm('Magnet', 'magnet', dq.PASSIVE)
-			, 0xe: new bm('Decay', 'decay', dq.CONSUMABLE)
-			, 0xf: new bm('Decay', '_decay', dq.DEBUFF)
-		};
-		const dv = 0x3 * cI
-			, dw = ['hearts'];
-		for (var dx = [], dy = [], dz = [], dA = 0x0; dA < 0xb4; dA++)
-		{
-			var dB = a2(
-			{
-				'h': 0x2 * dA
-				, 's': 97.25
-				, 'v': 0x64
-				, 'a': 0x1
-			}).toRgb();
-			dy[dA] = (dB.r << 0x10) + (dB.g << 0x8) + dB.b, dz[dA] = a2(
-			{
-				'h': 0x2 * dA
-				, 's': 97.25
-				, 'v': 0x64
-				, 'a': 0x1
-			}).toHex();
-		}
-		const dC = bu(dy.slice(0x0))
-			, dD = bu(dz.slice(0x0));
-		dy = null, dz = null;
-		const dE = ['#FFFFFF', '#FF9BDC', '#FF00FF', '#FF0000', '#C80000', '#FF6900', '#FFFF00', '#00FF00', '#008000'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, '#008080', '#00FFFF', '#0096FF', '#0000FF', '#CA48FA', '#8A2BE2', '#D2C878', '#8C4614']
-			, dF = {}
-			, dG = {
-				0x1f4:
-				{
-					'style':
-					{
-						'color': '#FFD700'
-						, 'textShadow': '0 0 8px #FFD700, 0 0 12px #FF8C00'
-						, 'fontWeight': 'bold'
-					}
-				}
-				, 0x1f5:
-				{
-					'style':
-					{
-						'color': '#00FF00'
-						, 'textShadow': '0 0 8px #00FF00, 0 0 12px #00AA00'
-						, 'fontWeight': 'bold'
-					}
-				}
-			}
-			, dH = {
-				'whisper':
-				{
-					'description': 'Whisper a player by ID'
-					, 'triggers': ['whisper', 't', 'w']
-					, 'action': function (e7)
-					{
-						var e8 = parseInt(e7[0x0]);
-						if (isNaN(e8)) bU.selfMsg('Invalid player id.');
-						else
-						{
-							var e9 = e7.slice(0x1).join(' ');
-							0x0 != e9.length && bU.sendPacket(new bV.sendWhisper(e8, e9)), aQ('/t ' + e8 + ' ');
-						}
-					}
-				}
-				, 'reply_whisper':
-				{
-					'description': 'Reply to previous whisper'
-					, 'triggers': ['reply', 'r']
-					, 'action': function (e7)
-					{
-						var e8 = e7.join(' ');
-						0x0 != e8.length && bU.sendPacket(new bV.sendWhisper(0x0, e8)), aQ('/r ');
-					}
-				}
-				, 'party_chat':
-				{
-					'description': 'Send a message to other party members'
-					, 'triggers': ['party', 'p']
-					, 'action': function (e7)
-					{
-						var e8 = e7.join(' ');
-						0x0 != e8.length && bU.sendPacket(new bV.sendChat(e8, 0x1)), aQ('/p ');
-					}
-				}
-				, 'invite':
-				{
-					'description': 'Invite a player to the party'
-					, 'triggers': ['invite', 'i']
-					, 'action': function (e7)
-					{
-						var e8 = parseInt(e7[0x0]);
-						isNaN(e8) ? bU.selfMsg('Invalid ID.') : bU.sendPacket(new bV.sendPartyAction(0x0, e8));
-					}
-				}
-				, 'leave':
-				{
-					'description': 'Leave your current party'
-					, 'triggers': ['leave', 'l']
-					, 'action': function (e7)
-					{
-						bU.sendPacket(new bV.sendPartyAction(0x3, 0x0));
-					}
-				}
-				, 'promote':
-				{
-					'description': 'Promote a party member to leader'
-					, 'triggers': ['promote']
-					, 'action': function (e7)
-					{
-						var e8 = parseInt(e7[0x0]);
-						isNaN(e8) ? bU.selfMsg('Invalid ID.') : bU.sendPacket(new bV.sendPartyAction(0x2, e8));
-					}
-				}
-				, 'kick':
-				{
-					'description': 'Kick a player from the party'
-					, 'triggers': ['kick']
-					, 'action': function (e7)
-					{
-						var e8 = parseInt(e7[0x0]);
-						isNaN(e8) ? bU.selfMsg('Invalid ID.') : bU.sendPacket(new bV.sendPartyAction(0x1, e8));
-					}
-				}
-				, 'clear':
-				{
-					'description': 'Clear the chat'
-					, 'triggers': ['clear']
-					, 'action': function (e7)
-					{
-						for (var e8 = document.getElementsByClassName('chat-active-tab')[0x0].getAttribute('name'), e9 = document.getElementById('chat-body-' + e8); null != e9.firstChild;) e9.removeChild(e9.firstChild);
-					}
-				}
-				, 'info':
-				{
-					'description': 'Get your current ID'
-					, 'triggers': ['info']
-					, 'action': function (e7)
-					{
-						bU.playerId > 0x0 ? bU.selfMsg('Your id is ' + bU.playerId) : bU.selfMsg('You need to be connected to a server to use this command.');
-					}
-				}
-				, 'scrimmenu':
-				{
-					'description': 'Show the scrimmage menu'
-					, 'triggers': ['scrimmenu']
-					, 'action': function (e7)
-					{
-						c9.css('display', 'none' == c9.css('display') ? 'block' : 'none');
-					}
-				}
-				, 'join':
-				{
-					'description': 'Join a party with a code'
-					, 'triggers': ['join', 'j']
-					, 'action': function (e7)
-					{
-						var e8 = e7[0x0];
-						null != e8 && 0x0 != e8.length && bU.sendPacket(new bV.sendPartyJoin(e8));
-					}
-				}
-				, 'private':
-				{
-					'description': 'Set the party to private'
-					, 'triggers': ['private']
-					, 'action': function (e7)
-					{
-						bU.sendPacket(new bV.sendPartyAction(0x4, 0x1));
-					}
-				}
-				, 'public':
-				{
-					'description': 'Allow players to join the party without an invite'
-					, 'triggers': ['public']
-					, 'action': function (e7)
-					{
-						bU.sendPacket(new bV.sendPartyAction(0x4, 0x0));
-					}
-				}
-				, 'reset_chat':
-				{
-					'description': 'Reset chat size'
-					, 'triggers': ['resetchat']
-					, 'action': function (e7)
-					{
-						$('#chat-panel').css('width', '360px'), $('#chat-panel').css('height', '250px');
-					}
-				}
-				, 'reset_chat_tabs':
-				{
-					'description': 'Reset chat tab settings'
-					, 'triggers': ['resetchattabs']
-					, 'action': function (e7)
-					{
-						d1._ChatTabs = JSON.parse(JSON.stringify(cX)), aU(), aS();
-					}
-				}
-				, 'spectate':
-				{
-					'description': 'Spectate a player'
-					, 'triggers': ['spectate', 's']
-					, 'action': function (e7)
-					{
-						var e8 = parseInt(e7[0x0]);
-						isNaN(e8) ? bU.selfMsg('Invalid ID.') : bU.sendPacket(new bV.sendSpectate(e8));
-					}
-				}
-				, 'disconnect':
-				{
-					'description': 'Disconnect from the server'
-					, 'triggers': ['disconnect']
-					, 'action': function (e7)
-					{
-						bU.disconnect();
-					}
-				}
-				, 'account':
-				{
-					'description': 'Get Account UID'
-					, 'triggers': ['account']
-					, 'action': function (e7)
-					{
-						null !== cu ? bU.selfMsg('UID: ' + cu.uid) : bU.selfMsg('You are not logged in.');
-					}
-				}
-				, 'block':
-				{
-					'description': 'Block or unblock a player by ID'
-					, 'triggers': ['block', 'b']
-					, 'action': function (e7)
-					{
-						var e8 = parseInt(e7[0x0]);
-						if (!isNaN(e8))
-						{
-							var e9 = bv(e8);
-							bU.selfMsg(e9);
-						}
-					}
-				}
-			}
-			, dI = ['4Head', 'BibleThump', 'DansGame', 'DatSheffy', 'FailFish', 'FeelsBadMan', 'FeelsGoodMan'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'FeelsMadMan', 'GabeN', 'HassanChop', 'HeyGuys', 'Kappa', 'KappaPride', 'Keepo', 'Kreygasm'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'NotLikeThis', 'OMGScoots', 'PJSalt', 'PogChamp', 'rekt', 'rip', 'SaltyCorn', 'sodaC', 'sodaHeyGuys'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'sodaNOPE', 'sodaW', 'SwiftRage', 'WutFace', 'ResidentSleeper', 'LUL', 'MikuFail', 'PepoHype', 'KKona'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'MeguFace', 'AngryBork', 'AngeryBOYE', 'TohruFlex', 'Sadness', 'nou', 'MarioFP']
-			, dJ = ['Ditto', 'MichaelPls', 'RareParrot', 'PepePls', 'RooNoticeMe', 'PepeEyes', 'EverythingsFine', 'WeSmart'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'PandaAww', 'SleepyCat', 'Clap']
-			, dK = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
-			, dL = ['', 'MOUSE1', 'MOUSE2', 'MOUSE3', 'MOUSE4', 'MOUSE5', 'HELP', '', 'BACK_SPACE', 'TAB', '', '', 'CLEAR'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'ENTER', 'ENTER_SPECIAL', '', 'SHIFT', 'CONTROL', 'ALT', 'PAUSE', 'CAPS_LOCK', 'KANA', 'EISU', 'JUNJA'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'FINAL', 'HANJA', '', 'ESCAPE', 'CONVERT', 'NONCONVERT', 'ACCEPT', 'MODECHANGE', 'SPACE', 'PAGE_UP'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'PAGE_DOWN', 'END', 'HOME', 'LEFT', 'UP', 'RIGHT', 'DOWN', 'SELECT', 'PRINT', 'EXECUTE', 'PRINTSCREEN'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'INSERT', 'DELETE', '', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'AT', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'OS_KEY', '', 'CONTEXT_MENU', '', 'SLEEP', 'NUMPAD0', 'NUMPAD1'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'NUMPAD2', 'NUMPAD3', 'NUMPAD4', 'NUMPAD5', 'NUMPAD6', 'NUMPAD7', 'NUMPAD8', 'NUMPAD9', 'MULTIPLY'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'ADD', 'SEPARATOR', 'SUBTRACT', 'DECIMAL', 'DIVIDE', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'F9', 'F10', 'F11', 'F12', 'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19', 'F20', 'F21', 'F22', 'F23'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'F24', '', '', '', '', '', '', '', '', 'NUM_LOCK', 'SCROLL_LOCK', 'WIN_OEM_FJ_JISHO'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'WIN_OEM_FJ_MASSHOU', 'WIN_OEM_FJ_TOUROKU', 'WIN_OEM_FJ_LOYA', 'WIN_OEM_FJ_ROYA', '', '', '', '', ''
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, '', '', '', '', 'CIRCUMFLEX', 'EXCLAMATION', 'DOUBLE_QUOTE', 'HASH', 'DOLLAR', 'PERCENT', 'AMPERSAND'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'UNDERSCORE', 'OPEN_PAREN', 'CLOSE_PAREN', 'ASTERISK', 'PLUS', 'PIPE', 'HYPHEN_MINUS'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'OPEN_CURLY_BRACKET', 'CLOSE_CURLY_BRACKET', 'TILDE', '', '', '', '', 'VOLUME_MUTE', 'VOLUME_DOWN'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'VOLUME_UP', '', '', 'SEMICOLON', 'EQUALS', 'COMMA', 'MINUS', 'PERIOD', 'SLASH', 'BACK_QUOTE', '', ''
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'OPEN_BRACKET', 'BACK_SLASH', 'CLOSE_BRACKET', 'QUOTE', '', 'META', 'ALTGR', '', 'WIN_ICO_HELP'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'WIN_ICO_00', '', 'WIN_ICO_CLEAR', '', '', 'WIN_OEM_RESET', 'WIN_OEM_JUMP', 'WIN_OEM_PA1'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'WIN_OEM_PA2', 'WIN_OEM_PA3', 'WIN_OEM_WSCTRL', 'WIN_OEM_CUSEL', 'WIN_OEM_ATTN', 'WIN_OEM_FINISH'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'WIN_OEM_COPY', 'WIN_OEM_AUTO', 'WIN_OEM_ENLW', 'WIN_OEM_BACKTAB', 'ATTN', 'CRSEL', 'EXSEL', 'EREOF'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'PLAY', 'ZOOM', '', 'PA1', 'WIN_OEM_CLEAR', ''];
-		var dM = ['heart', 'star', 'home', 'apple', 'spiral', 'dice', 'chicken', 'ghost', 'burger', 'bow', 'cloud', 'skull'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'mug', 'flower', 'music', 'checkmark', 'clover', 'crown', 'fancy', 'fish', 'fire', 'lightning', 'paw'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'duck', 'snowflake', 'bomb', 'butterfly', 'cherry', 'watermelon', 'cat', 'cupid', 'sword', 'shield'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'tornado', 'radioactive', 'rocket', 'wave', 'letter_a', 'letter_b', 'letter_c', 'letter_d', 'letter_e'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'letter_f', 'letter_g', 'letter_h', 'letter_i', 'letter_j', 'letter_k', 'letter_l', 'letter_m'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'letter_n', 'letter_o', 'letter_p', 'letter_q', 'letter_r', 'letter_s', 'letter_t', 'letter_u'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'letter_v', 'letter_w', 'letter_x', 'letter_y', 'letter_z', 'number_0', 'number_1', 'number_2'
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 'number_3', 'number_4', 'number_5', 'number_6', 'number_7', 'number_8', 'number_9']
-			, dN = [];
-		const dO = [0xfef200, 0xcadb2a, 0x8ec63f, 0x3ab54a, 0xa652, 0xa674, 0x1a89e, 0xabc5, 0xadef, 0x8fd5, 0x72bb, 0x54a5
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 0x2e3192, 0x662e91, 0x92278f, 0xbd1a8d, 0xed008c, 0xec0974, 0xed145b, 0xed1941, 0xed1b24, 0xf36523
-				
-				
-				
-				
-				
-				
-				
-				
-                                
-				, 0xf7941d, 0xffc20f]
-			, dP = 0x64 * dO.length - 0x1
-			, dQ = {
-				'ALL': 0x3
-				, 'PARTY': 0x2
-				, 'SELF': 0x1
-				, 'NONE': 0x0
-			}
-			, dR = {
-				'DEFAULT': 0x0
-				, 'SHORT': 0x1
-			}
-			, dS = {
-				'THICK': 0x9
-				, 'THIN': 0x2
-				, 'NONE': 0x0
-			}
-			, dT = {
-				'ULTRA': 0x1
-				, 'HIGH': 0.8
-				, 'MEDIUM': 0.7
-				, 'LOW': 0.5
-				, 'VERYLOW': 0.25
-			}
-			, dU = {
-				'MAP': 0x0
-				, 'MODE': 0x1
-				, 'SIZE': 0x2
-				, 'STARTMASS': 0x3
-				, 'LOCK': 0x4
-				, 'PLAYER_UPDATE': 0x5
-				, 'PLAYER_LIST': 0x6
-				, 'VIRUS_DENSITY': 0x7
-				, 'PUBLIC': 0x8
-				, 'PASSWORD': 0x9
-				, 'NAME': 0xa
-				, 'RESPAWN_DELAY': 0xb
-				, 'AUTOSPLIT': 0xc
-			}
-			, dV = {
-				0x0: 'Spectator'
-				, 0x1: 'Blue'
-				, 0x2: 'Red'
-				, 0x3: 'Green'
-				, 0x4: 'Yellow'
-				, 0x5: 'Purple'
-				, 0x6: 'Orange'
-				, 0x7: 'Pink'
-				, 0x8: 'Brown'
-			}
-			, dW = {
-				'FAILURE': 0x1
-				, 'SUCCESS': 0x0
-			}
-			, dX = {
-				'ERROR': -0x1
-				, 'LOADING': 0x1
-				, 'LOADED': 0x2
-			}
-			, dY = {
-				'ALL': 0x1
-				, 'PARTY': 0x2
-				, 'WHISPER': 0x4
-				, 'SYSTEM': 0x8
-				, 'ADMIN': 0x10
-			}
-			, dZ = {
-				'UNKNOWN': -0x1
-				, 'ALIVE': 0x0
-				, 'DEAD': 0x1
-				, 'SPECTATE': 0x2
-			};
-		var e0 = ['white', '#25f', '#f31', 'green', 'yellow', 'purple', 'orange'];
-		const e1 = {
-				0x0: new bD('Verdana', 0x36)
-				, 0x1: new bD('ampad', 0x4b)
-				, 0x2: new bD('burnstown', 0x51)
-				, 0x3: new bD('chlorinar', 0x4b)
-				, 0x4: new bD('Facon', 0x4b)
-				, 0x5: new bD('archistico', 0x4b)
-				, 0x6: new bD('breakaway', 0x51)
-				, 0x7: new bD('conformity', 0x51)
-				, 0x8: new bD('electroharmonix', 0x46)
-				, 0x9: new bD('pwjoyeuxnoel', 0x46)
-				, 0xa: new bD('leckerli-one', 0x4b)
-				, 0x65: new bD('IceCaps', 0x51, '#00c9ff')
-				, 0x66: new bD('BrazierFlame', 0x51, '#e25822')
-			}
-			, e2 = e1[0x0];
-		for (var e3 in e1)
-		{
-			var e4 = e1[e3];
-			new FontFaceObserver(e4.font).load(null, 0x2710).then(() =>
-			{}, () =>
-			{}), e3 > 0x0 && e3 < 0x40 && $('#spNameFont').append('<option value=\"' + e3 + '\" style=\"font-family:' + e4.font + '\">' + e4.font.charAt(0x0).toUpperCase() + e4.font.slice(0x1) + '</option>');
-		}
-		$(window).focus(function ()
-		{
-			cB = !0x0;
-		}), $(window).blur(function ()
-		{
-			cB = !0x1;
-		});
-		var e5 = new function ()
-			{
-				this.consented = !0x1, this.policyID = 'CP_0918_01', this.policyLink = 'https://gota.io/policies/privacy.html?v=' + this.policyID + '#cookies', this.consentOption = $('#cc_acceptCookies'), this.consentCookie = {
-					'name': 'cookieConsent'
-					, 'value': 'yes+' + this.policyID
-					, 'exdays': 0x2da
-					, 'path': '/web'
-				}, this.cookieBanner = {
-					'banner': $('#cookie-banner')
-					, 'decline': $('#declineCookies')
-					, 'accept': $('#acceptCookies')
-					, 'handlersBound': !0x1
-				}, this.init = function ()
-				{
-					this.backwardsCompatable(), this.consentOption.on('change', function (e7)
-					{
-						e5.consentHandler($(this).prop('checked'));
-					}), this.getConsentCookie() === this.consentCookie.value ? (this.consentHandler(!0x0), this.showCookieBanner(!0x1)) : (this.consentHandler(!0x1), this.showCookieBanner(!0x0));
-				}, this.consentHandler = function (e7)
-				{
-					this.consented = e7, aiptag.consented = e7, this.consentOption.prop('checked', e7), e7 ? (this.createConsentCookie(), this.showCookieBanner(!0x1), (function ()
-					{
-						if (e5.consented)
-						{
-							var e8 = window.localStorage.getItem('theme');
-							e8 && bi(e8);
-							var e9 = window.localStorage.getItem('keybinds');
-							if (e9)
-							{
-								for (var eb in e9 = JSON.parse(e9)) null != e9[eb] && Number.isInteger(e9[eb]) && (d2[eb] = e9[eb], az($('#' + eb)));
-							}
-							var ec = window.localStorage.getItem('options');
-							if (ec)
-							{
-								for (var ed in (ec = JSON.parse(ec), d1)) ed in ec == 0x0 && (ec[ed] = d1[ed]);
-							}
-							else ec = d1;
-							for (var ed in ec)
-							{
-								var ef = ed.charAt(0x0);
-								if ('c' == ef)
-								{
-									if (0x1 == ec[ed])
-									{
-										var eg = $('#' + ed);
-										eg.prop('checked', ec[ed]), b9(eg);
-									}
-								}
-								else
-								{
-									if ('s' == ef)
-									{
-										var eh = $('#' + ed);
-										eh.val(ec[ed]), bb(eh);
-									}
-									else 'i' == ef ? d1[ed] = ec[ed] : 'r' == ef ? (d1[ed] = ec[ed], $('#' + ed).val(d1[ed]), bc($('#' + ed)), 'rTracerColor' === ed && cO.tracerColorInput && (cO.tracerColorInput.value = d1.rTracerColor || '#ffffff', cO.tracerColorInput.dispatchEvent(new Event('input'
-										, {
-											'bubbles': !0x0
-										})))) : d1[ed] = ec[ed];
-								}
-							}
-							$('#chat-panel').css('width', d1.iChatWidth), $('#chat-panel').css('height', d1.iChatHeight), d1.cThemeEnabled || bd('cThemeEnabled');
-							var ei = window.localStorage.getItem('name');
-							null != ei && $('#name-box').val(ei);
-							var ej = window.localStorage.getItem('subpanel');
-							if (ej)
-							{
-								for (var ed in ej = JSON.parse(ej)) ej[ed] && 0x0 != ej[ed].length && (db[ed] = ej[ed]);
-							}
-							void 0x0 === db.lockedName && (db.lockedName = ''), aI();
-						}
-					}()), (function ()
-					{
-						aI();
-						const e8 = document.getElementById('spNameColor');
-						var e9;
-						e8 && (e8.value = 'string' == typeof (e9 = db.nameColor) && e9.startsWith('#') ? e9 : 'object' == typeof e9 && null !== e9 ? '#' + e9.r.toString(0x10).padStart(0x2, '0') + e9.g.toString(0x10).padStart(0x2, '0') + e9.b.toString(0x10).padStart(0x2, '0') : '#ffffff', e8.dispatchEvent(new Event('input'
-							, {
-								'bubbles': !0x0
-							})), e8.addEventListener('input', function (ec)
-						{
-							db.nameColor = aG(ec.target.value);
-						}));
-						const eb = document.getElementById('spChatColor');
-						eb && (eb.value = dE[db.chatColor], eb.dispatchEvent(new Event('input'
-							, {
-								'bubbles': !0x0
-							})), eb.addEventListener('input', function (ec)
-						{
-							db.chatColor = dE.indexOf(ec.target.value);
-						})), $('#spSkinName').val(db.skinName), $('#spLowerName').prop('checked', db.lowerName), $('#spEffect select').val(db.effect), $('#spNameFont select').val(db.nameFont);
-					}()), $('#btn-chg-ln').on('click', function ()
-					{
-						if (cq)
-						{
-							var e8 = prompt('Enter new locked name!');
-							if (e8)
-							{
-								var e9 = null;
-								'string' != typeof e8 && (e9 = 'Please enter a valid name!'), e8.length < 0x2 && (e9 = 'Locked names must be 2 or more characters long.'), e8.length > 0x14 && (e9 = 'Locked names must be 20 or less characters long.'), null === e9 ? (e8 = e8.trim(), confirm('You are about to change your locked name to: \'' + e8 + '\'.\x0aLocked names can only be changed once per week.\x0a\x0aAre you sure you wish to continue?') && bU.sendPacket(new bV.sendLockedNameChange(e8))) : alert(e9);
-							}
-						}
-					}), $('#btn-updateSP').on('click', function ()
-					{
-						aH();
-					}), $('#btn-subpanel-rules').on('click', function ()
-					{
-						db.rules = !0x0, aI();
-					}), $('#no_cookie_consent').hide(), firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).catch(function () {}), 'none' !== $('#account-loader').css('display') ? $('#guest').hide() : $('#guest').show(), 'undefined' != typeof window && 'function' == typeof window.gtag && window.gtag('consent', 'update'
-						, {
-							'ad_storage': 'granted'
-							, 'analytics_storage': 'granted'
-							, 'ad_user_data': 'granted'
-							, 'ad_personalization': 'granted'
-						})) : (this.deleteConsentCookie(), null !== firebase.auth().currentUser && firebase.auth().signOut().then(function () {}).catch(e8 =>
-					{}), firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE).catch(function () {}), $('#authed').hide(), $('#account-loader').hide(), $('#guest').hide(), $('#no_cookie_consent').show(), this.showCookieBanner(!0x0), 'undefined' != typeof window && 'function' == typeof window.gtag && window.gtag('consent', 'update'
-						, {
-							'ad_storage': 'denied'
-							, 'analytics_storage': 'denied'
-							, 'ad_user_data': 'denied'
-							, 'ad_personalization': 'denied'
-						}));
-				}, this.showCookieBanner = function (e7)
-				{
-					e7 ? (this.cookieBanner.handlersBound || (this.bindBannerHandlers(), this.cookieBanner.handlersBound = !0x0), this.cookieBanner.banner.slideDown()) : this.cookieBanner.banner.slideUp();
-				}, this.bindBannerHandlers = function ()
-				{
-					this.cookieBanner.decline.on('click', function (e7)
-					{
-						e5.consentHandler(!0x1), e5.showCookieBanner(!0x1);
-					}), this.cookieBanner.accept.on('click', function (e7)
-					{
-						e5.consentHandler(!0x0), e5.showCookieBanner(!0x1);
-					}), $('#cookie-banner .description').append(' <a href=\"' + this.policyLink + '\" target=\"_blank\">Our Cookie Policy!</a>');
-				}, this.createConsentCookie = function ()
-				{
-					var e7 = new Date();
-					e7.setTime(e7.getTime() + 0x18 * this.consentCookie.exdays * 0x3c * 0x3c * 0x3e8);
-					var e8 = 'expires=' + e7.toUTCString();
-					document.cookie = this.consentCookie.name + '=' + this.consentCookie.value + ';' + e8 + ';path=' + this.consentCookie.path + ';';
-				}, this.deleteConsentCookie = function ()
-				{
-					document.cookie = this.consentCookie.name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + this.consentCookie.path + ';';
-				}, this.getConsentCookie = function ()
-				{
-					for (var e7 = this.consentCookie.name + '=', e8 = decodeURIComponent(document.cookie).split(';'), e9 = 0x0; e9 < e8.length; e9++)
-					{
-						for (var eb = e8[e9];
-							' ' == eb.charAt(0x0);) eb = eb.substring(0x1);
-						if (0x0 == eb.indexOf(e7)) return eb.substring(e7.length, eb.length);
-					}
-					return !0x1;
-				}, this.backwardsCompatable = function ()
-				{
-					for (var e7 = decodeURIComponent(document.cookie).split(';'), e8 = null, e9 = 0x0; e9 < e7.length; e9++)
-					{
-						for (var eb = e7[e9];
-							' ' == eb.charAt(0x0);) eb = eb.substring(0x1);
-						0x0 == eb.indexOf('cookieconsent_status=') && (e8 = eb.substring(0x15, eb.length));
-					}
-					'allow' === e8 ? (this.createConsentCookie(), document.cookie = 'cookieconsent_status=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/web;') : document.cookie = 'cookieconsent_status=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/web;';
-				};
-			}()
-			, e6 = new function ()
-			{
-				this.playCounter = 0x0, this.incrementPlay = function ()
-				{
-					return !cq && (this.playCounter++, this.playCounter % 0x5 == 0x1);
-				};
-			}();
-		'undefined' != typeof aipPlayer && aiptag.cmd.player.push(function ()
-		{
-			adplayer = new aipPlayer(
-			{
-				'AD_WIDTH': 0x3c0
-				, 'AD_HEIGHT': 0x21c
-				, 'AD_CENTERPLAYER': !0x1
-				, 'LOADING_TEXT': 'Advertisement Loading...'
-				, 'PREROLL_ELEM': document.getElementById('preroll')
-				, 'AIP_COMPLETE': function ()
-				{
-					bU.spectate ? bU.spec() : bU.play();
-				}
-			});
-		}), (function ()
-		{
-			function e7(ez)
-			{
-				jQuery.ajax(
-				{
-					'type': 'GET'
-					, 'dataType': 'json'
-					, 'url': cQ + '/api/v1/utilities/servers'
-					, 'success': function (eA)
-					{
-						for (var eB of eA)
-						{
-							var eC = [];
-							for (var eD of eB.servers)
-							{
-								eD.players = parseInt(eD.players), eD.bots = eD.bots || 0x0;
-								var eE = eD.players + eD.bots + '/' + eD.playersMax;
-								eD.bots > 0x0 && (eE += '*');
-								var eF = new aK(eD.name, eD.address, eD.players, eD.bots, eE, eD.gamemode, eB.region, eD.ssl, eD.order);
-								eC.push(eF);
-							}
-							eC.sort((eH, eI) => eH.order - eI.order), cU[eB.region] = {};
-							for (var eG = 0x0; eG < eC.length; eG++) eF = eC[eG], cU[eB.region][eF
-                                                                        .name] = eF;
-						}
-						aL(), null != ez ? ez() : null != c4 && aN(c4.name);
-					}
-					, 'error': function (eA)
-					{
-						aL();
-					}
-				});
-			}
-			
-			function e8()
-			{
-				null == c4 ? (aO('eu'), aN('Vendetta')) : aN(c4.name);
-			}
-			if (bR = document.getElementById('canvas'), bS = document.getElementById('minimap-canvas'), bT = bS.getContext('2d'), c6 = $('#main'), c7 = $('#party-panel'), c8 = $('.hud-panel'), cm = document.getElementById('score-panel'), c9 = $('#main-scrimmage'), cb = $('#context-menu'), cc = document.getElementById('chat-container'), cd = document.getElementById('chat-input'), $('#leaderboard-header'), cl = $('#scrimmage-custom'), cO.mouseFrozenDiv = document.getElementById('pMouse'), cO.playerScore = document.getElementById('pScore').querySelector('span'), cO.playerMass = document.getElementById('pMass').querySelector('span'), cO.playerCells = document.getElementById('pCells').querySelector('span'), cO.playerFps = document.getElementById('pFps').querySelector('span'), cO.serverSpan = document.querySelector('#pServer span'), cO.idSpan = document.querySelector('#pId span'), cO.pingSpan = document.querySelector('#pPing span'), cO.pLineSpan = document.querySelector('#pLine span'), cO.resetInfo = $('#extra-reset-timer'), cO.resetTime = $('#resetTime'), cO.respawnInfo = $('#extra-respawn-cooldown'), cO.respawnCooldown = $('#respawnCooldown'), cO.spectatorCount = $('#spectatorCount'), cO.playerCellCount = 0x0, cO.minimapCoords = $('#minimap-coordinates'), cO.partyPanel = c7, cO.friendOnlineCount = $('#social-online-friends-count'), cO.leaderCanvas = document.getElementById('leaderboard-canvas'), cO.leaderCanvas && (cO.leaderCtx = cO.leaderCanvas.getContext('2d')), cO.partyCanvas = document.getElementById('party-canvas'), cO.partyCanvas && (cO.partyCtx = cO.partyCanvas.getContext('2d')), cO.minimapCoordsEl = document.getElementById('minimap-coordinates'), cO.statsMenuEl = document.getElementById('main-stats'), cO.tracerColorInput = document.getElementById('rTracerColor'), cO.tracerColorInput && window.PIXI && (d1._tracerColorCached = bF.utils.string2hex(d1.rTracerColor || cO.tracerColorInput.value || '#ffffff'), cO.tracerColorInput.addEventListener('input', ez =>
-				{
-					d1.rTracerColor = ez.target.value, d1._tracerColorCached = bF.utils.string2hex(d1.rTracerColor);
-				})), cc && cc.addEventListener('contextmenu', ez =>
-				{
-					const eA = ez.target.closest && ez.target.closest('.chat-name');
-					eA && eA.dataset && eA.dataset.playerId && (ez.preventDefault(), 'function' == typeof dm && dm.call(eA, ez));
-				}), b8(), cf = !0x1, FastClick.attach(document.body), window.is_touch_device)
-			{
-				window.joystick_manager = nipplejs.create(
-				{
-					'zone': document.getElementById('joystick')
-					, 'mode': 'static'
-					, 'position':
-					{
-						'left': '10%'
-						, 'bottom': '20%'
-					}
-					, 'color': 'red'
-					, 'size': 0x64
-					, 'restOpacity': 0.5
-					, 'dynamicPage': !0x0
-				}), d1.cHideChat = !0x0, d1.cHideLeaderboard = !0x0;
-				var e9 = function (ez)
-					{
-						ez.target.style.opacity = 0x1, bU.handleKey(d2.kSplit);
-					}
-					, eb = function (ez)
-					{
-						ez.target.style.opacity = 0.3;
-					}
-					, ec = function (ez)
-					{
-						ez.target.style.opacity = 0x1, cf = !0x0, bU && bU.sendPacket(new bV.sendEjectMass(!0x0));
-					}
-					, ed = function (ez)
-					{
-						ez.target.style.opacity = 0.3, cf = !0x1, bU && bU.sendPacket(new bV.sendEjectMass(!0x1));
-					}
-					, ef = function (ez)
-					{
-						ez.target.style.opacity = 0x1, bU.handleKey(d2.kDoubleSplit);
-					}
-					, eg = function (ez)
-					{
-						ez.target.style.opacity = 0.3;
-					}
-					, eh = function (ez)
-					{
-						ez.target.style.opacity = 0x1, bU.handleKey(d2.kTripleSplit);
-					}
-					, ei = function (ez)
-					{
-						ez.target.style.opacity = 0.3;
-					};
-				document.getElementById('button_split').addEventListener('touchstart', e9
-					, {
-						'passive': !0x0
-					}), document.getElementById('button_split').addEventListener('touchend', eb
-					, {
-						'passive': !0x0
-					}), document.getElementById('button_eject').addEventListener('touchstart', ec
-					, {
-						'passive': !0x0
-					}), document.getElementById('button_eject').addEventListener('touchend', ed
-					, {
-						'passive': !0x0
-					}), document.getElementById('button_double').addEventListener('touchstart', ef
-					, {
-						'passive': !0x0
-					}), document.getElementById('button_double').addEventListener('touchend', eg
-					, {
-						'passive': !0x0
-					}), document.getElementById('button_triple').addEventListener('touchstart', eh
-					, {
-						'passive': !0x0
-					}), document.getElementById('button_triple').addEventListener('touchend', ei
-					, {
-						'passive': !0x0
-					}), cG.touchControls.push(
-					{
-						'element': document.getElementById('button_split')
-						, 'event': 'touchstart'
-						, 'handler': e9
-					}
-					, {
-						'element': document.getElementById('button_split')
-						, 'event': 'touchend'
-						, 'handler': eb
-					}
-					, {
-						'element': document.getElementById('button_eject')
-						, 'event': 'touchstart'
-						, 'handler': ec
-					}
-					, {
-						'element': document.getElementById('button_eject')
-						, 'event': 'touchend'
-						, 'handler': ed
-					}
-					, {
-						'element': document.getElementById('button_double')
-						, 'event': 'touchstart'
-						, 'handler': ef
-					}
-					, {
-						'element': document.getElementById('button_double')
-						, 'event': 'touchend'
-						, 'handler': eg
-					}
-					, {
-						'element': document.getElementById('button_triple')
-						, 'event': 'touchstart'
-						, 'handler': eh
-					}
-					, {
-						'element': document.getElementById('button_triple')
-						, 'event': 'touchend'
-						, 'handler': ei
-					}), window.joystick_manager.on('move', function (ez, eA)
-				{
-					bU.mouseRawX = eA.distance * eA.force * Math.cos(eA.angle.radian) + window.innerWidth / 0x2, bU.mouseRawY = eA.distance * eA.force * Math.sin(-eA.angle.radian) + window.innerHeight / 0x2;
-				});
-			}
-			else
-			{
-				var ej = function (ez)
-					{
-						bU.mouseRawX = ez.clientX, bU.mouseRawY = ez.clientY;
-					}
-					, ek = function (ez)
-					{
-						var eA = ez.button + 0x1;
-						if (d3) return ay(eA), void ez.preventDefault();
-						document.activeElement && 'INPUT' === document.activeElement.tagName || c6 && c6.css && 'none' != c6.css('display') || bU.handleKey(eA);
-					}
-					, el = function (ez)
-					{
-						ez.button + 0x1 == d2.kEjectMass && (cf = !0x1, bU && bU.sendPacket(new bV.sendEjectMass(!0x1)));
-					}
-					, em = function (ez)
-					{
-						var eA = c6 && (c6[0x0] || c6) || document.getElementById('main')
-							, eB = !0x1;
-						if (eA)
-						{
-							var eC = getComputedStyle(eA);
-							eB = 'none' !== eC.display && 'none' !== eC.pointerEvents;
-						}
-						if (!a3.mainMenuVisible && !eB && 'canvas' == ez.target.id)
-						{
-							var eD = ez.wheelDelta || -0x1 * ez.deltaY;
-							ez.preventDefault(), bU.mouseZoom *= eD > 0x0 ? 1.1 : 0.9, bU.mouseZoom = bU.mouseZoom > 0x5 ? 0x5 : bU.mouseZoom < 0.1 ? 0.1 : bU.mouseZoom;
-						}
-					};
-				window.onmousemove = ej, window.onmousedown = ek, window.onmouseup = el;
-				var eo = document.getElementById('canvas');
-				eo && eo.addEventListener && eo.addEventListener('wheel', em
-					, {
-						'passive': !0x1
-					}), cG.windowEvents.push(
-					{
-						'element': window
-						, 'event': 'mousemove'
-						, 'handler': ej
-						, 'isProperty': !0x0
-					}
-					, {
-						'element': window
-						, 'event': 'mousedown'
-						, 'handler': ek
-						, 'isProperty': !0x0
-					}
-					, {
-						'element': window
-						, 'event': 'mouseup'
-						, 'handler': el
-						, 'isProperty': !0x0
-					}), eo && cG.windowEvents.push(
-				{
-					'element': eo
-					, 'event': 'wheel'
-					, 'handler': em
-				});
-			}
-			var ep = function (ez)
-				{
-					var eA = ez.which || ez.keyCode || ez.charCode;
-					if (!(eA <= 0x5)) return d3 ? (ay(eA), void ez.preventDefault()) : void(document.activeElement && 'INPUT' === document.activeElement.tagName || (0x1b == eA && (b5(c6), (b6($('#popup-profile')) || b6($('#popup-account-username'))) && (b4($('#popup-profile')), b4($('#popup-account-username')))), a3.mainMenuVisible || bU.handleKey(eA)));
-				}
-				, eq = function (ez)
-				{
-					(ez.which || ez.keyCode || ez.charCode) == d2.kEjectMass && (cf = !0x1, bU && bU.sendPacket(new bV.sendEjectMass(!0x1)));
-				}
-				, er = function (ez)
-				{
-					cf && d1.cDisablePersistEjectMass && (cf = !0x1, bU && bU.sendPacket(new bV.sendEjectMass(!0x1)));
-				};
-			window.onkeydown = ep, window.onkeyup = eq, window.onblur = er, cG.windowEvents.push(
-				{
-					'element': window
-					, 'event': 'keydown'
-					, 'handler': ep
-					, 'isProperty': !0x0
-				}
-				, {
-					'element': window
-					, 'event': 'keyup'
-					, 'handler': eq
-					, 'isProperty': !0x0
-				}
-				, {
-					'element': window
-					, 'event': 'blur'
-					, 'handler': er
-					, 'isProperty': !0x0
-				});
-			var es = function (ez)
-			{
-				ez.preventDefault();
-			};
-			document.addEventListener('contextmenu', es), cG.windowEvents.push(
-			{
-				'element': document
-				, 'event': 'contextmenu'
-				, 'handler': es
-			}), aB(), (function ()
-			{
-				function ez(eE, eF)
-				{
-					return new Promise(function (eG, eH)
-					{
-						var eI = new Image();
-						eI.onload = function ()
-						{
-							try
-							{
-								var eJ = bF.Texture.from(eI);
-								eG(eJ);
-							}
-							catch (eK)
-							{
-								eH(eK);
-							}
-						}, eI.onerror = function (eJ)
-						{
-							eH(eJ);
-						}, eI.src = 'images/ejected_mass_skins/' + eF + '.png';
-					});
-				}
-				for (var eA in (aC(), cg = {}, ch = {}, dI))
-				{
-					var eB = dI[eA];
-					$('.emote-list').append('<li><img name=\'' + eB + '\' title=\'' + eB + '\' src=\'images/emotes/' + eB + '.png\' /></li>'), cg[eB] = !0x0;
-				}
-				for (var eA in dJ) eB = dJ[eA], $('.gif-list').append('<li><img name=\'' + eB + '\' title=\'' + eB + '\' src=\'images/emotes/gifs/' + eB + '.gif\' /></li>'), ch[eB] = !0x0;
-				for (eA = 0x0; eA < dM.length; eA++)
-				{
-					var eC = dM[eA];
-					$('#spEffect').append('<option value=\"' + (eA + 0x1) + '\">' + bA(eC) + '</option>'), dN[eA] = cM
-						, function (eE, eF)
-						{
-							ez(0x0, eF).then(function (eG)
-							{
-								dN[eE] = eG;
-							}).catch(function (eG) {});
-						}(eA, eC);
-				}
-				for (cR.enabled && cR.customEjectedMass && (new Image().src = 'images/events/' + cR.key + '/ejected_mass.png'), (function ()
-					{
-						for (var eE in du)
-						{
-							var eF = du[eE]
-								, eG = 'images/powerups/' + eF.img + '.png'
-								, eH = new Image();
-							eH.addEventListener('load', function (eI, eJ)
-							{
-								eI.texture = bF.Texture.from(eJ);
-							} ['bind'](null, eF, eH)), eH.src = eG, eF.image = eH;
-						}
-						ds = bF.Texture.from('images/shield.png'), dr = bF.Texture.from('images/debuff.png');
-					}()), eA = 0x0; eA < dw.length; eA++)
-				{
-					var eD = eA;
-					gifFrames(
-					{
-						'url': 'images/effects/' + dw[eD] + '.gif'
-						, 'frames': 'all'
-						, 'cumulative': !0x1
-						, 'outputType': 'canvas'
-					}).then(function (eE)
-					{
-						var eF = new bq();
-						eF.loadFromFrameData(eE), dx[eD] = eF;
-					});
-				}
-			}());
-			var eu = window.location.href.split('#').slice(0x1).join('#').split('&')
-				, ev = '';
-			eu[0x0] && (ev = eu[0x0].toLowerCase()), eu[0x1] && (ci = eu[0x1]), null != ev && '' != ev ? (ev = ev[0x0].toUpperCase() + ev.slice(0x1), dc = function ()
-			{
-				var ez;
-				null != (ez = aM(ev)) ? (aN(ez.name), aO(ez.region)) : e8();
-			}) : dc = e8;
-			var ew = function (ez)
-			{
-				var eA = ez.val();
-				for (var eB in (eA.version !== version && bU.selfMsg('Woah! Version ' + eA.version + ' is now available. Press Ctrl+F5 to update!'), co != eA.motd && '' !== eA.motd && (co = eA.motd, bU.selfMsg(eA.motd)), eA.listRefresh != dd && (dd = eA.listRefresh, cU = {}, e7(dc), cF.serverRefresh && clearInterval(cF.serverRefresh), cF.serverRefresh = setInterval(() =>
-					{
-						document.hidden || e7();
-					}, eA.listRefresh)), eA.titles)) dF[eB] = eA.titles[eB];
-			};
-			firebase.database().ref('/game').on('value', ew), cG.firebaseListeners.push(
-			{
-				'element': firebase.database().ref('/game')
-				, 'event': 'value'
-				, 'handler': ew
-				, 'isFirebase': !0x0
-			}), bX = {}, bY = {}, (function ()
-			{
-				function ez(eG, eH)
-				{
-					try
-					{
-						'undefined' != typeof window && 'function' == typeof window.gtag && window.gtag('event', eG, eH ||
-						{});
-					}
-					catch (eI)
-					{}
-				}
-				
-				function eA(eG, eH)
-				{
-					if (eG) return $(eH).prop('disabled', !0x1), void $(eH).text('Set');
-					$(eH).prop('disabled', !0x0), $(eH).text('...');
-				}
-				cR.enabled && !d1.cDisableEventSkins && $('body').toggleClass('event-' + cR.key), $('.server-tab').on('click', function ()
-				{
-					aO($(this).attr('region'));
-				}), $('#btn-play').on('click', function ()
-				{
-					null == c4 || Date.now() < cp || (0x0 == Object.keys(bU.myCells).length || this.currentServerName != c4.name ? (bU.spectate = !0x1, e6.incrementPlay() && 'undefined' != typeof adplayer ? (aiptag.cmd.player.push(function ()
-					{
-						adplayer.startPreRoll();
-					}), b4(c6), b8(), cp = Date.now() + 0x7d0) : (bU.play(), ez('play_click'
-						, {
-							'server_name': c4 ? c4.name : void 0x0
-							, 'region': c4 ? c4.region : void 0x0
-							, 'mode': c4 ? c4.gamemode : void 0x0
-						}))) : b4(c6));
-				}), $('#btn-servers').on('click', function ()
-				{
-					j('main-servers'), ez('menu_open'
-						, {
-							'menu': 'servers'
-						});
-				}), $('#btn-options').on('click', function ()
-				{
-					j('main-options'), ez('menu_open'
-						, {
-							'menu': 'options'
-						});
-				}), $('#btn-hotkeys').on('click', function ()
-				{
-					j('main-hotkeys'), ez('menu_open'
-						, {
-							'menu': 'hotkeys'
-						});
-				}), $('#btn-themes').on('click', function ()
-				{
-					j('main-themes'), ez('menu_open'
-						, {
-							'menu': 'themes'
-						});
-				}), $('#btn-cellpanel').on('click', function ()
-				{
-					firebase.auth().currentUser ? j('main-subpanel') : window.open('https://store.gota.io', '_blank');
-				}), $('#btn-reddit').on('click', function ()
-				{
-					window.open('https://www.reddit.com/r/PlayGotaIO/', '_blank'), 'undefined' != typeof window && 'function' == typeof window.gtag && window.gtag('event', 'social_click'
-						, {
-							'network': 'reddit'
-						});
-				}), $('#btn-discord').on('click', function ()
-				{
-					window.open('https://gota.io/discord', '_blank'), 'undefined' != typeof window && 'function' == typeof window.gtag && window.gtag('event', 'social_click'
-						, {
-							'network': 'discord'
-						});
-				}), $('#name-box').keypress(function (eG)
-				{
-					0xd == eG.keyCode && $(this).is(':focus') && (bU.play(), ez('play_click'
-						, {
-							'server_name': c4 ? c4.name : void 0x0
-							, 'region': c4 ? c4.region : void 0x0
-							, 'mode': c4 ? c4.gamemode : void 0x0
-						}));
-				}), $('#btn-spec').on('click', function ()
-				{
-					null == c4 || Date.now() < cp || (bU.spectate && this.currentServerName == c4.name ? b4(c6) : (bU.spectate = !0x0, e6.incrementPlay() && 'undefined' != typeof adplayer ? (aiptag.cmd.player.push(function ()
-					{
-						adplayer.startPreRoll();
-					}), b4(c6), b8(), cp = Date.now() + 0x7d0) : (bU.spec(), ez('spectate_click'
-						, {
-							'server_name': c4 ? c4.name : void 0x0
-							, 'region': c4 ? c4.region : void 0x0
-							, 'mode': c4 ? c4.gamemode : void 0x0
-						}))));
-				});
-				var eB = function (eG)
-				{
-					var eH, eI = eG.target.value
-						, eJ = eI.split(' ');
-					if (0x26 == eG.keyCode && $(this).is(':focus')) return -0x1 == d0 ? d0 = cZ.length - 0x1 : d0 > 0x1 && d0--, d0 <= 0x0 && (d0 = 0x0), void aQ(cZ[d0]);
-					if (0x28 == eG.keyCode && $(this).is(':focus')) return -0x1 == d0 ? d0 = 0x0 : d0 < cZ.length - 0x1 && d0++, d0 >= cZ.length - 0x1 && (d0 = cZ.length - 0x1), void aQ(cZ[d0]);
-					if (0xd == eG.keyCode && $(this).is(':focus') && (0x0 != (eH = $(this).val()).length && ('/' == eH.charAt(0x0) ? function (eN)
-						{
-							var eO = eN.split(' ')
-								, eP = eO[0x0].substring(0x1);
-							aQ('');
-							var eQ = !0x1;
-							Object.keys(dH).findIndex(eR =>
-							{
-								if (dH[eR].triggers.findIndex(eS => eS.toUpperCase() === eP.toUpperCase()) > -0x1 && 0x0 == eQ) return dH[eR].action(eO.slice(0x1)), void(eQ = !0x0);
-							}), 0x0 == eQ && bU.selfMsg('Invalid command!');
-						}(eH) : (bU.sendPacket(new bV.sendChat(eH, 0x0)), aQ('')), cZ.length > 0x14 && cZ.shift(), cZ.push(eH))), 0x0 == eI.length || eI.endsWith(' ') || 0xd == eG.keyCode) $('#autocomplete-panel').html(''), $('#autocomplete-panel').hide();
-					else
-					{
-						if (eI.startsWith('/'))
-						{
-							if (eJ.length > 0x1) return;
-							$('#autocomplete-panel').html('<table><thead><tr><th>Command</th><th>Aliases</th><th>Description</th></tr></thead><tbody></tbody></table>');
-							var eK = -0x1;
-							Object.values(dH).map(eN =>
-							{
-								(eK = eN.triggers.findIndex(eO => eO.toLowerCase().startsWith(eJ[0x0].substring(0x1).toLowerCase()))) > -0x1 && $('#autocomplete-panel tbody').append('<tr><td>' + eN.triggers[eK] + '</td><td>' + eN.triggers + '</td><td>' + eN.description + '</td></tr>');
-							}), 0x0 == $('#autocomplete-panel tbody').children().length ? $('#autocomplete-panel').hide() : $('#autocomplete-panel').show();
-						}
-						else
-						{
-							if (eJ[eJ.length - 0x1].startsWith(':'))
-							{
-								$('#autocomplete-panel').html('');
-								var eL = Object.keys(cg).filter(eN => eN.toLowerCase().includes(eJ[eJ.length - 0x1].substring(0x1).toLowerCase()))
-									, eM = Object.keys(ch).filter(eN => eN.toLowerCase().includes(eJ[eJ.length - 0x1].substring(0x1).toLowerCase()));
-								if (0x0 === eL.length && 0x0 === eM.length) return $('#autocomplete-panel').html(''), void $('#autocomplete-panel').hide();
-								$('#autocomplete-panel').show(), eL.length > 0x0 && ($('#autocomplete-panel').append('<h3>Emotes</h3>'), eL.forEach(eN =>
-								{
-									$('#autocomplete-panel').append('<img name=\'' + eN + '\' title=\'' + eN + '\' src=\'images/emotes/' + eN + '.png\' />');
-								})), eM.length > 0x0 && ($('#autocomplete-panel').append('<h3>Gifs</h3>'), eM.forEach(eN =>
-								{
-									$('#autocomplete-panel').append('<img name=\'' + eN + '\' title=\'' + eN + '\' src=\'images/emotes/gifs/' + eN + '.gif\' />');
-								}));
-							}
-						}
-					}
-					d0 = -0x1;
-				};
-				cd.addEventListener('keyup', eB), cG.chatElements.push(
-				{
-					'element': cd
-					, 'event': 'keyup'
-					, 'handler': eB
-				}), $('#autocomplete-panel').on('click', function (eG)
-				{
-					var eH = aR().split(' ');
-					'TD' === eG.target.nodeName ? (aQ('/' + eG.target.parentElement.children[0x0].innerHTML + ' '), $('#autocomplete-panel').html(''), $('#autocomplete-panel').hide(), $('#chat-input').focus()) : 'IMG' === eG.target.nodeName && (aQ(aR().substring(0x0, aR().length - eH[eH.length - 0x1].length) + eG.target.attributes.name.nodeValue + ' '), $('#autocomplete-panel').html(''), $('#autocomplete-panel').hide(), $('#chat-input').focus());
-				}), $('#animationDelay').on('change', function ()
-				{
-					var eG = parseInt($(this).val());
-					isNaN(eG) && (eG = 0x5a), d1.rAnimationDelay = Math.min(Math.max(eG, 0x1), 0xfa), $('#animationDelay').val(d1.rAnimationDelay), $('#rAnimationDelay').val(d1.rAnimationDelay);
-				}), $('#reconnectPeriod').on('change', function ()
-				{
-					var eG = parseInt($(this).val());
-					isNaN(eG) && (eG = 0x5), d1.rReconnectPeriod = Math.min(Math.max(eG, 0x0), 0xa), $('#reconnectPeriod').val(d1.rReconnectPeriod), $('#rReconnectPeriod').val(d1.rReconnectPeriod);
-				}), $('#viewDistance').on('change', function ()
-				{
-					var eG = parseInt($(this).val());
-					isNaN(eG) && (eG = 0x64), d1.rViewDistance = Math.min(Math.max(eG, 0x32), 0x96), $('#viewDistance').val(d1.rViewDistance), $('#rViewDistance').val(d1.rViewDistance), bU.sendOptions();
-				}), $('#uiScale').on('change', function ()
-				{
-					var eG = parseInt($(this).val());
-					isNaN(eG) && (eG = 0x64), eG *= 0.01, d1.rUiScale = Math.min(Math.max(eG, 0.5), 1.25), $('#uiScale').val(Number.parseFloat(0x64 * d1.rUiScale).toFixed(0x0)), $('#rUiScale').val(d1.rUiScale), $('.ui-scale').css('transform', 'scale(' + d1.rUiScale + ')');
-				});
-				var eC = $('#chat-emote-btn')
-					, eD = function ()
-					{
-						var eG = dI[Math.floor(Math.random() * dI.length)];
-						eC.css('background-image', 'url(images/emotes/' + eG + '.png)');
-					};
-				eD(), cF.emoteButton && clearInterval(cF.emoteButton), cF.emoteButton = setInterval(function ()
-				{
-					document.hidden || eD();
-				}, 0x7530);
-				var eE = $('#emote-panel')
-					, eF = $('#chat-input');
-				eC.on('click', function ()
-				{
-					eE.toggle();
-				}), $('#emote-panel ul li img').on('click', function (eG)
-				{
-					var eH;
-					eH = eG.target.name + ' ', $('#chat-input').val(aR() + eH), eF.focus();
-				}), (function ()
-				{
-					function eG(eP)
-					{
-						eO = eP, eN || (eN = !0x0, requestAnimationFrame(function ()
-						{
-							var eQ = eO;
-							eM.style.width = eK + eQ.clientX - eI + 'px', eM.style.height = eL - (eQ.clientY - eJ) + 'px', eN = !0x1;
-						}));
-					}
-					
-					function eH(eP)
-					{
-						document.documentElement.removeEventListener('mousemove', eG, !0x1), document.documentElement.removeEventListener('mouseup', eH, !0x1);
-					}
-					var eI, eJ, eK, eL, eM = document.getElementById('chat-panel');
-					document.getElementById('chat-resize').addEventListener('mousedown', function (eP)
-					{
-						eI = eP.clientX, eJ = eP.clientY, eK = parseInt(document.defaultView.getComputedStyle(eM).width, 0xa), eL = parseInt(document.defaultView.getComputedStyle(eM).height, 0xa), document.documentElement.addEventListener('mousemove', eG, !0x1), document.documentElement.addEventListener('mouseup', eH, !0x1);
-					}, !0x1);
-					var eN = !0x1
-						, eO = null;
-				}()), $('.checkbox-options').on('change', function (eG)
-				{
-					b9($(this));
-				}), $('.options-container select').on('change', function (eG)
-				{
-					bb($(this));
-				}), $('.options-container input[type=range]').on('change', function (eG)
-				{
-					bc($(this));
-				}), $('#btn-changelog').on('click', function ()
-				{
-					b4($('#popup-changelog')), b2(c6), window.open('https://discord.com/channels/166703751053312000/630428963889741854', '_blank'), ez('changelog_open');
-				}), $('#btn-close-changelog').on('click', function ()
-				{
-					b4($('#popup-changelog')), b2(c6), ez('changelog_close');
-				}), $('#btn-accept').on('click', function ()
-				{
-					bU.sendPacket(new bV.sendInviteResponse(!0x0)), b4($('#popup-party'));
-				}), $('#btn-decline').on('click', function ()
-				{
-					bU.sendPacket(new bV.sendInviteResponse(!0x1)), b4($('#popup-party'));
-				}), $('#popup-party-code-content button').on('click', function ()
-				{
-					$('#popup-party-code-content input').select(), document.execCommand('Copy'), $('#popup-party-code').hide();
-				}), $('#menu-invite').on('click', function ()
-				{
-					var eG = cb.data('selected');
-					bU.sendPacket(new bV.sendPartyAction(0x0, eG));
-				}), $('#menu-whisper').on('click', function ()
-				{
-					var eG = cb.data('selected')
-						, eH = $('#chat-input').val();
-					$('#chat-input').val('/t ' + eG + ' ' + eH);
-				}), $('#menu-profile').on('click', function ()
-				{
-					var eG = cb.data('selected');
-					bU.sendPacket(new bV.sendShowProfile(eG));
-				}), $('#menu-pu_pr').on('click', function ()
-				{
-					null == bU.partyCode ? (bU.sendPacket(new bV.sendPartyAction(0x4, 0x0)), $('#menu-pu_pr span').text('Private')) : (bU.sendPacket(new bV.sendPartyAction(0x4, 0x1)), $('#menu-pu_pr span').text('Public'));
-				}), $('#menu-promote').on('click', function ()
-				{
-					var eG = cb.data('party') + 0x1;
-					eG >= 0x0 && bU.sendPacket(new bV.sendPartyAction(0x2, eG));
-				}), $('#menu-kick').on('click', function ()
-				{
-					var eG = cb.data('party') + 0x1;
-					eG >= 0x0 && bU.sendPacket(new bV.sendPartyAction(0x1, eG));
-				}), $('#menu-spectate').on('click', function ()
-				{
-					var eG = cb.data('selected');
-					eG >= 0x0 && bU.sendPacket(new bV.sendSpectate(eG));
-				}), $('#menu-block').on('click', function ()
-				{
-					var eG = bv(parseInt(cb.data('selected')));
-					bU.selfMsg(eG);
-				}), $(document).on('click', function (eG)
-				{
-					cb.hide(), 'chat-emote-btn' !== eG.target.id && $('#emote-panel').hide(), 'none' !== $('#popup-party-code').css('display') && 'popup-party-code' !== eG.target.id && $('#popup-party-code').hide();
-				}), $('#aEditChatTabs').on('click', function (eG)
-				{
-					aU(), b4(c6), b2($('#popup-chat-tab-editor'));
-				}), $('#cte-tab-selector').on('change', aV), $('#btn-chat-tab-editor-add').on('click', aX), $('#btn-chat-tab-editor-remove').on('click', aY), $('#btn-chat-tab-editor-update').on('click', aW), $('.custom-asset-skinner').on('click', function ()
-				{
-					$('#popup-asset-skinner .title-text').text($(this).text()), $('#input-asset-skinner').attr('asset', $(this).attr('id')).val(''), b4(c6), b2($('#popup-asset-skinner'));
-				}), $('#btn-custom-asset-set').on('click', function ()
-				{
-					d1.cThemeEnabled || bk();
-					var eG = $('#input-asset-skinner').val();
-					if (eG)
-					{
-						var eH = $('#input-asset-skinner').attr('asset');
-						'a' == eH.charAt(0x0) && null != d5[eH] && bf(eH, eG);
-					}
-					$('#popup-asset-skinner .back-button').trigger('click');
-				}), $('#btn-custom-asset-clear').on('click', function ()
-				{
-					d1.cThemeEnabled || bk();
-					var eG = $('#input-asset-skinner').attr('asset');
-					'a' == eG.charAt(0x0) && null != d5[eG] && bf(eG, '');
-				}), $('#popup-asset-skinner').on('dragover', !0x1).on('drop', function (eG)
-				{
-					d1.cThemeEnabled || bk();
-					var eH = $('#input-asset-skinner').attr('asset');
-					if ('a' == eH.charAt(0x0) && null != d5[eH])
-					{
-						var eI = bC(eG.originalEvent);
-						if (/\.(jpe?g|png|gif)$/i.test(eI.name))
-						{
-							var eJ = new FileReader();
-							eJ.addEventListener('load', function ()
-								{
-									bf(eH, this.result);
-								}
-								, {
-									'once': !0x0
-								}), eJ.readAsDataURL(eI);
-						}
-					}
-					return !0x1;
-				}), $('#btn-food-colors').on('click', function ()
-				{
-					aw(), b4(c6), b2($('#popup-food-colors'));
-				}), $('#btn-theme-export').on('click', function ()
-				{
-					d1.cThemeEnabled && function (eG, eH)
-					{
-						var eI = new Blob([eH]
-							, {
-								'type': 'text/plain'
-							});
-						if (window.navigator.msSaveOrOpenBlob) window.navigator.msSaveOrOpenBlob(eI, eG);
-						else
-						{
-							var eJ = document.createElement('a')
-								, eK = URL.createObjectURL(eI);
-							eJ.href = eK, eJ.download = eG, document.body.appendChild(eJ), eJ.click(), setTimeout(function ()
-							{
-								document.body.removeChild(eJ), window.URL.revokeObjectURL(eK);
-							}, 0x0);
-						}
-					}('theme.json', JSON.stringify(d5, null, 0x2));
-				}), $('#btn-theme-import').on('click', function ()
-				{
-					$('#theme-import').trigger('click');
-				}), $('#theme-import').on('change', function ()
-				{
-					var eG = $(this).prop('files');
-					eG.length > 0x0 && bj(eG[0x0]);
-				}), $('#main-themes .options-container').on('dragover', !0x1).on('drop', function (eG)
-				{
-					return bj(bC(eG.originalEvent)), !0x1;
-				}), $('#cGlobalLeaderboard').on('change', function ()
-				{
-					cu && !cz && (cz = !0x0, firebase.auth().currentUser.getIdToken().then(eG =>
-					{
-						fetch(cQ + '/api/v1/options/setFlags'
-							, {
-								'method': 'POST'
-								, 'headers':
-								{
-									'Content-Type': 'application/json'
-								}
-								, 'body': JSON.stringify(
-								{
-									'token': eG
-								})
-							}).then(eH => eH.json()).then(eH =>
-						{
-							cz = !0x1, $(this).prop('checked', eH.message);
-						}).catch(eH =>
-						{
-							cz = !0x1, alert(eH);
-						});
-					}).catch(eG =>
-					{
-						ao(eG, !0x0), cz = !0x1;
-					}));
-				}), firebase.auth().onAuthStateChanged(function (eG)
-				{
-					if (eG)
-					{
-						if (!e5.consented) return void firebase.auth().signOut().then(function () {});
-						cT || setTimeout(function ()
-						{
-							cT = !0x0;
-						}, 0x64), $('#guest').hide(), $('#account-loader').show(), bU.isConnected() && null !== firebase.auth().currentUser && firebase.auth().currentUser.getIdToken(!0x0).then(eJ =>
-						{
-							bU.sendPacket(new bV.sendAuthToken(eJ));
-						}).catch(eJ => ao(eJ, !0x0));
-						var eH = firebase.database().ref('users/' + eG.uid)
-							, eI = !0x1;
-						eH.on('value', function (eJ)
-						{
-							var eK = eJ.val();
-							if (eK)
-							{
-								if (eI || ($('#account-loader').hide(), $('#authed').show(), $('#authed').attr('style', 'display: flex;'), $('#cGlobalLeaderboard').removeAttr('disabled'), $('#cGlobalLeaderboard').prop('checked', eK.flags.PUBLIC), eI = !0x0), cu = eK, $('#account-avatar').attr('src', eK.avatar), $('#account-username').text(eK.username), eK.flags.STAFF && (cc.style.userSelect = 'text'), ap($('#account-username'), eK), $('#account-level').html('Level ' + eK.levelData.level + '&nbsp;&nbsp;&nbsp;&nbsp;' + bz(eK.levelData.xp_current) + '/' + bz(eK.levelData.xp_needed) + ' XP'), $('.xp-meter > span').each(function ()
-									{
-										var eP = eK.levelData.xp_current / eK.levelData.xp_needed * 0x64;
-										$(this).animate(
-										{
-											'width': eP + '%'
-										}, 0x4b0);
-									}), bU.accountListeners.loadServers || (bU.accountListeners.loadServers = firebase.database().ref('servers/account/' + cu.uid).on('value', function (eP)
-									{
-										var eQ = eP.val();
-										if (eQ)
-										{
-											for (var eR in (cV = {}, eQ))
-											{
-												var eS = eQ[eR];
-												eS.up && (cV[eS.name] = new aK(eS.name, eS.ip + ':' + eS.port, 0x0, 0x0, '?', eS.gamemode, eS.region, eS.ssl, 0x0));
-											}
-											aL(), null != c4 && aN(c4.name);
-										}
-									})), eK.flags.DISCORD_LINKED && !bU.accountListeners.loadDiscord && (bU.accountListeners.loadDiscord = firebase.firestore().collection('discord').doc(cu.uid).onSnapshot(eP =>
-									{
-										eP.exists ? ($('#discordLinkStatus').text('Your account is linked with ' + eP.data().username + '#' + eP.data().discrim), $('#discordLinkStatus').show(), $('#discordLink').hide(), $('#discordUnlink').show(), $('.discord-login-container').css('padding', '15px')) : ($('#discordLinkStatus').hide(), $('#discordUnlink').hide(), $('#discordLink').show(), $('.discord-login-container').css('padding', '30px'));
-									})), void 0x0 !== eK.tokens)
-								{
-									var eL = new Date();
-									eL.setMonth(eL.getMonth() + eK.tokens), 0x0 == eK.tokens ? ($('#redeem-tokens').hide(), $('#token-amount').text('You have 0 tokens.')) : ($('#redeem-tokens').show(), $('#token-amount').text('You have ' + eK.tokens + ' tokens, maximum expiry date: ' + eL.toString()), $('#redeem-spend').attr('max', eK.tokens));
-								}
-								else $('#token-amount').text('You have 0 tokens.');
-								if (cu.title && cu.title > 0x0 && cv && cv.titles && cv.titles.length > 0x0)
-								{
-									for (var eM = $('#account-titles'), eN = 0x0, eO = 0x0; eO < cv.titles.length; eO++) cv.titles[eO] == cu.title && (eN = eO + 0x1);
-									eN > 0x0 && eM.val(eN);
-								}
-								bU.accountListeners.loadPrivateData || (bU.accountListeners.loadPrivateData = firebase.database().ref('private/' + eG.uid).on('value', function (eP)
-								{
-									var eQ = eP.val();
-									if (eQ)
-									{
-										if ((cv = eQ).titles && cv.titles.length > 0x0)
-										{
-											var eR = $('#account-titles')
-												, eS = 0x0;
-											eR.empty(), eR.append('<option value=\'0\'>Default Title</option>');
-											for (var eT = 0x0; eT < eQ.titles.length; eT++) eR.append('<option value=\'' + (eT + 0x1) + '\'>' + dF[cv.titles[eT]] + '</option>'), cv.titles[eT] == cu.title && (eS = eT + 0x1);
-											eS > 0x0 && eR.val(eS), eR.css('display', 'inline-block');
-										}
-										else $('#account-titles').css('display', 'none');
-										cv.message && cv.message.title && cv.message.content && !cv.message.read && ($('#popup-message-title').text(cv.message.title), $('#popup-message-content').html(cv.message.content), b2($('#popup-message')), b4(c6));
-									}
-								})), cw && au(cu), aJ(eG.uid);
-							}
-						});
-					}
-					else $('#cGlobalLeaderboard').attr('disabled'), e5.consented ? ($('#authed').hide(), $('#account-loader').hide(), $('#no_cookie_consent').hide(), $('#guest').show()) : ($('#authed').hide(), $('#account-loader').hide(), $('#guest').hide(), $('#no_cookie_consent').show());
-				}), $('#account-login').on('click', function ()
-				{
-					e5.consented && firebase.auth().signInWithPopup(cP).then(function (eG) {}).catch(eG => ao(eG, !0x0));
-				}), $('#account-logout').on('click', function ()
-				{
-					firebase.auth().signOut().then(function ()
-					{
-						$('#authed').hide(0x1f4), $('#guest').show(), $('#discordLinkStatus').hide(), $('.discord-login-container').show();
-					}).catch(eG => ao(eG, !0x0));
-				}), $('#account-shop').on('click', function ()
-				{
-					window.open('https://store.gota.io/', '_blank');
-				}), $('#account-social').on('click', function ()
-				{
-					cu && (au(cu), b2($('#main-social')), b4($(c6)));
-				}), $('#social-back-button').on('click', function ()
-				{
-					b4($('#main-social')), b2($(c6));
-				}), $('#account-profile').on('click', function ()
-				{
-					as(cu, c6);
-				}), $('#food-colors-close-btn').on('click', function ()
-				{
-					b5(c6), b4($('#popup-food-colors'));
-				}), $('#account-titles').on('change', function ()
-				{
-					if (!cz)
-					{
-						var eG = parseInt($(this).val());
-						cz = !0x0, firebase.auth().currentUser.getIdToken().then(eH =>
-						{
-							fetch(cQ + '/api/v1/options/setTitle'
-								, {
-									'method': 'POST'
-									, 'headers':
-									{
-										'Content-Type': 'application/json'
-									}
-									, 'body': JSON.stringify(
-									{
-										'token': eH
-										, 'title': eG
-									})
-								}).then(eI => eI.json()).then(eI =>
-							{
-								cz = !0x1;
-							}).catch(eI =>
-							{
-								cz = !0x1;
-							});
-						}).catch(eH =>
-						{
-							ao(eH, !0x0), cz = !0x1;
-						});
-					}
-				}), $('#popup-message-read-btn').on('click', function ()
-				{
-					cz || (b4($('#popup-message')), b5(c6), cz = !0x0, firebase.auth().currentUser.getIdToken().then(eG =>
-					{
-						fetch(cQ + '/api/v1/options/markAsRead'
-							, {
-								'method': 'POST'
-								, 'headers':
-								{
-									'Content-Type': 'application/json'
-								}
-								, 'body': JSON.stringify(
-								{
-									'token': eG
-								})
-							}).then(eH => eH.json()).then(eH =>
-						{
-							cz = !0x1;
-						}).catch(eH =>
-						{
-							cz = !0x1;
-						});
-					}).catch(eG =>
-					{
-						ao(eG, !0x0), cz = !0x1;
-					}));
-				}), $('#account-set-username-btn').on('click', function ()
-				{
-					if (cu)
-					{
-						eA(!0x1, this);
-						var eG = $('#account-username-input').val();
-						if (!eG || '' == eG || '' == eG.trim()) return alert('Please provide a username!'), void eA(!0x0, this);
-						firebase.auth().currentUser.getIdToken().then(eH =>
-						{
-							fetch(cQ + '/api/v1/social/username'
-								, {
-									'method': 'POST'
-									, 'headers':
-									{
-										'Content-Type': 'application/json'
-									}
-									, 'body': JSON.stringify(
-									{
-										'token': eH
-										, 'username': eG
-									})
-								}).then(eI => eI.json()).then(eI =>
-							{
-								if (eA(!0x0, this), 0xc8 == eI.code) return b5(c6), void $('#popup-account-username').hide();
-								alert(eI.message);
-							}).catch(eI =>
-							{
-								alert(eI), eA(!0x0, this);
-							});
-						}).catch(eH =>
-						{
-							eA(!0x0, this), ao(eH, !0x0);
-						});
-					}
-				}), $('.popup-panel .back-button').on('click', function ()
-				{
-					$('.popup-panel').each(function ()
-					{
-						b4($(this));
-					}), b5(c6);
-				}), $('#discordLink').on('click', function ()
-				{
-					cu && firebase.auth().currentUser.getIdToken().then(eG =>
-					{
-						window.open('https://accounts.gota.io/api/v1/options/discord/redirect?token=' + eG, 'popup', 'width=600,height=700');
-					});
-				}), $('#discordUnlink').on('click', function ()
-				{
-					cu && firebase.auth().currentUser.getIdToken().then(eG =>
-					{
-						fetch(cQ + '/api/v1/options/discord/unlink'
-							, {
-								'method': 'POST'
-								, 'body': JSON.stringify(
-								{
-									'token': eG
-								})
-								, 'headers':
-								{
-									'Content-Type': 'application/json'
-								}
-							}).then(eH => eH.json()).then(eH =>
-						{
-							alert(eH.message);
-						});
-					}).catch(eG => ao(eG));
-				}), $('#redeem-tokens').submit(function (eG)
-				{
-					if (eG.preventDefault(), cu && confirm('By redeeming, you are agreeing the locked name rules linked below the form.\x0a\x0aABUSE WILL RESULT IN THE DELETION OF YOUR LOCKED NAME WITH NO REFUND AND THE POSSIBILITY OF ACCOUNT SUSPENSION.\x0a\x0aPress OK to redeem.'))
-					{
-						var eH = $('#redeem-name').val()
-							, eI = $('#redeem-spend').val();
-						firebase.auth().currentUser.getIdToken().then(eJ =>
-						{
-							fetch(cQ + '/api/v1/options/redeem'
-								, {
-									'method': 'POST'
-									, 'body': JSON.stringify(
-									{
-										'token': eJ
-										, 'name': eH
-										, 'spend': parseInt(eI)
-									})
-									, 'headers':
-									{
-										'Content-Type': 'application/json'
-									}
-								}).then(eK => eK.json()).then(eK =>
-							{
-								alert(eK.message), 0xc8 === eK.code && aJ(cu.uid);
-							});
-						}).catch(eJ => ao(eJ));
-					}
-				}), $('.error-banner').on('click', function ()
-				{
-					$(this).hide();
-				}), $('#btn-add-friend').on('click', function (eG)
-				{
-					if (eG.preventDefault(), cu)
-					{
-						var eH = prompt('Enter friend\'s UID (found above add friend button)');
-						if (eH)
-						{
-							var eI = eH.replace(/\s/g, '');
-							if ('string' != typeof eH || 0x0 === eI.length) return alert('Please enter a valid UID');
-							firebase.auth().currentUser.getIdToken().then(eJ =>
-							{
-								fetch(cQ + '/api/v1/social/friends'
-									, {
-										'method': 'POST'
-										, 'headers':
-										{
-											'Content-Type': 'application/json'
-										}
-										, 'body': JSON.stringify(
-										{
-											'token': eJ
-											, 'target': eI
-											, 'action': 0x1
-										})
-									}).then(eK => eK.json()).then(eK =>
-								{
-									alert(eK.message);
-								});
-							}).catch(eJ => ao(eJ, !0x0));
-						}
-					}
-				}), cO.partyCanvas && (cO.partyCanvas.oncontextmenu = dp), $(document).keyup(function (eG)
-				{
-					if (0xd == eG.keyCode)
-					{
-						var eH = $('#chat-input');
-						if ('INPUT' != document.activeElement.tagName)
-						{
-							var eI = eH[0x0];
-							eI && eI.setSelectionRange(eI.value.length, eI.value.length), eH.focus();
-						}
-						else eH.is(':focus') && eH.blur();
-					}
-				}), $(window).bind('beforeunload', function ()
-				{
-					return 'Are you sure you want to leave Gota.io?';
-				}), aF(), $('.keybinds-btn').on('click', function ()
-				{
-					$('.keybinds-btn').removeClass('keybinds-btn-selected'), $(this).addClass('keybinds-btn-selected'), d3 = !0x0;
-				}), $('#btn-reset-keybinds').on('click', function ()
-				{
-					$('.keybinds-btn').each(function ()
-					{
-						var eG = $(this)
-							, eH = eG.attr('id');
-						null != d4[eH] && (d2[eH] = d4[eH], az(eG));
-					}), aA();
-				}), $('#scrimmage-mode-select').on('change', function ()
-				{
-					$('#scrimmage-mode-info').children().css('display', 'none'), $('#scrimmage-info-' + $(this).val()).css('display', 'block');
-				}), $('#btn-queue').on('click', function ()
-				{
-					var eG = parseInt($('#scrimmage-mode-select').val())
-						, eH = isNaN(eG) ? 0x0 : Math.min(Math.max(eG, 0x0), 0x64);
-					bU.sendPacket(new bV.sendQueue(eH)), $(this).blur();
-				}), $('#btn-leave-match').on('click', function ()
-				{
-					bU.sendPacket(new bV.sendLeaveMatch()), 'undefined' != typeof window && 'function' == typeof window.gtag && window.gtag('event', 'leave_match'
-						, {
-							'server_name': bU.currentServerName || (c4 ? c4.name : void 0x0)
-						});
-				}), $('#btn-custom-create').on('click', function ()
-				{
-					bU.sendPacket(new bV.sendCustomGame(0x0)), $(this).blur();
-				}), $('#btn-custom-return').on('click', function ()
-				{
-					bU.sendPacket(new bV.sendCustomGame(0x1));
-				}), $('#btn-custom-start').on('click', function ()
-				{
-					bU.sendPacket(new bV.sendCustomGame(0x2));
-				}), $('#btn-custom-lobbies').on('click', function ()
-				{
-					bU.sendPacket(new bV.sendShowLobbies());
-				}), $('#btn-lobbies-refresh').on('click', function ()
-				{
-					bU.sendPacket(new bV.sendShowLobbies());
-				}), $('#btn-lobbies-join').on('click', function ()
-				{
-					if (0x0 !== c5)
-					{
-						var eG = c5
-							, eH = ''
-							, eI = ck[eG];
-						null != eI && (eI.hasPasscode && (eH = prompt('Enter the password to join this game', '')), null == eH && (eH = ''), bU.sendPacket(new bV.sendJoinLobby(eG, eH)));
-					}
-				}), $('#btn-lobbies-return').on('click', function ()
-				{
-					$('.scrimmage-full').css('display', 'none'), $('#scrimmage-menu').css('display', 'block');
-				}), $('#scrimmage-map').on('change', function (eG)
-				{
-					var eH = $(this).find('option:selected').val()
-						, eI = $(this).attr('data');
-					eH != eI && ($('#scrimmage-map option[value=\'' + eI + '\']').prop('selected', !0x0), bU.sendPacket(new bV.sendCustomGameUpdate(dU.MAP, eH)));
-				}), $('#scrimmage-mapmode').on('change', function (eG)
-				{
-					var eH = $(this).find('option:selected').val()
-						, eI = $(this).attr('data');
-					eH != eI && ($('#scrimmage-mapmode option[value=\'' + eI + '\']').prop('selected', !0x0), bU.sendPacket(new bV.sendCustomGameUpdate(dU.MODE, eH)));
-				}), $('#scrimmage-mapsize').on('change', function (eG)
-				{
-					var eH = $(this).find('option:selected').val()
-						, eI = $(this).attr('data');
-					eH != eI && ($('#scrimmage-mapsize option[value=\'' + eI + '\']').prop('selected', !0x0), bU.sendPacket(new bV.sendCustomGameUpdate(dU.SIZE, eH)));
-				}), $('#scrimmage-startmass').on('change', function (eG)
-				{
-					var eH = $(this).val()
-						, eI = $(this).attr('data');
-					isNaN(eH) ? $(this).val(eI) : (eH = Math.max(0x1, Math.min(parseInt(eH), 0x7d00))) != eI && ($(this).val(eI), bU.sendPacket(new bV.sendCustomGameUpdate(dU.STARTMASS, eH)));
-				}), $('#scrimmage-virusDensity').on('change', function (eG)
-				{
-					var eH = $(this).val()
-						, eI = $(this).attr('data');
-					isNaN(eH) ? $(this).val(eI) : (eH = Math.max(0x0, Math.min(parseInt(eH), 0x3e8))) != eI && ($(this).val(eI), bU.sendPacket(new bV.sendCustomGameUpdate(dU.VIRUS_DENSITY, eH)));
-				}), $('#scrimmage-respawnDelay').on('change', function (eG)
-				{
-					var eH = $(this).val()
-						, eI = $(this).attr('data');
-					isNaN(eH) ? $(this).val(eI) : (eH = Math.max(-0x1, Math.min(parseInt(eH), 0x258))) != eI && ($(this).val(eI), bU.sendPacket(new bV.sendCustomGameUpdate(dU.RESPAWN_DELAY, eH)));
-				}), $('#scrimmage-lockteams').on('change', function (eG)
-				{
-					var eH = $(this).prop('checked');
-					$(this).prop('checked', !eH), bU.sendPacket(new bV.sendCustomGameUpdate(dU.LOCK, 0x1 == eH ? 0x1 : 0x0));
-				}), $('#scrimmage-autoSplit').on('change', function (eG)
-				{
-					var eH = $(this).prop('checked');
-					$(this).prop('checked', !eH), bU.sendPacket(new bV.sendCustomGameUpdate(dU.AUTOSPLIT, 0x1 == eH ? 0x1 : 0x0));
-				}), $('#scrimmage-public').on('change', function (eG)
-				{
-					var eH = $(this).prop('checked');
-					$(this).prop('checked', !eH), bU.sendPacket(new bV.sendCustomGameUpdate(dU.PUBLIC, 0x1 == eH ? 0x1 : 0x0));
-				}), $('#scrimmage-password').on('change', function (eG)
-				{
-					var eH = $(this).prop('checked');
-					$(this).prop('checked', !eH);
-					var eI = '';
-					eH && (eI = prompt('Enter a password to join your game (32 max characters)', '')), null == eI && (eI = ''), bU.sendPacket(new bV.sendCustomGameUpdateString(dU.PASSWORD, eI));
-				}), $('#scrimmage-name').on('click', function (eG)
-				{
-					if (bU.isPartyLeader())
-					{
-						var eH = prompt('Enter a new name for your game (32 max characters)', $(this).text());
-						null != eH && bU.sendPacket(new bV.sendCustomGameUpdateString(dU.NAME, eH));
-					}
-				});
-			}());
-			var ex = ac;
-			window.addEventListener('unload', ex), cG.windowEvents.push(
-			{
-				'element': window
-				, 'event': 'unload'
-				, 'handler': ex
-			}), bU = new ad(), bV = new ai(), (function ()
-			{
-				function ez(eN)
-				{
-					var eO = eN.start
-						, eP = eN.end;
-					return eO.month > eP.month ? eC >= eO.month && eD >= eO.day || eC <= eP.month && eD <= eP.day : (eC > eO.month || eC === eO.month && eD >= eO.day) && (eC < eP.month || eC === eP.month && eD <= eP.day);
-				}
-				
-				function eA(eN)
-				{
-					return void 0x0 !== cS[eN];
-				}
-				var eB = new Date()
-					, eC = eB.getMonth() + 0x1
-					, eD = eB.getDate()
-					, eE = {
-						'halloween':
-						{
-							'start':
-							{
-								'month': 0xa
-								, 'day': 0x1
-							}
-							, 'end':
-							{
-								'month': 0xb
-								, 'day': 0x7
-							}
-							, 'themes': ['halloween', 'halloween2020'
-								
-								
-								
-								
-								
-								
-								
-								
-                                                                
-								, 'halloween2023']
-						}
-						, 'xmas':
-						{
-							'start':
-							{
-								'month': 0xc
-								, 'day': 0x1
-							}
-							, 'end':
-							{
-								'month': 0x1
-								, 'day': 0x7
-							}
-							, 'themes': ['xmas']
-						}
-						, 'valentines':
-						{
-							'start':
-							{
-								'month': 0x2
-								, 'day': 0x1
-							}
-							, 'end':
-							{
-								'month': 0x2
-								, 'day': 0x15
-							}
-							, 'themes': ['valentines']
-						}
-						, 'spring':
-						{
-							'start':
-							{
-								'month': 0x3
-								, 'day': 0xf
-							}
-							, 'end':
-							{
-								'month': 0x5
-								, 'day': 0x1f
-							}
-							, 'themes': ['spring']
-						}
-						, 'summer':
-						{
-							'start':
-							{
-								'month': 0x6
-								, 'day': 0xf
-							}
-							, 'end':
-							{
-								'month': 0x8
-								, 'day': 0x1f
-							}
-							, 'themes': ['summer']
-						}
-						, 'new_years':
-						{
-							'start':
-							{
-								'month': 0xc
-								, 'day': 0x1e
-							}
-							, 'end':
-							{
-								'month': 0x1
-								, 'day': 0x5
-							}
-							, 'themes': ['new_years']
-						}
-						, 'birthday':
-						{
-							'start':
-							{
-								'month': 0x0
-								, 'day': 0x0
-							}
-							, 'end':
-							{
-								'month': 0x0
-								, 'day': 0x0
-							}
-							, 'themes': ['birthday_2018']
-						}
-					}
-					, eF = null;
-				for (var eG in eE)
-				{
-					var eH = eE[eG];
-					if (ez(eH))
-					{
-						for (var eI = 0x0; eI < eH.themes.length; eI++)
-						{
-							var eJ = eH.themes[eI];
-							if (eA(eJ))
-							{
-								eF = eJ;
-								break;
-							}
-						}
-						if (eF) break;
-					}
-				}
-				if (eF && cS[eF])
-				{
-					var eK = cS[eF];
-					cR.key = eK.key, cR.foodColors = eK.foodColors.slice(), cR.customEjectedMass = eK.customEjectedMass, cR.motd = eK.motd, cR.motherCustomEnabled = eK.motherCustomEnabled, cR.enabled = !0x0;
-				}
-				else cR.enabled = !0x1, cR.key = '', cR.foodColors = [], cR.motd = '';
-				if (cR.enabled && !d1.cDisableEventSkins && $('body').addClass('event-' + cR.key), cR.enabled && cR.foodColors && cR.foodColors.length > 0x0 && !d1.cDisableEventSkins)
-				{
-					if (br = function (eN)
-						{
-							return cR.foodColors[eN % cR.foodColors.length];
-						}, void 0x0 !== bU && bU && bU.foodObjects)
-					{
-						for (var eL in bU.foodObjects)(eM = bU.foodObjects[eL]) && (eM.color = br(eM.id), eM.needsPixiUpdate = !0x0);
-					}
-				}
-				else
-				{
-					if (br = function (eN)
-						{
-							return dC[eN % dC.length];
-						}, void 0x0 !== bU && bU && bU.foodObjects)
-						for (var eL in bU.foodObjects)
-						{
-							var eM;
-							(eM = bU.foodObjects[eL]) && (eM.color = br(eM.id), eM.needsPixiUpdate = !0x0);
-						}
-				}
-				aB(), aC();
-			}()), (function ()
-			{
-				if (Coloris(
-					{
-						'theme': 'pill'
-						, 'themeMode': 'dark'
-						, 'el': '[data-coloris]'
-					}), window.Coloris && 'function' == typeof Coloris.setInstance)
-				{
-					Coloris.setInstance('#spChatColor'
-						, {
-							'swatches': dE
-							, 'swatchesOnly': !0x0
-							, 'theme': 'pill'
-							, 'themeMode': 'dark'
-							, 'alpha': !0x1
-						}), Coloris.setInstance('#spNameColor'
-						, {
-							'swatches': []
-							, 'swatchesOnly': !0x1
-							, 'theme': 'pill'
-							, 'themeMode': 'dark'
-							, 'alpha': !0x1
-						});
-					const eC = document.getElementById('spNameColor')
-						, eD = document.getElementById('spChatColor');
-					eC && eC.addEventListener('focus', function ()
-					{
-						Coloris.setInstance('#spNameColor'
-							, {
-								'swatches': []
-								, 'swatchesOnly': !0x1
-								, 'theme': 'pill'
-								, 'themeMode': 'dark'
-								, 'alpha': !0x1
-							});
-					}), eD && eD.addEventListener('focus', function ()
-					{
-						Coloris.setInstance('#spChatColor'
-							, {
-								'swatches': dE
-								, 'swatchesOnly': !0x0
-								, 'theme': 'pill'
-								, 'themeMode': 'dark'
-								, 'alpha': !0x1
-							});
-					}), document.querySelectorAll('[data-coloris]').forEach(function (eE)
-					{
-						eE.id && 'spChatColor' !== eE.id && 'spNameColor' !== eE.id && eE.addEventListener('focus', function ()
-						{
-							Coloris.setInstance('#' + eE.id
-								, {
-									'swatches': []
-									, 'swatchesOnly': !0x1
-									, 'theme': 'pill'
-									, 'themeMode': 'dark'
-									, 'alpha': !0x1
-								});
-						});
-					});
-				}
-				a8(function (eE)
-				{
-					const eF = document.getElementById(eE);
-					eF && (eF.value = d5[eE], eF.addEventListener('input', function (eG)
-					{
-						d5[eE] = eG.target.value, bd(eE, d5[eE]);
-					}));
-				});
-				const ez = document.getElementById('pFoodColors');
-				let eA = document.getElementById('btnAddFoodColor');
-				ez && !eA && (eA = document.createElement('button'), eA.id = 'btnAddFoodColor', eA.textContent = 'Add', eA.type = 'button', ez.insertAdjacentElement('afterend', eA)), ez && eA && eA.addEventListener('click', function ()
-				{
-					d1.cThemeEnabled || bk();
-					var eE = ez.value;
-					eE && !d5._FoodColors.includes(eE) && (d5._FoodColors.push(eE), aw());
-				});
-				const eB = cO.tracerColorInput || document.getElementById('rTracerColor');
-				eB && (eB.value = d1.rTracerColor || '#ffffff', eB._listenersAdded || (eB.addEventListener('input', function (eE)
-				{
-					d1.rTracerColor = eE.target.value, d1._tracerColorCached = bF.utils.string2hex(d1.rTracerColor), bg();
-				}), eB._listenersAdded = !0x0));
-			}()), e5.init(), aS();
-			var ey = {
-				'view': bR
-				, 'backgroundAlpha': 0x0
-				, 'forceCanvas': 'CANVAS' === d1.sRenderType
-				, 'antialias': !d1.cDisableAA
-			};
-			bG = {
-				'renderer': bF.autoDetectRenderer(ey)
-				, 'stage': bH
-			}, $('#performance-refresh').hide(), cL = a7(0x80), cM = a7(0x20), cN = a7(0x8), window.addEventListener('resize', a6), cG.windowEvents.push(
-			{
-				'element': window
-				, 'event': 'resize'
-				, 'handler': a6
-			}), a6(), bW = 'undefined' != typeof performance && performance.now ? performance.now() : Date.now(), bU.selfMsg('Welcome to Weyno Gota.io Mode!'), cR.enabled && '' !== cR.motd && bU.selfMsg(cR.motd), (function ()
-			{
-				if (e5.consented)
-				{
-					var ez = localStorage.getItem('version')
-						, eA = version.split('.');
-					null !== ez ? (ez = ez.split('.'), (eA[0x0] != ez[0x0] || eA[0x1] != ez[0x1]) && (localStorage.setItem('version', version), b4(c6), b2($('#popup-changelog')))) : localStorage.setItem('version', version);
-				}
-			}()), df.start();
-		}());
-	}), (function ()
-	{
-		function a5(a7, a8, a9, aa, ab, ac)
-		{
-			var ad = navigator ||
-				{}
-				, ae = ad.userAgent || ''
-				, af = {
-					'tv': 0x2
-				};
-			try
-			{
-				var ag = window[a7];
-				ag && ag._envSig && (af.mx = ag._envSig);
-			}
-			catch (ao)
-			{}
-			var ah = 0x0
-				, ai = 0x0;
-			try
-			{
-				window.process && process.versions && process.versions.electron && (ah |= 0x1);
-			}
-			catch (ap)
-			{}
-			try
-			{
-				/Electron/i.test(ae) && (ah |= 0x2);
-			}
-			catch (aq)
-			{}
-			try
-			{
-				'function' == typeof window.require && (ah |= 0x4);
-			}
-			catch (ar)
-			{}
-			try
-			{
-				window.process && 'renderer' === window.process.type && (ah |= 0x8);
-			}
-			catch (as)
-			{}
-			try
-			{
-				ad.webdriver && (ai |= 0x1);
-			}
-			catch (at)
-			{}
-			af.el = ah, af.hv = ai, af.ua = function (au)
-			{
-				for (var av = 0x811c9dc5, aw = 0x0; aw < au.length; aw++) av = 0x1000193 * ((av ^= au.charCodeAt(aw)) >>> 0x0);
-				return (av >>> 0x0).toString(0x24).toUpperCase();
-			}(ae), af.pf = ad.userAgentData && ad.userAgentData.platform || ad.platform || '';
-			var aj = [];
-			0x1 & ah && aj.push('EP'), 0x2 & ah && aj.push('EU'), 0x4 & ah && aj.push('RF'), 0x8 & ah && aj.push('PR'), 0x1 & ai && aj.push('WD'), aj.length && (af.mk = aj.join(','));
-			try
-			{
-				for (var ak = a5.toString(), al = ak.length, am = 0x0, an = 0x0; an < ak.length; an++) am = am + ak.charCodeAt(an) & 0xffff;
-				af.ti = {
-					'l': al
-					, 'c': am
-				}, (al < 0x96 || al > 0x4b0) && (aj.push ? aj : []).push('TM'), aj.length && !af.mk ? af.mk = aj.join(',') : aj.length && (af.mk = af.mk + ',' + aj[aj.length - 0x1]);
-				try
-				{
-					af.dq = ((0xffff & (al ^ am ^ 0x5f37)) >>> 0x0).toString(0x24).toUpperCase();
-				}
-				catch (au)
-				{}
-			}
-			catch (av)
-			{}
-			return JSON.stringify(af);
-		}
-		if (!window.__GOTA_TELEM_INIT__)
-		{
-			window.__GOTA_TELEM_INIT__ = !0x0;
-			var a6 = 'undefined' != typeof WeakSet ? new WeakSet() : [];
-			window.sendEnvTelemetry = function (a7, a8, a9, aa, ab, ac, ad)
-			{
-				if (a7 && 0x1 === a7.readyState && ! function (aj)
-					{
-						return !aj || (a6 instanceof Array ? -0x1 !== a6.indexOf(aj) : a6.has(aj));
-					}(a7))
-				{
-					! function (aj)
-					{
-						aj && (a6 instanceof Array ? -0x1 === a6.indexOf(aj) && a6.push(aj) : a6.add(aj));
-					}(a7);
-					var ae = a5(aa || '');
-					try
-					{
-						var af = new TextEncoder().encode(ae);
-						if (af.length > 0x4b0) return;
-						! function (aj, ak)
-						{
-							for (var al = ak >>> 0x0, am = 0x0; am < aj.length; am++) al ^= al << 0xd, al ^= al >>> 0x11, al ^= al << 0x5, al >>>= 0x0, aj[am] ^= 0xff & al;
-						}(af, (a8 ^ a9 ^ ab ^ ac ^ ad) >>> 0x0);
-						var ag = new ArrayBuffer(0x3 + af.length)
-							, ah = new DataView(ag);
-						ah.setUint8(0x0, 0x7d), ah.setUint16(0x1, af.length, !0x0);
-						for (var ai = 0x0; ai < af.length; ai++) ah.setUint8(0x3 + ai, af[ai]);
-						a7.send(ag);
-					}
-					catch (aj)
-					{}
-				}
-			};
-		}
-	}());
-}());
+        }, 1500);
+      } else {
+        
+        this.spec();
+      }
+    }
+    this.sendPacket(VoidGBYH.handshakeStart());
+    this.sendPing();
+    this.sendOptions();
+    const AxisLockThreshold = this.isPrimary ? MYstEuQeaa14_err : FLsTXl;
+    if (AxisLockThreshold.auth().currentUser !== null) {
+      
+      AxisLockThreshold.auth()
+        .currentUser.getIdToken(true)
+        .then((AxisLockThreshold) => {
+          
+          this.sendPacket(VoidGBYH.sendAuthToken(AxisLockThreshold));
+        })
+        .catch(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            return HelperBFZkQ(AxisLockThreshold[0], true);
+          })
+        );
+    } else if (!this.spectate) {
+      this.sendPacket(VoidGBYH.setName(this.name));
+    } else {
+      this.sendPacket(VoidGBYH.sendSpectate());
+    }
+  }
+  disconnect() {
+    
+    GetEre34Q = 0;
+    $("#currentTotalXP").hide();
+    $("#currentTotalXP").text("");
+    if (this.socket) {
+      
+      this.socket.close();
+    }
+    if (this.isPrimary) {
+      
+      this.serverData.border.enabled = false;
+      if (Str_NmyJ4kX.socket) {
+        Str_NmyJ4kX.socket.close();
+      }
+      jQueryLzNd.open("mainModal");
+      Proto$L05X_ea9c6_sub();
+    } else {
+      
+      this.isConnecting = false;
+      this.stopReconnectAttempts();
+    }
+  }
+  clearBuckets() {
+    
+    for (const AxisLockThreshold of this.players.values()) {
+      
+      jQuery_hn$0_2t_ea9b2_sub.unregister(AxisLockThreshold);
+    }
+    this.players.clear();
+    for (const minimapSmoothFactor of this.foodObjects.values()) {
+      jQuery_hn$0_2t_ea9b2_sub.unregister(minimapSmoothFactor);
+    }
+    this.foodObjects.clear();
+  }
+  reset() {
+    
+    GetEre34Q = 0;
+    $("#currentTotalXP").hide();
+    $("#currentTotalXP").text("");
+    if (!this.isPrimary) {
+      
+      this.stopReconnectAttempts();
+    }
+    this.clearBuckets();
+    this.myCells.clear();
+    this.spectatingId = 0;
+    if (this.isPrimary) {
+      
+      Map$XDb6n5y_ea974_State.clear();
+    }
+    const AxisLockThreshold = this.isPrimary
+      ? "seenByClient1"
+      : "seenByClient2";
+    for (const minimapSmoothFactor of zLCuf8c.players.values()) {
+      
+      minimapSmoothFactor[AxisLockThreshold] = false;
+    }
+    this.playerId = 0;
+    this.score = 0;
+    this.customGameMap = null;
+    this.currentServer = null;
+    VJjDr.stopLinesplit(this);
+    this.clearParty();
+    VJjDr.handlePlayerDeathOrDisconnect();
+    this.serverData.hasSentSubPanel = false;
+    this.serverData.resetType = 0;
+    this.serverData.autosplits = false;
+    this.serverData.border.enabled = false;
+    if (this.isPrimary) {
+      g5Mea9c8_TYPE();
+    } else if (!If$sEyzqKbhea93f_Exec || !If$sEyzqKbhea93f_Exec.isConnected()) {
+      
+      g5Mea9c8_TYPE();
+    }
+    if (this.socket != null) {
+      
+      this.socket = null;
+    }
+    if (this.subPanelOverride) {
+      
+      this.subPanelOverride = false;
+      as_dX7WJBQ_ea9c4_mul();
+    }
+  }
+  stopReconnectAttempts() {
+    if (!this.isPrimary && this.reconnectIntervalId) {
+      
+      clearTimeout(this.reconnectIntervalId);
+      this.reconnectIntervalId = null;
+    }
+  }
+  attemptPlayer2Connection() {
+    
+    if (this.isPrimary || !this.isConnecting || this.isConnected()) {
+      
+      this.stopReconnectAttempts();
+      this.isConnecting = false;
+      return;
+    }
+    Logger.info(
+      "Player 2 attempting to connect to " + this.currentServerName + "..."
+    );
+    this.connect(NghauAMea965_VAL.ip);
+  }
+  handleDeath() {
+    if (for_zWYea948_lte) {
+      const AxisLockThreshold = faCUfKea9fb_add();
+      const minimapSmoothFactor = this;
+      if (minimapSmoothFactor !== AxisLockThreshold && AxisLockThreshold) {
+        
+        minimapSmoothFactor.selfMsg(
+          "Multi died. Spectating active player and preparing to respawn..."
+        );
+        minimapSmoothFactor.sendPacket(
+          VoidGBYH.sendSpectate(AxisLockThreshold.playerId)
+        );
+        setTimeout(() => {
+          if (minimapSmoothFactor && minimapSmoothFactor.isConnected()) {
+            minimapSmoothFactor.play();
+          }
+        }, 1000);
+        for_zWYea948_lte = false;
+        return;
+      }
+    }
+    VJjDr.stopLinesplit(this);
+    const drawMinimapInterval = faCUfKea9fb_add() === this;
+    const baseCellSize =
+      this === If$sEyzqKbhea93f_Exec ? Str_NmyJ4kX : If$sEyzqKbhea93f_Exec;
+    let combinedCameraDistanceThreshold;
+    if (drawMinimapInterval) {
+      if (React_RtHu4Gea946) {
+        
+        if (!jQueryLzNd.isOpen("mainModal")) {
+          this.spec();
+        }
+        React_RtHu4Gea946 = false;
+        return;
+      }
+      combinedCameraDistanceThreshold = Mao5huZea938_run.cAutoRespawn;
+      if (combinedCameraDistanceThreshold) {
+        
+        if (!jQueryLzNd.isOpen("mainModal")) {
+          
+          this.play();
+        }
+      } else if (baseCellSize && baseCellSize.myCells.size > 0) {
+        ForKgjVzrQea9fc_Status();
+      }
+    } else {
+      combinedCameraDistanceThreshold = El_SqvbXGiea949_Tmp;
+      if (combinedCameraDistanceThreshold) {
+        
+        this.isConnecting = false;
+        if (!jQueryLzNd.isOpen("mainModal")) {
+          this.play();
+        }
+      }
+    }
+  }
+  handleKey(AxisLockThreshold) {
+    if (AxisLockThreshold === 38) {
+      this.mouseZoom *= 1.05;
+      this.mouseZoom =
+        this.mouseZoom > 5 ? 5 : this.mouseZoom < 0.1 ? 0.1 : this.mouseZoom;
+      return;
+    }
+    if (AxisLockThreshold === 40) {
+      this.mouseZoom *= 0.95;
+      this.mouseZoom =
+        this.mouseZoom > 5 ? 5 : this.mouseZoom < 0.1 ? 0.1 : this.mouseZoom;
+      return;
+    }
+    if (AxisLockThreshold === CoKB.kEjectMass) {
+      
+      ObjectueAUtq = true;
+      return;
+    }
+    if (AxisLockThreshold === CoKB.kSplit) {
+      
+      if (VJjDr.canSplitNow(1)) {
+        
+        return;
+      }
+      this.sendSplit(1);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.kToggleSpec) {
+      
+      this.sendPacket(VoidGBYH.sendKey(18));
+      return;
+    }
+    if (AxisLockThreshold === CoKB.k4xSplit) {
+      if (VJjDr.canSplitNow(2)) {
+        return;
+      }
+      this.sendSplit(2);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.k8xSplit) {
+      if (VJjDr.canSplitNow(3)) {
+        
+        return;
+      }
+      this.sendSplit(3);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.k16xSplit) {
+      if (VJjDr.canSplitNow(4)) {
+        return;
+      }
+      this.sendSplit(4);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.k32xSplit) {
+      if (VJjDr.canSplitNow(5)) {
+        return;
+      }
+      this.sendSplit(5);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.k64xSplit) {
+      if (VJjDr.canSplitNow(6)) {
+        return;
+      }
+      this.sendSplit(6);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.k128xSplit) {
+      if (VJjDr.canSplitNow(7)) {
+        return;
+      }
+      this.sendSplit(7);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.k256xSplit) {
+      if (VJjDr.canSplitNow(8)) {
+        return;
+      }
+      this.sendSplit(8);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.kMultiSplit) {
+      zd8T_jfeea9b6_and.deactivate();
+      If_yEAw_eaa03_Res(1);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.kMultiDouble) {
+      zd8T_jfeea9b6_and.deactivate();
+      If_yEAw_eaa03_Res(2);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.kMultiMax) {
+      zd8T_jfeea9b6_and.deactivate();
+      If_yEAw_eaa03_Res(8);
+      return;
+    }
+    if (AxisLockThreshold === CoKB.kMultiEject) {
+      var minimapSmoothFactor;
+      var drawMinimapInterval;
+      zd8T_jfeea9b6_and.deactivate();
+      minimapSmoothFactor = faCUfKea9fb_add();
+      drawMinimapInterval =
+        minimapSmoothFactor === If$sEyzqKbhea93f_Exec
+          ? Str_NmyJ4kX
+          : If$sEyzqKbhea93f_Exec;
+      if (drawMinimapInterval) {
+        CLASS_3Ft = true;
+        drawMinimapInterval.sendPacket(VoidGBYH.sendEjectMass(true));
+      }
+      return;
+    }
+    if (AxisLockThreshold === CoKB.kFreezeMouse) {
+      this.mouseFrozen = !this.mouseFrozen;
+      return;
+    }
+    if (AxisLockThreshold === CoKB.kContextMenu) {
+      Catch$HaPx87ea9df_ret();
+    }
+  }
+  isConnected() {
+    return this.socket != null && this.socket.readyState === 1;
+  }
+  sendPacket(AxisLockThreshold) {
+    if (this.isConnected()) {
+      this.socket.send(AxisLockThreshold);
+    }
+  }
+  sendPing() {
+    if (this.isConnected()) {
+      if (this.isPrimary) {
+        Catch_wCYNjd$ea96b_exec = performance.now();
+      }
+      this.sendPacket(VoidGBYH.sendPing());
+    }
+  }
+  sendOptions() {
+    if (this.isConnected()) {
+      this.sendPacket(VoidGBYH.sendOptions());
+    }
+  }
+  selfMsg(AxisLockThreshold) {
+    const minimapSmoothFactor = AxisLockThreshold.trim();
+    if (
+      minimapSmoothFactor.match(
+        new RegExp("Connecting to chat server...?", "")
+      ) ||
+      (!this.isPrimary &&
+        this.isConnecting &&
+        minimapSmoothFactor.match(
+          new RegExp("Disconnected from the server.?", "")
+        ))
+    ) {
+      return;
+    }
+    const drawMinimapInterval = minimapSmoothFactor.match(
+      new RegExp("You have earned (\\d+) experience!?", "")
+    );
+    if (drawMinimapInterval) {
+      const baseCellSize = parseInt(drawMinimapInterval[1], 10);
+      GetEre34Q += baseCellSize;
+      $("#currentTotalXP").show();
+      $("#currentTotalXP").text("+" + GetEre34Q + " XP");
+      return;
+    }
+    const combinedCameraDistanceThreshold = minimapSmoothFactor.match(
+      new RegExp("Connected to chat server!?", "")
+    );
+    if (combinedCameraDistanceThreshold) {
+      $("#chat-input, #emotePanelBtn").removeAttr("disabled");
+      $("#chat-input").attr("placeholder", "Type message...");
+      return;
+    }
+    const combinedZoomFocusStrength = minimapSmoothFactor.match(
+      new RegExp("Server resetting in (\\d+) seconds?", "")
+    );
+    if (combinedZoomFocusStrength) {
+      const combinedInterpSpeed = parseInt(combinedZoomFocusStrength[1], 10);
+      console.log("Server will reset in " + combinedInterpSpeed + " seconds");
+      return;
+    }
+    $("#systemChat").append(
+      "<div>" +
+        (this.isPrimary
+          ? minimapSmoothFactor
+          : "Player 2: " + minimapSmoothFactor) +
+        "</div>"
+    );
+    const messageColors = $("#systemChat div");
+    if (messageColors.length > 8) {
+      messageColors.slice(0, messageColors.length - 8).remove();
+    }
+  }
+  selfMsgWithJoinCode(...AxisLockThreshold) {
+    AxisLockThreshold.length = 2;
+    $("#systemChat").append(
+      "<div>" +
+        AxisLockThreshold[0] +
+        '<span class="systemJoinCode">' +
+        AxisLockThreshold[1] +
+        "</span></div>"
+    );
+    const minimapSmoothFactor = $("#systemChat div");
+    if (minimapSmoothFactor.length > 8) {
+      minimapSmoothFactor.slice(0, minimapSmoothFactor.length - 8).remove();
+    }
+  }
+  clearParty() {
+    this.party = [];
+    this.partyIds = {};
+    this.partyLeader = -1;
+    this.partyIndex = -1;
+    if (this.isPrimary) {
+      WeakMap$J22VUWjRea98f_ex.css("display", "none");
+      $("#leaveParty").css("display", "none");
+      if (this.partyCode != null || For_lVMfr != null) {
+        this.partyCode = For_lVMfr = null;
+        IMPORTjQwS8jD7 = null;
+      }
+    }
+  }
+  isPartyLeader() {
+    return this.partyLeader == this.playerId;
+  }
+  getServerMaxCells() {
+    return this.serverData.maxCells;
+  }
+  onMessage(AxisLockThreshold) {
+    const minimapSmoothFactor = AxisLockThreshold.data.byteLength;
+    if (
+      minimapSmoothFactor > window.DATA_FREEZE_THRESHOLD_BYTES &&
+      Str_NmyJ4kX &&
+      Str_NmyJ4kX.isConnected()
+    ) {
+      if (!window.isGameLoopFrozenByData) {
+        window.isGameLoopFrozenByData = true;
+        BigIntLsuea9cc_ex(true, "Processing large update...");
+        Logger.warn(
+          "Large data packet received (" +
+            (minimapSmoothFactor / 1024).toFixed(1) +
+            " KB). Freezing game loop to process."
+        );
+      }
+    }
+    const drawMinimapInterval = performance.now();
+    const baseCellSize = new DataView(AxisLockThreshold.data);
+    const combinedCameraDistanceThreshold = baseCellSize.getUint8(0);
+    baseCellSize.offset = 1;
+    if (combinedCameraDistanceThreshold === MESSAGE_TYPES.UPDATE) {
+      this.lastUpdatePacketTime = drawMinimapInterval;
+    }
+    switch (combinedCameraDistanceThreshold) {
+      case MESSAGE_TYPES.UPDATE:
+        this.handleUpdate(baseCellSize, drawMinimapInterval);
+        break;
+      case MESSAGE_TYPES.POSITION:
+        this.handlePosition(baseCellSize);
+        break;
+      case MESSAGE_TYPES.SHOW_SUB_PANEL:
+        this.showSubPanel(baseCellSize);
+        break;
+      case MESSAGE_TYPES.UPDATE_SUB_PANEL:
+        this.updateSubPanel(baseCellSize);
+        break;
+      case MESSAGE_TYPES.INVITE:
+        this.handleInvite(baseCellSize);
+        break;
+      case MESSAGE_TYPES.PARTY_INFO:
+        this.handlePartyInfo(baseCellSize);
+        break;
+      case MESSAGE_TYPES.PARTY_JOIN_CODE:
+        this.handlePartyJoinCode(baseCellSize);
+        break;
+      case MESSAGE_TYPES.MAP_DATA:
+        this.handleMapData(baseCellSize);
+        break;
+      case MESSAGE_TYPES.CLEAR_NODES:
+        this.clearBuckets();
+        break;
+      case MESSAGE_TYPES.UPDATE_BORDER:
+        this.handleUpdateBorder(baseCellSize);
+        break;
+      case MESSAGE_TYPES.RESET_TIME:
+        this.handleResetTime(baseCellSize);
+        break;
+      case MESSAGE_TYPES.SPECTATORS:
+        this.handleSpectators(baseCellSize);
+        break;
+      case MESSAGE_TYPES.SYSTEM_MSG:
+        this.selfMsg(readUtf16(baseCellSize));
+        break;
+      case MESSAGE_TYPES.WHISPER:
+        this.handleWhisper(baseCellSize);
+        break;
+      case MESSAGE_TYPES.ADD_BUFF:
+        baseCellSize.offset += 8;
+        break;
+      case MESSAGE_TYPES.AUTHENTICATED:
+        this.handleAuthenticated(baseCellSize);
+        break;
+      case MESSAGE_TYPES.PARTY_DATA:
+        if (this.isPrimary) {
+          this.handlePartyData(baseCellSize);
+        }
+        break;
+      case MESSAGE_TYPES.LEADERBOARD:
+        if (this.isPrimary) {
+          this.handleLeaderboard(baseCellSize);
+        }
+        break;
+      case MESSAGE_TYPES.PING:
+        if (this.isPrimary) {
+          this.handlePing();
+        }
+        break;
+      case MESSAGE_TYPES.CHAT:
+        if (this.isPrimary) {
+          this.handleChat(baseCellSize);
+        }
+        break;
+      case MESSAGE_TYPES.PROFILE:
+        if (this.isPrimary) {
+          this.handleProfile(baseCellSize);
+        }
+        break;
+    }
+    if (window.isGameLoopFrozenByData) {
+      window.isGameLoopFrozenByData = false;
+      if (!window.isGameLoopFrozenByPing) {
+        BigIntLsuea9cc_ex(false);
+      }
+      Logger.info(
+        "Finished processing large data packet. Unfreezing game loop."
+      );
+    }
+  }
+  handleUpdate(AxisLockThreshold, minimapSmoothFactor) {
+    let drawMinimapInterval = AxisLockThreshold.getUint16(
+      AxisLockThreshold.offset,
+      true
+    );
+    AxisLockThreshold.offset += 2;
+    while (drawMinimapInterval > 0) {
+      const baseCellSize = AxisLockThreshold.getUint16(
+        AxisLockThreshold.offset,
+        true
+      );
+      AxisLockThreshold.offset += 2;
+      zLCuf8c.remove(baseCellSize, this);
+      drawMinimapInterval--;
+    }
+    let combinedCameraDistanceThreshold = AxisLockThreshold.getUint16(
+      AxisLockThreshold.offset,
+      true
+    );
+    AxisLockThreshold.offset += 2;
+    while (combinedCameraDistanceThreshold > 0) {
+      const combinedZoomFocusStrength = AxisLockThreshold.getUint16(
+        AxisLockThreshold.offset,
+        true
+      );
+      AxisLockThreshold.offset += 2;
+      const combinedInterpSpeed = jQuery_hn$0_2t_ea9b2_sub.get(
+        combinedZoomFocusStrength
+      );
+      if (combinedInterpSpeed) {
+        combinedInterpSpeed.onDelete();
+        if (combinedInterpSpeed.type === 6) {
+          this.foodObjects.delete(combinedZoomFocusStrength);
+        } else {
+          this.players.delete(combinedZoomFocusStrength);
+        }
+        if (combinedInterpSpeed.playerId === this.playerId) {
+          this.myCells.delete(combinedZoomFocusStrength);
+          if (this.myCells.size === 0) {
+            this.handleDeath();
+          }
+        }
+      }
+      combinedCameraDistanceThreshold--;
+    }
+    while (true) {
+      const baseCellSize = AxisLockThreshold.getUint16(
+        AxisLockThreshold.offset,
+        true
+      );
+      AxisLockThreshold.offset += 2;
+      if (baseCellSize === 0) {
+        break;
+      }
+      let messageColors = true;
+      let MESSAGE_TYPES = zLCuf8c.getPlayer(baseCellSize);
+      if (!MESSAGE_TYPES) {
+        MESSAGE_TYPES = new do_JMwG(baseCellSize);
+        messageColors = false;
+      }
+      const CellVisibility =
+        (AxisLockThreshold.getUint8(AxisLockThreshold.offset++) << 16) +
+        (AxisLockThreshold.getUint8(AxisLockThreshold.offset++) << 8) +
+        AxisLockThreshold.getUint8(AxisLockThreshold.offset++);
+      MESSAGE_TYPES.name = readUtf16(AxisLockThreshold);
+      MESSAGE_TYPES.cellColor = transformCellColor(
+        CellVisibility,
+        MESSAGE_TYPES.name.includes("🤖") ? 70 : 0
+      );
+      MESSAGE_TYPES.setSkin(readAscii(AxisLockThreshold));
+      MESSAGE_TYPES.setFlags(
+        AxisLockThreshold.getUint8(AxisLockThreshold.offset++)
+      );
+      if ((MESSAGE_TYPES.flags & 2) === 2) {
+        MESSAGE_TYPES.nameColor =
+          "#" +
+          byteToHex(AxisLockThreshold.getUint8(AxisLockThreshold.offset++)) +
+          byteToHex(AxisLockThreshold.getUint8(AxisLockThreshold.offset++)) +
+          byteToHex(AxisLockThreshold.getUint8(AxisLockThreshold.offset++));
+        MESSAGE_TYPES.parseEffect(
+          AxisLockThreshold.getUint8(AxisLockThreshold.offset++)
+        );
+        MESSAGE_TYPES.nameFont = AxisLockThreshold.getUint8(
+          AxisLockThreshold.offset++
+        );
+      }
+      if (!messageColors) {
+        zLCuf8c.add(MESSAGE_TYPES);
+      } else {
+        zLCuf8c.markUpdated(MESSAGE_TYPES);
+      }
+      if (this.isPrimary) {
+        MESSAGE_TYPES.seenByClient1 = true;
+      } else {
+        MESSAGE_TYPES.seenByClient2 = true;
+      }
+    }
+    while (AxisLockThreshold.offset < AxisLockThreshold.byteLength) {
+      const MassDisplayType = AxisLockThreshold.getUint8(
+        AxisLockThreshold.offset++
+      );
+      if (MassDisplayType === 0) {
+        break;
+      }
+      let SKIN_LOAD_STATUS = 0;
+      while (AxisLockThreshold.offset < AxisLockThreshold.byteLength) {
+        var PlayerState;
+        if (MassDisplayType === 2 && SKIN_LOAD_STATUS === 0) {
+          SKIN_LOAD_STATUS = AxisLockThreshold.getUint16(
+            AxisLockThreshold.offset,
+            true
+          );
+          AxisLockThreshold.offset += 2;
+          if (SKIN_LOAD_STATUS === 0) {
+            break;
+          }
+        }
+        const combinedZoomFocusStrength = AxisLockThreshold.getUint16(
+          AxisLockThreshold.offset,
+          true
+        );
+        AxisLockThreshold.offset += 2;
+        if (combinedZoomFocusStrength === 0) {
+          if (MassDisplayType === 2) {
+            SKIN_LOAD_STATUS = 0;
+            continue;
+          } else {
+            break;
+          }
+        }
+        jQuery_hn$0_2t_ea9b2_sub.cancelDeathAnimation(
+          combinedZoomFocusStrength
+        );
+        let combinedInterpSpeed = jQuery_hn$0_2t_ea9b2_sub.get(
+          combinedZoomFocusStrength
+        );
+        if (!combinedInterpSpeed) {
+          combinedInterpSpeed = new WeakMaplS3ea9a6(
+            combinedZoomFocusStrength,
+            this
+          );
+        }
+        combinedInterpSpeed.setType(MassDisplayType);
+        combinedInterpSpeed.setX(
+          AxisLockThreshold.getInt16(AxisLockThreshold.offset, true)
+        );
+        combinedInterpSpeed.setY(
+          AxisLockThreshold.getInt16(AxisLockThreshold.offset + 2, true)
+        );
+        AxisLockThreshold.offset += 4;
+        switch (MassDisplayType) {
+          case 1:
+            combinedInterpSpeed.setSize(
+              AxisLockThreshold.getUint16(AxisLockThreshold.offset, true)
+            );
+            AxisLockThreshold.offset += 2;
+            combinedInterpSpeed.color =
+              (AxisLockThreshold.getUint8(AxisLockThreshold.offset++) << 16) +
+              (AxisLockThreshold.getUint8(AxisLockThreshold.offset++) << 8) +
+              AxisLockThreshold.getUint8(AxisLockThreshold.offset++);
+            PlayerState = AxisLockThreshold.getUint8(
+              AxisLockThreshold.offset++
+            );
+            combinedInterpSpeed.skin = (PlayerState & 127) - 1;
+            combinedInterpSpeed.rainbow = (PlayerState & 128) === 128;
+            break;
+          case 2:
+            combinedInterpSpeed.setSize(
+              AxisLockThreshold.getUint16(AxisLockThreshold.offset, true)
+            );
+            AxisLockThreshold.offset += 2;
+            combinedInterpSpeed.playerId = SKIN_LOAD_STATUS;
+            break;
+          case 3:
+          case 4:
+            combinedInterpSpeed.setSize(
+              AxisLockThreshold.getUint16(AxisLockThreshold.offset, true)
+            );
+            AxisLockThreshold.offset += 2;
+            break;
+        }
+        combinedInterpSpeed.onCreate(this);
+        if (
+          combinedInterpSpeed.playerId === this.playerId &&
+          MassDisplayType === 2
+        ) {
+          if (!this.myCells.has(combinedZoomFocusStrength)) {
+            this.myCells.set(combinedZoomFocusStrength, combinedInterpSpeed);
+          }
+        }
+      }
+    }
+    while (AxisLockThreshold.offset < AxisLockThreshold.byteLength) {
+      const MassDisplayType = AxisLockThreshold.getUint8(
+        AxisLockThreshold.offset++
+      );
+      if (MassDisplayType === 0) {
+        break;
+      }
+      while (AxisLockThreshold.offset < AxisLockThreshold.byteLength) {
+        const combinedZoomFocusStrength = AxisLockThreshold.getUint16(
+          AxisLockThreshold.offset,
+          true
+        );
+        AxisLockThreshold.offset += 2;
+        if (combinedZoomFocusStrength === 0) {
+          break;
+        }
+        const defaultKeyMappings = AxisLockThreshold.getInt16(
+          AxisLockThreshold.offset,
+          true
+        );
+        const defaultOptions = AxisLockThreshold.getInt16(
+          AxisLockThreshold.offset + 2,
+          true
+        );
+        AxisLockThreshold.offset += 4;
+        const combinedInterpSpeed = jQuery_hn$0_2t_ea9b2_sub.get(
+          combinedZoomFocusStrength
+        );
+        if (combinedInterpSpeed) {
+          let defaultSubPanelSettings;
+          switch (MassDisplayType) {
+            case 2:
+            case 3:
+            case 4:
+              defaultSubPanelSettings = AxisLockThreshold.getUint16(
+                AxisLockThreshold.offset,
+                true
+              );
+              AxisLockThreshold.offset += 2;
+              break;
+          }
+          combinedInterpSpeed.updateState(
+            defaultKeyMappings,
+            defaultOptions,
+            defaultSubPanelSettings,
+            minimapSmoothFactor
+          );
+        } else {
+          switch (MassDisplayType) {
+            case 2:
+            case 3:
+            case 4:
+              AxisLockThreshold.offset += 2;
+              break;
+          }
+        }
+      }
+    }
+    this.updateScorePanel();
+  }
+  handlePosition(AxisLockThreshold) {
+    this.centerX_ = AxisLockThreshold.getFloat32(
+      AxisLockThreshold.offset,
+      true
+    );
+    AxisLockThreshold.offset += 4;
+    this.centerY_ = AxisLockThreshold.getFloat32(
+      AxisLockThreshold.offset,
+      true
+    );
+    AxisLockThreshold.offset += 4;
+    this.centerSteps = 30;
+  }
+  handleUpdateBorder(AxisLockThreshold) {
+    this.serverData.border = {};
+    this.serverData.border.left = AxisLockThreshold.getInt16(
+      AxisLockThreshold.offset,
+      true
+    );
+    this.serverData.border.top = AxisLockThreshold.getInt16(
+      AxisLockThreshold.offset + 2,
+      true
+    );
+    this.serverData.border.right = AxisLockThreshold.getInt16(
+      AxisLockThreshold.offset + 4,
+      true
+    );
+    this.serverData.border.bottom = AxisLockThreshold.getInt16(
+      AxisLockThreshold.offset + 6,
+      true
+    );
+    AxisLockThreshold.offset += 8;
+    this.serverData.border.width =
+      this.serverData.border.right - this.serverData.border.left;
+    this.serverData.border.height =
+      this.serverData.border.bottom - this.serverData.border.top;
+    this.serverData.border.enabled =
+      this.serverData.border.width != 0 && this.serverData.border.height != 0;
+    if (this.isPrimary) {
+      g5Mea9c8_TYPE();
+    }
+  }
+  handleMapData(AxisLockThreshold) {
+    this.playerId = AxisLockThreshold.getUint16(AxisLockThreshold.offset, true);
+    AxisLockThreshold.offset += 3;
+    this.handleUpdateBorder(AxisLockThreshold);
+    this.serverData.maxCells = AxisLockThreshold.getUint16(
+      AxisLockThreshold.offset,
+      true
+    );
+    AxisLockThreshold.offset += 2;
+    readAscii(AxisLockThreshold);
+    this.serverData.autosplits = AxisLockThreshold.getUint8(
+      AxisLockThreshold.offset++
+    );
+    if (this.isPrimary) {
+      const minimapSmoothFactor = window.location.hash.substring(1);
+      if (minimapSmoothFactor && minimapSmoothFactor.length > 0) {
+        If$sEyzqKbhea93f_Exec.sendPacket(
+          VoidGBYH.sendPartyJoin(minimapSmoothFactor)
+        );
+      }
+    } else if (
+      If$sEyzqKbhea93f_Exec &&
+      If$sEyzqKbhea93f_Exec.isConnected() &&
+      this.playerId !== 0
+    ) {
+      Logger.info(
+        "Player 2 (ID: " + this.playerId + ") connected. Handling party logic."
+      );
+      if (IMPORTjQwS8jD7) {
+        Logger.info(
+          "Player 1 is in a public party. Player 2 joining with code: " +
+            IMPORTjQwS8jD7
+        );
+        this.sendPacket(VoidGBYH.sendPartyJoin(IMPORTjQwS8jD7));
+      } else if (If$sEyzqKbhea93f_Exec.party.length > 0) {
+        Logger.info(
+          "Player 1 is in a private party. Requesting a public code so Player 2 can join."
+        );
+        If$sEyzqKbhea93f_Exec.sendPacket(VoidGBYH.sendPartyAction(4, 0));
+        setTimeout(() => {
+          if (IMPORTjQwS8jD7) {
+            Logger.info(
+              "Public code received. Player 2 attempting to join with code: " +
+                IMPORTjQwS8jD7
+            );
+            this.sendPacket(VoidGBYH.sendPartyJoin(IMPORTjQwS8jD7));
+          } else {
+            Logger.warn(
+              "Could not retrieve a public party code in time. Falling back to invite."
+            );
+            If$sEyzqKbhea93f_Exec.sendPacket(
+              VoidGBYH.sendPartyAction(0, this.playerId)
+            );
+          }
+        }, 1500);
+      } else {
+        Logger.info(
+          "Player 1 is not in a party. Creating a new one and inviting Player 2 (ID: " +
+            this.playerId +
+            ")."
+        );
+        If$sEyzqKbhea93f_Exec.sendPacket(
+          VoidGBYH.sendPartyAction(0, this.playerId)
+        );
+      }
+    }
+  }
+  handleInvite(AxisLockThreshold) {
+    const minimapSmoothFactor = readUtf16(AxisLockThreshold)
+      .replace(new RegExp("<", "g"), "&lt;")
+      .replace(new RegExp(">", "g"), "&gt;");
+    const drawMinimapInterval = this.isPrimary
+      ? Str_NmyJ4kX
+      : If$sEyzqKbhea93f_Exec;
+    if (
+      drawMinimapInterval &&
+      minimapSmoothFactor === drawMinimapInterval.name &&
+      drawMinimapInterval.playerId !== 0
+    ) {
+      Logger.info(
+        "Player " +
+          (this.isPrimary ? 1 : 2) +
+          " auto-accepting invite from Player " +
+          (this.isPrimary ? 2 : 1) +
+          " (" +
+          minimapSmoothFactor +
+          ")."
+      );
+      this.sendPacket(VoidGBYH.sendInviteResponse(true));
+      return;
+    }
+    if (Mao5huZea938_run.cAutoDecline) {
+      this.sendPacket(VoidGBYH.sendInviteResponse(false));
+      return;
+    }
+    const baseCellSize = Str_NmyJ4kX.isConnected()
+      ? this.isPrimary
+        ? "Player 1 is"
+        : "Player 2 is"
+      : "You're";
+    const combinedCameraDistanceThreshold = $(
+      '\n      <nord-notification>\n        <div slot="icon" style="display: none;"></div>\n        <h2>' +
+        baseCellSize +
+        ' pending a party invite!</h2>\n        <div id="popup-party-text">' +
+        minimapSmoothFactor +
+        ' has invited you to a party.</div>\n        <div style="display: flex; justify-content: flex-end; margin-top: 10px; gap: 5px;">\n          <nord-button id="btn-decline" variant="secondary" size="s">Decline</nord-button>\n          <nord-button id="btn-accept" variant="primary" size="s">Accept</nord-button>\n        </div>\n      </nord-notification>\n    '
+    );
+    $("nord-notification-group").prepend(combinedCameraDistanceThreshold);
+    const combinedZoomFocusStrength = combinedCameraDistanceThreshold[0];
+    const combinedInterpSpeed = setInterval(() => {
+      if (!combinedZoomFocusStrength.shadowRoot) {
+        return;
+      }
+      clearInterval(combinedInterpSpeed);
+      injectShadowStyle(
+        "nord-notification",
+        ".n-notification{border: solid 1px var(--n-color-border);background: var(--n-color-background)!important;padding: 16px !important}.n-dismiss{display:none !important}.n-notification-body{padding: 0 !important;}",
+        "notification-style"
+      );
+      combinedCameraDistanceThreshold.find("#btn-accept").on("click", () => {
+        this.sendPacket(VoidGBYH.sendInviteResponse(true));
+        combinedZoomFocusStrength.dismiss?.();
+      });
+      combinedCameraDistanceThreshold.find("#btn-decline").on("click", () => {
+        this.sendPacket(VoidGBYH.sendInviteResponse(false));
+        combinedZoomFocusStrength.dismiss?.();
+      });
+    }, 20);
+  }
+  handlePartyInfo(AxisLockThreshold) {
+    const minimapSmoothFactor = [];
+    const drawMinimapInterval = {};
+    let baseCellSize = -1;
+    const combinedCameraDistanceThreshold = new Set(
+      Object.keys(this.partyIds).map(Number)
+    );
+    const combinedZoomFocusStrength = AxisLockThreshold.getUint16(
+      AxisLockThreshold.offset,
+      true
+    );
+    AxisLockThreshold.offset += 2;
+    const combinedInterpSpeed = new Set();
+    for (
+      let messageColors = 0;
+      messageColors < combinedZoomFocusStrength;
+      messageColors++
+    ) {
+      const MESSAGE_TYPES = {};
+      const CellVisibility = AxisLockThreshold.getUint8(
+        AxisLockThreshold.offset++
+      );
+      MESSAGE_TYPES.id = AxisLockThreshold.getUint16(
+        AxisLockThreshold.offset,
+        true
+      );
+      AxisLockThreshold.offset += 2;
+      combinedInterpSpeed.add(MESSAGE_TYPES.id);
+      MESSAGE_TYPES.isLeader = CellVisibility === 1;
+      if (MESSAGE_TYPES.isLeader) {
+        baseCellSize = MESSAGE_TYPES.id;
+      }
+      MESSAGE_TYPES.name = readUtf16(AxisLockThreshold) || "An unnamed cell";
+      Object.assign(MESSAGE_TYPES, {
+        x: 0,
+        y: 0,
+        x_: 0,
+        y_: 0,
+        score: 0,
+        cache: -1,
+        team: 0,
+        state: PlayerState.UNKNOWN,
+      });
+      let MassDisplayType = zLCuf8c.getPlayer(MESSAGE_TYPES.id);
+      if (!MassDisplayType) {
+        MassDisplayType = new do_JMwG(MESSAGE_TYPES.id);
+        zLCuf8c.add(MassDisplayType);
+      }
+      MassDisplayType.name = MESSAGE_TYPES.name;
+      MESSAGE_TYPES.fullPlayerData = MassDisplayType;
+      const SKIN_LOAD_STATUS = this.partyIds[MESSAGE_TYPES.id];
+      if (SKIN_LOAD_STATUS != null) {
+        const defaultKeyMappings = this.party[SKIN_LOAD_STATUS];
+        Object.assign(MESSAGE_TYPES, {
+          x: defaultKeyMappings.x,
+          y: defaultKeyMappings.y,
+          x_: defaultKeyMappings.x_,
+          y_: defaultKeyMappings.y_,
+          state: defaultKeyMappings.state,
+          score: defaultKeyMappings.score,
+          cache: defaultKeyMappings.cache,
+          mmColor: defaultKeyMappings.mmColor,
+        });
+      }
+      minimapSmoothFactor.push(MESSAGE_TYPES);
+      drawMinimapInterval[MESSAGE_TYPES.id] = minimapSmoothFactor.length - 1;
+    }
+    const defaultOptions = this.isPrimary ? Str_NmyJ4kX : If$sEyzqKbhea93f_Exec;
+    for (const defaultSubPanelSettings of combinedCameraDistanceThreshold) {
+      if (!combinedInterpSpeed.has(defaultSubPanelSettings)) {
+        let fontConfigs = this.myCells.has(defaultSubPanelSettings);
+        if (!fontConfigs && defaultOptions) {
+          fontConfigs = defaultOptions.myCells.has(defaultSubPanelSettings);
+        }
+        if (
+          !fontConfigs &&
+          defaultSubPanelSettings !== this.playerId &&
+          defaultSubPanelSettings !==
+            (defaultOptions ? defaultOptions.playerId : -1)
+        ) {
+          zLCuf8c.remove(defaultSubPanelSettings);
+          Logger.debug(
+            "PlayerData for ID " +
+              defaultSubPanelSettings +
+              " removed from registry (left party, not active in game)."
+          );
+        }
+      }
+    }
+    this.party = minimapSmoothFactor;
+    this.partyIds = drawMinimapInterval;
+    this.partyLeader = baseCellSize;
+    if (this.isPrimary) {
+      if (combinedZoomFocusStrength > 0) {
+        this.drawParty();
+      } else {
+        this.clearParty();
+      }
+    }
+  }
+  handlePartyData(AxisLockThreshold) {
+    var minimapSmoothFactor = AxisLockThreshold.getUint16(
+      AxisLockThreshold.offset,
+      true
+    );
+    var drawMinimapInterval;
+    AxisLockThreshold.offset += 2;
+    if (minimapSmoothFactor != this.party.length) {
+      return;
+    }
+    for (
+      drawMinimapInterval = 0;
+      drawMinimapInterval < minimapSmoothFactor;
+      drawMinimapInterval++
+    ) {
+      var baseCellSize = this.party[drawMinimapInterval];
+      baseCellSize.state = AxisLockThreshold.getUint8(
+        AxisLockThreshold.offset++
+      );
+      if (baseCellSize.state === PlayerState.ALIVE) {
+        baseCellSize.x_ = AxisLockThreshold.getInt16(
+          AxisLockThreshold.offset,
+          true
+        );
+        baseCellSize.y_ = AxisLockThreshold.getInt16(
+          AxisLockThreshold.offset + 2,
+          true
+        );
+        baseCellSize.score = AxisLockThreshold.getInt32(
+          AxisLockThreshold.offset + 4,
+          true
+        );
+        AxisLockThreshold.offset += 8;
+      }
+    }
+    this.drawParty();
+  }
+  handlePartyJoinCode(AxisLockThreshold) {
+    var minimapSmoothFactor = readAscii(AxisLockThreshold);
+    this.partyCode = readAscii(AxisLockThreshold);
+    const drawMinimapInterval = this.partyCode;
+    if (drawMinimapInterval) {
+      this.selfMsgWithJoinCode(minimapSmoothFactor, drawMinimapInterval);
+      IMPORTjQwS8jD7 = drawMinimapInterval;
+    } else {
+      console.log(minimapSmoothFactor);
+      this.selfMsg(minimapSmoothFactor);
+      this.partyCode = null;
+      if (this.isPrimary) {
+        IMPORTjQwS8jD7 = null;
+      }
+    }
+  }
+  handleResetTime(AxisLockThreshold) {
+    var minimapSmoothFactor = AxisLockThreshold.getUint8(
+      AxisLockThreshold.offset++
+    );
+    var drawMinimapInterval;
+    drawMinimapInterval = AxisLockThreshold.getFloat64(
+      AxisLockThreshold.offset,
+      true
+    );
+    this.serverData.resetType = minimapSmoothFactor;
+    this.serverData.resetTime = drawMinimapInterval;
+  }
+  handleSpectators(AxisLockThreshold) {
+    this.spectators = AxisLockThreshold.getUint16(
+      AxisLockThreshold.offset,
+      true
+    );
+    Promise_28_SVO_ea950_fn.spectatorCount.text(this.spectators);
+  }
+  handleAuthenticated() {
+    if (!this.spectate) {
+      this.sendPacket(VoidGBYH.setName(this.name));
+    } else {
+      this.sendPacket(VoidGBYH.sendSpectate());
+    }
+  }
+  showSubPanel(AxisLockThreshold) {
+    var minimapSmoothFactor =
+      AxisLockThreshold.getUint8(AxisLockThreshold.offset++) == 1;
+    this.subPanelOverride = minimapSmoothFactor;
+    as_dX7WJBQ_ea9c4_mul();
+    if (minimapSmoothFactor) {
+      if (!this.serverData.hasSentSubPanel) {
+        LodashxQu4();
+        this.serverData.hasSentSubPanel = true;
+      }
+    }
+  }
+  updateScorePanel() {
+    let AxisLockThreshold = 0;
+    for (const minimapSmoothFactor of this.myCells.values()) {
+      AxisLockThreshold += minimapSmoothFactor.getRealMass();
+    }
+    if (AxisLockThreshold > this.score) {
+      this.score = AxisLockThreshold;
+    }
+  }
+  updateSubPanel() {
+    const AxisLockThreshold = this.isPrimary ? AtgnhF : qRcea94d_init;
+    if (AxisLockThreshold) {
+      DEFAULT_B6Cea9c5_Ret(AxisLockThreshold.uid);
+    }
+  }
+  handleLeaderboard(AxisLockThreshold) {
+    const minimapSmoothFactor = document.getElementById("leaderboard-canvas");
+    if (!minimapSmoothFactor) {
+      return;
+    }
+    const drawMinimapInterval = minimapSmoothFactor.getContext("2d");
+    const baseCellSize = performance.now();
+    const combinedCameraDistanceThreshold = 200;
+    this.leaderboardState.lastUpdateTime = baseCellSize;
+    const combinedZoomFocusStrength = AxisLockThreshold.getUint32(
+      AxisLockThreshold.offset,
+      true
+    );
+    AxisLockThreshold.offset += 4;
+    const combinedInterpSpeed = [];
+    for (
+      let messageColors = 0;
+      messageColors < combinedZoomFocusStrength;
+      messageColors++
+    ) {
+      const MESSAGE_TYPES = AxisLockThreshold.getUint16(
+        AxisLockThreshold.offset,
+        true
+      );
+      AxisLockThreshold.offset += 2;
+      const CellVisibility = readUtf16(AxisLockThreshold) || "An unnamed cell";
+      combinedInterpSpeed.push({
+        id: MESSAGE_TYPES,
+        name: CellVisibility,
+        targetY: messageColors * 28 + 20,
+      });
+    }
+    const MassDisplayType = new Map(
+      this.leaderboardState.entries.map(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return [AxisLockThreshold[0].id, AxisLockThreshold[0]];
+        })
+      )
+    );
+    this.leaderboardState.entries = combinedInterpSpeed.map(
+      Object$kDcGWUY((...AxisLockThreshold) => {
+        AxisLockThreshold.length = 1;
+        const minimapSmoothFactor = MassDisplayType.get(
+          AxisLockThreshold[0].id
+        );
+        return {
+          ...AxisLockThreshold[0],
+          startY: minimapSmoothFactor
+            ? minimapSmoothFactor.currentY
+            : AxisLockThreshold[0].targetY,
+          currentY: minimapSmoothFactor
+            ? minimapSmoothFactor.currentY
+            : AxisLockThreshold[0].targetY,
+        };
+      })
+    );
+    const SKIN_LOAD_STATUS = () => {
+      const AxisLockThreshold =
+        performance.now() - this.leaderboardState.lastUpdateTime;
+      const baseCellSize = Math.min(
+        AxisLockThreshold / combinedCameraDistanceThreshold,
+        1
+      );
+      const combinedZoomFocusStrength = 1 - Math.pow(1 - baseCellSize, 3);
+      const combinedInterpSpeed = window.devicePixelRatio || 1;
+      const MESSAGE_TYPES = 250;
+      const CellVisibility = this.leaderboardState.entries.length * 28 + 10;
+      minimapSmoothFactor.width = MESSAGE_TYPES * combinedInterpSpeed;
+      minimapSmoothFactor.height = CellVisibility * combinedInterpSpeed;
+      minimapSmoothFactor.style.width = "" + MESSAGE_TYPES + "px";
+      minimapSmoothFactor.style.height = "" + CellVisibility + "px";
+      drawMinimapInterval.setTransform(
+        combinedInterpSpeed,
+        0,
+        0,
+        combinedInterpSpeed,
+        0,
+        0
+      );
+      drawMinimapInterval.clearRect(0, 0, MESSAGE_TYPES, CellVisibility);
+      drawMinimapInterval.font = "14px 'Nordhealth Sans', sans-serif";
+      drawMinimapInterval.textAlign = "left";
+      drawMinimapInterval.textBaseline = "middle";
+      drawMinimapInterval.shadowColor = "rgba(0, 0, 0, 0.5)";
+      drawMinimapInterval.shadowBlur = 4;
+      this.leaderboardState.entries.forEach(
+        (AxisLockThreshold, baseCellSize) => {
+          AxisLockThreshold.currentY =
+            AxisLockThreshold.startY +
+            (AxisLockThreshold.targetY - AxisLockThreshold.startY) *
+              combinedZoomFocusStrength;
+          let combinedInterpSpeed = DEFAULT$HB0T_ea93b_Status["--n-color-text"];
+          if (AxisLockThreshold.id === this.playerId) {
+            combinedInterpSpeed =
+              DEFAULT$HB0T_ea93b_Status["--n-color-text-highlight"];
+          } else if (this.partyIds[AxisLockThreshold.id] != null) {
+            combinedInterpSpeed =
+              DEFAULT$HB0T_ea93b_Status["--n-color-text-info"];
+          }
+          const CellVisibility = ["🥇", "🥈", "🥉"];
+          const minimapSmoothFactor =
+            baseCellSize < 3
+              ? "" + CellVisibility[baseCellSize] + " "
+              : "" + (baseCellSize + 1) + ". ";
+          drawMinimapInterval.fillStyle = combinedInterpSpeed;
+          drawMinimapInterval.font = "14px 'Nordhealth Sans', sans-serif";
+          let combinedCameraDistanceThreshold = AxisLockThreshold.name;
+          const MassDisplayType =
+            drawMinimapInterval.measureText(minimapSmoothFactor).width;
+          const SKIN_LOAD_STATUS = MESSAGE_TYPES - MassDisplayType - 20;
+          if (
+            drawMinimapInterval.measureText(combinedCameraDistanceThreshold)
+              .width > SKIN_LOAD_STATUS
+          ) {
+            while (
+              drawMinimapInterval.measureText(
+                combinedCameraDistanceThreshold + "…"
+              ).width > SKIN_LOAD_STATUS
+            ) {
+              combinedCameraDistanceThreshold =
+                combinedCameraDistanceThreshold.slice(0, -1);
+            }
+            combinedCameraDistanceThreshold += "…";
+          }
+          drawMinimapInterval.fillText(
+            minimapSmoothFactor + combinedCameraDistanceThreshold,
+            10,
+            AxisLockThreshold.currentY
+          );
+        }
+      );
+      if (baseCellSize < 1) {
+        requestAnimationFrame(SKIN_LOAD_STATUS);
+      }
+    };
+    if (this.leaderboardState.animationFrameId) {
+      cancelAnimationFrame(this.leaderboardState.animationFrameId);
+    }
+    this.leaderboardState.animationFrameId =
+      requestAnimationFrame(SKIN_LOAD_STATUS);
+  }
+  handlePing(...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    async_gvZqk_Dc_ea93e_div = performance.now() - Catch_wCYNjd$ea96b_exec;
+    if (async_gvZqk_Dc_ea93e_div > 300) {
+      P7Tea99f_Cfg = 0;
+      if (Str_NmyJ4kX?.isConnected() && !window.isGameLoopFrozenByPing) {
+        window.isGameLoopFrozenByPing = true;
+        BigIntLsuea9cc_ex(true, "High Ping Detected!");
+        Logger.warn(
+          "High ping detected (" +
+            async_gvZqk_Dc_ea93e_div.toFixed(0) +
+            "ms) with Player 2 active. Freezing game loop."
+        );
+      }
+    } else if (window.isGameLoopFrozenByPing) {
+      if (P7Tea99f_Cfg === 0) {
+        P7Tea99f_Cfg = performance.now();
+        Logger.info(
+          "Ping is now stable (" +
+            async_gvZqk_Dc_ea93e_div.toFixed(0) +
+            "ms). Starting 3-second unfreeze timer."
+        );
+      } else if (performance.now() - P7Tea99f_Cfg > 1000) {
+        window.isGameLoopFrozenByPing = false;
+        P7Tea99f_Cfg = 0;
+        BigIntLsuea9cc_ex(false);
+        Logger.info(
+          "Ping has been stable for 3 seconds. Unfreezing game loop."
+        );
+      }
+    }
+    const minimapSmoothFactor =
+      async_gvZqk_Dc_ea93e_div < 100
+        ? "success"
+        : async_gvZqk_Dc_ea93e_div < 200
+        ? "warning"
+        : "danger";
+    $("#currentPing")
+      .attr("variant", minimapSmoothFactor)
+      .show()
+      .find("span")
+      .text("" + async_gvZqk_Dc_ea93e_div.toFixed() + "ms");
+  }
+  handleChat(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    const minimapSmoothFactor = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const drawMinimapInterval = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const baseCellSize = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const combinedCameraDistanceThreshold = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const combinedZoomFocusStrength =
+      "#" +
+      (
+        16777216 +
+        (drawMinimapInterval << 16) +
+        (baseCellSize << 8) +
+        combinedCameraDistanceThreshold
+      )
+        .toString(16)
+        .slice(1)
+        .toUpperCase();
+    const combinedInterpSpeed = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const MESSAGE_TYPES = AxisLockThreshold[0].getUint16(
+      AxisLockThreshold[0].offset,
+      true
+    );
+    AxisLockThreshold[0].offset += 2;
+    if (Map_brr9MVea94a_Idx.includes(MESSAGE_TYPES)) {
+      return;
+    }
+    const CellVisibility = readUtf16(AxisLockThreshold[0]);
+    AxisLockThreshold[0].getUint8(AxisLockThreshold[0].offset++);
+    const MassDisplayType =
+      readUtf16(AxisLockThreshold[0])
+        .replace(new RegExp("<", "g"), "<")
+        .replace(new RegExp(">", "g"), ">") || "An unnamed cell";
+    const SKIN_LOAD_STATUS = readUtf16(AxisLockThreshold[0])
+      .replace(new RegExp("<", "g"), "<")
+      .replace(new RegExp(">", "g"), ">");
+    const PlayerState =
+      AxisLockThreshold[0].offset < AxisLockThreshold[0].byteLength
+        ? AxisLockThreshold[0].getBigInt64(AxisLockThreshold[0].offset, true)
+        : 0n;
+    const defaultKeyMappings = CellVisibility
+      ? '<nord-badge class="chat-tag">' + CellVisibility + "</nord-badge>"
+      : "";
+    const defaultOptions =
+      minimapSmoothFactor === 1
+        ? '<span class="chat-party-indicator" style="color: ' +
+          DEFAULT$HB0T_ea93b_Status["--n-color-text-info"] +
+          '; font-weight: bold; margin-right: 5px;">[PARTY]</span>'
+        : "";
+    const defaultSubPanelSettings =
+      '\n      <div class="chat-message" ' +
+      (PlayerState ? 'data-msgid="' + PlayerState + '"' : "") +
+      ">\n        " +
+      defaultOptions +
+      "\n        " +
+      defaultKeyMappings +
+      '\n        <span class="chat-name" data-player-id="' +
+      MESSAGE_TYPES +
+      '" data-name-color="' +
+      Pto5ea937_Inst(
+        "#" +
+          transformCellColor(
+            16777216 +
+              (drawMinimapInterval << 16) +
+              (baseCellSize << 8) +
+              combinedCameraDistanceThreshold,
+            0
+          )
+            .toString(16)
+            .padStart(6, "0")
+      ).toHexString() +
+      '" style="color: ' +
+      Pto5ea937_Inst(
+        "#" +
+          transformCellColor(
+            16777216 +
+              (drawMinimapInterval << 16) +
+              (baseCellSize << 8) +
+              combinedCameraDistanceThreshold,
+            0
+          )
+            .toString(16)
+            .padStart(6, "0")
+      ).toHexString() +
+      ';">\n          ' +
+      MassDisplayType +
+      '\n        </span>\n        <div class="chat-content" style="color: ' +
+      messageColors[combinedInterpSpeed] +
+      ';">\n          ' +
+      HXgYeaa0d_TYPE(SKIN_LOAD_STATUS) +
+      "\n        </div>\n      </div>\n    ";
+    const fontConfigs = $(defaultSubPanelSettings);
+    fontConfigs.find(".chat-name").on("contextmenu", Xb4x);
+    Void$jyv1Bm3(fontConfigs[0]);
+  }
+  handleWhisper(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    const minimapSmoothFactor =
+      readUtf16(AxisLockThreshold[0]) || "An unnamed cell";
+    const drawMinimapInterval = AxisLockThreshold[0].getUint16(
+      AxisLockThreshold[0].offset,
+      true
+    );
+    AxisLockThreshold[0].offset += 2;
+    if (Map_brr9MVea94a_Idx.includes(drawMinimapInterval)) {
+      return;
+    }
+    const baseCellSize = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const combinedCameraDistanceThreshold = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const combinedZoomFocusStrength = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const combinedInterpSpeed =
+      "#" +
+      (
+        16777216 +
+        (baseCellSize << 16) +
+        (combinedCameraDistanceThreshold << 8) +
+        combinedZoomFocusStrength
+      )
+        .toString(16)
+        .slice(1)
+        .toUpperCase();
+    const messageColors = readUtf16(AxisLockThreshold[0]) || "An unnamed cell";
+    const MESSAGE_TYPES = AxisLockThreshold[0].getUint16(
+      AxisLockThreshold[0].offset,
+      true
+    );
+    AxisLockThreshold[0].offset += 2;
+    const CellVisibility = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const MassDisplayType = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const SKIN_LOAD_STATUS = AxisLockThreshold[0].getUint8(
+      AxisLockThreshold[0].offset++
+    );
+    const PlayerState =
+      "#" +
+      (
+        16777216 +
+        (CellVisibility << 16) +
+        (MassDisplayType << 8) +
+        SKIN_LOAD_STATUS
+      )
+        .toString(16)
+        .slice(1)
+        .toUpperCase();
+    const defaultKeyMappings = readUtf16(AxisLockThreshold[0]);
+    const defaultOptions =
+      '\n      <div class="chat-message whisper-message">\n        <span class="chat-name" data-player-id="' +
+      drawMinimapInterval +
+      '" style="color: ' +
+      combinedInterpSpeed +
+      ';">' +
+      minimapSmoothFactor +
+      '</span>\n        <span style="margin: 0 4px;">&gt;</span>\n        <span class="chat-name" data-player-id="' +
+      MESSAGE_TYPES +
+      '" style="color: ' +
+      PlayerState +
+      ';">' +
+      messageColors +
+      '</span>\n        <div class="chat-content">: ' +
+      HXgYeaa0d_TYPE(defaultKeyMappings) +
+      "</div>\n      </div>\n    ";
+    const defaultSubPanelSettings = $(defaultOptions);
+    defaultSubPanelSettings.find(".chat-name").on("contextmenu", Xb4x);
+    Void$jyv1Bm3(defaultSubPanelSettings[0]);
+  }
+  handleProfile(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold[1] = readAscii(AxisLockThreshold[0]);
+    AxisLockThreshold[2] = JSON.parse(AxisLockThreshold[1]);
+    BigInt_ZShVUjt$ea9d0_err(AxisLockThreshold[2]);
+  }
+  drawParty() {
+    const AxisLockThreshold = $("#partyPanel").empty();
+    const minimapSmoothFactor = [...this.party];
+    if (
+      Str_NmyJ4kX &&
+      Str_NmyJ4kX.isConnecting &&
+      !this.partyIds.hasOwnProperty(Str_NmyJ4kX.playerId)
+    ) {
+      const drawMinimapInterval =
+        Str_NmyJ4kX.name || $("#name-box2").val() || "Player 2";
+      const baseCellSize = new do_JMwG(Str_NmyJ4kX.playerId || -2);
+      baseCellSize.name = drawMinimapInterval;
+      baseCellSize.cellColor = 8947848;
+      minimapSmoothFactor.push({
+        id: Str_NmyJ4kX.playerId || -2,
+        name: drawMinimapInterval,
+        displayName: drawMinimapInterval,
+        state: PlayerState.JOINING,
+        isLeader: false,
+        score: 0,
+        fullPlayerData: baseCellSize,
+      });
+    }
+    if (!minimapSmoothFactor.length || Mao5huZea938_run.cHidePartyPanel) {
+      AxisLockThreshold.hide();
+      $("#leaveParty").hide();
+      return;
+    }
+    AxisLockThreshold.show();
+    $("#leaveParty").show();
+    minimapSmoothFactor.forEach(
+      Object$kDcGWUY((...minimapSmoothFactor) => {
+        minimapSmoothFactor.length = 2;
+        const baseCellSize =
+          minimapSmoothFactor[0].displayName || minimapSmoothFactor[0].name;
+        minimapSmoothFactor[2] =
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-icon lucide-ellipsis"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>';
+        if (minimapSmoothFactor[0].state === PlayerState.DEAD) {
+          minimapSmoothFactor[2] =
+            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skull-icon lucide-skull"><path d="m12.5 17-.5-1-.5 1h1z"/><path d="M15 22a1 1 0 0 0 1-1v-1a2 2 0 0 0 1.56-3.25 8 8 0 1 0-11.12 0A2 2 0 0 0 8 20v1a1 1 0 0 0 1 1z"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="12" r="1"/></svg>';
+        } else if (minimapSmoothFactor[0].state === PlayerState.SPECTATE) {
+          minimapSmoothFactor[2] =
+            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>';
+        } else if (minimapSmoothFactor[0].state === PlayerState.JOINING) {
+          minimapSmoothFactor[2] = "Joining...";
+        } else if (minimapSmoothFactor[0].score > 0) {
+          minimapSmoothFactor[2] =
+            minimapSmoothFactor[0].score.toLocaleString();
+        }
+        const combinedCameraDistanceThreshold = $(
+          '\n        <div class="party-row" data-index="' +
+            minimapSmoothFactor[1] +
+            '">\n          <span class="player-name ' +
+            (minimapSmoothFactor[0].isLeader ? "leader" : "") +
+            '">' +
+            baseCellSize +
+            '</span>\n          <span class="player-status" style="color: ' +
+            DEFAULT$HB0T_ea93b_Status["--n-color-text"] +
+            '">' +
+            minimapSmoothFactor[2] +
+            "</span>\n        </div>\n      "
+        );
+        combinedCameraDistanceThreshold.on("contextmenu", Stringify_NFlcpsmH);
+        AxisLockThreshold.append(combinedCameraDistanceThreshold);
+      }, 2)
+    );
+  }
+}
+class WeakMaplS3ea9a6 {
+  constructor(AxisLockThreshold) {
+    this.id = AxisLockThreshold;
+    this.type = 0;
+    this.nameCache = null;
+    this.massText = null;
+    this.skin = null;
+    this.playerId = 0;
+    this.color = 0;
+    this.pastelColor = null;
+    this.x = 0;
+    this.y = 0;
+    this.x_ = 0;
+    this.y_ = 0;
+    this.size = 0;
+    this.size_ = 0;
+    this.massLastAmount = -1;
+    this.cache = null;
+    this.spawnTime = performance.now();
+    this._cachedData = {
+      targetAlpha: 1,
+      isTransparent: Mao5huZea938_run.cTransCells,
+      lastSize: 0,
+      lastPosition: {
+        x: NaN,
+        y: NaN,
+      },
+      lastColor: null,
+      lastFrameTime: 0,
+      lastMouseX: NaN,
+      lastMouseY: NaN,
+      lastLineThickness: NaN,
+      lastPlayerName: null,
+      lastPlayerSkinUrl: null,
+      lastGraphicsColor: null,
+      lastGraphicsAlpha: null,
+    };
+    this._cachedData.targetAlpha = this._cachedData.isTransparent ? 0.5 : 1;
+  }
+  setType(AxisLockThreshold) {
+    this.type = AxisLockThreshold;
+  }
+  setX(AxisLockThreshold) {
+    this.x_ = AxisLockThreshold;
+    this.x = AxisLockThreshold;
+  }
+  setY(AxisLockThreshold) {
+    this.y_ = AxisLockThreshold;
+    this.y = AxisLockThreshold;
+  }
+  setSize(AxisLockThreshold) {
+    this.size_ = AxisLockThreshold;
+    this.size = AxisLockThreshold;
+  }
+  updateState(AxisLockThreshold, minimapSmoothFactor, drawMinimapInterval) {
+    this.x_ = AxisLockThreshold;
+    this.y_ = minimapSmoothFactor;
+    if (drawMinimapInterval !== undefined) {
+      this.size_ = drawMinimapInterval;
+    }
+  }
+  getMass() {
+    return ((this.size * this.size) / 25) >> 0;
+  }
+  getRealMass() {
+    return ((this.size_ * this.size_) / 25) >> 0;
+  }
+  interpolateState(AxisLockThreshold, minimapSmoothFactor = false) {
+    if (minimapSmoothFactor) {
+      this.x = this.x_;
+      this.y = this.y_;
+      this.size = this.size_;
+      return;
+    }
+    const drawMinimapInterval = 0.1;
+    const baseCellSize = Math.min(
+      (15 / Mao5huZea938_run.rAnimationDelay) * AxisLockThreshold,
+      1
+    );
+    const combinedCameraDistanceThreshold = this.x_ - this.x;
+    const combinedZoomFocusStrength = this.y_ - this.y;
+    if (
+      Math.abs(combinedCameraDistanceThreshold) > drawMinimapInterval ||
+      Math.abs(combinedZoomFocusStrength) > drawMinimapInterval
+    ) {
+      this.x += combinedCameraDistanceThreshold * baseCellSize;
+      this.y += combinedZoomFocusStrength * baseCellSize;
+    } else {
+      this.x = this.x_;
+      this.y = this.y_;
+    }
+    const combinedInterpSpeed = this.size_ - this.size;
+    if (Math.abs(combinedInterpSpeed) > drawMinimapInterval) {
+      this.size += combinedInterpSpeed * baseCellSize;
+    } else {
+      this.size = this.size_;
+    }
+  }
+  toShortString(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    if (AxisLockThreshold[0] < 1000) {
+      return AxisLockThreshold[0].toString();
+    } else if (AxisLockThreshold[0] < 1000000) {
+      let minimapSmoothFactor = Math.floor(AxisLockThreshold[0] / 100) / 10;
+      return minimapSmoothFactor.toFixed(1) + "K";
+    } else if (AxisLockThreshold[0] < 1000000000) {
+      let minimapSmoothFactor = Math.floor(AxisLockThreshold[0] / 100000) / 10;
+      return minimapSmoothFactor.toFixed(1) + "M";
+    } else if (AxisLockThreshold[0] >= 1000000000) {
+      let minimapSmoothFactor =
+        Math.floor(AxisLockThreshold[0] / 100000000) / 10;
+      return minimapSmoothFactor.toFixed(1) + "B";
+    }
+    return AxisLockThreshold[0].toString();
+  }
+  handleFood() {
+    if (this.needsPixiUpdate && this.sprite.visible) {
+      this.sprite.position.set(this.x, this.y);
+      this.sprite.texture = dNwtiUlea972_Handler;
+      const AxisLockThreshold = Object$kDcGWUY((...AxisLockThreshold) => {
+        AxisLockThreshold.length = 1;
+        const minimapSmoothFactor = Pto5ea937_Inst(AxisLockThreshold[0]);
+        const drawMinimapInterval = Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return parseInt(AxisLockThreshold[0].replace("#", ""), 16);
+        });
+        return [
+          drawMinimapInterval(minimapSmoothFactor.toHexString()),
+          drawMinimapInterval(minimapSmoothFactor.lighten(10).toHexString()),
+          drawMinimapInterval(minimapSmoothFactor.lighten(20).toHexString()),
+          drawMinimapInterval(minimapSmoothFactor.darken(10).toHexString()),
+          drawMinimapInterval(minimapSmoothFactor.darken(20).toHexString()),
+        ];
+      });
+      const minimapSmoothFactor = AxisLockThreshold(
+        DEFAULT$HB0T_ea93b_Status["--n-color-accent"]
+      );
+      const drawMinimapInterval =
+        minimapSmoothFactor[
+          Math.floor(Math.random() * minimapSmoothFactor.length)
+        ];
+      this.sprite.tint = drawMinimapInterval;
+      this.needsPixiUpdate = false;
+    }
+  }
+  createPixiObjects() {
+    if (this.type == 2) {
+      if (!this.container) {
+        this.container = new PIXI.Container();
+        this.container.parentCell = this;
+        this.needsPixiUpdate = true;
+        let_ExdFq$65.addChild(this.container);
+      }
+    } else if (!this.sprite) {
+      this.sprite = new PIXI.Sprite(PIXI.Texture.EMPTY);
+      this.sprite.parentCell = this;
+      this.sprite.anchor.set(0.5);
+      if (this.type === 6) {
+        this.sprite.width = 12;
+        this.sprite.height = 12;
+      }
+      this.needsPixiUpdate = true;
+      if (this.type != 0) {
+        let_ExdFq$65.addChild(this.sprite);
+      } else {
+        letwtfOyM80ea984_num.addChild(this.sprite);
+      }
+    }
+  }
+  handle(AxisLockThreshold) {
+    if (
+      (this.type === 2 && !this.container) ||
+      (this.type !== 2 && !this.sprite)
+    ) {
+      return;
+    }
+    if (!this._cachedData) {
+      this._cachedData = {
+        targetAlpha: 1,
+        isTransparent: Mao5huZea938_run.cTransCells,
+        lastSize: 0,
+        lastPosition: {
+          x: NaN,
+          y: NaN,
+        },
+        lastColor: null,
+        lastFrameTime: 0,
+        lastMouseX: NaN,
+        lastMouseY: NaN,
+        lastLineThickness: NaN,
+        lastPlayerName: null,
+        lastPlayerSkinUrl: null,
+      };
+      this._cachedData.targetAlpha = this._cachedData.isTransparent ? 0.5 : 1;
+    }
+    if (this._cachedData.isTransparent !== Mao5huZea938_run.cTransCells) {
+      this._cachedData.isTransparent = Mao5huZea938_run.cTransCells;
+      this._cachedData.targetAlpha = this._cachedData.isTransparent ? 0.5 : 1;
+    }
+    const minimapSmoothFactor = this._cachedData.targetAlpha;
+    const drawMinimapInterval =
+      this.x !== this._cachedData.lastPosition.x ||
+      this.y !== this._cachedData.lastPosition.y;
+    switch (this.type) {
+      case 0:
+        break;
+      case 1:
+        this.handleEjectedMass(minimapSmoothFactor, drawMinimapInterval);
+        break;
+      case 2:
+        this.handlePlayerCell(
+          minimapSmoothFactor,
+          drawMinimapInterval,
+          AxisLockThreshold
+        );
+        break;
+      case 3:
+        this.handleVirus(minimapSmoothFactor, drawMinimapInterval);
+        break;
+      case 4:
+        this.handleMotherCell(minimapSmoothFactor, drawMinimapInterval);
+        break;
+    }
+    if (drawMinimapInterval) {
+      this._cachedData.lastPosition.x = this.x;
+      this._cachedData.lastPosition.y = this.y;
+    }
+  }
+  handleEjectedMass(AxisLockThreshold, minimapSmoothFactor) {
+    const drawMinimapInterval = If$sEyzqKbhea93f_Exec
+      ? zLCuf8c.getPlayer(If$sEyzqKbhea93f_Exec.playerId)
+      : null;
+    const baseCellSize = Str_NmyJ4kX
+      ? zLCuf8c.getPlayer(Str_NmyJ4kX.playerId)
+      : null;
+    const combinedCameraDistanceThreshold =
+      (drawMinimapInterval && this.color === drawMinimapInterval.cellColor) ||
+      (baseCellSize && this.color === baseCellSize.cellColor);
+    let combinedZoomFocusStrength;
+    if (Mao5huZea938_run.cCustomCellColor && combinedCameraDistanceThreshold) {
+      const combinedInterpSpeed = 10000 / Mao5huZea938_run.rRgbSpeed;
+      const messageColors = performance.now() / combinedInterpSpeed;
+      const MESSAGE_TYPES = ((Math.sin(messageColors) + 1) / 2) * 100;
+      const CellVisibility = Pto5ea937_Inst.mix(
+        Mao5huZea938_run.sRgbColor1,
+        Mao5huZea938_run.sRgbColor2,
+        MESSAGE_TYPES
+      );
+      combinedZoomFocusStrength = parseInt(
+        CellVisibility.toHexString().substring(1),
+        16
+      );
+    } else {
+      if (this.pastelColor === null && this.color !== null) {
+        const MassDisplayType = (this.color >> 16) & 255;
+        const SKIN_LOAD_STATUS = (this.color >> 8) & 255;
+        const PlayerState = this.color & 255;
+        const defaultKeyMappings = Pto5ea937_Inst({
+          r: MassDisplayType,
+          g: SKIN_LOAD_STATUS,
+          b: PlayerState,
+        })
+          .lighten(25)
+          .desaturate(20);
+        this.pastelColor = parseInt(
+          defaultKeyMappings.toHexString().substring(1),
+          16
+        );
+      }
+      combinedZoomFocusStrength = this.pastelColor || this.color;
+    }
+    const defaultOptions = performance.now();
+    const defaultSubPanelSettings = defaultOptions - this.spawnTime;
+    const fontConfigs = 1000;
+    const readAscii = Math.min(defaultSubPanelSettings / fontConfigs, 1);
+    let readUtf16;
+    if (readAscii < 1) {
+      const MassDisplayType = (combinedZoomFocusStrength >> 16) & 255;
+      const SKIN_LOAD_STATUS = (combinedZoomFocusStrength >> 8) & 255;
+      const PlayerState = combinedZoomFocusStrength & 255;
+      const writeAscii = 1 - Math.pow(1 - readAscii, 3);
+      const writeUtf16 = 0.3;
+      const byteToHex = writeUtf16 + (1 - writeUtf16) * writeAscii;
+      const capitalize = Math.floor(MassDisplayType * byteToHex);
+      const findServerByName = Math.floor(SKIN_LOAD_STATUS * byteToHex);
+      const formatAliveTime = Math.floor(PlayerState * byteToHex);
+      readUtf16 =
+        (capitalize << 16) | (findServerByName << 8) | formatAliveTime;
+    } else {
+      readUtf16 = combinedZoomFocusStrength;
+    }
+    if (this.needsPixiUpdate) {
+      let formatExperience = U0QG_Qf;
+      if (this.skin >= 0 && this.skin < pQQAhea970_Tmp.length) {
+        formatExperience = pQQAhea970_Tmp[this.skin];
+      }
+      if (this.sprite.texture !== formatExperience) {
+        this.sprite.texture = formatExperience;
+      }
+      if (this.sprite.alpha !== AxisLockThreshold) {
+        this.sprite.alpha = AxisLockThreshold;
+      }
+      const formatSnakeCaseString = this.size * 2;
+      if (this.sprite.width !== formatSnakeCaseString) {
+        this.sprite.width = formatSnakeCaseString;
+        this.sprite.height = formatSnakeCaseString;
+      }
+      this.needsPixiUpdate = false;
+    }
+    if (this.sprite.tint !== readUtf16) {
+      this.sprite.tint = readUtf16;
+    }
+    if (minimapSmoothFactor) {
+      this.sprite.position.set(this.x, this.y);
+    }
+    if (this.sprite.zIndex !== this.size) {
+      this.sprite.zIndex = this.size;
+    }
+  }
+  getCellVisibility() {
+    if (faCUfKea9fb_add().playerId === this.playerId) {
+      return CellVisibility.SELF;
+    }
+    if (faCUfKea9fb_add().partyIds[this.playerId] != null) {
+      return CellVisibility.PARTY;
+    }
+    return CellVisibility.ALL;
+  }
+  handlePlayerCell(
+    AxisLockThreshold,
+    minimapSmoothFactor,
+    drawMinimapInterval
+  ) {
+    if (!this.container) {
+      return;
+    }
+    const combinedCameraDistanceThreshold = zLCuf8c.getPlayerById(
+      this.playerId
+    );
+    if (!combinedCameraDistanceThreshold) {
+      return;
+    }
+    this.color = Pto5ea937_Inst(
+      "#" +
+        combinedCameraDistanceThreshold.cellColor.toString(16).padStart(6, "0")
+    ).toHexString();
+    const combinedZoomFocusStrength = 20;
+    const combinedInterpSpeed = performance.now() - this.spawnTime;
+    const messageColors = Math.min(
+      combinedInterpSpeed / combinedZoomFocusStrength,
+      1
+    );
+    const MESSAGE_TYPES = 1 - Math.pow(1 - messageColors, 3);
+    if (!this.backgroundSprite) {
+      this.backgroundSprite = new PIXI.Sprite(
+        yield_a4eFrbK9_eaa07_Ret(baseCellSize)
+      );
+      this.backgroundSprite.anchor.set(0.5);
+      this.container.addChildAt(this.backgroundSprite, 0);
+    }
+    if (!this.cellSprite) {
+      this.cellSprite = new PIXI.Sprite(PIXI.Texture.EMPTY);
+      this.cellSprite.anchor.set(0.5);
+      this.cellSprite.width = baseCellSize * 2;
+      this.cellSprite.height = baseCellSize * 2;
+      this.container.addChild(this.cellSprite);
+    }
+    if (!this.skinSprite) {
+      this.skinSprite = new PIXI.Sprite(PIXI.Texture.EMPTY);
+      this.skinSprite.anchor.set(0.5);
+      this.skinSprite.width = baseCellSize * 2;
+      this.skinSprite.height = baseCellSize * 2;
+      this.container.addChild(this.skinSprite);
+    }
+    if (!this.nameSprite) {
+      this.nameSprite = new PIXI.Sprite(PIXI.Texture.EMPTY);
+      this.nameSprite.anchor.set(0.5, 0.5);
+      this.container.addChild(this.nameSprite);
+    }
+    if (!this.massSprite) {
+      this.massSprite = new PIXI.Sprite(PIXI.Texture.EMPTY);
+      this.massSprite.anchor.set(0.5, 0.5);
+      this.container.addChild(this.massSprite);
+    }
+    const CellVisibility = this.getCellVisibility();
+    const MassDisplayType = 4 / this.size;
+    const SKIN_LOAD_STATUS =
+      drawMinimapInterval.scale >= MassDisplayType * 4 ||
+      Mao5huZea938_run.cDisableAutoNameHiding;
+    const PlayerState =
+      B5O8N2Mea93c_ret.levelNames >= CellVisibility &&
+      SKIN_LOAD_STATUS &&
+      combinedCameraDistanceThreshold.name.length > 0;
+    const defaultKeyMappings =
+      (CellVisibility <= B5O8N2Mea93c_ret.levelMass ||
+        faCUfKea9fb_add().serverData.autosplits) &&
+      SKIN_LOAD_STATUS;
+    const defaultOptions = combinedCameraDistanceThreshold.spiked > 0;
+    const defaultSubPanelSettings =
+      !defaultOptions && B5O8N2Mea93c_ret.levelSkins >= CellVisibility;
+    if (defaultOptions) {
+      this.cellSprite.visible = true;
+      this.backgroundSprite.visible = false;
+      this.skinSprite.visible = false;
+      const fontConfigs =
+        combinedCameraDistanceThreshold.spiked === 1
+          ? jW39BD0.getTexture("spikeTexture")
+          : jW39BD0.getTexture("motherCellTexture");
+      if (this.cellSprite.texture !== fontConfigs) {
+        this.cellSprite.texture = fontConfigs;
+      }
+      if (this.cellSprite.tint !== 16777215) {
+        this.cellSprite.tint = 16777215;
+      }
+    } else {
+      this.cellSprite.visible = false;
+      this.backgroundSprite.visible = true;
+      const readAscii =
+        this.playerId === If$sEyzqKbhea93f_Exec.playerId ||
+        (Str_NmyJ4kX && this.playerId === Str_NmyJ4kX.playerId);
+      let readUtf16;
+      if (Mao5huZea938_run.cCustomCellColor && readAscii) {
+        const writeAscii = 10000 / Mao5huZea938_run.rRgbSpeed;
+        const writeUtf16 = performance.now() / writeAscii;
+        const byteToHex = ((Math.sin(writeUtf16) + 1) / 2) * 100;
+        const capitalize = Pto5ea937_Inst.mix(
+          Mao5huZea938_run.sRgbColor1,
+          Mao5huZea938_run.sRgbColor2,
+          byteToHex
+        );
+        readUtf16 = parseInt(capitalize.toHexString().substring(1), 16);
+      } else {
+        readUtf16 = combinedCameraDistanceThreshold.cellColor;
+      }
+      const findServerByName = readUtf16;
+      if (this.backgroundSprite.tint !== findServerByName) {
+        this.backgroundSprite.tint = findServerByName;
+      }
+      const formatAliveTime = AxisLockThreshold * MESSAGE_TYPES;
+      if (this.backgroundSprite.alpha !== formatAliveTime) {
+        this.backgroundSprite.alpha = formatAliveTime;
+      }
+      const formatExperience = combinedCameraDistanceThreshold.getSkin();
+      const formatSnakeCaseString =
+        defaultSubPanelSettings && formatExperience && formatExperience.texture;
+      this.skinSprite.visible = formatSnakeCaseString;
+      if (formatSnakeCaseString) {
+        const initFirebaseApp = formatExperience.isGif
+          ? formatExperience.texture.getTexture()
+          : formatExperience.texture;
+        if (this.skinSprite.texture !== initFirebaseApp) {
+          this.skinSprite.texture = initFirebaseApp;
+        }
+        this.skinSprite.alpha =
+          (Mao5huZea938_run.cTransCells ? AxisLockThreshold : 1) *
+          MESSAGE_TYPES;
+      }
+    }
+    const initializeNord = Math.max(MassDisplayType, 0.16) * 4;
+    this.nameSprite.visible = PlayerState;
+    if (PlayerState) {
+      const injectShadowStyle = Dom34uUv8$ea9b1_bool.getNameTexture(
+        combinedCameraDistanceThreshold
+      );
+      if (this.nameSprite.texture !== injectShadowStyle) {
+        this.nameSprite.texture = injectShadowStyle;
+      }
+      if (this.nameSprite.scale.x !== initializeNord) {
+        this.nameSprite.scale.set(initializeNord);
+      }
+      const transformCellColor = combinedCameraDistanceThreshold.lowerName
+        ? baseCellSize / 1.25 - this.nameSprite.height / 2
+        : 0;
+      if (this.nameSprite.y !== transformCellColor) {
+        this.nameSprite.position.y = transformCellColor;
+      }
+    }
+    this.massSprite.visible = defaultKeyMappings;
+    if (defaultKeyMappings) {
+      const Logger = this.getRealMass();
+      if (this.massLastAmount !== Logger) {
+        const defaultTheme =
+          B5O8N2Mea93c_ret.massType === 1
+            ? this.toShortString(Logger)
+            : Logger.toString();
+        const SERVER_PORT = Dom34uUv8$ea9b1_bool.getNameTexture({
+          name: defaultTheme,
+          nameColor: "#FFFFFF",
+          nameFont: -1,
+        });
+        if (this.massSprite.texture !== SERVER_PORT) {
+          this.massSprite.texture = SERVER_PORT;
+        }
+        this.massLastAmount = Logger;
+      }
+      if (this.massSprite.scale.x !== initializeNord) {
+        this.massSprite.scale.set(initializeNord);
+      }
+      const CoKB = this.nameSprite.visible
+        ? this.nameSprite.texture.height * this.nameSprite.scale.y
+        : 0;
+      const VuerW6rI_ea93a_neq =
+        this.nameSprite.y +
+        CoKB / 2 +
+        (this.massSprite.texture.height * this.massSprite.scale.y) / 2;
+      if (this.massSprite.y !== VuerW6rI_ea93a_neq) {
+        this.massSprite.position.y = VuerW6rI_ea93a_neq;
+      }
+    }
+    const DEFAULT$HB0T_ea93b_Status =
+      If$sEyzqKbhea93f_Exec &&
+      If$sEyzqKbhea93f_Exec.myCells.size > 0 &&
+      Str_NmyJ4kX &&
+      Str_NmyJ4kX.myCells.size > 0;
+    const Date$F4EY = Mao5huZea938_run.cCellRing && DEFAULT$HB0T_ea93b_Status;
+    const async_gvZqk_Dc_ea93e_div =
+      (If$sEyzqKbhea93f_Exec &&
+        combinedCameraDistanceThreshold.id ===
+          If$sEyzqKbhea93f_Exec.playerId) ||
+      (Str_NmyJ4kX &&
+        combinedCameraDistanceThreshold.id === Str_NmyJ4kX.playerId);
+    if (Date$F4EY && async_gvZqk_Dc_ea93e_div) {
+      const VoidGBYH =
+        faCUfKea9fb_add().playerId === combinedCameraDistanceThreshold.id;
+      if (!this.ringSprite) {
+        this.ringSprite = new PIXI.Graphics()
+          .lineStyle(10, 16777215, Mao5huZea938_run.cTransCells ? 0.8 : 1)
+          .drawCircle(0, 0, ((baseCellSize + 6) * 2 - 22) >> 1);
+        this.container.addChild(this.ringSprite);
+      }
+      if (this.ringSprite.visible !== VoidGBYH) {
+        this.ringSprite.visible = VoidGBYH;
+      }
+    } else if (this.ringSprite) {
+      this.ringSprite.destroy(true);
+      this.ringSprite = null;
+    }
+    const ObjectueAUtq = this.size / baseCellSize;
+    const in_hpdqea943_div = ObjectueAUtq * MESSAGE_TYPES;
+    if (this.container.scale.x !== in_hpdqea943_div) {
+      this.container.scale.set(in_hpdqea943_div);
+    }
+    if (minimapSmoothFactor) {
+      this.container.position.set(this.x, this.y);
+    }
+    this.needsPixiUpdate = false;
+    const tRyea944_Id = defaultOptions ? this.size * 0.5 : this.size;
+    if (this.container.zIndex !== tRyea944_Id) {
+      this.container.zIndex = tRyea944_Id;
+    }
+  }
+  updateNameEffect(AxisLockThreshold) {
+    const minimapSmoothFactor =
+      AxisLockThreshold.effect === 1 && _0x11F51[0] != null;
+    if (minimapSmoothFactor) {
+      if (!this.nameEffectSprite) {
+        this.nameEffectSprite = new PIXI.Sprite(PIXI.Texture.EMPTY);
+        this.nameSprite.addChild(this.nameEffectSprite);
+      }
+      if (!this.nameEffectSprite.visible) {
+        this.nameEffectSprite.visible = true;
+      }
+      const drawMinimapInterval = _0x11F51[0].getTexture();
+      if (this.nameEffectSprite.texture !== drawMinimapInterval) {
+        this.nameEffectSprite.texture = drawMinimapInterval;
+      }
+      const baseCellSize =
+        this.nameSprite.texture.width / drawMinimapInterval.width;
+      const combinedCameraDistanceThreshold =
+        this.nameSprite.texture.height / drawMinimapInterval.height;
+      if (
+        this.nameEffectSprite.scale.x !== baseCellSize ||
+        this.nameEffectSprite.scale.y !== combinedCameraDistanceThreshold
+      ) {
+        this.nameEffectSprite.scale.set(
+          baseCellSize,
+          combinedCameraDistanceThreshold
+        );
+      }
+    } else if (this.nameEffectSprite && this.nameEffectSprite.visible) {
+      this.nameEffectSprite.visible = false;
+    }
+  }
+  handleVirus(AxisLockThreshold, minimapSmoothFactor) {
+    if (this.needsPixiUpdate) {
+      this.sprite.anchor.set(0.5);
+      const drawMinimapInterval = jW39BD0.getTexture("spikeTexture");
+      if (this.sprite.texture !== drawMinimapInterval) {
+        this.sprite.texture = drawMinimapInterval;
+      }
+      if (this.sprite.alpha !== AxisLockThreshold) {
+        this.sprite.alpha = AxisLockThreshold;
+      }
+      this.needsPixiUpdate = false;
+    }
+    if (this._cachedData.lastSize !== this.size) {
+      const baseCellSize = this.size / 256;
+      if (this.sprite.scale.x !== baseCellSize) {
+        this.sprite.scale.set(baseCellSize);
+      }
+      this._cachedData.lastSize = this.size;
+    }
+    if (minimapSmoothFactor) {
+      this.sprite.position.set(this.x, this.y);
+    }
+    const combinedCameraDistanceThreshold = this.size;
+    if (this.sprite.zIndex !== combinedCameraDistanceThreshold) {
+      this.sprite.zIndex = combinedCameraDistanceThreshold;
+    }
+  }
+  handleMotherCell(AxisLockThreshold, minimapSmoothFactor) {
+    if (this.needsPixiUpdate) {
+      const drawMinimapInterval = jW39BD0.getTexture("motherCellTexture");
+      if (this.sprite.texture !== drawMinimapInterval) {
+        this.sprite.texture = drawMinimapInterval;
+      }
+      this.setDefaultSpriteAnchor();
+      if (this.sprite.alpha !== AxisLockThreshold) {
+        this.sprite.alpha = AxisLockThreshold;
+      }
+      this.needsPixiUpdate = false;
+    }
+    if (this._cachedData.lastSize !== this.size) {
+      const baseCellSize = this.size / 256;
+      if (this.sprite.scale.x !== baseCellSize) {
+        this.sprite.scale.set(baseCellSize);
+      }
+      this._cachedData.lastSize = this.size;
+    }
+    if (minimapSmoothFactor) {
+      this.sprite.position.set(this.x, this.y);
+    }
+    const combinedCameraDistanceThreshold = this.size;
+    if (this.sprite.zIndex !== combinedCameraDistanceThreshold) {
+      this.sprite.zIndex = combinedCameraDistanceThreshold;
+    }
+  }
+  setDefaultSpriteAnchor() {
+    this.sprite.anchor.set(0.5);
+    this.sprite.width = 128;
+    this.sprite.height = 128;
+  }
+  onCreate(AxisLockThreshold) {
+    jQuery_hn$0_2t_ea9b2_sub.register(this);
+    if (this.type == 6) {
+      AxisLockThreshold.foodObjects.set(this.id, this);
+    } else {
+      AxisLockThreshold.players.set(this.id, this);
+    }
+    if (this.playerId == AxisLockThreshold.playerId) {
+      AxisLockThreshold.myCells.set(this.id, this);
+    }
+  }
+  onDelete() {
+    jQuery_hn$0_2t_ea9b2_sub.unregister(this);
+  }
+  destroyPixiObjects() {
+    if (this.ringSprite) {
+      this.ringSprite.destroy(true);
+      this.ringSprite = null;
+    }
+    if (this.debuffSprite) {
+      this.debuffSprite.destroy(true);
+      this.debuffSprite = null;
+    }
+    if (this.shieldSprite) {
+      this.shieldSprite.destroy(true);
+      this.shieldSprite = null;
+    }
+    if (this.crownGraphic) {
+      this.crownGraphic.destroy(true);
+      this.crownGraphic = null;
+    }
+    if (this.nameEffectSprite) {
+      this.nameEffectSprite.destroy(true);
+      this.nameEffectSprite = null;
+    }
+    if (this.massText) {
+      this.massText.destroy({
+        texture: true,
+        baseTexture: true,
+      });
+      this.massText = null;
+    }
+    if (this.container) {
+      if (this.container.parent) {
+        this.container.parent.removeChild(this.container);
+      }
+      this.container.destroy({
+        children: true,
+      });
+      this.container = null;
+    } else if (this.sprite) {
+      if (this.sprite.parent) {
+        this.sprite.parent.removeChild(this.sprite);
+      }
+      this.sprite.destroy({
+        children: true,
+      });
+      this.sprite = null;
+    }
+    if (this.cache) {
+      this.cache.destroy(true);
+      this.cache = null;
+    }
+  }
+}
+class do_JMwG {
+  constructor(AxisLockThreshold) {
+    this.id = AxisLockThreshold;
+    this.name = undefined;
+    this.skin = undefined;
+    this.skinCache = undefined;
+    this.cellColor = undefined;
+    this.nameColor = "#E0E0E0";
+    this.flags = 0;
+    this.effect = 0;
+    this.nameFont = 0;
+    this.lowerName = false;
+    this.cacheUpdate = false;
+    this.spiked = 0;
+    this.seenByClient1 = false;
+    this.seenByClient2 = false;
+  }
+  setFlags(AxisLockThreshold) {
+    this.flags = AxisLockThreshold;
+    if ((AxisLockThreshold & 8) !== 0) {
+      this.spiked = 1;
+    } else if ((AxisLockThreshold & 16) !== 0) {
+      this.spiked = 2;
+    } else {
+      this.spiked = 0;
+    }
+  }
+  parseEffect(AxisLockThreshold) {
+    if (AxisLockThreshold >= 64) {
+      this.lowerName = true;
+      this.effect = AxisLockThreshold - 64;
+    } else {
+      this.lowerName = false;
+      this.effect = AxisLockThreshold;
+    }
+  }
+  setSkin(AxisLockThreshold) {
+    if (!AxisLockThreshold || AxisLockThreshold.length === 0) {
+      this.skin = null;
+      this.skinCache = null;
+      return;
+    }
+    if (AxisLockThreshold !== this.skin && !this.name.includes("🤖")) {
+      this.skin = AxisLockThreshold;
+      this.skinCache = null;
+    }
+  }
+  async loadGifSkin(AxisLockThreshold) {
+    try {
+      const minimapSmoothFactor = await gifFrames({
+        url: AxisLockThreshold,
+        frames: "all",
+        cumulative: false,
+        outputType: "canvas",
+      });
+      const drawMinimapInterval = new rejea9ac_Key();
+      drawMinimapInterval.loadFromFrameData(minimapSmoothFactor);
+      RegExp_yFv[AxisLockThreshold] = SKIN_LOAD_STATUS.LOADED;
+      AlIjpjxYea96e_Id[AxisLockThreshold] = {
+        texture: drawMinimapInterval,
+        hasTransparency: false,
+        isGif: true,
+      };
+    } catch {
+      this.skin = null;
+      RegExp_yFv[AxisLockThreshold] = SKIN_LOAD_STATUS.ERROR;
+    }
+  }
+  processLoadedTexture(...AxisLockThreshold) {
+    AxisLockThreshold.length = 2;
+    const minimapSmoothFactor = document.createElement("canvas");
+    minimapSmoothFactor.width = AxisLockThreshold[1].width;
+    minimapSmoothFactor.height = AxisLockThreshold[1].height;
+    const drawMinimapInterval = minimapSmoothFactor.getContext("2d");
+    drawMinimapInterval.beginPath();
+    drawMinimapInterval.arc(
+      AxisLockThreshold[1].width / 2,
+      AxisLockThreshold[1].height / 2,
+      Math.min(AxisLockThreshold[1].width, AxisLockThreshold[1].height) / 2,
+      0,
+      Math.PI * 2,
+      false
+    );
+    drawMinimapInterval.closePath();
+    drawMinimapInterval.clip();
+    drawMinimapInterval.drawImage(
+      AxisLockThreshold[1].baseTexture.resource.source,
+      0,
+      0
+    );
+    RegExp_yFv[AxisLockThreshold[0]] = SKIN_LOAD_STATUS.LOADED;
+    AlIjpjxYea96e_Id[AxisLockThreshold[0]] = {
+      texture: PIXI.Texture.from(minimapSmoothFactor),
+      hasTransparency: true,
+      isGif: false,
+    };
+  }
+  async loadImageSkin(AxisLockThreshold) {
+    return new Promise((minimapSmoothFactor, drawMinimapInterval) => {
+      const baseCellSize = PIXI.Texture.from(AxisLockThreshold);
+      if (baseCellSize.baseTexture.valid) {
+        this.processLoadedTexture(AxisLockThreshold, baseCellSize);
+        minimapSmoothFactor();
+      } else {
+        baseCellSize.baseTexture.once("update", () => {
+          this.processLoadedTexture(AxisLockThreshold, baseCellSize);
+          minimapSmoothFactor();
+        });
+        baseCellSize.baseTexture.once("error", (minimapSmoothFactor) => {
+          console.error(
+            "Failed to load skin: " + AxisLockThreshold,
+            minimapSmoothFactor
+          );
+          RegExp_yFv[AxisLockThreshold] = SKIN_LOAD_STATUS.ERROR;
+          this.skin = null;
+          drawMinimapInterval(minimapSmoothFactor);
+        });
+      }
+    });
+  }
+  getSkin() {
+    if (this.skinCache && RegExp_yFv[this.skin] === SKIN_LOAD_STATUS.LOADED) {
+      return this.skinCache;
+    }
+    if (!this.skin) {
+      return null;
+    }
+    const AxisLockThreshold =
+      "http://localhost:" +
+      SERVER_PORT +
+      "/cors/" +
+      encodeURIComponent(this.skin);
+    switch (RegExp_yFv[AxisLockThreshold]) {
+      case undefined:
+        RegExp_yFv[AxisLockThreshold] = SKIN_LOAD_STATUS.LOADING;
+        if (this.skin.toLowerCase().endsWith(".gif")) {
+          this.loadGifSkin(AxisLockThreshold);
+        } else {
+          this.loadImageSkin(AxisLockThreshold).catch(() => {});
+        }
+        break;
+      case SKIN_LOAD_STATUS.LOADED:
+        this.skinCache = AlIjpjxYea96e_Id[AxisLockThreshold];
+        return this.skinCache;
+      case SKIN_LOAD_STATUS.ERROR:
+        this.skin = null;
+        break;
+    }
+    return null;
+  }
+}
+class letmwr {
+  constructor() {
+    this.players = new Map();
+    this.defaultData = null;
+    this.updatedPlayers = [];
+    this.init();
+  }
+  init() {
+    this.defaultData = new do_JMwG(0);
+    this.defaultData.name = "";
+    this.defaultData.cellColor = 11184810;
+  }
+  add(AxisLockThreshold) {
+    this.players.set(AxisLockThreshold.id, AxisLockThreshold);
+  }
+  remove(AxisLockThreshold, minimapSmoothFactor) {
+    const drawMinimapInterval = this.players.get(AxisLockThreshold);
+    if (!drawMinimapInterval) {
+      return;
+    }
+    if (minimapSmoothFactor === If$sEyzqKbhea93f_Exec) {
+      drawMinimapInterval.seenByClient1 = false;
+    } else if (minimapSmoothFactor === Str_NmyJ4kX) {
+      drawMinimapInterval.seenByClient2 = false;
+    }
+    if (
+      !drawMinimapInterval.seenByClient1 &&
+      !drawMinimapInterval.seenByClient2
+    ) {
+      this.players.delete(AxisLockThreshold);
+    }
+  }
+  clear() {
+    this.players.clear();
+    this.init();
+  }
+  getPlayer(AxisLockThreshold) {
+    return this.players.get(AxisLockThreshold);
+  }
+  getPlayerById(AxisLockThreshold) {
+    return this.players.get(AxisLockThreshold) ?? this.defaultData;
+  }
+  markUpdated(AxisLockThreshold) {
+    if (!AxisLockThreshold.cacheUpdate) {
+      AxisLockThreshold.cacheUpdate = true;
+      this.updatedPlayers.push(AxisLockThreshold);
+    }
+  }
+  processUpdates() {
+    while (this.updatedPlayers.length > 0) {
+      const AxisLockThreshold = this.updatedPlayers.shift();
+      AxisLockThreshold.cacheUpdate = false;
+    }
+  }
+}
+class RETURN_FUB_ea9a9_Opt {
+  constructor() {
+    this.textureCache = new Map();
+    this.rendererText = new PIXI.Text("", {});
+  }
+  _getCacheKey(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    const minimapSmoothFactor =
+      AxisLockThreshold[0].nameFont === -1
+        ? {
+            fontFamily: "Nordhealth Sans",
+          }
+        : fontConfigs[AxisLockThreshold[0].nameFont] || fontConfigs[0];
+    return (
+      "" +
+      AxisLockThreshold[0].name +
+      "|" +
+      AxisLockThreshold[0].nameColor +
+      "|" +
+      minimapSmoothFactor.fontFamily +
+      "|" +
+      Mao5huZea938_run.rTextOutlines
+    );
+  }
+  getNameTexture(AxisLockThreshold) {
+    if (
+      !AxisLockThreshold ||
+      AxisLockThreshold.name === undefined ||
+      AxisLockThreshold.name === null
+    ) {
+      return PIXI.Texture.EMPTY;
+    }
+    const minimapSmoothFactor = this._getCacheKey(AxisLockThreshold);
+    if (this.textureCache.has(minimapSmoothFactor)) {
+      return this.textureCache.get(minimapSmoothFactor);
+    }
+    const drawMinimapInterval = AxisLockThreshold.nameFont === -1;
+    const baseCellSize = !drawMinimapInterval
+      ? fontConfigs[AxisLockThreshold.nameFont] || fontConfigs[0]
+      : null;
+    const combinedCameraDistanceThreshold = !drawMinimapInterval
+      ? AxisLockThreshold.nameFont === 0
+      : false;
+    if (drawMinimapInterval) {
+      this.rendererText.style.fontFamily = "Nordhealth Sans";
+      this.rendererText.style.fontWeight = "bold";
+      this.rendererText.style.fontSize = 54;
+      this.rendererText.style.fill = "#FFFFFF";
+      this.rendererText.style.stroke = "black";
+      this.rendererText.style.strokeThickness = Mao5huZea938_run.rTextOutlines;
+    } else {
+      this.rendererText.style.fontFamily = baseCellSize.fontFamily;
+      this.rendererText.style.fontWeight = combinedCameraDistanceThreshold
+        ? "bold"
+        : "normal";
+      this.rendererText.style.fontSize = baseCellSize.fontSize;
+      this.rendererText.style.fill = AxisLockThreshold.nameColor;
+      this.rendererText.style.stroke = baseCellSize.outlineColor;
+      this.rendererText.style.strokeThickness = combinedCameraDistanceThreshold
+        ? Mao5huZea938_run.rTextOutlines
+        : 9;
+    }
+    this.rendererText.text = AxisLockThreshold.name.includes("🤖")
+      ? "🤖"
+      : AxisLockThreshold.name;
+    this.rendererText.updateText(true);
+    const combinedZoomFocusStrength = PIXI.RenderTexture.create({
+      width: this.rendererText.width,
+      height: this.rendererText.height,
+      resolution: Date$F4EY.renderer.resolution,
+    });
+    Date$F4EY.renderer.render(this.rendererText, {
+      renderTexture: combinedZoomFocusStrength,
+    });
+    this.textureCache.set(minimapSmoothFactor, combinedZoomFocusStrength);
+    return combinedZoomFocusStrength;
+  }
+  invalidateCache() {
+    this.textureCache.clear();
+    Logger.info("NameCacheManager cache invalidated.");
+  }
+}
+class E0Pea9aa_Cfg {
+  constructor() {}
+  handshakeStart(...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold.a = new ArrayBuffer(17);
+    AxisLockThreshold[93] = new DataView(AxisLockThreshold.a);
+    AxisLockThreshold[93].setUint8(0, 255);
+    AxisLockThreshold[93].setUint8(1, 6);
+    writeAscii(2, AxisLockThreshold[93], "Gota Web 3.6.5");
+    return AxisLockThreshold.a;
+  }
+  setName(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold.a = new ArrayBuffer(
+      2 + (AxisLockThreshold[0].length + 1) * 2
+    );
+    AxisLockThreshold[123] = new DataView(AxisLockThreshold.a);
+    AxisLockThreshold[123].setUint8(0, 0);
+    writeUtf16(1, AxisLockThreshold[123], AxisLockThreshold[0]);
+    if (Mao5huZea938_run.cSilentLogin) {
+      AxisLockThreshold[123].setUint8(
+        2 + AxisLockThreshold[0].length * 2 + 1,
+        1
+      );
+    }
+    return AxisLockThreshold.a;
+  }
+  sendKey(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold[-134] = new ArrayBuffer(1);
+    AxisLockThreshold[2] = new DataView(AxisLockThreshold[-134]);
+    AxisLockThreshold[2].setUint8(0, AxisLockThreshold[0]);
+    return AxisLockThreshold[-134];
+  }
+  sendMouse(...AxisLockThreshold) {
+    AxisLockThreshold.length = 2;
+    AxisLockThreshold[184] = new ArrayBuffer(9);
+    AxisLockThreshold[3] = new DataView(AxisLockThreshold[184]);
+    AxisLockThreshold[3].setUint8(0, 16);
+    AxisLockThreshold[3].setInt32(1, AxisLockThreshold[0], true);
+    AxisLockThreshold[3].setInt32(5, AxisLockThreshold[1], true);
+    return AxisLockThreshold[184];
+  }
+  sendEjectMass(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold[1] = new ArrayBuffer(1);
+    AxisLockThreshold[94] = new DataView(AxisLockThreshold[1]);
+    AxisLockThreshold[94].setUint8(0, AxisLockThreshold[0] ? 3 : 4);
+    return AxisLockThreshold[1];
+  }
+  sendPing(...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold[56] = new ArrayBuffer(1);
+    AxisLockThreshold[-144] = new DataView(AxisLockThreshold[56]);
+    AxisLockThreshold[-144].setUint8(0, 71);
+    return AxisLockThreshold[56];
+  }
+  sendSpectate(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold.a = new ArrayBuffer(3);
+    AxisLockThreshold[110] = new DataView(AxisLockThreshold.a);
+    AxisLockThreshold[110].setUint8(0, 1);
+    if (AxisLockThreshold[0]) {
+      AxisLockThreshold[110].setUint16(1, AxisLockThreshold[0], true);
+    }
+    return AxisLockThreshold.a;
+  }
+  sendChat(...AxisLockThreshold) {
+    AxisLockThreshold.length = 2;
+    AxisLockThreshold.a = new ArrayBuffer(
+      2 + (AxisLockThreshold[0].length + 1) * 2
+    );
+    AxisLockThreshold[3] = new DataView(AxisLockThreshold.a);
+    AxisLockThreshold[3].setUint8(0, 72);
+    AxisLockThreshold[3].setUint8(1, AxisLockThreshold[1]);
+    writeUtf16(2, AxisLockThreshold[3], AxisLockThreshold[0]);
+    return AxisLockThreshold.a;
+  }
+  sendInviteResponse(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold.a = new ArrayBuffer(2);
+    AxisLockThreshold[18] = new DataView(AxisLockThreshold.a);
+    AxisLockThreshold[18].setUint8(0, 41);
+    AxisLockThreshold[18].setUint8(1, AxisLockThreshold[0] ? 1 : 0);
+    return AxisLockThreshold.a;
+  }
+  sendPartyAction(...AxisLockThreshold) {
+    AxisLockThreshold.length = 2;
+    const minimapSmoothFactor = new ArrayBuffer(6);
+    const drawMinimapInterval = new DataView(minimapSmoothFactor);
+    drawMinimapInterval.setUint8(0, 40);
+    drawMinimapInterval.setUint8(1, AxisLockThreshold[0]);
+    drawMinimapInterval.setUint32(2, AxisLockThreshold[1], true);
+    return minimapSmoothFactor;
+  }
+  sendPartyJoin(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold[-227] = new ArrayBuffer(
+      1 + AxisLockThreshold[0].length + 1
+    );
+    AxisLockThreshold[48] = new DataView(AxisLockThreshold[-227]);
+    AxisLockThreshold[48].setUint8(0, 42);
+    writeAscii(1, AxisLockThreshold[48], AxisLockThreshold[0]);
+    return AxisLockThreshold[-227];
+  }
+  sendShowProfile(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold[-17] = new ArrayBuffer(3);
+    AxisLockThreshold.b = new DataView(AxisLockThreshold[-17]);
+    AxisLockThreshold.b.setUint8(0, 103);
+    AxisLockThreshold.b.setUint16(1, AxisLockThreshold[0], true);
+    return AxisLockThreshold[-17];
+  }
+  sendWhisper(...AxisLockThreshold) {
+    AxisLockThreshold.length = 2;
+    AxisLockThreshold[2] = new ArrayBuffer(
+      5 + (AxisLockThreshold[1].length + 1) * 2
+    );
+    AxisLockThreshold[3] = new DataView(AxisLockThreshold[2]);
+    AxisLockThreshold[3].setUint8(0, 73);
+    AxisLockThreshold[3].setUint32(1, AxisLockThreshold[0], true);
+    writeUtf16(5, AxisLockThreshold[3], AxisLockThreshold[1]);
+    return AxisLockThreshold[2];
+  }
+  sendSubPanel(...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold.b = new ArrayBuffer(
+      8 + (VuerW6rI_ea93a_neq.skinName.length + 1)
+    );
+    AxisLockThreshold[1] = new DataView(AxisLockThreshold.b);
+    AxisLockThreshold[1].setUint8(0, 10);
+    AxisLockThreshold[1].setUint8(1, VuerW6rI_ea93a_neq.nameColor.r);
+    AxisLockThreshold[1].setUint8(2, VuerW6rI_ea93a_neq.nameColor.g);
+    AxisLockThreshold[1].setUint8(3, VuerW6rI_ea93a_neq.nameColor.b);
+    AxisLockThreshold[1].setUint8(4, VuerW6rI_ea93a_neq.chatColor);
+    AxisLockThreshold[1].setUint8(5, VuerW6rI_ea93a_neq.effect);
+    AxisLockThreshold[1].setUint8(6, VuerW6rI_ea93a_neq.lowerName ? 1 : 0);
+    writeAscii(7, AxisLockThreshold[1], VuerW6rI_ea93a_neq.skinName);
+    AxisLockThreshold[1].setUint8(
+      8 + VuerW6rI_ea93a_neq.skinName.length,
+      VuerW6rI_ea93a_neq.nameFont
+    );
+    return AxisLockThreshold.b;
+  }
+  sendLockedNameChange(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold[189] = new ArrayBuffer(
+      1 + (AxisLockThreshold[0].length + 1)
+    );
+    AxisLockThreshold[224] = new DataView(AxisLockThreshold[189]);
+    AxisLockThreshold[224].setUint8(0, 11);
+    writeAscii(1, AxisLockThreshold[224], AxisLockThreshold[0]);
+    return AxisLockThreshold[189];
+  }
+  sendOptions(...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold.a = new ArrayBuffer(3);
+    AxisLockThreshold.b = new DataView(AxisLockThreshold.a);
+    AxisLockThreshold.b.setUint8(0, 104);
+    AxisLockThreshold.b.setUint16(1, Mao5huZea938_run.rViewDistance, true);
+    return AxisLockThreshold.a;
+  }
+  sendQueue(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold.a = new ArrayBuffer(5);
+    AxisLockThreshold[-239] = new DataView(AxisLockThreshold.a);
+    AxisLockThreshold[-239].setUint8(0, 80);
+    AxisLockThreshold[-239].setUint8(1, AxisLockThreshold[0]);
+    AxisLockThreshold[-239].setUint8(2, 0);
+    AxisLockThreshold[-239].setUint16(3, 0);
+    return AxisLockThreshold.a;
+  }
+  sendCustomGame(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold[1] = new ArrayBuffer(2);
+    AxisLockThreshold.b = new DataView(AxisLockThreshold[1]);
+    AxisLockThreshold.b.setUint8(0, 90);
+    AxisLockThreshold.b.setUint8(1, AxisLockThreshold[0]);
+    return AxisLockThreshold[1];
+  }
+  sendLeaveMatch(...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold.a = new ArrayBuffer(1);
+    AxisLockThreshold[59] = new DataView(AxisLockThreshold.a);
+    AxisLockThreshold[59].setUint8(0, 81);
+    return AxisLockThreshold.a;
+  }
+  sendShowLobbies(...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold[233] = new ArrayBuffer(2);
+    AxisLockThreshold[189] = new DataView(AxisLockThreshold[233]);
+    AxisLockThreshold[189].setUint8(0, 93);
+    return AxisLockThreshold[233];
+  }
+  sendJoinLobby(...AxisLockThreshold) {
+    AxisLockThreshold.length = 2;
+    AxisLockThreshold[2] = new ArrayBuffer(
+      5 + (AxisLockThreshold[1].length * 2 + 2)
+    );
+    AxisLockThreshold.b = new DataView(AxisLockThreshold[2]);
+    AxisLockThreshold.b.setUint8(0, 94);
+    AxisLockThreshold.b.setUint32(1, AxisLockThreshold[0], true);
+    writeUtf16(5, AxisLockThreshold.b, AxisLockThreshold[1]);
+    return AxisLockThreshold[2];
+  }
+  sendAuthToken(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    AxisLockThreshold[1] = new ArrayBuffer(
+      1 + (AxisLockThreshold[0].length + 1)
+    );
+    AxisLockThreshold[2] = new DataView(AxisLockThreshold[1]);
+    AxisLockThreshold[2].setUint8(0, 101);
+    writeAscii(1, AxisLockThreshold[2], AxisLockThreshold[0]);
+    return AxisLockThreshold[1];
+  }
+}
+class VoidNKXXxGq_ea9ab_gte {
+  constructor({
+    name: AxisLockThreshold,
+    address: minimapSmoothFactor,
+    players: drawMinimapInterval,
+    bots: baseCellSize,
+    playerText: combinedCameraDistanceThreshold,
+    gamemode: combinedZoomFocusStrength,
+    region: combinedInterpSpeed,
+    ssl: messageColors,
+    order: MESSAGE_TYPES,
+  }) {
+    this.name = AxisLockThreshold;
+    this.ip = minimapSmoothFactor;
+    this.players = drawMinimapInterval;
+    this.bots = baseCellSize;
+    this.playerText = combinedCameraDistanceThreshold;
+    this.mode = combinedZoomFocusStrength;
+    this.region = combinedInterpSpeed;
+    this.ssl = messageColors;
+    this.order = MESSAGE_TYPES;
+  }
+}
+class rejea9ac_Key {
+  constructor() {
+    this.delay = 0;
+    this.frames = [];
+    this.isGif = true;
+  }
+  push(AxisLockThreshold) {
+    this.frames.push(AxisLockThreshold);
+  }
+  getFrame(AxisLockThreshold) {
+    return this.frames[AxisLockThreshold];
+  }
+  get length() {
+    return this.frames.length;
+  }
+  getTexture() {
+    const AxisLockThreshold =
+      Math.floor(JcVea978_neq / this.delay) % this.length;
+    return this.getFrame(AxisLockThreshold);
+  }
+  loadFromFrameData(AxisLockThreshold) {
+    if (!AxisLockThreshold.length) {
+      return;
+    }
+    const minimapSmoothFactor = AxisLockThreshold[0].getImage().width;
+    const drawMinimapInterval = AxisLockThreshold[0].getImage().height;
+    const baseCellSize = document.createElement("canvas");
+    const combinedCameraDistanceThreshold = document.createElement("canvas");
+    baseCellSize.width = combinedCameraDistanceThreshold.width =
+      minimapSmoothFactor;
+    baseCellSize.height = combinedCameraDistanceThreshold.height =
+      drawMinimapInterval;
+    const combinedZoomFocusStrength = baseCellSize.getContext("2d");
+    const combinedInterpSpeed =
+      combinedCameraDistanceThreshold.getContext("2d");
+    this.delay = AxisLockThreshold[0].frameInfo.delay * 10;
+    for (const messageColors of AxisLockThreshold) {
+      combinedZoomFocusStrength.clearRect(
+        0,
+        0,
+        minimapSmoothFactor,
+        drawMinimapInterval
+      );
+      combinedZoomFocusStrength.drawImage(
+        combinedCameraDistanceThreshold,
+        0,
+        0
+      );
+      const MESSAGE_TYPES = messageColors.getImage();
+      combinedInterpSpeed.drawImage(MESSAGE_TYPES, 0, 0);
+      const CellVisibility = PIXI.Texture.from(MESSAGE_TYPES);
+      this.push(CellVisibility);
+      const {
+        disposal: MassDisplayType,
+        x: SKIN_LOAD_STATUS,
+        y: PlayerState,
+        width: defaultKeyMappings,
+        height: defaultOptions,
+      } = messageColors.frameInfo;
+      if (MassDisplayType === 2) {
+        combinedInterpSpeed.clearRect(
+          SKIN_LOAD_STATUS,
+          PlayerState,
+          defaultKeyMappings,
+          defaultOptions
+        );
+      } else if (MassDisplayType === 3) {
+        combinedInterpSpeed.clearRect(
+          0,
+          0,
+          minimapSmoothFactor,
+          drawMinimapInterval
+        );
+        combinedInterpSpeed.drawImage(baseCellSize, 0, 0);
+      }
+    }
+  }
+}
+class Const$Uy1yu {
+  constructor() {
+    this.cells = new Map();
+    this.dyingCells = new Map();
+  }
+  cancelDeathAnimation(AxisLockThreshold) {
+    const minimapSmoothFactor = this.dyingCells.get(AxisLockThreshold);
+    if (minimapSmoothFactor) {
+      minimapSmoothFactor.cell.destroyPixiObjects();
+      this.dyingCells.delete(AxisLockThreshold);
+    }
+  }
+  get allCells() {
+    return Array.from(
+      this.cells.values(),
+      Object$kDcGWUY((...AxisLockThreshold) => {
+        AxisLockThreshold.length = 1;
+        return AxisLockThreshold[0].cell;
+      })
+    );
+  }
+  get(AxisLockThreshold) {
+    const minimapSmoothFactor = this.cells.get(AxisLockThreshold);
+    if (minimapSmoothFactor) {
+      return minimapSmoothFactor.cell;
+    }
+    const drawMinimapInterval = this.dyingCells.get(AxisLockThreshold);
+    if (drawMinimapInterval) {
+      return drawMinimapInterval.cell;
+    } else {
+      return undefined;
+    }
+  }
+  register(AxisLockThreshold) {
+    const minimapSmoothFactor = this.cells.get(AxisLockThreshold.id);
+    if (minimapSmoothFactor) {
+      minimapSmoothFactor.refCount++;
+    } else {
+      AxisLockThreshold.createPixiObjects();
+      this.cells.set(AxisLockThreshold.id, {
+        cell: AxisLockThreshold,
+        refCount: 1,
+      });
+    }
+    return AxisLockThreshold;
+  }
+  unregister(AxisLockThreshold) {
+    const minimapSmoothFactor = this.cells.get(AxisLockThreshold.id);
+    if (!minimapSmoothFactor) {
+      return;
+    }
+    minimapSmoothFactor.refCount--;
+    if (minimapSmoothFactor.refCount <= 0) {
+      this.cells.delete(AxisLockThreshold.id);
+      const drawMinimapInterval =
+        AxisLockThreshold.container || AxisLockThreshold.sprite;
+      if (!drawMinimapInterval) {
+        AxisLockThreshold.destroyPixiObjects();
+        return;
+      }
+      const baseCellSize =
+        Mao5huZea938_run.rCombinedViewportScale > 0
+          ? yZBjeytPea960_Cb
+          : WeakMapxkJW_ea95d_bool;
+      const combinedCameraDistanceThreshold =
+        window.innerWidth / 2 / baseCellSize;
+      const combinedZoomFocusStrength = window.innerHeight / 2 / baseCellSize;
+      const combinedInterpSpeed =
+        bXFgW$Qq.pivot.x - combinedCameraDistanceThreshold;
+      const messageColors = bXFgW$Qq.pivot.x + combinedCameraDistanceThreshold;
+      const MESSAGE_TYPES = bXFgW$Qq.pivot.y - combinedZoomFocusStrength;
+      const CellVisibility = bXFgW$Qq.pivot.y + combinedZoomFocusStrength;
+      const MassDisplayType = AxisLockThreshold.size_ || 10;
+      const SKIN_LOAD_STATUS =
+        AxisLockThreshold.x + MassDisplayType > combinedInterpSpeed &&
+        AxisLockThreshold.x - MassDisplayType < messageColors &&
+        AxisLockThreshold.y + MassDisplayType > MESSAGE_TYPES &&
+        AxisLockThreshold.y - MassDisplayType < CellVisibility;
+      if (SKIN_LOAD_STATUS) {
+        New_cKB3q5G_ea986_cb.addChild(drawMinimapInterval);
+        this.dyingCells.set(AxisLockThreshold.id, {
+          cell: AxisLockThreshold,
+          startTime: performance.now(),
+          initialScaleX: drawMinimapInterval.scale.x,
+          initialScaleY: drawMinimapInterval.scale.y,
+        });
+      } else {
+        AxisLockThreshold.destroyPixiObjects();
+      }
+    }
+  }
+}
+class Ls_ea9ae_Init {
+  static get player() {
+    return faCUfKea9fb_add();
+  }
+  static msg(AxisLockThreshold) {
+    this.player.selfMsg(AxisLockThreshold);
+  }
+  static send(AxisLockThreshold) {
+    this.player.sendPacket(AxisLockThreshold);
+  }
+  static parseId(...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    const minimapSmoothFactor = parseInt(AxisLockThreshold[0], 10);
+    if (isNaN(minimapSmoothFactor)) {
+      return null;
+    } else {
+      return minimapSmoothFactor;
+    }
+  }
+}
+class jQueryLzNd {
+  static #modalStack = [];
+  static #openModals = new Set();
+  static #bodyScrollLocked = false;
+  static config = {
+    mainModal: {
+      onOpen: Proto$L05X_ea9c6_sub,
+      onClose: Proto$L05X_ea9c6_sub,
+      closeOnEsc: false,
+      closeOnBackdrop: false,
+    },
+  };
+  static open(AxisLockThreshold) {
+    const minimapSmoothFactor = document.getElementById(AxisLockThreshold);
+    if (!minimapSmoothFactor) {
+      console.error('Modal "' + AxisLockThreshold + '" not found');
+      return false;
+    }
+    if (this.#openModals.has(AxisLockThreshold)) {
+      return false;
+    }
+    const drawMinimapInterval =
+      this.#modalStack.length > 0
+        ? this.#modalStack[this.#modalStack.length - 1]
+        : null;
+    this.#modalStack.push(AxisLockThreshold);
+    this.#openModals.add(AxisLockThreshold);
+    minimapSmoothFactor.setAttribute("open", "");
+    if (!this.#bodyScrollLocked) {
+      document.body.classList.add("modal-open");
+      this.#bodyScrollLocked = true;
+    }
+    if (drawMinimapInterval) {
+      const baseCellSize = document.getElementById(drawMinimapInterval);
+      baseCellSize.classList.add("modal-inactive");
+    }
+    this.config[AxisLockThreshold]?.onOpen?.();
+    return true;
+  }
+  static close(AxisLockThreshold) {
+    if (this.activeModal && AxisLockThreshold !== this.activeModal) {
+      return this.close(this.activeModal);
+    }
+    if (!this.#openModals.has(AxisLockThreshold)) {
+      return false;
+    }
+    const minimapSmoothFactor = document.getElementById(AxisLockThreshold);
+    if (!minimapSmoothFactor) {
+      return false;
+    }
+    const drawMinimapInterval = this.#modalStack.indexOf(AxisLockThreshold);
+    if (drawMinimapInterval !== -1) {
+      this.#modalStack.splice(drawMinimapInterval, 1);
+    }
+    minimapSmoothFactor.removeAttribute("open");
+    minimapSmoothFactor.classList.remove("modal-inactive");
+    this.#openModals.delete(AxisLockThreshold);
+    if (this.#modalStack.length > 0) {
+      const baseCellSize = this.#modalStack[this.#modalStack.length - 1];
+      const combinedCameraDistanceThreshold =
+        document.getElementById(baseCellSize);
+      combinedCameraDistanceThreshold.classList.remove("modal-inactive");
+    } else if (this.#bodyScrollLocked) {
+      document.body.classList.remove("modal-open");
+      this.#bodyScrollLocked = false;
+    }
+    this.config[AxisLockThreshold]?.onClose?.();
+    return true;
+  }
+  static closeAll() {
+    while (this.#modalStack.length > 0) {
+      this.close(this.#modalStack[this.#modalStack.length - 1]);
+    }
+  }
+  static isOpen(AxisLockThreshold) {
+    return this.#openModals.has(AxisLockThreshold);
+  }
+  static get activeModal() {
+    if (this.#modalStack.length > 0) {
+      return this.#modalStack[this.#modalStack.length - 1];
+    } else {
+      return null;
+    }
+  }
+  static get modalCount() {
+    return this.#modalStack.length;
+  }
+}
+const zLCuf8c = new letmwr();
+const Dom34uUv8$ea9b1_bool = new RETURN_FUB_ea9a9_Opt();
+const jQuery_hn$0_2t_ea9b2_sub = new Const$Uy1yu();
+const StringifyQqsoaEea9b3_Handler = [
+  {
+    description: "Whisper a player by ID",
+    triggers: ["whisper", "t", "w"],
+    action: ([AxisLockThreshold, ...minimapSmoothFactor]) => {
+      const drawMinimapInterval = Ls_ea9ae_Init.parseId(AxisLockThreshold);
+      if (!drawMinimapInterval) {
+        return Ls_ea9ae_Init.msg("Invalid player ID.");
+      }
+      const baseCellSize = minimapSmoothFactor.join(" ");
+      if (!baseCellSize) {
+        return;
+      }
+      Ls_ea9ae_Init.send(
+        VoidGBYH.sendWhisper(drawMinimapInterval, baseCellSize)
+      );
+      CtxBk7q_("/t " + drawMinimapInterval + " ");
+    },
+  },
+  {
+    description: "Reply to previous whisper",
+    triggers: ["reply", "r"],
+    action: Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      const minimapSmoothFactor = AxisLockThreshold[0].join(" ");
+      if (minimapSmoothFactor) {
+        Ls_ea9ae_Init.send(VoidGBYH.sendWhisper(0, minimapSmoothFactor));
+        CtxBk7q_("/r ");
+      }
+    }),
+  },
+  {
+    description: "Message your party",
+    triggers: ["party", "p"],
+    action: Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      const minimapSmoothFactor = AxisLockThreshold[0].join(" ");
+      if (minimapSmoothFactor) {
+        Ls_ea9ae_Init.send(VoidGBYH.sendChat(minimapSmoothFactor, 1));
+        CtxBk7q_("/p ");
+      }
+    }),
+  },
+  {
+    description: "Invite player to party",
+    triggers: ["invite", "i"],
+    action: ([AxisLockThreshold]) => {
+      if (!Get_OCOyLea9e4_Init()) {
+        return;
+      }
+      KEGPXBW(0, AxisLockThreshold);
+    },
+  },
+  {
+    description: "Leave party",
+    triggers: ["leave", "l"],
+    action: () => {
+      return Ls_ea9ae_Init.send(VoidGBYH.sendPartyAction(3, 0));
+    },
+  },
+  {
+    description: "Kick from party",
+    triggers: ["kick"],
+    action: ([AxisLockThreshold]) => {
+      if (!Get_OCOyLea9e4_Init()) {
+        return;
+      }
+      KEGPXBW(1, AxisLockThreshold);
+    },
+  },
+  {
+    description: "Clear chat",
+    triggers: ["clear"],
+    action: (...AxisLockThreshold) => {
+      AxisLockThreshold.length = 0;
+      const minimapSmoothFactor = document.getElementById("chatAll");
+      if (minimapSmoothFactor) {
+        minimapSmoothFactor.innerHTML = "";
+      }
+    },
+  },
+  {
+    description: "Show your ID",
+    triggers: ["info"],
+    action: (...AxisLockThreshold) => {
+      AxisLockThreshold.length = 0;
+      const minimapSmoothFactor = faCUfKea9fb_add().playerId;
+      Ls_ea9ae_Init.msg(
+        minimapSmoothFactor > 0
+          ? "Your ID is " + minimapSmoothFactor
+          : "You must be connected."
+      );
+    },
+  },
+  {
+    description: "Join party by code",
+    triggers: ["join", "j"],
+    action: ([AxisLockThreshold]) => {
+      if (AxisLockThreshold) {
+        Ls_ea9ae_Init.send(VoidGBYH.sendPartyJoin(AxisLockThreshold));
+      }
+    },
+  },
+  {
+    description:
+      "Make Player 2 join a party by code (leaves current party if needed)",
+    triggers: ["join2", "j2"],
+    async action([AxisLockThreshold]) {
+      if (!AxisLockThreshold) {
+        Ls_ea9ae_Init.msg("Usage: /join2 [party_code]");
+        return;
+      }
+      if (!Str_NmyJ4kX || !Str_NmyJ4kX.isConnected()) {
+        Ls_ea9ae_Init.msg("Player 2 is not connected.");
+        return;
+      }
+      try {
+        if (Str_NmyJ4kX.party.length > 0) {
+          Ls_ea9ae_Init.msg(
+            "Player 2 is in a party. Leaving current party first..."
+          );
+          Str_NmyJ4kX.sendPacket(VoidGBYH.sendPartyAction(3, 0));
+          await new Promise(
+            Object$kDcGWUY((...AxisLockThreshold) => {
+              AxisLockThreshold.length = 1;
+              return setTimeout(AxisLockThreshold[0], 200);
+            })
+          );
+        }
+        Ls_ea9ae_Init.msg(
+          "Player 2 attempting to join party: " + AxisLockThreshold
+        );
+        Str_NmyJ4kX.sendPacket(VoidGBYH.sendPartyJoin(AxisLockThreshold));
+      } catch (minimapSmoothFactor) {
+        Ls_ea9ae_Init.msg("An error occurred while trying to join the party.");
+        console.error(minimapSmoothFactor);
+      }
+    },
+  },
+  {
+    description: "Set party to private",
+    triggers: ["private"],
+    action: () => {
+      return Ls_ea9ae_Init.send(VoidGBYH.sendPartyAction(4, 1));
+    },
+  },
+  {
+    description: "Set party to public",
+    triggers: ["public"],
+    action: () => {
+      return Ls_ea9ae_Init.send(VoidGBYH.sendPartyAction(4, 0));
+    },
+  },
+  {
+    description: "Spectate a player",
+    triggers: ["spectate", "s"],
+    action: ([AxisLockThreshold]) => {
+      const minimapSmoothFactor = Ls_ea9ae_Init.parseId(AxisLockThreshold);
+      if (!minimapSmoothFactor) {
+        return If$sEyzqKbhea93f_Exec.selfMsg("Invalid ID.");
+      }
+      If$sEyzqKbhea93f_Exec.sendPacket(
+        VoidGBYH.sendSpectate(minimapSmoothFactor)
+      );
+    },
+  },
+  {
+    description: "Disconnect",
+    triggers: ["disconnect"],
+    action: () => {
+      return faCUfKea9fb_add().disconnect();
+    },
+  },
+  {
+    description: "Show account UID",
+    triggers: ["account"],
+    action: () => {
+      Ls_ea9ae_Init.msg(
+        AtgnhF ? "UID: " + AtgnhF.uid : "You are not logged in."
+      );
+    },
+  },
+  {
+    description: "Block or unblock a player",
+    triggers: ["block", "b"],
+    action: ([AxisLockThreshold]) => {
+      const minimapSmoothFactor = Ls_ea9ae_Init.parseId(AxisLockThreshold);
+      if (minimapSmoothFactor) {
+        Ls_ea9ae_Init.msg(bmBtnjkeaa09_or(minimapSmoothFactor));
+      }
+    },
+  },
+];
+const jW39BD0 = {
+  textures: new Map(),
+  loadingPromises: new Map(),
+  async preloadTexture(AxisLockThreshold, minimapSmoothFactor) {
+    if (this.loadingPromises.has(AxisLockThreshold)) {
+      return this.loadingPromises.get(AxisLockThreshold);
+    }
+    const drawMinimapInterval = new Promise(
+      Object$kDcGWUY((...drawMinimapInterval) => {
+        drawMinimapInterval.length = 2;
+        const baseCellSize = PIXI.Texture.from(minimapSmoothFactor);
+        baseCellSize.baseTexture.on("loaded", () => {
+          this.textures.set(AxisLockThreshold, baseCellSize);
+          drawMinimapInterval[0](baseCellSize);
+        });
+        baseCellSize.baseTexture.on(
+          "error",
+          Object$kDcGWUY((...baseCellSize) => {
+            baseCellSize.length = 1;
+            return drawMinimapInterval[1](baseCellSize[0]);
+          })
+        );
+      }, 2)
+    );
+    this.loadingPromises.set(AxisLockThreshold, drawMinimapInterval);
+    return drawMinimapInterval;
+  },
+  getTexture(AxisLockThreshold) {
+    return this.textures.get(AxisLockThreshold);
+  },
+  clearUnusedTextures() {
+    for (const [AxisLockThreshold, minimapSmoothFactor] of this.textures) {
+      if (!minimapSmoothFactor.baseTexture.used) {
+        minimapSmoothFactor.destroy(true);
+        this.textures.delete(AxisLockThreshold);
+      }
+    }
+  },
+  async preloadGameAssets() {
+    try {
+      await Promise.all([
+        this.preloadTexture("spikeTexture", "images/spike.png"),
+        this.preloadTexture("motherCellTexture", "images/motherCell.png"),
+      ]);
+      Logger.info("Game assets preloaded successfully");
+    } catch (AxisLockThreshold) {
+      console.error("--- Error During preloadGameAssets ---");
+      console.error("Caught Object Type:", typeof AxisLockThreshold);
+      console.error(
+        "Caught Object Is Error Instance:",
+        AxisLockThreshold instanceof Error
+      );
+      console.error(
+        "Caught Object toString():",
+        AxisLockThreshold ? AxisLockThreshold.toString() : "N/A"
+      );
+      if (AxisLockThreshold instanceof Error) {
+        console.error("Error Message:", AxisLockThreshold.message);
+        console.error("Error Stack:", AxisLockThreshold.stack);
+      }
+      console.error("Full Caught Object:", AxisLockThreshold);
+    }
+  },
+};
+const VJjDr = {
+  playerStates: {
+    p1: {
+      state: "idle",
+      pendingSplitCount: 0,
+      packetTimer: null,
+      mouseFreezeBackup: false,
+    },
+    p2: {
+      state: "idle",
+      pendingSplitCount: 0,
+      packetTimer: null,
+      mouseFreezeBackup: false,
+    },
+  },
+  trajectoryLine: null,
+  stateIndicator: null,
+  axisIndicator: null,
+  animationTimer: 0,
+  animationDuration: 1.25,
+  maxLineLength: 4000,
+  activationDelay: 250,
+  _getActivePlayerState: function (AxisLockThreshold) {
+    if (!AxisLockThreshold) {
+      return null;
+    }
+    const minimapSmoothFactor = AxisLockThreshold.isPrimary ? "p1" : "p2";
+    return this.playerStates[minimapSmoothFactor];
+  },
+  initVisualElements: function () {
+    if (!this.trajectoryLine && PIXI) {
+      this.trajectoryLine = new PIXI.Graphics();
+      this.trajectoryLine.visible = false;
+      WeakMaphlyBuhea985_num.addChild(this.trajectoryLine);
+      this.stateIndicator = new PIXI.Graphics();
+      this.stateIndicator.visible = false;
+      WeakMaphlyBuhea985_num.addChild(this.stateIndicator);
+      this.axisIndicator = new PIXI.Text("", {
+        fontFamily: "Arial",
+        fontSize: 16,
+        fill: 16777215,
+        align: "center",
+        stroke: 0,
+        strokeThickness: 4,
+      });
+      this.axisIndicator.visible = false;
+      this.axisIndicator.anchor.set(0.5);
+      WeakMaphlyBuhea985_num.addChild(this.axisIndicator);
+    }
+  },
+  _drawPulsingLine: function (
+    AxisLockThreshold,
+    minimapSmoothFactor,
+    drawMinimapInterval
+  ) {
+    const baseCellSize = If$sEyzqKbhea93f_Exec.serverData.border;
+    const combinedCameraDistanceThreshold =
+      baseCellSize && baseCellSize.enabled;
+    if (!this.trajectoryLine || !combinedCameraDistanceThreshold) {
+      if (this.trajectoryLine) {
+        this.trajectoryLine.visible = false;
+      }
+      return;
+    }
+    this.animationTimer += drawMinimapInterval / 60;
+    const combinedZoomFocusStrength =
+      (this.animationTimer % this.animationDuration) / this.animationDuration;
+    const combinedInterpSpeed = this.maxLineLength * combinedZoomFocusStrength;
+    const messageColors = Math.sin(combinedZoomFocusStrength * Math.PI) * 0.9;
+    this.trajectoryLine
+      .clear()
+      .lineStyle(5, minimapSmoothFactor, messageColors);
+    this.trajectoryLine.visible = true;
+    const MESSAGE_TYPES = faCUfKea9fb_add().lineSplitAnchorX;
+    const CellVisibility = faCUfKea9fb_add().lineSplitAnchorY;
+    if (AxisLockThreshold === "x") {
+      const MassDisplayType = Math.max(
+        baseCellSize.left,
+        MESSAGE_TYPES - combinedInterpSpeed
+      );
+      const SKIN_LOAD_STATUS = Math.min(
+        baseCellSize.right,
+        MESSAGE_TYPES + combinedInterpSpeed
+      );
+      this.trajectoryLine
+        .moveTo(MassDisplayType, CellVisibility)
+        .lineTo(SKIN_LOAD_STATUS, CellVisibility);
+    } else {
+      const PlayerState = Math.max(
+        baseCellSize.top,
+        CellVisibility - combinedInterpSpeed
+      );
+      const defaultKeyMappings = Math.min(
+        baseCellSize.bottom,
+        CellVisibility + combinedInterpSpeed
+      );
+      this.trajectoryLine
+        .moveTo(MESSAGE_TYPES, PlayerState)
+        .lineTo(MESSAGE_TYPES, defaultKeyMappings);
+    }
+  },
+  activateLinesplitToggle: function () {
+    const AxisLockThreshold = faCUfKea9fb_add();
+    if (!AxisLockThreshold || AxisLockThreshold.myCells.size === 0) {
+      return;
+    }
+    const minimapSmoothFactor = this._getActivePlayerState(AxisLockThreshold);
+    if (!minimapSmoothFactor) {
+      return;
+    }
+    this.initVisualElements();
+    if (Mao5huZea938_run.sLinesplitMode === "TOGGLE") {
+      if (minimapSmoothFactor.state === "idle") {
+        this.startLinesplitActivation(AxisLockThreshold);
+      } else {
+        this.stopLinesplit(AxisLockThreshold);
+      }
+    } else {
+      this.startLinesplitActivation(AxisLockThreshold);
+    }
+  },
+  deactivateLinesplitHold: function () {
+    const AxisLockThreshold = faCUfKea9fb_add();
+    const minimapSmoothFactor = this._getActivePlayerState(AxisLockThreshold);
+    if (!minimapSmoothFactor) {
+      return;
+    }
+    if (
+      Mao5huZea938_run.sLinesplitMode === "HOLD" &&
+      minimapSmoothFactor.state !== "idle"
+    ) {
+      this.stopLinesplit(AxisLockThreshold);
+    }
+  },
+  canSplitNow: function (AxisLockThreshold = 1) {
+    const minimapSmoothFactor = faCUfKea9fb_add();
+    const drawMinimapInterval = this._getActivePlayerState(minimapSmoothFactor);
+    if (!drawMinimapInterval) {
+      return false;
+    }
+    if (
+      drawMinimapInterval.state === "activating" ||
+      drawMinimapInterval.state === "locking"
+    ) {
+      drawMinimapInterval.pendingSplitCount += AxisLockThreshold;
+      return true;
+    } else if (drawMinimapInterval.state.startsWith("active-")) {
+      if (
+        minimapSmoothFactor &&
+        typeof minimapSmoothFactor.sendSplit === "function"
+      ) {
+        minimapSmoothFactor.sendSplit(AxisLockThreshold);
+      }
+      return true;
+    }
+    return false;
+  },
+  startLinesplitActivation: function (AxisLockThreshold) {
+    const minimapSmoothFactor = this._getActivePlayerState(AxisLockThreshold);
+    if (!minimapSmoothFactor || minimapSmoothFactor.state !== "idle") {
+      return;
+    }
+    this.animationTimer = 0;
+    minimapSmoothFactor.pendingSplitCount = 0;
+    let drawMinimapInterval = false;
+    let baseCellSize = null;
+    let combinedCameraDistanceThreshold = Infinity;
+    const combinedZoomFocusStrength = AxisLockThreshold.calculatedMouseX;
+    const combinedInterpSpeed = AxisLockThreshold.calculatedMouseY;
+    if (
+      combinedZoomFocusStrength &&
+      combinedInterpSpeed &&
+      AxisLockThreshold.myCells.size > 1
+    ) {
+      for (const messageColors of AxisLockThreshold.myCells.values()) {
+        const MESSAGE_TYPES = messageColors.x - combinedZoomFocusStrength;
+        const CellVisibility = messageColors.y - combinedInterpSpeed;
+        const MassDisplayType =
+          MESSAGE_TYPES * MESSAGE_TYPES + CellVisibility * CellVisibility;
+        if (MassDisplayType < combinedCameraDistanceThreshold) {
+          baseCellSize = messageColors;
+          combinedCameraDistanceThreshold = MassDisplayType;
+        }
+      }
+    }
+    if (baseCellSize) {
+      AxisLockThreshold.lineSplitAnchorX = baseCellSize.x_;
+      AxisLockThreshold.lineSplitAnchorY = baseCellSize.y_;
+      drawMinimapInterval = true;
+      Logger.info(
+        "[Linesplit] Anchor override: Snapped to CLOSEST cell (ID " +
+          baseCellSize.id +
+          ")."
+      );
+    } else {
+      let SKIN_LOAD_STATUS = {
+        size: -1,
+      };
+      for (const PlayerState of AxisLockThreshold.myCells.values()) {
+        if (PlayerState.size > SKIN_LOAD_STATUS.size) {
+          SKIN_LOAD_STATUS = PlayerState;
+        }
+      }
+      if (SKIN_LOAD_STATUS.size >= 0) {
+        AxisLockThreshold.lineSplitAnchorX = SKIN_LOAD_STATUS.x_;
+        AxisLockThreshold.lineSplitAnchorY = SKIN_LOAD_STATUS.y_;
+        drawMinimapInterval = true;
+        Logger.info("[Linesplit] Anchor default: Set to biggest cell.");
+      }
+    }
+    if (!drawMinimapInterval) {
+      AxisLockThreshold.lineSplitAnchorX = AxisLockThreshold.centerX;
+      AxisLockThreshold.lineSplitAnchorY = AxisLockThreshold.centerY;
+    }
+    minimapSmoothFactor.state = "activating";
+    AxisLockThreshold.lineSplitAxis = null;
+    minimapSmoothFactor.mouseFreezeBackup = AxisLockThreshold.mouseFrozen;
+    if (this.stateIndicator) {
+      this.stateIndicator
+        .clear()
+        .beginFill(65535, 0.5)
+        .drawCircle(
+          AxisLockThreshold.lineSplitAnchorX,
+          AxisLockThreshold.lineSplitAnchorY,
+          20
+        )
+        .endFill();
+      this.stateIndicator.visible = true;
+    }
+    RETURN_zuR(false);
+    clearTimeout(minimapSmoothFactor.packetTimer);
+    minimapSmoothFactor.packetTimer = setTimeout(() => {
+      if (minimapSmoothFactor.state === "activating") {
+        minimapSmoothFactor.state = "locking";
+        if (this.stateIndicator) {
+          this.stateIndicator
+            .clear()
+            .beginFill(16776960, 0.5)
+            .drawCircle(
+              AxisLockThreshold.lineSplitAnchorX,
+              AxisLockThreshold.lineSplitAnchorY,
+              20
+            )
+            .endFill();
+        }
+      }
+    }, async_gvZqk_Dc_ea93e_div * 2);
+  },
+  stopLinesplit: function (AxisLockThreshold) {
+    if (!AxisLockThreshold) {
+      return;
+    }
+    const minimapSmoothFactor = this._getActivePlayerState(AxisLockThreshold);
+    if (!minimapSmoothFactor || minimapSmoothFactor.state === "idle") {
+      return;
+    }
+    clearTimeout(minimapSmoothFactor.packetTimer);
+    minimapSmoothFactor.packetTimer = null;
+    minimapSmoothFactor.state = "idle";
+    AxisLockThreshold.lineSplitAxis = null;
+    minimapSmoothFactor.pendingSplitCount = 0;
+    if (faCUfKea9fb_add() === AxisLockThreshold) {
+      if (this.trajectoryLine) {
+        this.trajectoryLine.visible = false;
+      }
+      if (this.stateIndicator) {
+        this.stateIndicator.visible = false;
+      }
+      if (this.axisIndicator) {
+        this.axisIndicator.visible = false;
+      }
+      RETURN_zuR(false);
+    }
+  },
+  updateInGameLoop: function (
+    minimapSmoothFactor,
+    drawMinimapInterval,
+    baseCellSize,
+    combinedCameraDistanceThreshold
+  ) {
+    const combinedZoomFocusStrength =
+      this._getActivePlayerState(minimapSmoothFactor);
+    if (
+      !combinedZoomFocusStrength ||
+      combinedZoomFocusStrength.state === "idle" ||
+      !minimapSmoothFactor
+    ) {
+      if (this.trajectoryLine) {
+        this.trajectoryLine.visible = false;
+      }
+      return [drawMinimapInterval, baseCellSize];
+    }
+    let combinedInterpSpeed = 65280;
+    const messageColors = zLCuf8c.getPlayer(minimapSmoothFactor.playerId);
+    if (messageColors) {
+      if (Mao5huZea938_run.cCustomCellColor) {
+        const MESSAGE_TYPES = 10000 / Mao5huZea938_run.rRgbSpeed;
+        const CellVisibility = performance.now() / MESSAGE_TYPES;
+        const MassDisplayType = ((Math.sin(CellVisibility) + 1) / 2) * 100;
+        const SKIN_LOAD_STATUS = Pto5ea937_Inst.mix(
+          Mao5huZea938_run.sRgbColor1,
+          Mao5huZea938_run.sRgbColor2,
+          MassDisplayType
+        );
+        combinedInterpSpeed = parseInt(
+          SKIN_LOAD_STATUS.toHexString().substring(1),
+          16
+        );
+      } else {
+        combinedInterpSpeed = messageColors.cellColor;
+      }
+    }
+    let PlayerState = drawMinimapInterval;
+    let defaultKeyMappings = baseCellSize;
+    if (
+      combinedZoomFocusStrength.state === "activating" ||
+      combinedZoomFocusStrength.state === "locking"
+    ) {
+      PlayerState = minimapSmoothFactor.lineSplitAnchorX;
+      defaultKeyMappings = minimapSmoothFactor.lineSplitAnchorY;
+      if (combinedZoomFocusStrength.state === "locking") {
+        const defaultOptions = Math.abs(
+          drawMinimapInterval - minimapSmoothFactor.lineSplitAnchorX
+        );
+        const defaultSubPanelSettings = Math.abs(
+          baseCellSize - minimapSmoothFactor.lineSplitAnchorY
+        );
+        this._drawPulsingLine(
+          defaultOptions > defaultSubPanelSettings ? "x" : "y",
+          16776960,
+          combinedCameraDistanceThreshold
+        );
+        if (
+          defaultOptions > AxisLockThreshold ||
+          defaultSubPanelSettings > AxisLockThreshold
+        ) {
+          minimapSmoothFactor.lineSplitAxis =
+            defaultOptions > defaultSubPanelSettings ? "x" : "y";
+          combinedZoomFocusStrength.state =
+            "active-" + minimapSmoothFactor.lineSplitAxis;
+          if (combinedZoomFocusStrength.pendingSplitCount > 0) {
+            if (minimapSmoothFactor?.sendSplit) {
+              minimapSmoothFactor.sendSplit(
+                combinedZoomFocusStrength.pendingSplitCount
+              );
+            }
+            combinedZoomFocusStrength.pendingSplitCount = 0;
+          }
+          RETURN_zuR(true);
+          if (this.stateIndicator) {
+            this.stateIndicator
+              .clear()
+              .beginFill(combinedInterpSpeed, 0.5)
+              .drawCircle(
+                minimapSmoothFactor.lineSplitAnchorX,
+                minimapSmoothFactor.lineSplitAnchorY,
+                20
+              )
+              .endFill();
+          }
+          if (this.axisIndicator) {
+            this.axisIndicator.text =
+              minimapSmoothFactor.lineSplitAxis.toUpperCase();
+            this.axisIndicator.position.set(
+              minimapSmoothFactor.lineSplitAnchorX,
+              minimapSmoothFactor.lineSplitAnchorY - 40
+            );
+            this.axisIndicator.visible = true;
+          }
+        }
+      } else if (this.trajectoryLine) {
+        this.trajectoryLine.visible = false;
+      }
+    } else {
+      this._drawPulsingLine(
+        minimapSmoothFactor.lineSplitAxis,
+        combinedInterpSpeed,
+        combinedCameraDistanceThreshold
+      );
+      if (minimapSmoothFactor.lineSplitAxis === "x") {
+        defaultKeyMappings = minimapSmoothFactor.lineSplitAnchorY;
+      } else if (minimapSmoothFactor.lineSplitAxis === "y") {
+        PlayerState = minimapSmoothFactor.lineSplitAnchorX;
+      }
+    }
+    return [PlayerState, defaultKeyMappings];
+  },
+  handleSettingsUpdate: function () {
+    this.stopLinesplit(If$sEyzqKbhea93f_Exec);
+    this.stopLinesplit(Str_NmyJ4kX);
+  },
+  handlePlayerDeathOrDisconnect: function () {},
+};
+const zd8T_jfeea9b6_and = {
+  sprites: [],
+  isActive: false,
+  animationStartTime: 0,
+  duration: 4000,
+  circleTexture: null,
+  init: function () {
+    if (this.circleTexture || typeof PIXI === "undefined" || !Date$F4EY) {
+      return;
+    }
+    const AxisLockThreshold = new PIXI.Graphics();
+    const minimapSmoothFactor = 100;
+    const drawMinimapInterval = 8;
+    AxisLockThreshold.lineStyle(drawMinimapInterval, 16777215, 1);
+    AxisLockThreshold.beginFill(16777215, 0.3);
+    AxisLockThreshold.drawCircle(
+      minimapSmoothFactor,
+      minimapSmoothFactor,
+      minimapSmoothFactor - drawMinimapInterval / 2
+    );
+    AxisLockThreshold.endFill();
+    const baseCellSize = {
+      scaleMode: PIXI.SCALE_MODES.LINEAR,
+      resolution: Date$F4EY.renderer.resolution,
+    };
+    this.circleTexture = Date$F4EY.renderer.generateTexture(
+      AxisLockThreshold,
+      baseCellSize
+    );
+    AxisLockThreshold.destroy();
+    this.circleTexture.baseTexture.mipmap = PIXI.MIPMAP_MODES.ON;
+    Date$F4EY.renderer.texture.updateTexture(this.circleTexture.baseTexture);
+    if (this.sprites.length === 0) {
+      for (
+        let combinedCameraDistanceThreshold = 0;
+        combinedCameraDistanceThreshold < 3;
+        combinedCameraDistanceThreshold++
+      ) {
+        const combinedZoomFocusStrength = new PIXI.Sprite(this.circleTexture);
+        combinedZoomFocusStrength.anchor.set(0.5);
+        combinedZoomFocusStrength.visible = false;
+        this.sprites.push(combinedZoomFocusStrength);
+        React$vkea987_Idx.addChild(combinedZoomFocusStrength);
+      }
+    }
+  },
+  activate: function () {
+    const AxisLockThreshold = faCUfKea9fb_add();
+    const minimapSmoothFactor =
+      AxisLockThreshold === If$sEyzqKbhea93f_Exec
+        ? Str_NmyJ4kX
+        : If$sEyzqKbhea93f_Exec;
+    if (
+      !minimapSmoothFactor ||
+      !minimapSmoothFactor.isConnected() ||
+      minimapSmoothFactor.myCells.size === 0
+    ) {
+      return;
+    }
+    this.init();
+    this.animationStartTime = performance.now();
+    this.isActive = true;
+    this.sprites.forEach(
+      Object$kDcGWUY((...AxisLockThreshold) => {
+        AxisLockThreshold.length = 1;
+        return (AxisLockThreshold[0].visible = true);
+      })
+    );
+  },
+  deactivate: function () {
+    if (!this.isActive) {
+      return;
+    }
+    this.isActive = false;
+    this.sprites.forEach(
+      Object$kDcGWUY((...AxisLockThreshold) => {
+        AxisLockThreshold.length = 1;
+        return (AxisLockThreshold[0].visible = false);
+      })
+    );
+  },
+  update: function () {
+    if (!this.isActive || this.sprites.length === 0) {
+      return;
+    }
+    const AxisLockThreshold = performance.now();
+    const minimapSmoothFactor = AxisLockThreshold - this.animationStartTime;
+    const drawMinimapInterval = faCUfKea9fb_add();
+    const baseCellSize =
+      drawMinimapInterval === If$sEyzqKbhea93f_Exec
+        ? Str_NmyJ4kX
+        : If$sEyzqKbhea93f_Exec;
+    if (
+      minimapSmoothFactor > this.duration ||
+      !baseCellSize ||
+      baseCellSize.myCells.size === 0 ||
+      !drawMinimapInterval
+    ) {
+      this.deactivate();
+      return;
+    }
+    const combinedCameraDistanceThreshold = Winy9ZiY(baseCellSize, false);
+    const combinedZoomFocusStrength = combinedCameraDistanceThreshold.x;
+    const combinedInterpSpeed = combinedCameraDistanceThreshold.y;
+    const messageColors = drawMinimapInterval.getMass();
+    const MESSAGE_TYPES = 150;
+    const CellVisibility = Math.log(Math.max(1, messageColors)) * 30;
+    const MassDisplayType = MESSAGE_TYPES + CellVisibility;
+    const SKIN_LOAD_STATUS = minimapSmoothFactor / this.duration;
+    for (let PlayerState = 0; PlayerState < 3; PlayerState++) {
+      const defaultKeyMappings = this.sprites[PlayerState];
+      const defaultOptions = (SKIN_LOAD_STATUS + PlayerState * 0.33) % 1;
+      const defaultSubPanelSettings = 1 - Math.pow(1 - defaultOptions, 2);
+      const fontConfigs = defaultSubPanelSettings * MassDisplayType;
+      const readAscii = 1 - defaultSubPanelSettings;
+      if (readAscii > 0.05) {
+        defaultKeyMappings.position.set(
+          combinedZoomFocusStrength,
+          combinedInterpSpeed
+        );
+        defaultKeyMappings.tint = 16777215;
+        defaultKeyMappings.alpha = readAscii;
+        const readUtf16 = fontConfigs / 50;
+        defaultKeyMappings.scale.set(readUtf16);
+        defaultKeyMappings.visible = true;
+      } else {
+        defaultKeyMappings.visible = false;
+      }
+    }
+  },
+};
+const Proto$RYZvj3$ea9b7_num = {
+  smoothedPositions: new Map(),
+  highlighterSmoothedX: NaN,
+  highlighterSmoothedY: NaN,
+  animationStartTime: 0,
+  update(AxisLockThreshold, drawMinimapInterval, baseCellSize) {
+    const combinedCameraDistanceThreshold = Math.min(
+      minimapSmoothFactor * baseCellSize,
+      1
+    );
+    const combinedZoomFocusStrength = new Set();
+    AxisLockThreshold.forEach((AxisLockThreshold) => {
+      combinedZoomFocusStrength.add(AxisLockThreshold.id);
+      let drawMinimapInterval = this.smoothedPositions.get(
+        AxisLockThreshold.id
+      );
+      if (!drawMinimapInterval || isNaN(drawMinimapInterval.smoothedX)) {
+        drawMinimapInterval = {
+          smoothedX: AxisLockThreshold.x,
+          smoothedY: AxisLockThreshold.y,
+        };
+        this.smoothedPositions.set(AxisLockThreshold.id, drawMinimapInterval);
+      } else {
+        drawMinimapInterval.smoothedX +=
+          (AxisLockThreshold.x - drawMinimapInterval.smoothedX) *
+          combinedCameraDistanceThreshold;
+        drawMinimapInterval.smoothedY +=
+          (AxisLockThreshold.y - drawMinimapInterval.smoothedY) *
+          combinedCameraDistanceThreshold;
+      }
+    });
+    for (const combinedInterpSpeed of this.smoothedPositions.keys()) {
+      if (!combinedZoomFocusStrength.has(combinedInterpSpeed)) {
+        this.smoothedPositions.delete(combinedInterpSpeed);
+      }
+    }
+    const messageColors = this.getSmoothedPosition(drawMinimapInterval);
+    if (messageColors) {
+      if (
+        isNaN(this.highlighterSmoothedX) ||
+        isNaN(this.highlighterSmoothedY)
+      ) {
+        this.highlighterSmoothedX = messageColors.smoothedX;
+        this.highlighterSmoothedY = messageColors.smoothedY;
+      } else {
+        this.highlighterSmoothedX +=
+          (messageColors.smoothedX - this.highlighterSmoothedX) *
+          combinedCameraDistanceThreshold;
+        this.highlighterSmoothedY +=
+          (messageColors.smoothedY - this.highlighterSmoothedY) *
+          combinedCameraDistanceThreshold;
+      }
+    }
+  },
+  getSmoothedPosition(AxisLockThreshold) {
+    return this.smoothedPositions.get(AxisLockThreshold);
+  },
+  drawHighlighter(
+    AxisLockThreshold,
+    minimapSmoothFactor,
+    drawMinimapInterval,
+    baseCellSize
+  ) {
+    if (isNaN(this.highlighterSmoothedX)) {
+      return;
+    }
+    if (this.animationStartTime === 0) {
+      this.animationStartTime = Date.now();
+    }
+    const combinedCameraDistanceThreshold =
+      ((this.highlighterSmoothedX - minimapSmoothFactor.left) /
+        minimapSmoothFactor.width) *
+      drawMinimapInterval;
+    const combinedZoomFocusStrength =
+      ((this.highlighterSmoothedY - minimapSmoothFactor.top) /
+        minimapSmoothFactor.height) *
+      baseCellSize;
+    AxisLockThreshold.beginPath();
+    AxisLockThreshold.arc(
+      combinedCameraDistanceThreshold,
+      combinedZoomFocusStrength,
+      18,
+      0,
+      Math.PI * 2,
+      false
+    );
+    AxisLockThreshold.fillStyle =
+      DEFAULT$HB0T_ea93b_Status["--n-color-accent"] + "25";
+    AxisLockThreshold.fill();
+  },
+};
+const Lodash$KALTWzD_ea9b8_buf = {
+  cIsAccount2Enabled: function () {
+    clearTimeout(Stringify_J7krEf_Q_ea99c_Inst);
+    if (Mao5huZea938_run.cIsAccount2Enabled) {
+      $("#authed2").css({
+        ["pointer-events"]: "auto",
+        opacity: "1",
+      });
+      $("#cIsAccount2Enabled").attr("checked", true);
+      $("#name-box2").show();
+      $("#name-box2")
+        .css("height", "64px")
+        .css("pointer-events", "auto")
+        .css("opacity", "1");
+      $("#account-content-container").css("height", "300px");
+      $(".main-left").css("height", "322px");
+    } else {
+      $("#authed2").css({
+        ["pointer-events"]: "none",
+        opacity: "0.4",
+      });
+      $("#cIsAccount2Enabled").removeAttr("checked", true);
+      $("#name-box2")
+        .css("height", "0")
+        .css("pointer-events", "none")
+        .css("opacity", "0");
+      $("#account-content-container").css("height", "230px");
+      $(".main-left").css("height", "252px");
+      Stringify_J7krEf_Q_ea99c_Inst = setTimeout(() => {
+        $("#name-box2").hide();
+      }, 1000);
+    }
+  },
+  cLimitFPS: function () {
+    HandlerR0b5TLt$();
+  },
+  cTransCells: function () {
+    for (const AxisLockThreshold of If$sEyzqKbhea93f_Exec.players.values()) {
+      if (AxisLockThreshold.type === 2 && AxisLockThreshold.cellSprite) {
+        AxisLockThreshold.cellSprite.alpha = Mao5huZea938_run.cTransCells
+          ? 0.5
+          : 1;
+      } else if (AxisLockThreshold.sprite) {
+        AxisLockThreshold.sprite.alpha = Mao5huZea938_run.cTransCells ? 0.5 : 1;
+      }
+    }
+    for (const AxisLockThreshold of Str_NmyJ4kX.players.values()) {
+      if (AxisLockThreshold.type === 2 && AxisLockThreshold.cellSprite) {
+        AxisLockThreshold.cellSprite.alpha = Mao5huZea938_run.cTransCells
+          ? 0.5
+          : 1;
+      } else if (AxisLockThreshold.sprite) {
+        AxisLockThreshold.sprite.alpha = Mao5huZea938_run.cTransCells ? 0.5 : 1;
+      }
+    }
+  },
+  cHideChat: function () {
+    $(".chat-panel").css(
+      "display",
+      Mao5huZea938_run.cHideChat ? "none" : "flex"
+    );
+  },
+  cHideMinimap: function () {
+    $("#minimap-panel").css(
+      "display",
+      Mao5huZea938_run.cHideMinimap ? "none" : "flex"
+    );
+  },
+  cCellRing: function () {},
+  cHideLeaderboard: function () {
+    $("#leaderboard-panel").css(
+      "display",
+      Mao5huZea938_run.cHideLeaderboard ? "none" : "flex"
+    );
+  },
+  cShowCoordinates: function () {
+    $("#minimap-coordinates").css(
+      "display",
+      Mao5huZea938_run.cShowCoordinates ? "block" : "none"
+    );
+    React$yyea9e7();
+  },
+  cShowChunks: function () {},
+  cShowBorder: function () {
+    g5Mea9c8_TYPE();
+  },
+  sLinesplitMode: Object$kDcGWUY(function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    if (VJjDr && typeof VJjDr.handleSettingsUpdate === "function") {
+      VJjDr.handleSettingsUpdate(AxisLockThreshold[0]);
+    }
+  }),
+  sShowMass: function () {
+    B5O8N2Mea93c_ret.levelMass = CellVisibility[Mao5huZea938_run.sShowMass];
+  },
+  sShowNames: function () {
+    B5O8N2Mea93c_ret.levelNames = CellVisibility[Mao5huZea938_run.sShowNames];
+  },
+  sShowSkins: function () {
+    B5O8N2Mea93c_ret.levelSkins = CellVisibility[Mao5huZea938_run.sShowSkins];
+  },
+  sMassType: function () {
+    B5O8N2Mea93c_ret.massType = MassDisplayType[Mao5huZea938_run.sMassType];
+  },
+  rTextOutlines: Object$kDcGWUY(function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    Mao5huZea938_run.rTextOutlines = Math.min(
+      Math.max(AxisLockThreshold[0], 0),
+      10
+    );
+    $("#textOutlines").val(Mao5huZea938_run.rTextOutlines);
+    Dom34uUv8$ea9b1_bool.invalidateCache();
+  }),
+  rAnimationDelay: Object$kDcGWUY(function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    Mao5huZea938_run.rAnimationDelay = Math.min(
+      Math.max(AxisLockThreshold[0], 1),
+      250
+    );
+    $("#animationDelay").val(Mao5huZea938_run.rAnimationDelay);
+  }),
+  rCamDelay: Object$kDcGWUY(function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    Mao5huZea938_run.rCamDelay = Math.min(
+      Math.max(AxisLockThreshold[0], 50),
+      200
+    );
+    $("#camDelay").val(Mao5huZea938_run.rCamDelay);
+  }),
+  rCombinedViewportScale: Object$kDcGWUY(function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    Mao5huZea938_run.rCombinedViewportScale = Math.min(
+      Math.max(AxisLockThreshold[0], 0),
+      1
+    );
+    $("#combinedViewportScale").val(Mao5huZea938_run.rCombinedViewportScale);
+  }),
+  rViewDistance: Object$kDcGWUY(function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    Mao5huZea938_run.rViewDistance = Math.min(
+      Math.max(AxisLockThreshold[0], 50),
+      150
+    );
+    $("#viewDistance").val(Mao5huZea938_run.rViewDistance);
+    If$sEyzqKbhea93f_Exec.sendOptions();
+    Str_NmyJ4kX.sendOptions();
+  }),
+  rRgbSpeed: Object$kDcGWUY(function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    Mao5huZea938_run.rRgbSpeed = Math.min(
+      Math.max(parseInt(AxisLockThreshold[0]), 5),
+      1000
+    );
+    $("#rgbSpeed").val(Mao5huZea938_run.rRgbSpeed);
+  }),
+};
+let_ExdFq$65.sortableChildren = true;
+bXFgW$Qq.addChild(Catch_tLBy);
+bXFgW$Qq.addChild(letwtfOyM80ea984_num);
+bXFgW$Qq.addChild(New_cKB3q5G_ea986_cb);
+bXFgW$Qq.addChild(WeakMaphlyBuhea985_num);
+bXFgW$Qq.addChild(let_ExdFq$65);
+bXFgW$Qq.addChild(React$vkea987_Idx);
+Catch_tLBy.addChild(AwaitNM$mbea98a_mul);
+LGeF78Jea980_type.addChild(Switch$DDqRA_ea981_mul);
+LGeF78Jea980_type.addChild(bXFgW$Qq);
+LGeF78Jea980_type.addChild(FN_okkea989_Handler);
+letwtfOyM80ea984_num.interactiveChildren = false;
+Catch_tLBy.interactiveChildren = false;
+WeakMaphlyBuhea985_num.interactiveChildren = false;
+React$vkea987_Idx.interactiveChildren = false;
+Symbol_I0$w5g$ea98b_Opt = undefined;
+nh6XVqea98c_Cb = undefined;
+IMPORT_f936f76C_ea98d_lte = undefined;
+djUgiSea98e_Fn = undefined;
+WeakMap$J22VUWjRea98f_ex = undefined;
+Get$NeypNg = undefined;
+AhC4E4RR = undefined;
+Array_eUa8SZ3Z$ea992_Buf = undefined;
+async_D8l9NKg = undefined;
+PMulimorea994_str = undefined;
+function Str_MMr1pN24$ea9b9_not(...AxisLockThreshold) {
+  if (Kb5zM5ea951_neq) {
+    dNwVcfi$ea9d8_type(AxisLockThreshold[0]);
+    AxisLockThreshold[1].preventDefault();
+    return;
+  }
+  const minimapSmoothFactor = document.activeElement;
+  if (
+    minimapSmoothFactor &&
+    (minimapSmoothFactor.tagName === "INPUT" ||
+      minimapSmoothFactor.tagName === "NORD-INPUT" ||
+      minimapSmoothFactor.isContentEditable)
+  ) {
+    if (
+      AxisLockThreshold[0] === 13 &&
+      minimapSmoothFactor.id === "chat-input"
+    ) {
+      in_Lv7rr7N($(minimapSmoothFactor).val());
+      setTimeout(() => {
+        return $(minimapSmoothFactor).blur();
+      }, 2);
+    }
+    return;
+  }
+  if (AxisLockThreshold[0] === 27) {
+    NaN_semFS17(
+      If$sEyzqKbhea93f_Exec.isConnected() || Str_NmyJ4kX.isConnected()
+    );
+  }
+  if (jQueryLzNd.isOpen("mainModal")) {
+    return;
+  }
+  if (
+    Object.values(CoKB).includes(AxisLockThreshold[0]) ||
+    AxisLockThreshold[0] === 9
+  ) {
+    AxisLockThreshold[1].preventDefault();
+  }
+  if (
+    [
+      CoKB.kSplit,
+      CoKB.k4xSplit,
+      CoKB.k8xSplit,
+      CoKB.k16xSplit,
+      CoKB.k64xSplit,
+      CoKB.kSwapPlayer,
+      CoKB.kTrickSplit,
+    ].includes(AxisLockThreshold[0]) ||
+    (AxisLockThreshold[0] >= CoKB.k32xSplit &&
+      AxisLockThreshold[0] <= CoKB.k256xSplit)
+  ) {
+    in_hpdqea943_div = true;
+  }
+  switch (AxisLockThreshold[0]) {
+    case CoKB.kSwapPlayer:
+      ForKgjVzrQea9fc_Status();
+      break;
+    case CoKB.kTrickSplit: {
+      let drawMinimapInterval = If$sEyzqKbhea93f_Exec;
+      let baseCellSize = Str_NmyJ4kX;
+      let combinedCameraDistanceThreshold = 0;
+      let combinedZoomFocusStrength = 0;
+      for (const combinedInterpSpeed of If$sEyzqKbhea93f_Exec.myCells.values()) {
+        combinedCameraDistanceThreshold += combinedInterpSpeed.getRealMass();
+      }
+      for (const combinedInterpSpeed of Str_NmyJ4kX.myCells.values()) {
+        combinedZoomFocusStrength += combinedInterpSpeed.getRealMass();
+      }
+      const messageColors =
+        combinedCameraDistanceThreshold > combinedZoomFocusStrength;
+      for (let MESSAGE_TYPES = 0; MESSAGE_TYPES < 8; MESSAGE_TYPES++) {
+        setTimeout(() => {
+          (messageColors ? drawMinimapInterval : baseCellSize).sendPacket(
+            VoidGBYH.sendKey(17)
+          );
+        }, !!MESSAGE_TYPES * 200);
+      }
+      (messageColors ? baseCellSize : drawMinimapInterval).sendPacket(
+        VoidGBYH.sendKey(17)
+      );
+      break;
+    }
+    case CoKB.kSoloMs:
+      Mao5huZea938_run.soloMothership = !Mao5huZea938_run.soloMothership;
+      break;
+    case CoKB.kBotFastFeed:
+      Mao5huZea938_run.BotFFeed = !Mao5huZea938_run.BotFFeed;
+      break;
+    case CoKB.kMouseFollow:
+      Mao5huZea938_run.mouseFollow = !Mao5huZea938_run.mouseFollow;
+      break;
+    case CoKB.kInfernoSplit: {
+      const CellVisibility = faCUfKea9fb_add();
+      const MassDisplayType =
+        CellVisibility === If$sEyzqKbhea93f_Exec
+          ? Str_NmyJ4kX
+          : If$sEyzqKbhea93f_Exec;
+      for (let MESSAGE_TYPES = 0; MESSAGE_TYPES < 4; MESSAGE_TYPES++) {
+        setTimeout(() => {
+          CellVisibility.sendPacket(VoidGBYH.sendKey(17));
+        }, MESSAGE_TYPES * 20);
+      }
+      for (let SKIN_LOAD_STATUS = 0; SKIN_LOAD_STATUS < 2; SKIN_LOAD_STATUS++) {
+        setTimeout(() => {
+          MassDisplayType.sendPacket(VoidGBYH.sendKey(17));
+        }, SKIN_LOAD_STATUS * 20);
+      }
+      break;
+    }
+    case CoKB.kToggleBotFollowMode:
+      d5OVi();
+      break;
+    case CoKB.kToggleMultiRespawn:
+      if (Mao5huZea938_run.cIsAccount2Enabled) {
+        Ctx_HHTJdo();
+      }
+      break;
+    case CoKB.kToggleAutoSpectate: {
+      const CellVisibility = faCUfKea9fb_add();
+      if (CellVisibility && CellVisibility.spectate) {
+        return;
+      }
+      React_RtHu4Gea946 = !React_RtHu4Gea946;
+      const PlayerState = React_RtHu4Gea946 ? "ON (for next death)" : "OFF";
+      BOOLxEFAPea9cf_or("Auto-Spectate: " + PlayerState);
+      break;
+    }
+    case CoKB.kToggleInactiveToActiveSpec:
+      for_zWYea948_lte = !for_zWYea948_lte;
+      const PlayerState = for_zWYea948_lte ? "SENT TO SPEC" : "RETURN";
+      BOOLxEFAPea9cf_or("Multi Spectate-to-Play: " + PlayerState);
+      break;
+    case CoKB.kSoloTrick:
+      hjScxea9fd_res(faCUfKea9fb_add());
+      break;
+    case CoKB.kFastFeed:
+      yield_LTAv5ipN();
+      break;
+    case CoKB.kFastFeedMode:
+      FROM$YeJ0i$eaa00_bool();
+      break;
+    case CoKB.kLineSplit:
+      VJjDr.activateLinesplitToggle();
+      break;
+    case CoKB.kCameraMode:
+      if (!$("#camera-mode-notification").length) {
+        $(
+          '<div id="camera-mode-notification" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); z-index: 1000;"></div>'
+        ).appendTo(document.body);
+      }
+      const defaultKeyMappings = qq8ea959_idx;
+      const defaultOptions =
+        defaultKeyMappings === "cameraDefault"
+          ? "cameraMassWeighted"
+          : "cameraDefault";
+      const defaultSubPanelSettings =
+        defaultKeyMappings === "cameraDefault" ? "Mass Weighted" : "Default";
+      qq8ea959_idx = defaultOptions;
+      TruejJBgB31q(defaultOptions);
+      Evt_gCqea9ce_Val("Player Camera: " + defaultSubPanelSettings);
+      break;
+    default:
+      (If$sEyzqKbhea93f_Exec.enabled
+        ? If$sEyzqKbhea93f_Exec
+        : Str_NmyJ4kX
+      ).handleKey(AxisLockThreshold[0]);
+  }
+}
+function DateN4UN(...AxisLockThreshold) {
+  const minimapSmoothFactor = document.activeElement;
+  if (
+    minimapSmoothFactor &&
+    (minimapSmoothFactor.tagName === "INPUT" ||
+      minimapSmoothFactor.tagName === "NORD-INPUT" ||
+      minimapSmoothFactor.isContentEditable)
+  ) {
+    return;
+  }
+  if (Object.values(CoKB).includes(AxisLockThreshold[0])) {
+    AxisLockThreshold[1].preventDefault();
+  }
+  switch (AxisLockThreshold[0]) {
+    case CoKB.kEjectMass:
+      ObjectueAUtq = false;
+      (If$sEyzqKbhea93f_Exec.enabled
+        ? If$sEyzqKbhea93f_Exec
+        : Str_NmyJ4kX
+      ).sendPacket(VoidGBYH.sendEjectMass(false));
+      break;
+    case CoKB.kMultiEject:
+      AxisLockThreshold[57] =
+        faCUfKea9fb_add() === If$sEyzqKbhea93f_Exec
+          ? Str_NmyJ4kX
+          : If$sEyzqKbhea93f_Exec;
+      if (AxisLockThreshold[57]) {
+        AxisLockThreshold[57].sendPacket(VoidGBYH.sendEjectMass(false));
+        CLASS_3Ft = false;
+      }
+      break;
+    case CoKB.kLineSplit:
+      VJjDr.deactivateLinesplitHold();
+      break;
+  }
+  if (
+    [
+      CoKB.kSplit,
+      CoKB.k4xSplit,
+      CoKB.k8xSplit,
+      CoKB.k16xSplit,
+      CoKB.k64xSplit,
+      CoKB.kSwapPlayer,
+      CoKB.kTrickSplit,
+    ].includes(AxisLockThreshold[0]) ||
+    (AxisLockThreshold[0] >= CoKB.k32xSplit &&
+      AxisLockThreshold[0] <= CoKB.k256xSplit)
+  ) {
+    in_hpdqea943_div = false;
+  }
+}
+async function NeweNPdm() {
+  Logger.info("Starting Gota Redux client initialization...");
+  Symbol_I0$w5g$ea98b_Opt = document.getElementById("canvas");
+  nh6XVqea98c_Cb = document.getElementById("minimap-canvas");
+  IMPORT_f936f76C_ea98d_lte = nh6XVqea98c_Cb.getContext("2d");
+  djUgiSea98e_Fn = $("#context-menu");
+  WeakMap$J22VUWjRea98f_ex = $("#partyPanel");
+  Get$NeypNg = $(".hud-panel");
+  AhC4E4RR = document.getElementById("chat-container");
+  Array_eUa8SZ3Z$ea992_Buf = document.getElementById("chat-input");
+  async_D8l9NKg = document.querySelectorAll(".account-nav-item");
+  PMulimorea994_str = document.querySelectorAll(".account-tab-content");
+  Promise_28_SVO_ea950_fn.minimapCoordinates = $("#minimap-coordinates");
+  Promise_28_SVO_ea950_fn.mouseFrozenDiv = document.getElementById("pMouse");
+  Promise_28_SVO_ea950_fn.playerId = document.getElementById("pId");
+  Promise_28_SVO_ea950_fn.playerScore = document
+    .getElementById("pScore")
+    .querySelector("span");
+  Promise_28_SVO_ea950_fn.playerMass = document
+    .getElementById("pMass")
+    .querySelector("span");
+  Promise_28_SVO_ea950_fn.playerCells = document
+    .getElementById("pCells")
+    .querySelector("span");
+  Promise_28_SVO_ea950_fn.resetInfo = $("#extra-reset-timer");
+  Promise_28_SVO_ea950_fn.resetTime = $("#resetTime");
+  Promise_28_SVO_ea950_fn.respawnInfo = $("#extra-respawn-cooldown");
+  Promise_28_SVO_ea950_fn.respawnCooldown = $("#respawnCooldown");
+  Promise_28_SVO_ea950_fn.spectatorCount = $("#spectatorCount");
+  Promise_28_SVO_ea950_fn.partyPanel = WeakMap$J22VUWjRea98f_ex;
+  Promise_28_SVO_ea950_fn.friendOnlineCount = $("#social-online-friends-count");
+  If$sEyzqKbhea93f_Exec = new XHR_v4dBj2ayea9a5_Inst(true);
+  Str_NmyJ4kX = new XHR_v4dBj2ayea9a5_Inst(false);
+  VoidGBYH = new E0Pea9aa_Cfg();
+  AlIjpjxYea96e_Id = {};
+  RegExp_yFv = {};
+  Date$F4EY = {
+    renderer: PIXI.autoDetectRenderer({
+      view: Symbol_I0$w5g$ea98b_Opt,
+      backgroundAlpha: 0,
+      antialias: true,
+      autoDensity: true,
+      powerPreference: "high-performance",
+      resolution: 1,
+    }),
+    stage: LGeF78Jea980_type,
+  };
+  const AxisLockThreshold = Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    const minimapSmoothFactor = AxisLockThreshold[0].clientX;
+    const drawMinimapInterval = AxisLockThreshold[0].clientY;
+    If$sEyzqKbhea93f_Exec.mouseRawX = minimapSmoothFactor;
+    If$sEyzqKbhea93f_Exec.mouseRawY = drawMinimapInterval;
+    Str_NmyJ4kX.mouseRawX = minimapSmoothFactor;
+    Str_NmyJ4kX.mouseRawY = drawMinimapInterval;
+  });
+  const minimapSmoothFactor = Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    Str_MMr1pN24$ea9b9_not(
+      AxisLockThreshold[0].button + 1,
+      AxisLockThreshold[0]
+    );
+  });
+  const drawMinimapInterval = Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    DateN4UN(AxisLockThreshold[0].button + 1, AxisLockThreshold[0]);
+  });
+  const baseCellSize = Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    if (AxisLockThreshold[0].target.id == "canvas") {
+      const minimapSmoothFactor = event.wheelDelta || event.deltaY * -1;
+      const drawMinimapInterval = 1.1;
+      const baseCellSize = 0.9;
+      if (minimapSmoothFactor > 0) {
+        If$sEyzqKbhea93f_Exec.mouseZoom *= drawMinimapInterval;
+        Str_NmyJ4kX.mouseZoom *= drawMinimapInterval;
+      } else {
+        If$sEyzqKbhea93f_Exec.mouseZoom *= baseCellSize;
+        Str_NmyJ4kX.mouseZoom *= baseCellSize;
+      }
+      If$sEyzqKbhea93f_Exec.mouseZoom = Math.max(
+        0.15,
+        Math.min(If$sEyzqKbhea93f_Exec.mouseZoom, 8)
+      );
+      Str_NmyJ4kX.mouseZoom = Math.max(
+        0.15,
+        Math.min(Str_NmyJ4kX.mouseZoom, 8)
+      );
+    }
+  });
+  const combinedCameraDistanceThreshold = Object$kDcGWUY(
+    (...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      const minimapSmoothFactor =
+        AxisLockThreshold[0].which ||
+        AxisLockThreshold[0].keyCode ||
+        AxisLockThreshold[0].charCode;
+      if (minimapSmoothFactor <= 5) {
+        return;
+      }
+      Str_MMr1pN24$ea9b9_not(minimapSmoothFactor, AxisLockThreshold[0]);
+    }
+  );
+  const combinedZoomFocusStrength = Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    const minimapSmoothFactor =
+      AxisLockThreshold[0].which ||
+      AxisLockThreshold[0].keyCode ||
+      AxisLockThreshold[0].charCode;
+    DateN4UN(minimapSmoothFactor, AxisLockThreshold[0]);
+  });
+  const combinedInterpSpeed = () => {
+    if (ObjectueAUtq) {
+      ObjectueAUtq = false;
+      (If$sEyzqKbhea93f_Exec.enabled
+        ? If$sEyzqKbhea93f_Exec
+        : Str_NmyJ4kX
+      ).sendPacket(VoidGBYH.sendEjectMass(false));
+    }
+  };
+  window.onmousemove = AxisLockThreshold;
+  window.onmousedown = minimapSmoothFactor;
+  window.onmouseup = drawMinimapInterval;
+  window.onwheel = baseCellSize;
+  window.onkeydown = combinedCameraDistanceThreshold;
+  window.onkeyup = combinedZoomFocusStrength;
+  window.onblur = combinedInterpSpeed;
+  document.addEventListener(
+    "contextmenu",
+    Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      return AxisLockThreshold[0].preventDefault();
+    })
+  );
+  $(window).resize(Get_xynDv5x);
+  document.addEventListener(
+    "click",
+    Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      if (AxisLockThreshold[0].target.closest("[data-close-modal]")) {
+        const minimapSmoothFactor =
+          AxisLockThreshold[0].target.closest("[data-close-modal]");
+        const drawMinimapInterval =
+          minimapSmoothFactor.closest(".modal-overlay");
+        if (drawMinimapInterval) {
+          jQueryLzNd.close(drawMinimapInterval.id);
+        }
+        return;
+      }
+      if (AxisLockThreshold[0].target.classList.contains("modal-overlay")) {
+        const drawMinimapInterval = AxisLockThreshold[0].target;
+        const baseCellSize = jQueryLzNd.config[drawMinimapInterval.id];
+        if (baseCellSize?.closeOnBackdrop !== false) {
+          jQueryLzNd.close(drawMinimapInterval.id);
+        }
+      }
+    })
+  );
+  document.addEventListener(
+    "keydown",
+    Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      if (AxisLockThreshold[0].key === "Escape" && jQueryLzNd.activeModal) {
+        const minimapSmoothFactor = jQueryLzNd.config[jQueryLzNd.activeModal];
+        if (minimapSmoothFactor?.closeOnEsc !== false) {
+          jQueryLzNd.close(jQueryLzNd.activeModal);
+        }
+      }
+    })
+  );
+  for (const [
+    messageColors,
+    [MESSAGE_TYPES, CellVisibility, MassDisplayType = "#000"],
+  ] of Object.entries(fontConfigs)) {
+    new FontFaceObserver(MESSAGE_TYPES).load(null, 10000).catch(() => {});
+    if (messageColors > 0 && messageColors < 64) {
+      $("#spNameFont").append(
+        '<option value="' +
+          messageColors +
+          '" style="font-family: ' +
+          MESSAGE_TYPES +
+          '" class="nameFont">' +
+          capitalize(MESSAGE_TYPES) +
+          "</option>"
+      );
+    }
+    fontConfigs[messageColors] = {
+      fontFamily: MESSAGE_TYPES,
+      fontSize: CellVisibility,
+      outlineColor: MassDisplayType,
+    };
+  }
+  await jW39BD0.preloadGameAssets();
+  U0QG_Qf = yield_a4eFrbK9_eaa07_Ret(32);
+  dNwtiUlea972_Handler = yield_a4eFrbK9_eaa07_Ret(8);
+  UNDEFINEDm2hr();
+  Zqf9Dh();
+  const SKIN_LOAD_STATUS = async (AxisLockThreshold) => {
+    const minimapSmoothFactor = ["Beta", "Anubis"];
+    const drawMinimapInterval = await fetch(
+      "https://accounts.gota.io/api/v1/utilities/servers"
+    );
+    const baseCellSize = await drawMinimapInterval.json();
+    Logger.info("Fetched Servers", baseCellSize);
+    for (const combinedCameraDistanceThreshold of baseCellSize) {
+      const combinedZoomFocusStrength = combinedCameraDistanceThreshold.servers
+        .filter(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            return !minimapSmoothFactor.includes(
+              AxisLockThreshold[0].name?.trim()
+            );
+          })
+        )
+        .map(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            const minimapSmoothFactor =
+              parseInt(AxisLockThreshold[0].players) || 0;
+            const drawMinimapInterval = AxisLockThreshold[0].bots || 0;
+            const baseCellSize =
+              "" +
+              (minimapSmoothFactor + drawMinimapInterval) +
+              "/" +
+              AxisLockThreshold[0].playersMax +
+              (drawMinimapInterval > 0 ? "*" : "");
+            return new VoidNKXXxGq_ea9ab_gte({
+              ...AxisLockThreshold[0],
+              players: minimapSmoothFactor,
+              bots: drawMinimapInterval,
+              playerText: baseCellSize,
+              region: combinedCameraDistanceThreshold.region,
+            });
+          })
+        )
+        .sort(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 2;
+            return AxisLockThreshold[0].order - AxisLockThreshold[1].order;
+          }, 2)
+        );
+      asyncq0oTeVQT[combinedCameraDistanceThreshold.region] =
+        Object.fromEntries(
+          combinedZoomFocusStrength.map(
+            Object$kDcGWUY((...AxisLockThreshold) => {
+              AxisLockThreshold.length = 1;
+              return [AxisLockThreshold[0].name, AxisLockThreshold[0]];
+            })
+          )
+        );
+    }
+    OlzBkmea9c1_idx();
+    AxisLockThreshold?.() ??
+      (NghauAMea965_VAL && fGuNueaa0a_err(NghauAMea965_VAL.name));
+  };
+  MYstEuQeaa14_err.database()
+    .ref("/game")
+    .on(
+      "value",
+      Object$kDcGWUY((...AxisLockThreshold) => {
+        AxisLockThreshold.length = 1;
+        const minimapSmoothFactor = AxisLockThreshold[0].val();
+        if (minimapSmoothFactor.listRefresh !== sA76M0oea967_gte) {
+          sA76M0oea967_gte = minimapSmoothFactor.listRefresh;
+          asyncq0oTeVQT = {};
+          SKIN_LOAD_STATUS(PeBgnB15ea966_and);
+          clearInterval(Cb_W4cW2);
+          Cb_W4cW2 = setInterval(() => {
+            return SKIN_LOAD_STATUS();
+          }, minimapSmoothFactor.listRefresh);
+        }
+        for (AxisLockThreshold[-166] in minimapSmoothFactor.titles) {
+          WeakMap$jAciSKVZea975_or[AxisLockThreshold[-166]] =
+            minimapSmoothFactor.titles[AxisLockThreshold[-166]];
+        }
+      })
+    );
+  Get_xynDv5x();
+  qKCwea9bc_div();
+  TruejJBgB31q(
+    JSON.parse(localStorage.getItem("options"))?.cameraMode || "cameraDefault"
+  );
+  $("#cameraMode > nord-button").on("click", function () {
+    TruejJBgB31q($(this).attr("id"));
+  });
+  XHR_uLPuP9eaa0c_Ex(
+    JSON.parse(localStorage.getItem("options"))?.followMouseMode ||
+      "followMouseAlways"
+  );
+  $("#followMouseMode > nord-button").on("click", function () {
+    XHR_uLPuP9eaa0c_Ex($(this).attr("id"));
+  });
+  if ($("#account2-loader").is(":visible")) {
+    $("#account2-login").hide();
+  } else {
+    $("#account2-login").show();
+  }
+  if ($("#account-loader").is(":visible")) {
+    $("#account-login").hide();
+  } else {
+    $("#account-login").show();
+  }
+  HandlerR0b5TLt$();
+  BigIntLsuea9cc_ex(false);
+  jQueryLzNd.open("mainModal");
+  setTimeout(() => {
+    jQueryLzNd.open("aboutModal");
+  }, 500);
+}
+function qKCwea9bc_div(...AxisLockThreshold) {
+  Object$kDcGWUY(baseCellSize, 2);
+  Object$kDcGWUY(minimapSmoothFactor, 2);
+  $("#btnToggleServers").on("click", function () {
+    const AxisLockThreshold = $(this);
+    const minimapSmoothFactor = AxisLockThreshold.attr("region");
+    if (minimapSmoothFactor === "eu") {
+      AxisLockThreshold.attr("region", "na").text("North America");
+      Await_IJIz2M("na");
+      $(".main-right").css("height", "" + XHReYHH$ea9c2_bool() + "px");
+    } else {
+      AxisLockThreshold.attr("region", "eu").text("Europe");
+      Await_IJIz2M("eu");
+      $(".main-right").css("height", "" + XHReYHH$ea9c2_bool() + "px");
+    }
+  });
+  $("#name-box, #name-box2").on("input", function () {
+    do_QEm141(true);
+  });
+  $("#soloTrickModeAuto").on("click", () => {
+    return y2jX$eaa13_Idx("AUTO");
+  });
+  $("#soloTrickModeManual").on("click", () => {
+    return y2jX$eaa13_Idx("MANUAL");
+  });
+  function minimapSmoothFactor(...AxisLockThreshold) {
+    let minimapSmoothFactor;
+    return function (...drawMinimapInterval) {
+      clearTimeout(minimapSmoothFactor);
+      minimapSmoothFactor = setTimeout(() => {
+        AxisLockThreshold[0].apply(this, drawMinimapInterval);
+      }, AxisLockThreshold[1]);
+    };
+  }
+  $("#themeColor").on(
+    "input",
+    minimapSmoothFactor(function () {
+      const AxisLockThreshold = $(this);
+      const minimapSmoothFactor = AxisLockThreshold.val();
+      const drawMinimapInterval = document.documentElement;
+      drawMinimapInterval.style.setProperty(
+        "--n-color-accent",
+        minimapSmoothFactor
+      );
+      drawMinimapInterval.style.setProperty(
+        "--n-color-weak-accent",
+        Pto5ea937_Inst(minimapSmoothFactor).darken(10).toHexString() + "25"
+      );
+      drawMinimapInterval.style.setProperty(
+        "--n-color-accent-secondary",
+        Pto5ea937_Inst(minimapSmoothFactor).lighten(10).toHexString()
+      );
+      drawMinimapInterval.style.setProperty(
+        "--n-color-text-on-accent",
+        Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"]).isLight()
+          ? "#0c0c0c"
+          : "#d8d8d8"
+      );
+      DEFAULT$HB0T_ea93b_Status["--n-color-accent"] = minimapSmoothFactor;
+      DEFAULT$HB0T_ea93b_Status["--n-color-weak-accent"] =
+        Pto5ea937_Inst(minimapSmoothFactor).darken(10).toHexString() + "25";
+      DEFAULT$HB0T_ea93b_Status["--n-color-accent-secondary"] = Pto5ea937_Inst(
+        minimapSmoothFactor
+      )
+        .lighten(10)
+        .toHexString();
+      DEFAULT$HB0T_ea93b_Status["--n-color-text-on-accent"] = Pto5ea937_Inst(
+        minimapSmoothFactor
+      ).isLight()
+        ? "#0c0c0c"
+        : "#d8d8d8";
+      do_QEm141();
+      g5Mea9c8_TYPE();
+      Dom34uUv8$ea9b1_bool.invalidateCache();
+      Map$XDb6n5y_ea974_State.clear();
+    }, 5)
+  );
+  $("#sRgbColor1").on(
+    "input",
+    minimapSmoothFactor(function () {
+      Mao5huZea938_run.sRgbColor1 = $(this).val();
+      do_QEm141();
+    }, 5)
+  );
+  $("#sRgbColor2").on(
+    "input",
+    minimapSmoothFactor(function () {
+      Mao5huZea938_run.sRgbColor2 = $(this).val();
+      do_QEm141();
+    }, 5)
+  );
+  $("#rgbSpeed").on("change", function () {
+    let AxisLockThreshold = parseInt($(this).val());
+    if (isNaN(AxisLockThreshold)) {
+      AxisLockThreshold = 50;
+    }
+    const minimapSmoothFactor = Math.min(Math.max(AxisLockThreshold, 5), 100);
+    Mao5huZea938_run.rRgbSpeed = minimapSmoothFactor;
+    $("#rRgbSpeed").val(minimapSmoothFactor);
+    $(this).val(minimapSmoothFactor);
+    do_QEm141();
+  });
+  $("#playBtn").on("click", function () {
+    if (NghauAMea965_VAL == null) {
+      return;
+    }
+    if (
+      If$sEyzqKbhea93f_Exec.myCells.size !== 0 &&
+      If$sEyzqKbhea93f_Exec.currentServerName === NghauAMea965_VAL.name
+    ) {
+      jQueryLzNd.close("mainModal");
+      return;
+    }
+    If$sEyzqKbhea93f_Exec.spectate = false;
+    If$sEyzqKbhea93f_Exec.enabled = true;
+    Str_NmyJ4kX.enabled = false;
+    If$sEyzqKbhea93f_Exec.play();
+  });
+  $("#specBtn").on("click", function () {
+    If$sEyzqKbhea93f_Exec.spec();
+  });
+  $("#btnModalGotaRedux").on("click", () => {
+    jQueryLzNd.open("aboutModal");
+  });
+  $("[data-close-modal]").on("click", function () {
+    const AxisLockThreshold = $(this).closest(".modal-overlay").attr("id");
+    jQueryLzNd.close(AxisLockThreshold);
+  });
+  async_D8l9NKg.forEach(
+    Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      AxisLockThreshold[0].addEventListener("click", function () {
+        PMulimorea994_str.forEach(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            AxisLockThreshold[0].style.display = "none";
+            AxisLockThreshold[0].classList.remove("active");
+          })
+        );
+        async_D8l9NKg.forEach(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            AxisLockThreshold[0].setAttribute("variant", "default");
+          })
+        );
+        const AxisLockThreshold = this.dataset.tab;
+        const minimapSmoothFactor = document.querySelector(
+          '[data-tab="' + AxisLockThreshold + '"]'
+        );
+        const drawMinimapInterval = document.getElementById(AxisLockThreshold);
+        if (minimapSmoothFactor && drawMinimapInterval) {
+          minimapSmoothFactor.setAttribute("variant", "primary");
+          drawMinimapInterval.style.display = "block";
+          drawMinimapInterval.classList.add("active");
+        }
+      });
+    })
+  );
+  $(".mainTabBtn").on("click", function () {
+    $(".mainTabBtn").attr("variant", "default");
+    $(this).attr("variant", "primary");
+  });
+  const drawMinimapInterval = {
+    "#btnServers": {
+      id: "main-servers",
+      height: () => {
+        return XHReYHH$ea9c2_bool();
+      },
+      overflow: "hidden",
+      extraBtn: "#btnToggleServers",
+    },
+    "#btnOptions": {
+      id: "main-options",
+      height: () => {
+        return XHReYHH$ea9c2_bool("eu");
+      },
+      overflow: "auto",
+      extraBtn: "#btnResetOptions",
+    },
+    "#btnKeybinds": {
+      id: "main-hotkeys",
+      height: () => {
+        return XHReYHH$ea9c2_bool("eu");
+      },
+      overflow: "auto",
+      extraBtn: "#btnResetKeybinds",
+    },
+  };
+  Object.entries(drawMinimapInterval).forEach(
+    ([AxisLockThreshold, minimapSmoothFactor]) => {
+      $(AxisLockThreshold).on("click", function () {
+        $(".main-right")
+          .css("height", minimapSmoothFactor.height())
+          .css("overflow", minimapSmoothFactor.overflow);
+        $(".main-right > div > nord-button").hide();
+        if (minimapSmoothFactor.extraBtn) {
+          $(minimapSmoothFactor.extraBtn).show();
+        }
+        HelperUhSO_ea9e8_Run(minimapSmoothFactor.id);
+      });
+    }
+  );
+  Array_eUa8SZ3Z$ea992_Buf.addEventListener(
+    "keyup",
+    function (AxisLockThreshold) {
+      const minimapSmoothFactor = AxisLockThreshold.target.value;
+      const drawMinimapInterval = minimapSmoothFactor.split(" ");
+      const baseCellSize = $(this).is(":focus");
+      const combinedCameraDistanceThreshold =
+        minimapSmoothFactor.length === 0 || minimapSmoothFactor.endsWith(" ");
+      const combinedZoomFocusStrength = AxisLockThreshold.keyCode;
+      const combinedInterpSpeed = document.getElementById(
+        "autocomplete-popout"
+      );
+      const messageColors = document.getElementById("autocomplete-panel");
+      if (!combinedInterpSpeed.anchor) {
+        combinedInterpSpeed.anchor = "chat-input";
+      }
+      combinedInterpSpeed.position = "block-start";
+      if (combinedZoomFocusStrength === 38 && baseCellSize) {
+        if (while_dFOcH$ea958_ret === -1) {
+          while_dFOcH$ea958_ret = Lodashif3ebPI.length - 1;
+        } else if (while_dFOcH$ea958_ret > 0) {
+          while_dFOcH$ea958_ret--;
+        }
+        if (Lodashif3ebPI.length > 0 && while_dFOcH$ea958_ret >= 0) {
+          CtxBk7q_(Lodashif3ebPI[while_dFOcH$ea958_ret]);
+        }
+        return;
+      }
+      if (combinedZoomFocusStrength === 40 && baseCellSize) {
+        if (while_dFOcH$ea958_ret < Lodashif3ebPI.length - 1) {
+          while_dFOcH$ea958_ret++;
+        } else {
+          while_dFOcH$ea958_ret = -1;
+        }
+        if (Lodashif3ebPI.length > 0 && while_dFOcH$ea958_ret >= 0) {
+          CtxBk7q_(Lodashif3ebPI[while_dFOcH$ea958_ret]);
+        } else {
+          CtxBk7q_("");
+        }
+        return;
+      }
+      if (combinedZoomFocusStrength === 13 && baseCellSize) {
+        in_Lv7rr7N($(this).val());
+        setTimeout(() => {
+          $("#chat-input").blur();
+        }, 2);
+      }
+      if (combinedCameraDistanceThreshold || combinedZoomFocusStrength === 13) {
+        combinedInterpSpeed.open = false;
+        return;
+      }
+      if (minimapSmoothFactor.startsWith("/")) {
+        if (drawMinimapInterval.length > 1) {
+          combinedInterpSpeed.open = false;
+          return;
+        }
+        messageColors.innerHTML = "";
+        const MESSAGE_TYPES = drawMinimapInterval[0].substring(1).toLowerCase();
+        const CellVisibility = StringifyQqsoaEea9b3_Handler.filter(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            return AxisLockThreshold[0].triggers.some(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                return AxisLockThreshold[0]
+                  .toLowerCase()
+                  .startsWith(MESSAGE_TYPES);
+              })
+            );
+          })
+        );
+        let MassDisplayType = false;
+        for (const SKIN_LOAD_STATUS of CellVisibility) {
+          const PlayerState = SKIN_LOAD_STATUS.triggers.findIndex(
+            Object$kDcGWUY((...AxisLockThreshold) => {
+              AxisLockThreshold.length = 1;
+              return AxisLockThreshold[0]
+                .toLowerCase()
+                .startsWith(MESSAGE_TYPES);
+            })
+          );
+          if (PlayerState > -1) {
+            const defaultKeyMappings =
+              '\n                <div class="autocomplete-command-row">\n                    <div class="command-name">/' +
+              SKIN_LOAD_STATUS.triggers[PlayerState] +
+              '</div>\n                    <div class="command-aliases">(' +
+              SKIN_LOAD_STATUS.triggers.join(", ") +
+              ')</div>\n                    <div class="command-desc">' +
+              SKIN_LOAD_STATUS.description +
+              "</div>\n                </div>\n            ";
+            $("#autocomplete-panel").append(defaultKeyMappings);
+            MassDisplayType = true;
+          }
+        }
+        combinedInterpSpeed.open = MassDisplayType;
+      } else {
+        const defaultOptions =
+          drawMinimapInterval[drawMinimapInterval.length - 1];
+        if (!defaultOptions.startsWith(":")) {
+          combinedInterpSpeed.open = false;
+          return;
+        }
+        messageColors.innerHTML = "";
+        const defaultSubPanelSettings = Object.keys(FalseJax).filter(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            return AxisLockThreshold[0]
+              .toLowerCase()
+              .includes(defaultOptions.substring(1).toLowerCase());
+          })
+        );
+        const fontConfigs = Object.keys(xhr_tj9avEM).filter(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            return AxisLockThreshold[0]
+              .toLowerCase()
+              .includes(defaultOptions.substring(1).toLowerCase());
+          })
+        );
+        if (defaultSubPanelSettings.length === 0 && fontConfigs.length === 0) {
+          combinedInterpSpeed.open = false;
+          return;
+        }
+        combinedInterpSpeed.open = true;
+        if (defaultSubPanelSettings.length > 0) {
+          $("#autocomplete-panel").append("<h3>Emotes</h3>");
+          for (const readAscii of defaultSubPanelSettings) {
+            $("#autocomplete-panel").append(
+              '<img name="' +
+                readAscii +
+                '" title="' +
+                readAscii +
+                '" src="images/emotes/' +
+                readAscii +
+                '.png" />'
+            );
+          }
+        }
+        if (fontConfigs.length > 0) {
+          $("#autocomplete-panel").append("<h3>Gifs</h3>");
+          for (const readAscii of fontConfigs) {
+            $("#autocomplete-panel").append(
+              '<img name="' +
+                readAscii +
+                '" title="' +
+                readAscii +
+                '" src="images/emotes/gifs/' +
+                readAscii +
+                '.gif" />'
+            );
+          }
+        }
+      }
+      while_dFOcH$ea958_ret = -1;
+    }
+  );
+  $("#autocomplete-panel").on(
+    "click",
+    Object$kDcGWUY(function (...AxisLockThreshold) {
+      AxisLockThreshold.length = 1;
+      const minimapSmoothFactor = document.getElementById(
+        "autocomplete-popout"
+      );
+      if (AxisLockThreshold[0].target.nodeName === "IMG") {
+        const drawMinimapInterval = $("#chat-input").val();
+        const baseCellSize = drawMinimapInterval.split(" ").pop();
+        CtxBk7q_(
+          drawMinimapInterval.substring(
+            0,
+            drawMinimapInterval.length - baseCellSize.length
+          ) +
+            AxisLockThreshold[0].target.attributes.name.nodeValue +
+            " "
+        );
+        minimapSmoothFactor.open = false;
+        $("#chat-input").focus();
+      }
+    })
+  );
+  $("#autocomplete-panel").on(
+    "click",
+    Object$kDcGWUY(function (...AxisLockThreshold) {
+      AxisLockThreshold.length = 1;
+      AxisLockThreshold[1] = $("#chat-input").val().split(" ");
+      if (AxisLockThreshold[0].target.nodeName === "TD") {
+        CtxBk7q_(
+          "/" +
+            AxisLockThreshold[0].target.parentElement.children[0].innerHTML +
+            " "
+        );
+      } else if (AxisLockThreshold[0].target.nodeName === "IMG") {
+        AxisLockThreshold.b = $("#chat-input").val();
+        AxisLockThreshold[-4] =
+          AxisLockThreshold[1][AxisLockThreshold[1].length - 1];
+        CtxBk7q_(
+          AxisLockThreshold.b.substring(
+            0,
+            AxisLockThreshold.b.length - AxisLockThreshold[-4].length
+          ) +
+            AxisLockThreshold[0].target.attributes.name.nodeValue +
+            " "
+        );
+      }
+      $("#autocomplete-panel").html("").hide();
+      $("#chat-input").focus();
+    })
+  );
+  $("#animationDelay").on("change", function () {
+    var AxisLockThreshold = parseInt($(this).val());
+    if (isNaN(AxisLockThreshold)) {
+      AxisLockThreshold = 90;
+    }
+    Mao5huZea938_run.rAnimationDelay = Math.min(
+      Math.max(AxisLockThreshold, 1),
+      250
+    );
+    $("#animationDelay").val(Mao5huZea938_run.rAnimationDelay);
+    $("#rAnimationDelay").val(Mao5huZea938_run.rAnimationDelay);
+  });
+  $("#camDelay").on("change", function () {
+    var AxisLockThreshold = parseInt($(this).val());
+    if (isNaN(AxisLockThreshold)) {
+      AxisLockThreshold = 100;
+    }
+    Mao5huZea938_run.rCamDelay = Math.min(Math.max(AxisLockThreshold, 50), 200);
+    $("#camDelay").val(Mao5huZea938_run.rCamDelay);
+    $("#rCamDelay").val(Mao5huZea938_run.rCamDelay);
+  });
+  $("#textOutlines").on("change", function () {
+    var AxisLockThreshold = parseInt($(this).val());
+    if (isNaN(AxisLockThreshold)) {
+      AxisLockThreshold = 5;
+    }
+    Mao5huZea938_run.rTextOutlines = Math.min(
+      Math.max(AxisLockThreshold, 0),
+      10
+    );
+    $("#textOutlines").val(Mao5huZea938_run.rTextOutlines);
+    $("#rTextOutlines").val(Mao5huZea938_run.rTextOutlines);
+  });
+  $("#combinedViewportScale").on("change", function () {
+    var AxisLockThreshold = parseInt($(this).val());
+    if (isNaN(AxisLockThreshold)) {
+      AxisLockThreshold = 0.8;
+    }
+    Mao5huZea938_run.rCombinedViewportScale = Math.min(
+      Math.max(AxisLockThreshold, 0),
+      1
+    );
+    $("#combinedViewportScale").val(Mao5huZea938_run.rCombinedViewportScale);
+    $("#rCombinedViewportScale").val(Mao5huZea938_run.rCombinedViewportScale);
+  });
+  $("#viewDistance").on("change", function () {
+    var AxisLockThreshold = parseInt($(this).val());
+    if (isNaN(AxisLockThreshold)) {
+      AxisLockThreshold = 100;
+    }
+    Mao5huZea938_run.rViewDistance = Math.min(
+      Math.max(AxisLockThreshold, 50),
+      150
+    );
+    $("#viewDistance").val(Mao5huZea938_run.rViewDistance);
+    $("#rViewDistance").val(Mao5huZea938_run.rViewDistance);
+    If$sEyzqKbhea93f_Exec.sendOptions();
+    Str_NmyJ4kX.sendOptions();
+  });
+  $("#emotePanel img").on(
+    "click",
+    Object$kDcGWUY(function (...AxisLockThreshold) {
+      AxisLockThreshold.length = 1;
+      $("#chat-input")
+        .val($("#chat-input").val() + AxisLockThreshold[0].target.name + " ")
+        .focus();
+    })
+  );
+  $(".checkbox-option")
+    .off("change")
+    .on("change", function () {
+      EkFea9da_mul($(this));
+    });
+  $(".options-container nord-dropdown")
+    .off("change")
+    .on("change", function () {
+      Map_f43ea9db_ret(this);
+    });
+  $(".options-container nord-range, .options-container nord-input")
+    .off("input")
+    .on("input", function () {
+      TruepwDZ3M$ea9dc_Res($(this));
+    });
+  $("#popup-party-code-content button").on(
+    "click",
+    function (...AxisLockThreshold) {
+      AxisLockThreshold.length = 0;
+      const minimapSmoothFactor = $("#popup-party-code-content input");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard
+          .writeText(minimapSmoothFactor.val())
+          .then(() => {
+            $("#popup-party-code").hide();
+          })
+          .catch(
+            Object$kDcGWUY((...AxisLockThreshold) => {
+              AxisLockThreshold.length = 1;
+              console.error("Failed to copy text: ", AxisLockThreshold[0]);
+              minimapSmoothFactor.select();
+              document.execCommand("Copy");
+              $("#popup-party-code").hide();
+            })
+          );
+      } else {
+        minimapSmoothFactor.select();
+        document.execCommand("Copy");
+        $("#popup-party-code").hide();
+      }
+    }
+  );
+  $("#menu-invite").on("click", function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold[222] = djUgiSea98e_Fn.data("selected");
+    if (If$sEyzqKbhea93f_Exec.enabled) {
+      If$sEyzqKbhea93f_Exec.sendPacket(
+        VoidGBYH.sendPartyAction(0, AxisLockThreshold[222])
+      );
+    } else if (Str_NmyJ4kX.enabled) {
+      Str_NmyJ4kX.sendPacket(
+        VoidGBYH.sendPartyAction(0, AxisLockThreshold[222])
+      );
+    }
+  });
+  $("#menu-whisper").on("click", function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold.b = djUgiSea98e_Fn.data("selected");
+    AxisLockThreshold.c = $("#chat-input").val();
+    $("#chat-input").val(
+      "/t " + AxisLockThreshold.b + " " + AxisLockThreshold.c
+    );
+  });
+  $("#menu-profile").on("click", function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold[142] = djUgiSea98e_Fn.data("selected");
+    faCUfKea9fb_add().sendPacket(
+      VoidGBYH.sendShowProfile(AxisLockThreshold[142])
+    );
+  });
+  $("#menu-pu_pr").on("click", function () {
+    if (faCUfKea9fb_add().partyCode == undefined) {
+      faCUfKea9fb_add().sendPacket(VoidGBYH.sendPartyAction(4, 0));
+      $("#menu-pu_pr span").text("Private");
+    } else {
+      faCUfKea9fb_add().sendPacket(VoidGBYH.sendPartyAction(4, 1));
+      $("#menu-pu_pr span").text("Public");
+    }
+  });
+  $("#menu-promote").on("click", function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold[-16] = djUgiSea98e_Fn.data("party") + 1;
+    console.log(AxisLockThreshold[-16]);
+    if (faCUfKea9fb_add().isPartyLeader()) {
+      KEGPXBW(2, AxisLockThreshold[-16]);
+    }
+  });
+  $("#menu-kick").on("click", function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold.a = djUgiSea98e_Fn.data("party") + 1;
+    if (AxisLockThreshold.a >= 0) {
+      if (faCUfKea9fb_add().isPartyLeader()) {
+        faCUfKea9fb_add().sendPacket(
+          VoidGBYH.sendPartyAction(1, AxisLockThreshold.a)
+        );
+      }
+    }
+  });
+  $("#menu-spectate").on("click", function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold[43] = djUgiSea98e_Fn.data("selected");
+    if (AxisLockThreshold[43] >= 0) {
+      faCUfKea9fb_add().sendPacket(
+        VoidGBYH.sendSpectate(AxisLockThreshold[43])
+      );
+    }
+  });
+  $("#menu-block").on("click", function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    AxisLockThreshold[191] = parseInt(djUgiSea98e_Fn.data("selected"));
+    faCUfKea9fb_add().selfMsg(bmBtnjkeaa09_or(AxisLockThreshold[191]));
+  });
+  $("#leaveParty").on("click", function () {
+    faCUfKea9fb_add().sendPacket(VoidGBYH.sendPartyAction(3, 0));
+  });
+  $(document).on(
+    "click",
+    Object$kDcGWUY(function (...AxisLockThreshold) {
+      AxisLockThreshold.length = 1;
+      djUgiSea98e_Fn.removeAttr("open");
+    })
+  );
+  MYstEuQeaa14_err.auth().onAuthStateChanged(
+    Object$kDcGWUY(function (...AxisLockThreshold) {
+      AxisLockThreshold.length = 1;
+      if (AxisLockThreshold[0]) {
+        H3xBjq();
+        if (
+          If$sEyzqKbhea93f_Exec.isConnected() &&
+          MYstEuQeaa14_err.auth().currentUser !== null
+        ) {
+          MYstEuQeaa14_err.auth()
+            .currentUser.getIdToken(true)
+            .then(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                If$sEyzqKbhea93f_Exec.sendPacket(
+                  VoidGBYH.sendAuthToken(AxisLockThreshold[0])
+                );
+              })
+            )
+            .catch(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                return HelperBFZkQ(AxisLockThreshold[0], true);
+              })
+            );
+        }
+        AxisLockThreshold[-145] = MYstEuQeaa14_err.database().ref(
+          "users/" + AxisLockThreshold[0].uid
+        );
+        AxisLockThreshold[229] = false;
+        AxisLockThreshold[-145].on(
+          "value",
+          Object$kDcGWUY(function (...minimapSmoothFactor) {
+            minimapSmoothFactor.length = 1;
+            minimapSmoothFactor[-3] = minimapSmoothFactor[0].val();
+            if (!minimapSmoothFactor[-3]) {
+              return;
+            }
+            if (!AxisLockThreshold[229]) {
+              $("#account-loader").hide();
+              $("#authed").css("display", "flex");
+              $("#cGlobalLeaderboard").removeAttr("disabled");
+              $("#cGlobalLeaderboard").prop(
+                "checked",
+                minimapSmoothFactor[-3].flags.PUBLIC
+              );
+              AxisLockThreshold[229] = true;
+            }
+            AtgnhF = minimapSmoothFactor[-3];
+            $("#account-avatar").attr("src", minimapSmoothFactor[-3].avatar);
+            $("#account-username").text(minimapSmoothFactor[-3].username);
+            CHueaa10_Proc($("#account-username"), minimapSmoothFactor[-3]);
+            $("#account-level").html(
+              "Level " + minimapSmoothFactor[-3].levelData.level
+            );
+            $("#xpMeter1, #account-level, #account-logout").show();
+            $("#account-login").hide();
+            $("#levelXP1").html(
+              formatExperience(minimapSmoothFactor[-3].levelData.xp_current) +
+                "/" +
+                formatExperience(minimapSmoothFactor[-3].levelData.xp_needed) +
+                " XP"
+            );
+            const drawMinimapInterval =
+              (minimapSmoothFactor[-3].levelData.xp_current /
+                minimapSmoothFactor[-3].levelData.xp_needed) *
+              100;
+            $("#xpMeter1").attr("value", drawMinimapInterval);
+            if (!If$sEyzqKbhea93f_Exec.accountListeners.loadServers) {
+              If$sEyzqKbhea93f_Exec.accountListeners.loadServers =
+                MYstEuQeaa14_err.database()
+                  .ref("servers/account/" + AtgnhF.uid)
+                  .on(
+                    "value",
+                    Object$kDcGWUY(function (...minimapSmoothFactor) {
+                      minimapSmoothFactor.length = 1;
+                      minimapSmoothFactor[1] = minimapSmoothFactor[0].val();
+                      if (!minimapSmoothFactor[1]) {
+                        return;
+                      }
+                      loadedServers = {};
+                      for (minimapSmoothFactor[-20] in minimapSmoothFactor[1]) {
+                        minimapSmoothFactor.c =
+                          minimapSmoothFactor[1][minimapSmoothFactor[-20]];
+                        if (minimapSmoothFactor.c.up) {
+                          loadedServers[minimapSmoothFactor.c.name] =
+                            new VoidNKXXxGq_ea9ab_gte({
+                              name: minimapSmoothFactor.c.name,
+                              address:
+                                "" +
+                                minimapSmoothFactor.c.ip +
+                                ":" +
+                                minimapSmoothFactor.c.port,
+                              players: 0,
+                              bots: 0,
+                              playerText: "?",
+                              gamemode: minimapSmoothFactor.c.gamemode,
+                              region: minimapSmoothFactor.c.region,
+                              ssl: minimapSmoothFactor.c.ssl,
+                              order: 0,
+                            });
+                        }
+                      }
+                      OlzBkmea9c1_idx();
+                      if (NghauAMea965_VAL != null) {
+                        fGuNueaa0a_err(NghauAMea965_VAL.name);
+                      }
+                    })
+                  );
+            }
+            if (
+              minimapSmoothFactor[-3].flags.DISCORD_LINKED &&
+              !If$sEyzqKbhea93f_Exec.accountListeners.loadDiscord
+            ) {
+              If$sEyzqKbhea93f_Exec.accountListeners.loadDiscord =
+                MYstEuQeaa14_err.firestore()
+                  .collection("discord")
+                  .doc(AtgnhF.uid)
+                  .onSnapshot(
+                    Object$kDcGWUY((...minimapSmoothFactor) => {
+                      minimapSmoothFactor.length = 1;
+                      if (minimapSmoothFactor[0].exists) {
+                        $("#discordLinkStatus").text(
+                          "Your account is linked with " +
+                            minimapSmoothFactor[0].data().username +
+                            "#" +
+                            minimapSmoothFactor[0].data().discrim
+                        );
+                        $("#discordLinkStatus").show();
+                        $("#discordLink").hide();
+                        $("#discordUnlink").show();
+                        $(".discord-login-container").css("padding", "15px");
+                      } else {
+                        $("#discordLinkStatus").hide();
+                        $("#discordUnlink").hide();
+                        $("#discordLink").show();
+                        $(".discord-login-container").css("padding", "30px");
+                      }
+                    })
+                  );
+            }
+            if (minimapSmoothFactor[-3].tokens !== undefined) {
+              minimapSmoothFactor[2] = new Date();
+              minimapSmoothFactor[2].setMonth(
+                minimapSmoothFactor[2].getMonth() +
+                  minimapSmoothFactor[-3].tokens
+              );
+              if (minimapSmoothFactor[-3].tokens == 0) {
+                $("#redeem-tokens").hide();
+                $("#token-amount").text("You have 0 tokens.");
+              } else {
+                $("#redeem-tokens").show();
+                $("#token-amount").text(
+                  "You have " +
+                    minimapSmoothFactor[-3].tokens +
+                    " tokens, maximum expiry date: " +
+                    minimapSmoothFactor[2].toString()
+                );
+                $("#redeem-spend").attr("max", minimapSmoothFactor[-3].tokens);
+              }
+            } else {
+              $("#token-amount").text("You have 0 tokens.");
+            }
+            if (
+              AtgnhF.title &&
+              AtgnhF.title > 0 &&
+              xmea976_xor &&
+              xmea976_xor.titles &&
+              xmea976_xor.titles.length > 0
+            ) {
+              minimapSmoothFactor[-21] = $("#account-titles");
+              minimapSmoothFactor.d = 0;
+              for (
+                minimapSmoothFactor[190] = 0;
+                minimapSmoothFactor[190] < xmea976_xor.titles.length;
+                minimapSmoothFactor[190]++
+              ) {
+                if (
+                  xmea976_xor.titles[minimapSmoothFactor[190]] == AtgnhF.title
+                ) {
+                  minimapSmoothFactor.d = minimapSmoothFactor[190] + 1;
+                }
+              }
+              if (minimapSmoothFactor.d > 0) {
+                minimapSmoothFactor[-21].val(minimapSmoothFactor.d);
+              }
+            }
+            if (!If$sEyzqKbhea93f_Exec.accountListeners.loadPrivateData) {
+              If$sEyzqKbhea93f_Exec.accountListeners.loadPrivateData =
+                MYstEuQeaa14_err.database()
+                  .ref("private/" + AxisLockThreshold[0].uid)
+                  .on(
+                    "value",
+                    Object$kDcGWUY(function (...minimapSmoothFactor) {
+                      minimapSmoothFactor.length = 1;
+                      const drawMinimapInterval = minimapSmoothFactor[0].val();
+                      if (!drawMinimapInterval) {
+                        return;
+                      }
+                      xmea976_xor = drawMinimapInterval;
+                      if (xmea976_xor.titles && xmea976_xor.titles.length > 0) {
+                        minimapSmoothFactor[1] = $("#account-titles");
+                        minimapSmoothFactor[2] = 0;
+                        minimapSmoothFactor[1].empty();
+                        minimapSmoothFactor[1].append(
+                          "<option value='0'>Default Title</option>"
+                        );
+                        for (
+                          minimapSmoothFactor.c = 0;
+                          minimapSmoothFactor.c <
+                          drawMinimapInterval.titles.length;
+                          minimapSmoothFactor.c++
+                        ) {
+                          minimapSmoothFactor[1].append(
+                            "<option value='" +
+                              (minimapSmoothFactor.c + 1) +
+                              "'>" +
+                              WeakMap$jAciSKVZea975_or[
+                                xmea976_xor.titles[minimapSmoothFactor.c]
+                              ] +
+                              "</option>"
+                          );
+                          if (
+                            xmea976_xor.titles[minimapSmoothFactor.c] ==
+                            AtgnhF.title
+                          ) {
+                            minimapSmoothFactor[2] = minimapSmoothFactor.c + 1;
+                          }
+                        }
+                        if (minimapSmoothFactor[2] > 0) {
+                          minimapSmoothFactor[1].val(minimapSmoothFactor[2]);
+                        }
+                        minimapSmoothFactor[1].css("display", "inline-block");
+                      } else {
+                        $("#account-titles").css("display", "none");
+                      }
+                      if (
+                        xmea976_xor.message &&
+                        xmea976_xor.message.title &&
+                        xmea976_xor.message.content &&
+                        !xmea976_xor.message.read
+                      ) {
+                        $("#popup-message-title").text(
+                          xmea976_xor.message.title
+                        );
+                        $("#popup-message-content").html(
+                          xmea976_xor.message.content
+                        );
+                        hdnn_8ea9ea_Idx($("#popup-message"));
+                        jQueryLzNd.close("mainModal");
+                      }
+                    })
+                  );
+            }
+            DEFAULT_B6Cea9c5_Ret(AxisLockThreshold[0].uid);
+          })
+        );
+      } else {
+        WHILEn5ZHH();
+      }
+    })
+  );
+  FLsTXl.auth().onAuthStateChanged(
+    Object$kDcGWUY(function (...AxisLockThreshold) {
+      AxisLockThreshold.length = 1;
+      if (AxisLockThreshold[0]) {
+        IfbIa();
+        if (Str_NmyJ4kX.isConnected() && FLsTXl.auth().currentUser !== null) {
+          FLsTXl.auth()
+            .currentUser.getIdToken(true)
+            .then(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                Str_NmyJ4kX.sendPacket(
+                  VoidGBYH.sendAuthToken(AxisLockThreshold[0])
+                );
+              })
+            )
+            .catch(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                return HelperBFZkQ(AxisLockThreshold[0], true);
+              })
+            );
+        }
+        AxisLockThreshold[1] = FLsTXl.database().ref(
+          "users/" + AxisLockThreshold[0].uid
+        );
+        AxisLockThreshold.b = false;
+        AxisLockThreshold[1].on(
+          "value",
+          Object$kDcGWUY(function (...minimapSmoothFactor) {
+            minimapSmoothFactor.length = 1;
+            const drawMinimapInterval = minimapSmoothFactor[0].val();
+            if (!drawMinimapInterval) {
+              return;
+            }
+            if (!AxisLockThreshold.b) {
+              $("#account2-loader").hide();
+              $("#authed2").css("display", "flex");
+              $("#cGlobalLeaderboard2").removeAttr("disabled");
+              $("#cGlobalLeaderboard2").prop(
+                "checked",
+                drawMinimapInterval.flags.PUBLIC
+              );
+              AxisLockThreshold.b = true;
+            }
+            qRcea94d_init = drawMinimapInterval;
+            $("#account2-avatar").attr("src", drawMinimapInterval.avatar);
+            $("#account2-username").text(drawMinimapInterval.username);
+            CHueaa10_Proc($("#account2-username"), drawMinimapInterval);
+            $("#account2-level").html(
+              "Level " + drawMinimapInterval.levelData.level
+            );
+            $(
+              "#xpMeter2, #account2-level, #account2-actions, #account2-logout"
+            ).show();
+            $("#account2-login").hide();
+            $("#levelXP2").html(
+              formatExperience(drawMinimapInterval.levelData.xp_current) +
+                "/" +
+                formatExperience(drawMinimapInterval.levelData.xp_needed) +
+                " XP"
+            );
+            const baseCellSize =
+              (drawMinimapInterval.levelData.xp_current /
+                drawMinimapInterval.levelData.xp_needed) *
+              100;
+            $("#xpMeter2").attr("value", baseCellSize);
+            if (
+              drawMinimapInterval.flags.DISCORD_LINKED &&
+              !Str_NmyJ4kX.accountListeners.loadDiscord
+            ) {
+              Str_NmyJ4kX.accountListeners.loadDiscord = FLsTXl.firestore()
+                .collection("discord")
+                .doc(qRcea94d_init.uid)
+                .onSnapshot(
+                  Object$kDcGWUY((...minimapSmoothFactor) => {
+                    minimapSmoothFactor.length = 1;
+                    if (minimapSmoothFactor[0].exists) {
+                      $("#discordLinkStatus").text(
+                        "Your account is linked with " +
+                          minimapSmoothFactor[0].data().username +
+                          "#" +
+                          minimapSmoothFactor[0].data().discrim
+                      );
+                      $("#discordLinkStatus").show();
+                      $("#discordLink").hide();
+                      $("#discordUnlink").show();
+                      $(".discord-login-container").css("padding", "15px");
+                    } else {
+                      $("#discordLinkStatus").hide();
+                      $("#discordUnlink").hide();
+                      $("#discordLink").show();
+                      $(".discord-login-container").css("padding", "30px");
+                    }
+                  })
+                );
+            }
+            if (
+              qRcea94d_init.title &&
+              qRcea94d_init.title > 0 &&
+              xmea976_xor &&
+              xmea976_xor.titles &&
+              xmea976_xor.titles.length > 0
+            ) {
+              minimapSmoothFactor[146] = $("#account2-titles");
+              minimapSmoothFactor.b = 0;
+              for (
+                minimapSmoothFactor[-69] = 0;
+                minimapSmoothFactor[-69] < xmea976_xor.titles.length;
+                minimapSmoothFactor[-69]++
+              ) {
+                if (
+                  xmea976_xor.titles[minimapSmoothFactor[-69]] ==
+                  qRcea94d_init.title
+                ) {
+                  minimapSmoothFactor.b = minimapSmoothFactor[-69] + 1;
+                }
+              }
+              if (minimapSmoothFactor.b > 0) {
+                minimapSmoothFactor[146].val(minimapSmoothFactor.b);
+              }
+            }
+            if (!Str_NmyJ4kX.accountListeners.loadPrivateData) {
+              Str_NmyJ4kX.accountListeners.loadPrivateData = FLsTXl.database()
+                .ref("private/" + AxisLockThreshold[0].uid)
+                .on(
+                  "value",
+                  Object$kDcGWUY(function (...minimapSmoothFactor) {
+                    minimapSmoothFactor.length = 1;
+                    const drawMinimapInterval = minimapSmoothFactor[0].val();
+                    if (!drawMinimapInterval) {
+                      return;
+                    }
+                    xmea976_xor = drawMinimapInterval;
+                    if (xmea976_xor.titles && xmea976_xor.titles.length > 0) {
+                      minimapSmoothFactor[1] = $("#account2-titles");
+                      minimapSmoothFactor[2] = 0;
+                      minimapSmoothFactor[1].empty();
+                      minimapSmoothFactor[1].append(
+                        "<option value='0'>Default Title</option>"
+                      );
+                      for (
+                        minimapSmoothFactor.c = 0;
+                        minimapSmoothFactor.c <
+                        drawMinimapInterval.titles.length;
+                        minimapSmoothFactor.c++
+                      ) {
+                        minimapSmoothFactor[1].append(
+                          "<option value='" +
+                            (minimapSmoothFactor.c + 1) +
+                            "'>" +
+                            WeakMap$jAciSKVZea975_or[
+                              xmea976_xor.titles[minimapSmoothFactor.c]
+                            ] +
+                            "</option>"
+                        );
+                        if (
+                          xmea976_xor.titles[minimapSmoothFactor.c] ==
+                          qRcea94d_init.title
+                        ) {
+                          minimapSmoothFactor[2] = minimapSmoothFactor.c + 1;
+                        }
+                      }
+                      if (minimapSmoothFactor[2] > 0) {
+                        minimapSmoothFactor[1].val(minimapSmoothFactor[2]);
+                      }
+                      minimapSmoothFactor[1].css("display", "inline-block");
+                    } else {
+                      $("#account2-titles").css("display", "none");
+                    }
+                    if (
+                      xmea976_xor.message &&
+                      xmea976_xor.message.title &&
+                      xmea976_xor.message.content &&
+                      !xmea976_xor.message.read
+                    ) {
+                      $("#popup-message-title").text(xmea976_xor.message.title);
+                      $("#popup-message-content").html(
+                        xmea976_xor.message.content
+                      );
+                      hdnn_8ea9ea_Idx($("#popup-message"));
+                      jQueryLzNd.close("mainModal");
+                    }
+                  })
+                );
+            }
+            DEFAULT_B6Cea9c5_Ret(AxisLockThreshold[0].uid);
+          })
+        );
+      } else {
+        MapFjF6l_ea9f0_Util();
+      }
+    })
+  );
+  $("#cGlobalLeaderboard").on("change", function () {
+    console.log(instanceof_NYxWUQj_ea97e_Err);
+    if (!AtgnhF || instanceof_NYxWUQj_ea97e_Err) {
+      return;
+    }
+    instanceof_NYxWUQj_ea97e_Err = true;
+    MYstEuQeaa14_err.auth()
+      .currentUser.getIdToken()
+      .then(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          fetch("https://accounts.gota.io/api/v1/options/setFlags", {
+            method: "POST",
+            headers: {
+              ["Content-Type"]: "application/json",
+            },
+            body: JSON.stringify({
+              token: AxisLockThreshold[0],
+            }),
+          })
+            .then(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                try {
+                  return AxisLockThreshold[0].json();
+                } catch {
+                  return {
+                    success: AxisLockThreshold[0].ok,
+                    message: AxisLockThreshold[0].ok,
+                  };
+                }
+              })
+            )
+            .then(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                console.log(AxisLockThreshold[0].message);
+                instanceof_NYxWUQj_ea97e_Err = false;
+              })
+            )
+            .catch(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                instanceof_NYxWUQj_ea97e_Err = false;
+                alert(AxisLockThreshold[0]);
+              })
+            );
+        })
+      )
+      .catch(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          console.error("Authentication error:", AxisLockThreshold[0]);
+          instanceof_NYxWUQj_ea97e_Err = false;
+          HelperBFZkQ(AxisLockThreshold[0], true);
+        })
+      );
+  });
+  $("#cGlobalLeaderboard2").on("change", function () {
+    if (!qRcea94d_init || SetGjfJUkLJea97f_Buf) {
+      return;
+    }
+    SetGjfJUkLJea97f_Buf = true;
+    FLsTXl.auth()
+      .currentUser.getIdToken()
+      .then(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          fetch("https://accounts.gota.io/api/v1/options/setFlags", {
+            method: "POST",
+            headers: {
+              ["Content-Type"]: "application/json",
+            },
+            body: JSON.stringify({
+              token: AxisLockThreshold[0],
+            }),
+          })
+            .then(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                try {
+                  return AxisLockThreshold[0].json();
+                } catch {
+                  return {
+                    success: AxisLockThreshold[0].ok,
+                    message: AxisLockThreshold[0].ok,
+                  };
+                }
+              })
+            )
+            .then(() => {
+              SetGjfJUkLJea97f_Buf = false;
+            })
+            .catch(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                SetGjfJUkLJea97f_Buf = false;
+                alert(AxisLockThreshold[0]);
+              })
+            );
+        })
+      )
+      .catch(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          console.error(
+            "Authentication error (Player 2):",
+            AxisLockThreshold[0]
+          );
+          SetGjfJUkLJea97f_Buf = false;
+          HelperBFZkQ(AxisLockThreshold[0], true);
+        })
+      );
+  });
+  $("#account-login").on("click", function () {
+    MYstEuQeaa14_err.auth()
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => {
+        return MYstEuQeaa14_err.auth().signInWithPopup(KR7DmFbea999_bool);
+      })
+      .catch(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return HelperBFZkQ(AxisLockThreshold[0], true);
+        })
+      );
+  });
+  $("#account-logout").on("click", function () {
+    MYstEuQeaa14_err.auth()
+      .signOut()
+      .then(function () {
+        WHILEn5ZHH();
+        $("#discordLinkStatus").hide();
+        $(".discord-login-container").show();
+      })
+      .catch(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return HelperBFZkQ(AxisLockThreshold[0], true);
+        })
+      );
+  });
+  $("#account-social").on("click", function () {
+    if (AtgnhF && MYstEuQeaa14_err) {
+      console.log(AtgnhF.uid);
+    }
+  });
+  $("#account2-social").on("click", function () {
+    if (qRcea94d_init && FLsTXl) {
+      console.log(qRcea94d_init.uid);
+    }
+  });
+  $("#account-avatar").on("click", function () {
+    BigInt_ZShVUjt$ea9d0_err(AtgnhF, mainModal);
+  });
+  function baseCellSize(...AxisLockThreshold) {
+    if (AxisLockThreshold[0]) {
+      $(AxisLockThreshold[1]).prop("disabled", false);
+      $(AxisLockThreshold[1]).text("Set");
+      return;
+    }
+    $(AxisLockThreshold[1]).prop("disabled", true);
+    $(AxisLockThreshold[1]).text("...");
+  }
+  $("#account-titles").on("change", function () {
+    var AxisLockThreshold;
+    if (instanceof_NYxWUQj_ea97e_Err) {
+      return;
+    }
+    AxisLockThreshold = parseInt($(this).val());
+    instanceof_NYxWUQj_ea97e_Err = true;
+    MYstEuQeaa14_err.auth()
+      .currentUser.getIdToken()
+      .then(
+        Object$kDcGWUY((...minimapSmoothFactor) => {
+          minimapSmoothFactor.length = 1;
+          fetch(_0x111D7 + "/api/v1/options/setTitle", {
+            method: "POST",
+            headers: {
+              ["Content-Type"]: "application/json",
+            },
+            body: JSON.stringify({
+              token: minimapSmoothFactor[0],
+              title: AxisLockThreshold,
+            }),
+          })
+            .then(
+              Object$kDcGWUY((...minimapSmoothFactor) => {
+                minimapSmoothFactor.length = 1;
+                return minimapSmoothFactor[0].json();
+              })
+            )
+            .then(() => {
+              instanceof_NYxWUQj_ea97e_Err = false;
+            })
+            .catch(() => {
+              instanceof_NYxWUQj_ea97e_Err = false;
+            });
+        })
+      )
+      .catch(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          HelperBFZkQ(AxisLockThreshold[0], true);
+          instanceof_NYxWUQj_ea97e_Err = false;
+        })
+      );
+  });
+  $("#account2-login").on("click", function () {
+    FLsTXl.auth()
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => {
+        return FLsTXl.auth().signInWithPopup(KR7DmFbea999_bool);
+      })
+      .catch(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return HelperBFZkQ(AxisLockThreshold[0], true);
+        })
+      );
+  });
+  $("#account2-logout").on("click", function () {
+    FLsTXl.auth()
+      .signOut()
+      .then(function () {
+        MapFjF6l_ea9f0_Util();
+        $("#discordLinkStatus").hide();
+        $(".discord-login-container").show();
+      })
+      .catch(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return HelperBFZkQ(AxisLockThreshold[0], true);
+        })
+      );
+  });
+  $("#account2-profile").on("click", function () {
+    BigInt_ZShVUjt$ea9d0_err(qRcea94d_init, mainModal);
+  });
+  $("#account-set-username-btn").on("click", function () {
+    var AxisLockThreshold;
+    if (!AtgnhF) {
+      return;
+    }
+    baseCellSize(false, this);
+    AxisLockThreshold = $("#account-username-input").val();
+    if (
+      !AxisLockThreshold ||
+      AxisLockThreshold == "" ||
+      AxisLockThreshold.trim() == ""
+    ) {
+      alert("Please provide a username!");
+      baseCellSize(true, this);
+      return;
+    }
+    MYstEuQeaa14_err.auth()
+      .currentUser.getIdToken()
+      .then(
+        Object$kDcGWUY((...minimapSmoothFactor) => {
+          minimapSmoothFactor.length = 1;
+          fetch(_0x111D7 + "/api/v1/social/username", {
+            method: "POST",
+            headers: {
+              ["Content-Type"]: "application/json",
+            },
+            body: JSON.stringify({
+              token: minimapSmoothFactor[0],
+              username: AxisLockThreshold,
+            }),
+          })
+            .then(
+              Object$kDcGWUY((...minimapSmoothFactor) => {
+                minimapSmoothFactor.length = 1;
+                return minimapSmoothFactor[0].json();
+              })
+            )
+            .then((minimapSmoothFactor) => {
+              baseCellSize(true, this);
+              if (minimapSmoothFactor.code == 200) {
+                NaN_semFS17();
+                $("#popup-account-username").hide();
+                return;
+              }
+              alert(minimapSmoothFactor.message);
+            })
+            .catch((minimapSmoothFactor) => {
+              alert(minimapSmoothFactor);
+              baseCellSize(true, this);
+            });
+        })
+      )
+      .catch((AxisLockThreshold) => {
+        baseCellSize(true, this);
+        HelperBFZkQ(AxisLockThreshold, true);
+      });
+  });
+  $("#discordLink").on("click", function () {
+    if (!AtgnhF) {
+      return;
+    }
+    MYstEuQeaa14_err.auth()
+      .currentUser.getIdToken()
+      .then(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          window.open(
+            "https://accounts.gota.io/api/v1/options/discord/redirect?token=" +
+              AxisLockThreshold[0],
+            "popup",
+            "width=600,height=700"
+          );
+        })
+      );
+  });
+  $("#discordUnlink").on("click", function () {
+    if (!AtgnhF) {
+      return;
+    }
+    MYstEuQeaa14_err.auth()
+      .currentUser.getIdToken()
+      .then(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          fetch(_0x111D7 + "/api/v1/options/discord/unlink", {
+            method: "POST",
+            body: JSON.stringify({
+              token: AxisLockThreshold[0],
+            }),
+            headers: {
+              ["Content-Type"]: "application/json",
+            },
+          })
+            .then(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                return AxisLockThreshold[0].json();
+              })
+            )
+            .then(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                alert(AxisLockThreshold[0].message);
+              })
+            );
+        })
+      )
+      .catch(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return HelperBFZkQ(AxisLockThreshold[0]);
+        })
+      );
+  });
+  $("#redeem-tokens").submit(
+    Object$kDcGWUY(function (...AxisLockThreshold) {
+      AxisLockThreshold.length = 1;
+      AxisLockThreshold[0].preventDefault();
+      if (
+        !AtgnhF ||
+        !confirm(
+          "By redeeming, you are agreeing the locked name rules linked below the form.\n\nABUSE WILL RESULT IN THE DELETION OF YOUR LOCKED NAME WITH NO REFUND AND THE POSSIBILITY OF ACCOUNT SUSPENSION.\n\nPress OK to redeem."
+        )
+      ) {
+        return;
+      }
+      AxisLockThreshold[1] = $("#redeem-name").val();
+      AxisLockThreshold[-137] = $("#redeem-spend").val();
+      MYstEuQeaa14_err.auth()
+        .currentUser.getIdToken()
+        .then(
+          Object$kDcGWUY((...minimapSmoothFactor) => {
+            minimapSmoothFactor.length = 1;
+            fetch(_0x111D7 + "/api/v1/options/redeem", {
+              method: "POST",
+              body: JSON.stringify({
+                token: minimapSmoothFactor[0],
+                name: AxisLockThreshold[1],
+                spend: parseInt(AxisLockThreshold[-137]),
+              }),
+              headers: {
+                ["Content-Type"]: "application/json",
+              },
+            })
+              .then(
+                Object$kDcGWUY((...minimapSmoothFactor) => {
+                  minimapSmoothFactor.length = 1;
+                  return minimapSmoothFactor[0].json();
+                })
+              )
+              .then(
+                Object$kDcGWUY((...minimapSmoothFactor) => {
+                  minimapSmoothFactor.length = 1;
+                  alert(minimapSmoothFactor[0].message);
+                  if (minimapSmoothFactor[0].code === 200) {
+                    DEFAULT_B6Cea9c5_Ret(AtgnhF.uid);
+                  }
+                })
+              );
+          })
+        )
+        .catch(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            return HelperBFZkQ(AxisLockThreshold[0]);
+          })
+        );
+    })
+  );
+  $(document).on(
+    "keyup",
+    Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      if (AxisLockThreshold[0].key !== "Enter") {
+        return;
+      }
+      const minimapSmoothFactor = document.getElementById("chat-input");
+      if (!minimapSmoothFactor) {
+        return;
+      }
+      if (document.activeElement !== minimapSmoothFactor) {
+        if (
+          !jQueryLzNd.isOpen("mainModal") &&
+          (If$sEyzqKbhea93f_Exec.isConnected() || Str_NmyJ4kX.isConnected())
+        ) {
+          AxisLockThreshold[0].preventDefault();
+          minimapSmoothFactor.focus();
+        }
+      }
+    })
+  );
+  $(document).on("click", ".keybinds-btn", function () {
+    $(".keybinds-btn").removeAttr("variant", "dashed").prop("disabled", true);
+    $(this).attr("variant", "dashed").removeAttr("disabled");
+    Kb5zM5ea951_neq = true;
+  });
+  $("#btnResetOptions").on("click", function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    Mao5huZea938_run = JSON.parse(JSON.stringify(Await_RRv));
+    DEFAULT$HB0T_ea93b_Status = JSON.parse(JSON.stringify(defaultTheme));
+    for (const minimapSmoothFactor in Mao5huZea938_run) {
+      if (
+        !Object.prototype.hasOwnProperty.call(
+          Mao5huZea938_run,
+          minimapSmoothFactor
+        )
+      ) {
+        continue;
+      }
+      const drawMinimapInterval = Mao5huZea938_run[minimapSmoothFactor];
+      const baseCellSize = $("#" + minimapSmoothFactor);
+      const combinedCameraDistanceThreshold = baseCellSize.length
+        ? baseCellSize[0]
+        : null;
+      if (minimapSmoothFactor === "cameraMode") {
+        TruejJBgB31q(drawMinimapInterval);
+        continue;
+      }
+      if (minimapSmoothFactor === "followMouseMode") {
+        XHR_uLPuP9eaa0c_Ex(drawMinimapInterval);
+        continue;
+      }
+      if (minimapSmoothFactor === "sSoloTrickMode") {
+        y2jX$eaa13_Idx(drawMinimapInterval);
+        continue;
+      }
+      if (!combinedCameraDistanceThreshold) {
+        continue;
+      }
+      switch (minimapSmoothFactor.charAt(0)) {
+        case "c":
+          combinedCameraDistanceThreshold.checked = drawMinimapInterval;
+          break;
+        case "s":
+          if (baseCellSize.is("nord-dropdown")) {
+            baseCellSize.attr("value", drawMinimapInterval);
+            const combinedZoomFocusStrength = BigIntpwyK0j_ea9d4_mul[
+              minimapSmoothFactor
+            ]?.find(
+              Object$kDcGWUY((...AxisLockThreshold) => {
+                AxisLockThreshold.length = 1;
+                return AxisLockThreshold[0].value === drawMinimapInterval;
+              })
+            );
+            if (combinedZoomFocusStrength) {
+              baseCellSize
+                .find("nord-button")
+                .text(combinedZoomFocusStrength.text);
+            }
+          }
+          break;
+        case "r":
+          combinedCameraDistanceThreshold.value = drawMinimapInterval;
+          const combinedInterpSpeed = "#" + minimapSmoothFactor.substring(1);
+          $(combinedInterpSpeed).val(drawMinimapInterval);
+          break;
+      }
+    }
+    const messageColors = document.documentElement;
+    Object.entries(DEFAULT$HB0T_ea93b_Status).forEach(
+      ([AxisLockThreshold, minimapSmoothFactor]) => {
+        return messageColors.style.setProperty(
+          AxisLockThreshold,
+          minimapSmoothFactor
+        );
+      }
+    );
+    messageColors.style.setProperty(
+      "--n-color-weak-accent",
+      Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"])
+        .darken(10)
+        .toHexString() + "25"
+    );
+    messageColors.style.setProperty(
+      "--n-color-accent-secondary",
+      Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"])
+        .lighten(10)
+        .toHexString()
+    );
+    messageColors.style.setProperty(
+      "--n-color-text-on-accent",
+      Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"]).isLight()
+        ? "#0c0c0c"
+        : "#d8d8d8"
+    );
+    $("#themeColor").val(DEFAULT$HB0T_ea93b_Status["--n-color-accent"]);
+    $("#sRgbColor1").val(Mao5huZea938_run.sRgbColor1);
+    $("#sRgbColor2").val(Mao5huZea938_run.sRgbColor2);
+    for (const minimapSmoothFactor in Mao5huZea938_run) {
+      if (Lodash$KALTWzD_ea9b8_buf[minimapSmoothFactor]) {
+        Lodash$KALTWzD_ea9b8_buf[minimapSmoothFactor](
+          Mao5huZea938_run[minimapSmoothFactor]
+        );
+      }
+    }
+    do_QEm141();
+    PzLTVea9d7_res("Options have been reset to default.", "success");
+  });
+  $("#btnResetKeybinds").on("click", function () {
+    $(".keybinds-btn").each(function () {
+      const AxisLockThreshold = $(this);
+      const minimapSmoothFactor = AxisLockThreshold.attr("id");
+      if (defaultKeyMappings[minimapSmoothFactor] != null) {
+        CoKB[minimapSmoothFactor] = defaultKeyMappings[minimapSmoothFactor];
+        FNmsM(AxisLockThreshold);
+      }
+    });
+    UtilQlOY_eaa0f_cb();
+    PzLTVea9d7_res("Keybinds have been reset to default.", "success");
+  });
+  React$yyea9e7();
+}
+function UNDEFINEDm2hr(...AxisLockThreshold) {
+  const minimapSmoothFactor = HelpervL9ea995_opt(
+    [
+      "EverythingsFine",
+      "WeSmart",
+      "PandaAww",
+      "SleepyCat",
+      "Clap",
+      "Ditto",
+      "MichaelPls",
+      "RareParrot",
+      "PepePls",
+      "RooNoticeMe",
+      "PepeEyes",
+    ],
+    5
+  );
+  const drawMinimapInterval = HelpervL9ea995_opt(
+    [
+      "PJSalt",
+      "PogChamp",
+      "rekt",
+      "rip",
+      "SaltyCorn",
+      "sodaC",
+      "sodaHeyGuys",
+      "sodaNOPE",
+      "sodaW",
+      "SwiftRage",
+      "WutFace",
+      "ResidentSleeper",
+      "LUL",
+      "MikuFail",
+      "PepoHype",
+      "KKona",
+      "MeguFace",
+      "AngryBork",
+      "AngeryBOYE",
+      "TohruFlex",
+      "Sadness",
+      "nou",
+      "MarioFP",
+      "4Head",
+      "BibleThump",
+      "DansGame",
+      "DatSheffy",
+      "FailFish",
+      "FeelsBadMan",
+      "FeelsGoodMan",
+      "FeelsMadMan",
+      "GabeN",
+      "HassanChop",
+      "HeyGuys",
+      "Kappa",
+      "KappaPride",
+      "Keepo",
+      "Kreygasm",
+      "NotLikeThis",
+      "OMGScoots",
+    ],
+    23
+  );
+  const baseCellSize = HelpervL9ea995_opt(
+    [
+      "letter_v",
+      "letter_w",
+      "letter_x",
+      "letter_y",
+      "letter_z",
+      "number_0",
+      "number_1",
+      "number_2",
+      "number_3",
+      "number_4",
+      "number_5",
+      "number_6",
+      "number_7",
+      "number_8",
+      "number_9",
+      "heart",
+      "star",
+      "home",
+      "apple",
+      "spiral",
+      "dice",
+      "chicken",
+      "ghost",
+      "burger",
+      "bow",
+      "cloud",
+      "skull",
+      "mug",
+      "flower",
+      "music",
+      "checkmark",
+      "clover",
+      "crown",
+      "fancy",
+      "fish",
+      "fire",
+      "lightning",
+      "paw",
+      "duck",
+      "snowflake",
+      "bomb",
+      "butterfly",
+      "cherry",
+      "watermelon",
+      "cat",
+      "cupid",
+      "sword",
+      "shield",
+      "tornado",
+      "radioactive",
+      "rocket",
+      "wave",
+      "letter_a",
+      "letter_b",
+      "letter_c",
+      "letter_d",
+      "letter_e",
+      "letter_f",
+      "letter_g",
+      "letter_h",
+      "letter_i",
+      "letter_j",
+      "letter_k",
+      "letter_l",
+      "letter_m",
+      "letter_n",
+      "letter_o",
+      "letter_p",
+      "letter_q",
+      "letter_r",
+      "letter_s",
+      "letter_t",
+      "letter_u",
+    ],
+    15
+  );
+  for (
+    let combinedCameraDistanceThreshold = 0;
+    combinedCameraDistanceThreshold < drawMinimapInterval.length;
+    combinedCameraDistanceThreshold++
+  ) {
+    let combinedZoomFocusStrength =
+      drawMinimapInterval[combinedCameraDistanceThreshold];
+    $(".emote-list").append(
+      "<img name='" +
+        combinedZoomFocusStrength +
+        "' title='" +
+        combinedZoomFocusStrength +
+        "' src='images/emotes/" +
+        combinedZoomFocusStrength +
+        ".png' />"
+    );
+    FalseJax[combinedZoomFocusStrength] = true;
+  }
+  for (
+    let combinedCameraDistanceThreshold = 0;
+    combinedCameraDistanceThreshold < minimapSmoothFactor.length;
+    combinedCameraDistanceThreshold++
+  ) {
+    let combinedZoomFocusStrength =
+      minimapSmoothFactor[combinedCameraDistanceThreshold];
+    $(".gif-list").append(
+      "<img name='" +
+        combinedZoomFocusStrength +
+        "' title='" +
+        combinedZoomFocusStrength +
+        "' src='images/emotes/gifs/" +
+        combinedZoomFocusStrength +
+        ".gif' />"
+    );
+    xhr_tj9avEM[combinedZoomFocusStrength] = true;
+  }
+  for (
+    let combinedCameraDistanceThreshold = 0;
+    combinedCameraDistanceThreshold < baseCellSize.length;
+    combinedCameraDistanceThreshold++
+  ) {
+    let combinedInterpSpeed = baseCellSize[combinedCameraDistanceThreshold];
+    $("#spEffect").append(
+      '<option value="' +
+        (combinedCameraDistanceThreshold + 1) +
+        '">' +
+        formatSnakeCaseString(combinedInterpSpeed) +
+        "</option>"
+    );
+    pQQAhea970_Tmp[combinedCameraDistanceThreshold] = U0QG_Qf;
+    let messageColors = new Image();
+    messageColors.src =
+      "images/ejected_mass_skins/" + combinedInterpSpeed + ".png";
+    messageColors.index = combinedCameraDistanceThreshold;
+    messageColors.addEventListener("load", function () {
+      pQQAhea970_Tmp[this.index] = PIXI.Texture.from(this);
+    });
+  }
+  gifFrames({
+    url: "images/effects/hearts.gif",
+    frames: "all",
+    cumulative: false,
+    outputType: "canvas",
+  }).then(
+    Object$kDcGWUY(function (...AxisLockThreshold) {
+      AxisLockThreshold.length = 1;
+      AxisLockThreshold[1] = new rejea9ac_Key();
+      AxisLockThreshold[1].loadFromFrameData(AxisLockThreshold[0]);
+    })
+  );
+}
+function BOOL_jzR0BE6k() {
+  as_dX7WJBQ_ea9c4_mul();
+  $("#spSkinName").val(VuerW6rI_ea93a_neq.skinName);
+  $("#spLowerName").prop("checked", VuerW6rI_ea93a_neq.lowerName);
+  $("#spEffect select").val(VuerW6rI_ea93a_neq.effect);
+  $("#spNameFont select").val(VuerW6rI_ea93a_neq.nameFont);
+}
+function Yz5NCU3(...AxisLockThreshold) {
+  const minimapSmoothFactor = faCUfKea9fb_add();
+  if (
+    !minimapSmoothFactor ||
+    (!If$sEyzqKbhea93f_Exec.isConnected() &&
+      (!Str_NmyJ4kX || !Str_NmyJ4kX.isConnected()))
+  ) {
+    if (UX3IB !== 0) {
+      Promise_28_SVO_ea950_fn.playerId.textContent = "";
+      Promise_28_SVO_ea950_fn.playerMass.textContent = "0";
+      Promise_28_SVO_ea950_fn.playerCells.textContent = "-";
+      Promise_28_SVO_ea950_fn.mouseFrozenDiv.style.display = "none";
+      Promise_28_SVO_ea950_fn.playerScore.textContent = "0";
+      UX3IB = 0;
+      LodashmDBDNdea953_mul = 0;
+      e$Iqgea954_Proc = "-";
+    }
+    return;
+  }
+  const drawMinimapInterval = "@" + minimapSmoothFactor.playerId;
+  if (Promise_28_SVO_ea950_fn.playerId.textContent !== drawMinimapInterval) {
+    Promise_28_SVO_ea950_fn.playerId.textContent = drawMinimapInterval;
+  }
+  AxisLockThreshold[213] = 0;
+  for (const baseCellSize of minimapSmoothFactor.myCells.values()) {
+    AxisLockThreshold[213] += baseCellSize.getRealMass();
+  }
+  const combinedCameraDistanceThreshold = minimapSmoothFactor.myCells.size;
+  const combinedZoomFocusStrength = minimapSmoothFactor.getServerMaxCells();
+  const combinedInterpSpeed =
+    "" + combinedCameraDistanceThreshold + "/" + combinedZoomFocusStrength;
+  if (UX3IB !== AxisLockThreshold[213]) {
+    Promise_28_SVO_ea950_fn.playerMass.textContent =
+      AxisLockThreshold[213].toLocaleString();
+    UX3IB = AxisLockThreshold[213];
+  }
+  if (e$Iqgea954_Proc !== combinedInterpSpeed) {
+    Promise_28_SVO_ea950_fn.playerCells.textContent = combinedInterpSpeed;
+    if (!Mao5huZea938_run.cColoredCellCount) {
+      const messageColors =
+        combinedCameraDistanceThreshold / combinedZoomFocusStrength;
+      if (messageColors >= 1) {
+        Promise_28_SVO_ea950_fn.playerCells.style.color =
+          DEFAULT$HB0T_ea93b_Status["--n-color-text-danger"];
+      } else if (messageColors >= 0.5) {
+        Promise_28_SVO_ea950_fn.playerCells.style.color =
+          DEFAULT$HB0T_ea93b_Status["--n-color-text-warning"];
+      } else {
+        Promise_28_SVO_ea950_fn.playerCells.style.color =
+          DEFAULT$HB0T_ea93b_Status["--n-color-text-success"];
+      }
+    } else {
+      Promise_28_SVO_ea950_fn.playerCells.style.color = "unset";
+    }
+    e$Iqgea954_Proc = combinedInterpSpeed;
+  }
+  const MESSAGE_TYPES = Math.max(
+    If$sEyzqKbhea93f_Exec.score,
+    Str_NmyJ4kX ? Str_NmyJ4kX.score : 0
+  );
+  if (LodashmDBDNdea953_mul !== MESSAGE_TYPES) {
+    Promise_28_SVO_ea950_fn.playerScore.textContent =
+      MESSAGE_TYPES.toLocaleString();
+    LodashmDBDNdea953_mul = MESSAGE_TYPES;
+  }
+  const CellVisibility = minimapSmoothFactor.mouseFrozen ? "block" : "none";
+  if (Promise_28_SVO_ea950_fn.mouseFrozenDiv.style.display !== CellVisibility) {
+    Promise_28_SVO_ea950_fn.mouseFrozenDiv.style.display = CellVisibility;
+  }
+}
+function FNmsM(...AxisLockThreshold) {
+  AxisLockThreshold[-83] = CoKB[AxisLockThreshold[0].attr("id")];
+  AxisLockThreshold[0].html(
+    El_adcGQ944ea99d_Cb.get(AxisLockThreshold[-83])?.toUpperCase() || "\xA0"
+  );
+}
+function OlzBkmea9c1_idx(...AxisLockThreshold) {
+  $("#servers-eu, #servers-na").empty();
+  $("#servers-loader").hide();
+  $("#server-content").show();
+  for (AxisLockThreshold[-81] in asyncq0oTeVQT) {
+    for (AxisLockThreshold[1] in asyncq0oTeVQT[AxisLockThreshold[-81]]) {
+      AxisLockThreshold.c =
+        asyncq0oTeVQT[AxisLockThreshold[-81]][AxisLockThreshold[1]];
+      AxisLockThreshold[3] = $(
+        '\n      <div aria-describedby="' +
+          AxisLockThreshold.c.name.toLowerCase() +
+          '" class="server-item" ' +
+          (AxisLockThreshold.c.name === "Beta" ? "disabled" : "") +
+          '  data-server-id="' +
+          AxisLockThreshold.c.name +
+          '">\n        <nord-tooltip class="serverInfoTooltip" position="inline-end" id="' +
+          AxisLockThreshold.c.name.toLowerCase() +
+          '">' +
+          AxisLockThreshold.c.playerText +
+          '</nord-tooltip>\n        <div class="server-info">\n          <span class="server-name">' +
+          AxisLockThreshold.c.name +
+          '</span>\n        </div>\n        <div class="server-status">\n          <span class="server-region">' +
+          (AxisLockThreshold.c.mode.includes("128x")
+            ? "Rush Split (384x)"
+            : AxisLockThreshold.c.mode) +
+          "</span>\n        </div>\n      </div>\n    "
+      );
+      $("#servers-" + AxisLockThreshold.c.region).append(AxisLockThreshold[3]);
+    }
+  }
+  $(".main-right").css("height", "" + XHReYHH$ea9c2_bool() + "px");
+  $(".server-item").on("click", function () {
+    $(".server-item").removeClass("selected");
+    $(this).addClass("selected");
+    fGuNueaa0a_err($(this).attr("data-server-id"));
+  });
+  const minimapSmoothFactor =
+    JSON.parse(localStorage.getItem("options"))?.server || "Vendetta";
+  if (minimapSmoothFactor) {
+    const drawMinimapInterval = $(
+      '.server-item[data-server-id="' + minimapSmoothFactor + '"]'
+    );
+    if (drawMinimapInterval.length) {
+      drawMinimapInterval.addClass("selected");
+      fGuNueaa0a_err(minimapSmoothFactor);
+    }
+  }
+}
+function XHReYHH$ea9c2_bool(...AxisLockThreshold) {
+  const minimapSmoothFactor =
+    AxisLockThreshold[0] || $("#btnToggleServers").attr("region");
+  const drawMinimapInterval = Object.keys(
+    asyncq0oTeVQT[minimapSmoothFactor] || {}
+  ).length;
+  const baseCellSize = drawMinimapInterval * 34 + 16;
+  return Math.max(baseCellSize, 252);
+}
+function New_r0sJwVZ() {
+  BOOL_jzR0BE6k();
+  $("#btn-chg-ln").on("click", function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 0;
+    if (!hVJea94b_Data) {
+      return;
+    }
+    AxisLockThreshold[239] = prompt("Enter new locked name!");
+    if (!AxisLockThreshold[239]) {
+      return;
+    }
+    AxisLockThreshold[1] = null;
+    if (typeof AxisLockThreshold[239] !== "string") {
+      AxisLockThreshold[1] = "Please enter a valid name!";
+    }
+    if (AxisLockThreshold[239].length < 2) {
+      AxisLockThreshold[1] = "Locked names must be 2 or more characters long.";
+    }
+    if (AxisLockThreshold[239].length > 20) {
+      AxisLockThreshold[1] = "Locked names must be 20 or less characters long.";
+    }
+    if (AxisLockThreshold[1] !== null) {
+      alert(AxisLockThreshold[1]);
+      return;
+    }
+    AxisLockThreshold[239] = AxisLockThreshold[239].trim();
+    if (
+      confirm(
+        "You are about to change your locked name to: '" +
+          AxisLockThreshold[239] +
+          "'.\nLocked names can only be changed once per week.\n\nAre you sure you wish to continue?"
+      )
+    ) {
+      If$sEyzqKbhea93f_Exec.sendPacket(
+        VoidGBYH.sendLockedNameChange(AxisLockThreshold[239])
+      );
+    }
+  });
+  $("#btn-updateSP").on("click", function () {
+    LodashxQu4();
+  });
+}
+function as_dX7WJBQ_ea9c4_mul() {
+  if (hVJea94b_Data || If$sEyzqKbhea93f_Exec.subPanelOverride) {
+    $("#btn-cellpanel").prop("disabled", false);
+    if (hVJea94b_Data) {
+      $(".subpanel-name-dashboard").css("display", "");
+    } else {
+      $(".subpanel-name-dashboard").css("display", "none");
+    }
+    $("#subpanel-content").css("display", "block");
+  } else {
+    $("#btn-cellpanel").prop("disabled", true);
+  }
+}
+function DEFAULT_B6Cea9c5_Ret(...AxisLockThreshold) {
+  if (!If$sEyzqKbhea93f_Exec.accountListeners.loadSubPanel) {
+    If$sEyzqKbhea93f_Exec.accountListeners.loadSubPanel =
+      MYstEuQeaa14_err.firestore()
+        .collection("accounts")
+        .doc(AxisLockThreshold[0])
+        .onSnapshot(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            const minimapSmoothFactor = AxisLockThreshold[0].data();
+            if (!AxisLockThreshold[0].exists || !minimapSmoothFactor.locked) {
+              hVJea94b_Data = false;
+            } else {
+              hVJea94b_Data = true;
+              $("#spLockedName").html(minimapSmoothFactor.name);
+              if (minimapSmoothFactor.lastChange !== undefined) {
+                $("#btn-chg-ln").attr(
+                  "title",
+                  "Last Changed: " +
+                    new Date(minimapSmoothFactor.lastChange).toLocaleString()
+                );
+              }
+              if (minimapSmoothFactor.expiry !== null) {
+                $("#spExpiry").html(
+                  new Date(
+                    minimapSmoothFactor.expiry.seconds * 1000
+                  ).toLocaleString()
+                );
+              } else {
+                $("#spExpiry").html("Never");
+              }
+            }
+            as_dX7WJBQ_ea9c4_mul();
+            If$sEyzqKbhea93f_Exec.accountListeners.loadSubPanel();
+            If$sEyzqKbhea93f_Exec.accountListeners.loadSubPanel = null;
+          }),
+          () => {
+            If$sEyzqKbhea93f_Exec.accountListeners.loadSubPanel();
+            If$sEyzqKbhea93f_Exec.accountListeners.loadSubPanel = null;
+          }
+        );
+  }
+}
+function Proto$L05X_ea9c6_sub(...AxisLockThreshold) {
+  AxisLockThreshold.length = 0;
+  const minimapSmoothFactor = faCUfKea9fb_add();
+  const drawMinimapInterval =
+    minimapSmoothFactor && minimapSmoothFactor.isConnected();
+  if (drawMinimapInterval && !jQueryLzNd.isOpen("mainModal")) {
+    $(".titlebar").css({
+      ["background-color"]: "transparent",
+      ["border-color"]: "transparent",
+    });
+    $(".titlebar .title").css("margin-left", "-133px");
+    $("nord-notification-group").css("margin-top", "0");
+  } else {
+    $(".titlebar").css({
+      ["background-color"]: "var(--n-color-background)",
+      ["border-color"]: "var(--n-color-border)",
+    });
+    $(".titlebar .title").css("margin-left", "0");
+    $("nord-notification-group").css("margin-top", "34px");
+  }
+}
+function H3Pgbhg(...AxisLockThreshold) {
+  if (!Mao5huZea938_run.cShowCoordinates) {
+    return;
+  }
+  const minimapSmoothFactor = faCUfKea9fb_add();
+  const drawMinimapInterval =
+    minimapSmoothFactor && minimapSmoothFactor.myCells.size > 0;
+  if (drawMinimapInterval) {
+    const baseCellSize = minimapSmoothFactor.centerX.toFixed(0);
+    const combinedCameraDistanceThreshold =
+      minimapSmoothFactor.centerY.toFixed(0);
+    Promise_28_SVO_ea950_fn.minimapCoordinates.text(
+      "X: " + baseCellSize + " Y: " + combinedCameraDistanceThreshold
+    );
+  } else {
+    Promise_28_SVO_ea950_fn.minimapCoordinates.text("X: - Y: -");
+  }
+}
+function g5Mea9c8_TYPE(...AxisLockThreshold) {
+  AwaitNM$mbea98a_mul.clear();
+  const { border: minimapSmoothFactor } = If$sEyzqKbhea93f_Exec.serverData;
+  const drawMinimapInterval = 32;
+  const baseCellSize =
+    Mao5huZea938_run.cShowBorder && minimapSmoothFactor.enabled;
+  if (baseCellSize) {
+    const combinedCameraDistanceThreshold = PIXI.utils.string2hex(
+      DEFAULT$HB0T_ea93b_Status["--n-color-accent"]
+    );
+    AwaitNM$mbea98a_mul.lineStyle(
+      drawMinimapInterval,
+      combinedCameraDistanceThreshold
+    ).drawRect(
+      minimapSmoothFactor.left,
+      minimapSmoothFactor.top,
+      minimapSmoothFactor.width,
+      minimapSmoothFactor.height
+    );
+    AwaitNM$mbea98a_mul.visible = true;
+  } else {
+    AwaitNM$mbea98a_mul.visible = false;
+  }
+}
+function DOC_FDXvy4GG(...AxisLockThreshold) {
+  if (!If$sEyzqKbhea93f_Exec?.serverData?.border?.enabled) {
+    return;
+  }
+  const minimapSmoothFactor = faCUfKea9fb_add();
+  const drawMinimapInterval = new Map();
+  IMPORT_f936f76C_ea98d_lte.clearRect(
+    0,
+    0,
+    nh6XVqea98c_Cb.width,
+    nh6XVqea98c_Cb.height
+  );
+  IMPORT_f936f76C_ea98d_lte.font = "10px 'Nordhealth Sans', sans-serif";
+  if (If$sEyzqKbhea93f_Exec.playerId !== 0) {
+    const baseCellSize = Winy9ZiY(If$sEyzqKbhea93f_Exec, true);
+    drawMinimapInterval.set(If$sEyzqKbhea93f_Exec.playerId, {
+      id: If$sEyzqKbhea93f_Exec.playerId,
+      name: If$sEyzqKbhea93f_Exec.name,
+      x: baseCellSize.x,
+      y: baseCellSize.y,
+      isAlive: If$sEyzqKbhea93f_Exec.myCells.size > 0,
+    });
+  }
+  if (Str_NmyJ4kX?.playerId !== 0) {
+    const combinedCameraDistanceThreshold = Winy9ZiY(Str_NmyJ4kX, true);
+    drawMinimapInterval.set(Str_NmyJ4kX.playerId, {
+      id: Str_NmyJ4kX.playerId,
+      name: Str_NmyJ4kX.name,
+      x: combinedCameraDistanceThreshold.x,
+      y: combinedCameraDistanceThreshold.y,
+      isAlive: Str_NmyJ4kX.myCells.size > 0,
+    });
+  }
+  for (const combinedZoomFocusStrength of If$sEyzqKbhea93f_Exec.party || []) {
+    if (
+      combinedZoomFocusStrength?.state === PlayerState.ALIVE &&
+      !drawMinimapInterval.has(combinedZoomFocusStrength.id)
+    ) {
+      drawMinimapInterval.set(combinedZoomFocusStrength.id, {
+        id: combinedZoomFocusStrength.id,
+        name: combinedZoomFocusStrength.name,
+        x: combinedZoomFocusStrength.x_,
+        y: combinedZoomFocusStrength.y_,
+        isAlive: true,
+      });
+    }
+  }
+  const combinedInterpSpeed =
+    minimapSmoothFactor?.playerId && minimapSmoothFactor.myCells.size > 0
+      ? minimapSmoothFactor.playerId
+      : null;
+  Proto$RYZvj3$ea9b7_num.update(
+    drawMinimapInterval,
+    combinedInterpSpeed,
+    AxisLockThreshold[0]
+  );
+  IMPORT_f936f76C_ea98d_lte.clearRect(
+    0,
+    0,
+    nh6XVqea98c_Cb.width,
+    nh6XVqea98c_Cb.height
+  );
+  if (Mao5huZea938_run.cShowChunks) {
+    const messageColors =
+      (minimapSmoothFactor.centerX -
+        If$sEyzqKbhea93f_Exec.serverData.border.left) /
+      If$sEyzqKbhea93f_Exec.serverData.border.width;
+    const MESSAGE_TYPES =
+      (minimapSmoothFactor.centerY -
+        If$sEyzqKbhea93f_Exec.serverData.border.top) /
+      If$sEyzqKbhea93f_Exec.serverData.border.height;
+    const CellVisibility = nh6XVqea98c_Cb.width / 5;
+    const MassDisplayType = nh6XVqea98c_Cb.height / 5;
+    IMPORT_f936f76C_ea98d_lte.font = "10px 'Nordhealth Sans', sans-serif";
+    IMPORT_f936f76C_ea98d_lte.textAlign = "center";
+    IMPORT_f936f76C_ea98d_lte.textBaseline = "middle";
+    for (
+      AxisLockThreshold.a = 0;
+      AxisLockThreshold.a < 5;
+      AxisLockThreshold.a++
+    ) {
+      for (
+        AxisLockThreshold[2] = 0;
+        AxisLockThreshold[2] < 5;
+        AxisLockThreshold[2]++
+      ) {
+        if (
+          Math.floor(messageColors * 5) == AxisLockThreshold.a &&
+          Math.floor(MESSAGE_TYPES * 5) == AxisLockThreshold[2]
+        ) {
+          IMPORT_f936f76C_ea98d_lte.fillStyle =
+            DEFAULT$HB0T_ea93b_Status["--n-color-accent"] + "1A";
+          IMPORT_f936f76C_ea98d_lte.fillRect(
+            AxisLockThreshold.a * CellVisibility,
+            AxisLockThreshold[2] * MassDisplayType,
+            CellVisibility,
+            MassDisplayType
+          );
+        }
+        IMPORT_f936f76C_ea98d_lte.fillStyle =
+          DEFAULT$HB0T_ea93b_Status["--n-color-text-weakest"];
+        IMPORT_f936f76C_ea98d_lte.fillText(
+          ["A", "B", "C", "D", "E"][AxisLockThreshold.a] +
+            ["1", "2", "3", "4", "5"][AxisLockThreshold[2]],
+          (AxisLockThreshold.a + 0.5) * CellVisibility,
+          (AxisLockThreshold[2] + 0.5) * MassDisplayType
+        );
+      }
+    }
+  }
+  if (combinedInterpSpeed && Str_NmyJ4kX.isConnected()) {
+    Proto$RYZvj3$ea9b7_num.drawHighlighter(
+      IMPORT_f936f76C_ea98d_lte,
+      If$sEyzqKbhea93f_Exec.serverData.border,
+      nh6XVqea98c_Cb.width,
+      nh6XVqea98c_Cb.height
+    );
+  }
+  if (drawMinimapInterval.size === 0) {
+    return;
+  }
+  IMPORT_f936f76C_ea98d_lte.font = "12px 'Nordhealth Sans', sans-serif";
+  for (const SKIN_LOAD_STATUS of drawMinimapInterval.values()) {
+    if (!SKIN_LOAD_STATUS.isAlive) {
+      continue;
+    }
+    const defaultKeyMappings = Proto$RYZvj3$ea9b7_num.getSmoothedPosition(
+      SKIN_LOAD_STATUS.id
+    );
+    if (!defaultKeyMappings) {
+      continue;
+    }
+    const defaultOptions =
+      SKIN_LOAD_STATUS.id === If$sEyzqKbhea93f_Exec.playerId;
+    const defaultSubPanelSettings =
+      Str_NmyJ4kX?.playerId === SKIN_LOAD_STATUS.id;
+    const fontConfigs = minimapSmoothFactor?.playerId === SKIN_LOAD_STATUS.id;
+    const readAscii =
+      defaultOptions || defaultSubPanelSettings
+        ? fontConfigs
+          ? Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"])
+              .lighten(25)
+              .toHexString()
+          : Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"])
+              .lighten(15)
+              .toHexString()
+        : Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"])
+            .lighten(5)
+            .toHexString();
+    const readUtf16 = !defaultOptions && !defaultSubPanelSettings;
+    Void_ojp$ea9ca_neq(
+      IMPORT_f936f76C_ea98d_lte,
+      SKIN_LOAD_STATUS.name,
+      defaultKeyMappings.smoothedX,
+      defaultKeyMappings.smoothedY,
+      6,
+      readAscii,
+      readUtf16
+    );
+  }
+}
+function Void_ojp$ea9ca_neq(...AxisLockThreshold) {
+  const minimapSmoothFactor = If$sEyzqKbhea93f_Exec.serverData.border;
+  const drawMinimapInterval = nh6XVqea98c_Cb.width;
+  const baseCellSize = nh6XVqea98c_Cb.height;
+  const combinedCameraDistanceThreshold =
+    ((AxisLockThreshold[2] - minimapSmoothFactor.left) /
+      minimapSmoothFactor.width) *
+    drawMinimapInterval;
+  const combinedZoomFocusStrength =
+    ((AxisLockThreshold[3] - minimapSmoothFactor.top) /
+      minimapSmoothFactor.height) *
+    baseCellSize;
+  AxisLockThreshold[0].beginPath();
+  AxisLockThreshold[0].arc(
+    combinedCameraDistanceThreshold,
+    combinedZoomFocusStrength,
+    AxisLockThreshold[4],
+    0,
+    Math.PI * 2,
+    false
+  );
+  AxisLockThreshold[0].fillStyle = AxisLockThreshold[5];
+  AxisLockThreshold[0].fill();
+  if (AxisLockThreshold[6]) {
+    const combinedInterpSpeed =
+      AxisLockThreshold[1] +
+      "_" +
+      DEFAULT$HB0T_ea93b_Status["--n-color-accent"] +
+      "40";
+    let messageColors = Map$XDb6n5y_ea974_State.get(combinedInterpSpeed);
+    if (!messageColors) {
+      const MESSAGE_TYPES = 4;
+      const CellVisibility = 11;
+      const MassDisplayType = document.createElement("canvas").getContext("2d");
+      MassDisplayType.font = "12px 'Nordhealth Sans', sans-serif";
+      const SKIN_LOAD_STATUS = MassDisplayType.measureText(
+        AxisLockThreshold[1]
+      );
+      const PlayerState = SKIN_LOAD_STATUS.width;
+      const defaultKeyMappings = PlayerState + MESSAGE_TYPES * 2;
+      const defaultOptions = CellVisibility + MESSAGE_TYPES * 2;
+      messageColors = document.createElement("canvas");
+      messageColors.width = defaultKeyMappings;
+      messageColors.height = defaultOptions;
+      const defaultSubPanelSettings = messageColors.getContext("2d");
+      defaultSubPanelSettings.fillStyle =
+        DEFAULT$HB0T_ea93b_Status["--n-color-accent"] + "40";
+      defaultSubPanelSettings.roundRect(
+        0,
+        0,
+        defaultKeyMappings,
+        defaultOptions,
+        5
+      );
+      defaultSubPanelSettings.fill();
+      defaultSubPanelSettings.fillStyle = "#FFFFFF";
+      defaultSubPanelSettings.font = "12px 'Nordhealth Sans', sans-serif";
+      defaultSubPanelSettings.textAlign = "center";
+      defaultSubPanelSettings.textBaseline = "middle";
+      defaultSubPanelSettings.fillText(
+        AxisLockThreshold[1],
+        defaultKeyMappings / 2,
+        defaultOptions / 2
+      );
+      Map$XDb6n5y_ea974_State.set(combinedInterpSpeed, messageColors);
+    }
+    let fontConfigs = combinedCameraDistanceThreshold - messageColors.width / 2;
+    let readAscii =
+      combinedZoomFocusStrength -
+      AxisLockThreshold[4] -
+      messageColors.height -
+      2;
+    if (fontConfigs < 0) {
+      fontConfigs = 0;
+    }
+    if (fontConfigs + messageColors.width > drawMinimapInterval) {
+      fontConfigs = drawMinimapInterval - messageColors.width;
+    }
+    if (readAscii < 0) {
+      readAscii = 0;
+    }
+    AxisLockThreshold[0].drawImage(messageColors, fontConfigs, readAscii);
+  }
+}
+function LodashxQu4(...AxisLockThreshold) {
+  VuerW6rI_ea93a_neq.skinName = $("#spSkinName").val().toLowerCase();
+  VuerW6rI_ea93a_neq.lowerName = $("#spLowerName").prop("checked");
+  AxisLockThreshold[245] = 0;
+  for (
+    AxisLockThreshold.b = 0;
+    AxisLockThreshold.b < messageColors.length;
+    AxisLockThreshold.b++
+  ) {
+    if (messageColors[AxisLockThreshold.b] == _0x111EE) {
+      AxisLockThreshold[245] = AxisLockThreshold.b;
+      break;
+    }
+  }
+  VuerW6rI_ea93a_neq.chatColor = AxisLockThreshold[245];
+  VuerW6rI_ea93a_neq.effect = parseInt($("#spEffect").val());
+  VuerW6rI_ea93a_neq.nameFont = parseInt($("#spNameFont").val());
+  If$sEyzqKbhea93f_Exec.sendPacket(VoidGBYH.sendSubPanel(AxisLockThreshold[0]));
+}
+const BigIntLsuea9cc_ex = (AxisLockThreshold = true, minimapSmoothFactor) => {
+  const drawMinimapInterval = $("#loadingOverlay");
+  const baseCellSize = $("#loadingOverlay p");
+  if (AxisLockThreshold) {
+    drawMinimapInterval.stop(true, true).fadeIn(250);
+    if (minimapSmoothFactor) {
+      baseCellSize.text(minimapSmoothFactor).show();
+    } else {
+      baseCellSize.text("").hide();
+    }
+  } else {
+    drawMinimapInterval.fadeOut(250);
+  }
+};
+function letl8FDUOw_ea9cd_Ref(...AxisLockThreshold) {
+  const minimapSmoothFactor = document.getElementById("notification-container");
+  const drawMinimapInterval = document.createElement("div");
+  drawMinimapInterval.className = "notification";
+  const baseCellSize = document.createElement("span");
+  baseCellSize.className = "notification-close";
+  baseCellSize.innerHTML = "×";
+  baseCellSize.onclick = function () {
+    drawMinimapInterval.remove();
+    ijs = false;
+    XHR_uCA5J6jeaa0e_obj();
+  };
+  drawMinimapInterval.innerHTML = AxisLockThreshold[0];
+  drawMinimapInterval.appendChild(baseCellSize);
+  minimapSmoothFactor.appendChild(drawMinimapInterval);
+  setTimeout(() => {
+    drawMinimapInterval.remove();
+    ijs = false;
+    XHR_uCA5J6jeaa0e_obj();
+  }, 2500);
+}
+function Evt_gCqea9ce_Val(...AxisLockThreshold) {
+  $("#camera-mode-notification").empty();
+  AxisLockThreshold[-169] = $(
+    '<div class="camera-mode-alert">' + AxisLockThreshold[0] + "</div>"
+  );
+  AxisLockThreshold[-169].css({
+    ["align-items"]: "center",
+    background: "var(--n-color-background)",
+    padding: "8px 16px",
+    ["border-radius"]: "var(--n-border-radius)",
+    cursor: "pointer",
+    ["font-size"]: "14px",
+    transition: "opacity 0.3s ease-in-out, transform 0.2s ease",
+    border: "1px solid var(--n-color-border)",
+    opacity: "0",
+    animation: "slideIn 0.3s ease-out",
+  });
+  $("#camera-mode-notification").append(AxisLockThreshold[-169]);
+  setTimeout(function () {
+    AxisLockThreshold[-169].css("opacity", "1");
+    setTimeout(function () {
+      AxisLockThreshold[-169].css("opacity", "0");
+      setTimeout(function () {
+        AxisLockThreshold[-169].remove();
+      }, 300);
+    }, 2000);
+  }, 10);
+}
+function BOOLxEFAPea9cf_or(...AxisLockThreshold) {
+  if (!$("#fastfeed-mode-notification").length) {
+    $(
+      '<div id="fastfeed-mode-notification" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000;"></div>'
+    ).appendTo(document.body);
+  }
+  $("#fastfeed-mode-notification").empty();
+  const minimapSmoothFactor = $(
+    '<div class="fastfeed-mode-alert">' + AxisLockThreshold[0] + "</div>"
+  );
+  minimapSmoothFactor.css({
+    ["align-items"]: "center",
+    background: "var(--n-color-background)",
+    padding: "8px 16px",
+    ["border-radius"]: "var(--n-border-radius)",
+    cursor: "pointer",
+    ["font-size"]: "14px",
+    transition: "opacity 0.3s ease-in-out, transform 0.2s ease",
+    border: "1px solid var(--n-color-border)",
+    opacity: "0",
+    animation: "slideIn 0.3s ease-out",
+  });
+  if (!document.getElementById("fastfeed-slidein-style")) {
+    const drawMinimapInterval = document.createElement("style");
+    drawMinimapInterval.id = "fastfeed-slidein-style";
+    drawMinimapInterval.textContent =
+      "\n        @keyframes slideIn {\n            from { transform: translateY(-20px); opacity: 0; }\n            to { transform: translateY(0); opacity: 1; }\n        }\n    ";
+    document.head.appendChild(drawMinimapInterval);
+  }
+  $("#fastfeed-mode-notification").append(minimapSmoothFactor);
+  setTimeout(function () {
+    minimapSmoothFactor.css("opacity", "1");
+    setTimeout(function () {
+      minimapSmoothFactor.css("opacity", "0");
+      setTimeout(function () {
+        minimapSmoothFactor.remove();
+      }, 300);
+    }, 2000);
+  }, 10);
+}
+function BigInt_ZShVUjt$ea9d0_err(...AxisLockThreshold) {
+  if (AxisLockThreshold[1]) {
+    MapODojwDKKea9eb_Key(AxisLockThreshold[1]);
+  }
+  $("#profile-username").text(AxisLockThreshold[0].username);
+  $("#profile-avatar").attr("src", AxisLockThreshold[0].avatar);
+  $("#profile-avatar").attr("alt", AxisLockThreshold[0].username);
+  $("#profile-level").html(
+    "Level " +
+      AxisLockThreshold[0].levelData.level +
+      " [" +
+      formatExperience(AxisLockThreshold[0].levelData.xp_current) +
+      "/" +
+      formatExperience(AxisLockThreshold[0].levelData.xp_needed) +
+      "]"
+  );
+  if (
+    AxisLockThreshold[0].title &&
+    AxisLockThreshold[0].title > 0 &&
+    WeakMap$jAciSKVZea975_or[AxisLockThreshold[0].title]
+  ) {
+    $("#profile-title").text(
+      WeakMap$jAciSKVZea975_or[AxisLockThreshold[0].title]
+    );
+  } else {
+    $("#profile-title").text("");
+  }
+  $("#profile-name").off("click");
+  if (AxisLockThreshold[0].uid == AtgnhF.uid) {
+    $("#profile-name").on("click", function () {
+      $("#popup-profile").hide();
+      NaN_semFS17();
+    });
+    $("#profile-name").css("cursor", "pointer");
+  } else {
+    $("#profile-name").css("cursor", "default");
+  }
+  if (AxisLockThreshold[0].flags.STAFF) {
+    $("#profile-avatar").addClass("spin");
+  } else {
+    $("#profile-avatar").removeClass("spin");
+  }
+  CHueaa10_Proc($("#profile-username"), AxisLockThreshold[0]);
+  $("#profile-close-btn").off("click");
+  $("#profile-close-btn").on("click", function () {
+    if (AxisLockThreshold[1]) {
+      hdnn_8ea9ea_Idx(AxisLockThreshold[1]);
+    }
+    MapODojwDKKea9eb_Key($("#popup-profile"));
+  });
+  hdnn_8ea9ea_Idx($("#popup-profile"));
+}
+function finally_qFsWFdtea9d1_Ctx(
+  AxisLockThreshold,
+  minimapSmoothFactor,
+  drawMinimapInterval,
+  baseCellSize = -1,
+  combinedCameraDistanceThreshold = null,
+  combinedZoomFocusStrength = "transparent",
+  combinedInterpSpeed = null
+) {
+  const messageColors = faCUfKea9fb_add();
+  const MESSAGE_TYPES = $(djUgiSea98e_Fn);
+  const CellVisibility = $("#context-name");
+  const MassDisplayType = minimapSmoothFactor.includes("🤖");
+  const SKIN_LOAD_STATUS = messageColors.playerId === drawMinimapInterval;
+  const PlayerState = messageColors.party.some(
+    Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      return AxisLockThreshold[0].name === minimapSmoothFactor;
+    })
+  );
+  const defaultKeyMappings = messageColors.isPartyLeader();
+  const defaultOptions = Pto5ea937_Inst(combinedZoomFocusStrength)
+    .lighten(50)
+    .toHexString();
+  const defaultSubPanelSettings =
+    '<span class="contextMenuAvatar" style="background-color: ' +
+    combinedZoomFocusStrength +
+    ";" +
+    (combinedInterpSpeed
+      ? "background-image: url(" + combinedInterpSpeed + ")"
+      : "") +
+    ';"></span>';
+  CellVisibility.css("color", defaultOptions).html(
+    "" +
+      defaultSubPanelSettings +
+      '<span style="margin: 0 5px">' +
+      (MassDisplayType ? "🤖" : minimapSmoothFactor || "An unnamed cell") +
+      "</span>"
+  );
+  MESSAGE_TYPES.data("selected", drawMinimapInterval)
+    .data("party", baseCellSize)
+    .data("cellId", combinedCameraDistanceThreshold);
+  const fontConfigs = Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    return $(AxisLockThreshold[0]).show();
+  });
+  const readAscii = Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    return $(AxisLockThreshold[0]).hide();
+  });
+  const readUtf16 = (AxisLockThreshold, ...minimapSmoothFactor) => {
+    return minimapSmoothFactor.forEach(
+      Object$kDcGWUY((...minimapSmoothFactor) => {
+        minimapSmoothFactor.length = 1;
+        if (AxisLockThreshold) {
+          return fontConfigs(minimapSmoothFactor[0]);
+        } else {
+          return readAscii(minimapSmoothFactor[0]);
+        }
+      })
+    );
+  };
+  $(".context-action").hide();
+  readUtf16(!MassDisplayType, "#menu-profile", "#menu-invite");
+  readUtf16(
+    SKIN_LOAD_STATUS && messageColors.party.length,
+    "#menu-leave-party"
+  );
+  readUtf16(SKIN_LOAD_STATUS && !messageColors.party.length, "#menu-add-multi");
+  readUtf16(
+    !SKIN_LOAD_STATUS && !MassDisplayType,
+    "#menu-whisper",
+    "#menu-block",
+    "#menu-profile"
+  );
+  readUtf16(messageColors.spectate && !SKIN_LOAD_STATUS, "#menu-spectate");
+  if (PlayerState) {
+    readAscii("#menu-invite");
+  }
+  if (messageColors.party.length && !defaultKeyMappings) {
+    readAscii("#menu-invite");
+  }
+  if (defaultKeyMappings) {
+    const writeAscii = messageColors.party.some(
+      Object$kDcGWUY((...AxisLockThreshold) => {
+        AxisLockThreshold.length = 1;
+        return AxisLockThreshold[0].name === drawMinimapInterval;
+      })
+    );
+    readUtf16(writeAscii && !SKIN_LOAD_STATUS, "#menu-promote", "#menu-kick");
+    readUtf16(writeAscii && SKIN_LOAD_STATUS, "#menu-pu_pr");
+  }
+  const writeUtf16 = AxisLockThreshold?.clientX ?? messageColors.mouseRawX;
+  const byteToHex = AxisLockThreshold?.clientY ?? messageColors.mouseRawY;
+  MESSAGE_TYPES.attr("open", true).css({
+    left: Math.min(writeUtf16, window.innerWidth - MESSAGE_TYPES.width()),
+    top: Math.min(byteToHex, window.innerHeight - MESSAGE_TYPES.height()) - 40,
+  });
+}
+function NaN_semFS17(...AxisLockThreshold) {
+  if (
+    jQueryLzNd.isOpen("mainModal") &&
+    !Kb5zM5ea951_neq &&
+    AxisLockThreshold[0]
+  ) {
+    jQueryLzNd.close("mainModal");
+  } else {
+    jQueryLzNd.open("mainModal");
+  }
+}
+function do_QEm141(...AxisLockThreshold) {
+  try {
+    const minimapSmoothFactor =
+      document.getElementById("name-box")?.value || "";
+    const drawMinimapInterval =
+      document.getElementById("name-box2")?.value || "";
+    const baseCellSize = document.getElementById("themeColor")?.value || "";
+    const combinedCameraDistanceThreshold = {
+      ...Mao5huZea938_run,
+      ...(AxisLockThreshold[0] && {
+        name: minimapSmoothFactor,
+      }),
+      ...(AxisLockThreshold[0] && {
+        name2: drawMinimapInterval,
+      }),
+    };
+    if (baseCellSize) {
+      DEFAULT$HB0T_ea93b_Status["--n-color-accent"] = baseCellSize;
+      DEFAULT$HB0T_ea93b_Status["--n-color-weak-accent"] =
+        Pto5ea937_Inst(baseCellSize).darken(10).toHexString() + "25";
+      DEFAULT$HB0T_ea93b_Status["--n-color-accent-secondary"] = Pto5ea937_Inst(
+        baseCellSize
+      )
+        .lighten(10)
+        .toHexString();
+      DEFAULT$HB0T_ea93b_Status["--n-color-text-on-accent"] = Pto5ea937_Inst(
+        baseCellSize
+      ).isLight()
+        ? "#0c0c0c"
+        : "#d8d8d8";
+    }
+    localStorage.setItem(
+      "options",
+      JSON.stringify(combinedCameraDistanceThreshold)
+    );
+    localStorage.setItem("keybinds", JSON.stringify(CoKB));
+    localStorage.setItem("theme", JSON.stringify(DEFAULT$HB0T_ea93b_Status));
+    localStorage.setItem("subpanel", JSON.stringify(VuerW6rI_ea93a_neq));
+  } catch (combinedZoomFocusStrength) {
+    Logger.error("Error saving user settings:", combinedZoomFocusStrength);
+  }
+}
+const BigIntpwyK0j_ea9d4_mul = {
+  sShowSkins: [
+    {
+      value: "ALL",
+      text: "All",
+    },
+    {
+      value: "PARTY",
+      text: "Party",
+    },
+    {
+      value: "SELF",
+      text: "Self",
+    },
+    {
+      value: "NONE",
+      text: "None",
+    },
+  ],
+  sShowNames: [
+    {
+      value: "ALL",
+      text: "All",
+    },
+    {
+      value: "PARTY",
+      text: "Party",
+    },
+    {
+      value: "SELF",
+      text: "Self",
+    },
+    {
+      value: "NONE",
+      text: "None",
+    },
+  ],
+  sShowMass: [
+    {
+      value: "ALL",
+      text: "All",
+    },
+    {
+      value: "PARTY",
+      text: "Party",
+    },
+    {
+      value: "SELF",
+      text: "Self",
+    },
+    {
+      value: "NONE",
+      text: "None",
+    },
+  ],
+  sMassType: [
+    {
+      value: "DEFAULT",
+      text: "Default",
+    },
+    {
+      value: "SHORT",
+      text: "Short",
+    },
+  ],
+};
+function BOOLqoaO(...AxisLockThreshold) {
+  const minimapSmoothFactor = document.querySelector(
+    '.option-control[data-select-id="' + AxisLockThreshold[0] + '"]'
+  );
+  if (!minimapSmoothFactor) {
+    return;
+  }
+  minimapSmoothFactor.innerHTML = "";
+  const drawMinimapInterval = document.createElement("nord-dropdown");
+  drawMinimapInterval.setAttribute("size", "s");
+  drawMinimapInterval.setAttribute("position", "block-end");
+  drawMinimapInterval.setAttribute("align", "end");
+  drawMinimapInterval.id = AxisLockThreshold[0];
+  const baseCellSize = document.createElement("nord-button");
+  baseCellSize.setAttribute("slot", "toggle");
+  baseCellSize.setAttribute("size", "s");
+  drawMinimapInterval.appendChild(baseCellSize);
+  BigIntpwyK0j_ea9d4_mul[AxisLockThreshold[0]].forEach(
+    ({ value: AxisLockThreshold, text: minimapSmoothFactor }) => {
+      const combinedCameraDistanceThreshold =
+        document.createElement("nord-dropdown-item");
+      combinedCameraDistanceThreshold.textContent = minimapSmoothFactor;
+      combinedCameraDistanceThreshold.setAttribute(
+        "data-value",
+        AxisLockThreshold
+      );
+      combinedCameraDistanceThreshold.addEventListener(
+        "click",
+        (...combinedCameraDistanceThreshold) => {
+          combinedCameraDistanceThreshold.length = 0;
+          drawMinimapInterval.setAttribute("value", AxisLockThreshold);
+          baseCellSize.textContent = minimapSmoothFactor;
+          drawMinimapInterval.removeAttribute("open");
+          const combinedZoomFocusStrength = new Event("change", {
+            bubbles: true,
+          });
+          drawMinimapInterval.dispatchEvent(combinedZoomFocusStrength);
+        }
+      );
+      drawMinimapInterval.appendChild(combinedCameraDistanceThreshold);
+    }
+  );
+  minimapSmoothFactor.appendChild(drawMinimapInterval);
+}
+Object.keys(BigIntpwyK0j_ea9d4_mul).forEach(BOOLqoaO);
+function Zqf9Dh(...AxisLockThreshold) {
+  const minimapSmoothFactor = localStorage.getItem("theme");
+  const drawMinimapInterval = document.documentElement;
+  const baseCellSize = minimapSmoothFactor
+    ? JSON.parse(minimapSmoothFactor)
+    : DEFAULT$HB0T_ea93b_Status;
+  DEFAULT$HB0T_ea93b_Status = {
+    ...DEFAULT$HB0T_ea93b_Status,
+    ...baseCellSize,
+  };
+  Object.entries(DEFAULT$HB0T_ea93b_Status).forEach(
+    ([AxisLockThreshold, minimapSmoothFactor]) => {
+      drawMinimapInterval.style.setProperty(
+        AxisLockThreshold,
+        minimapSmoothFactor
+      );
+    }
+  );
+  drawMinimapInterval.style.setProperty(
+    "--n-color-weak-accent",
+    Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"])
+      .darken(10)
+      .toHexString() + "25"
+  );
+  drawMinimapInterval.style.setProperty(
+    "--n-color-accent-secondary",
+    Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"])
+      .lighten(10)
+      .toHexString()
+  );
+  drawMinimapInterval.style.setProperty(
+    "--n-color-text-on-accent",
+    Pto5ea937_Inst(DEFAULT$HB0T_ea93b_Status["--n-color-accent"]).isLight()
+      ? "#0c0c0c"
+      : "#d8d8d8"
+  );
+  $("#themeColor").val(DEFAULT$HB0T_ea93b_Status["--n-color-accent"]);
+  try {
+    const combinedCameraDistanceThreshold = localStorage.getItem("keybinds");
+    if (combinedCameraDistanceThreshold) {
+      Object.assign(CoKB, JSON.parse(combinedCameraDistanceThreshold));
+    }
+  } catch (combinedZoomFocusStrength) {
+    console.error(
+      "Error loading keybinds from localStorage:",
+      combinedZoomFocusStrength
+    );
+  }
+  for (const combinedInterpSpeed in CoKB) {
+    if (Object.prototype.hasOwnProperty.call(CoKB, combinedInterpSpeed)) {
+      FNmsM($("#" + combinedInterpSpeed));
+    }
+  }
+  try {
+    const messageColors = localStorage.getItem("options");
+    if (messageColors) {
+      const MESSAGE_TYPES = JSON.parse(messageColors);
+      MESSAGE_TYPES.sRgbColor1 = MESSAGE_TYPES.sRgbColor1 || "#ffffff";
+      MESSAGE_TYPES.sRgbColor2 = MESSAGE_TYPES.sRgbColor2 || "#ffffff";
+      Object.assign(Mao5huZea938_run, MESSAGE_TYPES);
+    }
+  } catch (combinedZoomFocusStrength) {
+    console.error(
+      "Error loading options from localStorage:",
+      combinedZoomFocusStrength
+    );
+  }
+  for (const CellVisibility in Mao5huZea938_run) {
+    if (
+      !Object.prototype.hasOwnProperty.call(Mao5huZea938_run, CellVisibility)
+    ) {
+      continue;
+    }
+    const MassDisplayType = Mao5huZea938_run[CellVisibility];
+    const SKIN_LOAD_STATUS = $("#" + CellVisibility);
+    const PlayerState = CellVisibility.charAt(0);
+    if (SKIN_LOAD_STATUS.length === 0) {
+      continue;
+    }
+    switch (PlayerState) {
+      case "c":
+        SKIN_LOAD_STATUS.prop("checked", MassDisplayType);
+        Gu0B6FmO(CellVisibility);
+        break;
+      case "s":
+        SKIN_LOAD_STATUS.attr("value", MassDisplayType);
+        const defaultKeyMappings = BigIntpwyK0j_ea9d4_mul[CellVisibility];
+        const defaultOptions = defaultKeyMappings?.find(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            return AxisLockThreshold[0].value === MassDisplayType;
+          })
+        );
+        if (defaultOptions) {
+          SKIN_LOAD_STATUS.find("nord-button").text(defaultOptions.text);
+        }
+        Gu0B6FmO(CellVisibility, MassDisplayType);
+        break;
+      case "r":
+        SKIN_LOAD_STATUS.val(MassDisplayType);
+        $("#" + CellVisibility.substring(1)).val(MassDisplayType);
+        Gu0B6FmO(CellVisibility, MassDisplayType);
+        break;
+    }
+  }
+  $("#name-box").val(JSON.parse(localStorage.getItem("options"))?.name);
+  $("#name-box2").val(JSON.parse(localStorage.getItem("options"))?.name2);
+  $("#themeColor").val(
+    JSON.parse(localStorage.getItem("theme"))["--n-color-accent"] ||
+      DEFAULT$HB0T_ea93b_Status["--n-color-accent"]
+  );
+  const defaultSubPanelSettings =
+    JSON.parse(localStorage.getItem("options"))?.region || "eu";
+  const fontConfigs = $("#btnToggleServers");
+  if (defaultSubPanelSettings === "na") {
+    fontConfigs.attr("region", "na").text("North America");
+    Await_IJIz2M("na");
+    $(".main-right").css("height", "" + XHReYHH$ea9c2_bool() + "px");
+  } else {
+    fontConfigs.attr("region", "eu").text("Europe");
+    Await_IJIz2M("eu");
+    $(".main-right").css("height", "" + XHReYHH$ea9c2_bool() + "px");
+  }
+  try {
+    const readAscii = localStorage.getItem("subpanel");
+    if (readAscii) {
+      Object.assign(VuerW6rI_ea93a_neq, JSON.parse(readAscii));
+    }
+  } catch (combinedZoomFocusStrength) {
+    console.error(
+      "Error loading subpanel settings from localStorage:",
+      combinedZoomFocusStrength
+    );
+  }
+  VuerW6rI_ea93a_neq.lockedName = "";
+  New_r0sJwVZ();
+  $("#sRgbColor1").val(Mao5huZea938_run.sRgbColor1 || "#ffffff");
+  $("#sRgbColor2").val(Mao5huZea938_run.sRgbColor2 || "#ffffff");
+  $("#rRgbSpeed").val(Mao5huZea938_run.rRgbSpeed);
+  $("#rgbSpeed").val(Mao5huZea938_run.rRgbSpeed);
+  y2jX$eaa13_Idx(Mao5huZea938_run.sSoloTrickMode || "AUTO");
+}
+function PzLTVea9d7_res(
+  AxisLockThreshold,
+  minimapSmoothFactor = "success",
+  drawMinimapInterval = 3000
+) {
+  const baseCellSize = $("nord-toast-group")[0];
+  if (baseCellSize && typeof baseCellSize.addToast === "function") {
+    baseCellSize.addToast(AxisLockThreshold, {
+      variant: minimapSmoothFactor,
+      autoDismiss: drawMinimapInterval,
+    });
+  } else {
+    console.log("Toast: [" + minimapSmoothFactor + "] " + AxisLockThreshold);
+  }
+}
+function dNwVcfi$ea9d8_type(...AxisLockThreshold) {
+  AxisLockThreshold[1] = $('.keybinds-btn[variant="dashed"]');
+  Kb5zM5ea951_neq = false;
+  if (AxisLockThreshold[1].size() == 0) {
+    return;
+  }
+  AxisLockThreshold[-244] = AxisLockThreshold[1].first();
+  $(".keybinds-btn").removeAttr("disabled");
+  AxisLockThreshold[1].removeAttr("variant");
+  AxisLockThreshold.c = -1;
+  if (AxisLockThreshold[0] != 27) {
+    AxisLockThreshold.c = AxisLockThreshold[0];
+  }
+  const minimapSmoothFactor = AxisLockThreshold[-244].attr("id");
+  CoKB[minimapSmoothFactor] = AxisLockThreshold.c;
+  FNmsM(AxisLockThreshold[-244]);
+  UtilQlOY_eaa0f_cb();
+  const drawMinimapInterval =
+    AxisLockThreshold.c !== -1
+      ? (
+          El_adcGQ944ea99d_Cb.get(AxisLockThreshold.c) ||
+          "Key " + AxisLockThreshold.c
+        ).toUpperCase()
+      : "NONE";
+  PzLTVea9d7_res(
+    "Set '" +
+      AxisLockThreshold[-244].prev().text() +
+      "' to '" +
+      drawMinimapInterval +
+      "'"
+  );
+}
+function Gu0B6FmO(...AxisLockThreshold) {
+  const minimapSmoothFactor = Lodash$KALTWzD_ea9b8_buf[AxisLockThreshold[0]];
+  if (minimapSmoothFactor != null) {
+    minimapSmoothFactor(AxisLockThreshold[1]);
+  }
+  do_QEm141();
+}
+function EkFea9da_mul(...AxisLockThreshold) {
+  const minimapSmoothFactor = AxisLockThreshold[0].attr("id");
+  Mao5huZea938_run[minimapSmoothFactor] = AxisLockThreshold[0].prop("checked");
+  Gu0B6FmO(minimapSmoothFactor);
+}
+function Map_f43ea9db_ret(...AxisLockThreshold) {
+  const minimapSmoothFactor = AxisLockThreshold[0].getAttribute("value");
+  Mao5huZea938_run[AxisLockThreshold[0].id] = minimapSmoothFactor;
+  Gu0B6FmO(AxisLockThreshold[0].id, minimapSmoothFactor);
+}
+function TruepwDZ3M$ea9dc_Res(...AxisLockThreshold) {
+  const minimapSmoothFactor = AxisLockThreshold[0].attr("id");
+  Gu0B6FmO(minimapSmoothFactor, AxisLockThreshold[0].val());
+}
+function Xb4x(AxisLockThreshold) {
+  finally_qFsWFdtea9d1_Ctx(
+    AxisLockThreshold,
+    this.innerText,
+    this.dataset.playerId,
+    -1,
+    this.dataset.id
+  );
+}
+function Stringify_NFlcpsmH(AxisLockThreshold) {
+  const minimapSmoothFactor = parseInt($(this).data("index"));
+  const drawMinimapInterval = faCUfKea9fb_add().party?.[minimapSmoothFactor];
+  if (!drawMinimapInterval) {
+    return;
+  }
+  finally_qFsWFdtea9d1_Ctx(
+    AxisLockThreshold,
+    drawMinimapInterval.name,
+    drawMinimapInterval.id,
+    minimapSmoothFactor
+  );
+}
+function Catch$HaPx87ea9df_ret(...AxisLockThreshold) {
+  const minimapSmoothFactor = faCUfKea9fb_add();
+  if (!minimapSmoothFactor) {
+    return;
+  }
+  const drawMinimapInterval = minimapSmoothFactor.scale;
+  const baseCellSize =
+    bXFgW$Qq.pivot.x -
+    Date$F4EY.stage.position.x / drawMinimapInterval +
+    minimapSmoothFactor.mouseRawX / drawMinimapInterval;
+  const combinedCameraDistanceThreshold =
+    bXFgW$Qq.pivot.y -
+    Date$F4EY.stage.position.y / drawMinimapInterval +
+    minimapSmoothFactor.mouseRawY / drawMinimapInterval;
+  const combinedZoomFocusStrength = [...let_ExdFq$65.children].reverse().find(
+    Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      const minimapSmoothFactor = AxisLockThreshold[0].parentCell;
+      if (
+        !AxisLockThreshold[0].visible ||
+        !minimapSmoothFactor ||
+        minimapSmoothFactor.type !== 2
+      ) {
+        return false;
+      }
+      const drawMinimapInterval = baseCellSize - minimapSmoothFactor.x;
+      const combinedZoomFocusStrength =
+        combinedCameraDistanceThreshold - minimapSmoothFactor.y;
+      return (
+        drawMinimapInterval * drawMinimapInterval +
+          combinedZoomFocusStrength * combinedZoomFocusStrength <
+        minimapSmoothFactor.size * minimapSmoothFactor.size
+      );
+    })
+  )?.parentCell;
+  const combinedInterpSpeed =
+    !AxisLockThreshold[0] || AxisLockThreshold[0].target?.id === "canvas";
+  if (
+    combinedZoomFocusStrength &&
+    combinedZoomFocusStrength.playerId !== 0 &&
+    combinedInterpSpeed
+  ) {
+    const messageColors = zLCuf8c.getPlayer(combinedZoomFocusStrength.playerId);
+    if (messageColors) {
+      console.log(combinedZoomFocusStrength);
+      finally_qFsWFdtea9d1_Ctx(
+        AxisLockThreshold[0],
+        messageColors.name,
+        messageColors.id,
+        -1,
+        combinedZoomFocusStrength.id,
+        combinedZoomFocusStrength.color,
+        messageColors.skin
+      );
+    }
+  }
+}
+function Void$jyv1Bm3(...AxisLockThreshold) {
+  const minimapSmoothFactor = document.getElementById("chatAll");
+  minimapSmoothFactor.appendChild(AxisLockThreshold[0]);
+  $("#chatAll").css("display", "flex");
+  minimapSmoothFactor.scrollTop = minimapSmoothFactor.scrollHeight;
+  while (minimapSmoothFactor.children.length > 250) {
+    minimapSmoothFactor.removeChild(minimapSmoothFactor.firstChild);
+  }
+}
+function CtxBk7q_(...AxisLockThreshold) {
+  $("#chat-input").val(AxisLockThreshold[0]);
+}
+function in_Lv7rr7N(...AxisLockThreshold) {
+  if (!AxisLockThreshold[0]) {
+    return;
+  }
+  if (AxisLockThreshold[0].startsWith("/")) {
+    Qbnjfea9e3_lte(AxisLockThreshold[0]);
+  } else {
+    faCUfKea9fb_add().sendPacket(VoidGBYH.sendChat(AxisLockThreshold[0], 0));
+    CtxBk7q_("");
+  }
+  Lodashif3ebPI.push(AxisLockThreshold[0]);
+  if (Lodashif3ebPI.length > 20) {
+    Lodashif3ebPI.shift();
+  }
+}
+function Qbnjfea9e3_lte(...AxisLockThreshold) {
+  const [minimapSmoothFactor, ...drawMinimapInterval] = AxisLockThreshold[0]
+    .trim()
+    .slice(1)
+    .split(" ");
+  const baseCellSize = StringifyQqsoaEea9b3_Handler.find(
+    Object$kDcGWUY((...AxisLockThreshold) => {
+      AxisLockThreshold.length = 1;
+      return AxisLockThreshold[0].triggers.some(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return (
+            AxisLockThreshold[0].toLowerCase() ===
+            minimapSmoothFactor.toLowerCase()
+          );
+        })
+      );
+    })
+  );
+  CtxBk7q_("");
+  if (baseCellSize) {
+    baseCellSize.action(drawMinimapInterval);
+  } else {
+    faCUfKea9fb_add().selfMsg("Invalid command!");
+  }
+}
+function Get_OCOyLea9e4_Init() {
+  if (!faCUfKea9fb_add().isPartyLeader()) {
+    Ls_ea9ae_Init.msg("You must be party leader.");
+    return false;
+  }
+  return true;
+}
+function KEGPXBW(...AxisLockThreshold) {
+  const minimapSmoothFactor = Ls_ea9ae_Init.parseId(AxisLockThreshold[1]);
+  if (!minimapSmoothFactor) {
+    return Ls_ea9ae_Init.msg("Invalid ID.");
+  }
+  Ls_ea9ae_Init.send(
+    VoidGBYH.sendPartyAction(AxisLockThreshold[0], minimapSmoothFactor)
+  );
+}
+function Await_IJIz2M(...AxisLockThreshold) {
+  AxisLockThreshold[0] = AxisLockThreshold[0].toLowerCase();
+  $("#server-content > div").css("display", "none");
+  $("#server-content #servers-" + AxisLockThreshold[0]).css("display", "flex");
+}
+function React$yyea9e7() {
+  if (!Mao5huZea938_run.cShowCoordinates) {
+    $("#minimap-canvas").css({
+      ["border-top"]: "0",
+      ["border-radius"]: "5px",
+    });
+  } else {
+    $("#minimap-canvas").css({
+      ["border-top"]: "1px solid var(--n-color-border)",
+      ["border-radius"]: "0 0 5px 5px",
+    });
+  }
+}
+function HelperUhSO_ea9e8_Run(...AxisLockThreshold) {
+  AxisLockThreshold[-115] = $("#" + AxisLockThreshold[0]);
+  if (AxisLockThreshold[-115].css("display") == "none") {
+    Symbol_iZMG1ea9e9_Val();
+    AxisLockThreshold[-115].show();
+  }
+}
+function Symbol_iZMG1ea9e9_Val() {
+  $(".main-right")
+    .children()
+    .each(function () {
+      if ($(this).css("display") == "block") {
+        $(this).hide();
+      }
+    });
+}
+function hdnn_8ea9ea_Idx(...AxisLockThreshold) {
+  if (AxisLockThreshold[0].css("display") == "none") {
+    AxisLockThreshold[0].css("display", "block");
+    AxisLockThreshold[0].animate(
+      {
+        opacity: 1,
+      },
+      500
+    );
+  }
+}
+function MapODojwDKKea9eb_Key(...AxisLockThreshold) {
+  if (
+    AxisLockThreshold[0].css("display") == "block" &&
+    AxisLockThreshold[0].css("opacity") == 1
+  ) {
+    AxisLockThreshold[0].animate(
+      {
+        opacity: 0,
+      },
+      500,
+      function () {
+        AxisLockThreshold[0].css("display", "none");
+      }
+    );
+  }
+}
+function Ctx_aylk4EOu(AxisLockThreshold = true) {
+  if (AxisLockThreshold) {
+    Get$NeypNg.show();
+    if (
+      If$sEyzqKbhea93f_Exec.party.length == 0 ||
+      Mao5huZea938_run.cHidePartyPanel
+    ) {
+      Promise_28_SVO_ea950_fn.partyPanel.css("display", "none");
+      $("#leaveParty").css("display", "none");
+    }
+    if (Mao5huZea938_run.cHideChat) {
+      $(".chat-panel").css("display", "none");
+    }
+    if (Mao5huZea938_run.cHideMinimap) {
+      $("#minimap-panel").css("display", "none");
+    }
+  }
+}
+function H3xBjq() {
+  $("#account-login, #authed").hide();
+  $("#account-loader").show();
+}
+function IfbIa() {
+  $("#account2-login, #authed2").hide();
+  $("#account2-loader").show();
+}
+function WHILEn5ZHH() {
+  $(
+    "#account-loader, #account-profile, #account-profile, #xpMeter1, #account-level, #account-actions, #account-logout"
+  ).hide();
+  $("#account-login").show();
+  $("#authed").css("display", "flex");
+  $("#username-container");
+  $("#account-username").text("Guest");
+  $("#account-avatar").css("pointer-events", "none").removeAttr("src");
+}
+function MapFjF6l_ea9f0_Util() {
+  $(
+    "#account2-loader, #account2-profile, #account2-profile, #xpMeter2, #account2-level, #account2-actions, #account2-logout"
+  ).hide();
+  $("#account2-login").show();
+  $("#authed2").css("display", "flex");
+  $("#username2-container");
+  $("#account2-username").text("Guest");
+  $("#account2-avatar").css("pointer-events", "none").removeAttr("src");
+}
+function HandlerR0b5TLt$() {
+  Logger.info("Starting game loop...");
+  JcVea978_neq = performance.now();
+  yield_L2zEL16 = 0;
+  Promise_KDZM8Y_ea97a_Cfg = 0;
+  RZL = 0;
+  if (HandlerbspL) {
+    clearInterval(HandlerbspL);
+    HandlerbspL = null;
+  }
+  if (ParsecKKDq_ea99e_gt) {
+    cancelAnimationFrame(ParsecKKDq_ea99e_gt);
+    ParsecKKDq_ea99e_gt = null;
+  }
+  if (Mao5huZea938_run.cLimitFPS) {
+    Logger.info("Game loop started with requestAnimationFrame (FPS limited).");
+    function AxisLockThreshold() {
+      True$wzFjm$ea9f2_TYPE();
+      ParsecKKDq_ea99e_gt = requestAnimationFrame(AxisLockThreshold);
+    }
+    AxisLockThreshold();
+  } else {
+    Logger.info("Game loop started with setInterval (FPS uncapped).");
+    HandlerbspL = setInterval(True$wzFjm$ea9f2_TYPE, 0);
+  }
+}
+async function True$wzFjm$ea9f2_TYPE() {
+  if (window.isGameLoopFrozenByPing || window.isGameLoopFrozenByData) {
+    if (Date$F4EY && Date$F4EY.renderer) {
+      Date$F4EY.renderer.render(Date$F4EY.stage);
+    }
+    return;
+  }
+  const AxisLockThreshold = performance.now();
+  const minimapSmoothFactor = AxisLockThreshold - JcVea978_neq;
+  const baseCellSize = 250;
+  let combinedCameraDistanceThreshold = false;
+  if (minimapSmoothFactor > baseCellSize) {
+    Logger.warn(
+      "Large time gap detected (" +
+        minimapSmoothFactor.toFixed(0) +
+        "ms). Forcing snap to prevent visual lag."
+    );
+    combinedCameraDistanceThreshold = true;
+  }
+  const combinedZoomFocusStrength = Math.min(minimapSmoothFactor, 100);
+  const combinedInterpSpeed = combinedZoomFocusStrength / (1000 / 60);
+  JcVea978_neq = AxisLockThreshold;
+  yield_L2zEL16 += minimapSmoothFactor;
+  RZL++;
+  if (
+    If$sEyzqKbhea93f_Exec &&
+    If$sEyzqKbhea93f_Exec.isConnected() &&
+    !jQueryLzNd.isOpen("mainModal")
+  ) {
+    if (
+      If$sEyzqKbhea93f_Exec.lastUpdatePacketTime > 0 &&
+      AxisLockThreshold - If$sEyzqKbhea93f_Exec.lastUpdatePacketTime > vZpklf
+    ) {
+      if (!El_jtxnG4q) {
+        El_jtxnG4q = true;
+        BigIntLsuea9cc_ex(true, "Network connection is unstable...");
+      }
+    } else if (El_jtxnG4q) {
+      El_jtxnG4q = false;
+      BigIntLsuea9cc_ex(false);
+    }
+  } else if (El_jtxnG4q) {
+    El_jtxnG4q = false;
+    BigIntLsuea9cc_ex(false);
+  }
+  const messageColors = faCUfKea9fb_add();
+  const MESSAGE_TYPES =
+    messageColors === If$sEyzqKbhea93f_Exec
+      ? Str_NmyJ4kX
+      : If$sEyzqKbhea93f_Exec;
+  if (MESSAGE_TYPES) {
+    const CellVisibility = MESSAGE_TYPES.myCells.size > 0;
+    if (CellVisibility && !MESSAGE_TYPES.wasAliveLastTick) {
+      if (Mao5huZea938_run.cIndicateBotRespawn) {
+        zd8T_jfeea9b6_and.activate();
+      }
+    }
+    MESSAGE_TYPES.wasAliveLastTick = CellVisibility;
+  }
+  const MassDisplayType = If$sEyzqKbhea93f_Exec
+    ? J8EVQ(If$sEyzqKbhea93f_Exec)
+    : null;
+  const SKIN_LOAD_STATUS = Str_NmyJ4kX ? J8EVQ(Str_NmyJ4kX) : null;
+  if (combinedCameraDistanceThreshold) {
+    if (MassDisplayType) {
+      If$sEyzqKbhea93f_Exec.centerX = MassDisplayType.x;
+      If$sEyzqKbhea93f_Exec.centerY = MassDisplayType.y;
+    }
+    if (SKIN_LOAD_STATUS) {
+      Str_NmyJ4kX.centerX = SKIN_LOAD_STATUS.x;
+      Str_NmyJ4kX.centerY = SKIN_LOAD_STATUS.y;
+    }
+  } else {
+    const PlayerState = Math.min(combinedInterpSpeed * 0.2, 1);
+    if (MassDisplayType) {
+      If$sEyzqKbhea93f_Exec.centerX +=
+        (MassDisplayType.x - If$sEyzqKbhea93f_Exec.centerX) * PlayerState;
+      If$sEyzqKbhea93f_Exec.centerY +=
+        (MassDisplayType.y - If$sEyzqKbhea93f_Exec.centerY) * PlayerState;
+    }
+    if (SKIN_LOAD_STATUS) {
+      Str_NmyJ4kX.centerX +=
+        (SKIN_LOAD_STATUS.x - Str_NmyJ4kX.centerX) * PlayerState;
+      Str_NmyJ4kX.centerY +=
+        (SKIN_LOAD_STATUS.y - Str_NmyJ4kX.centerY) * PlayerState;
+    }
+  }
+  const defaultKeyMappings = faCUfKea9fb_add();
+  if (!defaultKeyMappings) {
+    if (Date$F4EY && Date$F4EY.renderer) {
+      Date$F4EY.renderer.render(Date$F4EY.stage);
+    }
+    return;
+  }
+  const defaultOptions =
+    defaultKeyMappings === If$sEyzqKbhea93f_Exec
+      ? MassDisplayType
+      : SKIN_LOAD_STATUS;
+  if (Mao5huZea938_run.rCombinedViewportScale > 0) {
+    JRZXea9f8_obj(combinedInterpSpeed);
+  }
+  const { targetX: defaultSubPanelSettings, targetY: fontConfigs } =
+    IND8m_ea9f5_add(
+      defaultKeyMappings,
+      defaultOptions,
+      MassDisplayType,
+      SKIN_LOAD_STATUS
+    );
+  defaultKeyMappings.scale_base =
+    Math.max(canvas.height / 1080, canvas.width / 1920) * 0.2;
+  const readAscii =
+    defaultKeyMappings.scale_base * defaultKeyMappings.mouseZoom;
+  GnQwWt(
+    defaultSubPanelSettings,
+    fontConfigs,
+    readAscii,
+    combinedInterpSpeed,
+    defaultKeyMappings
+  );
+  Y6r7jNS2ea9f7_mul();
+  const readUtf16 =
+    Mao5huZea938_run.rCombinedViewportScale > 0
+      ? yZBjeytPea960_Cb
+      : WeakMapxkJW_ea95d_bool;
+  const writeAscii = window.innerWidth / 2 / readUtf16;
+  const writeUtf16 = window.innerHeight / 2 / readUtf16;
+  const byteToHex = bXFgW$Qq.pivot.x - writeAscii - 50;
+  const capitalize = bXFgW$Qq.pivot.x + writeAscii + 50;
+  const findServerByName = bXFgW$Qq.pivot.y - writeUtf16 - 50;
+  const formatAliveTime = bXFgW$Qq.pivot.y + writeUtf16 + 50;
+  for (const formatExperience of jQuery_hn$0_2t_ea9b2_sub.allCells) {
+    formatExperience.interpolateState(
+      combinedInterpSpeed,
+      combinedCameraDistanceThreshold
+    );
+    const formatSnakeCaseString =
+      formatExperience.container || formatExperience.sprite;
+    if (!formatSnakeCaseString) {
+      continue;
+    }
+    const initFirebaseApp = formatExperience.size || 10;
+    const initializeNord =
+      formatExperience.x + initFirebaseApp > byteToHex &&
+      formatExperience.x - initFirebaseApp < capitalize &&
+      formatExperience.y + initFirebaseApp > findServerByName &&
+      formatExperience.y - initFirebaseApp < formatAliveTime;
+    formatSnakeCaseString.visible = initializeNord;
+    if (initializeNord) {
+      formatExperience.handle(defaultKeyMappings, readUtf16);
+    }
+  }
+  zPY7Wy_(
+    defaultKeyMappings,
+    readUtf16,
+    byteToHex,
+    capitalize,
+    findServerByName,
+    formatAliveTime
+  );
+  const injectShadowStyle =
+    bXFgW$Qq.pivot.x - Date$F4EY.stage.position.x / readUtf16;
+  const transformCellColor =
+    bXFgW$Qq.pivot.y - Date$F4EY.stage.position.y / readUtf16;
+  const defaultTheme =
+    injectShadowStyle + defaultKeyMappings.mouseRawX / readUtf16;
+  const SERVER_PORT =
+    transformCellColor + defaultKeyMappings.mouseRawY / readUtf16;
+  defaultKeyMappings.calculatedMouseX = defaultTheme;
+  defaultKeyMappings.calculatedMouseY = SERVER_PORT;
+  if (Str_NmyJ4kX) {
+    Str_NmyJ4kX.calculatedMouseX = defaultTheme;
+    Str_NmyJ4kX.calculatedMouseY = SERVER_PORT;
+  }
+  if (
+    defaultKeyMappings.isConnected() &&
+    !jQueryLzNd.isOpen("mainModal") &&
+    !defaultKeyMappings.mouseFrozen
+  ) {
+    const [Pto5ea937_Inst, CoKB] = VJjDr.updateInGameLoop(
+      defaultKeyMappings,
+      defaultTheme,
+      SERVER_PORT,
+      combinedInterpSpeed
+    );
+    const VuerW6rI_ea93a_neq = Pto5ea937_Inst - ReactFCGxs$ea96c_Tmp;
+    const DEFAULT$HB0T_ea93b_Status = CoKB - CTXgGGYfuSi_ea96d_Opt;
+    if (
+      VuerW6rI_ea93a_neq * VuerW6rI_ea93a_neq +
+        DEFAULT$HB0T_ea93b_Status * DEFAULT$HB0T_ea93b_Status >
+      25
+    ) {
+      defaultKeyMappings.sendPacket(VoidGBYH.sendMouse(Pto5ea937_Inst, CoKB));
+      ReactFCGxs$ea96c_Tmp = Pto5ea937_Inst;
+      CTXgGGYfuSi_ea96d_Opt = CoKB;
+    }
+  }
+  if (
+    ObjectueAUtq &&
+    defaultKeyMappings.isConnected() &&
+    !jQueryLzNd.isOpen("mainModal")
+  ) {
+    defaultKeyMappings.sendPacket(VoidGBYH.sendEjectMass(true));
+  }
+  if (defaultKeyMappings.isConnected() && !jQueryLzNd.isOpen("mainModal")) {
+    zd8T_jfeea9b6_and.update();
+  }
+  rCRuBeaa05_res(defaultTheme, SERVER_PORT);
+  This_GCC(defaultTheme, SERVER_PORT);
+  React_a3eebzUUeaa04(defaultTheme, SERVER_PORT);
+  if (!Mao5huZea938_run.cHideMinimap && RZL % drawMinimapInterval === 0) {
+    const B5O8N2Mea93c_ret = combinedInterpSpeed * drawMinimapInterval;
+    DOC_FDXvy4GG(B5O8N2Mea93c_ret);
+  }
+  if (Mao5huZea938_run.cShowCoordinates) {
+    H3Pgbhg();
+  }
+  if (RZL % 5 === 0) {
+    Yz5NCU3();
+  }
+  const async_gvZqk_Dc_ea93e_div = 350;
+  const in_hpdqea943_div = performance.now();
+  const tRyea944_Id = [];
+  for (const [
+    NOgc$oea945_num,
+    React_RtHu4Gea946,
+  ] of jQuery_hn$0_2t_ea9b2_sub.dyingCells.entries()) {
+    const {
+      cell: formatExperience,
+      startTime: for_JCpm,
+      initialScaleX: for_zWYea948_lte,
+      initialScaleY: El_SqvbXGiea949_Tmp,
+    } = React_RtHu4Gea946;
+    const formatSnakeCaseString =
+      formatExperience.container || formatExperience.sprite;
+    if (!formatSnakeCaseString) {
+      tRyea944_Id.push(NOgc$oea945_num);
+      continue;
+    }
+    const Map_brr9MVea94a_Idx = in_hpdqea943_div - for_JCpm;
+    const hVJea94b_Data = Math.min(
+      Map_brr9MVea94a_Idx / async_gvZqk_Dc_ea93e_div,
+      1
+    );
+    const AtgnhF = 1 - Math.pow(1 - hVJea94b_Data, 3);
+    formatSnakeCaseString.scale.set(
+      for_zWYea948_lte * (1 - AtgnhF),
+      El_SqvbXGiea949_Tmp * (1 - AtgnhF)
+    );
+    formatSnakeCaseString.alpha = 1 - AtgnhF;
+    if (hVJea94b_Data >= 1) {
+      tRyea944_Id.push(NOgc$oea945_num);
+    }
+  }
+  for (const NOgc$oea945_num of tRyea944_Id) {
+    const React_RtHu4Gea946 =
+      jQuery_hn$0_2t_ea9b2_sub.dyingCells.get(NOgc$oea945_num);
+    if (React_RtHu4Gea946) {
+      React_RtHu4Gea946.cell.destroyPixiObjects();
+      jQuery_hn$0_2t_ea9b2_sub.dyingCells.delete(NOgc$oea945_num);
+    }
+  }
+  if (Date$F4EY && Date$F4EY.renderer) {
+    Date$F4EY.renderer.render(Date$F4EY.stage);
+  }
+  TypeOf_19M7ciw_ea9f9_opt();
+  if (If$sEyzqKbhea93f_Exec && zLCuf8c) {
+    zLCuf8c.processUpdates();
+  }
+}
+function Get_xynDv5x(...AxisLockThreshold) {
+  AxisLockThreshold.length = 0;
+  const minimapSmoothFactor = window.innerWidth;
+  const drawMinimapInterval = window.innerHeight;
+  Symbol_I0$w5g$ea98b_Opt.style.width = minimapSmoothFactor + "px";
+  Symbol_I0$w5g$ea98b_Opt.style.height = drawMinimapInterval + "px";
+  Symbol_I0$w5g$ea98b_Opt.width = minimapSmoothFactor;
+  Symbol_I0$w5g$ea98b_Opt.height = drawMinimapInterval;
+  Date$F4EY.renderer.resize(
+    Symbol_I0$w5g$ea98b_Opt.width,
+    Symbol_I0$w5g$ea98b_Opt.height
+  );
+  Date$F4EY.stage.position.x = minimapSmoothFactor / 2;
+  Date$F4EY.stage.position.y = drawMinimapInterval / 2;
+}
+function Winy9ZiY(AxisLockThreshold, minimapSmoothFactor = false) {
+  let drawMinimapInterval = 0;
+  let baseCellSize = 0;
+  let combinedCameraDistanceThreshold = 0;
+  const combinedZoomFocusStrength = AxisLockThreshold.myCells;
+  const combinedInterpSpeed = combinedZoomFocusStrength.size;
+  if (combinedInterpSpeed === 0) {
+    if (minimapSmoothFactor) {
+      return {
+        x: AxisLockThreshold.centerX_,
+        y: AxisLockThreshold.centerY_,
+      };
+    }
+    return {
+      x: AxisLockThreshold.centerX,
+      y: AxisLockThreshold.centerY,
+    };
+  }
+  for (const messageColors of combinedZoomFocusStrength.values()) {
+    const MESSAGE_TYPES = minimapSmoothFactor
+      ? messageColors.getRealMass()
+      : messageColors.getMass();
+    const CellVisibility = minimapSmoothFactor
+      ? messageColors.x_
+      : messageColors.x;
+    const MassDisplayType = minimapSmoothFactor
+      ? messageColors.y_
+      : messageColors.y;
+    drawMinimapInterval += CellVisibility * MESSAGE_TYPES;
+    baseCellSize += MassDisplayType * MESSAGE_TYPES;
+    combinedCameraDistanceThreshold += MESSAGE_TYPES;
+  }
+  if (combinedCameraDistanceThreshold === 0) {
+    let SKIN_LOAD_STATUS = 0;
+    let PlayerState = 0;
+    for (const messageColors of combinedZoomFocusStrength.values()) {
+      const CellVisibility = minimapSmoothFactor
+        ? messageColors.x_
+        : messageColors.x;
+      const MassDisplayType = minimapSmoothFactor
+        ? messageColors.y_
+        : messageColors.y;
+      SKIN_LOAD_STATUS += CellVisibility;
+      PlayerState += MassDisplayType;
+    }
+    return {
+      x: SKIN_LOAD_STATUS / combinedInterpSpeed,
+      y: PlayerState / combinedInterpSpeed,
+    };
+  }
+  return {
+    x: drawMinimapInterval / combinedCameraDistanceThreshold,
+    y: baseCellSize / combinedCameraDistanceThreshold,
+  };
+}
+function IND8m_ea9f5_add(...AxisLockThreshold) {
+  if (AxisLockThreshold[0].spectate) {
+    let minimapSmoothFactor = 0;
+    let drawMinimapInterval = 0;
+    let baseCellSize = 0;
+    let combinedInterpSpeed = 0;
+    if (AxisLockThreshold[0].spectatingId !== 0) {
+      for (const messageColors of jQuery_hn$0_2t_ea9b2_sub.allCells) {
+        if (
+          messageColors.playerId === AxisLockThreshold[0].spectatingId &&
+          messageColors.type === 2
+        ) {
+          const MESSAGE_TYPES = messageColors.getMass();
+          minimapSmoothFactor += messageColors.x * MESSAGE_TYPES;
+          drawMinimapInterval += messageColors.y * MESSAGE_TYPES;
+          baseCellSize += MESSAGE_TYPES;
+          combinedInterpSpeed++;
+        }
+      }
+    }
+    if (combinedInterpSpeed > 0 && baseCellSize > 0) {
+      return {
+        targetX: minimapSmoothFactor / baseCellSize,
+        targetY: drawMinimapInterval / baseCellSize,
+      };
+    }
+    return {
+      targetX: AxisLockThreshold[0].centerX_,
+      targetY: AxisLockThreshold[0].centerY_,
+    };
+  }
+  const CellVisibility = () => {
+    if (AxisLockThreshold[1].cellCount > 0) {
+      if (qq8ea959_idx === "cameraMassWeighted") {
+        return {
+          x: AxisLockThreshold[1].x,
+          y: AxisLockThreshold[1].y,
+        };
+      } else {
+        let minimapSmoothFactor = 0;
+        let drawMinimapInterval = 0;
+        for (const baseCellSize of AxisLockThreshold[0].myCells.values()) {
+          minimapSmoothFactor += baseCellSize.x;
+          drawMinimapInterval += baseCellSize.y;
+        }
+        return {
+          x: minimapSmoothFactor / AxisLockThreshold[1].cellCount,
+          y: drawMinimapInterval / AxisLockThreshold[1].cellCount,
+        };
+      }
+    }
+    return {
+      x: AxisLockThreshold[0].centerX,
+      y: AxisLockThreshold[0].centerY,
+    };
+  };
+  AxisLockThreshold[102] = undefined;
+  AxisLockThreshold[5] = undefined;
+  const MassDisplayType =
+    AxisLockThreshold[2] && AxisLockThreshold[2].cellCount > 0;
+  const SKIN_LOAD_STATUS =
+    AxisLockThreshold[3] && AxisLockThreshold[3].cellCount > 0;
+  const PlayerState = Math.hypot(
+    Str_NmyJ4kX.centerX - If$sEyzqKbhea93f_Exec.centerX,
+    Str_NmyJ4kX.centerY - If$sEyzqKbhea93f_Exec.centerY
+  );
+  if (
+    MassDisplayType &&
+    SKIN_LOAD_STATUS &&
+    PlayerState < combinedCameraDistanceThreshold
+  ) {
+    const defaultKeyMappings = CellVisibility();
+    const defaultOptions =
+      (If$sEyzqKbhea93f_Exec.centerX + Str_NmyJ4kX.centerX) / 2;
+    const defaultSubPanelSettings =
+      (If$sEyzqKbhea93f_Exec.centerY + Str_NmyJ4kX.centerY) / 2;
+    const fontConfigs = Math.max(
+      0,
+      Math.min(Mao5huZea938_run.rCombinedViewportScale, 1)
+    );
+    const readAscii =
+      AxisLockThreshold[0].scale_base > 0
+        ? AxisLockThreshold[0].scale / AxisLockThreshold[0].scale_base
+        : 1;
+    const readUtf16 = Math.max(
+      0,
+      Math.min(1, (readAscii - 1) * combinedZoomFocusStrength)
+    );
+    const writeAscii = fontConfigs * (1 - readUtf16);
+    AxisLockThreshold[102] =
+      defaultKeyMappings.x +
+      (defaultOptions - defaultKeyMappings.x) * writeAscii;
+    AxisLockThreshold[5] =
+      defaultKeyMappings.y +
+      (defaultSubPanelSettings - defaultKeyMappings.y) * writeAscii;
+  } else {
+    const writeUtf16 = CellVisibility();
+    AxisLockThreshold[102] = writeUtf16.x;
+    AxisLockThreshold[5] = writeUtf16.y;
+  }
+  return {
+    targetX: AxisLockThreshold[102],
+    targetY: AxisLockThreshold[5],
+  };
+}
+function GnQwWt(...AxisLockThreshold) {
+  AxisLockThreshold.length = 4;
+  const minimapSmoothFactor = 10 / Mao5huZea938_run.rCamDelay;
+  const drawMinimapInterval = 0.1;
+  const baseCellSize = Math.min(drawMinimapInterval * AxisLockThreshold[3], 1);
+  const combinedCameraDistanceThreshold = Math.min(
+    minimapSmoothFactor * AxisLockThreshold[3],
+    1
+  );
+  if (Mao5huZea938_run.rCombinedViewportScale > 0) {
+    if (Callback$wD5ea95e_Ctx === -1) {
+      Callback$wD5ea95e_Ctx = AxisLockThreshold[0];
+      svqea95f_bool = AxisLockThreshold[1];
+      yZBjeytPea960_Cb = AxisLockThreshold[2];
+    }
+    Callback$wD5ea95e_Ctx +=
+      (AxisLockThreshold[0] - Callback$wD5ea95e_Ctx) *
+      combinedCameraDistanceThreshold;
+    svqea95f_bool +=
+      (AxisLockThreshold[1] - svqea95f_bool) * combinedCameraDistanceThreshold;
+    yZBjeytPea960_Cb +=
+      (AxisLockThreshold[2] - yZBjeytPea960_Cb) * baseCellSize;
+  } else {
+    if (FalsebDqti5ea95b_eq === -1) {
+      FalsebDqti5ea95b_eq = AxisLockThreshold[0];
+      Map$pA_ea95c_Obj = AxisLockThreshold[1];
+      WeakMapxkJW_ea95d_bool = AxisLockThreshold[2];
+    }
+    FalsebDqti5ea95b_eq +=
+      (AxisLockThreshold[0] - FalsebDqti5ea95b_eq) *
+      combinedCameraDistanceThreshold;
+    Map$pA_ea95c_Obj +=
+      (AxisLockThreshold[1] - Map$pA_ea95c_Obj) *
+      combinedCameraDistanceThreshold;
+    WeakMapxkJW_ea95d_bool +=
+      (AxisLockThreshold[2] - WeakMapxkJW_ea95d_bool) * baseCellSize;
+  }
+  If$sEyzqKbhea93f_Exec.scale +=
+    (AxisLockThreshold[2] - If$sEyzqKbhea93f_Exec.scale) * baseCellSize;
+  if (Str_NmyJ4kX) {
+    Str_NmyJ4kX.scale +=
+      (AxisLockThreshold[2] - Str_NmyJ4kX.scale) * baseCellSize;
+  }
+}
+function Y6r7jNS2ea9f7_mul() {
+  if (Mao5huZea938_run.rCombinedViewportScale > 0) {
+    bXFgW$Qq.scale.set(yZBjeytPea960_Cb);
+    bXFgW$Qq.pivot.set(Callback$wD5ea95e_Ctx, svqea95f_bool);
+  } else {
+    bXFgW$Qq.scale.set(WeakMapxkJW_ea95d_bool);
+    bXFgW$Qq.pivot.set(FalsebDqti5ea95b_eq, Map$pA_ea95c_Obj);
+  }
+}
+function JRZXea9f8_obj(...AxisLockThreshold) {
+  const minimapSmoothFactor =
+    If$sEyzqKbhea93f_Exec && If$sEyzqKbhea93f_Exec.myCells.size > 0;
+  const drawMinimapInterval = Str_NmyJ4kX && Str_NmyJ4kX.myCells.size > 0;
+  AxisLockThreshold.a = 0;
+  AxisLockThreshold[2] = undefined;
+  AxisLockThreshold.c = undefined;
+  if (minimapSmoothFactor && drawMinimapInterval) {
+    const baseCellSize = Str_NmyJ4kX.centerX - If$sEyzqKbhea93f_Exec.centerX;
+    const combinedCameraDistanceThreshold =
+      Str_NmyJ4kX.centerY - If$sEyzqKbhea93f_Exec.centerY;
+    AxisLockThreshold.a = Math.sqrt(
+      baseCellSize * baseCellSize +
+        combinedCameraDistanceThreshold * combinedCameraDistanceThreshold
+    );
+    AxisLockThreshold[2] =
+      (If$sEyzqKbhea93f_Exec.centerX + Str_NmyJ4kX.centerX) / 2;
+    AxisLockThreshold.c =
+      (If$sEyzqKbhea93f_Exec.centerY + Str_NmyJ4kX.centerY) / 2;
+  } else if (minimapSmoothFactor) {
+    AxisLockThreshold[2] = If$sEyzqKbhea93f_Exec.centerX;
+    AxisLockThreshold.c = If$sEyzqKbhea93f_Exec.centerY;
+  } else if (drawMinimapInterval) {
+    AxisLockThreshold[2] = Str_NmyJ4kX.centerX;
+    AxisLockThreshold.c = Str_NmyJ4kX.centerY;
+  } else {
+    AxisLockThreshold[2] = DateDg_57Yb;
+    AxisLockThreshold.c = VARJb6ea963_Ref;
+  }
+  if (DateDg_57Yb === -1) {
+    DateDg_57Yb = AxisLockThreshold[2];
+    VARJb6ea963_Ref = AxisLockThreshold.c;
+    Evt_zsUK = AxisLockThreshold.a;
+  }
+  const combinedZoomFocusStrength = Math.min(
+    combinedInterpSpeed * AxisLockThreshold[0],
+    1
+  );
+  Evt_zsUK += (AxisLockThreshold.a - Evt_zsUK) * combinedZoomFocusStrength;
+  DateDg_57Yb +=
+    (AxisLockThreshold[2] - DateDg_57Yb) * combinedZoomFocusStrength;
+  VARJb6ea963_Ref +=
+    (AxisLockThreshold.c - VARJb6ea963_Ref) * combinedZoomFocusStrength;
+}
+function TypeOf_19M7ciw_ea9f9_opt() {
+  Promise_KDZM8Y_ea97a_Cfg++;
+  if (yield_L2zEL16 >= 1000) {
+    $("#currentFPS").show();
+    $("#currentFPS span").text(Promise_KDZM8Y_ea97a_Cfg);
+    if (
+      If$sEyzqKbhea93f_Exec.serverData.resetType > 0 &&
+      If$sEyzqKbhea93f_Exec.serverData.resetTime > 0
+    ) {
+      Promise_28_SVO_ea950_fn.resetInfo.css("display", "block");
+      const AxisLockThreshold = Math.max(
+        0,
+        Math.floor(
+          (If$sEyzqKbhea93f_Exec.serverData.resetTime - Date.now()) / 1000
+        )
+      );
+      if (Promise_28_SVO_ea950_fn.resetTime[0]) {
+        Promise_28_SVO_ea950_fn.resetTime[0].textContent =
+          formatAliveTime(AxisLockThreshold);
+      }
+    } else {
+      Promise_28_SVO_ea950_fn.resetInfo.css("display", "none");
+    }
+    yield_L2zEL16 -= 1000;
+    Promise_KDZM8Y_ea97a_Cfg = 0;
+  }
+}
+function zPY7Wy_(...AxisLockThreshold) {
+  const minimapSmoothFactor =
+    (AxisLockThreshold[1] > 0.12 || Mao5huZea938_run.cDisableAutoFoodHiding) &&
+    !Mao5huZea938_run.cHideFood;
+  letwtfOyM80ea984_num.visible = minimapSmoothFactor;
+  if (
+    !Mao5huZea938_run.cHideFood &&
+    AxisLockThreshold[0] &&
+    AxisLockThreshold[0].foodObjects
+  ) {
+    for (const drawMinimapInterval of AxisLockThreshold[0].foodObjects.values()) {
+      if (!drawMinimapInterval.sprite) {
+        continue;
+      }
+      const baseCellSize =
+        drawMinimapInterval.x + 10 > AxisLockThreshold[2] &&
+        drawMinimapInterval.x - 10 < AxisLockThreshold[3] &&
+        drawMinimapInterval.y + 10 > AxisLockThreshold[4] &&
+        drawMinimapInterval.y - 10 < AxisLockThreshold[5];
+      drawMinimapInterval.sprite.visible = baseCellSize;
+      if (baseCellSize) {
+        drawMinimapInterval.handleFood();
+      }
+    }
+  } else if (AxisLockThreshold[0] && AxisLockThreshold[0].foodObjects) {
+    for (const drawMinimapInterval of AxisLockThreshold[0].foodObjects.values()) {
+      if (drawMinimapInterval.sprite) {
+        drawMinimapInterval.sprite.visible = false;
+      }
+    }
+  }
+}
+function faCUfKea9fb_add(...AxisLockThreshold) {
+  const minimapSmoothFactor = window.sharedData
+    ? window.sharedData.player1
+      ? If$sEyzqKbhea93f_Exec
+      : window.sharedData.player2
+      ? Str_NmyJ4kX
+      : null
+    : null;
+  AxisLockThreshold.a = null;
+  if (If$sEyzqKbhea93f_Exec.enabled === true) {
+    AxisLockThreshold.a = If$sEyzqKbhea93f_Exec;
+    window.sharedData = {
+      player1: true,
+      player2: false,
+      mouseFrozenDiv2: Promise_28_SVO_ea950_fn.mouseFrozenDiv2
+        ? Promise_28_SVO_ea950_fn.mouseFrozenDiv2.style.display
+        : "none",
+    };
+  } else if (Str_NmyJ4kX.enabled === true) {
+    AxisLockThreshold.a = Str_NmyJ4kX;
+    window.sharedData = {
+      player1: false,
+      player2: true,
+      mouseFrozenDiv2: Promise_28_SVO_ea950_fn.mouseFrozenDiv2
+        ? Promise_28_SVO_ea950_fn.mouseFrozenDiv2.style.display
+        : "none",
+    };
+  }
+  if (
+    minimapSmoothFactor &&
+    AxisLockThreshold.a &&
+    minimapSmoothFactor !== AxisLockThreshold.a
+  ) {
+    AxisLockThreshold.a.lastSwapTime = Date.now();
+    if (minimapSmoothFactor.centerX && minimapSmoothFactor.centerY) {
+      AxisLockThreshold.a.prevCenterX = minimapSmoothFactor.centerX;
+      AxisLockThreshold.a.prevCenterY = minimapSmoothFactor.centerY;
+    }
+  }
+  return AxisLockThreshold.a;
+}
+function ForKgjVzrQea9fc_Status(...AxisLockThreshold) {
+  const minimapSmoothFactor = faCUfKea9fb_add();
+  const drawMinimapInterval =
+    minimapSmoothFactor === If$sEyzqKbhea93f_Exec
+      ? Str_NmyJ4kX
+      : If$sEyzqKbhea93f_Exec;
+  if (
+    drawMinimapInterval &&
+    drawMinimapInterval.isConnected() &&
+    drawMinimapInterval.myCells.size === 0 &&
+    !drawMinimapInterval.spectate
+  ) {
+    BOOLxEFAPea9cf_or("Cannot swap: Multi is not in-game.");
+    return;
+  }
+  zd8T_jfeea9b6_and.deactivate();
+  if (If$sEyzqKbhea93f_Exec) {
+    If$sEyzqKbhea93f_Exec.wasAliveLastTick =
+      If$sEyzqKbhea93f_Exec.myCells.size > 0;
+  }
+  if (Str_NmyJ4kX) {
+    Str_NmyJ4kX.wasAliveLastTick = Str_NmyJ4kX.myCells.size > 0;
+  }
+  If$sEyzqKbhea93f_Exec.play();
+  Str_NmyJ4kX.play();
+  if (If$sEyzqKbhea93f_Exec.isConnected() && Str_NmyJ4kX.isConnected()) {
+    if (If$sEyzqKbhea93f_Exec.enabled && !Str_NmyJ4kX.enabled) {
+      If$sEyzqKbhea93f_Exec.enabled = false;
+      Str_NmyJ4kX.enabled = true;
+      Str_NmyJ4kX.mouseFrozen = false;
+    } else if (!If$sEyzqKbhea93f_Exec.enabled && Str_NmyJ4kX.enabled) {
+      Str_NmyJ4kX.enabled = false;
+      If$sEyzqKbhea93f_Exec.enabled = true;
+      If$sEyzqKbhea93f_Exec.mouseFrozen = false;
+    }
+  }
+  if (ObjectueAUtq) {
+    if (If$sEyzqKbhea93f_Exec.enabled) {
+      If$sEyzqKbhea93f_Exec.sendPacket(VoidGBYH.sendEjectMass(true));
+      Str_NmyJ4kX.sendPacket(VoidGBYH.sendEjectMass(false));
+    } else if (Str_NmyJ4kX.enabled) {
+      Str_NmyJ4kX.sendPacket(VoidGBYH.sendEjectMass(true));
+      If$sEyzqKbhea93f_Exec.sendPacket(VoidGBYH.sendEjectMass(false));
+    }
+  }
+}
+function hjScxea9fd_res(...AxisLockThreshold) {
+  if (
+    !AxisLockThreshold[0] ||
+    AxisLockThreshold[0].myCells.size === 0 ||
+    for_JCpm
+  ) {
+    return;
+  }
+  AxisLockThreshold[75] = 0;
+  AxisLockThreshold.b = 0;
+  AxisLockThreshold[3] = 0;
+  for (const minimapSmoothFactor of AxisLockThreshold[0].myCells.values()) {
+    const drawMinimapInterval = minimapSmoothFactor.getRealMass();
+    AxisLockThreshold[3] += drawMinimapInterval;
+    AxisLockThreshold[75] += minimapSmoothFactor.x_ * drawMinimapInterval;
+    AxisLockThreshold.b += minimapSmoothFactor.y_ * drawMinimapInterval;
+  }
+  if (AxisLockThreshold[3] < 1000) {
+    return;
+  }
+  for_JCpm = true;
+  const baseCellSize =
+    AxisLockThreshold[3] > 0 ? AxisLockThreshold[75] / AxisLockThreshold[3] : 0;
+  const combinedCameraDistanceThreshold =
+    AxisLockThreshold[3] > 0 ? AxisLockThreshold.b / AxisLockThreshold[3] : 0;
+  const combinedZoomFocusStrength = AxisLockThreshold[0].calculatedMouseX;
+  const combinedInterpSpeed = AxisLockThreshold[0].calculatedMouseY;
+  const messageColors = Object$kDcGWUY((...minimapSmoothFactor) => {
+    minimapSmoothFactor.length = 3;
+    minimapSmoothFactor[3] = 0;
+    const drawMinimapInterval =
+      1 + (minimapSmoothFactor[0] - 1) * minimapSmoothFactor[1];
+    if (AxisLockThreshold[3] >= 4000) {
+      const messageColors =
+        baseCellSize + (baseCellSize - combinedZoomFocusStrength);
+      const MESSAGE_TYPES =
+        combinedCameraDistanceThreshold +
+        (combinedCameraDistanceThreshold - combinedInterpSpeed);
+      AxisLockThreshold[0].sendPacket(
+        VoidGBYH.sendMouse(messageColors, MESSAGE_TYPES)
+      );
+      minimapSmoothFactor[3] = drawMinimapInterval + 20;
+      setTimeout(() => {
+        AxisLockThreshold[0].sendPacket(
+          VoidGBYH.sendMouse(combinedZoomFocusStrength, combinedInterpSpeed)
+        );
+      }, minimapSmoothFactor[3]);
+    }
+    for (
+      let CellVisibility = 0;
+      CellVisibility < minimapSmoothFactor[0];
+      CellVisibility++
+    ) {
+      setTimeout(() => {
+        AxisLockThreshold[0].sendPacket(VoidGBYH.sendKey(17));
+      }, 1 + CellVisibility * minimapSmoothFactor[1]);
+    }
+    minimapSmoothFactor.b = Math.max(
+      drawMinimapInterval,
+      minimapSmoothFactor[3]
+    );
+    if (Mao5huZea938_run.sSoloTrickMode === "AUTO") {
+      let MassDisplayType;
+      if (minimapSmoothFactor[2]) {
+        AxisLockThreshold[0].sendPacket(VoidGBYH.sendEjectMass(true));
+        MassDisplayType = 900;
+        setTimeout(() => {
+          return AxisLockThreshold[0].sendPacket(VoidGBYH.sendEjectMass(false));
+        }, MassDisplayType);
+      } else {
+        setTimeout(() => {
+          return AxisLockThreshold[0].sendPacket(VoidGBYH.sendEjectMass(true));
+        }, minimapSmoothFactor[1]);
+        MassDisplayType = minimapSmoothFactor[1] + 900;
+        setTimeout(() => {
+          return AxisLockThreshold[0].sendPacket(VoidGBYH.sendEjectMass(false));
+        }, MassDisplayType);
+      }
+      minimapSmoothFactor.b = Math.max(minimapSmoothFactor.b, MassDisplayType);
+    }
+    setTimeout(() => {
+      return (for_JCpm = false);
+    }, minimapSmoothFactor.b + 20);
+  }, 3);
+  if (AxisLockThreshold[3] < 4000) {
+    messageColors(4, 100, false);
+  } else if (AxisLockThreshold[3] < 10000) {
+    messageColors(6, 100, false);
+  } else if (AxisLockThreshold[3] < 30000) {
+    messageColors(7, 100, false);
+  } else {
+    messageColors(9, 100, true);
+  }
+}
+function Promise_OUmY4gHt_ea9fe_idx(...AxisLockThreshold) {
+  if (
+    !AxisLockThreshold[0] ||
+    AxisLockThreshold[0].myCells.size === 0 ||
+    for_JCpm
+  ) {
+    return;
+  }
+  AxisLockThreshold[3] = 0;
+  AxisLockThreshold.b = 0;
+  AxisLockThreshold.c = 0;
+  for (const minimapSmoothFactor of AxisLockThreshold[0].myCells.values()) {
+    const drawMinimapInterval = minimapSmoothFactor.getRealMass();
+    AxisLockThreshold.c += drawMinimapInterval;
+    AxisLockThreshold[3] += minimapSmoothFactor.x_ * drawMinimapInterval;
+    AxisLockThreshold.b += minimapSmoothFactor.y_ * drawMinimapInterval;
+  }
+  if (AxisLockThreshold.c < 1000) {
+    return;
+  }
+  for_JCpm = true;
+  AxisLockThreshold[0].mouseFrozen = true;
+  const baseCellSize =
+    AxisLockThreshold.c > 0 ? AxisLockThreshold[3] / AxisLockThreshold.c : 0;
+  const combinedCameraDistanceThreshold =
+    AxisLockThreshold.c > 0 ? AxisLockThreshold.b / AxisLockThreshold.c : 0;
+  const combinedZoomFocusStrength = AxisLockThreshold[1];
+  const combinedInterpSpeed = AxisLockThreshold[2];
+  const messageColors = Object$kDcGWUY((...minimapSmoothFactor) => {
+    minimapSmoothFactor.length = 3;
+    const drawMinimapInterval =
+      1 + (minimapSmoothFactor[0] - 1) * minimapSmoothFactor[1];
+    if (AxisLockThreshold.c >= 4000) {
+      const messageColors =
+        baseCellSize + (baseCellSize - combinedZoomFocusStrength);
+      const MESSAGE_TYPES =
+        combinedCameraDistanceThreshold +
+        (combinedCameraDistanceThreshold - combinedInterpSpeed);
+      AxisLockThreshold[0].sendPacket(
+        VoidGBYH.sendMouse(messageColors, MESSAGE_TYPES)
+      );
+    }
+    for (
+      let CellVisibility = 0;
+      CellVisibility < minimapSmoothFactor[0];
+      CellVisibility++
+    ) {
+      setTimeout(() => {
+        AxisLockThreshold[0].sendPacket(VoidGBYH.sendKey(17));
+      }, 1 + CellVisibility * minimapSmoothFactor[1]);
+    }
+    setTimeout(() => {
+      AxisLockThreshold[0].sendPacket(
+        VoidGBYH.sendMouse(combinedZoomFocusStrength, combinedInterpSpeed)
+      );
+    }, 2);
+    minimapSmoothFactor[3] = drawMinimapInterval;
+    if (Mao5huZea938_run.sSoloTrickMode === "AUTO") {
+      let MassDisplayType;
+      if (minimapSmoothFactor[2]) {
+        AxisLockThreshold[0].sendPacket(VoidGBYH.sendEjectMass(true));
+        MassDisplayType = 900;
+        setTimeout(() => {
+          return AxisLockThreshold[0].sendPacket(VoidGBYH.sendEjectMass(false));
+        }, MassDisplayType);
+      } else {
+        setTimeout(() => {
+          return AxisLockThreshold[0].sendPacket(VoidGBYH.sendEjectMass(true));
+        }, minimapSmoothFactor[1]);
+        MassDisplayType = minimapSmoothFactor[1] + 900;
+        setTimeout(() => {
+          return AxisLockThreshold[0].sendPacket(VoidGBYH.sendEjectMass(false));
+        }, MassDisplayType);
+      }
+      minimapSmoothFactor[3] = Math.max(
+        minimapSmoothFactor[3],
+        MassDisplayType
+      );
+    }
+    setTimeout(() => {
+      for_JCpm = false;
+      if (AxisLockThreshold[0]) {
+        AxisLockThreshold[0].mouseFrozen = false;
+      }
+    }, minimapSmoothFactor[3] + 100);
+  }, 3);
+  if (AxisLockThreshold.c < 4000) {
+    messageColors(4, 100, false);
+  } else if (AxisLockThreshold.c < 10000) {
+    messageColors(6, 100, false);
+  } else if (AxisLockThreshold.c < 30000) {
+    messageColors(7, 100, false);
+  } else {
+    messageColors(9, 100, true);
+  }
+}
+async function yield_LTAv5ipN() {
+  const AxisLockThreshold = faCUfKea9fb_add();
+  if (
+    !AxisLockThreshold ||
+    !AxisLockThreshold.isConnected() ||
+    AxisLockThreshold.myCells.size === 0
+  ) {
+    return;
+  }
+  if (tRyea944_Id) {
+    return;
+  }
+  const minimapSmoothFactor = Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    if (!AxisLockThreshold[0]) {
+      return false;
+    }
+    if (AxisLockThreshold[0].playerId) {
+      return (
+        AxisLockThreshold[0].isConnected() &&
+        AxisLockThreshold[0].myCells.size > 0
+      );
+    }
+    return AxisLockThreshold[0].state === PlayerState.ALIVE;
+  });
+  if (Mao5huZea938_run.sFastFeed === "MouseCursor") {
+    tRyea944_Id = true;
+    BOOLxEFAPea9cf_or("Fast Feed: Mouse Cursor");
+    AxisLockThreshold.mouseFrozen = true;
+    try {
+      let drawMinimapInterval = AxisLockThreshold.getMass();
+      if (drawMinimapInterval <= 300000) {
+        for (let baseCellSize = 0; baseCellSize < 5; baseCellSize++) {
+          AxisLockThreshold.sendPacket(VoidGBYH.sendKey(17));
+        }
+        await new Promise(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            return setTimeout(AxisLockThreshold[0], 830);
+          })
+        );
+        for (let baseCellSize = 0; baseCellSize < 3; baseCellSize++) {
+          AxisLockThreshold.sendPacket(VoidGBYH.sendKey(17));
+        }
+      } else {
+        for (let baseCellSize = 0; baseCellSize < 4; baseCellSize++) {
+          AxisLockThreshold.sendPacket(VoidGBYH.sendKey(17));
+        }
+        await new Promise(
+          Object$kDcGWUY((...AxisLockThreshold) => {
+            AxisLockThreshold.length = 1;
+            return setTimeout(AxisLockThreshold[0], 739);
+          })
+        );
+        for (let baseCellSize = 0; baseCellSize < 4; baseCellSize++) {
+          AxisLockThreshold.sendPacket(VoidGBYH.sendKey(17));
+        }
+      }
+      await new Promise(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return setTimeout(AxisLockThreshold[0], 350);
+        })
+      );
+    } finally {
+      tRyea944_Id = false;
+      if (AxisLockThreshold) {
+        AxisLockThreshold.mouseFrozen = false;
+      }
+    }
+    return;
+  }
+  const combinedCameraDistanceThreshold = (...drawMinimapInterval) => {
+    drawMinimapInterval.length = 0;
+    const baseCellSize =
+      AxisLockThreshold === If$sEyzqKbhea93f_Exec
+        ? Str_NmyJ4kX
+        : If$sEyzqKbhea93f_Exec;
+    const combinedCameraDistanceThreshold = [];
+    const combinedZoomFocusStrength = Winy9ZiY(AxisLockThreshold, true);
+    if (minimapSmoothFactor(baseCellSize)) {
+      let combinedInterpSpeed = null;
+      let MESSAGE_TYPES = -1;
+      for (const CellVisibility of baseCellSize.myCells.values()) {
+        if (CellVisibility.getRealMass() > MESSAGE_TYPES) {
+          MESSAGE_TYPES = CellVisibility.getRealMass();
+          combinedInterpSpeed = CellVisibility;
+        }
+      }
+      if (combinedInterpSpeed) {
+        const MassDisplayType =
+          combinedInterpSpeed.x_ - combinedZoomFocusStrength.x;
+        const SKIN_LOAD_STATUS =
+          combinedInterpSpeed.y_ - combinedZoomFocusStrength.y;
+        combinedCameraDistanceThreshold.push({
+          id: baseCellSize.playerId,
+          name: baseCellSize.name,
+          cell: combinedInterpSpeed,
+          distanceSq:
+            MassDisplayType * MassDisplayType +
+            SKIN_LOAD_STATUS * SKIN_LOAD_STATUS,
+        });
+      }
+    }
+    if (If$sEyzqKbhea93f_Exec.party && If$sEyzqKbhea93f_Exec.party.length > 1) {
+      for (const defaultKeyMappings of If$sEyzqKbhea93f_Exec.party) {
+        if (
+          defaultKeyMappings.id === AxisLockThreshold.playerId ||
+          defaultKeyMappings.state !== PlayerState.ALIVE ||
+          (baseCellSize && defaultKeyMappings.id === baseCellSize.playerId)
+        ) {
+          continue;
+        }
+        let defaultOptions = null;
+        let defaultSubPanelSettings = -1;
+        for (const CellVisibility of jQuery_hn$0_2t_ea9b2_sub.allCells) {
+          if (
+            CellVisibility.playerId === defaultKeyMappings.id &&
+            CellVisibility.type === 2
+          ) {
+            const fontConfigs = CellVisibility.getRealMass();
+            if (fontConfigs > defaultSubPanelSettings) {
+              defaultSubPanelSettings = fontConfigs;
+              defaultOptions = CellVisibility;
+            }
+          }
+        }
+        if (defaultOptions && defaultSubPanelSettings > 1000) {
+          const MassDisplayType =
+            defaultOptions.x_ - combinedZoomFocusStrength.x;
+          const SKIN_LOAD_STATUS =
+            defaultOptions.y_ - combinedZoomFocusStrength.y;
+          combinedCameraDistanceThreshold.push({
+            id: defaultKeyMappings.id,
+            name: defaultKeyMappings.name,
+            cell: defaultOptions,
+            distanceSq:
+              MassDisplayType * MassDisplayType +
+              SKIN_LOAD_STATUS * SKIN_LOAD_STATUS,
+          });
+        }
+      }
+    }
+    if (combinedCameraDistanceThreshold.length === 0) {
+      return null;
+    }
+    combinedCameraDistanceThreshold.sort(
+      Object$kDcGWUY((...drawMinimapInterval) => {
+        drawMinimapInterval.length = 2;
+        return (
+          drawMinimapInterval[0].distanceSq - drawMinimapInterval[1].distanceSq
+        );
+      }, 2)
+    );
+    return combinedCameraDistanceThreshold[0];
+  };
+  const combinedZoomFocusStrength = combinedCameraDistanceThreshold();
+  if (!combinedZoomFocusStrength) {
+    BOOLxEFAPea9cf_or("Fast Feed: No suitable teammates found");
+    return;
+  }
+  tRyea944_Id = true;
+  BOOLxEFAPea9cf_or("Fast Feed: " + combinedZoomFocusStrength.name);
+  const drawMinimapInterval = AxisLockThreshold.getMass();
+  try {
+    AxisLockThreshold.sendPacket(
+      VoidGBYH.sendMouse(
+        combinedZoomFocusStrength.cell.x,
+        combinedZoomFocusStrength.cell.y
+      )
+    );
+    AxisLockThreshold.mouseFrozen = true;
+    await new Promise(
+      Object$kDcGWUY((...AxisLockThreshold) => {
+        AxisLockThreshold.length = 1;
+        return setTimeout(AxisLockThreshold[0], 50);
+      })
+    );
+    let combinedInterpSpeed = null;
+    const messageColors =
+      AxisLockThreshold === If$sEyzqKbhea93f_Exec
+        ? Str_NmyJ4kX
+        : If$sEyzqKbhea93f_Exec;
+    if (
+      messageColors &&
+      combinedZoomFocusStrength.id === messageColors.playerId
+    ) {
+      combinedInterpSpeed = messageColors;
+    } else {
+      combinedInterpSpeed = If$sEyzqKbhea93f_Exec.party.find(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return AxisLockThreshold[0].id === combinedZoomFocusStrength.id;
+        })
+      );
+    }
+    if (!minimapSmoothFactor(combinedInterpSpeed)) {
+      console.log("[FastFeed] Target died before first split burst. Aborting.");
+      return;
+    }
+    if (drawMinimapInterval <= 300000) {
+      for (let baseCellSize = 0; baseCellSize < 5; baseCellSize++) {
+        AxisLockThreshold.sendPacket(VoidGBYH.sendKey(17));
+      }
+      await new Promise(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return setTimeout(AxisLockThreshold[0], 829);
+        })
+      );
+      if (!minimapSmoothFactor(combinedInterpSpeed)) {
+        return;
+      }
+      for (let baseCellSize = 0; baseCellSize < 3; baseCellSize++) {
+        AxisLockThreshold.sendPacket(VoidGBYH.sendKey(17));
+      }
+    } else {
+      for (let baseCellSize = 0; baseCellSize < 4; baseCellSize++) {
+        AxisLockThreshold.sendPacket(VoidGBYH.sendKey(17));
+      }
+      await new Promise(
+        Object$kDcGWUY((...AxisLockThreshold) => {
+          AxisLockThreshold.length = 1;
+          return setTimeout(AxisLockThreshold[0], 739);
+        })
+      );
+      if (!minimapSmoothFactor(combinedInterpSpeed)) {
+        return;
+      }
+      for (let baseCellSize = 0; baseCellSize < 4; baseCellSize++) {
+        AxisLockThreshold.sendPacket(VoidGBYH.sendKey(17));
+      }
+    }
+    await new Promise(
+      Object$kDcGWUY((...AxisLockThreshold) => {
+        AxisLockThreshold.length = 1;
+        return setTimeout(AxisLockThreshold[0], 600);
+      })
+    );
+  } finally {
+    if (AxisLockThreshold) {
+      AxisLockThreshold.mouseFrozen = false;
+    }
+    tRyea944_Id = false;
+  }
+}
+function FROM$YeJ0i$eaa00_bool(...AxisLockThreshold) {
+  if (!$("#fastfeed-mode-notification").length) {
+    $(
+      '<div id="fastfeed-mode-notification" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); z-index: 1000;"></div>'
+    ).appendTo(document.body);
+  }
+  AxisLockThreshold.b = undefined;
+  AxisLockThreshold.c = undefined;
+  const minimapSmoothFactor = Mao5huZea938_run.sFastFeed;
+  if (minimapSmoothFactor === "MouseCursor") {
+    AxisLockThreshold.b = "SmartTarget";
+    AxisLockThreshold.c = "Smart Target";
+  } else {
+    AxisLockThreshold.b = "MouseCursor";
+    AxisLockThreshold.c = "Mouse Cursor";
+  }
+  Mao5huZea938_run.sFastFeed = AxisLockThreshold.b;
+  BOOLxEFAPea9cf_or("Fast Feed Mode: " + AxisLockThreshold.c);
+}
+function d5OVi(...AxisLockThreshold) {
+  AxisLockThreshold.a = undefined;
+  AxisLockThreshold[-205] = undefined;
+  if (Cd8Hiea95a_Init === "followMouseSCell") {
+    AxisLockThreshold.a = "followMouseMacros";
+    AxisLockThreshold[-205] = "Standard Follow";
+  } else {
+    AxisLockThreshold.a = "followMouseSCell";
+    AxisLockThreshold[-205] = "S-Cell Positioning";
+  }
+  XHR_uLPuP9eaa0c_Ex(AxisLockThreshold.a);
+  BOOLxEFAPea9cf_or("Multi Follow Mouse Mode: " + AxisLockThreshold[-205]);
+}
+function Ctx_HHTJdo(...AxisLockThreshold) {
+  const minimapSmoothFactor =
+    faCUfKea9fb_add() === If$sEyzqKbhea93f_Exec
+      ? Str_NmyJ4kX
+      : If$sEyzqKbhea93f_Exec;
+  if (!minimapSmoothFactor) {
+    return;
+  }
+  const drawMinimapInterval =
+    !minimapSmoothFactor.isConnected() ||
+    (minimapSmoothFactor.myCells.size === 0 && !minimapSmoothFactor.spectate);
+  if (drawMinimapInterval) {
+    El_SqvbXGiea949_Tmp = true;
+    minimapSmoothFactor.play();
+    BOOLxEFAPea9cf_or("Multi Respawn: Activated");
+  } else {
+    El_SqvbXGiea949_Tmp = !El_SqvbXGiea949_Tmp;
+    const baseCellSize = El_SqvbXGiea949_Tmp ? "ON" : "OFF";
+    BOOLxEFAPea9cf_or("Multi Auto-Respawn: " + baseCellSize);
+  }
+}
+function If_yEAw_eaa03_Res(...AxisLockThreshold) {
+  if (Date.now() < yield_j0ltb_ea9a1_eq) {
+    return;
+  }
+  const minimapSmoothFactor = faCUfKea9fb_add();
+  const drawMinimapInterval =
+    minimapSmoothFactor === If$sEyzqKbhea93f_Exec
+      ? Str_NmyJ4kX
+      : If$sEyzqKbhea93f_Exec;
+  if (
+    !drawMinimapInterval ||
+    !drawMinimapInterval.isConnected() ||
+    drawMinimapInterval.myCells.size === 0
+  ) {
+    return;
+  }
+  if (AxisLockThreshold[0] === 8) {
+    if (minimapSmoothFactor.myCells.size === 0) {
+      return;
+    }
+    let baseCellSize = null;
+    for (const combinedCameraDistanceThreshold of minimapSmoothFactor.myCells.values()) {
+      if (
+        !baseCellSize ||
+        combinedCameraDistanceThreshold.size > baseCellSize.size
+      ) {
+        baseCellSize = combinedCameraDistanceThreshold;
+      }
+    }
+    if (baseCellSize) {
+      console.log("[MultiMax] Targeting biggest cell and splitting.");
+      drawMinimapInterval.sendPacket(
+        VoidGBYH.sendMouse(baseCellSize.x, baseCellSize.y)
+      );
+      setTimeout(() => {
+        for (
+          let minimapSmoothFactor = 0;
+          minimapSmoothFactor < AxisLockThreshold[0];
+          minimapSmoothFactor++
+        ) {
+          drawMinimapInterval.sendPacket(VoidGBYH.sendKey(17));
+        }
+      }, 1);
+      yield_j0ltb_ea9a1_eq = Date.now() + 1;
+    }
+    return;
+  }
+  if (Cd8Hiea95a_Init === "followMouseSCell") {
+    const combinedZoomFocusStrength = minimapSmoothFactor.myCells.size;
+    if (combinedZoomFocusStrength === 0) {
+      return;
+    }
+    let combinedInterpSpeed = 0;
+    let messageColors = 0;
+    for (const combinedCameraDistanceThreshold of minimapSmoothFactor.myCells.values()) {
+      combinedInterpSpeed += combinedCameraDistanceThreshold.x;
+      messageColors += combinedCameraDistanceThreshold.y;
+    }
+    const MESSAGE_TYPES = combinedInterpSpeed / combinedZoomFocusStrength;
+    const CellVisibility = messageColors / combinedZoomFocusStrength;
+    if (MESSAGE_TYPES && CellVisibility) {
+      drawMinimapInterval.sendPacket(
+        VoidGBYH.sendMouse(MESSAGE_TYPES, CellVisibility)
+      );
+      setTimeout(() => {
+        for (
+          let minimapSmoothFactor = 0;
+          minimapSmoothFactor < AxisLockThreshold[0];
+          minimapSmoothFactor++
+        ) {
+          drawMinimapInterval.sendPacket(VoidGBYH.sendKey(17));
+        }
+      }, 1);
+      yield_j0ltb_ea9a1_eq = Date.now() + 1;
+    }
+  } else if (typeof drawMinimapInterval.sendSplit === "function") {
+    CLASS_3Ft = true;
+    drawMinimapInterval.sendSplit(AxisLockThreshold[0]).then(() => {
+      CLASS_3Ft = false;
+    });
+    yield_j0ltb_ea9a1_eq = Date.now() + 1;
+  }
+}
+function React_a3eebzUUeaa04(...AxisLockThreshold) {
+  const minimapSmoothFactor = faCUfKea9fb_add();
+  const drawMinimapInterval =
+    minimapSmoothFactor === If$sEyzqKbhea93f_Exec
+      ? Str_NmyJ4kX
+      : If$sEyzqKbhea93f_Exec;
+  if (Mao5huZea938_run.BotFFeed) {
+    NOgc$oea945_num = true;
+    if (
+      !drawMinimapInterval.mouseFrozen &&
+      !in_hpdqea943_div &&
+      !Mao5huZea938_run.mouseFollow
+    ) {
+      if (!do_Hz8uZ47Tea9a2_Id) {
+        do_Hz8uZ47Tea9a2_Id = true;
+        const baseCellSize =
+          minimapSmoothFactor.calculatedMouseX || AxisLockThreshold[0];
+        const combinedCameraDistanceThreshold =
+          minimapSmoothFactor.calculatedMouseY || AxisLockThreshold[1];
+        drawMinimapInterval.sendPacket(
+          VoidGBYH.sendMouse(baseCellSize, combinedCameraDistanceThreshold)
+        );
+        setTimeout(() => {
+          do_Hz8uZ47Tea9a2_Id = false;
+          NOgc$oea945_num = false;
+        }, 50);
+      }
+    }
+    if (in_hpdqea943_div && !xhr_UZ5IPT_ea9a3_run) {
+      xhr_UZ5IPT_ea9a3_run = true;
+      for (
+        let combinedZoomFocusStrength = 0;
+        combinedZoomFocusStrength < 5;
+        combinedZoomFocusStrength++
+      ) {
+        drawMinimapInterval.sendPacket(VoidGBYH.sendKey(17));
+      }
+      setTimeout(() => {
+        for (
+          let AxisLockThreshold = 0;
+          AxisLockThreshold < 8;
+          AxisLockThreshold++
+        ) {
+          drawMinimapInterval.sendPacket(VoidGBYH.sendKey(17));
+        }
+        Mao5huZea938_run.BotFFeed = false;
+        xhr_UZ5IPT_ea9a3_run = false;
+        NOgc$oea945_num = false;
+      }, 830);
+    }
+  }
+}
+function rCRuBeaa05_res(...AxisLockThreshold) {
+  AxisLockThreshold[2] = faCUfKea9fb_add();
+  AxisLockThreshold[58] =
+    AxisLockThreshold[2] === If$sEyzqKbhea93f_Exec
+      ? Str_NmyJ4kX
+      : If$sEyzqKbhea93f_Exec;
+  if (Mao5huZea938_run.soloMothership) {
+    if (
+      !AxisLockThreshold[58].mouseFrozen &&
+      !in_hpdqea943_div &&
+      !Mao5huZea938_run.mouseFollow
+    ) {
+      const minimapSmoothFactor =
+        AxisLockThreshold[2].calculatedMouseX || AxisLockThreshold[0];
+      const drawMinimapInterval =
+        AxisLockThreshold[2].calculatedMouseY || AxisLockThreshold[1];
+      AxisLockThreshold[58].sendPacket(
+        VoidGBYH.sendMouse(minimapSmoothFactor, drawMinimapInterval)
+      );
+    }
+    if (in_hpdqea943_div) {
+      for (
+        AxisLockThreshold[85] = 0;
+        AxisLockThreshold[85] < 8;
+        AxisLockThreshold[85]++
+      ) {
+        AxisLockThreshold[58].sendPacket(VoidGBYH.sendKey(17));
+      }
+      Mao5huZea938_run.soloMothership = false;
+    }
+  }
+}
+function This_GCC(...AxisLockThreshold) {
+  if (NOgc$oea945_num) {
+    return;
+  }
+  AxisLockThreshold.a = faCUfKea9fb_add();
+  AxisLockThreshold[3] =
+    AxisLockThreshold.a === If$sEyzqKbhea93f_Exec
+      ? Str_NmyJ4kX
+      : If$sEyzqKbhea93f_Exec;
+  if (Mao5huZea938_run.mouseFollow) {
+    if (Cd8Hiea95a_Init === "followMouseAlways") {
+      if (!AxisLockThreshold[3].mouseFrozen) {
+        const minimapSmoothFactor =
+          AxisLockThreshold.a.calculatedMouseX || AxisLockThreshold[0];
+        const drawMinimapInterval =
+          AxisLockThreshold.a.calculatedMouseY || AxisLockThreshold[1];
+        AxisLockThreshold[3].sendPacket(
+          VoidGBYH.sendMouse(minimapSmoothFactor, drawMinimapInterval)
+        );
+      }
+    } else if (Cd8Hiea95a_Init === "followMouseMacros" && CLASS_3Ft) {
+      if (!AxisLockThreshold[3].mouseFrozen) {
+        const minimapSmoothFactor =
+          AxisLockThreshold.a.calculatedMouseX || AxisLockThreshold[0];
+        const drawMinimapInterval =
+          AxisLockThreshold.a.calculatedMouseY || AxisLockThreshold[1];
+        AxisLockThreshold[3].sendPacket(
+          VoidGBYH.sendMouse(minimapSmoothFactor, drawMinimapInterval)
+        );
+      }
+    } else if (Cd8Hiea95a_Init === "followMouseSCell" && CLASS_3Ft) {
+      if (!AxisLockThreshold[3].mouseFrozen) {
+        const baseCellSize = AxisLockThreshold.a.myCells;
+        const combinedCameraDistanceThreshold = baseCellSize.size;
+        if (combinedCameraDistanceThreshold > 0) {
+          let combinedZoomFocusStrength = 0;
+          let combinedInterpSpeed = 0;
+          for (const messageColors of baseCellSize.values()) {
+            combinedZoomFocusStrength += messageColors.x;
+            combinedInterpSpeed += messageColors.y;
+          }
+          const minimapSmoothFactor =
+            combinedZoomFocusStrength / combinedCameraDistanceThreshold;
+          const drawMinimapInterval =
+            combinedInterpSpeed / combinedCameraDistanceThreshold;
+          AxisLockThreshold[3].sendPacket(
+            VoidGBYH.sendMouse(minimapSmoothFactor, drawMinimapInterval)
+          );
+        }
+      }
+    }
+  }
+}
+function yield_a4eFrbK9_eaa07_Ret(...AxisLockThreshold) {
+  const minimapSmoothFactor = "circle-radius-" + AxisLockThreshold[0];
+  if (Math_zxd$ea973_Obj.has(minimapSmoothFactor)) {
+    return Math_zxd$ea973_Obj.get(minimapSmoothFactor);
+  }
+  Evt_oIHD_ea9a4_idx.clear();
+  Evt_oIHD_ea9a4_idx.beginFill(16777215);
+  Evt_oIHD_ea9a4_idx.drawCircle(0, 0, AxisLockThreshold[0]);
+  Evt_oIHD_ea9a4_idx.endFill();
+  const drawMinimapInterval = AxisLockThreshold[0] * 2;
+  const baseCellSize = AxisLockThreshold[0] * 2;
+  const combinedCameraDistanceThreshold = PIXI.RenderTexture.create({
+    width: drawMinimapInterval,
+    height: baseCellSize,
+    multisample: PIXI.MSAA_QUALITY.HIGH,
+    resolution: Date$F4EY.renderer.resolution,
+  });
+  const combinedZoomFocusStrength = new PIXI.Matrix();
+  combinedZoomFocusStrength.translate(
+    AxisLockThreshold[0],
+    AxisLockThreshold[0]
+  );
+  Date$F4EY.renderer.render(Evt_oIHD_ea9a4_idx, {
+    renderTexture: combinedCameraDistanceThreshold,
+    transform: combinedZoomFocusStrength,
+    clear: true,
+  });
+  if (Date$F4EY.renderer.framebuffer && Date$F4EY.renderer.framebuffer.blit) {
+    Date$F4EY.renderer.framebuffer.blit();
+  }
+  Math_zxd$ea973_Obj.set(minimapSmoothFactor, combinedCameraDistanceThreshold);
+  return combinedCameraDistanceThreshold;
+}
+function HelperBFZkQ(...AxisLockThreshold) {
+  console.error(
+    "Authentication Error:",
+    AxisLockThreshold[0].message,
+    "(" + AxisLockThreshold[0].code + ")"
+  );
+  if (AxisLockThreshold[1]) {
+    let minimapSmoothFactor =
+      "" +
+      AxisLockThreshold[0].message +
+      " (" +
+      AxisLockThreshold[0].code +
+      ")";
+    switch (AxisLockThreshold[0].code) {
+      case "auth/user-disabled":
+        minimapSmoothFactor =
+          "This account has been permanently suspended by an administrator.";
+        break;
+      case "auth/popup-closed-by-user":
+        return;
+    }
+    PzLTVea9d7_res(minimapSmoothFactor, "danger");
+  }
+}
+function bmBtnjkeaa09_or(...AxisLockThreshold) {
+  if (AxisLockThreshold[0] === 0) {
+    return "You cannot block that player.";
+  }
+  const minimapSmoothFactor = faCUfKea9fb_add().playerId;
+  if (AxisLockThreshold[0] === minimapSmoothFactor) {
+    return "Why would you block yourself!";
+  }
+  const drawMinimapInterval = Map_brr9MVea94a_Idx.indexOf(AxisLockThreshold[0]);
+  if (drawMinimapInterval !== -1) {
+    Map_brr9MVea94a_Idx.splice(drawMinimapInterval, 1);
+    return "Unblocked player with ID: " + AxisLockThreshold[0];
+  } else {
+    Map_brr9MVea94a_Idx.push(AxisLockThreshold[0]);
+    return "Blocked player with ID: " + AxisLockThreshold[0];
+  }
+}
+function fGuNueaa0a_err(...AxisLockThreshold) {
+  NghauAMea965_VAL = findServerByName(AxisLockThreshold[0], asyncq0oTeVQT);
+  if (NghauAMea965_VAL) {
+    localStorage.setItem(
+      "options",
+      JSON.stringify({
+        ...(JSON.parse(localStorage.getItem("options")) || {}),
+        server: NghauAMea965_VAL.name,
+        region: $("#btnToggleServers").attr("region"),
+      })
+    );
+  }
+}
+function TruejJBgB31q(...AxisLockThreshold) {
+  qq8ea959_idx = AxisLockThreshold[0];
+  localStorage.setItem(
+    "options",
+    JSON.stringify({
+      ...(JSON.parse(localStorage.getItem("options")) || {}),
+      cameraMode: AxisLockThreshold[0],
+    })
+  );
+  $("#cameraMode > nord-button").attr("variant", "plain");
+  $("#cameraMode > #" + AxisLockThreshold[0]).attr("variant", "primary");
+}
+function XHR_uLPuP9eaa0c_Ex(...AxisLockThreshold) {
+  Cd8Hiea95a_Init = AxisLockThreshold[0];
+  localStorage.setItem(
+    "options",
+    JSON.stringify({
+      ...(JSON.parse(localStorage.getItem("options")) || {}),
+      followMouseMode: AxisLockThreshold[0],
+    })
+  );
+  $("#followMouseMode > nord-button").attr("variant", "plain");
+  $("#followMouseMode > #" + AxisLockThreshold[0]).attr("variant", "primary");
+}
+function HXgYeaa0d_TYPE(...AxisLockThreshold) {
+  const minimapSmoothFactor = AxisLockThreshold[0].split(" ");
+  AxisLockThreshold.a = "";
+  AxisLockThreshold[39] = null;
+  for (
+    AxisLockThreshold[3] = 0;
+    AxisLockThreshold[3] < minimapSmoothFactor.length;
+    AxisLockThreshold[3]++
+  ) {
+    if (AxisLockThreshold[3] != 0) {
+      AxisLockThreshold.a += " ";
+    }
+    AxisLockThreshold[39] = minimapSmoothFactor[AxisLockThreshold[3]];
+    if (FalseJax[AxisLockThreshold[39]] != null) {
+      if (
+        AxisLockThreshold[39].startsWith(":") &&
+        AxisLockThreshold[39].endsWith(":")
+      ) {
+        AxisLockThreshold[39] = AxisLockThreshold[39].substring(
+          1,
+          AxisLockThreshold[39].length - 1
+        );
+      }
+      AxisLockThreshold.a +=
+        '<img src="images/emotes/' +
+        AxisLockThreshold[39] +
+        '.png" height="17" width="17" alt="' +
+        AxisLockThreshold[39] +
+        '">';
+    } else if (xhr_tj9avEM[AxisLockThreshold[39]] != null) {
+      if (
+        AxisLockThreshold[39].startsWith(":") &&
+        AxisLockThreshold[39].endsWith(":")
+      ) {
+        AxisLockThreshold[39] = AxisLockThreshold[39].substring(
+          1,
+          AxisLockThreshold[39].length - 1
+        );
+      }
+      AxisLockThreshold.a +=
+        '<img src="images/emotes/gifs/' +
+        AxisLockThreshold[39] +
+        '.gif" height="17" width="17" alt="' +
+        AxisLockThreshold[39] +
+        '">';
+    } else {
+      AxisLockThreshold.a += AxisLockThreshold[39];
+    }
+  }
+  return AxisLockThreshold.a;
+}
+function XHR_uCA5J6jeaa0e_obj(...AxisLockThreshold) {
+  if (iU2ea955_Id.length === 0 || ijs) {
+    return;
+  }
+  ijs = true;
+  const { message: minimapSmoothFactor } = iU2ea955_Id.shift();
+  letl8FDUOw_ea9cd_Ref(minimapSmoothFactor);
+}
+function UtilQlOY_eaa0f_cb() {
+  try {
+    localStorage.setItem("keybinds", JSON.stringify(CoKB));
+    console.log("Saved keybinds to localStorage.");
+  } catch (AxisLockThreshold) {
+    console.error("Error saving keybinds to localStorage:", AxisLockThreshold);
+  }
+}
+function CHueaa10_Proc(...AxisLockThreshold) {
+  AxisLockThreshold[-99] = "";
+  if (AxisLockThreshold[1].flags.STAFF) {
+    AxisLockThreshold[-99] = "Gota.io Staff";
+  } else if (AxisLockThreshold[1].flags.VERIFIED) {
+    AxisLockThreshold[-99] = "Verified Player";
+  } else {
+    return;
+  }
+  const minimapSmoothFactor = document.createElement("i");
+  minimapSmoothFactor.id = "user-badge";
+  minimapSmoothFactor.title = AxisLockThreshold[-99];
+  minimapSmoothFactor.textContent = AxisLockThreshold[-99];
+  AxisLockThreshold[0].appendChild(minimapSmoothFactor);
+}
+function J8EVQ(...AxisLockThreshold) {
+  const minimapSmoothFactor = {
+    x: AxisLockThreshold[0].centerX,
+    y: AxisLockThreshold[0].centerY,
+    x_: AxisLockThreshold[0].centerX_,
+    y_: AxisLockThreshold[0].centerY_,
+    totalMass: 0,
+    totalSize: 0,
+    cellCount: 0,
+  };
+  const drawMinimapInterval = AxisLockThreshold[0].myCells;
+  minimapSmoothFactor.cellCount = drawMinimapInterval.size;
+  if (minimapSmoothFactor.cellCount === 0) {
+    return minimapSmoothFactor;
+  }
+  AxisLockThreshold[1] = 0;
+  AxisLockThreshold[2] = 0;
+  AxisLockThreshold[3] = 0;
+  AxisLockThreshold[4] = 0;
+  AxisLockThreshold[-208] = 0;
+  AxisLockThreshold.f = 0;
+  for (const baseCellSize of drawMinimapInterval.values()) {
+    const combinedCameraDistanceThreshold = baseCellSize.getMass();
+    const combinedZoomFocusStrength = baseCellSize.getRealMass();
+    AxisLockThreshold[1] += baseCellSize.x * combinedCameraDistanceThreshold;
+    AxisLockThreshold[2] += baseCellSize.y * combinedCameraDistanceThreshold;
+    AxisLockThreshold[3] += baseCellSize.x_ * combinedZoomFocusStrength;
+    AxisLockThreshold[4] += baseCellSize.y_ * combinedZoomFocusStrength;
+    AxisLockThreshold[-208] += combinedCameraDistanceThreshold;
+    AxisLockThreshold.f += combinedZoomFocusStrength;
+    minimapSmoothFactor.totalSize += baseCellSize.size;
+  }
+  if (AxisLockThreshold[-208] > 0) {
+    minimapSmoothFactor.x = AxisLockThreshold[1] / AxisLockThreshold[-208];
+    minimapSmoothFactor.y = AxisLockThreshold[2] / AxisLockThreshold[-208];
+  }
+  if (AxisLockThreshold.f > 0) {
+    minimapSmoothFactor.x_ = AxisLockThreshold[3] / AxisLockThreshold.f;
+    minimapSmoothFactor.y_ = AxisLockThreshold[4] / AxisLockThreshold.f;
+  }
+  minimapSmoothFactor.totalMass = AxisLockThreshold.f;
+  return minimapSmoothFactor;
+}
+function RETURN_zuR(...AxisLockThreshold) {
+  const minimapSmoothFactor = document.getElementById(
+    "hud-linesplit-indicator"
+  );
+  if (minimapSmoothFactor) {
+    minimapSmoothFactor.style.display = AxisLockThreshold[0] ? "flex" : "none";
+  }
+}
+function y2jX$eaa13_Idx(...AxisLockThreshold) {
+  Mao5huZea938_run.sSoloTrickMode = AxisLockThreshold[0];
+  localStorage.setItem(
+    "options",
+    JSON.stringify({
+      ...(JSON.parse(localStorage.getItem("options")) || {}),
+      sSoloTrickMode: AxisLockThreshold[0],
+    })
+  );
+  $("#sSoloTrickMode > nord-button").attr("variant", "plain");
+  if (AxisLockThreshold[0] === "AUTO") {
+    $("#soloTrickModeAuto").attr("variant", "primary");
+  } else {
+    $("#soloTrickModeManual").attr("variant", "primary");
+  }
+}
+document.addEventListener(
+  "click",
+  Object$kDcGWUY(function (...AxisLockThreshold) {
+    AxisLockThreshold.length = 1;
+    const minimapSmoothFactor = AxisLockThreshold[0].target.closest("a");
+    if (
+      minimapSmoothFactor &&
+      minimapSmoothFactor.href &&
+      minimapSmoothFactor.href.startsWith("http")
+    ) {
+      AxisLockThreshold[0].preventDefault();
+      window.api.send("openLink", minimapSmoothFactor.href);
+    }
+  })
+);
+BigIntLsuea9cc_ex(true, "Gota Redux");
+document.body.addEventListener(
+  "dragstart",
+  Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    return AxisLockThreshold[0].preventDefault();
+  })
+);
+document.body.addEventListener(
+  "drop",
+  Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    return AxisLockThreshold[0].preventDefault();
+  })
+);
+initializeNord();
+const MYstEuQeaa14_err = initFirebaseApp("Account1");
+const FLsTXl = initFirebaseApp("Account2");
+NeweNPdm();
+document.querySelector("nord-toast-group").addEventListener(
+  "dismiss",
+  Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    return AxisLockThreshold[0].target.remove();
+  })
+);
+document.querySelector("nord-notification-group").addEventListener(
+  "dismiss",
+  Object$kDcGWUY((...AxisLockThreshold) => {
+    AxisLockThreshold.length = 1;
+    return AxisLockThreshold[0].target.remove();
+  })
+);
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("appMinimize").addEventListener("click", () => {
+    window.api.minimize();
+  });
+  document.getElementById("appRestore").addEventListener("click", () => {
+    window.api.maximize();
+  });
+  document.getElementById("appClose").addEventListener("click", () => {
+    window.api.close();
+  });
+});
