@@ -1,69 +1,82 @@
 
-class ModalSystem {
-    static modals = []
-    static currentModal = null
-    static isAnimating = false
+// Check if ModalSystem already exists to prevent duplicate declaration
+if (typeof ModalSystem === 'undefined') {
+    class ModalSystem {
+        static modals = []
+        static currentModal = null
+        static isAnimating = false
 
-    static init() {
-        document.querySelectorAll("[data-modal-id]").forEach((modal) => {
-            const modalObj = {
-                overlay: modal,
-                container: modal.querySelector(".modal-container"),
-                closeBtn: modal.querySelector(".modal-close"),
-                id: modal.dataset.modalId
-            }
+        static init() {
+            document.querySelectorAll("[data-modal-id]").forEach((modal) => {
+                const modalObj = {
+                    overlay: modal,
+                    container: modal.querySelector(".modal-container"),
+                    closeBtn: modal.querySelector(".modal-close"),
+                    id: modal.dataset.modalId
+                }
 
-            modalObj.closeBtn.addEventListener("click", () => this.close())
-            modalObj.overlay.addEventListener("click", (e) => {
-                if (e.target === modalObj.overlay) this.close()
+                modalObj.closeBtn.addEventListener("click", () => this.close())
+                modalObj.overlay.addEventListener("click", (e) => {
+                    if (e.target === modalObj.overlay) this.close()
+                })
+
+                this.modals.push(modalObj)
             })
 
-            this.modals.push(modalObj)
-        })
+            document.querySelectorAll("[data-modal-target]").forEach((btn) => {
+                btn.addEventListener("click", () => this.open(btn.dataset.modalTarget))
+            })
 
-        document.querySelectorAll("[data-modal-target]").forEach((btn) => {
-            btn.addEventListener("click", () => this.open(btn.dataset.modalTarget))
-        })
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && this.currentModal) this.close()
+            })
+        }
 
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && this.currentModal) this.close()
-        })
-    }
+        static open(id) {
+            if (this.isAnimating) return
 
-    static open(id) {
-        if (this.isAnimating) return
+            const modal = this.modals.find((m) => m.id === id)
+            if (!modal || this.currentModal === modal) return
 
-        const modal = this.modals.find((m) => m.id === id)
-        if (!modal || this.currentModal === modal) return
+            this.isAnimating = true
+            this.currentModal = modal
 
-        this.isAnimating = true
-        this.currentModal = modal
+            modal.overlay.style.display = "flex"
+            setTimeout(() => {
+                modal.overlay.classList.add("active")
+                this.isAnimating = false
+            }, 10)
+        }
 
-        modal.overlay.style.display = "flex"
-        setTimeout(() => {
-            modal.overlay.classList.add("active")
-            this.isAnimating = false
-        }, 10)
-    }
+        static close() {
+            if (this.isAnimating || !this.currentModal) return
 
-    static close() {
-        if (this.isAnimating || !this.currentModal) return
+            this.isAnimating = true
+            const modal = this.currentModal
 
-        this.isAnimating = true
-        const modal = this.currentModal
-
-        modal.overlay.classList.remove("active")
-        setTimeout(() => {
-            modal.overlay.style.display = "none"
-            this.currentModal = null
-            this.isAnimating = false
-        }, 300)
+            modal.overlay.classList.remove("active")
+            setTimeout(() => {
+                modal.overlay.style.display = "none"
+                this.currentModal = null
+                this.isAnimating = false
+            }, 300)
+        }
     }
 }
 
-ModalSystem.init()
+// Only initialize if not already initialized
+if (typeof ModalSystem !== 'undefined' && !ModalSystem.modals.length) {
+    try {
+        ModalSystem.init()
+    } catch (e) {
+        console.warn('ModalSystem initialization failed:', e);
+    }
+}
 
-var version
+// Check if version is already defined
+if (typeof version === 'undefined') {
+    var version
+}
 var showSideMenu
 var hideSideMenu
 var macroIntervalID
@@ -3730,7 +3743,12 @@ function init_game() {
             borderGraphic = new PIXI.Graphics()
 
             // Set the line style using the configured border size and color.
-            borderGraphic.lineStyle(uiTheme.rBorderSize, PIXI.utils.string2hex(tinycolor(uiTheme.uiGameBorderColor).toHexString()))
+            if (typeof tinycolor !== 'undefined') {
+                borderGraphic.lineStyle(uiTheme.rBorderSize, PIXI.utils.string2hex(tinycolor(uiTheme.uiGameBorderColor).toHexString()))
+            } else {
+                // Fallback if tinycolor is not available
+                borderGraphic.lineStyle(uiTheme.rBorderSize, PIXI.utils.string2hex(uiTheme.uiGameBorderColor))
+            }
             // Draw a rectangle using the server's border parameters.
             borderGraphic.drawRect(player1.serverData.border.left, player1.serverData.border.top, player1.serverData.border.width, player1.serverData.border.height)
 
@@ -4643,7 +4661,7 @@ function init_game() {
                                 showUIElement(mainUI)
                             }
                             aiptag.cmd.display.push(function () {
-                                aipDisplayTag.refresh("GOT_gota-io_336x280")
+                                aipDisplayTag.refresh("GOTA_gota-io_336x280")
                             })
                         }
                     }
@@ -5936,7 +5954,7 @@ function init_game() {
                                 showUIElement(mainUI)
                             }
                             aiptag.cmd.display.push(function () {
-                                aipDisplayTag.refresh("GOT_gota-io_336x280")
+                                aipDisplayTag.refresh("GOTA_gota-io_336x280")
                             })
                         }
                     }
@@ -13230,11 +13248,11 @@ const newAlphaP1Sprite = clientSettings.cTransCells ? (cell.originalAlpha * 0.5)
     var _0x11B8B = []
     var _0x11BA2 = []
     for (var _0x11BD0 = 0; _0x11BD0 < 180; _0x11BD0++) {
-        var _0x115E2 = tinycolor({
-            h: _0x11BD0 * 2,
-            s: 97.25,
-            v: 100
-        })
+            var _0x115E2 = typeof tinycolor !== 'undefined' ? tinycolor({
+        h: _0x11BD0 * 2,
+        s: 97.25,
+        v: 100
+    }) : { toRgb: () => ({ r: 255, g: 255, b: 255 }), toHexString: () => '#ffffff' }
         var _0x115F9 = _0x115E2.toRgb()
         _0x11B8B[_0x11BD0] = (_0x115F9.r << 16) + (_0x115F9.g << 8) + _0x115F9.b
         _0x11BA2[_0x11BD0] = _0x115E2.toHexString()
