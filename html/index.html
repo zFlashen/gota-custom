@@ -1286,7 +1286,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.js"></script>
     
     <!-- PIXI.js for graphics rendering -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/pixi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@6.5.2/dist/pixi.min.js"></script>
+    <!-- Fallback to older version if needed -->
+    <script>
+        if (typeof PIXI === 'undefined') {
+            document.write('<script src="https://unpkg.com/pixi.js@5.3.12/dist/pixi.min.js"><\/script>');
+        }
+    </script>
     
     <!-- Additional utilities -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
