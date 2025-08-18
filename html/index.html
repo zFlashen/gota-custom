@@ -21,6 +21,9 @@
         <canvas id="canvas"></canvas>
     </div>
 
+    <!-- Add missing elements from official Gota.io -->
+    <div id="preroll"></div>
+    
     <div id="notification-container" class="notification-container"></div>
 
     <div class="hud-panel">
@@ -1277,8 +1280,43 @@
       </ul>
    </div>
 
-    <!-- UI Enhancements Script -->
-    <script src="ui-enhancements.js"></script>
+    <!-- Required Libraries for dual-enhances.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.6.0/tinycolor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.js"></script>
+    
+    <!-- PIXI.js for graphics rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/pixi.min.js"></script>
+    
+    <!-- Additional utilities -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    
+    <!-- Global variables and initialization -->
+    <script>
+        // Define global variables that dual-enhances.js expects
+        var version = "1.0.0";
+        var showSideMenu = function() {};
+        var hideSideMenu = function() {};
+        var macroIntervalID = null;
+        var macroIterations = 1;
+        var mousefix = 0;
+        var toggleMass = false;
+        var toggleName = false;
+        var toggleSkins = false;
+        var toggleChat = false;
+        var onScreenIcons = [];
+        var soloTrickSplit = false;
+        
+        // Initialize FastClick for mobile devices
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    
+    <!-- Main Scripts -->
+    <script src="../javascript/dual-enhances.js"></script>
 
 </body>
 
